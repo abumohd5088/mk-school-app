@@ -19,13 +19,13 @@
             line-height: 1.6;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
         .hero {
             text-align: center;
-            padding: 6rem 0;
+            padding: 4rem 0;
             background: linear-gradient(135deg, #1e40af, #1e3a8a);
             color: white;
             border-bottom-left-radius: 30px;
@@ -76,24 +76,69 @@
             cursor: pointer;
             font-weight: 500;
         }
-        .homework-section {
-            display: none;
+        .main-container {
+            display: flex;
             margin-top: 3rem;
+            gap: 2rem;
+            min-height: 500px;
+        }
+        .sidebar {
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        .sidebar-header {
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+            color: #1e40af;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .sidebar-menu {
+            list-style: none;
+        }
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #1e293b;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: #f1f5f9;
+            color: #1e40af;
+        }
+        .sidebar-menu a.active {
+            font-weight: 500;
+            background: #eff6ff;
+        }
+        .content {
+            flex: 1;
             background: white;
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .greeting {
-            font-size: 1.4rem;
-            color: #1e40af;
-            margin-bottom: 1rem;
+        .welcome {
             text-align: center;
-        }
-        .class-display {
-            text-align: center;
-            color: #64748b;
             margin-bottom: 2rem;
+        }
+        .welcome h3 {
+            font-size: 1.8rem;
+            color: #1e40af;
+        }
+        .welcome p {
+            color: #64748b;
             font-weight: 500;
         }
         .homework-item {
@@ -114,15 +159,16 @@
             color: #64748b;
             margin-bottom: 0.5rem;
         }
-        .back-btn {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 8px 16px;
-            background: #1e40af;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.9rem;
+        .info-card {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #1e40af;
+        }
+        .info-card h4 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
         }
         .whatsapp-btn, .call-btn, .admin-btn {
             position: fixed;
@@ -152,6 +198,12 @@
             background: #ef4444;
         }
         @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
             .whatsapp-btn, .call-btn, .admin-btn {
                 width: 50px;
                 height: 50px;
@@ -170,15 +222,16 @@
         </div>
     </section>
 
+    <!-- Entry Form -->
     <div class="container">
         <div class="entry-box" id="entryForm">
-            <h3 style="text-align: center; margin-bottom: 1.5rem;">Enter Your Details</h3>
+            <h3 style="text-align: center; margin-bottom: 1.5rem;">Welcome Student</h3>
             <div class="form-group">
-                <label for="studentName">Student Name</label>
+                <label for="studentName">Your Name</label>
                 <input type="text" id="studentName" placeholder="Enter your full name">
             </div>
             <div class="form-group">
-                <label for="studentClass">Class</label>
+                <label for="studentClass">Your Class</label>
                 <select id="studentClass">
                     <option value="">Select Class</option>
                     <option>Nursery</option>
@@ -198,38 +251,143 @@
                     <option>Class 12</option>
                 </select>
             </div>
-            <button class="submit-btn" onclick="showHomework()">View Homework</button>
+            <button class="submit-btn" onclick="showDashboard()">Continue to Home</button>
         </div>
 
-        <div class="homework-section" id="homeworkSection">
-            <h3 id="greeting" class="greeting"></h3>
-            <p id="classDisplay" class="class-display"></p>
-
-            <!-- Homework Items - Yahan new homework add karna hai -->
-            <div class="homework-item">
-                <h4>Mathematics</h4>
-                <div class="homework-meta">
-                    <span><i class="fas fa-book"></i> Chapter 5: Algebra</span>
-                    <span><i class="fas fa-calendar"></i> Due: 25 Nov 2025</span>
+        <!-- Main Dashboard -->
+        <div class="main-container" id="dashboard" style="display: none;">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Student Panel</h3>
+                    <p id="sidebarClass">Class: Not Selected</p>
                 </div>
-                <p>Solve exercise 5.3, questions 1-15. Focus on linear equations.</p>
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" onclick="showContent('homework'); return false;"><i class="fas fa-pen"></i> Homework</a></li>
+                    <li><a href="#" onclick="showContent('timings'); return false;"><i class="fas fa-clock"></i> School Timings</a></li>
+                    <li><a href="#" onclick="showContent('holidays'); return false;"><i class="fas fa-calendar-alt"></i> Holidays</a></li>
+                    <li><a href="#" onclick="showContent('notices'); return false;"><i class="fas fa-bullhorn"></i> Notices</a></li>
+                    <li><a href="#" onclick="showContent('contact'); return false;"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+
+                <div class="info-card">
+                    <h4><i class="fas fa-school"></i> School Address</h4>
+                    <p>Near Bus Stand, Balrampur, UP 271201</p>
+                </div>
+                <div class="info-card">
+                    <h4><i class="fas fa-phone"></i> Contact</h4>
+                    <p>+91 97589 19151</p>
+                    <p>mili.karwaan@gmail.com</p>
+                </div>
             </div>
 
-            <div class="homework-item">
-                <h4>English</h4>
-                <div class="homework-meta">
-                    <span><i class="fas fa-book"></i> Literature</span>
-                    <span><i class="fas fa-calendar"></i> Due: 26 Nov 2025</span>
-                </div>
-                <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
-            </div>
+            <!-- Content Area -->
+            <div class="content">
+                <div id="homework" class="content-section">
+                    <h3 id="homeworkGreeting" style="color: #1e40af; margin-bottom: 1.5rem;">Your Homework</h3>
+                    
+                    <!-- Homework Items - Add new ones here -->
+                    <div class="homework-item">
+                        <h4>Mathematics</h4>
+                        <div class="homework-meta">
+                            <span><i class="fas fa-book"></i> Chapter 5: Algebra</span>
+                            <span><i class="fas fa-calendar"></i> Due: 25 Nov 2025</span>
+                        </div>
+                        <p>Solve exercise 5.3, questions 1-15. Focus on linear equations.</p>
+                    </div>
 
-            <div style="text-align: center;">
-                <a href="#" class="back-btn" onclick="backToForm(); return false;">← Enter Another Student</a>
+                    <div class="homework-item">
+                        <h4>English</h4>
+                        <div class="homework-meta">
+                            <span><i class="fas fa-book"></i> Literature</span>
+                            <span><i class="fas fa-calendar"></i> Due: 26 Nov 2025</span>
+                        </div>
+                        <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
+                    </div>
+
+                    <div class="homework-item">
+                        <h4>Science</h4>
+                        <div class="homework-meta">
+                            <span><i class="fas fa-flask"></i> Physics</span>
+                            <span><i class="fas fa-calendar"></i> Due: 28 Nov 2025</span>
+                        </div>
+                        <p>Prepare a project on "Simple Machines" with diagrams and real-life examples.</p>
+                    </div>
+                </div>
+
+                <div id="timings" class="content-section" style="display: none;">
+                    <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-clock"></i> School Timings</h3>
+                    <div class="info-card">
+                        <h4>Regular Days</h4>
+                        <p><strong>Monday - Friday:</strong> 8:00 AM - 3:00 PM</p>
+                        <p><strong>Saturday:</strong> 8:00 AM - 1:00 PM</p>
+                        <p><strong>Sunday:</strong> Holiday</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Break Times</h4>
+                        <p><strong>First Break:</strong> 10:30 AM - 10:45 AM</p>
+                        <p><strong>Lunch Break:</strong> 12:30 PM - 1:00 PM</p>
+                    </div>
+                </div>
+
+                <div id="holidays" class="content-section" style="display: none;">
+                    <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-calendar-alt"></i> Upcoming Holidays</h3>
+                    <div class="info-card">
+                        <h4><i class="fas fa-gift"></i> Diwali Holiday</h4>
+                        <p><strong>Date:</strong> 31 Oct 2025 - 3 Nov 2025</p>
+                        <p><strong>Duration:</strong> 4 Days</p>
+                    </div>
+                    <div class="info-card">
+                        <h4><i class="fas fa-snowflake"></i> Winter Break</h4>
+                        <p><strong>Date:</strong> 23 Dec 2025 - 5 Jan 2026</p>
+                        <p><strong>Duration:</strong> 14 Days</p>
+                    </div>
+                    <div class="info-card">
+                        <h4><i class="fas fa-graduation-cap"></i> Summer Vacation</h4>
+                        <p><strong>Date:</strong> 15 May 2026 - 10 Jul 2026</p>
+                        <p><strong>Duration:</strong> 57 Days</p>
+                    </div>
+                </div>
+
+                <div id="notices" class="content-section" style="display: none;">
+                    <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-bullhorn"></i> Important Notices</h3>
+                    <div class="info-card">
+                        <h4>Parent-Teacher Meeting</h4>
+                        <p><strong>Date:</strong> 28 Nov 2025</p>
+                        <p><strong>Time:</strong> 4:00 PM - 6:00 PM</p>
+                        <p>All parents are requested to attend.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Annual Function</h4>
+                        <p><strong>Date:</strong> 15 Dec 2025</p>
+                        <p><strong>Venue:</strong> School Ground</p>
+                        <p>Students please prepare for your performances.</p>
+                    </div>
+                </div>
+
+                <div id="contact" class="content-section" style="display: none;">
+                    <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-phone"></i> Contact Information</h3>
+                    <div class="info-card">
+                        <h4>Principal's Office</h4>
+                        <p><strong>Phone:</strong> +91 97589 19151</p>
+                        <p><strong>Email:</strong> principal@milikarwaan.edu.in</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Admin Office</h4>
+                        <p><strong>Phone:</strong> +91 97589 19152</p>
+                        <p><strong>Email:</strong> admin@milikarwaan.edu.in</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Admission Office</h4>
+                        <p><strong>Phone:</strong> +91 97589 19153</p>
+                        <p><strong>Email:</strong> admission@milikarwaan.edu.in</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Fixed Buttons -->
     <a href="https://wa.me/919758919151" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -241,7 +399,7 @@
     </a>
 
     <script>
-        function showHomework() {
+        function showDashboard() {
             const name = document.getElementById('studentName').value;
             const cls = document.getElementById('studentClass').value;
 
@@ -251,24 +409,32 @@
             }
 
             document.getElementById('entryForm').style.display = 'none';
-            document.getElementById('homeworkSection').style.display = 'block';
-            document.getElementById('greeting').textContent = `Hello, ${name}!`;
-            document.getElementById('classDisplay').textContent = `Class: ${cls}`;
+            document.getElementById('dashboard').style.display = 'flex';
+            
+            // Set greetings
+            document.getElementById('homeworkGreeting').textContent = `Hello ${name}, Here's Your Homework`;
+            document.getElementById('sidebarClass').textContent = `Class: ${cls}`;
         }
 
-        function backToForm() {
-            document.getElementById('homeworkSection').style.display = 'none';
-            document.getElementById('entryForm').style.display = 'block';
+        function showContent(section) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(sec => {
+                sec.style.display = 'none';
+            });
+            // Show selected section
+            document.getElementById(section).style.display = 'block';
         }
+
+        // Show homework by default
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initially hide all content sections except homework
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => {
+                if (sec.id !== 'homework') {
+                    sec.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
     </html>
-
-<div class="homework-item">
-    <h4>Math</h4>
-    <div class="homework-meta">
-        <span><i class="fas fa-book"></i> Class 1</span>
-        <span><i class="fas fa-calendar"></i> Due: 10/8/2025</span>
-    </div>
-    <p>Mobile uuuh</p>
-</div>
