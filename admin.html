@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Mili Karwaan School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 280px;
+            background: #1e40af;
+            color: white;
+            padding: 2rem 0;
+        }
+        .sidebar-header {
+            text-align: center;
+            padding: 0 1rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+        }
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            gap: 1rem;
+            transition: background 0.3s;
+        }
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: rgba(255,255,255,0.1);
+        }
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .card h4 {
+            color: #1e40af;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+        .submit-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .homework-list {
+            margin-top: 1rem;
+        }
+        .homework-item {
+            background: #f8fafc;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Admin Panel</h3>
+                <p>Mili Karwaan School</p>
+            </div>
+            <div class="sidebar-menu">
+                <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-book"></i> Manage Homework</a>
+                <a href="#"><i class="fas fa-users"></i> Students</a>
+                <a href="#"><i class="fas fa-chalkboard-teacher"></i> Teachers</a>
+                <a href="#"><i class="fas fa-calendar"></i> Events</a>
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            
+            <div class="card">
+                <h4>Add New Homework</h4>
+                <div class="form-group">
+                    <label>Class</label>
+                    <select id="adminClass">
+                        <option>Select Class</option>
+                        <option>Nursery</option>
+                        <option>LKG</option>
+                        <option>UKG</option>
+                        <option>Class 1</option>
+                        <option>Class 2</option>
+                        <option>Class 3</option>
+                        <option>Class 4</option>
+                        <option>Class 5</option>
+                        <option>Class 6</option>
+                        <option>Class 7</option>
+                        <option>Class 8</option>
+                        <option>Class 9</option>
+                        <option>Class 10</option>
+                        <option>Class 11</option>
+                        <option>Class 12</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" placeholder="Enter subject name">
+                </div>
+                <div class="form-group">
+                    <label>Homework Details</label>
+                    <textarea rows="4" placeholder="Enter homework description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="date">
+                </div>
+                <button class="submit-btn">Add Homework</button>
+            </div>
+
+            <div class="card">
+                <h4>Recent Homework</h4>
+                <div class="homework-list">
+                    <div class="homework-item">
+                        <strong>Class 10 - Mathematics</strong><br>
+                        Solve exercise 5.3, questions 1-15<br>
+                        <small>Due: 25 Nov 2025</small>
+                    </div>
+                    <div class="homework-item">
+                        <strong>Class 8 - Science</strong><br>
+                        Prepare project on Simple Machines<br>
+                        <small>Due: 28 Nov 2025</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple password protection
+        (() => {
+            const password = prompt("Enter Admin Password:");
+            if (password !== "Abutalha") {
+                alert("Access Denied!");
+                window.location.href = "index.html";
+            }
+        })();
+    </script>
+</body>
+  </html>
