@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mili Karwaan Public School - Balrampur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f8fafc;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
             color: #1e293b;
-            line-height: 1.6;
+            line-height: 1.7;
+            min-height: 100vh;
         }
         .container {
             max-width: 1200px;
@@ -25,30 +27,52 @@
         }
         .hero {
             text-align: center;
-            padding: 4rem 0;
+            padding: 4rem 0 3rem;
             background: linear-gradient(135deg, #1e40af, #1e3a8a);
             color: white;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
         }
         .hero h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
         }
         .hero p {
             font-size: 1.2rem;
             opacity: 0.9;
-            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0.5rem auto 0;
         }
         .entry-box {
-            max-width: 550px;
-            margin: -50px auto 0;
+            max-width: 600px;
+            margin: -60px auto 0;
             background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .form-title {
+            text-align: center;
+            color: #1e40af;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #f59e0b;
+            border-radius: 2px;
         }
         .form-group {
             margin-bottom: 1.8rem;
@@ -56,139 +80,180 @@
         .form-group label {
             display: block;
             margin-bottom: 0.8rem;
-            font-weight: 500;
-            color: #1e293b;
+            font-weight: 600;
+            color: #1e40af;
             font-size: 1.1rem;
         }
         .form-group input, .form-group select {
             width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
+            padding: 16px 20px;
+            border: 2px solid #dbeafe;
+            border-radius: 16px;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            background: #f8fafc;
+            color: #1e293b;
+            font-weight: 500;
         }
         .form-group input:focus, .form-group select:focus {
             outline: none;
             border-color: #1e40af;
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
         }
         .submit-btn {
-            background: #f59e0b;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
             color: white;
             border: none;
-            padding: 14px 30px;
+            padding: 16px 40px;
             width: 100%;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
         }
         .submit-btn:hover {
-            background: #d97706;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(245, 158, 11, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(245, 158, 11, 0.4);
+            background: linear-gradient(135deg, #d97706, #b45309);
         }
         .main-container {
             display: flex;
             margin-top: 3rem;
-            gap: 2rem;
-            min-height: 600px;
+            gap: 2.5rem;
+            min-height: 650px;
+            animation: fadeInUp 0.8s ease;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .sidebar {
-            width: 320px;
+            width: 340px;
             background: white;
-            border-radius: 20px;
-            padding: 1.8rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
             height: fit-content;
+            border: 1px solid rgba(255,255,255,0.3);
         }
         .sidebar-header {
             text-align: center;
-            padding-bottom: 1.2rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1px solid #e2e8f0;
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
             color: #1e40af;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
         .student-info {
             text-align: center;
-            margin-bottom: 1.8rem;
-            padding: 1.4rem;
+            margin-bottom: 2rem;
+            padding: 1.8rem;
             background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            border-radius: 15px;
-            border: 1px solid #bfdbfe;
+            border-radius: 20px;
+            border: 2px solid #bfdbfe;
         }
         .student-name {
-            font-weight: 600;
+            font-weight: 700;
             color: #1e293b;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 0.4rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .student-class {
             color: #059669;
-            font-weight: 500;
-            font-size: 1.1rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            background: white;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-top: 8px;
         }
         .sidebar-menu {
             list-style: none;
         }
         .sidebar-menu li {
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.5rem;
         }
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
+            gap: 14px;
+            padding: 16px 20px;
             text-decoration: none;
             color: #1e293b;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            border-radius: 16px;
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        .sidebar-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #1e40af;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        .sidebar-menu a:hover::before {
+            transform: scaleY(1);
         }
         .sidebar-menu a:hover, .sidebar-menu a.active {
             background: #eff6ff;
             color: #1e40af;
-            transform: translateX(5px);
+            transform: translateX(8px);
+            font-weight: 600;
         }
         .sidebar-menu a.active {
             background: #dbeafe;
-            border-left: 4px solid #1e40af;
-            font-weight: 600;
+            font-weight: 700;
         }
         .content {
             flex: 1;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         .content-header {
             background: white;
-            padding: 1.5rem 2rem;
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 1.8rem 2.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #e2e8f0;
         }
         .content-title {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: #1e40af;
             font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
         .quick-actions {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
         }
         .btn {
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .btn-primary {
             background: #1e40af;
@@ -197,89 +262,123 @@
         .btn-outline {
             background: transparent;
             color: #1e40af;
-            border: 1px solid #1e40af;
+            border: 2px solid #1e40af;
         }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(30, 64, 175, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(30, 64, 175, 0.2);
         }
         .content-body {
             background: white;
-            padding: 2rem;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            min-height: 400px;
+        }
+        .section-title {
+            color: #1e40af;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .homework-item {
             background: #f8fafc;
-            border-left: 5px solid #f59e0b;
-            padding: 1.2rem;
-            margin-bottom: 1.2rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            border-left: 6px solid #f59e0b;
+            padding: 1.4rem;
+            margin-bottom: 1.4rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         .homework-item:hover {
             background: #fffbeb;
-            transform: translateX(5px);
+            transform: translateX(8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         .homework-item h4 {
             color: #1e293b;
             margin-bottom: 0.6rem;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
         .homework-meta {
             display: flex;
             justify-content: space-between;
             font-size: 0.95rem;
             color: #64748b;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
-        .homework-meta i {
-            margin-right: 5px;
-            color: #1e40af;
+        .homework-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .info-card {
             background: #f8fafc;
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1.2rem;
-            border-left: 4px solid #1e40af;
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            padding: 1.4rem;
+            margin-bottom: 1.4rem;
+            border-left: 5px solid #1e40af;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
         }
         .info-card:hover {
             background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            border-color: #bfdbfe;
         }
         .info-card h4 {
             color: #1e40af;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-weight: 600;
         }
         .attendance {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1.5rem;
-            gap: 1rem;
+            margin-bottom: 1.8rem;
+            gap: 1.2rem;
         }
         .attendance-item {
             flex: 1;
             text-align: center;
-            padding: 1.2rem;
+            padding: 1.4rem;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        .attendance-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #10b981;
+        }
+        .attendance-item:nth-child(2)::before {
+            background: #ef4444;
+        }
+        .attendance-item:nth-child(3)::before {
+            background: #f59e0b;
         }
         .attendance-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
         }
         .attendance-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0.5rem 0;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0.6rem 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
         .present {
             color: #10b981;
@@ -292,34 +391,35 @@
         }
         .whatsapp-btn, .call-btn, .admin-btn {
             position: fixed;
-            bottom: 20px;
-            width: 65px;
-            height: 65px;
+            bottom: 25px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             text-decoration: none;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
             z-index: 1000;
-            transition: all 0.3s ease;
+            border: 3px solid white;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .whatsapp-btn {
-            right: 20px;
+            right: 25px;
             background: #25D366;
         }
         .call-btn {
-            right: 95px;
+            right: 110px;
             background: #10B981;
         }
         .admin-btn {
-            right: 170px;
+            right: 195px;
             background: #ef4444;
         }
         .whatsapp-btn:hover, .call-btn:hover, .admin-btn:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px) scale(1.1);
         }
         @media (max-width: 768px) {
             .main-container {
@@ -329,13 +429,15 @@
                 width: 100%;
             }
             .whatsapp-btn, .call-btn, .admin-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 1.3rem;
+                width: 60px;
+                height: 60px;
+                font-size: 1.4rem;
+                bottom: 15px;
             }
-            .call-btn { right: 85px; }
-            .admin-btn { right: 150px; }
-            .hero h2 { font-size: 2.2rem; }
+            .call-btn { right: 90px; }
+            .admin-btn { right: 160px; }
+            .hero h2 { font-size: 2.3rem; }
+            .entry-box { padding: 2rem; }
         }
     </style>
 </head>
@@ -350,15 +452,15 @@
     <!-- Entry Form -->
     <div class="container">
         <div class="entry-box" id="entryForm">
-            <h3 style="text-align: center; margin-bottom: 1.8rem; color: #1e40af;">Student Login Portal</h3>
+            <h3 class="form-title">Student Authentication</h3>
             <div class="form-group">
-                <label for="studentName">Enter Your Full Name</label>
-                <input type="text" id="studentName" placeholder="e.g. Rajesh Kumar">
+                <label for="studentName">Student's Full Name</label>
+                <input type="text" id="studentName" placeholder="Enter your complete name">
             </div>
             <div class="form-group">
-                <label for="studentClass">Select Your Class</label>
+                <label for="studentClass">Class</label>
                 <select id="studentClass">
-                    <option value="">Choose Class</option>
+                    <option value="">Select Your Class</option>
                     <option>Nursery</option>
                     <option>LKG</option>
                     <option>UKG</option>
@@ -376,7 +478,7 @@
                     <option>Class 12</option>
                 </select>
             </div>
-            <button class="submit-btn" onclick="showDashboard()">Enter Student Dashboard</button>
+            <button class="submit-btn" onclick="showStudentDashboard()">Access My Dashboard</button>
         </div>
 
         <!-- Main Dashboard -->
@@ -403,12 +505,8 @@
                 </ul>
 
                 <div class="info-card">
-                    <h4><i class="fas fa-award"></i> Academic Year</h4>
-                    <p>2025-2026</p>
-                </div>
-                <div class="info-card">
                     <h4><i class="fas fa-certificate"></i> Excellence Certificate</h4>
-                    <p>Awarded for 95%+ attendance and performance</p>
+                    <p>Awarded for 95%+ attendance and academic performance</p>
                 </div>
             </div>
 
@@ -417,8 +515,8 @@
                 <div class="content-header">
                     <div class="content-title" id="pageTitle">Homework</div>
                     <div class="quick-actions">
-                        <a href="#" class="btn btn-outline" onclick="printSection(); return false;"><i class="fas fa-print"></i> Print</a>
-                        <a href="#" class="btn btn-primary" onclick="downloadPDF(); return false;"><i class="fas fa-download"></i> PDF</a>
+                        <a href="#" class="btn btn-outline" onclick="alert('Feature coming soon!'); return false;"><i class="fas fa-print"></i> Print</a>
+                        <a href="#" class="btn btn-primary" onclick="alert('PDF generation coming soon!'); return false;"><i class="fas fa-download"></i> Export</a>
                     </div>
                 </div>
 
@@ -451,73 +549,19 @@
                             </div>
                             <p>Prepare a project on "Simple Machines" with diagrams and real-life examples.</p>
                         </div>
+
+                        <div class="homework-item">
+                            <h4>Social Studies</h4>
+                            <div class="homework-meta">
+                                <span><i class="fas fa-globe-asia"></i> History</span>
+                                <span><i class="fas fa-calendar"></i> Due: 30 Nov 2025</span>
+                            </div>
+                            <p>Write about the Mughal Empire in 300 words with timeline.</p>
+                        </div>
                     </div>
 
                     <!-- Attendance Section -->
                     <div id="attendance" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-check-circle"></i> Attendance Record</h3>
                         <div class="attendance">
-                            <div class="attendance-item">
-                                <div class="attendance-value present">98%</div>
-                                <div>Present</div>
-                            </div>
-                            <div class="attendance-item">
-                                <div class="attendance-value absent">2%</div>
-                                <div>Absent</div>
-                            </div>
-                            <div class="attendance-item">
-                                <div class="attendance-value on-time">100%</div>
-                                <div>On Time</div>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h4>Monthly Attendance</h4>
-                            <p><strong>July 2025:</strong> 30/30 days</p>
-                            <p><strong>August 2025:</strong> 28/30 days</p>
-                            <p><strong>September 2025:</strong> 29/30 days</p>
-                        </div>
-                        <p style="color: #64748b; font-style: italic;">Keep up the good work! Maintain 95%+ attendance for excellence certificate.</p>
-                    </div>
-
-                    <!-- Study Materials -->
-                    <div id="materials" class="content-section" style="display: none;">
-                        <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-book"></i> Study Materials</h3>
-                        
-                        <div class="info-card">
-                            <h4><i class="fas fa-file-pdf"></i> Mathematics</h4>
-                            <p><strong>Chapter 5 Notes:</strong> <a href="#" style="color: #1e40af;">Download PDF</a></p>
-                            <p><strong>Practice Worksheet:</strong> <a href="#" style="color: #1e40af;">Download</a></p>
-                        </div>
-
-                        <div class="info-card">
-                            <h4><i class="fas fa-file-pdf"></i> Science</h4>
-                            <p><strong>Physics Notes:</strong> <a href="#" style="color: #1e40af;">Download PDF</a></p>
-                            <p><strong>Experiment Guide:</strong> <a href="#" style="color: #1e40af;">Download</a></p>
-                        </div>
-
-                        <div class="info-card">
-                            <h4><i class="fas fa-video"></i> Video Lessons</h4>
-                            <p><strong>Algebra Tutorial:</strong> <a href="#" style="color: #1e40af;">Watch Now</a></p>
-                            <p><strong>Science Experiments:</strong> <a href="#" style="color: #1e40af;">Watch Now</a></p>
-                        </div>
-                    </div>
-
-                    <!-- Exam Schedule -->
-                    <div id="exams" class="content-section" style="display: none;">
-                        <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-file-alt"></i> Term Exam Schedule</h3>
-                        
-                        <div class="info-card">
-                            <h4>Mid-Term Exams</h4>
-                            <p><strong>Start Date:</strong> 15 Dec 2025</p>
-                            <p><strong>End Date:</strong> 20 Dec 2025</p>
-                        </div>
-
-                        <div class="info-card">
-                            <h4>Final Exams</h4>
-                            <p><strong>Start Date:</strong> 10 Mar 2026</p>
-                            <p><strong>End Date:</strong> 20 Mar 2026</p>
-                        </div>
-
-                        <div class="info-card">
-                            <h4>Subject-wise Timetable</h4>
-      
+                            <div cla
