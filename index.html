@@ -418,9 +418,108 @@
                             </div>
                             <p>Solve exercise 5.3, questions 1-15. Focus on linear equations and word problems.</p>
                         </div>
+
+                        <div class="homework-item">
+                            <h4>English</h4>
+                            <div class="homework-meta">
+                                <span><i class="fas fa-book"></i> Literature</span>
+                                <span><i class="fas fa-calendar"></i> Due: 26 Nov 2025</span>
+                            </div>
+                            <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
+                        </div>
                     </div>
 
-                    <!-- Other sections will be added via JS if needed -->
+                    <!-- Attendance Section -->
+                    <div id="attendance" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-check-circle"></i> Attendance Record</h3>
+                        <div class="attendance">
+                            <div class="attendance-item">
+                                <div class="attendance-value present">98%</div>
+                                <div>Present</div>
+                            </div>
+                            <div class="attendance-item">
+                                <div class="attendance-value absent">2%</div>
+                                <div>Absent</div>
+                            </div>
+                            <div class="attendance-item">
+                                <div class="attendance-value on-time">100%</div>
+                                <div>On Time</div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <p><strong>July 2025:</strong> 30/30 days</p>
+                            <p><strong>August 2025:</strong> 28/30 days</p>
+                            <p><strong>September 2025:</strong> 29/30 days</p>
+                        </div>
+                    </div>
+
+                    <!-- Study Materials -->
+                    <div id="materials" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-book"></i> Study Materials</h3>
+                        <div class="info-card">
+                            <h4><i class="fas fa-file-pdf"></i> Mathematics Notes</h4>
+                            <p><strong>Chapter 5:</strong> <a href="#" style="color: #1e40af;">Download PDF</a></p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-video"></i> Science Videos</h4>
+                            <p><strong>Physics:</strong> <a href="#" style="color: #1e40af;">Watch Now</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Exam Schedule -->
+                    <div id="exams" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-file-alt"></i> Exam Schedule</h3>
+                        <div class="info-card">
+                            <h4>Mid-Term Exams</h4>
+                            <p><strong>Start:</strong> 15 Dec 2025</p>
+                            <p><strong>End:</strong> 20 Dec 2025</p>
+                        </div>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div id="achievements" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-trophy"></i> Achievements</h3>
+                        <div class="info-card">
+                            <h4><i class="fas fa-medal"></i> Science Olympiad - 2nd Position</h4>
+                            <p>Awarded on 15 Sep 2025</p>
+                        </div>
+                    </div>
+
+                    <!-- Timings -->
+                    <div id="timings" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-clock"></i> School Timings</h3>
+                        <div class="info-card">
+                            <p><strong>Mon-Fri:</strong> 8:00 AM - 3:00 PM</p>
+                            <p><strong>Saturday:</strong> 8:00 AM - 1:00 PM</p>
+                        </div>
+                    </div>
+
+                    <!-- Holidays -->
+                    <div id="holidays" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-calendar-alt"></i> Upcoming Holidays</h3>
+                        <div class="info-card">
+                            <h4><i class="fas fa-diagram-project"></i> Diwali Holiday</h4>
+                            <p><strong>31 Oct - 3 Nov 2025</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Notices -->
+                    <div id="notices" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-bullhorn"></i> Notices</h3>
+                        <div class="info-card">
+                            <h4>Parent-Teacher Meeting</h4>
+                            <p><strong>Date:</strong> 28 Nov 2025 | <strong>Time:</strong> 4:00 PM</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div id="contact" class="content-section" style="display: none;">
+                        <h3 class="section-title"><i class="fas fa-phone"></i> Contact</h3>
+                        <div class="info-card">
+                            <h4>Principal's Office</h4>
+                            <p><strong>Phone:</strong> +91 97589 19151</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -428,88 +527,3 @@
 
     <!-- Fixed Buttons -->
     <a href="https://wa.me/919758919151" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="tel:+919758919151" class="call-btn">
-        <i class="fas fa-phone"></i>
-    </a>
-    <a href="admin.html" class="admin-btn">
-        <i class="fas fa-cog"></i>
-    </a>
-
-    <script>
-        // Wait for page to load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get elements
-            const accessButton = document.getElementById('accessButton');
-            const entryForm = document.getElementById('entryForm');
-            const dashboard = document.getElementById('dashboard');
-            const studentNameInput = document.getElementById('studentName');
-            const studentClassSelect = document.getElementById('studentClass');
-            const displayName = document.getElementById('displayName');
-            const displayClass = document.getElementById('displayClass');
-
-            // Access Dashboard Button Click
-            accessButton.addEventListener('click', function() {
-                const name = studentNameInput.value.trim();
-                const cls = studentClassSelect.value;
-
-                if (!name) {
-                    alert('Please enter your full name');
-                    studentNameInput.focus();
-                    return;
-                }
-
-                if (!cls) {
-                    alert('Please select your class');
-                    studentClassSelect.focus();
-                    return;
-                }
-
-                // Hide entry form
-                entryForm.style.display = 'none';
-                
-                // Show dashboard
-                dashboard.style.display = 'flex';
-
-                // Set student info
-                displayName.textContent = name;
-                displayClass.textContent = cls;
-            });
-
-            // Menu Navigation (Homework active by default)
-            const menuItems = {
-                menuHomework: document.getElementById('menuHomework'),
-                menuAttendance: document.getElementById('menuAttendance'),
-                menuMaterials: document.getElementById('menuMaterials'),
-                menuExams: document.getElementById('menuExams'),
-                menuAchievements: document.getElementById('menuAchievements'),
-                menuTimings: document.getElementById('menuTimings'),
-                menuHolidays: document.getElementById('menuHolidays'),
-                menuNotices: document.getElementById('menuNotices'),
-                menuContact: document.getElementById('menuContact')
-            };
-
-            // Add click listeners to all menu items
-            Object.keys(menuItems).forEach(key => {
-                const menuItem = menuItems[key];
-                menuItem.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all
-                    Object.values(menuItems).forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked
-                    menuItem.classList.add('active');
-                    
-                    // Update title (simplified)
-                    document.getElementById('pageTitle').textContent = 
-                        menuItem.textContent.trim();
-                });
-            });
-        });
-    </script>
-</body>
-    </html>
