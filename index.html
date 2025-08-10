@@ -52,7 +52,6 @@
             border-radius: 25px;
             padding: 3rem;
             box-shadow: 0 25px 50px rgba(0,0,0,0.18);
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
         }
         .form-title {
@@ -116,10 +115,9 @@
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(245, 158, 11, 0.4);
-            background: linear-gradient(135deg, #d97706, #b45309);
         }
         .main-container {
-            display: flex;
+            display: none;
             margin-top: 3rem;
             gap: 2.5rem;
             min-height: 650px;
@@ -142,7 +140,6 @@
             padding: 2rem;
             box-shadow: 0 20px 40px rgba(0,0,0,0.12);
             height: fit-content;
-            border: 1px solid rgba(255,255,255,0.3);
         }
         .sidebar-header {
             text-align: center;
@@ -167,7 +164,6 @@
             color: #1e293b;
             font-size: 1.3rem;
             margin-bottom: 0.4rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .student-class {
             color: #059669;
@@ -194,22 +190,6 @@
             color: #1e293b;
             border-radius: 16px;
             font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-        .sidebar-menu a::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: #1e40af;
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-        .sidebar-menu a:hover::before {
-            transform: scaleY(1);
         }
         .sidebar-menu a:hover, .sidebar-menu a.active {
             background: #eff6ff;
@@ -241,33 +221,6 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
         }
-        .quick-actions {
-            display: flex;
-            gap: 1.2rem;
-        }
-        .btn {
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-primary {
-            background: #1e40af;
-            color: white;
-        }
-        .btn-outline {
-            background: transparent;
-            color: #1e40af;
-            border: 2px solid #1e40af;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(30, 64, 175, 0.2);
-        }
         .content-body {
             background: white;
             padding: 2.5rem;
@@ -288,12 +241,6 @@
             padding: 1.4rem;
             margin-bottom: 1.4rem;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .homework-item:hover {
-            background: #fffbeb;
-            transform: translateX(8px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         .homework-item h4 {
             color: #1e293b;
@@ -321,14 +268,6 @@
             padding: 1.4rem;
             margin-bottom: 1.4rem;
             border-left: 5px solid #1e40af;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-        .info-card:hover {
-            background: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-            border-color: #bfdbfe;
         }
         .info-card h4 {
             color: #1e40af;
@@ -351,44 +290,15 @@
             background: white;
             border-radius: 16px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            border: 1px solid #e2e8f0;
-            position: relative;
-            overflow: hidden;
-        }
-        .attendance-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: #10b981;
-        }
-        .attendance-item:nth-child(2)::before {
-            background: #ef4444;
-        }
-        .attendance-item:nth-child(3)::before {
-            background: #f59e0b;
-        }
-        .attendance-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
         }
         .attendance-value {
             font-size: 2rem;
             font-weight: 800;
             margin: 0.6rem 0;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
-        .present {
-            color: #10b981;
-        }
-        .absent {
-            color: #ef4444;
-        }
-        .on-time {
-            color: #f59e0b;
-        }
+        .present { color: #10b981; }
+        .absent { color: #ef4444; }
+        .on-time { color: #f59e0b; }
         .whatsapp-btn, .call-btn, .admin-btn {
             position: fixed;
             bottom: 25px;
@@ -404,23 +314,10 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.25);
             z-index: 1000;
             border: 3px solid white;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .whatsapp-btn {
-            right: 25px;
-            background: #25D366;
-        }
-        .call-btn {
-            right: 110px;
-            background: #10B981;
-        }
-        .admin-btn {
-            right: 195px;
-            background: #ef4444;
-        }
-        .whatsapp-btn:hover, .call-btn:hover, .admin-btn:hover {
-            transform: translateY(-6px) scale(1.1);
-        }
+        .whatsapp-btn { right: 25px; background: #25D366; }
+        .call-btn { right: 110px; background: #10B981; }
+        .admin-btn { right: 195px; background: #ef4444; }
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
@@ -437,7 +334,6 @@
             .call-btn { right: 90px; }
             .admin-btn { right: 160px; }
             .hero h2 { font-size: 2.3rem; }
-            .entry-box { padding: 2rem; }
         }
     </style>
 </head>
@@ -478,11 +374,11 @@
                     <option>Class 12</option>
                 </select>
             </div>
-            <button class="submit-btn" onclick="showStudentDashboard()">Access My Dashboard</button>
+            <button id="accessButton" class="submit-btn">Access My Dashboard</button>
         </div>
 
         <!-- Main Dashboard -->
-        <div class="main-container" id="dashboard" style="display: none;">
+        <div class="main-container" id="dashboard">
             <!-- Sidebar -->
             <div class="sidebar">
                 <div class="sidebar-header">Student Portal</div>
@@ -493,31 +389,22 @@
                 </div>
 
                 <ul class="sidebar-menu">
-                    <li><a href="#" class="active" onclick="showSection('homework'); return false;"><i class="fas fa-pen"></i> Homework</a></li>
-                    <li><a href="#" onclick="showSection('attendance'); return false;"><i class="fas fa-check-circle"></i> Attendance</a></li>
-                    <li><a href="#" onclick="showSection('materials'); return false;"><i class="fas fa-book"></i> Study Materials</a></li>
-                    <li><a href="#" onclick="showSection('exams'); return false;"><i class="fas fa-file-alt"></i> Exam Schedule</a></li>
-                    <li><a href="#" onclick="showSection('achievements'); return false;"><i class="fas fa-trophy"></i> Achievements</a></li>
-                    <li><a href="#" onclick="showSection('timings'); return false;"><i class="fas fa-clock"></i> School Timings</a></li>
-                    <li><a href="#" onclick="showSection('holidays'); return false;"><i class="fas fa-calendar-alt"></i> Holidays</a></li>
-                    <li><a href="#" onclick="showSection('notices'); return false;"><i class="fas fa-bullhorn"></i> Notices</a></li>
-                    <li><a href="#" onclick="showSection('contact'); return false;"><i class="fas fa-phone"></i> Contact</a></li>
+                    <li><a href="#" class="active" id="menuHomework"><i class="fas fa-pen"></i> Homework</a></li>
+                    <li><a href="#" id="menuAttendance"><i class="fas fa-check-circle"></i> Attendance</a></li>
+                    <li><a href="#" id="menuMaterials"><i class="fas fa-book"></i> Study Materials</a></li>
+                    <li><a href="#" id="menuExams"><i class="fas fa-file-alt"></i> Exam Schedule</a></li>
+                    <li><a href="#" id="menuAchievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+                    <li><a href="#" id="menuTimings"><i class="fas fa-clock"></i> School Timings</a></li>
+                    <li><a href="#" id="menuHolidays"><i class="fas fa-calendar-alt"></i> Holidays</a></li>
+                    <li><a href="#" id="menuNotices"><i class="fas fa-bullhorn"></i> Notices</a></li>
+                    <li><a href="#" id="menuContact"><i class="fas fa-phone"></i> Contact</a></li>
                 </ul>
-
-                <div class="info-card">
-                    <h4><i class="fas fa-certificate"></i> Excellence Certificate</h4>
-                    <p>Awarded for 95%+ attendance and academic performance</p>
-                </div>
             </div>
 
             <!-- Content Area -->
             <div class="content">
                 <div class="content-header">
                     <div class="content-title" id="pageTitle">Homework</div>
-                    <div class="quick-actions">
-                        <a href="#" class="btn btn-outline" onclick="alert('Feature coming soon!'); return false;"><i class="fas fa-print"></i> Print</a>
-                        <a href="#" class="btn btn-primary" onclick="alert('PDF generation coming soon!'); return false;"><i class="fas fa-download"></i> Export</a>
-                    </div>
                 </div>
 
                 <div class="content-body">
@@ -531,37 +418,98 @@
                             </div>
                             <p>Solve exercise 5.3, questions 1-15. Focus on linear equations and word problems.</p>
                         </div>
-
-                        <div class="homework-item">
-                            <h4>English</h4>
-                            <div class="homework-meta">
-                                <span><i class="fas fa-book"></i> Literature</span>
-                                <span><i class="fas fa-calendar"></i> Due: 26 Nov 2025</span>
-                            </div>
-                            <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
-                        </div>
-
-                        <div class="homework-item">
-                            <h4>Science</h4>
-                            <div class="homework-meta">
-                                <span><i class="fas fa-flask"></i> Physics</span>
-                                <span><i class="fas fa-calendar"></i> Due: 28 Nov 2025</span>
-                            </div>
-                            <p>Prepare a project on "Simple Machines" with diagrams and real-life examples.</p>
-                        </div>
-
-                        <div class="homework-item">
-                            <h4>Social Studies</h4>
-                            <div class="homework-meta">
-                                <span><i class="fas fa-globe-asia"></i> History</span>
-                                <span><i class="fas fa-calendar"></i> Due: 30 Nov 2025</span>
-                            </div>
-                            <p>Write about the Mughal Empire in 300 words with timeline.</p>
-                        </div>
                     </div>
 
-                    <!-- Attendance Section -->
-                    <div id="attendance" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-check-circle"></i> Attendance Record</h3>
-                        <div class="attendance">
-                            <div cla
+                    <!-- Other sections will be added via JS if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Buttons -->
+    <a href="https://wa.me/919758919151" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:+919758919151" class="call-btn">
+        <i class="fas fa-phone"></i>
+    </a>
+    <a href="admin.html" class="admin-btn">
+        <i class="fas fa-cog"></i>
+    </a>
+
+    <script>
+        // Wait for page to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const accessButton = document.getElementById('accessButton');
+            const entryForm = document.getElementById('entryForm');
+            const dashboard = document.getElementById('dashboard');
+            const studentNameInput = document.getElementById('studentName');
+            const studentClassSelect = document.getElementById('studentClass');
+            const displayName = document.getElementById('displayName');
+            const displayClass = document.getElementById('displayClass');
+
+            // Access Dashboard Button Click
+            accessButton.addEventListener('click', function() {
+                const name = studentNameInput.value.trim();
+                const cls = studentClassSelect.value;
+
+                if (!name) {
+                    alert('Please enter your full name');
+                    studentNameInput.focus();
+                    return;
+                }
+
+                if (!cls) {
+                    alert('Please select your class');
+                    studentClassSelect.focus();
+                    return;
+                }
+
+                // Hide entry form
+                entryForm.style.display = 'none';
+                
+                // Show dashboard
+                dashboard.style.display = 'flex';
+
+                // Set student info
+                displayName.textContent = name;
+                displayClass.textContent = cls;
+            });
+
+            // Menu Navigation (Homework active by default)
+            const menuItems = {
+                menuHomework: document.getElementById('menuHomework'),
+                menuAttendance: document.getElementById('menuAttendance'),
+                menuMaterials: document.getElementById('menuMaterials'),
+                menuExams: document.getElementById('menuExams'),
+                menuAchievements: document.getElementById('menuAchievements'),
+                menuTimings: document.getElementById('menuTimings'),
+                menuHolidays: document.getElementById('menuHolidays'),
+                menuNotices: document.getElementById('menuNotices'),
+                menuContact: document.getElementById('menuContact')
+            };
+
+            // Add click listeners to all menu items
+            Object.keys(menuItems).forEach(key => {
+                const menuItem = menuItems[key];
+                menuItem.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all
+                    Object.values(menuItems).forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked
+                    menuItem.classList.add('active');
+                    
+                    // Update title (simplified)
+                    document.getElementById('pageTitle').textContent = 
+                        menuItem.textContent.trim();
+                });
+            });
+        });
+    </script>
+</body>
+    </html>
