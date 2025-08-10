@@ -76,9 +76,6 @@
             cursor: pointer;
             font-weight: 500;
         }
-        .submit-btn:hover {
-            background: #d97706;
-        }
         .homework-section {
             display: none;
             margin-top: 3rem;
@@ -127,9 +124,6 @@
             text-decoration: none;
             font-size: 0.9rem;
         }
-        .back-btn:hover {
-            background: #1e3a8a;
-        }
         .whatsapp-btn, .call-btn, .admin-btn {
             position: fixed;
             bottom: 20px;
@@ -165,7 +159,6 @@
             }
             .call-btn { right: 80px; }
             .admin-btn { right: 140px; }
-            .hero h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -178,7 +171,6 @@
     </section>
 
     <div class="container">
-        <!-- Entry Form -->
         <div class="entry-box" id="entryForm">
             <h3 style="text-align: center; margin-bottom: 1.5rem;">Enter Your Details</h3>
             <div class="form-group">
@@ -209,16 +201,16 @@
             <button class="submit-btn" onclick="showHomework()">View Homework</button>
         </div>
 
-        <!-- Homework Section -->
         <div class="homework-section" id="homeworkSection">
             <h3 id="greeting" class="greeting"></h3>
             <p id="classDisplay" class="class-display"></p>
 
+            <!-- Homework Items - Yahan new homework add karna hai -->
             <div class="homework-item">
                 <h4>Mathematics</h4>
                 <div class="homework-meta">
                     <span><i class="fas fa-book"></i> Chapter 5: Algebra</span>
-                    <span><i class="fas fa-calendar"></i> Due: Tomorrow</span>
+                    <span><i class="fas fa-calendar"></i> Due: 25 Nov 2025</span>
                 </div>
                 <p>Solve exercise 5.3, questions 1-15. Focus on linear equations.</p>
             </div>
@@ -227,18 +219,9 @@
                 <h4>English</h4>
                 <div class="homework-meta">
                     <span><i class="fas fa-book"></i> Literature</span>
-                    <span><i class="fas fa-calendar"></i> Due: Tomorrow</span>
+                    <span><i class="fas fa-calendar"></i> Due: 26 Nov 2025</span>
                 </div>
                 <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
-            </div>
-
-            <div class="homework-item">
-                <h4>Science</h4>
-                <div class="homework-meta">
-                    <span><i class="fas fa-flask"></i> Physics</span>
-                    <span><i class="fas fa-calendar"></i> Due: Friday</span>
-                </div>
-                <p>Prepare project on "Simple Machines" with diagrams and examples.</p>
             </div>
 
             <div style="text-align: center;">
@@ -247,7 +230,6 @@
         </div>
     </div>
 
-    <!-- Fixed Buttons -->
     <a href="https://wa.me/919758919151" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -280,4 +262,4 @@
         }
     </script>
 </body>
-  </html>
+    </html>
