@@ -14,7 +14,7 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f1f5f9;
+            background: #f8fafc;
             color: #1e293b;
             line-height: 1.6;
         }
@@ -33,169 +33,293 @@
         }
         .hero h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
             margin-bottom: 2rem;
         }
         .entry-box {
-            max-width: 500px;
-            margin: -40px auto 0;
+            max-width: 550px;
+            margin: -50px auto 0;
             background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 0.8rem;
             font-weight: 500;
             color: #1e293b;
+            font-size: 1.1rem;
         }
         .form-group input, .form-group select {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 18px;
             border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #1e40af;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
         }
         .submit-btn {
             background: #f59e0b;
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 14px 30px;
             width: 100%;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(245, 158, 11, 0.3);
         }
         .main-container {
             display: flex;
             margin-top: 3rem;
             gap: 2rem;
-            min-height: 500px;
+            min-height: 600px;
         }
         .sidebar {
-            width: 300px;
+            width: 320px;
             background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
+            border-radius: 20px;
+            padding: 1.8rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             height: fit-content;
         }
         .sidebar-header {
             text-align: center;
-            padding-bottom: 1rem;
+            padding-bottom: 1.2rem;
             border-bottom: 1px solid #e2e8f0;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             color: #1e40af;
             font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 1.8rem;
+            padding: 1.4rem;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-radius: 15px;
+            border: 1px solid #bfdbfe;
+        }
+        .student-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+        .student-class {
+            color: #059669;
+            font-weight: 500;
+            font-size: 1.1rem;
         }
         .sidebar-menu {
             list-style: none;
         }
         .sidebar-menu li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
         }
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
+            gap: 12px;
+            padding: 14px 18px;
             text-decoration: none;
             color: #1e293b;
-            border-radius: 8px;
-            transition: background 0.3s;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
         .sidebar-menu a:hover, .sidebar-menu a.active {
-            background: #f1f5f9;
+            background: #eff6ff;
             color: #1e40af;
+            transform: translateX(5px);
         }
         .sidebar-menu a.active {
-            font-weight: 500;
-            background: #eff6ff;
+            background: #dbeafe;
+            border-left: 4px solid #1e40af;
+            font-weight: 600;
         }
         .content {
             flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .content-header {
             background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .welcome {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .welcome h3 {
-            font-size: 1.8rem;
+        .content-title {
+            font-size: 1.6rem;
             color: #1e40af;
+            font-family: 'Montserrat', sans-serif;
         }
-        .welcome p {
-            color: #64748b;
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-decoration: none;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #1e40af;
+            color: white;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #1e40af;
+            border: 1px solid #1e40af;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(30, 64, 175, 0.2);
+        }
+        .content-body {
+            background: white;
+            padding: 2rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .homework-item {
             background: #f8fafc;
-            border-left: 4px solid #f59e0b;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
+            border-left: 5px solid #f59e0b;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .homework-item:hover {
+            background: #fffbeb;
+            transform: translateX(5px);
         }
         .homework-item h4 {
             color: #1e293b;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
         }
         .homework-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #64748b;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+        .homework-meta i {
+            margin-right: 5px;
+            color: #1e40af;
         }
         .info-card {
             background: #f8fafc;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
             border-left: 4px solid #1e40af;
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
         }
         .info-card h4 {
             color: #1e40af;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .attendance {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+        .attendance-item {
+            flex: 1;
+            text-align: center;
+            padding: 1.2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .attendance-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .attendance-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        .present {
+            color: #10b981;
+        }
+        .absent {
+            color: #ef4444;
+        }
+        .on-time {
+            color: #f59e0b;
         }
         .whatsapp-btn, .call-btn, .admin-btn {
             position: fixed;
             bottom: 20px;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
             z-index: 1000;
+            transition: all 0.3s ease;
         }
         .whatsapp-btn {
             right: 20px;
             background: #25D366;
         }
         .call-btn {
-            right: 90px;
+            right: 95px;
             background: #10B981;
         }
         .admin-btn {
-            right: 160px;
+            right: 170px;
             background: #ef4444;
+        }
+        .whatsapp-btn:hover, .call-btn:hover, .admin-btn:hover {
+            transform: translateY(-5px);
         }
         @media (max-width: 768px) {
             .main-container {
@@ -205,12 +329,13 @@
                 width: 100%;
             }
             .whatsapp-btn, .call-btn, .admin-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
             }
-            .call-btn { right: 80px; }
-            .admin-btn { right: 140px; }
+            .call-btn { right: 85px; }
+            .admin-btn { right: 150px; }
+            .hero h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -225,15 +350,15 @@
     <!-- Entry Form -->
     <div class="container">
         <div class="entry-box" id="entryForm">
-            <h3 style="text-align: center; margin-bottom: 1.5rem;">Welcome Student</h3>
+            <h3 style="text-align: center; margin-bottom: 1.8rem; color: #1e40af;">Student Login Portal</h3>
             <div class="form-group">
-                <label for="studentName">Your Name</label>
-                <input type="text" id="studentName" placeholder="Enter your full name">
+                <label for="studentName">Enter Your Full Name</label>
+                <input type="text" id="studentName" placeholder="e.g. Rajesh Kumar">
             </div>
             <div class="form-group">
-                <label for="studentClass">Your Class</label>
+                <label for="studentClass">Select Your Class</label>
                 <select id="studentClass">
-                    <option value="">Select Class</option>
+                    <option value="">Choose Class</option>
                     <option>Nursery</option>
                     <option>LKG</option>
                     <option>UKG</option>
@@ -251,190 +376,148 @@
                     <option>Class 12</option>
                 </select>
             </div>
-            <button class="submit-btn" onclick="showDashboard()">Continue to Home</button>
+            <button class="submit-btn" onclick="showDashboard()">Enter Student Dashboard</button>
         </div>
 
         <!-- Main Dashboard -->
         <div class="main-container" id="dashboard" style="display: none;">
             <!-- Sidebar -->
             <div class="sidebar">
-                <div class="sidebar-header">
-                    <h3>Student Panel</h3>
-                    <p id="sidebarClass">Class: Not Selected</p>
+                <div class="sidebar-header">Student Portal</div>
+                
+                <div class="student-info">
+                    <div class="student-name" id="displayName">Student Name</div>
+                    <div class="student-class" id="displayClass">Class: Not Selected</div>
                 </div>
+
                 <ul class="sidebar-menu">
-                    <li><a href="#" class="active" onclick="showContent('homework'); return false;"><i class="fas fa-pen"></i> Homework</a></li>
-                    <li><a href="#" onclick="showContent('timings'); return false;"><i class="fas fa-clock"></i> School Timings</a></li>
-                    <li><a href="#" onclick="showContent('holidays'); return false;"><i class="fas fa-calendar-alt"></i> Holidays</a></li>
-                    <li><a href="#" onclick="showContent('notices'); return false;"><i class="fas fa-bullhorn"></i> Notices</a></li>
-                    <li><a href="#" onclick="showContent('contact'); return false;"><i class="fas fa-phone"></i> Contact</a></li>
+                    <li><a href="#" class="active" onclick="showSection('homework'); return false;"><i class="fas fa-pen"></i> Homework</a></li>
+                    <li><a href="#" onclick="showSection('attendance'); return false;"><i class="fas fa-check-circle"></i> Attendance</a></li>
+                    <li><a href="#" onclick="showSection('materials'); return false;"><i class="fas fa-book"></i> Study Materials</a></li>
+                    <li><a href="#" onclick="showSection('exams'); return false;"><i class="fas fa-file-alt"></i> Exam Schedule</a></li>
+                    <li><a href="#" onclick="showSection('achievements'); return false;"><i class="fas fa-trophy"></i> Achievements</a></li>
+                    <li><a href="#" onclick="showSection('timings'); return false;"><i class="fas fa-clock"></i> School Timings</a></li>
+                    <li><a href="#" onclick="showSection('holidays'); return false;"><i class="fas fa-calendar-alt"></i> Holidays</a></li>
+                    <li><a href="#" onclick="showSection('notices'); return false;"><i class="fas fa-bullhorn"></i> Notices</a></li>
+                    <li><a href="#" onclick="showSection('contact'); return false;"><i class="fas fa-phone"></i> Contact</a></li>
                 </ul>
 
                 <div class="info-card">
-                    <h4><i class="fas fa-school"></i> School Address</h4>
-                    <p>Near Bus Stand, Balrampur, UP 271201</p>
+                    <h4><i class="fas fa-award"></i> Academic Year</h4>
+                    <p>2025-2026</p>
                 </div>
                 <div class="info-card">
-                    <h4><i class="fas fa-phone"></i> Contact</h4>
-                    <p>+91 97589 19151</p>
-                    <p>mili.karwaan@gmail.com</p>
+                    <h4><i class="fas fa-certificate"></i> Excellence Certificate</h4>
+                    <p>Awarded for 95%+ attendance and performance</p>
                 </div>
             </div>
 
             <!-- Content Area -->
             <div class="content">
-                <div id="homework" class="content-section">
-                    <h3 id="homeworkGreeting" style="color: #1e40af; margin-bottom: 1.5rem;">Your Homework</h3>
-                    
-                    <!-- Homework Items - Add new ones here -->
-                    <div class="homework-item">
-                        <h4>Mathematics</h4>
-                        <div class="homework-meta">
-                            <span><i class="fas fa-book"></i> Chapter 5: Algebra</span>
-                            <span><i class="fas fa-calendar"></i> Due: 25 Nov 2025</span>
+                <div class="content-header">
+                    <div class="content-title" id="pageTitle">Homework</div>
+                    <div class="quick-actions">
+                        <a href="#" class="btn btn-outline" onclick="printSection(); return false;"><i class="fas fa-print"></i> Print</a>
+                        <a href="#" class="btn btn-primary" onclick="downloadPDF(); return false;"><i class="fas fa-download"></i> PDF</a>
+                    </div>
+                </div>
+
+                <div class="content-body">
+                    <!-- Homework Section -->
+                    <div id="homework" class="content-section">
+                        <div class="homework-item">
+                            <h4>Mathematics</h4>
+                            <div class="homework-meta">
+                                <span><i class="fas fa-book"></i> Chapter 5: Algebra</span>
+                                <span><i class="fas fa-calendar"></i> Due: 25 Nov 2025</span>
+                            </div>
+                            <p>Solve exercise 5.3, questions 1-15. Focus on linear equations and word problems.</p>
                         </div>
-                        <p>Solve exercise 5.3, questions 1-15. Focus on linear equations.</p>
-                    </div>
 
-                    <div class="homework-item">
-                        <h4>English</h4>
-                        <div class="homework-meta">
-                            <span><i class="fas fa-book"></i> Literature</span>
-                            <span><i class="fas fa-calendar"></i> Due: 26 Nov 2025</span>
+                        <div class="homework-item">
+                            <h4>English</h4>
+                            <div class="homework-meta">
+                                <span><i class="fas fa-book"></i> Literature</span>
+                                <span><i class="fas fa-calendar"></i> Due: 26 Nov 2025</span>
+                            </div>
+                            <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
                         </div>
-                        <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
-                    </div>
 
-                    <div class="homework-item">
-                        <h4>Science</h4>
-                        <div class="homework-meta">
-                            <span><i class="fas fa-flask"></i> Physics</span>
-                            <span><i class="fas fa-calendar"></i> Due: 28 Nov 2025</span>
+                        <div class="homework-item">
+                            <h4>Science</h4>
+                            <div class="homework-meta">
+                                <span><i class="fas fa-flask"></i> Physics</span>
+                                <span><i class="fas fa-calendar"></i> Due: 28 Nov 2025</span>
+                            </div>
+                            <p>Prepare a project on "Simple Machines" with diagrams and real-life examples.</p>
                         </div>
-                        <p>Prepare a project on "Simple Machines" with diagrams and real-life examples.</p>
                     </div>
-                </div>
 
-                <div id="timings" class="content-section" style="display: none;">
-                    <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-clock"></i> School Timings</h3>
-                    <div class="info-card">
-                        <h4>Regular Days</h4>
-                        <p><strong>Monday - Friday:</strong> 8:00 AM - 3:00 PM</p>
-                        <p><strong>Saturday:</strong> 8:00 AM - 1:00 PM</p>
-                        <p><strong>Sunday:</strong> Holiday</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>Break Times</h4>
-                        <p><strong>First Break:</strong> 10:30 AM - 10:45 AM</p>
-                        <p><strong>Lunch Break:</strong> 12:30 PM - 1:00 PM</p>
-                    </div>
-                </div>
+                    <!-- Attendance Section -->
+                    <div id="attendance" class="content-section" style="display: none;">
+                        <div class="attendance">
+                            <div class="attendance-item">
+                                <div class="attendance-value present">98%</div>
+                                <div>Present</div>
+                            </div>
+                            <div class="attendance-item">
+                                <div class="attendance-value absent">2%</div>
+                                <div>Absent</div>
+                            </div>
+                            <div class="attendance-item">
+                                <div class="attendance-value on-time">100%</div>
+                                <div>On Time</div>
+                            </div>
+                        </div>
 
-                <div id="holidays" class="content-section" style="display: none;">
-                    <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-calendar-alt"></i> Upcoming Holidays</h3>
-                    <div class="info-card">
-                        <h4><i class="fas fa-gift"></i> Diwali Holiday</h4>
-                        <p><strong>Date:</strong> 31 Oct 2025 - 3 Nov 2025</p>
-                        <p><strong>Duration:</strong> 4 Days</p>
+                        <div class="info-card">
+                            <h4>Monthly Attendance</h4>
+                            <p><strong>July 2025:</strong> 30/30 days</p>
+                            <p><strong>August 2025:</strong> 28/30 days</p>
+                            <p><strong>September 2025:</strong> 29/30 days</p>
+                        </div>
+                        <p style="color: #64748b; font-style: italic;">Keep up the good work! Maintain 95%+ attendance for excellence certificate.</p>
                     </div>
-                    <div class="info-card">
-                        <h4><i class="fas fa-snowflake"></i> Winter Break</h4>
-                        <p><strong>Date:</strong> 23 Dec 2025 - 5 Jan 2026</p>
-                        <p><strong>Duration:</strong> 14 Days</p>
+
+                    <!-- Study Materials -->
+                    <div id="materials" class="content-section" style="display: none;">
+                        <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-book"></i> Study Materials</h3>
+                        
+                        <div class="info-card">
+                            <h4><i class="fas fa-file-pdf"></i> Mathematics</h4>
+                            <p><strong>Chapter 5 Notes:</strong> <a href="#" style="color: #1e40af;">Download PDF</a></p>
+                            <p><strong>Practice Worksheet:</strong> <a href="#" style="color: #1e40af;">Download</a></p>
+                        </div>
+
+                        <div class="info-card">
+                            <h4><i class="fas fa-file-pdf"></i> Science</h4>
+                            <p><strong>Physics Notes:</strong> <a href="#" style="color: #1e40af;">Download PDF</a></p>
+                            <p><strong>Experiment Guide:</strong> <a href="#" style="color: #1e40af;">Download</a></p>
+                        </div>
+
+                        <div class="info-card">
+                            <h4><i class="fas fa-video"></i> Video Lessons</h4>
+                            <p><strong>Algebra Tutorial:</strong> <a href="#" style="color: #1e40af;">Watch Now</a></p>
+                            <p><strong>Science Experiments:</strong> <a href="#" style="color: #1e40af;">Watch Now</a></p>
+                        </div>
                     </div>
-                    <div class="info-card">
-                        <h4><i class="fas fa-graduation-cap"></i> Summer Vacation</h4>
-                        <p><strong>Date:</strong> 15 May 2026 - 10 Jul 2026</p>
-                        <p><strong>Duration:</strong> 57 Days</p>
-                    </div>
-                </div>
 
-                <div id="notices" class="content-section" style="display: none;">
-                    <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-bullhorn"></i> Important Notices</h3>
-                    <div class="info-card">
-                        <h4>Parent-Teacher Meeting</h4>
-                        <p><strong>Date:</strong> 28 Nov 2025</p>
-                        <p><strong>Time:</strong> 4:00 PM - 6:00 PM</p>
-                        <p>All parents are requested to attend.</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>Annual Function</h4>
-                        <p><strong>Date:</strong> 15 Dec 2025</p>
-                        <p><strong>Venue:</strong> School Ground</p>
-                        <p>Students please prepare for your performances.</p>
-                    </div>
-                </div>
+                    <!-- Exam Schedule -->
+                    <div id="exams" class="content-section" style="display: none;">
+                        <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-file-alt"></i> Term Exam Schedule</h3>
+                        
+                        <div class="info-card">
+                            <h4>Mid-Term Exams</h4>
+                            <p><strong>Start Date:</strong> 15 Dec 2025</p>
+                            <p><strong>End Date:</strong> 20 Dec 2025</p>
+                        </div>
 
-                <div id="contact" class="content-section" style="display: none;">
-                    <h3 style="color: #1e40af; margin-bottom: 1.5rem;"><i class="fas fa-phone"></i> Contact Information</h3>
-                    <div class="info-card">
-                        <h4>Principal's Office</h4>
-                        <p><strong>Phone:</strong> +91 97589 19151</p>
-                        <p><strong>Email:</strong> principal@milikarwaan.edu.in</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>Admin Office</h4>
-                        <p><strong>Phone:</strong> +91 97589 19152</p>
-                        <p><strong>Email:</strong> admin@milikarwaan.edu.in</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>Admission Office</h4>
-                        <p><strong>Phone:</strong> +91 97589 19153</p>
-                        <p><strong>Email:</strong> admission@milikarwaan.edu.in</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div class="info-card">
+                            <h4>Final Exams</h4>
+                            <p><strong>Start Date:</strong> 10 Mar 2026</p>
+                            <p><strong>End Date:</strong> 20 Mar 2026</p>
+                        </div>
 
-    <!-- Fixed Buttons -->
-    <a href="https://wa.me/919758919151" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="tel:+919758919151" class="call-btn">
-        <i class="fas fa-phone"></i>
-    </a>
-    <a href="admin.html" class="admin-btn">
-        <i class="fas fa-cog"></i>
-    </a>
-
-    <script>
-        function showDashboard() {
-            const name = document.getElementById('studentName').value;
-            const cls = document.getElementById('studentClass').value;
-
-            if (!name || !cls) {
-                alert('Please enter your name and select your class');
-                return;
-            }
-
-            document.getElementById('entryForm').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'flex';
-            
-            // Set greetings
-            document.getElementById('homeworkGreeting').textContent = `Hello ${name}, Here's Your Homework`;
-            document.getElementById('sidebarClass').textContent = `Class: ${cls}`;
-        }
-
-        function showContent(section) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(sec => {
-                sec.style.display = 'none';
-            });
-            // Show selected section
-            document.getElementById(section).style.display = 'block';
-        }
-
-        // Show homework by default
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initially hide all content sections except homework
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(sec => {
-                if (sec.id !== 'homework') {
-                    sec.style.display = 'none';
-                }
-            });
-        });
-    </script>
-</body>
-    </html>
+                        <div class="info-card">
+                            <h4>Subject-wise Timetable</h4>
+      
