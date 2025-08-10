@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mili Karwaan Public School - Balrampur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .hero {
+            text-align: center;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #1e40af, #1e3a8a);
+            color: white;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        .entry-box {
+            max-width: 500px;
+            margin: -40px auto 0;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1e293b;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .submit-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            width: 100%;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .submit-btn:hover {
+            background: #d97706;
+        }
+        .homework-section {
+            display: none;
+            margin-top: 3rem;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .greeting {
+            font-size: 1.4rem;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .class-display {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        .homework-item {
+            background: #f8fafc;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+        .homework-item h4 {
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        .homework-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 8px 16px;
+            background: #1e40af;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-btn:hover {
+            background: #1e3a8a;
+        }
+        .whatsapp-btn, .call-btn, .admin-btn {
+            position: fixed;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .whatsapp-btn {
+            right: 20px;
+            background: #25D366;
+        }
+        .call-btn {
+            right: 90px;
+            background: #10B981;
+        }
+        .admin-btn {
+            right: 160px;
+            background: #ef4444;
+        }
+        @media (max-width: 768px) {
+            .whatsapp-btn, .call-btn, .admin-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            .call-btn { right: 80px; }
+            .admin-btn { right: 140px; }
+            .hero h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h2>Mili Karwaan Public School</h2>
+            <p>Balrampur, Uttar Pradesh | +91 97589 19151</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Entry Form -->
+        <div class="entry-box" id="entryForm">
+            <h3 style="text-align: center; margin-bottom: 1.5rem;">Enter Your Details</h3>
+            <div class="form-group">
+                <label for="studentName">Student Name</label>
+                <input type="text" id="studentName" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="studentClass">Class</label>
+                <select id="studentClass">
+                    <option value="">Select Class</option>
+                    <option>Nursery</option>
+                    <option>LKG</option>
+                    <option>UKG</option>
+                    <option>Class 1</option>
+                    <option>Class 2</option>
+                    <option>Class 3</option>
+                    <option>Class 4</option>
+                    <option>Class 5</option>
+                    <option>Class 6</option>
+                    <option>Class 7</option>
+                    <option>Class 8</option>
+                    <option>Class 9</option>
+                    <option>Class 10</option>
+                    <option>Class 11</option>
+                    <option>Class 12</option>
+                </select>
+            </div>
+            <button class="submit-btn" onclick="showHomework()">View Homework</button>
+        </div>
+
+        <!-- Homework Section -->
+        <div class="homework-section" id="homeworkSection">
+            <h3 id="greeting" class="greeting"></h3>
+            <p id="classDisplay" class="class-display"></p>
+
+            <div class="homework-item">
+                <h4>Mathematics</h4>
+                <div class="homework-meta">
+                    <span><i class="fas fa-book"></i> Chapter 5: Algebra</span>
+                    <span><i class="fas fa-calendar"></i> Due: Tomorrow</span>
+                </div>
+                <p>Solve exercise 5.3, questions 1-15. Focus on linear equations.</p>
+            </div>
+
+            <div class="homework-item">
+                <h4>English</h4>
+                <div class="homework-meta">
+                    <span><i class="fas fa-book"></i> Literature</span>
+                    <span><i class="fas fa-calendar"></i> Due: Tomorrow</span>
+                </div>
+                <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
+            </div>
+
+            <div class="homework-item">
+                <h4>Science</h4>
+                <div class="homework-meta">
+                    <span><i class="fas fa-flask"></i> Physics</span>
+                    <span><i class="fas fa-calendar"></i> Due: Friday</span>
+                </div>
+                <p>Prepare project on "Simple Machines" with diagrams and examples.</p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="#" class="back-btn" onclick="backToForm(); return false;">← Enter Another Student</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Buttons -->
+    <a href="https://wa.me/919758919151" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:+919758919151" class="call-btn">
+        <i class="fas fa-phone"></i>
+    </a>
+    <a href="admin.html" class="admin-btn">
+        <i class="fas fa-cog"></i>
+    </a>
+
+    <script>
+        function showHomework() {
+            const name = document.getElementById('studentName').value;
+            const cls = document.getElementById('studentClass').value;
+
+            if (!name || !cls) {
+                alert('Please enter your name and select your class');
+                return;
+            }
+
+            document.getElementById('entryForm').style.display = 'none';
+            document.getElementById('homeworkSection').style.display = 'block';
+            document.getElementById('greeting').textContent = `Hello, ${name}!`;
+            document.getElementById('classDisplay').textContent = `Class: ${cls}`;
+        }
+
+        function backToForm() {
+            document.getElementById('homeworkSection').style.display = 'none';
+            document.getElementById('entryForm').style.display = 'block';
+        }
+    </script>
+</body>
+  </html>
