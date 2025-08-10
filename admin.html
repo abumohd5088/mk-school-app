@@ -36,9 +36,6 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 1.3rem;
         }
-        .sidebar-menu {
-            padding: 1rem 0;
-        }
         .sidebar-menu a {
             display: flex;
             align-items: center;
@@ -90,31 +87,26 @@
             border-radius: 50px;
             cursor: pointer;
         }
-        .homework-list {
-            margin-top: 1rem;
-        }
-        .homework-item {
-            background: #f8fafc;
-            border-left: 4px solid #f59e0b;
+        .instructions {
+            background: #fffbeb;
             padding: 1rem;
-            margin-bottom: 0.5rem;
             border-radius: 8px;
+            border-left: 4px solid #f59e0b;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 1rem;
-            color: #1e40af;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .back-link i {
-            margin-right: 5px;
+        .code-block {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <div class="admin-container">
-        <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
                 <h3>Admin Panel</h3>
@@ -122,20 +114,27 @@
             </div>
             <div class="sidebar-menu">
                 <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
-                <a href="#"><i class="fas fa-book"></i> Manage Homework</a>
-                <a href="#"><i class="fas fa-users"></i> Students</a>
-                <a href="#"><i class="fas fa-chalkboard-teacher"></i> Teachers</a>
-                <a href="#"><i class="fas fa-calendar"></i> Events</a>
+                <a href="#"><i class="fas fa-book"></i> Add Homework</a>
                 <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
             </div>
         </div>
 
-        <!-- Main Content -->
         <div class="main-content">
             <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
             
             <div class="card">
                 <h4>Add New Homework</h4>
+                <div class="instructions">
+                    <p><strong>How to Add Homework:</strong></p>
+                    <ol>
+                        <li>Fill the form below</li>
+                        <li>Click "Generate Code"</li>
+                        <li>Copy the generated HTML code</li>
+                        <li>Paste it in <code>index.html</code> inside the homework section</li>
+                        <li>Re-upload both files to GitHub</li>
+                    </ol>
+                </div>
+
                 <div class="form-group">
                     <label>Class</label>
                     <select id="adminClass">
@@ -159,39 +158,29 @@
                 </div>
                 <div class="form-group">
                     <label>Subject</label>
-                    <input type="text" placeholder="Enter subject name">
+                    <input type="text" id="subject" placeholder="Enter subject name">
                 </div>
                 <div class="form-group">
                     <label>Homework Details</label>
-                    <textarea rows="4" placeholder="Enter homework description"></textarea>
+                    <textarea id="details" rows="4" placeholder="Enter homework description"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Due Date</label>
-                    <input type="date">
+                    <input type="date" id="dueDate">
                 </div>
-                <button class="submit-btn">Add Homework</button>
-            </div>
+                <button class="submit-btn" onclick="generateCode()">Generate Code</button>
 
-            <div class="card">
-                <h4>Recent Homework</h4>
-                <div class="homework-list">
-                    <div class="homework-item">
-                        <strong>Class 10 - Mathematics</strong><br>
-                        Solve exercise 5.3, questions 1-15<br>
-                        <small>Due: 25 Nov 2025</small>
-                    </div>
-                    <div class="homework-item">
-                        <strong>Class 8 - Science</strong><br>
-                        Prepare project on Simple Machines<br>
-                        <small>Due: 28 Nov 2025</small>
-                    </div>
+                <div id="codeOutput" style="display: none; margin-top: 1rem;">
+                    <h4>Copy This Code:</h4>
+                    <div class="code-block" id="codeBlock"></div>
+                    <button class="submit-btn" onclick="copyCode()">Copy Code</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Simple password protection
+        // Admin Login
         (() => {
             const password = prompt("Enter Admin Password:");
             if (password !== "Abutalha") {
@@ -199,6 +188,39 @@
                 window.location.href = "index.html";
             }
         })();
+
+        function generateCode() {
+            const cls = document.getElementById('adminClass').value;
+            const subject = document.getElementById('subject').value;
+            const details = document.getElementById('details').value;
+            const dueDate = document.getElementById('dueDate').value;
+
+            if (!cls || !subject || !details || !dueDate) {
+                alert("Please fill all fields");
+                return;
+            }
+
+            const date = new Date(dueDate).toLocaleDateString('en-IN');
+
+            const code = `<div class="homework-item">
+    <h4>${subject}</h4>
+    <div class="homework-meta">
+        <span><i class="fas fa-book"></i> ${cls}</span>
+        <span><i class="fas fa-calendar"></i> Due: ${date}</span>
+    </div>
+    <p>${details}</p>
+</div>`;
+
+            document.getElementById('codeBlock').textContent = code;
+            document.getElementById('codeOutput').style.display = 'block';
+        }
+
+        function copyCode() {
+            const code = document.getElementById('codeBlock').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Code copied! Paste it in index.html under homework section.");
+            });
+        }
     </script>
 </body>
-  </html>
+    </html>
