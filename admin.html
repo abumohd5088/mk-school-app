@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milli Karwaan Public School Balrampur</title>
+    <title>Admin Panel - Milli Karwaan Public School</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -12,253 +12,68 @@
             --secondary: #ffc107;
             --light: #f8f9fa;
             --dark: #212529;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f7fa;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
             color: #333;
-            line-height: 1.6;
         }
         
-        .navbar {
-            background: linear-gradient(135deg, var(--primary), #2c5282);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .navbar-brand {
-            font-weight: 700;
-            color: white !important;
-            font-size: 1.5rem;
-        }
-        
-        .nav-link {
-            color: rgba(255,255,255,0.9) !important;
-            margin: 0 10px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: white !important;
-            transform: translateY(-2px);
-        }
-        
-        .hero {
-            background: linear-gradient(rgba(26, 58, 110, 0.8), rgba(26, 58, 110, 0.9)), url('https://placehold.co/1920x600/1a3a6e/ffffff?text=Milli+Karwaan+Public+School') no-repeat center center/cover;
-            color: white;
-            padding: 120px 0;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-        
-        .btn-primary {
-            background-color: var(--secondary);
-            border: none;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
-        }
-        
-        .btn-primary:hover {
-            background-color: #e0a800;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
-        }
-        
-        .card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
-            background: white;
-            height: 100%;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        
-        .card-header {
-            background: var(--primary);
-            color: white;
-            padding: 20px;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        
-        .card-body {
-            padding: 25px;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin: 60px 0 40px;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-        
-        .about-img {
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        
-        .teacher-card {
-            text-align: center;
-        }
-        
-        .teacher-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 0 auto 15px;
-        }
-        
-        .teacher-name {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin: 10px 0 5px;
-        }
-        
-        .teacher-role {
-            color: #666;
-            font-style: italic;
-        }
-        
-        .gallery-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-img:hover {
-            transform: scale(1.05);
-        }
-        
-        .contact-info {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
+        .login-container {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            font-size: 1.2rem;
+            padding: 20px;
         }
         
-        footer {
-            background: var(--dark);
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            max-width: 450px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .login-header {
+            background: var(--primary);
             color: white;
-            padding: 60px 0 30px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
         }
         
-        .footer-title {
-            color: var(--secondary);
-            margin-bottom: 20px;
+        .login-header h2 {
+            margin-bottom: 10px;
             font-weight: 600;
         }
         
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            display: block;
-            margin: 10px 0;
-            transition: all 0.3s ease;
+        .login-header p {
+            opacity: 0.9;
+            margin-bottom: 0;
         }
         
-        .footer-links a:hover {
-            color: var(--secondary);
-            transform: translateX(5px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #aaa;
-        }
-        
-        .student-form {
-            background: white;
+        .login-body {
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-title {
-            text-align: center;
-            color: var(--primary);
-            margin-bottom: 30px;
-            font-size: 1.8rem;
         }
         
         .form-control {
-            border-radius: 10px;
-            padding: 12px 15px;
+            border-radius: 12px;
+            padding: 14px 18px;
             border: 1px solid #ddd;
             margin-bottom: 20px;
+            font-size: 1.1rem;
         }
         
         .form-control:focus {
@@ -266,788 +81,1315 @@
             box-shadow: 0 0 0 0.2rem rgba(26, 58, 110, 0.25);
         }
         
-        .welcome-section {
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #2c5282);
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(26, 58, 110, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(26, 58, 110, 0.5);
+        }
+        
+        .admin-panel {
             display: none;
-            animation: fadeIn 0.8s ease;
+            min-height: 100vh;
+            background: #f5f7fa;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .subject-card {
-            cursor: pointer;
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, var(--primary), #2c5282);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
             transition: all 0.3s ease;
         }
         
-        .subject-card:hover {
-            transform: scale(1.03);
+        .sidebar-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
         }
         
-        .subject-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 15px;
+        .sidebar-header h4 {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .homework-card {
-            border-left: 4px solid var(--secondary);
-            margin-bottom: 15px;
-            padding: 15px;
-            background: white;
+        .sidebar-header img {
             border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
         
-        .homework-date {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            padding: 15px 30px;
+            margin: 5px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
-        .homework-subject {
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255,255,255,0.15);
+            color: white !important;
+            transform: translateX(5px);
+        }
+        
+        .nav-link.active {
+            background: rgba(255,255,255,0.2);
             font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .back-btn {
-            background: var(--primary);
+        .nav-link i {
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            padding: 30px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .header h1 {
+            color: var(--primary);
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+        
+        .logout-btn {
+            background: var(--danger);
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .back-btn:hover {
-            background: #2c5282;
+        .logout-btn:hover {
+            background: #c82333;
             transform: translateY(-2px);
         }
-
-        .announcement {
-            background: linear-gradient(135deg, #ffc107, #ff8f00);
+        
+        .card {
+            border: none;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 30px;
+            background: white;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+        }
+        
+        .card-header {
+            background: var(--primary);
             color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+            padding: 25px 25px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        .announcement h5 {
-            margin-bottom: 5px;
-            color: #1a1a1a;
+        
+        .card-header i {
+            font-size: 1.8rem;
         }
-
-        .announcement p {
-            margin-bottom: 0;
-            color: #1a1a1a;
+        
+        .card-body {
+            padding: 30px;
         }
-
-        .time-display {
-            font-size: 1.2rem;
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #218838);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning), #e0a800);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
+        }
+        
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.5);
+        }
+        
+        .message-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid rgba(26, 58, 110, 0.1);
+            position: relative;
+        }
+        
+        .message-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .message-name {
             font-weight: 600;
             color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .message-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .message-content {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .message-actions {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #ddd;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        .action-btn.delete {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        
+        .action-btn.delete:hover {
+            background: #f1b0b7;
+        }
+        
+        .homework-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid rgba(26, 58, 110, 0.1);
+            position: relative;
+        }
+        
+        .homework-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .homework-subject {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .homework-class {
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .homework-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .homework-content {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .homework-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .no-items {
             text-align: center;
-            margin: 20px 0;
+            padding: 40px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .no-items i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .login-container {
+                padding: 10px;
+            }
+            
+            .login-body {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-graduation-cap me-2"></i>Milli Karwaan Public School
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-card">
+            <div class="login-header">
+                <h2><i class="fas fa-user-shield me-2"></i>Admin Login</h2>
+                <p>Milli Karwaan Public School Balrampur</p>
+            </div>
+            <div class="login-body">
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login <i class="fas fa-arrow-right ms-2"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div>
+                    <img src="https://i.ibb.co/Y3f7zGJ/mkps-logo.png" alt="MKPS Logo" height="40">
+                    <h4>Admin Panel</h4>
+                </div>
+            </div>
+            <a href="#" class="nav-link active" id="messagesLink">
+                <i class="fas fa-envelope"></i>
+                <span>Messages</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" id="home-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#academics">Academics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#teachers">Teachers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Gallery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
+            <a href="#" class="nav-link" id="homeworkLink">
+                <i class="fas fa-tasks"></i>
+                <span>Homework</span>
+            </a>
+            <a href="#" class="nav-link" id="announcementsLink">
+                <i class="fas fa-bullhorn"></i>
+                <span>Announcements</span>
+            </a>
+            <a href="#" class="nav-link" id="teachersLink">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Teachers</span>
+            </a>
+            <a href="#" class="nav-link" id="settingsLink">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Welcome to Milli Karwaan Public School</h1>
-            <p>Excellence in Education Since 2005 - Shaping Future Leaders with Quality Education and Values</p>
-            <button class="btn btn-primary" id="get-started-btn">Get Started</button>
-        </div>
-    </section>
-
-    <!-- Student Registration Form -->
-    <section id="registration" class="py-5">
-        <div class="container">
-            <div class="student-form">
-                <h3 class="form-title"><i class="fas fa-user-graduate me-2"></i>Student Information</h3>
-                <div class="mb-3">
-                    <label for="studentName" class="form-label">Student Name</label>
-                    <input type="text" class="form-control" id="studentName" placeholder="Enter your full name">
-                </div>
-                <div class="mb-3">
-                    <label for="studentClass" class="form-label">Class</label>
-                    <select class="form-control" id="studentClass">
-                        <option value="">Select Class</option>
-                        <option value="1">Class 1</option>
-                        <option value="2">Class 2</option>
-                        <option value="3">Class 3</option>
-                        <option value="4">Class 4</option>
-                        <option value="5">Class 5</option>
-                        <option value="6">Class 6</option>
-                        <option value="7">Class 7</option>
-                        <option value="8">Class 8</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="parentName" class="form-label">Parent/Guardian Name</label>
-                    <input type="text" class="form-control" id="parentName" placeholder="Enter parent/guardian name">
-                </div>
-                <button class="btn btn-primary w-100" id="submit-form">Continue to Dashboard</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Welcome & Dashboard Section -->
-    <section id="welcome-section" class="welcome-section py-5">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2><span id="greeting"></span> <span id="display-name"></span>!</h2>
-                <button class="back-btn" id="back-to-form"><i class="fas fa-arrow-left me-1"></i> Change Student</button>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1><span id="pageTitle">Messages</span> Management</h1>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
             </div>
 
-            <div class="time-display">
-                <i class="far fa-clock me-2"></i><span id="current-time"></span>
-            </div>
-
-            <!-- Announcements -->
-            <div class="announcement">
-                <h5><i class="fas fa-bullhorn me-2"></i>Important Announcement</h5>
-                <p>Annual Day Celebration will be held on 15th March 2024. All students are requested to participate in the preparations.</p>
-            </div>
-
-            <div class="announcement">
-                <h5><i class="fas fa-calendar-alt me-2"></i>Upcoming Events</h5>
-                <p>Science Exhibition - 25th February 2024 | Parent-Teacher Meeting - 5th March 2024</p>
-            </div>
-
-            <!-- Class Specific Dashboard -->
-            <div id="class-dashboard">
-                <h3 class="mb-4"><i class="fas fa-book-open me-2"></i>My Subjects</h3>
-                <div class="row" id="subject-cards">
-                    <!-- Subjects will be populated based on class -->
-                </div>
-
-                <h3 class="mt-5 mb-4"><i class="fas fa-tasks me-2"></i>Recent Homework</h3>
-                <div id="homework-list">
-                    <!-- Homework will be populated based on class -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <h2 class="section-title">About Our School</h2>
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <img src="https://placehold.co/600x400/1a3a6e/ffffff?text=School+Building" alt="School Building" class="img-fluid about-img">
-                </div>
-                <div class="col-lg-6 mt-4 mt-lg-0">
-                    <h3>Excellence in Education</h3>
-                    <p>Milli Karwaan Public School, established in 2005, is committed to providing quality education that combines academic excellence with moral values. Our mission is to nurture young minds and prepare them to become responsible citizens and future leaders.</p>
-                    <p>Located in Balrampur near Police Chowki, our school provides a safe and conducive learning environment with modern facilities and experienced faculty members.</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="feature-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div>
-                                    <h5>Quality Education</h5>
-                                    <p>CBSE Curriculum with modern teaching methods</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="feature-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div>
-                                    <h5>Experienced Faculty</h5>
-                                    <p>Dedicated teachers with specialized training</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="feature-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div>
-                                    <h5>Safe Environment</h5>
-                                    <p>Secure campus with proper supervision</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="feature-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div>
-                                    <h5>Modern Facilities</h5>
-                                    <p>Smart classrooms and science labs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Academics Section -->
-    <section id="academics" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="section-title">Academic Programs</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-atom me-2"></i>Science
-                        </div>
-                        <div class="card-body">
-                            <p class="feature-icon"><i class="fas fa-flask"></i></p>
-                            <p>Our science program emphasizes hands-on learning through experiments and practical applications. Students learn scientific concepts through observation, experimentation, and critical thinking.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i>Physics, Chemistry, Biology</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Science Labs</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Science Projects</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Science Exhibition</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-calculator me-2"></i>Mathematics
-                        </div>
-                        <div class="card-body">
-                            <p class="feature-icon"><i class="fas fa-square-root-alt"></i></p>
-                            <p>Our mathematics curriculum focuses on developing problem-solving skills and logical reasoning. We use innovative teaching methods to make mathematics engaging and accessible to all students.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i>Arithmetic, Algebra, Geometry</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Maths Lab</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Maths Olympiad</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Maths Games</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-language me-2"></i>Language
-                        </div>
-                        <div class="card-body">
-                            <p class="feature-icon"><i class="fas fa-book"></i></p>
-                            <p>Our language program develops reading, writing, speaking, and listening skills. We emphasize creative expression, comprehension, and effective communication in English and other languages.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-check text-success me-2"></i>English, Hindi, Sanskrit</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Reading Program</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Debate & Elocution</li>
-                                <li><i class="fas fa-check text-success me-2"></i>Story Telling</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Teachers Section -->
-    <section id="teachers" class="py-5">
-        <div class="container">
-            <h2 class="section-title">Our Dedicated Teachers</h2>
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="card teacher-card">
-                        <img src="https://placehold.co/150x150/1a3a6e/ffffff?text=Mr.+Sharma" alt="Teacher" class="teacher-img">
-                        <div class="card-body">
-                            <h5 class="teacher-name">Mr. Rajesh Sharma</h5>
-                            <p class="teacher-role">Principal</p>
-                            <p>20+ years of experience in education leadership</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="card teacher-card">
-                        <img src="https://placehold.co/150x150/1a3a6e/ffffff?text=Mrs.+Verma" alt="Teacher" class="teacher-img">
-                        <div class="card-body">
-                            <h5 class="teacher-name">Mrs. Anjali Verma</h5>
-                            <p class="teacher-role">Vice Principal</p>
-                            <p>Specialist in Mathematics Education</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="card teacher-card">
-                        <img src="https://placehold.co/150x150/1a3a6e/ffffff?text=Mr.+Singh" alt="Teacher" class="teacher-img">
-                        <div class="card-body">
-                            <h5 class="teacher-name">Mr. Vikram Singh</h5>
-                            <p class="teacher-role">Science Head</p>
-                            <p>Expert in Physics and Chemistry</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="card teacher-card">
-                        <img src="https://placehold.co/150x150/1a3a6e/ffffff?text=Mrs.+Patel" alt="Teacher" class="teacher-img">
-                        <div class="card-body">
-                            <h5 class="teacher-name">Mrs. Meena Patel</h5>
-                            <p class="teacher-role">English Head</p>
-                            <p>Literature and Language Specialist</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="section-title">School Gallery</h2>
-            <div class="row">
-                <div class="col-md-4 col-6 mb-4">
-                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Classroom" alt="Classroom" class="gallery-img">
-                </div>
-                <div class="col-md-4 col-6 mb-4">
-                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Science+Lab" alt="Science Lab" class="gallery-img">
-                </div>
-                <div class="col-md-4 col-6 mb-4">
-                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Library" alt="Library" class="gallery-img">
-                </div>
-                <div class="col-md-4 col-6 mb-4">
-                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Sports+Day" alt="Sports Day" class="gallery-img">
-                </div>
-                <div class="col-md-4 col-6 mb-4">
-                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Cultural+Event" alt="Cultural Event" class="gallery-img">
-                </div>
-                <div class="col-md-4 col-6 mb-4">
-                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Annual+Day" alt="Annual Day" class="gallery-img">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h5>Address</h5>
-                                <p>Bolhua Police Chowki, Balrampur, Uttar Pradesh, India</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h5>Phone</h5>
-                                <p>+91 9758919151</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
+            <!-- Messages Section -->
+            <div id="messagesSection">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
                                 <i class="fas fa-envelope"></i>
+                                Received Messages
                             </div>
-                            <div>
-                                <h5>Email</h5>
-                                <p>principal@millikarwaan.edu.in</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <h5>Working Hours</h5>
-                                <p>Monday - Saturday: 8:00 AM - 3:00 PM</p>
+                            <div class="card-body">
+                                <div id="messagesList">
+                                    <!-- Messages will be populated here -->
+                                    <div class="no-items">
+                                        <i class="fas fa-inbox"></i>
+                                        <p>No messages yet. Messages from parents and visitors will appear here.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="contact-info">
-                        <h4>Send us a Message</h4>
-                        <form>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Your Name">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-comment-dots"></i>
+                                Quick Reply
                             </div>
-                            <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Your Email">
+                            <div class="card-body">
+                                <form id="replyForm">
+                                    <div class="form-group">
+                                        <label>Send Announcement</label>
+                                        <textarea class="form-control" id="announcementText" placeholder="Type your announcement here..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Announcement
+                                    </button>
+                                </form>
                             </div>
-                            <div class="mb-3">
-                                <input type="tel" class="form-control" placeholder="Your Phone">
-                            </div>
-                            <div class="mb-3">
-                                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send Message</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="footer-title">Milli Karwaan Public School</h5>
-                    <p>Providing quality education since 2005. Our mission is to nurture young minds and prepare them to become responsible citizens and future leaders.</p>
-                    <div class="social-icons mt-3">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+            <!-- Homework Section (Hidden by default) -->
+            <div id="homeworkSection" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-tasks"></i>
+                                Homework Assignments
+                            </div>
+                            <div class="card-body">
+                                <div id="homeworkList">
+                                    <!-- Homework will be populated here -->
+                                    <div class="no-items">
+                                        <i class="fas fa-book"></i>
+                                        <p>No homework assignments yet. Add new homework using the form on the right.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="footer-title">Quick Links</h5>
-                    <div class="footer-links">
-                        <a href="#home">Home</a>
-                        <a href="#about">About Us</a>
-                        <a href="#academics">Academics</a>
-                        <a href="#teachers">Our Teachers</a>
-                        <a href="#gallery">Gallery</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="footer-title">Academic Classes</h5>
-                    <div class="footer-links">
-                        <a href="#">Nursery & KG</a>
-                        <a href="#">Class 1-5 (Primary)</a>
-                        <a href="#">Class 6-8 (Middle)</a>
-                        <a href="#">Class 9-10 (Secondary)</a>
-                        <a href="#">Class 11-12 (Senior Secondary)</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="footer-title">Important Notices</h5>
-                    <div class="footer-links">
-                        <a href="#">Admission Open 2024-25</a>
-                        <a href="#">Exam Schedule</a>
-                        <a href="#">Holiday List</a>
-                        <a href="#">Fee Structure</a>
-                        <a href="#">School Calendar</a>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-plus-circle"></i>
+                                Add New Homework
+                            </div>
+                            <div class="card-body">
+                                <form id="homeworkForm">
+                                    <div class="form-group">
+                                        <label>Class</label>
+                                        <select class="form-control" id="homeworkClass">
+                                            <option value="">Select Class</option>
+                                            <option value="1">Class 1</option>
+                                            <option value="2">Class 2</option>
+                                            <option value="3">Class 3</option>
+                                            <option value="4">Class 4</option>
+                                            <option value="5">Class 5</option>
+                                            <option value="6">Class 6</option>
+                                            <option value="7">Class 7</option>
+                                            <option value="8">Class 8</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Subject</label>
+                                        <input type="text" class="form-control" id="homeworkSubject" placeholder="Enter subject">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" id="homeworkTitle" placeholder="Enter homework title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" id="homeworkDescription" placeholder="Enter homework details..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Due Date</label>
+                                        <input type="date" class="form-control" id="homeworkDate">
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">
+                                        <i class="fas fa-plus me-2"></i>Add Homework
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2024 Milli Karwaan Public School Balrampur. All Rights Reserved.</p>
-                <p>Designed with <i class="fas fa-heart text-danger"></i> for Quality Education</p>
+
+            <!-- Announcements Section (Hidden by default) -->
+            <div id="announcementsSection" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-bullhorn"></i>
+                                Recent Announcements
+                            </div>
+                            <div class="card-body">
+                                <div id="announcementsList">
+                                    <!-- Announcements will be populated here -->
+                                    <div class="no-items">
+                                        <i class="fas fa-megaphone"></i>
+                                        <p>No announcements yet. Create important announcements for students and parents.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-plus-circle"></i>
+                                Create Announcement
+                            </div>
+                            <div class="card-body">
+                                <form id="announcementForm">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" id="announcementTitle" placeholder="Enter announcement title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Content</label>
+                                        <textarea class="form-control" id="announcementContent" placeholder="Enter announcement details..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Type</label>
+                                        <select class="form-control" id="announcementType">
+                                            <option value="general">General Announcement</option>
+                                            <option value="urgent">Urgent Notice</option>
+                                            <option value="event">Upcoming Event</option>
+                                            <option value="holiday">Holiday Notice</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">
+                                        <i class="fas fa-bullhorn me-2"></i>Create Announcement
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Teachers Section (Hidden by default) -->
+            <div id="teachersSection" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                Teachers Management
+                            </div>
+                            <div class="card-body">
+                                <div id="teachersList">
+                                    <!-- Teachers will be populated here -->
+                                    <div class="no-items">
+                                        <i class="fas fa-users"></i>
+                                        <p>No teachers added yet. Add your teaching staff using the form on the right.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-plus-circle"></i>
+                                Add New Teacher
+                            </div>
+                            <div class="card-body">
+                                <form id="teacherForm">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" id="teacherName" placeholder="Enter teacher name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Subject</label>
+                                        <input type="text" class="form-control" id="teacherSubject" placeholder="Enter subject">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Role</label>
+                                        <input type="text" class="form-control" id="teacherRole" placeholder="Enter role (e.g., Teacher, HOD)">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Experience</label>
+                                        <input type="text" class="form-control" id="teacherExperience" placeholder="Enter years of experience">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contact</label>
+                                        <input type="text" class="form-control" id="teacherContact" placeholder="Enter contact number">
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">
+                                        <i class="fas fa-plus me-2"></i>Add Teacher
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section (Hidden by default) -->
+            <div id="settingsSection" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-cog"></i>
+                                System Settings
+                            </div>
+                            <div class="card-body">
+                                <form id="settingsForm">
+                                    <div class="form-group">
+                                        <label>School Name</label>
+                                        <input type="text" class="form-control" id="schoolName" value="Milli Karwaan Public School Balrampur">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <textarea class="form-control" id="schoolAddress">Bolhua Police Chowki, Balrampur, Uttar Pradesh, India</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contact Number</label>
+                                        <input type="text" class="form-control" id="schoolContact" value="9758919151">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" id="schoolEmail" value="principal@millikarwaan.edu.in">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Working Hours</label>
+                                        <input type="text" class="form-control" id="workingHours" value="Monday - Saturday: 8:00 AM - 3:00 PM">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Admin Password</label>
+                                        <input type="password" class="form-control" id="adminPassword" placeholder="Enter current password to change">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>New Password</label>
+                                        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Confirm New Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
+                                    </div>
+                                    <button type="submit" class="btn btn-warning w-100">
+                                        <i class="fas fa-save me-2"></i>Save Settings
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-info-circle"></i>
+                                System Information
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <h6>Admin Panel Version</h6>
+                                    <p class="text-muted">1.0.0</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Last Login</h6>
+                                    <p class="text-muted" id="lastLogin">Never</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Total Messages</h6>
+                                    <p class="text-muted" id="totalMessages">0</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Total Homework</h6>
+                                    <p class="text-muted" id="totalHomework">0</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Total Teachers</h6>
+                                    <p class="text-muted" id="totalTeachers">0</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Storage Used</h6>
+                                    <p class="text-muted">12.5 MB of 1 GB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Sample homework data for different classes
-        const homeworkData = {
-            '1': [
-                { subject: 'English', title: 'Practice writing alphabets A to E', date: 'Feb 15, 2024', details: 'Write each alphabet 5 times in your notebook with proper formation.' },
-                { subject: 'Mathematics', title: 'Counting 1 to 20', date: 'Feb 15, 2024', details: 'Practice counting numbers 1 to 20 and write them in your notebook.' },
-                { subject: 'EVS', title: 'Draw your family', date: 'Feb 16, 2024', details: 'Draw a picture of your family members and color it nicely.' }
-            ],
-            '2': [
-                { subject: 'English', title: 'Reading comprehension - The Little Puppy', date: 'Feb 15, 2024', details: 'Read the story on page 45 and answer questions 1-5 in your notebook.' },
-                { subject: 'Mathematics', title: 'Addition sums 1-100', date: 'Feb 15, 2024', details: 'Complete exercise 3.2 on addition of two-digit numbers.' },
-                { subject: 'EVS', title: 'Plants around us', date: 'Feb 16, 2024', details: 'List 5 plants you see around your house and draw one of them.' }
-            ],
-            '3': [
-                { subject: 'English', title: 'Paragraph writing - My School', date: 'Feb 15, 2024', details: 'Write a paragraph of 8-10 sentences about your school and what you like about it.' },
-                { subject: 'Mathematics', title: 'Multiplication tables 2-10', date: 'Feb 15, 2024', details: 'Practice multiplication tables from 2 to 10 and write them 3 times each.' },
-                { subject: 'Science', title: 'Parts of a plant', date: 'Feb 16, 2024', details: 'Draw and label the parts of a plant in your science notebook.' }
-            ],
-            '4': [
-                { subject: 'English', title: 'Letter writing - To your friend', date: 'Feb 15, 2024', details: 'Write a letter to your friend describing your last weekend activities.' },
-                { subject: 'Mathematics', title: 'Division sums', date: 'Feb 15, 2024', details: 'Complete exercise 4.3 on division of 3-digit numbers by 1-digit numbers.' },
-                { subject: 'Science', title: 'States of matter', date: 'Feb 16, 2024', details: 'List 5 examples each of solids, liquids, and gases around your home.' }
-            ],
-            '5': [
-                { subject: 'English', title: 'Story writing - The Magic Pencil', date: 'Feb 15, 2024', details: 'Write a creative story of 150-200 words using the title "The Magic Pencil".' },
-                { subject: 'Mathematics', title: 'Fractions practice', date: 'Feb 15, 2024', details: 'Complete the worksheet on addition and subtraction of fractions.' },
-                { subject: 'Science', title: 'Human digestive system', date: 'Feb 16, 2024', details: 'Draw and label the human digestive system in your science notebook.' }
-            ],
-            '6': [
-                { subject: 'English', title: 'Essay - Importance of Trees', date: 'Feb 15, 2024', details: 'Write an essay of 250 words on the importance of trees in our lives.' },
-                { subject: 'Mathematics', title: 'Algebraic expressions', date: 'Feb 15, 2024', details: 'Solve exercise 10.2 on simplification of algebraic expressions.' },
-                { subject: 'Science', title: 'Electric circuits', date: 'Feb 16, 2024', details: 'Draw a simple electric circuit with battery, wire, and bulb. Explain how it works.' }
-            ],
-            '7': [
-                { subject: 'English', title: 'Report writing - School Annual Day', date: 'Feb 15, 2024', details: 'Write a report on the school annual day celebration in about 300 words.' },
-                { subject: 'Mathematics', title: 'Triangles and properties', date: 'Feb 15, 2024', details: 'Prove the angle sum property of triangles and solve related problems.' },
-                { subject: 'Science', title: 'Acids, bases and salts', date: 'Feb 16, 2024', details: 'Prepare a chart showing common acids, bases and salts with their chemical formulas.' }
-            ],
-            '8': [
-                { subject: 'English', title: 'Debate - Social media: Boon or Bane', date: 'Feb 15, 2024', details: 'Prepare points for and against the motion "Social media: Boon or Bane" for class debate.' },
-                { subject: 'Mathematics', title: 'Comparing quantities', date: 'Feb 15, 2024', details: 'Solve problems on percentage, profit and loss, and simple interest from chapter 8.' },
-                { subject: 'Science', title: 'Pollution of air and water', date: 'Feb 16, 2024', details: 'Collect information about air and water pollution in your area and suggest solutions.' }
-            ]
-        };
-
-        // Subject data for different classes
-        const subjectsData = {
-            '1': [
-                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
-                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
-                { name: 'EVS', icon: 'fas fa-tree', color: '#36b9cc' },
-                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' }
-            ],
-            '2': [
-                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
-                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
-                { name: 'EVS', icon: 'fas fa-tree', color: '#36b9cc' },
-                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' }
-            ],
-            '3': [
-                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
-                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
-                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
-                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
-                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
-            ],
-            '4': [
-                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
-                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
-                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
-                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
-                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
-            ],
-            '5': [
-                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
-                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
-                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
-                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
-                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
-            ],
-            '6': [
-                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
-                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
-                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
-                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
-                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
-            ],
-            '7': [
-                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
-                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
-                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
-                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
-                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
-            ],
-            '8': [
-                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
-                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
-                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
-                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
-                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
-            ]
-        };
-
         // DOM Elements
-        const getStartedBtn = document.getElementById('get-started-btn');
-        const submitForm = document.getElementById('submit-form');
-        const registrationSection = document.getElementById('registration');
-        const welcomeSection = document.getElementById('welcome-section');
-        const displayName = document.getElementById('display-name');
-        const greeting = document.getElementById('greeting');
-        const backToForm = document.getElementById('back-to-form');
-        const subjectCards = document.getElementById('subject-cards');
-        const homeworkList = document.getElementById('homework-list');
-        const currentTime = document.getElementById('current-time');
-        const homeLink = document.getElementById('home-link');
-
-        // Show current time
-        function updateTime() {
-            const now = new Date();
-            currentTime.textContent = now.toLocaleString();
-        }
-        updateTime();
-        setInterval(updateTime, 1000);
-
-        // Get started button click
-        getStartedBtn.addEventListener('click', () => {
-            document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+        const loginPage = document.getElementById('loginPage');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginForm = document.getElementById('loginForm');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const messagesLink = document.getElementById('messagesLink');
+        const homeworkLink = document.getElementById('homeworkLink');
+        const announcementsLink = document.getElementById('announcementsLink');
+        const teachersLink = document.getElementById('teachersLink');
+        const settingsLink = document.getElementById('settingsLink');
+        const pageTitle = document.getElementById('pageTitle');
+        
+        // Section Elements
+        const messagesSection = document.getElementById('messagesSection');
+        const homeworkSection = document.getElementById('homeworkSection');
+        const announcementsSection = document.getElementById('announcementsSection');
+        const teachersSection = document.getElementById('teachersSection');
+        const settingsSection = document.getElementById('settingsSection');
+        
+        // Form Elements
+        const replyForm = document.getElementById('replyForm');
+        const homeworkForm = document.getElementById('homeworkForm');
+        const announcementForm = document.getElementById('announcementForm');
+        const teacherForm = document.getElementById('teacherForm');
+        const settingsForm = document.getElementById('settingsForm');
+        
+        // List Elements
+        const messagesList = document.getElementById('messagesList');
+        const homeworkList = document.getElementById('homeworkList');
+        const announcementsList = document.getElementById('announcementsList');
+        const teachersList = document.getElementById('teachersList');
+        
+        // Counter Elements
+        const totalMessages = document.getElementById('totalMessages');
+        const totalHomework = document.getElementById('totalHomework');
+        const totalTeachers = document.getElementById('totalTeachers');
+        const lastLogin = document.getElementById('lastLogin');
+        
+        // Data Storage
+        let messagesData = [];
+        let homeworkData = [];
+        let announcementsData = [];
+        let teachersData = [
+            { name: 'Mr. Rajesh Sharma', subject: 'Mathematics', role: 'Principal', experience: '20+ Years', contact: '9876543210' },
+            { name: 'Misba Mam', subject: 'English', role: 'Senior Teacher', experience: '8 Years', contact: '9876543211' },
+            { name: 'Nayla Mam', subject: 'Science', role: 'Science Teacher', experience: '6 Years', contact: '9876543212' },
+            { name: 'Sayma Mam', subject: 'Primary Education', role: 'Primary Teacher', experience: '7 Years', contact: '9876543213' },
+            { name: 'Zeba Mam', subject: 'Hindi', role: 'Hindi Teacher', experience: '5 Years', contact: '9876543214' },
+            { name: 'Farhan Sir', subject: 'Computer Science', role: 'Computer Teacher', experience: '4 Years', contact: '9876543215' },
+            { name: 'Mrs. Anjali Verma', subject: 'Mathematics', role: 'Vice Principal', experience: '12 Years', contact: '9876543216' },
+            { name: 'Mr. Vikram Singh', subject: 'Physics & Chemistry', role: 'Science Head', experience: '15 Years', contact: '9876543217' }
+        ];
+        
+        // Current date for display
+        const currentDate = new Date().toLocaleDateString();
+        
+        // Login Form Submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple authentication (in a real app, this would be more secure)
+            if (password === 'Abutalha') {
+                loginPage.style.display = 'none';
+                adminPanel.style.display = 'block';
+                
+                // Update last login
+                lastLogin.textContent = new Date().toLocaleString();
+                
+                // Initialize data
+                initAdminPanel();
+            } else {
+                alert('Invalid password! Please try again.');
+            }
         });
-
-        // Submit form
-        submitForm.addEventListener('click', () => {
-            const studentName = document.getElementById('studentName').value;
-            const studentClass = document.getElementById('studentClass').value;
-            const parentName = document.getElementById('parentName').value;
-
-            if (!studentName || !studentClass || !parentName) {
-                alert('Please fill in all fields');
+        
+        // Logout Functionality
+        logoutBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                adminPanel.style.display = 'none';
+                loginPage.style.display = 'block';
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            }
+        });
+        
+        // Navigation
+        function setActiveLink(link) {
+            // Remove active class from all links
+            [messagesLink, homeworkLink, announcementsLink, teachersLink, settingsLink].forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Add active class to clicked link
+            link.classList.add('active');
+        }
+        
+        // Show Section
+        function showSection(section) {
+            [messagesSection, homeworkSection, announcementsSection, teachersSection, settingsSection].forEach(el => {
+                el.style.display = 'none';
+            });
+            section.style.display = 'block';
+        }
+        
+        // Messages Link
+        messagesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveLink(messagesLink);
+            pageTitle.textContent = 'Messages';
+            showSection(messagesSection);
+        });
+        
+        // Homework Link
+        homeworkLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveLink(homeworkLink);
+            pageTitle.textContent = 'Homework';
+            showSection(homeworkSection);
+        });
+        
+        // Announcements Link
+        announcementsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveLink(announcementsLink);
+            pageTitle.textContent = 'Announcements';
+            showSection(announcementsSection);
+        });
+        
+        // Teachers Link
+        teachersLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveLink(teachersLink);
+            pageTitle.textContent = 'Teachers';
+            showSection(teachersSection);
+        });
+        
+        // Settings Link
+        settingsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveLink(settingsLink);
+            pageTitle.textContent = 'Settings';
+            showSection(settingsSection);
+        });
+        
+        // Reply Form Submission (Announcement)
+        replyForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const announcementText = document.getElementById('announcementText').value;
+            
+            if (announcementText.trim() === '') {
+                alert('Please enter an announcement message.');
                 return;
             }
-
-            // Set greeting based on time
-            const hour = new Date().getHours();
-            if (hour < 12) {
-                greeting.textContent = 'Good Morning';
-            } else if (hour < 17) {
-                greeting.textContent = 'Good Afternoon';
-            } else {
-                greeting.textContent = 'Good Evening';
-            }
-
-            // Display student info
-            displayName.textContent = studentName;
             
-            // Show welcome section
-            registrationSection.style.display = 'none';
-            welcomeSection.style.display = 'block';
-            welcomeSection.scrollIntoView({ behavior: 'smooth' });
-
-            // Populate subjects based on class
-            populateSubjects(studentClass);
+            // Create new announcement object
+            const newAnnouncement = {
+                id: Date.now(),
+                title: 'Important Announcement',
+                content: announcementText,
+                type: 'general',
+                date: currentDate
+            };
             
-            // Populate homework based on class
-            populateHomework(studentClass);
+            // Add to announcements array
+            announcementsData.unshift(newAnnouncement);
+            
+            // Clear form
+            document.getElementById('announcementText').value = '';
+            
+            // Update display
+            renderAnnouncements();
+            updateCounters();
+            
+            alert('Announcement sent successfully!');
         });
-
-        // Back to form
-        backToForm.addEventListener('click', () => {
-            welcomeSection.style.display = 'none';
-            registrationSection.style.display = 'block';
-            registrationSection.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Home link
-        homeLink.addEventListener('click', (e) => {
+        
+        // Homework Form Submission
+        homeworkForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (welcomeSection.style.display === 'block') {
-                welcomeSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-
-        // Populate subjects
-        function populateSubjects(classLevel) {
-            subjectCards.innerHTML = '';
-            const subjects = subjectsData[classLevel] || subjectsData['1'];
+            const homeworkClass = document.getElementById('homeworkClass').value;
+            const homeworkSubject = document.getElementById('homeworkSubject').value;
+            const homeworkTitle = document.getElementById('homeworkTitle').value;
+            const homeworkDescription = document.getElementById('homeworkDescription').value;
+            const homeworkDate = document.getElementById('homeworkDate').value;
             
-            subjects.forEach(subject => {
-                const col = document.createElement('div');
-                col.className = 'col-md-6 col-lg-4';
-                col.innerHTML = `
-                    <div class="card subject-card" style="border-top: 4px solid ${subject.color}">
-                        <div class="card-body text-center">
-                            <div class="subject-icon" style="color: ${subject.color}">
-                                <i class="${subject.icon}"></i>
-                            </div>
-                            <h5>${subject.name}</h5>
-                            <p>Click to view resources and assignments</p>
-                        </div>
+            if (!homeworkClass || !homeworkSubject || !homeworkTitle || !homeworkDescription || !homeworkDate) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Create new homework object
+            const newHomework = {
+                id: Date.now(),
+                class: homeworkClass,
+                subject: homeworkSubject,
+                title: homeworkTitle,
+                description: homeworkDescription,
+                date: homeworkDate,
+                createdAt: currentDate
+            };
+            
+            // Add to homework array
+            homeworkData.unshift(newHomework);
+            
+            // Clear form
+            homeworkForm.reset();
+            
+            // Update display
+            renderHomework();
+            updateCounters();
+            
+            alert('Homework added successfully!');
+        });
+        
+        // Announcement Form Submission
+        announcementForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const announcementTitle = document.getElementById('announcementTitle').value;
+            const announcementContent = document.getElementById('announcementContent').value;
+            const announcementType = document.getElementById('announcementType').value;
+            
+            if (!announcementTitle || !announcementContent) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Create new announcement object
+            const newAnnouncement = {
+                id: Date.now(),
+                title: announcementTitle,
+                content: announcementContent,
+                type: announcementType,
+                date: currentDate
+            };
+            
+            // Add to announcements array
+            announcementsData.unshift(newAnnouncement);
+            
+            // Clear form
+            announcementForm.reset();
+            
+            // Update display
+            renderAnnouncements();
+            updateCounters();
+            
+            alert('Announcement created successfully!');
+        });
+        
+        // Teacher Form Submission
+        teacherForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const teacherName = document.getElementById('teacherName').value;
+            const teacherSubject = document.getElementById('teacherSubject').value;
+            const teacherRole = document.getElementById('teacherRole').value;
+            const teacherExperience = document.getElementById('teacherExperience').value;
+            const teacherContact = document.getElementById('teacherContact').value;
+            
+            if (!teacherName || !teacherSubject || !teacherRole || !teacherExperience || !teacherContact) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Create new teacher object
+            const newTeacher = {
+                id: Date.now(),
+                name: teacherName,
+                subject: teacherSubject,
+                role: teacherRole,
+                experience: teacherExperience,
+                contact: teacherContact
+            };
+            
+            // Add to teachers array
+            teachersData.unshift(newTeacher);
+            
+            // Clear form
+            teacherForm.reset();
+            
+            // Update display
+            renderTeachers();
+            updateCounters();
+            
+            alert('Teacher added successfully!');
+        });
+        
+        // Settings Form Submission
+        settingsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const currentPassword = document.getElementById('adminPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (currentPassword !== 'Abutalha') {
+                alert('Current password is incorrect!');
+                return;
+            }
+            
+            if (newPassword && newPassword !== confirmPassword) {
+                alert('New passwords do not match!');
+                return;
+            }
+            
+            // In a real app, we would hash the password
+            if (newPassword) {
+                // Update password (in this demo, we're just storing it in a variable)
+                // In a real app, this would be handled by the server
+                alert('Password updated successfully!');
+            }
+            
+            // Update school information
+            alert('Settings saved successfully!');
+        });
+        
+        // Delete Message Function
+        function deleteMessage(id) {
+            if (confirm('Are you sure you want to delete this message?')) {
+                messagesData = messagesData.filter(msg => msg.id !== id);
+                renderMessages();
+                updateCounters();
+            }
+        }
+        
+        // Delete Homework Function
+        function deleteHomework(id) {
+            if (confirm('Are you sure you want to delete this homework assignment?')) {
+                homeworkData = homeworkData.filter(hw => hw.id !== id);
+                renderHomework();
+                updateCounters();
+            }
+        }
+        
+        // Delete Announcement Function
+        function deleteAnnouncement(id) {
+            if (confirm('Are you sure you want to delete this announcement?')) {
+                announcementsData = announcementsData.filter(ann => ann.id !== id);
+                renderAnnouncements();
+                updateCounters();
+            }
+        }
+        
+        // Delete Teacher Function
+        function deleteTeacher(id) {
+            if (confirm('Are you sure you want to delete this teacher?')) {
+                teachersData = teachersData.filter(t => t.id !== id);
+                renderTeachers();
+                updateCounters();
+            }
+        }
+        
+        // Render Messages
+        function renderMessages() {
+            if (messagesData.length === 0) {
+                messagesList.innerHTML = `
+                    <div class="no-items">
+                        <i class="fas fa-inbox"></i>
+                        <p>No messages yet. Messages from parents and visitors will appear here.</p>
                     </div>
                 `;
-                subjectCards.appendChild(col);
-            });
-        }
-
-        // Populate homework
-        function populateHomework(classLevel) {
-            homeworkList.innerHTML = '';
-            const homework = homeworkData[classLevel] || homeworkData['1'];
+                return;
+            }
             
-            homework.forEach(hw => {
-                const hwCard = document.createElement('div');
-                hwCard.className = 'homework-card';
-                hwCard.innerHTML = `
-                    <div class="homework-date"><i class="far fa-calendar-alt me-1"></i>${hw.date}</div>
-                    <div class="homework-subject">${hw.subject}</div>
-                    <div class="homework-title">${hw.title}</div>
-                    <div class="homework-details">${hw.details}</div>
+            messagesList.innerHTML = '';
+            messagesData.forEach(msg => {
+                const messageItem = document.createElement('div');
+                messageItem.className = 'message-item';
+                messageItem.innerHTML = `
+                    <div class="message-actions">
+                        <div class="action-btn delete" onclick="deleteMessage(${msg.id})" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </div>
+                    <div class="message-header">
+                        <div>
+                            <div class="message-name">${msg.name}</div>
+                            <div class="message-email">${msg.email}</div>
+                        </div>
+                        <div class="message-date">${msg.date}</div>
+                    </div>
+                    <div class="message-content">
+                        <strong>Subject:</strong> ${msg.subject}<br><br>
+                        ${msg.message.replace(/\n/g, '<br>')}
+                    </div>
+                    <div class="message-contact mt-3">
+                        <strong>Contact:</strong> ${msg.phone}
+                    </div>
                 `;
-                homeworkList.appendChild(hwCard);
+                messagesList.appendChild(messageItem);
             });
         }
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+        
+        // Render Homework
+        function renderHomework() {
+            if (homeworkData.length === 0) {
+                homeworkList.innerHTML = `
+                    <div class="no-items">
+                        <i class="fas fa-book"></i>
+                        <p>No homework assignments yet. Add new homework using the form on the right.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            homeworkList.innerHTML = '';
+            homeworkData.forEach(hw => {
+                const homeworkItem = document.createElement('div');
+                homeworkItem.className = 'homework-item';
+                homeworkItem.innerHTML = `
+                    <div class="homework-header">
+                        <div class="homework-subject">${hw.subject}</div>
+                        <div class="homework-class">Class ${hw.class}</div>
+                    </div>
+                    <div class="homework-date"><i class="far fa-calendar-alt me-1"></i> Due: ${hw.date}</div>
+                    <div class="homework-title" style="font-weight: 600; margin-bottom: 10px;">${hw.title}</div>
+                    <div class="homework-content">${hw.description}</div>
+                    <div class="homework-actions">
+                        <button class="btn btn-sm btn-outline-secondary" disabled>
+                            <i class="fas fa-edit me-1"></i>Edit
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteHomework(${hw.id})">
+                            <i class="fas fa-trash me-1"></i>Delete
+                        </button>
+                    </div>
+                `;
+                homeworkList.appendChild(homeworkItem);
             });
-        });
-
-        // Animation for section appearance
-        const sections = document.querySelectorAll('section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
+        }
+        
+        // Render Announcements
+        function renderAnnouncements() {
+            if (announcementsData.length === 0) {
+                announcementsList.innerHTML = `
+                    <div class="no-items">
+                        <i class="fas fa-megaphone"></i>
+                        <p>No announcements yet. Create important announcements for students and parents.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            announcementsList.innerHTML = '';
+            announcementsData.forEach(ann => {
+                const typeClass = ann.type === 'urgent' ? 'bg-danger text-white' : 
+                                ann.type === 'event' ? 'bg-success text-white' :
+                                ann.type === 'holiday' ? 'bg-warning text-dark' : 'bg-primary text-white';
+                                
+                const typeIcon = ann.type === 'urgent' ? 'fas fa-exclamation-triangle' :
+                               ann.type === 'event' ? 'fas fa-calendar-alt' :
+                               ann.type === 'holiday' ? 'fas fa-gift' : 'fas fa-bullhorn';
+                
+                const announcementItem = document.createElement('div');
+                announcementItem.className = 'message-item';
+                announcementItem.innerHTML = `
+                    <div class="message-actions">
+                        <div class="action-btn delete" onclick="deleteAnnouncement(${ann.id})" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </div>
+                    <div class="message-header">
+                        <div>
+                            <div class="message-name ${typeClass}" style="display: inline-block; padding: 5px 12px; border-radius: 20px;">
+                                <i class="${typeIcon} me-1"></i>${ann.type.charAt(0).toUpperCase() + ann.type.slice(1)}
+                            </div>
+                        </div>
+                        <div class="message-date">${ann.date}</div>
+                    </div>
+                    <div class="message-content">
+                        <div style="font-weight: 600; font-size: 1.1rem; color: var(--primary); margin-bottom: 10px;">${ann.title}</div>
+                        ${ann.content.replace(/\n/g, '<br>')}
+                    </div>
+                `;
+                announcementsList.appendChild(announcementItem);
             });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            section.style.opacity = 0;
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
-        });
-
-        // Initialize with registration visible
-        welcomeSection.style.display = 'none';
+        }
+        
+        // Render Teachers
+        function renderTeachers() {
+            if (teachersData.length === 0) {
+                teachersList.innerHTML = `
+                    <div class="no-items">
+                        <i class="fas fa-users"></i>
+                        <p>No teachers added yet. Add your teaching staff using the form on the right.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            teachersList.innerHTML = '';
+            teachersData.forEach(teacher => {
+                const teacherItem = document.createElement('div');
+                teacherItem.className = 'message-item';
+                teacherItem.innerHTML = `
+                    <div class="message-actions">
+                        <div class="action-btn delete" onclick="deleteTeacher(${teacher.id})" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </div>
+                    <div class="message-header">
+                        <div>
+                            <div class="message-name">${teacher.name}</div>
+                            <div class="message-email">${teacher.role}</div>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <strong>Subject:</strong> ${teacher.subject}<br>
+                        <strong>Experience:</strong> ${teacher.experience}<br>
+                        <strong>Contact:</strong> ${teacher.contact}
+                    </div>
+                `;
+                teachersList.appendChild(teacherItem);
+            });
+        }
+        
+        // Update Counters
+        function updateCounters() {
+            totalMessages.textContent = messagesData.length;
+            totalHomework.textContent = homeworkData.length;
+            totalTeachers.textContent = teachersData.length;
+        }
+        
+        // Initialize Admin Panel
+        function initAdminPanel() {
+            // Set current date for homework form
+            document.getElementById('homeworkDate').valueAsDate = new Date();
+            
+            // Render all data
+            renderMessages();
+            renderHomework();
+            renderAnnouncements();
+            renderTeachers();
+            updateCounters();
+            
+            // Show messages section by default
+            showSection(messagesSection);
+        }
+        
+        // Make delete functions available globally
+        window.deleteMessage = deleteMessage;
+        window.deleteHomework = deleteHomework;
+        window.deleteAnnouncement = deleteAnnouncement;
+        window.deleteTeacher = deleteTeacher;
+        
+        // Mobile menu toggle (for small screens)
+        if (window.innerWidth <= 768) {
+            document.querySelector('.header h1').addEventListener('click', function() {
+                document.getElementById('sidebar').classList.toggle('active');
+            });
+        }
+        
+        // Initialize with login page visible
+        adminPanel.style.display = 'none';
     </script>
 </body>
 </html>
