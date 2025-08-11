@@ -1,860 +1,129 @@
-<!doctype html>
-<html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Milli Karwaan Public School — Balrampur</title>
-  <meta name="description" content="Milli Karwaan Public School Balrampur — class-wise student dashboard, notices, homework, timetable, gallery, events and more."/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-  /* --------- THEME & RESET ---------- */
-  :root{
-    --accent-1:#0f766e;
-    --accent-2:#065f46;
-    --gold:#f59e0b;
-    --muted:#6b7280;
-    --bg:#f6fbf9;
-    --card:#ffffff;
-    --maxw:1200px;
-    --shadow: 0 12px 30px rgba(2,8,6,0.06);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,var(--bg),#ecfff4);color:#022a26}
-  a{color:inherit}
-  .container{max-width:var(--maxw);margin:0 auto;padding:0 18px}
-
-  /* ---------- HEADER ---------- */
-  header.site-header{position:sticky;top:0;z-index:1200;background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:white;padding:14px 0;box-shadow:0 6px 18px rgba(2,8,6,0.12)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:var(--maxw);margin:0 auto;padding:0 18px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{width:60px;height:60px;border-radius:12px;background:white;padding:6px;object-fit:contain}
-  .brand h1{font-family:'Montserrat',sans-serif;font-size:1.05rem;margin:0}
-  nav.main-nav{display:flex;gap:12px;align-items:center}
-  nav.main-nav a{color:white;text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:700}
-  nav.main-nav a:hover{background:rgba(255,255,255,0.06)}
-  .top-actions{display:flex;align-items:center;gap:10px}
-
-  /* ---------- KEBAB (3-dot) ---------- */
-  .kebab{background:rgba(255,255,255,0.06);padding:10px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
-  .quick-panel{position:absolute;right:18px;top:64px;background:var(--card);padding:12px;border-radius:10px;box-shadow:var(--shadow);min-width:240px;display:none;z-index:1300}
-  .quick-panel .row{display:flex;gap:8px;margin-bottom:8px}
-
-  /* ---------- LAYOUT ---------- */
-  main.app{padding:22px 0}
-  .layout{display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:start}
-  .left-rail{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);height:calc(100vh - 140px);position:sticky;top:70px;overflow:auto}
-  .menu-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;font-weight:700;color:#083229;cursor:pointer}
-  .menu-item:hover{background:#f0fff7;transform:translateX(6px)}
-  .menu-item.active{background:linear-gradient(90deg,#ecffef,#f0fff7);border-left:4px solid var(--accent-2)}
-  .tiny{font-size:.9rem;color:var(--muted)}
-
-  /* ---------- CONTENT ---------- */
-  .content{min-height:70vh}
-  .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:14px}
-  .section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .grid-2{display:grid;grid-template-columns:1fr 360px;gap:12px}
-  .home-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-
-  /* lists */
-  .list .item{padding:12px;border-radius:10px;background:#f8fff8;border-left:6px solid var(--gold);margin-bottom:10px}
-  .muted{color:var(--muted)}
-  .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#f0fff4;color:#06402f;font-weight:800}
-
-  /* gallery */
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-  .gallery-grid img{width:100%;height:100px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid rgba(2,8,6,0.03)}
-
-  /* ticker */
-  .ticker{background:linear-gradient(90deg,#f7fff7,#fbfff8);padding:8px;border-radius:10px;border-left:4px solid var(--accent-1);overflow:hidden}
-  .ticker-inner{display:inline-block;white-space:nowrap;animation:marquee 18s linear infinite}
-  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-  /* modal/lightbox */
-  .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,6,0.6);z-index:2000;opacity:0;pointer-events:none;transition:opacity .12s}
-  .modal.open{opacity:1;pointer-events:auto}
-  .modal .box{background:white;padding:14px;border-radius:12px;max-width:980px;width:94%}
-  .close-x{position:absolute;right:12px;top:12px;background:#fff;border-radius:50%;padding:6px;cursor:pointer}
-
-  /* floating admin */
-  .admin-fab{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:white;border:none;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 32px rgba(2,8,6,0.2);z-index:2100}
-
-  /* responsive */
-  @media (max-width:980px){
-    .layout{grid-template-columns:1fr}
-    .left-rail{position:relative;height:auto;top:0}
-    .grid-2{grid-template-columns:1fr}
-    .grid-3{grid-template-columns:1fr 1fr}
-  }
-  @media (max-width:560px){
-    nav.main-nav{display:none}
-  }
-
-  /* small helpers */
-  .center{text-align:center}
-  .nowrap{white-space:nowrap}
-  input,select,textarea{padding:10px;border-radius:8px;border:1px solid rgba(2,8,6,0.06)}
-  button.btn{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-  button.btn.ghost{background:transparent;border:1px solid rgba(2,8,6,0.06);color:inherit}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milli Karwaan Public School Balrampur</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f9f9;
+}
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://source.unsplash.com/1600x600/?school,classroom') center/cover;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+.feature-card {
+    transition: 0.3s;
+}
+.feature-card:hover {
+    transform: scale(1.03);
+}
+footer {
+    background: #222;
+    color: white;
+    padding: 20px 0;
+}
+</style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="site-header" role="banner">
-    <div class="nav-inner container">
-      <div class="brand">
-        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="MKPS logo">
-        <div>
-          <h1>Milli Karwaan Public School</h1>
-          <div class="tiny">Balrampur, Uttar Pradesh</div>
-        </div>
-      </div>
 
-      <div class="top-actions">
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="#home" data-scroll>Home</a>
-          <a href="#about" data-scroll>About</a>
-          <a href="#features" data-scroll>Features</a>
-          <a href="#gallery" data-scroll>Gallery</a>
-          <a href="#contact" data-scroll>Contact</a>
-        </nav>
-
-        <div class="kebab" id="kebabBtn" title="Quick actions"><i class="fas fa-ellipsis-v"></i></div>
-        <div id="quickPanel" class="quick-panel" aria-hidden="true"></div>
-
-        <div id="userGreeting" class="tiny muted">Please enter your name & class</div>
-        <button class="btn pill" id="admissionBtn" title="Admissions">Admissions</button>
-      </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">MKPS Balrampur</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#homework">Homework</a></li>
+        <li class="nav-item"><a class="nav-link" href="#timetable">Time Table</a></li>
+        <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="#notices">Notices</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#results">Results</a></li>
+        <li class="nav-item"><a class="nav-link" href="#support">Student Support</a></li>
+        <li class="nav-item"><a class="nav-link" href="#attendance">Attendance</a></li>
+        <li class="nav-item"><a class="nav-link" href="#downloads">Downloads</a></li>
+        <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+      </ul>
     </div>
-  </header>
+  </div>
+</nav>
 
-  <!-- MAIN APP -->
-  <main class="app container" role="main">
-    <div class="layout" id="layoutWrap">
-      <!-- LEFT RAIL / MENU -->
-      <aside class="left-rail" role="navigation" aria-label="Main menu">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="tiny">Menu</div>
-          <div class="tiny">Class: <span id="railClass" class="badge">—</span></div>
+<!-- Hero Form -->
+<section class="hero-section" id="hero">
+  <div class="container">
+    <h1 class="mb-4">Welcome to Milli Karwaan Public School</h1>
+    <p class="lead mb-4">Balrampur</p>
+    <div class="bg-light p-4 rounded shadow text-dark mx-auto" style="max-width: 400px;">
+      <h4 class="mb-3">Enter Details</h4>
+      <form id="userForm">
+        <div class="mb-3">
+          <label for="name" class="form-label">Your Name</label>
+          <input type="text" class="form-control" id="name" required>
         </div>
-
-        <div style="margin-top:12px" id="menuItems">
-          <div class="menu-item active" data-view="home"><i class="fas fa-house"></i> Home</div>
-          <div class="menu-item" data-view="homework"><i class="fas fa-book"></i> Homework</div>
-          <div class="menu-item" data-view="timetable"><i class="fas fa-clock"></i> Timetable</div>
-          <div class="menu-item" data-view="notices"><i class="fas fa-bullhorn"></i> Notices</div>
-          <div class="menu-item" data-view="events"><i class="fas fa-calendar-alt"></i> Events</div>
-          <div class="menu-item" data-view="gallery"><i class="fas fa-images"></i> Gallery</div>
-          <div class="menu-item" data-view="videos"><i class="fas fa-video"></i> Videos</div>
-          <div class="menu-item" data-view="results"><i class="fas fa-file-alt"></i> Results</div>
-          <div class="menu-item" data-view="teachers"><i class="fas fa-chalkboard-teacher"></i> Teachers Desk</div>
-          <div class="menu-item" data-view="achievements"><i class="fas fa-trophy"></i> Achievements</div>
-          <div class="menu-item" data-view="attendance"><i class="fas fa-check-circle"></i> Attendance</div>
-          <div class="menu-item" data-view="fees"><i class="fas fa-money-bill"></i> Fees</div>
-          <div class="menu-item" data-view="contact"><i class="fas fa-phone"></i> Contact</div>
+        <div class="mb-3">
+          <label for="classSelect" class="form-label">Select Class</label>
+          <select id="classSelect" class="form-select" required>
+            <option value="">Choose...</option>
+            <option>Class 1</option>
+            <option>Class 2</option>
+            <option>Class 3</option>
+            <option>Class 4</option>
+            <option>Class 5</option>
+            <option>Class 6</option>
+            <option>Class 7</option>
+            <option>Class 8</option>
+          </select>
         </div>
-
-        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn" id="exportBtn"><i class="fas fa-file-export"></i> Export</button>
-          <button class="btn ghost" id="importBtn"><i class="fas fa-file-import"></i> Import</button>
-          <button class="btn ghost" id="printBtn" title="Print page"><i class="fas fa-print"></i></button>
-        </div>
-
-        <div style="margin-top:16px" class="tiny muted">
-          Owner tools: Export/Import modifies local JSON. Admin button opens admin (password required).
-        </div>
-      </aside>
-
-      <!-- CONTENT -->
-      <section class="content" id="mainContent" aria-live="polite">
-        <!-- WELCOME / SESSION MODAL (first-run) -->
-        <div id="welcomeOverlay" class="card" style="max-width:980px;margin:8px auto;">
-          <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-            <div style="flex:1;min-width:260px">
-              <h2 style="margin:0;color:var(--accent-2)">Welcome to Milli Karwaan</h2>
-              <p class="muted" style="margin-top:6px">पहले अपना पूरा नाम और अपनी क्लास (Class 1 - Class 8) चुनें — इसके बाद आपको सिर्फ उसी क्लास का कंटेंट दिखाई देगा।</p>
-
-              <div style="margin-top:12px">
-                <label class="tiny" for="inputName">Full name</label>
-                <input id="inputName" placeholder="e.g. Rahul Kumar" />
-              </div>
-
-              <div style="margin-top:10px">
-                <label class="tiny" for="inputClass">Class</label>
-                <select id="inputClass">
-                  <option value="">Select class</option>
-                  <option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option>
-                  <option>Class 5</option><option>Class 6</option><option>Class 7</option><option>Class 8</option>
-                </select>
-              </div>
-
-              <div style="margin-top:12px;display:flex;gap:8px">
-                <button class="btn" id="startBtn">Enter Dashboard</button>
-                <button class="btn ghost" id="demoBtn">Demo (Class 6)</button>
-              </div>
-
-              <p class="muted tiny" style="margin-top:10px">Data stored locally (for demo). Admin panel will manage site data.</p>
-            </div>
-
-            <div style="width:320px">
-              <div style="background:linear-gradient(180deg,#f7fffa,#fff);padding:12px;border-radius:10px">
-                <h4 style="margin:0">Highlights</h4>
-                <ul class="muted" style="margin-top:8px">
-                  <li>Personalised class based homework & timetable</li>
-                  <li>Notices & events for your class</li>
-                  <li>Gallery, videos & printable reports</li>
-                  <li>Export/import site data (owner)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- VIEWS (home + feature views) -->
-        <div id="viewsWrap">
-          <!-- HOME -->
-          <div id="view-home" class="card view">
-            <div class="section-title">
-              <div>
-                <h3 style="margin:0">Dashboard</h3>
-                <div class="muted tiny">Personalized for <strong id="vwName">—</strong> • <span id="vwClass">—</span></div>
-              </div>
-              <div style="display:flex;gap:8px;align-items:center">
-                <div class="ticker" title="Latest notices"><div class="ticker-inner" id="tickerInner">Loading notices… • </div></div>
-                <button class="btn" id="refreshBtn" title="Refresh data"><i class="fas fa-sync"></i></button>
-              </div>
-            </div>
-
-            <div class="grid-2">
-              <div>
-                <div class="home-cards">
-                  <div class="card">
-                    <h4 style="margin-top:0">Homework (Latest)</h4>
-                    <div id="homeworkPreview" class="list"></div>
-                  </div>
-
-                  <div class="card">
-                    <h4 style="margin-top:0">Announcements</h4>
-                    <div id="annPreview"></div>
-                  </div>
-                </div>
-
-                <div class="card" style="margin-top:12px">
-                  <h4 style="margin-top:0">Upcoming Events</h4>
-                  <ul id="eventsPreview" class="muted"></ul>
-                </div>
-
-                <div class="card" style="margin-top:12px">
-                  <h4 style="margin-top:0">Search (homework & notices)</h4>
-                  <div style="display:flex;gap:8px">
-                    <input id="globalSearch" placeholder="Search homework, announcements…" />
-                    <button class="btn" id="searchBtn"><i class="fas fa-search"></i></button>
-                  </div>
-                  <div id="searchResults" style="margin-top:8px"></div>
-                </div>
-              </div>
-
-              <aside>
-                <div class="card center">
-                  <div style="font-size:28px;font-weight:800" id="statStudents">0</div>
-                  <div class="muted">Students (site demo)</div>
-                </div>
-
-                <div class="card" style="margin-top:12px">
-                  <h4 style="margin-top:0">Attendance</h4>
-                  <div id="attendanceBox" class="muted">—</div>
-                </div>
-
-                <div class="card" style="margin-top:12px">
-                  <h4 style="margin-top:0">Quick Actions</h4>
-                  <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-                    <button class="btn" id="goHomework">Open Homework</button>
-                    <button class="btn" id="goTimetable">Open Timetable</button>
-                    <button class="btn ghost" id="exportLocal">Export Data</button>
-                  </div>
-                </div>
-              </aside>
-
-            </div>
-          </div>
-
-          <!-- HOMEWORK VIEW -->
-          <div id="view-homework" class="card view hidden">
-            <div class="section-title">
-              <h3 style="margin:0">Homework — <span id="hwClassLabel"></span></h3>
-              <div><span class="muted tiny">Printable & exportable</span></div>
-            </div>
-            <div id="hwList"></div>
-          </div>
-
-          <!-- TIMETABLE VIEW -->
-          <div id="view-timetable" class="card view hidden">
-            <div class="section-title">
-              <h3 style="margin:0">Timetable — <span id="ttClassLabel"></span></h3>
-              <div><button class="btn" id="printTimetableBtn"><i class="fas fa-print"></i> Print</button></div>
-            </div>
-            <div id="ttTable"></div>
-          </div>
-
-          <!-- NOTICES -->
-          <div id="view-notices" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Notices — <span id="ntClassLabel"></span></h3></div>
-            <div id="noticesList"></div>
-          </div>
-
-          <!-- EVENTS -->
-          <div id="view-events" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Events</h3></div>
-            <div id="eventsList"></div>
-          </div>
-
-          <!-- GALLERY -->
-          <div id="view-gallery" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Gallery</h3></div>
-            <div id="galleryGrid" class="gallery-grid"></div>
-          </div>
-
-          <!-- VIDEOS -->
-          <div id="view-videos" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Videos</h3></div>
-            <div id="videosGrid" class="grid-3"></div>
-          </div>
-
-          <!-- RESULTS -->
-          <div id="view-results" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Results & Exam Schedule</h3></div>
-            <div id="resultsPreview"></div>
-          </div>
-
-          <!-- TEACHERS DESK -->
-          <div id="view-teachers" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Teacher's Desk</h3></div>
-            <div id="teachersDesk"></div>
-          </div>
-
-          <!-- ACHIEVEMENTS -->
-          <div id="view-achievements" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Achievements</h3></div>
-            <div id="achievementsList"></div>
-          </div>
-
-          <!-- ATTENDANCE -->
-          <div id="view-attendance" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Attendance</h3></div>
-            <div id="attendanceDetails"></div>
-          </div>
-
-          <!-- FEES -->
-          <div id="view-fees" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Fees</h3></div>
-            <div id="feesPreview"></div>
-            <div style="margin-top:10px"><button class="btn ghost" id="payLink">Pay (demo)</button></div>
-          </div>
-
-          <!-- CONTACT -->
-          <div id="view-contact" class="card view hidden">
-            <div class="section-title"><h3 style="margin:0">Contact & Enquiry</h3></div>
-            <div class="card">
-              <form id="contactForm">
-                <input id="cname" placeholder="Your name" required />
-                <input id="cinfo" placeholder="Email or phone" required />
-                <textarea id="cmsg" rows="4" placeholder="Message"></textarea>
-                <div style="margin-top:8px;display:flex;gap:8px">
-                  <button class="btn">Send</button>
-                  <button type="button" class="btn ghost" id="viewEnquiries">View local enquiries</button>
-                </div>
-              </form>
-            </div>
-            <div class="tiny muted" style="margin-top:8px">Phone: <strong>+91 97589 19151</strong> • Email: <strong>madamsir066@gmail.com</strong></div>
-          </div>
-
-        </div>
-      </section>
+        <button type="submit" class="btn btn-primary w-100">Continue</button>
+      </form>
     </div>
-  </main>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer style="background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;padding:12px 0;margin-top:16px">
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-      <div>© Milli Karwaan Public School — Baluha Police Chowki, Balrampur</div>
-      <div class="tiny">Phone: <strong>+91 97589 19151</strong> • Email: <strong>madamsir066@gmail.com</strong></div>
-    </div>
-  </footer>
+<!-- Features -->
+<div class="container py-5" id="features" style="display:none;">
+  <h2 class="text-center mb-5" id="welcomeText"></h2>
+  <div class="row g-4">
+    <div class="col-md-4"><div class="card feature-card p-3" id="homework"><h5>📚 Homework</h5><p>View your class homework easily.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="timetable"><h5>📅 Time Table</h5><p>Check your daily schedule.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="events"><h5>🎉 Events</h5><p>Upcoming school events & programs.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="notices"><h5>📰 Notices</h5><p>Latest news & announcements.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="gallery"><h5>📷 Gallery</h5><p>Memorable moments & photos.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="results"><h5>🎓 Results</h5><p>Check exam results online.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="support"><h5>🛠 Student Support</h5><p>Get help from teachers.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="attendance"><h5>📝 Attendance</h5><p>Track your monthly attendance.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="downloads"><h5>📥 Downloads</h5><p>Notes, syllabus & study material.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="achievements"><h5>📌 Achievements</h5><p>Our school’s proud moments.</p></div></div>
+    <div class="col-md-4"><div class="card feature-card p-3" id="contact"><h5>📩 Contact Us</h5><p>Get in touch with us.</p></div></div>
+  </div>
+</div>
 
-  <!-- Floating admin button -->
-  <button id="adminFab" class="admin-fab" title="Admin (staff)"><i class="fas fa-user-shield"></i></button>
+<!-- Footer -->
+<footer class="text-center">
+  <div>📞 9758919151 | 📧 madamsir066@gmail.com</div>
+  <div>📍 Baluha Police Chowki, Balrampur</div>
+  <small>© 2025 Milli Karwaan Public School</small>
+</footer>
 
-  <!-- MODAL -->
-  <div id="modal" class="modal" aria-hidden="true"><div class="box" id="modalBox"></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById("userForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  let name = document.getElementById("name").value;
+  let cls = document.getElementById("classSelect").value;
+  document.getElementById("welcomeText").innerText = "Welcome, " + name + " (" + cls + ")";
+  document.getElementById("hero").style.display = "none";
+  document.getElementById("features").style.display = "block";
+});
+</script>
 
-  <!-- SCRIPTS -->
-  <script>
-  /**********************************************************************
-   Milli Karwaan Public School — index.html (client-only demo)
-   - Asks name & class on first load and saves session (localStorage)
-   - Filters content by selected class
-   - Many features: homework, timetable, notices, events, gallery, videos,
-     results, teachers desk, achievements, attendance, fees, contact
-   - Owner tools: export/import local JSON, print, CSV
-   - Floating admin (password 'Abutalha') opens a safe local admin window
-   **********************************************************************/
-
-  (function(){
-    const STORAGE_KEY = 'MKPS_SITE_DATA_v1';
-    const SESSION_KEY = 'MKPS_SESSION';
-
-    // default demo data (class-based)
-    const DEFAULT = {
-      studentsCount: 1200,
-      homework: {
-        'Class 1': [{id:'h11',subject:'English',title:'Alphabet Practice',due:'2025-11-25',notes:'Practice A-F.'}],
-        'Class 2': [{id:'h21',subject:'Math',title:'Additions',due:'2025-11-26',notes:'Q1-10.'}],
-        'Class 3': [{id:'h31',subject:'EVS',title:'Plant Study',due:'2025-11-28',notes:'Collect leaves.'}],
-        'Class 4': [{id:'h41',subject:'Math',title:'Multiplication',due:'2025-11-29',notes:'Tables 2-5.'}],
-        'Class 5': [{id:'h51',subject:'Science',title:'Water Cycle',due:'2025-12-01',notes:'Draw diagram.'}],
-        'Class 6': [{id:'h61',subject:'Mathematics',title:'Algebra',due:'2025-11-25',notes:'Exercise 5.3 Q1-15.'}],
-        'Class 7': [{id:'h71',subject:'English',title:'Essay Writing',due:'2025-11-27',notes:'Write 200 words.'}],
-        'Class 8': [{id:'h81',subject:'Science',title:'Lab Report',due:'2025-11-30',notes:'Submit lab report.'}]
-      },
-      timetable: {
-        'Class 6': [{day:'Mon',time:'8:00-9:00',subject:'Mathematics'},{day:'Mon',time:'9:00-10:00',subject:'Science'}],
-        'Class 1': [{day:'Mon',time:'9:00-9:30',subject:'English'}]
-      },
-      announcements: {
-        'Class 6': [{id:'a1',title:'Science Exhibition',date:'2025-12-10',body:'Bring project models.'}],
-        'Class 1': [{id:'a2',title:'Drawing Competition',date:'2025-11-28',body:'Bring colours.'}]
-      },
-      events: [{id:'ev1',title:'Annual Sports Day',date:'2025-12-06'},{id:'ev2',title:'Diwali Holiday',date:'2025-10-31'}],
-      gallery: [
-        'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png',
-        'https://placehold.co/600x400/1a5fb4/ffffff?text=School+Event',
-        'https://placehold.co/600x400/ff6b35/ffffff?text=Sports+Day'
-      ],
-      videos: [
-        {id:'v1',title:'Welcome to MKPS',url:'https://www.youtube.com/embed/dQw4w9WgXcQ'}
-      ],
-      results: [{exam:'Mid-Term 2025',date:'2025-12-20',link:'#'}],
-      teachers: [{name:'Mrs. Sharma',subject:'Mathematics',note:'Senior Maths Teacher'},{name:'Mr. Verma',subject:'Science',note:'Physics & Chemistry'}],
-      achievements: [{id:'ach1',title:'Science Olympiad - 2nd Position',date:'2025-09-15'}],
-      attendance: {'Class 6':{present:28,total:30}, 'Class 1':{present:29,total:30}},
-      fees: [{id:'f1',studentName:'Demo Student',class:'Class 6',amount:15000,status:'unpaid'}]
-    };
-
-    // load/save data
-    function loadData(){
-      try{
-        const raw = localStorage.getItem(STORAGE_KEY);
-        return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT));
-      } catch(e){
-        console.error('load error',e); return JSON.parse(JSON.stringify(DEFAULT));
-      }
-    }
-    function saveData(d){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }catch(e){console.error(e);} }
-
-    let DATA = loadData();
-
-    // session helpers
-    function loadSession(){ try{ const s = localStorage.getItem(SESSION_KEY); return s ? JSON.parse(s) : null; }catch(e){return null;} }
-    function saveSession(sess){ localStorage.setItem(SESSION_KEY, JSON.stringify(sess)); }
-    function clearSession(){ localStorage.removeItem(SESSION_KEY); location.reload(); }
-
-    let SESSION = loadSession();
-
-    // helper short selectors
-    const $ = s => document.querySelector(s);
-    const $$ = s => Array.from(document.querySelectorAll(s));
-    const uid = (p='id') => p + Math.random().toString(36).slice(2,9);
-
-    /* ---------- UI Elements ---------- */
-    const welcomeOverlay = $('#welcomeOverlay');
-    const inputName = $('#inputName');
-    const inputClass = $('#inputClass');
-    const startBtn = $('#startBtn');
-    const demoBtn = $('#demoBtn');
-
-    const vwName = $('#vwName');
-    const vwClass = $('#vwClass');
-    const railClass = $('#railClass');
-    const userGreeting = $('#userGreeting');
-    const tickerInner = $('#tickerInner');
-    const statStudents = $('#statStudents');
-
-    // views mapping
-    const views = {
-      home: '#view-home',
-      homework: '#view-homework',
-      timetable: '#view-timetable',
-      notices: '#view-notices',
-      events: '#view-events',
-      gallery: '#view-gallery',
-      videos: '#view-videos',
-      results: '#view-results',
-      teachers: '#view-teachers',
-      achievements: '#view-achievements',
-      attendance: '#view-attendance',
-      fees: '#view-fees',
-      contact: '#view-contact'
-    };
-
-    /* ---------- INITIALIZE ---------- */
-    function init(){
-      // if session exists, hide welcome overlay and apply session
-      if(SESSION && SESSION.name && SESSION.class){
-        welcomeOverlay.style.display = 'none';
-        applySession(SESSION);
-      } else {
-        welcomeOverlay.style.display = 'block';
-      }
-
-      // menu click handlers
-      $$('#menuItems .menu-item').forEach(el=>{
-        el.addEventListener('click', ()=> {
-          $$('#menuItems .menu-item').forEach(x=>x.classList.remove('active'));
-          el.classList.add('active');
-          const view = el.dataset.view;
-          navigate(view);
-        });
-      });
-
-      // kebab quick actions
-      $('#kebabBtn').addEventListener('click', toggleQuickPanel);
-
-      // owner tools
-      $('#exportBtn').addEventListener('click', exportAll);
-      $('#importBtn').addEventListener('click', importAll);
-      $('#printBtn').addEventListener('click', ()=> window.print());
-
-      // other handlers
-      startBtn.addEventListener('click', onStart);
-      demoBtn.addEventListener('click', ()=> { inputName.value='Demo Student'; inputClass.value='Class 6'; onStart(); });
-
-      $('#refreshBtn').addEventListener('click', ()=>{ DATA = loadData(); renderAll(); alert('Data refreshed'); });
-      $('#searchBtn').addEventListener('click', doSearch);
-      $('#globalSearch').addEventListener('keydown', (e)=>{ if(e.key==='Enter') doSearch(); });
-
-      $('#goHomework').addEventListener('click', ()=> navigate('homework'));
-      $('#goTimetable').addEventListener('click', ()=> navigate('timetable'));
-      $('#exportLocal').addEventListener('click', exportAll);
-
-      $('#printTimetableBtn').addEventListener('click', ()=> printElement('#ttTable'));
-      $('#contactForm').addEventListener('submit', (e)=>{ e.preventDefault(); saveEnquiry(); });
-
-      $('#viewEnquiries').addEventListener('click', ()=> showEnquiries());
-
-      $('#adminFab').addEventListener('click', adminPrompt);
-
-      // gallery lightbox
-      document.addEventListener('click', (e)=> {
-        if(e.target.matches('.gallery-grid img')) openModal(`<img src="${e.target.src}" style="width:100%;height:auto;border-radius:8px" />`);
-        if(e.target.matches('.video-thumb')) {
-          openModal(`<div style="position:relative;padding-top:56.25%"><iframe src="${e.target.dataset.src}" style="position:absolute;left:0;top:0;width:100%;height:100%;border:0" allowfullscreen></iframe></div>`);
-        }
-      });
-
-      // initial render
-      $('#statStudents').textContent = DATA.studentsCount || 0;
-      renderTicker();
-      renderAll();
-    }
-
-    // apply session
-    function applySession(sess){
-      SESSION = sess;
-      saveSession(SESSION);
-      vwName.textContent = SESSION.name;
-      vwClass.textContent = SESSION.class;
-      railClass.textContent = SESSION.class;
-      userGreeting.textContent = `Welcome, ${SESSION.name} (${SESSION.class})`;
-      welcomeOverlay.style.display = 'none';
-      navigate('home');
-      renderAll();
-    }
-
-    function onStart(){
-      const name = (inputName.value || '').trim();
-      const cls = (inputClass.value || '').trim();
-      if(!name || !cls){ alert('Please enter your name and select class.'); return; }
-      applySession({name, class: cls});
-    }
-
-    // navigation
-    function navigate(view){
-      Object.values(views).forEach(sel => { const el = document.querySelector(sel); if(el) el.classList.add('hidden'); });
-      const sel = views[view]; const el = document.querySelector(sel); if(el) el.classList.remove('hidden');
-      // update left rail
-      $$('#menuItems .menu-item').forEach(item => item.classList.toggle('active', item.dataset.view === view));
-      // view-specific updates
-      if(view === 'homework') renderHomeworkList(SESSION.class);
-      if(view === 'timetable') renderTimetable(SESSION.class);
-      if(view === 'notices') renderNoticesList(SESSION.class);
-      if(view === 'events') renderEventsList();
-      if(view === 'gallery') renderGallery();
-      if(view === 'videos') renderVideos();
-      if(view === 'results') renderResults();
-      if(view === 'teachers') renderTeachers();
-      if(view === 'achievements') renderAchievements();
-      if(view === 'attendance') renderAttendanceDetails(SESSION.class);
-      if(view === 'fees') renderFees();
-      if(view === 'contact') {/* nothing */ }
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
-
-    // render everything needed
-    function renderAll(){
-      if(!SESSION) return;
-      const cls = SESSION.class;
-      renderHomeworkPreview(cls);
-      renderAnnouncementsPreview(cls);
-      renderEventsPreview();
-      renderAttendancePreview(cls);
-      renderGallery();
-      renderVideos();
-      renderTeachers();
-      renderAchievements();
-      renderResults();
-      // full lists if visible
-      if(!document.querySelector(views.homework).classList.contains('hidden')) renderHomeworkList(cls);
-      if(!document.querySelector(views.timetable).classList.contains('hidden')) renderTimetable(cls);
-      if(!document.querySelector(views.notices).classList.contains('hidden')) renderNoticesList(cls);
-    }
-
-    /* ---------- Render helpers ---------- */
-    function renderHomeworkPreview(cls){
-      const list = DATA.homework[cls] || [];
-      const node = $('#homeworkPreview');
-      if(!node) return;
-      if(!list.length) node.innerHTML = '<div class="muted">No homework assigned.</div>';
-      else node.innerHTML = list.slice(0,3).map(h => `<div class="item"><strong>${esc(h.subject)} — ${esc(h.title)}</strong><div class="muted">Due: ${esc(h.due)}</div><div style="margin-top:8px">${esc(h.notes)}</div></div>`).join('');
-    }
-    function renderHomeworkList(cls){
-      const list = DATA.homework[cls] || [];
-      const node = $('#hwList');
-      if(!node) return;
-      if(!list.length) node.innerHTML = '<div class="muted card">No homework for this class.</div>';
-      else node.innerHTML = list.map(h=>`<div class="item"><strong>${esc(h.subject)} — ${esc(h.title)}</strong><div class="muted">Due: ${esc(h.due)}</div><div style="margin-top:8px">${esc(h.notes)}</div></div>`).join('');
-    }
-
-    function renderAnnouncementsPreview(cls){
-      const arr = DATA.announcements[cls] || [];
-      const node = $('#annPreview');
-      if(!node) return;
-      if(!arr.length) node.innerHTML = '<div class="muted">No announcements.</div>';
-      else node.innerHTML = arr.slice(0,3).map(a=>`<div style="margin-bottom:8px"><strong>${esc(a.title)}</strong><div class="muted">${esc(a.date)}</div><div style="margin-top:6px">${esc(a.body)}</div></div>`).join('');
-    }
-    function renderNoticesList(cls){
-      const arr = DATA.announcements[cls] || [];
-      const node = $('#noticesList');
-      if(!node) return;
-      if(!arr.length) node.innerHTML = '<div class="muted card">No notices for this class.</div>';
-      else node.innerHTML = arr.map(a=>`<div class="card"><h4>${esc(a.title)}</h4><div class="muted">${esc(a.date)}</div><p>${esc(a.body)}</p></div>`).join('');
-    }
-
-    function renderEventsPreview(){ $('#eventsPreview').innerHTML = (DATA.events || []).map(ev=>`<li>${esc(ev.title)} — ${esc(ev.date)}</li>`).join(''); }
-    function renderEventsList(){ const node = $('#eventsList'); node.innerHTML = (DATA.events||[]).map(ev=>`<div class="card"><strong>${esc(ev.title)}</strong><div class="muted">${esc(ev.date)}</div></div>`).join(''); }
-
-    function renderTimetable(cls){
-      const arr = DATA.timetable[cls] || [];
-      const node = $('#ttTable');
-      if(!node) return;
-      if(!arr.length){ node.innerHTML = '<div class="muted card">No timetable available.</div>'; return; }
-      node.innerHTML = `<table style="width:100%;border-collapse:collapse"><thead><tr><th style="text-align:left;padding:8px">Day</th><th style="text-align:left;padding:8px">Time</th><th style="text-align:left;padding:8px">Subject</th></tr></thead><tbody>${arr.map(r=>`<tr><td style="padding:8px">${esc(r.day)}</td><td style="padding:8px">${esc(r.time)}</td><td style="padding:8px">${esc(r.subject)}</td></tr>`).join('')}</tbody></table>`;
-    }
-
-    function renderGallery(){
-      const node = $('#galleryGrid'); if(!node) return;
-      node.innerHTML = (DATA.gallery||[]).map(src=>`<img src="${src}" alt="gallery" />`).join('');
-    }
-    function renderVideos(){
-      const node = $('#videosGrid'); if(!node) return;
-      node.innerHTML = (DATA.videos||[]).map(v=>`<div style="border-radius:8px;overflow:hidden" class="video-card"><div style="padding:12px"><strong>${esc(v.title)}</strong></div><div style="padding:6px"><div class="video-thumb" data-src="${v.url}" style="cursor:pointer;display:block;background:#000;color:#fff;height:160px;display:flex;align-items:center;justify-content:center">▶ Play</div></div></div>`).join('');
-    }
-
-    function renderResults(){ const node = $('#resultsPreview'); if(!node) return; node.innerHTML = (DATA.results||[]).map(r=>`<div class="card"><strong>${esc(r.exam)}</strong><div class="muted">${esc(r.date)}</div><div style="margin-top:6px"><a href="${esc(r.link)}">View details</a></div></div>`).join(''); }
-    function renderTeachers(){ const node = $('#teachersDesk'); if(!node) return; node.innerHTML = (DATA.teachers||[]).map(t=>`<div class="card"><strong>${esc(t.name)}</strong><div class="muted">${esc(t.subject)}</div><div>${esc(t.note)}</div></div>`).join(''); }
-    function renderAchievements(){ const node = $('#achievementsList'); if(!node) return; node.innerHTML = (DATA.achievements||[]).map(a=>`<div class="card"><strong>${esc(a.title)}</strong><div class="muted">${esc(a.date)}</div></div>`).join(''); }
-
-    function renderAttendancePreview(cls){
-      const a = DATA.attendance[cls];
-      const node = $('#attendanceBox'); if(!node) return;
-      if(!a) node.innerHTML = '<div class="muted">No attendance data.</div>';
-      else node.innerHTML = `<div style="font-weight:800">${a.present}/${a.total}</div><div class="muted">${Math.round((a.present/a.total)*100)}% present</div>`;
-    }
-    function renderAttendanceDetails(cls){
-      const a = DATA.attendance[cls];
-      const node = $('#attendanceDetails'); if(!node) return;
-      if(!a) node.innerHTML = '<div class="muted card">No attendance records.</div>';
-      else node.innerHTML = `<div class="card"><h4>Attendance — ${esc(cls)}</h4><div>Present: ${a.present}</div><div>Total: ${a.total}</div><div class="muted">Percentage: ${Math.round((a.present/a.total)*100)}%</div></div>`;
-    }
-
-    function renderFees(){
-      const node = $('#feesPreview'); if(!node) return;
-      const f = (DATA.fees||[]).filter(x=> x.class === SESSION.class || true).slice(0,5);
-      if(!f.length) node.innerHTML = '<div class="muted card">No fees data.</div>';
-      else node.innerHTML = f.map(fi=>`<div class="card"><strong>${esc(fi.studentName || fi.name || '')}</strong><div>Class: ${esc(fi.class)}</div><div>Amount: ₹${esc(String(fi.amount))}</div><div>Status: <strong>${esc(fi.status)}</strong></div></div>`).join('');
-    }
-
-    /* ---------- Search ---------- */
-    function doSearch(){
-      const q = ($('#globalSearch').value || '').trim().toLowerCase();
-      if(!q){ $('#searchResults').innerHTML = '<div class="muted">Enter search term</div>'; return; }
-      const cls = SESSION.class;
-      const hw = (DATA.homework[cls] || []).filter(h => (h.title + ' ' + h.subject + ' ' + h.notes).toLowerCase().includes(q));
-      const ann = (DATA.announcements[cls] || []).filter(a => (a.title + ' ' + a.body).toLowerCase().includes(q));
-      let html = '';
-      if(hw.length){ html += `<div><strong>Homework</strong>${hw.map(h=>`<div class="item"><strong>${esc(h.subject)} — ${esc(h.title)}</strong><div class="muted">Due: ${esc(h.due)}</div></div>`).join('')}</div>`; }
-      if(ann.length){ html += `<div style="margin-top:8px"><strong>Announcements</strong>${ann.map(a=>`<div class="item"><strong>${esc(a.title)}</strong><div class="muted">${esc(a.date)}</div><div>${esc(a.body)}</div></div>`).join('')}</div>`; }
-      if(!html) html = '<div class="muted">No results</div>';
-      $('#searchResults').innerHTML = html;
-    }
-
-    /* ---------- Export / Import ---------- */
-    function exportAll(){
-      const blob = new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});
-      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'mkps-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-      alert('Exported local data (mkps-data.json)');
-    }
-    function importAll(){
-      const input = document.createElement('input'); input.type='file'; input.accept='.json';
-      input.onchange = ()=> {
-        const f = input.files[0]; if(!f) return;
-        const r = new FileReader();
-        r.onload = ()=> {
-          try{
-            const parsed = JSON.parse(r.result);
-            DATA = parsed; saveData(DATA); alert('Imported data (local)'); renderAll();
-          }catch(err){ alert('Invalid JSON'); }
-        };
-        r.readAsText(f);
-      };
-      input.click();
-    }
-
-    /* ---------- Contact / Enquiries ---------- */
-    function saveEnquiry(){
-      const name = $('#cname').value.trim(); const info = $('#cinfo').value.trim(); const msg = $('#cmsg').value.trim();
-      if(!name || !info){ alert('Please provide name and contact.'); return; }
-      const enquiries = JSON.parse(localStorage.getItem('MKPS_ENQUIRIES') || '[]');
-      enquiries.unshift({id:uid('q'),name,info,msg,at:new Date().toISOString(),class: SESSION.class});
-      localStorage.setItem('MKPS_ENQUIRIES', JSON.stringify(enquiries));
-      alert('Enquiry saved locally.');
-      $('#contactForm').reset();
-    }
-    function showEnquiries(){
-      const list = JSON.parse(localStorage.getItem('MKPS_ENQUIRIES') || '[]');
-      if(!list.length) return alert('No enquiries');
-      openModal('<h3>Local enquiries</h3>' + list.map(q=>`<div class="card"><strong>${esc(q.name)}</strong> (${esc(q.class)})<div class="muted">${esc(q.info)}</div><div style="margin-top:6px">${esc(q.msg)}</div></div>`).join('') + '<div style="text-align:right"><button class="closeModal btn ghost">Close</button></div>');
-    }
-
-    /* ---------- Modal ---------- */
-    function openModal(html){
-      const modal = $('#modal'); const box = $('#modalBox');
-      box.innerHTML = html + `<div style="text-align:right;margin-top:8px"><button class="closeModal btn ghost">Close</button></div>`;
-      modal.classList.add('open');
-    }
-    function closeModal(){ $('#modal').classList.remove('open'); $('#modalBox').innerHTML = ''; }
-    $('#modal').addEventListener('click', (e)=>{ if(e.target.id === 'modal') closeModal(); });
-    document.addEventListener('click', (e)=> { if(e.target.matches('.closeModal')) closeModal(); });
-
-    /* ---------- Printing helper ---------- */
-    function printElement(selector){
-      const el = document.querySelector(selector);
-      if(!el) return alert('Nothing to print');
-      const w = window.open('','_blank');
-      w.document.write('<html><head><title>Print</title><style>body{font-family:Arial;padding:18px}</style></head><body>');
-      w.document.write(el.outerHTML);
-      w.document.write('</body></html>');
-      w.document.close();
-      w.print();
-    }
-
-    /* ---------- Quick panel (kebab) ---------- */
-    let quickOpen = false;
-    function toggleQuickPanel(){
-      const qp = $('#quickPanel');
-      quickOpen = !quickOpen;
-      if(quickOpen){
-        qp.style.display = 'block';
-        qp.innerHTML = `
-          <div class="row"><strong>Quick actions</strong><button id="closeQuick" style="margin-left:auto;background:transparent;border:none;cursor:pointer"><i class="fas fa-times"></i></button></div>
-          <div style="margin-top:8px"><button class="btn" id="qaAddNotice">Add Notice</button> <button class="btn ghost" id="qaAddHw">Add Homework</button></div>
-          <div style="margin-top:8px" class="muted tiny">Owner tools (local)</div>
-        `;
-        document.getElementById('closeQuick').addEventListener('click', ()=>{ qp.style.display='none'; quickOpen=false; });
-        document.getElementById('qaAddNotice').addEventListener('click', ()=>{ qp.style.display='none'; quickOpen=false; addNoticeQuick(); });
-        document.getElementById('qaAddHw').addEventListener('click', ()=>{ qp.style.display='none'; quickOpen=false; addHwQuick(); });
-      } else {
-        qp.style.display = 'none';
-      }
-    }
-    function addNoticeQuick(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const title = prompt('Title:'); const date = prompt('Date (YYYY-MM-DD):', new Date().toISOString().slice(0,10)); const body = prompt('Details:',''); DATA.announcements[cls] = DATA.announcements[cls] || []; DATA.announcements[cls].unshift({id:uid('n'),title,date,body}); saveData(DATA); renderAll(); alert('Notice added'); }
-    function addHwQuick(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const sub = prompt('Subject:','Mathematics'); const title = prompt('Title:','Exercise'); const due = prompt('Due (YYYY-MM-DD):','2025-12-01'); const notes = prompt('Notes:',''); DATA.homework[cls] = DATA.homework[cls] || []; DATA.homework[cls].unshift({id:uid('h'),subject:sub,title,due,notes}); saveData(DATA); renderAll(); alert('Homework added'); }
-
-    /* ---------- Admin prompt (floating) ---------- */
-    function adminPrompt(){
-      const pwd = prompt('Admin password:');
-      if(!pwd) return;
-      if(String(pwd) === 'Abutalha'){
-        // Open a quick local admin editor in a new tab (works offline)
-        const adminHtml = generateAdminHtml();
-        const blob = new Blob([adminHtml], {type:'text/html'});
-        const url = URL.createObjectURL(blob);
-        window.open(url,'_blank');
-      } else {
-        alert('Access Denied');
-      }
-    }
-
-    function generateAdminHtml(){
-      const raw = JSON.stringify(DATA,null,2).replace(/</g,'&lt;');
-      return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MKPS Admin</title>
-      <style>body{font-family:Arial;padding:18px;background:#021621;color:#cfeee3} textarea{width:100%;height:320px;background:#012a25;color:#cfeee3;border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.06)} button{padding:8px 10px;border-radius:8px;border:none;background:#0f766e;color:#fff;margin-right:6px}</style></head><body>
-      <h2>MKPS Local Admin</h2><p>Editing local data only. Changes save to localStorage under key ${STORAGE_KEY}.</p>
-      <div><textarea id="raw">${raw}</textarea></div>
-      <div style="margin-top:8px"><button id="save">Save</button><button id="export">Export JSON</button><button id="close">Close</button></div>
-      <div style="margin-top:12px"><button id="addNotice">Add Notice</button> <button id="addHW">Add Homework</button> <button id="addEvent">Add Event</button></div>
-      <script>
-        const KEY='${STORAGE_KEY}';
-        function load(){ try{ return JSON.parse(localStorage.getItem(KEY) || '{}'); }catch(e){return {}; } }
-        function save(d){ localStorage.setItem(KEY, JSON.stringify(d)); }
-        document.getElementById('save').addEventListener('click', ()=> {
-          try{ const parsed = JSON.parse(document.getElementById('raw').value); save(parsed); alert('Saved'); } catch(e){ alert('Invalid JSON'); }
-        });
-        document.getElementById('export').addEventListener('click', ()=> {
-          const a = document.createElement('a'); const blob = new Blob([document.getElementById('raw').value], {type:'application/json'}); a.href = URL.createObjectURL(blob); a.download='mkps-admin-data.json'; document.body.appendChild(a); a.click(); a.remove();
-        });
-        document.getElementById('close').addEventListener('click', ()=> window.close());
-        document.getElementById('addNotice').addEventListener('click', ()=> {
-          const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const title = prompt('Title:'); const date = prompt('Date:',new Date().toISOString().slice(0,10)); const body = prompt('Details:','');
-          const d = load(); d.announcements = d.announcements || {}; d.announcements[cls] = d.announcements[cls] || []; d.announcements[cls].unshift({id:'n'+Math.random().toString(36).slice(2,8),title,date,body}); document.getElementById('raw').value = JSON.stringify(d,null,2);
-        });
-        document.getElementById('addHW').addEventListener('click', ()=> {
-          const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const sub = prompt('Subject:','Math'); const title = prompt('Title:','Exercise'); const due = prompt('Due:'); const notes = prompt('Notes:','');
-          const d = load(); d.homework = d.homework || {}; d.homework[cls] = d.homework[cls] || []; d.homework[cls].unshift({id:'h'+Math.random().toString(36).slice(2,8),subject:sub,title,due,notes}); document.getElementById('raw').value = JSON.stringify(d,null,2);
-        });
-        document.getElementById('addEvent').addEventListener('click', ()=> {
-          const title = prompt('Event title:'); const date = prompt('Date:'); const d = load(); d.events = d.events || []; d.events.unshift({id:'e'+Math.random().toString(36).slice(2,8),title,date}); document.getElementById('raw').value = JSON.stringify(d,null,2);
-        });
-      </script>
-      </body></html>`;
-    }
-
-    /* ---------- TICKER ---------- */
-    function renderTicker(){
-      const all = [];
-      Object.keys(DATA.announcements||{}).forEach(cls => (DATA.announcements[cls]||[]).forEach(n => all.push(`${n.title} (${cls})`)));
-      (DATA.events||[]).forEach(ev=> all.push(`${ev.title} on ${ev.date}`));
-      const t = (all.join(' • ') || 'Welcome to Milli Karwaan') + ' • ' + (all.join(' • ') || '');
-      $('#tickerInner').textContent = t;
-    }
-
-    /* ---------- SMALL HELPERS ---------- */
-    function esc(s){ if(s==null) return ''; return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-    function uidstr(p='id'){ return p + Math.random().toString(36).slice(2,9); }
-
-    // init run
-    init();
-  })();
-  </script>
 </body>
 </html>
