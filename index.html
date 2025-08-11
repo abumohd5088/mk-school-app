@@ -1,2182 +1,892 @@
-```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milli Karwaan Public School</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
-        
-        * {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        .montserrat {
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .fade-in {
-            animation: fadeIn 1.5s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .slide-up {
-            animation: slideUp 1s ease-out;
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .float {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.03);
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-12px);
-            transition: all 0.4s ease;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .bg-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .border-glow {
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #667eea, #764ba2);
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 26px;
-            top: 15px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: white;
-            border: 4px solid #667eea;
-            z-index: 1;
-        }
-        
-        .stagger {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .stagger-1 { animation-delay: 0.2s; }
-        .stagger-2 { animation-delay: 0.4s; }
-        .stagger-3 { animation-delay: 0.6s; }
-        .stagger-4 { animation-delay: 0.8s; }
-        .stagger-5 { animation-delay: 1.0s; }
-        
-        .progress-ring {
-            --size: 60px;
-            --thickness: 4px;
-        }
-        
-        .progress-ring__circle {
-            transition: stroke-dashoffset 0.35s;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-        }
-        
-        .achievement-badge {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-        
-        .subject-tag {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #ef4444;
-            color: white;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .chat-bubble {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-            transition: all 0.3s ease;
-            font-size: 20px;
-        }
-        
-        .chat-bubble:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
-        }
-        
-        .chat-container {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 380px;
-            max-height: 550px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            z-index: 99;
-            display: none;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .chat-container.active {
-            display: block;
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .chat-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .chat-messages {
-            height: 380px;
-            overflow-y: auto;
-            padding: 15px;
-            background: #f8f9fa;
-        }
-        
-        .message {
-            margin-bottom: 15px;
-            max-width: 80%;
-        }
-        
-        .message-right {
-            margin-left: auto;
-        }
-        
-        .message-content {
-            padding: 12px 18px;
-            border-radius: 18px;
-            font-size: 14px;
-            position: relative;
-        }
-        
-        .message-sent {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-bottom-right-radius: 5px;
-        }
-        
-        .message-received {
-            background: #e9ecef;
-            color: #495057;
-            border-bottom-left-radius: 5px;
-        }
-        
-        .message-time {
-            font-size: 11px;
-            opacity: 0.7;
-            margin-top: 5px;
-            text-align: right;
-        }
-        
-        .chat-input {
-            display: flex;
-            padding: 10px;
-            background: white;
-            border-top: 1px solid #dee2e6;
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #dee2e6;
-            border-radius: 25px;
-            outline: none;
-        }
-        
-        .chat-input button {
-            margin-left: 10px;
-            padding: 12px 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        .dark-mode {
-            --bg-primary: #1a1a2e;
-            --bg-secondary: #16213e;
-            --text-primary: #e1e1e1;
-            --text-secondary: #b8b8b8;
-            --card-bg: #16213e;
-            --border-color: #3a3a5a;
-        }
-        
-        .dark-mode .bg-white {
-            background-color: var(--card-bg) !important;
-        }
-        
-        .dark-mode .text-gray-800 {
-            color: var(--text-primary) !important;
-        }
-        
-        .dark-mode .text-gray-600 {
-            color: var(--text-secondary) !important;
-        }
-        
-        .dark-mode .border-gray-300 {
-            border-color: var(--border-color) !important;
-        }
-        
-        .dark-mode .bg-gray-50 {
-            background-color: var(--bg-primary) !important;
-        }
-        
-        .dark-mode .bg-gray-100 {
-            background-color: #1a2942 !important;
-        }
-        
-        .dark-mode-footer {
-            background: #0f172a;
-            color: #e2e8f0;
-        }
-        
-        .dark-mode-footer .text-gray-300 {
-            color: #94a3b8 !important;
-        }
-        
-        .dark-mode-footer .border-gray-700 {
-            border-color: #334155 !important;
-        }
-        
-        .dark-mode-footer .text-gray-400 {
-            color: #64748b !important;
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .testimonial-card {
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .gallery-item {
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.05);
-            z-index: 10;
-        }
-        
-        .accordion-button {
-            transition: all 0.3s ease;
-        }
-        
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .accordion-active .accordion-content {
-            max-height: 500px;
-        }
-        
-        .floating-button {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .scroll-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
-        }
-        
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.3s ease;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .zoom-in {
-            transition: transform 0.3s ease;
-        }
-        
-        .zoom-in:hover {
-            transform: scale(1.05);
-        }
-        
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .counter {
-            display: inline-block;
-            font-weight: bold;
-            color: #667eea;
-        }
-        
-        .counter::before {
-            content: attr(data-target);
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-        }
-        
-        .counter.visible::before {
-            opacity: 1;
-        }
-    </style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Milli Karwaan Public School — Balrampur</title>
+  <meta name="description" content="Milli Karwaan Public School Balrampur — student dashboard, homework, notices, timetable, gallery & more.">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@500;700&display=swap');
+    :root{
+      --accent1: #0f766e;
+      --accent2: #065f46;
+      --gold: #f59e0b;
+      --muted: #6b7280;
+    }
+    *{font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;}
+    .montserrat{font-family:'Montserrat',sans-serif;}
+    /* small helpers */
+    .card-hover:hover{ transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); transition: all .35s ease; }
+    .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(6px); }
+    .kebab-panel { min-width: 240px; }
+    .modal-bg { background: rgba(2,6,23,0.6); }
+    .badge-primary { background: linear-gradient(90deg,var(--accent1),var(--accent2)); color: white; padding:6px 10px; border-radius:999px; font-weight:700; }
+    /* timeline */
+    .timeline::before{ content:''; position:absolute; left:24px; top:0; bottom:0; width:3px; background: linear-gradient(180deg,var(--accent1),var(--accent2)); }
+    /* small responsive tweaks */
+    @media (max-width:768px){
+      .left-rail { display:none; }
+      .mobile-rail { display:flex; gap:8px; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 min-h-screen transition-colors duration-300">
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
-        <div class="spinner"></div>
-    </div>
+<body class="bg-gray-50 text-gray-800 antialiased">
 
-    <!-- Scroll to Top Button -->
-    <div id="scrollTop" class="scroll-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
-    <!-- School Header -->
-    <header class="bg-white shadow-xl border-b-4 border-indigo-600 sticky top-0 z-50 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-4">
-                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-3 rounded-full shadow-lg float">
-                        <i class="fas fa-graduation-cap text-2xl"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-2xl font-bold text-gray-800 montserrat">Milli Karwaan Public School</h1>
-                        <p class="text-gray-600 text-sm flex items-center">
-                            <i class="fas fa-map-marker-alt mr-1"></i> Near Police Chowki, Balrampur
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button id="themeToggle" class="bg-gray-200 hover:bg-gray-300 text-gray-800 p-2 rounded-full transition-colors duration-300">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button id="adminBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 pulse">
-                        <i class="fas fa-user-shield"></i>
-                        <span>Admin</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Navigation -->
-        <nav class="bg-white shadow-sm">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex space-x-8 overflow-x-auto">
-                    <a href="#home" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
-                    <a href="#about" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">About</a>
-                    <a href="#academics" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Academics</a>
-                    <a href="#facilities" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Facilities</a>
-                    <a href="#admissions" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Admissions</a>
-                    <a href="#gallery" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Gallery</a>
-                    <a href="#contact" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Student Login Modal -->
-    <div id="studentModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 fade-in">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden transform transition-all">
-            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8">
-                <div class="text-center">
-                    <div class="bg-white bg-opacity-20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-graduate text-4xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold mb-2">Welcome to Milli Karwaan</h2>
-                    <p class="text-indigo-100">Your educational journey starts here</p>
-                </div>
-            </div>
-            
-            <div class="p-8">
-                <div class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Student Name</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-user text-gray-400"></i>
-                                </div>
-                                <input type="text" id="studentName" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition-all duration-300" placeholder="Enter your full name">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Class</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-chalkboard-teacher text-gray-400"></i>
-                                </div>
-                                <select id="studentClass" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition-all duration-300">
-                                    <option value="">Select your class</option>
-                                    <option value="Nursery">Nursery</option>
-                                    <option value="LKG">LKG</option>
-                                    <option value="UKG">UKG</option>
-                                    <option value="Class 1">Class 1</option>
-                                    <option value="Class 2">Class 2</option>
-                                    <option value="Class 3">Class 3</option>
-                                    <option value="Class 4">Class 4</option>
-                                    <option value="Class 5">Class 5</option>
-                                    <option value="Class 6">Class 6</option>
-                                    <option value="Class 7">Class 7</option>
-                                    <option value="Class 8">Class 8</option>
-                                    <option value="Class 9">Class 9</option>
-                                    <option value="Class 10">Class 10</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-blue-50 p-4 rounded-xl">
-                            <div class="flex items-center">
-                                <div class="bg-blue-100 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-book-open text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-blue-800">Homework</p>
-                                    <p class="text-sm text-blue-600">Daily assignments</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-green-50 p-4 rounded-xl">
-                            <div class="flex items-center">
-                                <div class="bg-green-100 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-chart-line text-green-600"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-green-800">Progress</p>
-                                    <p class="text-sm text-green-600">Track your learning</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-purple-50 p-4 rounded-xl">
-                            <div class="flex items-center">
-                                <div class="bg-purple-100 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-calendar-alt text-purple-600"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-purple-800">Events</p>
-                                    <p class="text-sm text-purple-600">School activities</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-8">
-                    <button id="loginBtn" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-3">
-                        <span>Enter Student Dashboard</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-                
-                <div class="text-center mt-6">
-                    <p class="text-sm text-gray-500">
-                        <i class="fas fa-phone-alt mr-1"></i> Contact: 9758919158 | 
-                        <i class="fas fa-envelope mr-1"></i> mainmadamsir066@gmail.com
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Dashboard (Initially Hidden) -->
-    <div id="dashboard" class="hidden">
-        <!-- Hero Section -->
-        <section id="home" class="bg-gradient text-white py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="stagger stagger-1">
-                        <h2 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">Empowering Young Minds</h2>
-                        <p class="text-xl opacity-90 mb-8">At Milli Karwaan Public School, we believe in nurturing every student's potential through quality education and holistic development.</p>
-                        <div class="flex flex-wrap gap-4">
-                            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl px-6 py-3">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star mr-2"></i>
-                                    <span class="font-semibold">15+ Years Excellence</span>
-                                </div>
-                            </div>
-                            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl px-6 py-3">
-                                <div class="flex items-center">
-                                    <i class="fas fa-users mr-2"></i>
-                                    <span class="font-semibold">1000+ Students</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-center lg:justify-end stagger stagger-2">
-                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 max-w-md">
-                            <img src="https://placehold.co/400x300/667eea/ffffff?text=School+Life" alt="School Life" class="rounded-2xl w-full shadow-2xl">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Student Info Banner -->
-        <div id="studentInfo" class="bg-white shadow-xl border-l-4 border-green-500 mx-4 md:mx-8 my-6 rounded-r-xl transition-all duration-300">
-            <div class="px-8 py-6">
-                <div class="flex flex-wrap items-center justify-between">
-                    <div class="flex items-center space-x-6">
-                        <div class="bg-green-100 p-4 rounded-full">
-                            <i class="fas fa-user-check text-green-600 text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800" id="welcomeText"></h3>
-                            <div class="flex items-center mt-1">
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium" id="classText"></span>
-                                <span class="ml-3 text-gray-500 text-sm" id="lastLogin"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button id="notificationsBtn" class="relative bg-gray-100 hover:bg-gray-200 text-gray-700 p-3 rounded-full transition-colors duration-300">
-                            <i class="fas fa-bell text-lg"></i>
-                            <span class="notification-badge">3</span>
-                        </button>
-                        <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-xl font-medium transition-colors duration-300 flex items-center space-x-2">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <!-- HEADER -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <img id="siteLogo" src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="MKPS" class="w-14 h-14 rounded-lg object-contain shadow" />
+          <div>
+            <div class="montserrat text-xl font-bold">Milli Karwaan Public School</div>
+            <div class="text-sm text-gray-500 flex items-center gap-2"><i class="fas fa-map-marker-alt text-indigo-500"></i> Near Police Chowki, Balrampur</div>
+          </div>
         </div>
 
-        <!-- Main Content Grid -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                
-                <!-- Homework & Assignments -->
-                <div class="lg:col-span-2 space-y-8">
-                    <div class="bg-white rounded-3xl shadow-xl p-8 card-hover hover-scale border-glow">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-blue-100 p-4 rounded-xl mr-4">
-                                <i class="fas fa-book-open text-blue-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-gray-800">Homework & Assignments</h3>
-                                <p class="text-gray-600">Complete your daily tasks and stay ahead</p>
-                            </div>
-                            <div class="ml-auto">
-                                <button class="bg-blue-100 text-blue-700 px-4 py-2 rounded-xl text-sm font-medium hover:bg-blue-200 transition-colors">
-                                    <i class="fas fa-filter mr-1"></i> Filter
-                                </button>
-                            </div>
-                        </div>
-                        <div id="homeworkContent" class="space-y-4">
-                            <!-- Homework will be populated here -->
-                        </div>
-                    </div>
+        <div class="flex items-center gap-3">
+          <div class="hidden md:flex items-center gap-3">
+            <div id="userGreeting" class="text-sm text-gray-600">Please enter name & class</div>
+          </div>
 
-                    <!-- Performance Analytics -->
-                    <div class="bg-white rounded-3xl shadow-xl p-8 card-hover hover-scale">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-teal-100 p-4 rounded-xl mr-4">
-                                <i class="fas fa-chart-bar text-teal-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-gray-800">Performance Analytics</h3>
-                                <p class="text-gray-600">Track your academic progress</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <canvas id="performanceChart" height="200"></canvas>
-                            </div>
-                            <div class="space-y-4">
-                                <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl">
-                                    <div class="flex items-center">
-                                        <div class="bg-green-100 p-3 rounded-xl mr-4">
-                                            <i class="fas fa-medal text-green-600"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-bold text-green-800 text-xl">Top Performer</p>
-                                            <p class="text-green-600">In Mathematics</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-2xl">
-                                    <div class="flex items-center">
-                                        <div class="bg-blue-100 p-3 rounded-xl mr-4">
-                                            <i class="fas fa-lightbulb text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-bold text-blue-800 text-xl">Improvement</p>
-                                            <p class="text-blue-600">In Science by 15%</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <button id="kebabBtn" class="p-2 rounded-md hover:bg-gray-100" title="Quick actions"><i class="fas fa-ellipsis-v"></i></button>
 
-                    <!-- Upcoming Events & Announcements -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-white rounded-3xl shadow-xl p-8 card-hover hover-scale">
-                            <div class="flex items-center mb-6">
-                                <div class="bg-orange-100 p-4 rounded-xl mr-4">
-                                    <i class="fas fa-bullhorn text-orange-600 text-xl"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-gray-800">Announcements</h3>
-                            </div>
-                            <div id="announcements" class="space-y-4">
-                                <div class="border-l-4 border-orange-400 pl-6 py-3 hover:bg-orange-50 rounded-r-lg transition-colors cursor-pointer">
-                                    <div class="flex justify-between items-start">
-                                        <div>
-                                            <p class="font-medium text-gray-800">Diwali Holiday</p>
-                                            <p class="text-sm text-gray-600 mt-1">School will remain closed on Monday for Diwali celebrations. Happy Diwali!</p>
-                                        </div>
-                                        <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">Oct 24</span>
-                                    </div>
-                                </div>
-                                <div class="border-l-4 border-orange-400 pl-6 py-3 hover:bg-orange-50 rounded-r-lg transition-colors cursor-pointer">
-                                    <div class="flex justify-between items-start">
-                                        <div>
-                                            <p class="font-medium text-gray-800">Sports Day Practice</p>
-                                            <p class="text-sm text-gray-600 mt-1">All students must practice daily for the upcoming annual sports day competition.</p>
-                                        </div>
-                                        <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">Oct 22</span>
-                                    </div>
-                                </div>
-                                <div class="border-l-4 border-orange-400 pl-6 py-3 hover:bg-orange-50 rounded-r-lg transition-colors cursor-pointer">
-                                    <div class="flex justify-between items-start">
-                                        <div>
-                                            <p class="font-medium text-gray-800">New Library Books</p>
-                                            <p class="text-sm text-gray-600 mt-1">New collection of story books and educational materials have arrived. Visit during free periods.</p>
-                                        </div>
-                                        <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">Oct 20</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+          <button id="themeToggle" class="p-2 rounded-md hover:bg-gray-100" title="Toggle theme"><i class="fas fa-moon"></i></button>
 
-                        <div class="bg-white rounded-3xl shadow-xl p-8 card-hover hover-scale">
-                            <div class="flex items-center mb-6">
-                                <div class="bg-purple-100 p-4 rounded-xl mr-4">
-                                    <i class="fas fa-calendar-alt text-purple-600 text-xl"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-gray-800">Upcoming Events</h3>
-                            </div>
-                            <div class="space-y-4">
-                                <div class="flex items-center p-4 bg-purple-50 rounded-2xl hover:bg-purple-100 transition-colors cursor-pointer">
-                                    <div class="bg-purple-200 p-3 rounded-xl mr-4">
-                                        <i class="far fa-calendar-check text-purple-600"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="font-medium text-purple-800">Science Exhibition</p>
-                                        <p class="text-sm text-purple-600">Nov 15, 2023 • 10:00 AM</p>
-                                    </div>
-                                    <i class="fas fa-arrow-right text-gray-400"></i>
-                                </div>
-                                <div class="flex items-center p-4 bg-purple-50 rounded-2xl hover:bg-purple-100 transition-colors cursor-pointer">
-                                    <div class="bg-purple-200 p-3 rounded-xl mr-4">
-                                        <i class="far fa-calendar-check text-purple-600"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="font-medium text-purple-800">Parent-Teacher Meeting</p>
-                                        <p class="text-sm text-purple-600">Nov 20, 2023 • 3:00 PM</p>
-                                    </div>
-                                    <i class="fas fa-arrow-right text-gray-400"></i>
-                                </div>
-                                <div class="flex items-center p-4 bg-purple-50 rounded-2xl hover:bg-purple-100 transition-colors cursor-pointer">
-                                    <div class="bg-purple-200 p-3 rounded-xl mr-4">
-                                        <i class="far fa-calendar-check text-purple-600"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="font-medium text-purple-800">Annual Day Preparation</p>
-                                        <p class="text-sm text-purple-600">Dec 5, 2023 • Rehearsals</p>
-                                    </div>
-                                    <i class="fas fa-arrow-right text-gray-400"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <button id="adminFabTop" class="ml-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg shadow hover:shadow-lg flex items-center gap-2">
+            <i class="fas fa-user-shield"></i><span class="hidden sm:inline">Admin</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-                <!-- Sidebar -->
-                <div class="space-y-8">
-                    <!-- Attendance -->
-                    <div class="bg-white rounded-3xl shadow-xl p-8 card-hover hover-scale text-center">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-green-100 p-3 rounded-xl mr-3">
-                                <i class="fas fa-calendar-check text-green-600"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800">Attendance</h3>
-                        </div>
-                        <div class="relative inline-flex">
-                            <svg class="progress-ring" width="120" height="120">
-                                <circle class="progress-ring__circle" stroke="#e5e7eb" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" />
-                                <circle class="progress-ring__circle" stroke="#10b981" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314" stroke-dashoffset="63" />
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-green-600" id="attendanceCount">22</div>
-                                    <div class="text-sm text-gray-600">Days Present</div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mt-4 text-sm text-gray-500">88% Attendance Rate</p>
-                        <div class="mt-6">
-                            <div class="flex justify-between text-sm text-gray-600 mb-2">
-                                <span>Present</span>
-                                <span>22</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-green-600 h-2 rounded-full" style="width: 88%;"></div>
-                            </div>
-                            <div class="flex justify-between text-sm text-gray-600 mt-2">
-                                <span>Absent</span>
-                                <span>3</span>
-                            </div>
-                        </div>
-                    </div>
+  <!-- Kebab Quick Panel (hidden until toggled) -->
+  <div id="quickPanel" class="fixed right-6 top-20 z-50 hidden">
+    <div class="kebab-panel bg-white rounded-lg shadow-lg p-4">
+      <div class="flex items-center justify-between mb-3">
+        <strong>Quick actions</strong>
+        <button id="closeQuick" class="text-gray-500 hover:text-gray-800"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="flex flex-col gap-2">
+        <button id="qaAddNotice" class="py-2 px-3 rounded-md bg-indigo-50 text-indigo-700 text-left">+ Add Notice</button>
+        <button id="qaAddHw" class="py-2 px-3 rounded-md bg-green-50 text-green-700 text-left">+ Add Homework</button>
+        <button id="qaImport" class="py-2 px-3 rounded-md bg-gray-50 text-gray-700 text-left">Import JSON</button>
+        <button id="qaExport" class="py-2 px-3 rounded-md bg-gray-50 text-gray-700 text-left">Export JSON</button>
+        <button id="qaPrint" class="py-2 px-3 rounded-md bg-gray-50 text-gray-700 text-left">Print Page</button>
+      </div>
+    </div>
+  </div>
 
-                    <!-- Quick Links -->
-                    <div class="bg-white rounded-3xl shadow-xl p-8 card-hover hover-scale">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-indigo-100 p-3 rounded-xl mr-3">
-                                <i class="fas fa-external-link-alt text-indigo-600"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800">Quick Links</h3>
-                        </div>
-                        <div class="space-y-3">
-                            <a href="#" class="flex items-center p-3 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
-                                <div class="bg-indigo-200 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-book text-indigo-600"></i>
-                                </div>
-                                <span class="font-medium text-indigo-800">Digital Library</span>
-                            </a>
-                            <a href="#" class="flex items-center p-3 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
-                                <div class="bg-indigo-200 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-video text-indigo-600"></i>
-                                </div>
-                                <span class="font-medium text-indigo-800">Online Classes</span>
-                            </a>
-                            <a href="#" class="flex items-center p-3 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
-                                <div class="bg-indigo-200 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-download text-indigo-600"></i>
-                                </div>
-                                <span class="font-medium text-indigo-800">Download Forms</span>
-                            </a>
-                            <a href="#" class="flex items-center p-3 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
-                                <div class="bg-indigo-200 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-phone-alt text-indigo-600"></i>
-                                </div>
-                                <span class="font-medium text-indigo-800">Contact Teachers</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Achievements -->
-                    <div class="bg-white rounded-3xl shadow-xl p-8 card-hover hover-scale">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-yellow-100 p-3 rounded-xl mr-3">
-                                <i class="fas fa-trophy text-yellow-600"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800">Achievements</h3>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-center p-3 achievement-badge text-white rounded-xl">
-                                <div class="bg-white bg-opacity-20 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-medal"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Math Olympiad</p>
-                                    <p class="text-sm opacity-90">First Prize</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center p-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl">
-                                <div class="bg-white bg-opacity-20 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-running"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Sports Day</p>
-                                    <p class="text-sm opacity-90">100m Race Winner</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center p-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-xl">
-                                <div class="bg-white bg-opacity-20 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-paint-brush"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Art Competition</p>
-                                    <p class="text-sm opacity-90">Best Drawing</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <!-- STUDENT MODAL (first-run) -->
+  <div id="studentModal" class="fixed inset-0 modal-bg flex items-center justify-center z-40 p-4">
+    <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl animate__animated animate__fadeInUp">
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="p-8 bg-gradient-to-br from-indigo-600 to-purple-600 text-white">
+          <div class="flex flex-col items-center">
+            <div class="bg-white bg-opacity-10 p-4 rounded-full mb-4">
+              <i class="fas fa-user-graduate text-3xl"></i>
             </div>
-
-            <!-- About Section -->
-            <section id="about" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-6">About Milli Karwaan Public School</h3>
-                        <p class="text-gray-600 mb-4">Established in 2005, Milli Karwaan Public School has been committed to providing quality education to children in Balrampur and surrounding areas. Our mission is to nurture young minds and prepare them for a successful future through innovative teaching methods and holistic development programs.</p>
-                        <p class="text-gray-600 mb-6">We believe in creating a learning environment that fosters academic excellence, character development, and social responsibility. Our experienced faculty members are dedicated to helping each student reach their full potential.</p>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl">
-                                <div class="text-3xl font-bold text-blue-600 counter" data-target="15+">0</div>
-                                <p class="text-gray-600">Years of Excellence</p>
-                            </div>
-                            <div class="text-center p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
-                                <div class="text-3xl font-bold text-green-600 counter" data-target="1000+">0</div>
-                                <p class="text-gray-600">Students</p>
-                            </div>
-                            <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
-                                <div class="text-3xl font-bold text-purple-600 counter" data-target="50+">0</div>
-                                <p class="text-gray-600">Teachers</p>
-                            </div>
-                            <div class="text-center p-4 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl">
-                                <div class="text-3xl font-bold text-orange-600 counter" data-target="98%">0</div>
-                                <p class="text-gray-600">Pass Rate</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-center">
-                        <img src="https://placehold.co/500x400/667eea/ffffff?text=School+Campus" alt="School Campus" class="rounded-2xl shadow-2xl">
-                    </div>
+            <h2 class="text-2xl font-bold montserrat">Welcome to Milli Karwaan</h2>
+            <p class="mt-3 text-indigo-100 text-center">Enter your name & class to open your personalised student dashboard.</p>
+            <div class="mt-6 w-full">
+              <div class="grid grid-cols-3 gap-3">
+                <div class="bg-white bg-opacity-10 rounded-xl p-3 text-center">
+                  <i class="fas fa-book-open text-xl mb-1"></i>
+                  <div class="text-sm font-semibold">Homework</div>
                 </div>
-            </section>
-
-            <!-- Academics Section -->
-            <section id="academics" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Academic Programs</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl hover-scale">
-                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-math text-blue-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Mathematics</h4>
-                        <p class="text-gray-600">Our mathematics curriculum focuses on developing problem-solving skills, logical reasoning, and numerical proficiency through interactive learning methods.</p>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl hover-scale">
-                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-flask text-green-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Science</h4>
-                        <p class="text-gray-600">Hands-on experiments, science fairs, and project-based learning help students understand scientific concepts and develop critical thinking skills.</p>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl hover-scale">
-                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-book text-purple-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Languages</h4>
-                        <p class="text-gray-600">We offer comprehensive language programs in English, Hindi, and Sanskrit, focusing on reading, writing, speaking, and listening skills.</p>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl hover-scale">
-                        <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-palette text-orange-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Arts & Music</h4>
-                        <p class="text-gray-600">Creative expression is encouraged through visual arts, music, dance, and drama programs that nurture students' artistic talents.</p>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl hover-scale">
-                        <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-laptop-code text-indigo-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Computer Science</h4>
-                        <p class="text-gray-600">Our computer labs are equipped with modern technology, and our curriculum includes programming, digital literacy, and internet safety.</p>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl hover-scale">
-                        <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-futbol text-teal-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Physical Education</h4>
-                        <p class="text-gray-600">Regular sports activities, yoga, and fitness programs promote physical health, teamwork, and sportsmanship among students.</p>
-                    </div>
+                <div class="bg-white bg-opacity-10 rounded-xl p-3 text-center">
+                  <i class="fas fa-calendar-check text-xl mb-1"></i>
+                  <div class="text-sm font-semibold">Timetable</div>
                 </div>
-            </section>
-
-            <!-- Facilities Section -->
-            <section id="facilities" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">School Facilities</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
-                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-book text-blue-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Library</h4>
-                        <p class="text-gray-600">Our well-stocked library has thousands of books, periodicals, and digital resources to support students' reading and research needs.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
-                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-flask text-green-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Science Labs</h4>
-                        <p class="text-gray-600">Equipped with modern instruments and safety features, our science labs provide hands-on learning experiences in physics, chemistry, and biology.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
-                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-laptop text-purple-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Computer Labs</h4>
-                        <p class="text-gray-600">State-of-the-art computer labs with high-speed internet and the latest software support digital learning and programming education.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
-                        <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-futbol text-orange-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Sports Facilities</h4>
-                        <p class="text-gray-600">Our school has a large playground, basketball court, and indoor games room to promote physical fitness and sportsmanship.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
-                        <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-music text-indigo-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Music & Dance Room</h4>
-                        <p class="text-gray-600">Dedicated spaces for music and dance education with instruments, sound systems, and professional-grade equipment.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
-                        <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-medkit text-teal-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">Medical Room</h4>
-                        <p class="text-gray-600">Our medical room is staffed with trained personnel and equipped to handle minor injuries and health emergencies.</p>
-                    </div>
+                <div class="bg-white bg-opacity-10 rounded-xl p-3 text-center">
+                  <i class="fas fa-images text-xl mb-1"></i>
+                  <div class="text-sm font-semibold">Gallery</div>
                 </div>
-            </section>
-
-            <!-- Admissions Section -->
-            <section id="admissions" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-6">Admissions</h3>
-                        <p class="text-gray-600 mb-6">We welcome new students throughout the academic year. Our admission process is designed to be simple and transparent, ensuring a smooth transition for both students and parents.</p>
-                        
-                        <div class="space-y-4 mb-6">
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-2 rounded-lg mr-3 mt-1">
-                                    <i class="fas fa-check text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Eligibility</h4>
-                                    <p class="text-gray-600">Children between the ages of 3-16 are eligible for admission based on their age and previous academic records.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-2 rounded-lg mr-3 mt-1">
-                                    <i class="fas fa-check text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Documents Required</h4>
-                                    <p class="text-gray-600">Birth certificate, previous school records, address proof, and passport-sized photographs.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-2 rounded-lg mr-3 mt-1">
-                                    <i class="fas fa-check text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Admission Process</h4>
-                                    <p class="text-gray-600">Submit application → Document verification → Interaction session → Admission confirmation.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center space-x-2">
-                            <i class="fas fa-download"></i>
-                            <span>Download Admission Form</span>
-                        </button>
-                    </div>
-                    <div>
-                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl">
-                            <h4 class="text-xl font-bold text-gray-800 mb-6">Fees Structure</h4>
-                            <div class="space-y-4">
-                                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
-                                    <span class="font-medium">Admission Fee</span>
-                                    <span class="font-bold">₹5,000</span>
-                                </div>
-                                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
-                                    <span class="font-medium">Monthly Fee</span>
-                                    <span class="font-bold">₹2,500</span>
-                                </div>
-                                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
-                                    <span class="font-medium">Annual Charges</span>
-                                    <span class="font-bold">₹3,000</span>
-                                </div>
-                                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
-                                    <span class="font-medium">Transport (Optional)</span>
-                                    <span class="font-bold">₹1,500</span>
-                                </div>
-                                <div class="border-t pt-3 mt-4">
-                                    <div class="flex justify-between items-center font-bold text-lg">
-                                        <span>Total (First Month)</span>
-                                        <span>₹11,000</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Testimonials Section -->
-            <section class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">What Parents Say</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="testimonial-card bg-gray-50 p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <img src="https://placehold.co/60x60/667eea/ffffff?text=SM" alt="Parent" class="w-12 h-12 rounded-full mr-4">
-                            <div>
-                                <h4 class="font-bold text-gray-800">Sunita Mehta</h4>
-                                <p class="text-sm text-gray-600">Mother of Class 5 Student</p>
-                            </div>
-                        </div>
-                        <div class="text-yellow-400 mb-3">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic">"Milli Karwaan has transformed my child's learning experience. The teachers are dedicated, and the curriculum is well-balanced between academics and extracurricular activities."</p>
-                    </div>
-                    <div class="testimonial-card bg-gray-50 p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <img src="https://placehold.co/60x60/764ba2/ffffff?text=RK" alt="Parent" class="w-12 h-12 rounded-full mr-4">
-                            <div>
-                                <h4 class="font-bold text-gray-800">Rajesh Kumar</h4>
-                                <p class="text-sm text-gray-600">Father of Class 8 Student</p>
-                            </div>
-                        </div>
-                        <div class="text-yellow-400 mb-3">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic">"The school's focus on holistic development is impressive. My son has not only improved academically but also gained confidence through various activities and competitions."</p>
-                    </div>
-                    <div class="testimonial-card bg-gray-50 p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <img src="https://placehold.co/60x60/667eea/ffffff?text=AP" alt="Parent" class="w-12 h-12 rounded-full mr-4">
-                            <div>
-                                <h4 class="font-bold text-gray-800">Anjali Patel</h4>
-                                <p class="text-sm text-gray-600">Mother of Nursery Student</p>
-                            </div>
-                        </div>
-                        <div class="text-yellow-400 mb-3">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic">"As a parent of a young child, I was concerned about the transition to school life. The caring teachers and nurturing environment have made this journey smooth and enjoyable for my daughter."</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h3>
-                <div class="space-y-4">
-                    <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="accordion-button w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-gray-800">What are the school hours?</span>
-                                <i class="fas fa-chevron-down text-gray-400"></i>
-                            </div>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-6">
-                                <p class="text-gray-600">School hours are from 9:00 AM to 2:00 PM, Monday through Friday. The morning assembly starts at 9:00 AM, and classes begin at 9:15 AM.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="accordion-button w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-gray-800">Does the school provide transportation?</span>
-                                <i class="fas fa-chevron-down text-gray-400"></i>
-                            </div>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-6">
-                                <p class="text-gray-600">Yes, we provide transportation services for students living within a 10 km radius of the school. Our buses are equipped with GPS tracking and attendants for student safety.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="accordion-button w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-gray-800">What extracurricular activities are offered?</span>
-                                <i class="fas fa-chevron-down text-gray-400"></i>
-                            </div>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-6">
-                                <p class="text-gray-600">We offer a wide range of extracurricular activities including sports (cricket, football, basketball), arts (drawing, painting, sculpture), music (vocal, instrumental), dance, drama, debate, and various clubs (science, robotics, eco-club).</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="accordion-button w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-gray-800">How does the school handle student safety?</span>
-                                <i class="fas fa-chevron-down text-gray-400"></i>
-                            </div>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-6">
-                                <p class="text-gray-600">Student safety is our top priority. We have CCTV surveillance throughout the campus, trained security personnel, strict visitor protocols, and regular safety drills. All staff members are trained in first aid and emergency procedures.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Gallery Section -->
-            <section id="gallery" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">School Gallery</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200/667eea/ffffff?text=Classroom" alt="Classroom" class="w-full h-48 object-cover rounded-lg">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200/764ba2/ffffff?text=Science+Lab" alt="Science Lab" class="w-full h-48 object-cover rounded-lg">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200/667eea/ffffff?text=Library" alt="Library" class="w-full h-48 object-cover rounded-lg">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200/764ba2/ffffff?text=Sports+Day" alt="Sports Day" class="w-full h-48 object-cover rounded-lg">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200/667eea/ffffff?text=Annual+Day" alt="Annual Day" class="w-full h-48 object-cover rounded-lg">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200/764ba2/ffffff?text=Art+Class" alt="Art Class" class="w-full h-48 object-cover rounded-lg">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200/667eea/ffffff?text=Music+Room" alt="Music Room" class="w-full h-48 object-cover rounded-lg">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200/764ba2/ffffff?text=Computer+Lab" alt="Computer Lab" class="w-full h-48 object-cover rounded-lg">
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-6">Contact Us</h3>
-                        <p class="text-gray-600 mb-8">Have questions or want to learn more about our school? Get in touch with us through any of the following channels.</p>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-3 rounded-xl mr-4 mt-1">
-                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Address</h4>
-                                    <p class="text-gray-600">Near Police Chowki, Balrampur, Uttar Pradesh 271201, India</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-green-100 p-3 rounded-xl mr-4 mt-1">
-                                    <i class="fas fa-phone-alt text-green-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Phone</h4>
-                                    <p class="text-gray-600">+91 9758919158</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-purple-100 p-3 rounded-xl mr-4 mt-1">
-                                    <i class="fas fa-envelope text-purple-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Email</h4>
-                                    <p class="text-gray-600">mainmadamsir066@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-orange-100 p-3 rounded-xl mr-4 mt-1">
-                                    <i class="fas fa-clock text-orange-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Office Hours</h4>
-                                    <p class="text-gray-600">Monday - Friday: 8:00 AM - 4:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-gray-100 rounded-2xl p-6">
-                            <h4 class="text-xl font-bold text-gray-800 mb-6">Send us a Message</h4>
-                            <form class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Your name">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Your email">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                                    <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Your phone number">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                                    <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Your message"></textarea>
-                                </div>
-                                <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
-                                    Send Message
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Timetable Section -->
-            <div class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <div class="flex items-center mb-6">
-                    <div class="bg-indigo-100 p-4 rounded-xl mr-4">
-                        <i class="fas fa-table text-indigo-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800">Weekly Timetable</h3>
-                        <p class="text-gray-600">Your daily class schedule</p>
-                    </div>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="border-b-2 border-gray-200">
-                                <th class="text-left py-4 px-4 font-semibold text-gray-800 text-lg">Time</th>
-                                <th class="text-left py-4 px-4 font-semibold text-gray-800 text-lg">Monday</th>
-                                <th class="text-left py-4 px-4 font-semibold text-gray-800 text-lg">Tuesday</th>
-                                <th class="text-left py-4 px-4 font-semibold text-gray-800 text-lg">Wednesday</th>
-                                <th class="text-left py-4 px-4 font-semibold text-gray-800 text-lg">Thursday</th>
-                                <th class="text-left py-4 px-4 font-semibold text-gray-800 text-lg">Friday</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-gray-600">
-                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                <td class="py-4 px-4 font-medium">9:00-10:00</td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Mathematics</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Science</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">English</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Mathematics</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Science</div></td>
-                            </tr>
-                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                <td class="py-4 px-4 font-medium">10:00-11:00</td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Hindi</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Mathematics</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Science</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Hindi</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Mathematics</div></td>
-                            </tr>
-                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                <td class="py-4 px-4 font-medium">11:00-12:00</td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">English</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Hindi</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Mathematics</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Science</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Hindi</div></td>
-                            </tr>
-                            <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="py-4 px-4 font-medium">12:00-1:00</td>
-                                <td colspan="5" class="py-4 px-4 text-center bg-gray-100 font-medium rounded-lg">LUNCH BREAK</td>
-                            </tr>
-                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                <td class="py-4 px-4 font-medium">1:00-2:00</td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">EVS</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Art</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Music</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Sports</div></td>
-                                <td class="py-4 px-4"><div class="subject-tag text-white px-3 py-1 rounded-full text-sm">Computer</div></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+              </div>
             </div>
-
-            <!-- School Timeline -->
-            <div class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale relative">
-                <div class="flex items-center mb-6">
-                    <div class="bg-pink-100 p-4 rounded-xl mr-4">
-                        <i class="fas fa-history text-pink-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800">School Timeline</h3>
-                        <p class="text-gray-600">Our journey of excellence</p>
-                    </div>
-                </div>
-                <div class="timeline ml-12 space-y-8 relative">
-                    <div class="timeline-item bg-gray-50 p-6 rounded-2xl">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="text-xl font-bold text-gray-800">School Founded</h4>
-                            <span class="text-sm bg-pink-100 text-pink-800 px-3 py-1 rounded-full font-medium">2005</span>
-                        </div>
-                        <p class="text-gray-600">Milli Karwaan Public School was established with a vision to provide quality education to children in Balrampur and surrounding areas.</p>
-                    </div>
-                    
-                    <div class="timeline-item bg-gray-50 p-6 rounded-2xl">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="text-xl font-bold text-gray-800">New Campus</h4>
-                            <span class="text-sm bg-pink-100 text-pink-800 px-3 py-1 rounded-full font-medium">2010</span>
-                        </div>
-                        <p class="text-gray-600">Expanded to a new campus with modern classrooms, science labs, and sports facilities to accommodate growing student numbers.</p>
-                    </div>
-                    
-                    <div class="timeline-item bg-gray-50 p-6 rounded-2xl">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="text-xl font-bold text-gray-800">Digital Learning</h4>
-                            <span class="text-sm bg-pink-100 text-pink-800 px-3 py-1 rounded-full font-medium">2018</span>
-                        </div>
-                        <p class="text-gray-600">Introduced smart classrooms with digital boards and launched our online learning platform for remote education.</p>
-                    </div>
-                    
-                    <div class="timeline-item bg-gray-50 p-6 rounded-2xl">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="text-xl font-bold text-gray-800">Academic Excellence</h4>
-                            <span class="text-sm bg-pink-100 text-pink-800 px-3 py-1 rounded-full font-medium">2023</span>
-                        </div>
-                        <p class="text-gray-600">Achieved 98% pass rate in board exams and recognized as one of the top schools in the district for academic performance.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Teacher Spotlight -->
-            <div class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
-                <div class="flex items-center mb-6">
-                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-xl mr-4">
-                        <i class="fas fa-chalkboard-teacher text-white text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800">Teacher Spotlight</h3>
-                        <p class="text-gray-600">Meet our dedicated educators</p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl">
-                        <img src="https://placehold.co/150x150/667eea/ffffff?text=Ms.+Sharma" alt="Teacher" class="w-20 h-20 rounded-full mx-auto mb-4">
-                        <h4 class="font-bold text-gray-800">Ms. Sharma</h4>
-                        <p class="text-sm text-gray-600 mb-2">Mathematics Teacher</p>
-                        <p class="text-xs text-gray-500">12 years experience • Awarded Best Teacher 2022</p>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
-                        <img src="https://placehold.co/150x150/10b981/ffffff?text=Mr.+Patel" alt="Teacher" class="w-20 h-20 rounded-full mx-auto mb-4">
-                        <h4 class="font-bold text-gray-800">Mr. Patel</h4>
-                        <p class="text-sm text-gray-600 mb-2">Science Teacher</p>
-                        <p class="text-xs text-gray-500">15 years experience • PhD in Physics</p>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
-                        <img src="https://placehold.co/150x150/8b5cf6/ffffff?text=Ms.+Singh" alt="Teacher" class="w-20 h-20 rounded-full mx-auto mb-4">
-                        <h4 class="font-bold text-gray-800">Ms. Singh</h4>
-                        <p class="text-sm text-gray-600 mb-2">English Teacher</p>
-                        <p class="text-xs text-gray-500">10 years experience • Published Author</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <!-- Footer -->
-        <footer id="footer" class="bg-gray-800 text-white py-16 mt-16 transition-colors duration-300">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="md:col-span-2">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-3 rounded-full mr-3">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold">Milli Karwaan Public School</h3>
-                        </div>
-                        <p class="text-gray-300 mb-6">Providing quality education for over 15 years. Our mission is to nurture young minds and prepare them for a successful future through innovative teaching methods and holistic development programs.</p>
-                        <div class="flex space-x-4">
-                            <a href="#" class="bg-gray-700 hover:bg-gray-600 p-2 rounded-full transition-colors">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="bg-gray-700 hover:bg-gray-600 p-2 rounded-full transition-colors">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="bg-gray-700 hover:bg-gray-600 p-2 rounded-full transition-colors">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="bg-gray-700 hover:bg-gray-600 p-2 rounded-full transition-colors">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">Quick Links</h3>
-                        <div class="space-y-2">
-                            <a href="#home" class="block text-gray-300 hover:text-white transition-colors flex items-center">
-                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Home
-                            </a>
-                            <a href="#about" class="block text-gray-300 hover:text-white transition-colors flex items-center">
-                                <i class="fas fa-chevron-right mr-2 text-sm"></i> About Us
-                            </a>
-                            <a href="#academics" class="block text-gray-300 hover:text-white transition-colors flex items-center">
-                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Academics
-                            </a>
-                            <a href="#facilities" class="block text-gray-300 hover:text-white transition-colors flex items-center">
-                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Facilities
-                            </a>
-                            <a href="#admissions" class="block text-gray-300 hover:text-white transition-colors flex items-center">
-                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Admissions
-                            </a>
-                            <a href="#gallery" class="block text-gray-300 hover:text-white transition-colors flex items-center">
-                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Gallery
-                            </a>
-                            <a href="#contact" class="block text-gray-300 hover:text-white transition-colors flex items-center">
-                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Contact Us
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">Contact Information</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-start">
-                                <div class="bg-gray-700 p-2 rounded-full mr-3 mt-1">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Address</p>
-                                    <p class="text-gray-300 text-sm">Near Police Chowki, Balrampur, Uttar Pradesh 271201, India</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-gray-700 p-2 rounded-full mr-3 mt-1">
-                                    <i class="fas fa-phone-alt"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Phone</p>
-                                    <p class="text-gray-300 text-sm">+91 9758919158</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-gray-700 p-2 rounded-full mr-3 mt-1">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Email</p>
-                                    <p class="text-gray-300 text-sm">mainmadamsir066@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-gray-700 p-2 rounded-full mr-3 mt-1">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Office Hours</p>
-                                    <p class="text-gray-300 text-sm">Mon-Fri: 8:00 AM - 4:00 PM<br>Sat: 9:00 AM - 1:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                    <p class="text-gray-400">&copy; 2023 Milli Karwaan Public School. All rights reserved. | Developed with ❤️ for quality education</p>
-                </div>
+        <div class="p-8 bg-white">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Student Name</label>
+            <div class="relative">
+              <div class="absolute left-3 top-3 text-gray-400"><i class="fas fa-user"></i></div>
+              <input id="studentName" type="text" class="w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-100" placeholder="Enter full name">
             </div>
-        </footer>
-    </div>
+          </div>
 
-    <!-- Admin Login Modal (Hidden Initially) -->
-    <div id="adminModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 hidden">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all">
-            <div class="bg-gradient-to-r from-red-500 to-pink-600 text-white p-8">
-                <div class="text-center">
-                    <div class="bg-white bg-opacity-20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-shield text-4xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold mb-2">Admin Login</h2>
-                    <p class="text-red-100">Secure access to administration panel</p>
-                </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Class</label>
+            <div class="relative">
+              <div class="absolute left-3 top-3 text-gray-400"><i class="fas fa-chalkboard"></i></div>
+              <select id="studentClass" class="w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-100">
+                <option value="">Select your class</option>
+                <option>Nursery</option><option>LKG</option><option>UKG</option>
+                <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+                <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+                <option>Class 7</option><option>Class 8</option><option>Class 9</option>
+                <option>Class 10</option><option>Class 11</option><option>Class 12</option>
+              </select>
             </div>
-            
-            <div class="p-8">
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-3">Username</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-user text-gray-400"></i>
-                            </div>
-                            <input type="text" id="adminUsername" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-red-100 focus:border-red-500 transition-all duration-300" placeholder="Enter username">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-3">Password</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-lock text-gray-400"></i>
-                            </div>
-                            <input type="password" id="adminPassword" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-red-100 focus:border-red-500 transition-all duration-300" placeholder="Enter password">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flex space-x-3 mt-8">
-                    <button id="adminLoginBtn" class="flex-1 bg-gradient-to-r from-red-500 to-pink-600 text-white py-4 rounded-xl font-bold hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
-                        Login to Admin Panel
-                    </button>
-                    <button id="adminCancelBtn" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-4 rounded-xl font-medium transition-colors">
-                        Cancel
-                    </button>
-                </div>
-                
-                <div class="text-center mt-6">
-                    <p class="text-sm text-gray-500">Demo credentials: username: <strong>admin</strong>, password: <strong>admin123</strong></p>
-                </div>
-            </div>
-        </div>
-    </div>
+          </div>
 
-    <!-- Chat Bubble -->
-    <div id="chatBubble" class="chat-bubble">
-        <i class="fas fa-comments"></i>
-    </div>
-    
-    <!-- Chat Container -->
-    <div id="chatContainer" class="chat-container">
-        <div class="chat-header">
-            <h3>Support Chat</h3>
-            <button id="closeChat" class="text-white hover:text-gray-200">
-                <i class="fas fa-times"></i>
+          <div class="grid grid-cols-1 gap-3">
+            <button id="loginBtn" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-3">
+              <i class="fas fa-arrow-right"></i> Enter Dashboard
             </button>
+            <button id="demoBtn" class="w-full border border-gray-200 py-3 rounded-xl">Demo (Class 6)</button>
+            <div class="text-sm text-gray-500 text-center mt-2">Contact: <a href="tel:+919758919151" class="text-indigo-600">+91 97589 19151</a> • <a href="mailto:madamsir066@gmail.com" class="text-indigo-600">madamsir066@gmail.com</a></div>
+          </div>
         </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message message-received">
-                <div class="message-content">
-                    Hello! How can I help you today?
-                </div>
-            </div>
-        </div>
-        <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Type your message...">
-            <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // Homework data by class
-        const homeworkData = {
-            'Nursery': [
-                { subject: 'Drawing', task: 'Draw a sun and color it', date: 'Today', status: 'pending' },
-                { subject: 'Rhymes', task: 'Practice "Twinkle Twinkle"', date: 'Tomorrow', status: 'pending' }
-            ],
-            'LKG': [
-                { subject: 'Math', task: 'Write numbers 1-20', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Learn A to E alphabets', date: 'Tomorrow', status: 'pending' }
-            ],
-            'UKG': [
-                { subject: 'Math', task: 'Addition sums 1-10', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Write 5 words starting with A', date: 'Tomorrow', status: 'pending' },
-                { subject: 'EVS', task: 'Draw family members', date: 'Tomorrow', status: 'pending' }
-            ],
-            'Class 1': [
-                { subject: 'Math', task: 'Page 45, Q1-5', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Write 10 sentences about family', date: 'Tomorrow', status: 'pending' },
-                { subject: 'EVS', task: 'List 5 things in classroom', date: 'Tomorrow', status: 'pending' }
-            ],
-            'Class 2': [
-                { subject: 'Math', task: 'Multiplication table 2-5', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Write a story about a dog', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Draw plant parts', date: 'Tomorrow', status: 'pending' }
-            ],
-            'Class 3': [
-                { subject: 'Math', task: 'Division sums, Page 67', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Comprehension: The Lion and Mouse', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Project on water cycle', date: 'Next Week', status: 'pending' }
-            ],
-            'Class 4': [
-                { subject: 'Math', task: 'Fractions exercise', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Essay: My School', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Solar system model', date: 'Next Week', status: 'pending' },
-                { subject: 'Hindi', task: 'Paragraph on Diwali', date: 'Tomorrow', status: 'pending' }
-            ],
-            'Class 5': [
-                { subject: 'Math', task: 'Geometry problems', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Letter to friend about vacation', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Experiment on germination', date: 'Next Week', status: 'pending' },
-                { subject: 'Social Studies', task: 'Map of India', date: 'Tomorrow', status: 'pending' }
-            ],
-            'Class 6': [
-                { subject: 'Math', task: 'Algebra expressions', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Debate preparation: Social Media', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Project on human body', date: 'Next Week', status: 'pending' },
-                { subject: 'Sanskrit', task: 'Shlokas 1-5', date: 'Tomorrow', status: 'pending' }
-            ],
-            'Class 7': [
-                { subject: 'Math', task: 'Integers and fractions', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Speech on Environment', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Experiment on acids and bases', date: 'Next Week', status: 'pending' },
-                { subject: 'Social Studies', task: 'Project on Indian Constitution', date: 'Next Week', status: 'pending' }
-            ],
-            'Class 8': [
-                { subject: 'Math', task: 'Linear equations', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Article on Technology', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Project on renewable energy', date: 'Next Week', status: 'pending' },
-                { subject: 'Hindi', task: 'Nibandh: Swachh Bharat', date: 'Tomorrow', status: 'pending' }
-            ],
-            'Class 9': [
-                { subject: 'Math', task: 'Polynomials exercise', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Literature chapter analysis', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Physics numericals', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Social Studies', task: 'History project on freedom struggle', date: 'Next Week', status: 'pending' }
-            ],
-            'Class 10': [
-                { subject: 'Math', task: 'Quadratic equations', date: 'Today', status: 'completed' },
-                { subject: 'English', task: 'Writing section practice', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Science', task: 'Chemistry practical file', date: 'Tomorrow', status: 'pending' },
-                { subject: 'Social Studies', task: 'Map work and case studies', date: 'Next Week', status: 'pending' }
-            ]
+  <!-- MAIN APP -->
+  <main id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <!-- LEFT RAIL (desktop) -->
+      <aside class="left-rail col-span-1 bg-white rounded-xl p-4 shadow hidden lg:block">
+        <div class="flex items-center justify-between mb-4">
+          <div class="text-sm text-gray-500">Menu</div>
+          <div class="text-sm"><span id="railClassBadge" class="badge-primary">—</span></div>
+        </div>
+
+        <nav class="flex flex-col gap-2" id="menuItems">
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover active" data-view="home"><i class="fas fa-house"></i> Dashboard</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="homework"><i class="fas fa-book"></i> Homework</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="timetable"><i class="fas fa-clock"></i> Timetable</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="notices"><i class="fas fa-bullhorn"></i> Notices</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="events"><i class="fas fa-calendar-alt"></i> Events</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="gallery"><i class="fas fa-image"></i> Gallery</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="videos"><i class="fas fa-video"></i> Videos</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="results"><i class="fas fa-file-alt"></i> Results</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="teachers"><i class="fas fa-chalkboard-teacher"></i> Teachers Desk</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="achievements"><i class="fas fa-trophy"></i> Achievements</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="attendance"><i class="fas fa-check-circle"></i> Attendance</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="fees"><i class="fas fa-money-bill"></i> Fees</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="downloads"><i class="fas fa-download"></i> Downloads</button>
+          <button class="text-left menu-item p-3 rounded-lg flex items-center gap-3 card-hover" data-view="contact"><i class="fas fa-phone"></i> Contact</button>
+        </nav>
+
+        <div class="mt-4 flex gap-2">
+          <button id="exportBtn" class="flex-1 py-2 px-3 bg-indigo-100 text-indigo-700 rounded-lg"><i class="fas fa-file-export"></i> Export</button>
+          <button id="importBtn" class="flex-1 py-2 px-3 border rounded-lg"><i class="fas fa-file-import"></i> Import</button>
+        </div>
+
+        <div class="text-xs text-gray-400 mt-4">Owner tools: Export/Import modifies local JSON. Use admin to manage content.</div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <section class="col-span-1 lg:col-span-3">
+        <!-- Top small controls (mobile) -->
+        <div class="flex items-center justify-between lg:hidden mb-4">
+          <div class="flex items-center gap-3 mobile-rail">
+            <button id="openMenuMobile" class="p-2 bg-white rounded-lg shadow"><i class="fas fa-bars"></i></button>
+            <div class="text-sm text-gray-600" id="mobileClassSmall">Class: —</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="searchOpenMobile" class="p-2 bg-white rounded-lg shadow"><i class="fas fa-search"></i></button>
+            <button id="adminFabMobile" class="p-2 bg-indigo-600 text-white rounded-lg shadow"><i class="fas fa-user-shield"></i></button>
+          </div>
+        </div>
+
+        <!-- Views container -->
+        <div id="viewsWrap" class="space-y-6">
+          <!-- DASHBOARD -->
+          <div id="view-home" class="card bg-white rounded-xl p-6 shadow">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h2 id="vwTitle" class="text-2xl font-bold montserrat">Dashboard</h2>
+                <p id="vwSub" class="text-sm text-gray-500 mt-1">Personalised for <strong id="vwName">—</strong> • <span id="vwClass">—</span></p>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="text-center">
+                  <div id="statStudents" class="text-2xl font-extrabold">0</div>
+                  <div class="text-xs text-gray-500">Students</div>
+                </div>
+                <div class="text-center">
+                  <div id="statHW" class="text-2xl font-extrabold">0</div>
+                  <div class="text-xs text-gray-500">HW</div>
+                </div>
+                <button id="refreshBtn" title="Refresh" class="p-2 bg-gray-50 rounded-lg"><i class="fas fa-sync"></i></button>
+              </div>
+            </div>
+
+            <!-- news ticker + quick preview -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="col-span-2">
+                <div class="ticker p-3 bg-gradient-to-r from-green-50 to-white rounded-lg border-l-4 border-green-400">
+                  <div id="tickerInner" class="whitespace-nowrap overflow-hidden text-sm text-gray-700"></div>
+                </div>
+
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="card-hover p-4 rounded-xl bg-white shadow">
+                    <h4 class="font-semibold">Latest Homework</h4>
+                    <div id="homeworkPreview" class="mt-3 space-y-2 text-sm text-gray-700"></div>
+                  </div>
+
+                  <div class="card-hover p-4 rounded-xl bg-white shadow">
+                    <h4 class="font-semibold">Announcements</h4>
+                    <div id="annPreview" class="mt-3 space-y-2 text-sm text-gray-700"></div>
+                  </div>
+                </div>
+              </div>
+
+              <aside>
+                <div class="p-4 rounded-xl bg-white shadow text-center">
+                  <div class="text-sm text-gray-500">Attendance</div>
+                  <div id="attendanceBox" class="text-2xl font-bold mt-2">—</div>
+                  <div class="text-xs text-gray-400 mt-2">This month</div>
+                </div>
+
+                <div class="mt-4 p-4 rounded-xl bg-white shadow">
+                  <h4 class="font-semibold">Quick Links</h4>
+                  <div class="flex flex-col gap-2 mt-3">
+                    <button class="py-2 px-3 text-left rounded-lg border hover:bg-gray-50" id="goHomework">Open Homework</button>
+                    <button class="py-2 px-3 text-left rounded-lg border hover:bg-gray-50" id="goTimetable">Open Timetable</button>
+                    <button class="py-2 px-3 text-left rounded-lg border hover:bg-gray-50" id="exportLocal">Export Data</button>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <!-- HOMEWORK VIEW -->
+          <div id="view-homework" class="hidden card bg-white rounded-xl p-6 shadow">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold">Homework — <span id="hwClassLabel">—</span></h3>
+              <div class="flex items-center gap-2">
+                <button id="printHw" class="py-2 px-3 border rounded">Print</button>
+                <button id="addHwBtn" class="py-2 px-3 bg-indigo-600 text-white rounded">Add</button>
+              </div>
+            </div>
+            <div id="hwList" class="mt-4 space-y-3"></div>
+          </div>
+
+          <!-- TIMETABLE VIEW -->
+          <div id="view-timetable" class="hidden card bg-white rounded-xl p-6 shadow">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold">Timetable — <span id="ttClassLabel">—</span></h3>
+              <button id="printTimetableBtn" class="py-2 px-3 border rounded">Print</button>
+            </div>
+            <div id="ttTable" class="mt-4"></div>
+          </div>
+
+          <!-- NOTICES VIEW -->
+          <div id="view-notices" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Notices — <span id="ntClassLabel">—</span></h3>
+            <div id="noticesList" class="mt-4 space-y-3"></div>
+          </div>
+
+          <!-- EVENTS VIEW -->
+          <div id="view-events" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Events</h3>
+            <div id="eventsList" class="mt-4 space-y-3"></div>
+          </div>
+
+          <!-- GALLERY VIEW -->
+          <div id="view-gallery" class="hidden card bg-white rounded-xl p-6 shadow">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold">Gallery</h3>
+              <div class="flex items-center gap-2">
+                <button id="addImageBtn" class="py-2 px-3 border rounded">Add Image</button>
+                <button id="exportImages" class="py-2 px-3 border rounded">Export</button>
+              </div>
+            </div>
+            <div id="galleryGrid" class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
+          </div>
+
+          <!-- VIDEOS VIEW -->
+          <div id="view-videos" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Videos</h3>
+            <div id="videosGrid" class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+          </div>
+
+          <!-- RESULTS VIEW -->
+          <div id="view-results" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Results & Exam Schedule</h3>
+            <div id="resultsPreview" class="mt-4 space-y-3"></div>
+          </div>
+
+          <!-- TEACHERS VIEW -->
+          <div id="view-teachers" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Teacher's Desk</h3>
+            <div id="teachersDesk" class="mt-4 space-y-3"></div>
+          </div>
+
+          <!-- ACHIEVEMENTS VIEW -->
+          <div id="view-achievements" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Achievements</h3>
+            <div id="achievementsList" class="mt-4 space-y-3"></div>
+          </div>
+
+          <!-- ATTENDANCE VIEW -->
+          <div id="view-attendance" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Attendance</h3>
+            <div id="attendanceDetails" class="mt-4"></div>
+          </div>
+
+          <!-- FEES VIEW -->
+          <div id="view-fees" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Fees</h3>
+            <div id="feesPreview" class="mt-4"></div>
+            <div class="mt-4"><button id="payLink" class="py-2 px-4 bg-yellow-500 rounded">Pay (Demo)</button></div>
+          </div>
+
+          <!-- DOWNLOADS VIEW -->
+          <div id="view-downloads" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Downloads</h3>
+            <div id="downloadsList" class="mt-4 space-y-3"></div>
+          </div>
+
+          <!-- CONTACT VIEW -->
+          <div id="view-contact" class="hidden card bg-white rounded-xl p-6 shadow">
+            <h3 class="text-lg font-bold">Contact & Enquiry</h3>
+            <form id="contactForm" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input id="cname" placeholder="Your name" class="p-3 border rounded" required/>
+              <input id="cinfo" placeholder="Phone or email" class="p-3 border rounded" required/>
+              <textarea id="cmsg" placeholder="Message" class="p-3 border rounded md:col-span-2"></textarea>
+              <div class="md:col-span-2 flex gap-2">
+                <button class="py-2 px-4 bg-indigo-600 text-white rounded">Send</button>
+                <button type="button" id="viewEnquiries" class="py-2 px-4 border rounded">View local enquiries</button>
+              </div>
+            </form>
+
+            <div class="mt-4 text-sm text-gray-500">
+              Phone: <a href="tel:+919758919151" class="text-indigo-600">+91 97589 19151</a> • Email: <a href="mailto:madamsir066@gmail.com" class="text-indigo-600">madamsir066@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Floating chat bubble -->
+  <div id="chatBubble" class="chat-bubble">
+    <i class="fas fa-comment"></i>
+  </div>
+
+  <div id="chatContainer" class="chat-container">
+    <div class="chat-header">
+      <div class="flex items-center gap-3">
+        <div class="bg-white rounded-full p-2"><i class="fas fa-headset text-indigo-600"></i></div>
+        <div>
+          <div class="font-semibold">School Help</div>
+          <div class="text-xs">Chat with support (demo)</div>
+        </div>
+      </div>
+      <button id="closeChat" class="text-white"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message message-received p-2 rounded-xl mb-2"><div class="message-content">Hello! How can we help you today?</div></div>
+    </div>
+    <div class="chat-input">
+      <input id="chatInput" placeholder="Type a message..." />
+      <button id="chatSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <!-- MODAL (generic) -->
+  <div id="modal" class="fixed inset-0 modal-bg hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-2xl overflow-hidden shadow p-4" id="modalBox"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gradient-to-r from-gray-900 to-indigo-900 text-white rounded-t-xl">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h4 class="font-bold montserrat">Milli Karwaan Public School</h4>
+          <p class="text-sm mt-2">Near Police Chowki, Balrampur • Phone: +91 97589 19151</p>
+        </div>
+        <div>
+          <h5 class="font-semibold">Quick links</h5>
+          <ul class="mt-3 text-sm space-y-2">
+            <li><a href="#" class="text-gray-200">Admissions</a></li>
+            <li><a href="#" class="text-gray-200">Syllabus</a></li>
+            <li><a href="#" class="text-gray-200">Fee Structure</a></li>
+            <li><a href="#" class="text-gray-200">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-semibold">Connect</h5>
+          <div class="flex items-center gap-3 mt-3">
+            <a class="w-8 h-8 bg-indigo-700 rounded-full flex items-center justify-center" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="w-8 h-8 bg-indigo-700 rounded-full flex items-center justify-center" href="#"><i class="fab fa-youtube"></i></a>
+            <a class="w-8 h-8 bg-indigo-700 rounded-full flex items-center justify-center" href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center text-gray-300 text-sm">© <span id="year"></span> Milli Karwaan Public School — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+  // -------------------------
+  // Client-side single-file site logic
+  // -------------------------
+  (function(){
+    const STORAGE_KEY = 'MKPS_FULL_DATA_v1';
+    const SESSION_KEY = 'MKPS_SESSION';
+    const logoUrl = 'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png';
+
+    // Default demo data (class-filtered)
+    const DEFAULT = {
+      studentsCount: 1024,
+      homework: {
+        'Class 6': [{id:'h1',subject:'Mathematics',title:'Algebra Exercise',due:'2025-11-25',notes:'Solve Q1-10 in exercise 5'}],
+        'Class 1': [{id:'h2',subject:'English',title:'Alphabet Practice',due:'2025-11-26',notes:'A-F writing'}]
+      },
+      timetable: {
+        'Class 6': [{day:'Mon',time:'8:00-9:00',subject:'Mathematics'},{day:'Tue',time:'9:00-10:00',subject:'Science'}],
+        'Class 1': [{day:'Mon',time:'9:00-9:30',subject:'English'}]
+      },
+      announcements: {
+        'Class 6': [{id:'n1',title:'Science Exhibition',date:'2025-12-10',body:'Bring project models.'}],
+        'Class 1': [{id:'n2',title:'Drawing Competition',date:'2025-11-28',body:'Bring colours.'}]
+      },
+      events: [{id:'e1',title:'Annual Sports Day',date:'2025-12-06'},{id:'e2',title:'Diwali Holiday',date:'2025-10-31'}],
+      gallery: [logoUrl,'https://placehold.co/600x400/667eea/ffffff?text=Event+1','https://placehold.co/600x400/ff6b35/ffffff?text=Sports'],
+      videos: [{id:'v1',title:'Welcome to MKPS',url:'https://www.youtube.com/embed/dQw4w9WgXcQ'}],
+      results: [{exam:'Mid-Term 2025',date:'2025-12-20',link:'#'}],
+      teachers: [{name:'Mrs. Sharma',subject:'Mathematics',note:'Senior Maths Teacher'},{name:'Mr. Verma',subject:'Science',note:'Physics'}],
+      achievements: [{id:'a1',title:'Science Olympiad - 2nd Position',date:'2025-09-15'}],
+      attendance: {'Class 6':{present:28,total:30}, 'Class 1':{present:29,total:30}},
+      fees: [{id:'f1',studentName:'Demo Student',class:'Class 6',amount:15000,status:'unpaid'}],
+      downloads: [{id:'d1',title:'Math Notes - Chapter 5',url:'#'}]
+    };
+
+    // load/save helpers
+    function loadData(){ try{ const raw=localStorage.getItem(STORAGE_KEY); return raw? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT)); } catch(e){ console.error(e); return JSON.parse(JSON.stringify(DEFAULT)); } }
+    function saveData(d){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }catch(e){console.error(e);} }
+
+    let DATA = loadData();
+
+    function loadSession(){ try{ const s = localStorage.getItem(SESSION_KEY); return s? JSON.parse(s) : null; }catch(e){return null;} }
+    function saveSession(sess){ localStorage.setItem(SESSION_KEY, JSON.stringify(sess)); }
+    function clearSession(){ localStorage.removeItem(SESSION_KEY); location.reload(); }
+
+    let SESSION = loadSession();
+
+    // query helpers
+    const $ = q => document.querySelector(q);
+    const $$ = q => Array.from(document.querySelectorAll(q));
+    const uid = (p='id') => p + Math.random().toString(36).slice(2,8);
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // initial UI wiring
+    function initUI(){
+      // fill logo
+      $('#siteLogo').src = logoUrl;
+
+      // modal buttons
+      $('#loginBtn').addEventListener('click', onStart);
+      $('#demoBtn').addEventListener('click', ()=>{
+        $('#studentName').value='Demo Student';
+        $('#studentClass').value='Class 6';
+        onStart();
+      });
+
+      // kebab
+      $('#kebabBtn').addEventListener('click', ()=> { $('#quickPanel').classList.toggle('hidden'); });
+      $('#closeQuick').addEventListener('click', ()=> { $('#quickPanel').classList.add('hidden'); });
+      $('#qaAddNotice').addEventListener('click', addNoticeQuick);
+      $('#qaAddHw').addEventListener('click', addHwQuick);
+      $('#qaImport').addEventListener('click', importAll);
+      $('#qaExport').addEventListener('click', exportAll);
+      $('#qaPrint').addEventListener('click', ()=> window.print());
+
+      // admin floating
+      $('#adminFabTop').addEventListener('click', adminPrompt);
+      $('#adminFabMobile').addEventListener('click', adminPrompt);
+      $('#adminBtn')?.addEventListener('click', adminPrompt); // optional if button exists
+
+      // chat
+      $('#chatBubble').addEventListener('click', ()=> { $('#chatContainer').classList.add('active'); });
+      $('#closeChat').addEventListener('click', ()=> { $('#chatContainer').classList.remove('active'); });
+      $('#chatSend').addEventListener('click', ()=> {
+        const v = $('#chatInput').value.trim(); if(!v) return; appendChat(v,true); $('#chatInput').value=''; setTimeout(()=>appendChat('Thanks for your message. We will respond soon.',false),800);
+      });
+
+      // menu items
+      $$('#menuItems .menu-item').forEach(btn=>{
+        btn.addEventListener('click', ()=> {
+          $$('#menuItems .menu-item').forEach(x=>x.classList.remove('active'));
+          btn.classList.add('active');
+          navigate(btn.dataset.view);
+        });
+      });
+
+      // quick nav inside page
+      $('#goHomework').addEventListener('click', ()=> navigate('homework'));
+      $('#goTimetable').addEventListener('click', ()=> navigate('timetable'));
+      $('#refreshBtn').addEventListener('click', ()=> { DATA = loadData(); renderAll(); alert('Refreshed'); });
+
+      // forms
+      $('#contactForm').addEventListener('submit', (e)=>{ e.preventDefault(); saveEnquiry(); });
+
+      // exports/imports
+      $('#exportBtn').addEventListener('click', exportAll);
+      $('#importBtn').addEventListener('click', importAll);
+      $('#exportLocal')?.addEventListener('click', exportAll);
+
+      // print helpers
+      $('#printHw')?.addEventListener('click', ()=> printElement('#hwList'));
+      $('#printTimetableBtn')?.addEventListener('click', ()=> printElement('#ttTable'));
+
+      // add/hw buttons
+      $('#addHwBtn')?.addEventListener('click', ()=> addHwQuick());
+      $('#addImageBtn')?.addEventListener('click', addImageQuick);
+      $('#exportImages')?.addEventListener('click', ()=> alert('Export images (demo)'));
+
+      // load session if exists
+      if(SESSION && SESSION.name && SESSION.class){
+        hideModal();
+        applySession(SESSION);
+      }
+      renderAll();
+    }
+
+    // modal helpers
+    function onStart(){
+      const name = ($('#studentName').value||'').trim();
+      const cls = ($('#studentClass').value||'').trim();
+      if(!name || !cls){ alert('Please enter name and select class'); return; }
+      const sess = { name, class: cls };
+      saveSession(sess);
+      applySession(sess);
+      hideModal();
+    }
+    function hideModal(){ document.getElementById('studentModal').style.display = 'none'; }
+    function showModal(){ document.getElementById('studentModal').style.display = 'flex'; }
+
+    // apply session to UI
+    function applySession(sess){
+      SESSION = sess;
+      saveSession(sess);
+      $('#vwName').textContent = sess.name;
+      $('#vwClass').textContent = sess.class;
+      $('#railClassBadge').textContent = sess.class;
+      $('#userGreeting').textContent = `Welcome, ${sess.name} (${sess.class})`;
+      $('#mobileClassSmall').textContent = `Class: ${sess.class}`;
+      navigate('home');
+      renderAll();
+    }
+
+    // navigation
+    const views = {
+      home: '#view-home',
+      homework: '#view-homework',
+      timetable: '#view-timetable',
+      notices: '#view-notices',
+      events: '#view-events',
+      gallery: '#view-gallery',
+      videos: '#view-videos',
+      results: '#view-results',
+      teachers: '#view-teachers',
+      achievements: '#view-achievements',
+      attendance: '#view-attendance',
+      fees: '#view-fees',
+      downloads: '#view-downloads',
+      contact: '#view-contact'
+    };
+
+    function navigate(view){
+      Object.values(views).forEach(sel=>{
+        const el = document.querySelector(sel);
+        if(el) el.classList.add('hidden');
+      });
+      const sel = views[view];
+      if(sel){ const el = document.querySelector(sel); if(el) el.classList.remove('hidden'); }
+      // update labels
+      $('#hwClassLabel').textContent = SESSION ? SESSION.class : '—';
+      $('#ttClassLabel').textContent = SESSION ? SESSION.class : '—';
+      $('#ntClassLabel').textContent = SESSION ? SESSION.class : '—';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // render all sections
+    function renderAll(){
+      if(!SESSION) return;
+      const cls = SESSION.class;
+      // counters
+      $('#statStudents').textContent = DATA.studentsCount || 0;
+      const hwCount = (DATA.homework[cls]||[]).length;
+      $('#statHW').textContent = hwCount;
+
+      renderTicker();
+      renderHomeworkPreview(cls);
+      renderAnnouncementsPreview(cls);
+      renderEventsPreview();
+      renderGallery();
+      renderVideos();
+      renderTeachers();
+      renderAchievements();
+      renderTimetable(cls);
+      renderHomeworkList(cls);
+      renderNoticesList(cls);
+      renderAttendancePreview(cls);
+      renderFees();
+      renderDownloads();
+    }
+
+    /* ---------- Render helpers ---------- */
+
+    function renderTicker(){
+      const items = [];
+      Object.keys(DATA.announcements||{}).forEach(c => (DATA.announcements[c]||[]).forEach(n=> items.push(`${n.title} (${c})`)));
+      (DATA.events||[]).forEach(e => items.push(`${e.title} on ${e.date}`));
+      const t = (items.length ? items.join(' • ') : 'Welcome to Milli Karwaan Public School') + ' • ';
+      $('#tickerInner').textContent = t + t;
+    }
+
+    function renderHomeworkPreview(cls){
+      const list = DATA.homework[cls] || [];
+      const node = $('#homeworkPreview');
+      if(!node) return;
+      if(!list.length) node.innerHTML = '<div class="text-sm text-gray-500">No homework assigned.</div>';
+      else node.innerHTML = list.slice(0,3).map(h => `<div class="p-2 rounded border">${h.subject} — <strong>${h.title}</strong><div class="text-xs text-gray-500">Due: ${h.due}</div></div>`).join('');
+    }
+    function renderHomeworkList(cls){
+      const list = DATA.homework[cls] || [];
+      const node = $('#hwList');
+      if(!node) return;
+      if(!list.length) node.innerHTML = '<div class="text-sm text-gray-500">No homework for this class.</div>';
+      else node.innerHTML = list.map(h => `<div class="p-3 rounded-lg border flex justify-between items-start"><div><div class="font-semibold">${h.subject} — ${h.title}</div><div class="text-xs text-gray-500">${h.notes}</div></div><div class="text-xs text-gray-500">Due: ${h.due}</div></div>`).join('');
+    }
+
+    function renderAnnouncementsPreview(cls){
+      const arr = DATA.announcements[cls] || [];
+      const node = $('#annPreview'); if(!node) return;
+      if(!arr.length) node.innerHTML = '<div class="text-sm text-gray-500">No announcements.</div>';
+      else node.innerHTML = arr.slice(0,3).map(a => `<div class="p-2 rounded border"><strong>${a.title}</strong><div class="text-xs text-gray-500">${a.date}</div><div class="text-xs mt-1">${a.body}</div></div>`).join('');
+    }
+    function renderNoticesList(cls){
+      const arr = DATA.announcements[cls] || [];
+      const node = $('#noticesList'); if(!node) return;
+      if(!arr.length) node.innerHTML = '<div class="text-sm text-gray-500">No notices for this class.</div>';
+      else node.innerHTML = arr.map(a => `<div class="p-3 rounded-lg border"><div class="font-semibold">${a.title}</div><div class="text-xs text-gray-500">${a.date}</div><p class="mt-2">${a.body}</p></div>`).join('');
+    }
+
+    function renderEventsPreview(){ $('#eventsPreview').innerHTML = (DATA.events||[]).map(ev=>`<li>${ev.title} — ${ev.date}</li>`).join(''); }
+    function renderEventsList(){ $('#eventsList').innerHTML = (DATA.events||[]).map(ev=>`<div class="p-3 rounded-lg border"><strong>${ev.title}</strong><div class="text-xs text-gray-500">${ev.date}</div></div>`).join(''); }
+
+    function renderTimetable(cls){
+      const arr = DATA.timetable[cls] || [];
+      const node = $('#ttTable'); if(!node) return;
+      if(!arr.length){ node.innerHTML = '<div class="text-sm text-gray-500">No timetable available.</div>'; return; }
+      node.innerHTML = `<table class="w-full text-sm"><thead><tr><th class="text-left p-2">Day</th><th class="text-left p-2">Time</th><th class="text-left p-2">Subject</th></tr></thead><tbody>${arr.map(r=>`<tr><td class="p-2">${r.day}</td><td class="p-2">${r.time}</td><td class="p-2">${r.subject}</td></tr>`).join('')}</tbody></table>`;
+    }
+
+    function renderGallery(){
+      const node = $('#galleryGrid'); if(!node) return;
+      node.innerHTML = (DATA.gallery||[]).map(src=>`<div class="overflow-hidden rounded-lg"><img src="${src}" class="object-cover w-full h-36 rounded-lg cursor-pointer" /></div>`).join('');
+      // attach click -> open modal
+      $$('#galleryGrid img').forEach(img=>{
+        img.addEventListener('click', ()=> openModal(`<img src="${img.src}" class="w-full" />`));
+      });
+    }
+
+    function renderVideos(){
+      const node = $('#videosGrid'); if(!node) return;
+      node.innerHTML = (DATA.videos||[]).map(v=>`<div class="rounded-lg border p-3"><div class="font-semibold">${v.title}</div><div class="mt-3"><button class="py-2 px-3 bg-indigo-600 text-white rounded play-video" data-src="${v.url}">Play</button></div></div>`).join('');
+      $$('.play-video').forEach(b => b.addEventListener('click', ()=> openModal(`<div style="position:relative;padding-top:56.25%"><iframe src="${b.dataset.src}" style="position:absolute;left:0;top:0;width:100%;height:100%;border:0" allowfullscreen></iframe></div>`)));
+    }
+
+    function renderResults(){ const node = $('#resultsPreview'); if(!node) return; node.innerHTML = (DATA.results||[]).map(r=>`<div class="p-3 border rounded"><strong>${r.exam}</strong><div class="text-xs text-gray-500">${r.date}</div><a href="${r.link}" class="text-indigo-600 text-sm">View</a></div>`).join(''); }
+    function renderTeachers(){ const node = $('#teachersDesk'); if(!node) return; node.innerHTML = (DATA.teachers||[]).map(t=>`<div class="p-3 border rounded"><strong>${t.name}</strong><div class="text-xs text-gray-500">${t.subject}</div><div class="mt-1">${t.note}</div></div>`).join(''); }
+    function renderAchievements(){ const node = $('#achievementsList'); if(!node) return; node.innerHTML = (DATA.achievements||[]).map(a=>`<div class="p-3 border rounded"><strong>${a.title}</strong><div class="text-xs text-gray-500">${a.date}</div></div>`).join(''); }
+
+    function renderAttendancePreview(cls){
+      const a = DATA.attendance[cls];
+      const node = $('#attendanceBox'); if(!node) return;
+      if(!a) node.innerHTML = '<div class="text-sm text-gray-500">No attendance data.</div>';
+      else node.innerHTML = `<div class="text-2xl font-bold">${a.present}/${a.total}</div><div class="text-xs mt-1 text-gray-500">${Math.round((a.present/a.total)*100)}% present</div>`;
+    }
+    function renderAttendanceDetails(cls){
+      const a = DATA.attendance[cls]; const node = $('#attendanceDetails'); if(!node) return;
+      if(!a) node.innerHTML = '<div class="text-sm text-gray-500">No attendance records.</div>';
+      else node.innerHTML = `<div class="p-3 border rounded"><div>Present: ${a.present}</div><div>Total: ${a.total}</div><div class="text-xs text-gray-500">Percentage: ${Math.round((a.present/a.total)*100)}%</div></div>`;
+    }
+
+    function renderFees(){ const node = $('#feesPreview'); if(!node) return; const f = (DATA.fees||[]).slice(0,5); if(!f.length) node.innerHTML = '<div class="text-sm text-gray-500">No fees data.</div>'; else node.innerHTML = f.map(fi=>`<div class="p-3 border rounded"><strong>${fi.studentName}</strong><div class="text-xs">${fi.class}</div><div class="mt-1">₹${fi.amount} — <span class="font-semibold">${fi.status}</span></div></div>`).join(''); }
+
+    function renderDownloads(){ const node = $('#downloadsList'); if(!node) return; const d = DATA.downloads || []; if(!d.length) node.innerHTML = '<div class="text-sm text-gray-500">No downloads.</div>'; else node.innerHTML = d.map(dd=>`<div class="p-3 border rounded flex justify-between items-center"><div><strong>${dd.title}</strong></div><div><a class="text-indigo-600" href="${dd.url}">Download</a></div></div>`).join(''); }
+
+    /* ---------- Search ---------- */
+    function doSearch(q){
+      const query = (q || '').toLowerCase();
+      if(!query) return alert('Enter search term');
+      const cls = SESSION.class;
+      const results = [];
+      (DATA.homework[cls] || []).forEach(h => { if((h.title + ' ' + h.subject + ' ' + h.notes).toLowerCase().includes(query)) results.push({type:'Homework',item:h}); });
+      (DATA.announcements[cls] || []).forEach(a => { if((a.title + ' ' + a.body).toLowerCase().includes(query)) results.push({type:'Notice',item:a}); });
+      if(!results.length) openModal('<div class="p-4">No results</div>');
+      else openModal('<div class="p-4">'+ results.map(r=>`<div class="p-2 border rounded mb-2"><strong>${r.type}</strong><div>${r.item.title || r.item.title || r.item.subject}</div></div>`).join('') +'</div>');
+    }
+
+    /* ---------- Export / Import ---------- */
+    function exportAll(){
+      const blob = new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});
+      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'mkps-data.json'; document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url); alert('Exported local data');
+    }
+    function importAll(){
+      const input = document.createElement('input'); input.type = 'file'; input.accept='.json';
+      input.onchange = ()=> {
+        const f = input.files[0]; if(!f) return;
+        const r = new FileReader();
+        r.onload = ()=> {
+          try{ const parsed = JSON.parse(r.result); DATA = parsed; saveData(DATA); renderAll(); alert('Imported data'); } catch(e){ alert('Invalid JSON'); }
         };
+        r.readAsText(f);
+      };
+      input.click();
+    }
 
-        // Performance data by class
-        const performanceData = {
-            'Nursery': [85, 78, 92, 88],
-            'LKG': [88, 82, 95, 90],
-            'UKG': [90, 85, 96, 92],
-            'Class 1': [92, 88, 97, 94],
-            'Class 2': [87, 83, 94, 91],
-            'Class 3': [89, 86, 95, 93],
-            'Class 4': [91, 89, 96, 95],
-            'Class 5': [88, 85, 94, 92],
-            'Class 6': [90, 87, 95, 93],
-            'Class 7': [86, 84, 93, 90],
-            'Class 8': [89, 88, 96, 94],
-            'Class 9': [92, 90, 97, 95],
-            'Class 10': [94, 92, 98, 96]
-        };
+    /* ---------- Quick add (kebab) ---------- */
+    function addNoticeQuick(){
+      const cls = prompt('Class (e.g. Class 6):'); if(!cls) return;
+      const title = prompt('Title:'); if(!title) return;
+      const date = prompt('Date (YYYY-MM-DD):', new Date().toISOString().slice(0,10));
+      const body = prompt('Details:','');
+      DATA.announcements[cls] = DATA.announcements[cls] || []; DATA.announcements[cls].unshift({id:uid('n'),title,date,body});
+      saveData(DATA); renderAll(); alert('Notice added');
+    }
+    function addHwQuick(){
+      const cls = prompt('Class (e.g. Class 6):'); if(!cls) return;
+      const sub = prompt('Subject:','Mathematics'); const title = prompt('Title:','Exercise'); const due = prompt('Due (YYYY-MM-DD):','2025-12-01'); const notes = prompt('Notes:','');
+      DATA.homework[cls] = DATA.homework[cls] || []; DATA.homework[cls].unshift({id:uid('h'),subject:sub,title,due,notes}); saveData(DATA); renderAll(); alert('Homework added');
+    }
+    function addImageQuick(){
+      const url = prompt('Image URL:'); if(!url) return;
+      DATA.gallery.unshift(url); saveData(DATA); renderGallery(); alert('Image added');
+    }
 
-        // DOM Elements
-        const studentModal = document.getElementById('studentModal');
-        const dashboard = document.getElementById('dashboard');
-        const studentNameInput = document.getElementById('studentName');
-        const studentClassSelect = document.getElementById('studentClass');
-        const loginBtn = document.getElementById('loginBtn');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const welcomeText = document.getElementById('welcomeText');
-        const classText = document.getElementById('classText');
-        const homeworkContent = document.getElementById('homeworkContent');
-        const adminBtn = document.getElementById('adminBtn');
-        const adminModal = document.getElementById('adminModal');
-        const adminCancelBtn = document.getElementById('adminCancelBtn');
-        const adminLoginBtn = document.getElementById('adminLoginBtn');
-        const studentInfo = document.getElementById('studentInfo');
-        const lastLogin = document.getElementById('lastLogin');
-        const themeToggle = document.getElementById('themeToggle');
-        const footer = document.getElementById('footer');
-        const chatBubble = document.getElementById('chatBubble');
-        const chatContainer = document.getElementById('chatContainer');
-        const closeChat = document.getElementById('closeChat');
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
-        const sendChat = document.getElementById('sendChat');
-        const notificationsBtn = document.getElementById('notificationsBtn');
-        const scrollTop = document.getElementById('scrollTop');
-        const loadingOverlay = document.getElementById('loadingOverlay');
+    /* ---------- Contact / enquiries ---------- */
+    function saveEnquiry(){
+      const name = $('#cname').value.trim(); const info = $('#cinfo').value.trim(); const msg = $('#cmsg').value.trim();
+      if(!name || !info){ alert('Please provide name and contact'); return; }
+      const list = JSON.parse(localStorage.getItem('MKPS_ENQUIRIES')||'[]');
+      list.unshift({id:uid('q'),name,info,msg,class: (SESSION?SESSION.class:'—'),at: new Date().toISOString()});
+      localStorage.setItem('MKPS_ENQUIRIES', JSON.stringify(list));
+      alert('Enquiry saved locally'); $('#contactForm').reset();
+    }
+    function showEnquiries(){
+      const list = JSON.parse(localStorage.getItem('MKPS_ENQUIRIES')||'[]');
+      if(!list.length) return alert('No enquiries');
+      openModal('<div class="p-3">'+ list.map(q=>`<div class="p-2 border rounded mb-2"><strong>${q.name}</strong> (${q.class})<div class="text-xs text-gray-500">${q.info}</div><div class="mt-1">${q.msg}</div></div>`).join('') +'</div>');
+    }
 
-        // Initialize performance chart
-        let performanceChart;
-        
-        function initChart() {
-            const ctx = document.getElementById('performanceChart').getContext('2d');
-            performanceChart = new Chart(ctx, {
-                type: 'bar',
-                 {
-                    labels: ['Mathematics', 'Science', 'English', 'Hindi'],
-                    datasets: [{
-                        label: 'Performance %',
-                         [85, 78, 92, 88],
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.8)',
-                            'rgba(75, 192, 192, 0.8)',
-                            'rgba(255, 206, 86, 0.8)',
-                            'rgba(153, 102, 255, 0.8)'
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
-        }
+    $('#viewEnquiries').addEventListener('click', showEnquiries);
 
-        // Show admin modal
-        adminBtn.addEventListener('click', () => {
-            adminModal.classList.remove('hidden');
+    /* ---------- Print / small helpers ---------- */
+    function printElement(selector){
+      const el = document.querySelector(selector); if(!el) return alert('Nothing to print');
+      const w = window.open('','_blank'); w.document.write('<html><head><title>Print</title><style>body{font-family:Arial;padding:18px}</style></head><body>');
+      w.document.write(el.outerHTML); w.document.write('</body></html>'); w.document.close(); w.print();
+    }
+
+    /* ---------- Modal ---------- */
+    function openModal(html){
+      $('#modalBox').innerHTML = html + '<div class="mt-4 text-right"><button class="py-2 px-3 border rounded closeModal">Close</button></div>';
+      $('#modal').classList.remove('hidden');
+    }
+    function closeModal(){ $('#modal').classList.add('hidden'); $('#modalBox').innerHTML = ''; }
+    document.addEventListener('click', (e)=> { if(e.target.matches('.closeModal')) closeModal(); if(e.target.id==='modal') closeModal(); });
+
+    /* ---------- Chat ---------- */
+    function appendChat(text,isUser){
+      const box = $('#chatMessages');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'message ' + (isUser ? 'message-right' : '');
+      wrapper.innerHTML = `<div class="message-content ${isUser? 'message-sent':'message-received'}">${text}</div>`;
+      box.appendChild(wrapper);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    /* ---------- Admin prompt & on-the-fly editor ---------- */
+    function adminPrompt(){
+      const pwd = prompt('Enter Admin password:'); if(!pwd) return;
+      if(String(pwd) === 'Abutalha'){
+        openAdminWindow();
+      } else alert('Access Denied');
+    }
+
+    function openAdminWindow(){
+      const adminHtml = generateAdminHtml();
+      const blob = new Blob([adminHtml], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    }
+
+    function generateAdminHtml(){
+      const rawData = JSON.stringify(DATA,null,2).replace(/</g,'&lt;');
+      return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MKPS Admin</title>
+      <style>body{font-family:Arial;padding:18px;background:#021621;color:#cfeee3} textarea{width:100%;height:360px;background:#012a25;color:#cfeee3;border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.06)} button{padding:8px 10px;border-radius:8px;border:none;background:#0f766e;color:#fff;margin-right:6px}</style></head><body>
+      <h2>MKPS — Local Admin</h2><p>Editing local data only. Changes save to localStorage key: ${STORAGE_KEY}</p>
+      <div><textarea id="raw">${rawData}</textarea></div>
+      <div style="margin-top:8px"><button id="save">Save</button><button id="export">Export JSON</button><button id="close">Close</button></div>
+      <div style="margin-top:12px"><button id="addNotice">Add Notice</button> <button id="addHW">Add Homework</button> <button id="addEvent">Add Event</button></div>
+      <script>
+        const KEY='${STORAGE_KEY}';
+        function load(){ try{ return JSON.parse(localStorage.getItem(KEY) || '{}'); }catch(e){return {}; } }
+        function save(d){ localStorage.setItem(KEY, JSON.stringify(d)); }
+        document.getElementById('save').addEventListener('click', ()=> {
+          try{ const parsed = JSON.parse(document.getElementById('raw').value); save(parsed); alert('Saved'); } catch(e){ alert('Invalid JSON'); }
         });
+        document.getElementById('export').addEventListener('click', ()=> {
+          const a = document.createElement('a'); const blob = new Blob([document.getElementById('raw').value], {type:'application/json'}); a.href = URL.createObjectURL(blob); a.download='mkps-admin-data.json'; document.body.appendChild(a); a.click(); a.remove();
+        });
+        document.getElementById('close').addEventListener('click', ()=> window.close());
+        document.getElementById('addNotice').addEventListener('click', ()=> {
+          const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const title = prompt('Title:'); const date = prompt('Date:', new Date().toISOString().slice(0,10)); const body = prompt('Details:','');
+          const d = load(); d.announcements = d.announcements || {}; d.announcements[cls] = d.announcements[cls] || []; d.announcements[cls].unshift({id:'n'+Math.random().toString(36).slice(2,8),title,date,body}); document.getElementById('raw').value = JSON.stringify(d,null,2);
+        });
+        document.getElementById('addHW').addEventListener('click', ()=> {
+          const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const sub = prompt('Subject:','Math'); const title = prompt('Title:','Exercise'); const due = prompt('Due:'); const notes = prompt('Notes:','');
+          const d = load(); d.homework = d.homework || {}; d.homework[cls] = d.homework[cls] || []; d.homework[cls].unshift({id:'h'+Math.random().toString(36).slice(2,8),subject:sub,title,due,notes}); document.getElementById('raw').value = JSON.stringify(d,null,2);
+        });
+        document.getElementById('addEvent').addEventListener('click', ()=> {
+          const title = prompt('Event title:'); const date = prompt('Date:'); const d = load(); d.events = d.events || []; d.events.unshift({id:'e'+Math.random().toString(36).slice(2,8),title,date}); document.getElementById('raw').value = JSON.stringify(d,null,2);
+        });
+      </script>
+      </body></html>`;
+    }
 
-        // Cancel admin login
-        adminCancelBtn.addEventListener('click', () => {
-            adminModal.classList.add('hidden');
-        });
+    /* ---------- Utilities ---------- */
+    function esc(s){ if(s==null) return ''; return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-        // Admin login (demo credentials)
-        adminLoginBtn.addEventListener('click', () => {
-            const username = document.getElementById('adminUsername').value;
-            const password = document.getElementById('adminPassword').value;
-            
-            if (username === 'admin' && password === 'admin123') {
-                alert('Admin login successful! Redirecting to admin panel...');
-                // In a real app, this would redirect to admin.html
-                window.location.href = 'admin.html';
-            } else {
-                alert('Invalid credentials! For demo, use username: admin, password: admin123');
-            }
-        });
+    // initial
+    initUI();
 
-        // Login student
-        loginBtn.addEventListener('click', () => {
-            const name = studentNameInput.value.trim();
-            const studentClass = studentClassSelect.value;
-            
-            if (!name || !studentClass) {
-                alert('Please enter your name and select your class');
-                return;
-            }
-            
-            // Set student info
-            welcomeText.textContent = `Hello, ${name}!`;
-            classText.textContent = studentClass;
-            
-            // Set last login time
-            const now = new Date();
-            lastLogin.textContent = `Last login: ${now.toLocaleTimeString()} ${now.toLocaleDateString()}`;
-            
-            // Populate homework
-            populateHomework(studentClass);
-            
-            // Update performance chart
-            updatePerformanceChart(studentClass);
-            
-            // Show staggered animation
-            const staggeredElements = document.querySelectorAll('.stagger');
-            staggeredElements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.style.opacity = 1;
-                    el.style.transform = 'translateY(0)';
-                }, 200 * index);
-            });
-            
-            // Hide modal and show dashboard
-            studentModal.style.display = 'none';
-            dashboard.classList.remove('hidden');
-            
-            // Trigger animations
-            setTimeout(() => {
-                document.body.classList.add('fade-in');
-            }, 100);
-        });
+    // watch storage changes
+    window.addEventListener('storage', (e)=> { if(e.key === STORAGE_KEY) { DATA = loadData(); renderAll(); } });
 
-        // Logout student
-        logoutBtn.addEventListener('click', () => {
-            // Reset form
-            studentNameInput.value = '';
-            studentClassSelect.value = '';
-            
-            // Hide dashboard and show login modal
-            dashboard.classList.add('hidden');
-            studentModal.style.display = 'flex';
-        });
+    // load session if exists
+    if(SESSION && SESSION.name && SESSION.class){
+      applySession(SESSION);
+      hideModal();
+    }
 
-        // Theme toggle
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            footer.classList.toggle('dark-mode-footer');
-            
-            const icon = themeToggle.querySelector('i');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
+    // Expose small helpers for debugging
+    window.MKPS = { DATA, saveData, exportAll, importAll };
 
-        // Chat functionality
-        chatBubble.addEventListener('click', () => {
-            chatContainer.classList.add('active');
-        });
-        
-        closeChat.addEventListener('click', () => {
-            chatContainer.classList.remove('active');
-        });
-        
-        sendChat.addEventListener('click', () => {
-            sendMessage();
-        });
-        
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-        
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (message) {
-                // Add user message
-                const userMsg = document.createElement('div');
-                userMsg.className = 'message message-right';
-                userMsg.innerHTML = `<div class="message-content message-sent">${message}</div>`;
-                chatMessages.appendChild(userMsg);
-                
-                // Clear input
-                chatInput.value = '';
-                
-                // Auto-scroll to bottom
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                // Simulate response after delay
-                setTimeout(() => {
-                    const responses = [
-                        "Thank you for your message. Your query has been noted.",
-                        "I'll forward this to the concerned department for immediate attention.",
-                        "Our team will get back to you within 24 hours with a detailed response.",
-                        "For urgent matters, please contact the school office directly at 9758919158."
-                    ];
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                    
-                    const botMsg = document.createElement('div');
-                    botMsg.className = 'message message-received';
-                    botMsg.innerHTML = `<div class="message-content message-received">${randomResponse}</div>`;
-                    chatMessages.appendChild(botMsg);
-                    
-                    // Auto-scroll to bottom
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 1000);
-            }
-        }
-
-        // Notifications
-        notificationsBtn.addEventListener('click', () => {
-            alert('You have 3 new notifications:\n\n• Diwali holiday announcement\n• Sports day practice schedule\n• New library books arrival');
-            // Reset notification badge
-            notificationsBtn.querySelector('.notification-badge').textContent = '0';
-            notificationsBtn.querySelector('.notification-badge').style.display = 'none';
-        });
-
-        // Scroll to top functionality
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
-        
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Navigation smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Accordion functionality
-        document.querySelectorAll('.accordion-button').forEach(button => {
-            button.addEventListener('click', () => {
-                button.parentElement.classList.toggle('accordion-active');
-            });
-        });
-
-        // Counter animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                counter.classList.add('visible');
-            });
-        }
-
-        // Populate homework based on class
-        function populateHomework(studentClass) {
-            homeworkContent.innerHTML = '';
-            
-            const homework = homeworkData[studentClass] || homeworkData['Class 1'];
-            
-            homework.forEach(item => {
-                const homeworkItem = document.createElement('div');
-                homeworkItem.className = 'flex items-start p-4 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors cursor-pointer';
-                homeworkItem.innerHTML = `
-                    <div class="bg-blue-200 p-3 rounded-xl mr-4 mt-1">
-                        <i class="fas fa-book text-blue-600"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex flex-wrap justify-between items-start mb-2">
-                            <div class="flex items-center">
-                                <h4 class="font-bold text-blue-800">${item.subject}</h4>
-                                <span class="ml-2 bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">${item.date}</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="text-xs font-medium ${item.status === 'completed' ? 'text-green-600' : 'text-gray-500'}">
-                                    ${item.status === 'completed' ? 'Completed' : 'Pending'}
-                                </span>
-                                <button class="ml-2 text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 mb-3">${item.task}</p>
-                        <div class="flex items-center">
-                            <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                <div class="bg-blue-600 h-2 rounded-full" style="width: ${item.status === 'completed' ? '100%' : '30%'};"></div>
-                            </div>
-                            <span class="ml-3 text-sm text-gray-500">${item.status === 'completed' ? '100%' : '30%'} complete</span>
-                        </div>
-                    </div>
-                `;
-                homeworkContent.appendChild(homeworkItem);
-            });
-        }
-
-        // Update performance chart based on class
-        function updatePerformanceChart(studentClass) {
-            const data = performanceData[studentClass] || performanceData['Class 1'];
-            performanceChart.data.datasets[0].data = data;
-            performanceChart.update();
-        }
-
-        // Initialize all features when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            // Hide loading overlay after 1.5 seconds
-            setTimeout(() => {
-                loadingOverlay.style.opacity = '0';
-                setTimeout(() => {
-                    loadingOverlay.style.display = 'none';
-                }, 300);
-            }, 1500);
-            
-            // Initialize chart
-            initChart();
-            
-            // Add stagger class to elements for animation
-            const elements = document.querySelectorAll('.stagger');
-            elements.forEach(el => {
-                el.style.opacity = 0;
-                el.style.transform = 'translateY(30px)';
-            });
-            
-            // Set up intersection observer for counters
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            // Observe the about section for counter animation
-            const aboutSection = document.getElementById('about');
-            if (aboutSection) {
-                observer.observe(aboutSection);
-            }
-        });
-
-        // Allow pressing Enter key to login
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                if (!adminModal.classList.contains('hidden')) {
-                    adminLoginBtn.click();
-                } else if (studentModal.style.display !== 'none') {
-                    loginBtn.click();
-                } else if (chatContainer.classList.contains('active') && chatInput === document.activeElement) {
-                    sendChat.click();
-                }
-            }
-        });
-    </script>
+  })();
+  </script>
 </body>
 </html>
-```
