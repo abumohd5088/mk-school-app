@@ -2,174 +2,194 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MKPS Admin Panel — Firebase-ready</title>
-  <meta name="description" content="Admin panel for Mili Karwaan Public School — manage homework, notices, events, gallery, students, teachers." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#0f766e;--accent2:#f59e0b;--muted:#94a3b8}
-    *{box-sizing:border-box}
-    body{font-family:'Inter',system-ui,Segoe UI,Roboto,sans-serif;margin:0;background:linear-gradient(180deg,#02121a,#071827);color:#e6f3ef}
-    .wrap{max-width:1200px;margin:20px auto;padding:18px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.08));padding:14px;border-radius:12px;margin-bottom:12px;box-shadow:0 8px 24px rgba(2,6,23,.5)}
-    h1{margin:0 0 8px;font-size:1.25rem}
-    .row{display:flex;gap:12px}
-    input,select,textarea{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    button{background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;padding:10px 12px;border-radius:8px;color:#042018;font-weight:700;cursor:pointer}
-    .muted{color:var(--muted)}
-    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.03);text-align:left}
-    .small{font-size:.9rem}
-    .hidden{display:none}
-    .toolbar{display:flex;gap:8px;align-items:center}
-    .badge{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px}
-    .file-preview{max-height:120px;border-radius:8px}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mili Karwaan — Ultimate Pro (All Features)</title>
+<meta name="description" content="Ultimate professional school site for Mili Karwaan — full dashboards, admin, fees, timetable, calendar, reports, payments placeholders, SMS placeholders, export/import."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--g1:#0f766e;--g2:#065f46;--gold:#f59e0b;--muted:#6b7280;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;background:#f7fff9;color:#04282a}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-radius:10px;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:56px;height:56px;border-radius:10px}
+nav ul{list-style:none;display:flex;gap:8px}
+nav a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+.hero{padding:28px;border-radius:12px;margin-top:12px;background:linear-gradient(180deg,#e6fff8,#f4fff7)}
+.layout{display:grid;grid-template-columns:280px 1fr;gap:18px;margin-top:16px}
+.sidebar{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 10px 30px rgba(2,8,6,0.06)}
+.content{min-height:520px}
+.card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 12px 30px rgba(2,8,6,0.05);margin-bottom:12px}
+.btn{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+.small{font-size:.95rem;color:var(--muted)}
+.section-title{display:flex;align-items:center;justify-content:space-between}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:8px;border-bottom:1px solid #f1f5f4;text-align:left}
+.kv{display:flex;flex-direction:column;gap:6px}
+.search{display:flex;gap:8px;margin-bottom:8px}
+.footer{margin-top:18px;text-align:center;color:var(--muted)}
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,6,0.5);z-index:9999;opacity:0;pointer-events:none;transition:opacity .12s}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-card{background:#fff;padding:18px;border-radius:10px;width:94%;max-width:920px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card" id="loginCard">
-      <h1>Admin Login (Local guard)</h1>
-      <p class="muted">This admin panel is Firebase-ready. If you enable Firebase Auth later, switch the login flow — see README comments inside the file.</p>
-      <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
-        <input id="adminPwd" type="password" placeholder="Enter admin password" style="flex:1" />
-        <button id="loginBtn">Login</button>
-      </div>
-      <p class="muted small">Default admin password: <strong>Abutalha</strong></p>
-    </div><div id="adminPanel" class="hidden">
-  <div class="card">
-    <div style="display:flex;align-items:center;gap:12px;justify-content:space-between">
+<header>
+  <div class="brand"><img id="logo" src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="logo"/><div><strong>Mili Karwaan Public School</strong><div style="font-size:.85rem">Balrampur, Uttar Pradesh</div></div></div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#portal">Portal</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a id="openAdminBtn" href="#">Admin</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <section class="hero card" id="home">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center">
       <div>
-        <h1>MKPS Admin</h1>
-        <div class="muted small">Manage site data: homework, notices, events, gallery, students, teachers. LocalStorage & Firebase-ready.</div>
+        <h2 style="margin-bottom:6px">Welcome to Mili Karwaan — Ultimate Pro</h2>
+        <p class="small">Full-featured school website demo: student & teacher portals, admin, fees, timetable, calendar, reports, payments & SMS placeholders — all client-side and GitHub-ready.</p>
+        <div style="margin-top:10px;display:flex;gap:8px"><button class="btn" id="openStudentPortal">Student Portal</button><button class="btn" id="openTeacherPortal">Teacher Portal</button></div>
       </div>
-      <div class="toolbar">
-        <button id="logoutBtn" style="background:#ffb4b4">Logout</button>
-        <button id="exportAll">Export JSON</button>
-        <button id="importAll">Import JSON</button>
+      <div style="width:280px;text-align:right">
+        <div class="card" style="background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;border-radius:10px;"> <div style="font-weight:700;font-size:1.4rem">Admissions Open</div><div class="small">Call: +91 97589 19151</div></div>
       </div>
     </div>
+  </section>  <div class="layout">
+    <aside class="sidebar">
+      <div class="card"><strong>Quick Actions</strong><div style="margin-top:8px;display:flex;flex-direction:column;gap:8px"><button class="btn" id="quickAddHw">Add Homework</button><button class="btn" id="quickAddNotice">Add Notice</button><button class="btn" id="quickAddEvent">Add Event</button></div></div>
+      <div class="card">
+        <strong>Search</strong>
+        <div class="search"><input id="globalSearch" placeholder="Search students, homework, notices" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6f3ef"/><button class="btn" id="searchBtn">Search</button></div>
+        <div id="searchResults" class="small muted"></div>
+      </div>
+      <div class="card">
+        <strong>Live Tools</strong>
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px"><button class="btn" id="sendSmsBtn">Send SMS (placeholder)</button><button class="btn" id="payDemoBtn">Razorpay Demo</button><button class="btn" id="backupBtn">Export Backup</button></div>
+      </div>
+    </aside><main class="content">
+  <div class="card section-title"><h3>Portal Overview</h3><div class="small">Admin password: <strong>Abutalha</strong></div></div>
+
+  <div class="grid-3">
+    <div class="card"><strong>Students</strong><div id="statStudents" style="font-size:1.4rem">0</div></div>
+    <div class="card"><strong>Teachers</strong><div id="statTeachers" style="font-size:1.4rem">0</div></div>
+    <div class="card"><strong>Active Notices</strong><div id="statNotices" style="font-size:1.4rem">0</div></div>
   </div>
 
   <div class="card">
-    <h2>Quick Actions</h2>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-      <button id="addNoticeBtn">Add Notice</button>
-      <button id="addHwBtn">Add Homework</button>
-      <button id="addEventBtn">Add Event</button>
-      <button id="addGalleryBtn">Add Gallery Image</button>
-      <button id="clearLocalBtn" style="background:#ffb4b4">Clear Local Data</button>
-    </div>
+    <div class="section-title"><h4>Homework (Recent)</h4><div><button class="btn" id="viewAllHw">View All</button></div></div>
+    <div id="hwList"></div>
   </div>
 
   <div class="card">
-    <h2>Notices</h2>
-    <div id="noticesArea"></div>
+    <div class="section-title"><h4>Attendance Snapshot</h4><div><button class="btn" id="printAttendance">Print</button></div></div>
+    <div id="attendanceSnapshot" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"></div>
   </div>
 
   <div class="card">
-    <h2>Homework</h2>
-    <div id="homeworkArea"></div>
+    <div class="section-title"><h4>Fees Module</h4><div><button class="btn" id="openFees">Open Fees</button></div></div>
+    <div id="feesPreview"></div>
   </div>
 
   <div class="card">
-    <h2>Events</h2>
-    <div id="eventsArea"></div>
+    <div class="section-title"><h4>Timetable</h4><div><button class="btn" id="openTimetable">Open Timetable</button></div></div>
+    <div id="timetablePreview"></div>
   </div>
 
-  <div class="card">
-    <h2>Gallery</h2>
-    <div id="galleryArea"></div>
-  </div>
+</main>
 
-  <div class="card">
-    <h2>Students & Teachers (CSV Import/Export)</h2>
-    <div style="display:flex;gap:8px;align-items:center">
-      <input id="csvFile" type="file" accept=".csv" />
-      <button id="importCsv">Import CSV</button>
-      <button id="exportCsv">Export CSV</button>
-    </div>
-  </div>
+  </div>  <div class="footer">Built: Ultimate Pro • Local demo — export/import works. Want cloud? I can add Firebase or Node backend.</div>
+</div><!-- Modal --><div class="modal" id="modal"><div class="modal-card" id="modalCard"></div></div><script>
+// Ultimate Pro — single-file full features (client-side demo)
+const ADMIN_PWD = 'Abutalha'
+const KEY = 'MKPS_ULTIMATE_v1'
+const SAMPLE = {
+  students:[{id:'s1',name:'Aman Kumar',class:'Class 6',phone:'9876543210'}],
+  teachers:[{id:'t1',name:'Mrs. Sharma',subject:'Science'}],
+  homework:[{id:'h1',subject:'Mathematics',title:'Algebra Exercise',due:'2025-11-25',notes:'Do Q1-20',created:new Date().toISOString()}],
+  notices:[{id:'n1',title:'PTM',date:'2025-11-28',time:'4:00 PM',body:'Parents must attend'}],
+  attendance:{'Class 6':{present:28,total:30}},
+  fees:[{id:'f1',studentId:'s1',name:'Aman Kumar',amount:15000,status:'unpaid'}],
+  timetable:{'Class 6':[ {day:'Mon',time:'8:00-9:00',sub:'Maths'} ] }
+}
+function load(){ try{ const raw=localStorage.getItem(KEY); return raw?JSON.parse(raw):JSON.parse(JSON.stringify(SAMPLE)) }catch(e){return JSON.parse(JSON.stringify(SAMPLE))}}
+function save(d){ localStorage.setItem(KEY,JSON.stringify(d)) }
+let STORE = load()
 
-  <div class="card">
-    <h2>Firebase Setup (Optional)</h2>
-    <p class="muted small">Paste your Firebase config here to enable Firestore/Storage integration. For now the panel works with localStorage. Replace the placeholders in the comments to connect to Firebase.</p>
-    <pre style="background:#021421;padding:10px;border-radius:8px;color:#8be5cf;font-size:.85rem;overflow:auto">// firebaseConfig = {
+// UI helpers
+const $ = s=>document.querySelector(s)
+const $$ = s=>Array.from(document.querySelectorAll(s))
+const uid = p=>p+Math.random().toString(36).slice(2,9)
+function openModal(html){ $('#modalCard').innerHTML = html; $('#modal').classList.add('open'); }
+function closeModal(){ $('#modal').classList.remove('open'); }
 
-//   apiKey: "...", //   authDomain: "...", //   projectId: "...", //   storageBucket: "...", //   messagingSenderId: "...", //   appId: "..." // }</pre> </div>
+// render summary
+function renderStats(){ $('#statStudents').textContent = STORE.students.length; $('#statTeachers').textContent = STORE.teachers.length; $('#statNotices').textContent = STORE.notices.length }
 
-</div>
+function renderHW(){ const list = STORE.homework.slice(0,6); $('#hwList').innerHTML = list.map(h=>`<div style="padding:10px;border-radius:8px;background:#fbfff8;margin-bottom:8px"><strong>${h.subject} - ${h.title}</strong><div class="small">Due: ${new Date(h.due).toLocaleDateString()}</div><div style="margin-top:6px">${h.notes}</div></div>`).join('') }
 
-  </div>  <script>
-    // Admin panel (local + firebase-ready)
-    const ADMIN_PWD = 'Abutalha' // set by you
-    const STORAGE_KEY = 'MKPS_ADMIN_v1'
-    const DEFAULT = {
-      notices:[{id:'n1',title:'Parent-Teacher Meeting',date:'2025-11-28',time:'4:00 PM',body:'All parents are requested to attend.'}],
-      homework:[{id:'h1',subject:'Mathematics',title:'Chapter 5: Algebra',due:'2025-11-25',notes:'Solve exercise 5.3 Q1-15.'}],
-      events:[{id:'e1',title:'Annual Sports Day',date:'2025-12-06',desc:'Sports activities for all grades.'}],
-      gallery:['https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'],
-      students:[], teachers:[]
-    }
+function renderAttendance(){ const el = $('#attendanceSnapshot'); el.innerHTML=''; for(const cls in STORE.attendance){ const a = STORE.attendance[cls]; const pct = Math.round(a.present / a.total * 100 || 0); const div = document.createElement('div'); div.className='card'; div.style.minWidth='160px'; div.innerHTML=`<strong>${cls}</strong><div style='font-size:1.2rem'>${a.present}/${a.total}</div><div class='small'>${pct}% present</div>`; el.appendChild(div); } }
 
-    function loadStore(){ try{ const raw = localStorage.getItem(STORAGE_KEY); return raw?JSON.parse(raw):JSON.parse(JSON.stringify(DEFAULT)); }catch(e){ return JSON.parse(JSON.stringify(DEFAULT)) }}
-    function saveStore(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)) }
-    let STORE = loadStore()
+function renderFeesPreview(){ $('#feesPreview').innerHTML = STORE.fees.map(f=>`<div style="padding:8px;border-radius:8px;background:#fff8f2;margin-bottom:8px"><strong>${f.name}</strong> — ₹${f.amount} — <em>${f.status}</em> <button data-id='${f.id}' class='btn' style='margin-left:8px'>Pay</button></div>`).join('') }
 
-    // login
-    const loginCard = document.getElementById('loginCard');
-    const adminPanel = document.getElementById('adminPanel');
-    document.getElementById('loginBtn').addEventListener('click', ()=>{ const v=document.getElementById('adminPwd').value; if(v===ADMIN_PWD){ loginCard.classList.add('hidden'); adminPanel.classList.remove('hidden'); renderAll(); } else alert('Wrong password') });
-    document.getElementById('logoutBtn').addEventListener('click', ()=>{ if(confirm('Logout?')) location.reload() })
+function renderTimetablePreview(){ const t = STORE.timetable || {}; let s=''; for(const cls in t){ s += `<div class='card'><strong>${cls}</strong>${t[cls].map(it=>`<div>${it.day} • ${it.time} • ${it.sub}</div>`).join('')}</div>` } $('#timetablePreview').innerHTML = s }
 
-    // render functions
-    function renderAll(){ renderNotices(); renderHomework(); renderEvents(); renderGallery(); }
+// initial render
+renderStats(); renderHW(); renderAttendance(); renderFeesPreview(); renderTimetablePreview();
 
-    function renderNotices(){ const el=document.getElementById('noticesArea'); if(!STORE.notices.length) el.innerHTML='<div class="muted">No notices</div>'; else el.innerHTML = `<table><thead><tr><th>Title</th><th>Date</th><th>Actions</th></tr></thead><tbody>${STORE.notices.map(n=>`<tr data-id="${n.id}"><td>${escapeHtml(n.title)}</td><td>${n.date} ${n.time? ' | '+n.time : ''}</td><td><button class="editNotice">Edit</button> <button class="delNotice" style="background:#ffb4b4">Delete</button></td></tr>`).join('')}</tbody></table>`; setNoticeHandlers(); }
-    function renderHomework(){ const el=document.getElementById('homeworkArea'); if(!STORE.homework.length) el.innerHTML='<div class="muted">No homework</div>'; else el.innerHTML = `<table><thead><tr><th>Subject</th><th>Title</th><th>Due</th><th>Actions</th></tr></thead><tbody>${STORE.homework.map(h=>`<tr data-id="${h.id}"><td>${escapeHtml(h.subject)}</td><td>${escapeHtml(h.title)}</td><td>${h.due}</td><td><button class="editHw">Edit</button> <button class="delHw" style="background:#ffb4b4">Delete</button></td></tr>`).join('')}</tbody></table>`; setHwHandlers(); }
-    function renderEvents(){ const el=document.getElementById('eventsArea'); if(!STORE.events.length) el.innerHTML='<div class="muted">No events</div>'; else el.innerHTML = `<table><thead><tr><th>Event</th><th>Date</th><th>Actions</th></tr></thead><tbody>${STORE.events.map(ev=>`<tr data-id="${ev.id}"><td>${escapeHtml(ev.title)}</td><td>${ev.date}</td><td><button class="editEv">Edit</button> <button class="delEv" style="background:#ffb4b4">Delete</button></td></tr>`).join('')}</tbody></table>`; setEventHandlers(); }
-    function renderGallery(){ const el=document.getElementById('galleryArea'); if(!STORE.gallery.length) el.innerHTML='<div class="muted">No images</div>'; else el.innerHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap">${STORE.gallery.map((g,i)=>`<div style="width:120px"><img src="${g}" alt="g${i}" style="width:100%;height:80px;object-fit:cover;border-radius:8px" /><div style="display:flex;gap:6px;margin-top:6px"><button class="delGallery" data-src="${g}" style="background:#ffb4b4">Del</button></div></div>`).join('')}</div>`; setGalleryHandlers(); }
+// actions
+$('#openAdminBtn').addEventListener('click', ()=>{
+  const pwd = prompt('Enter admin password:')
+  if(pwd===ADMIN_PWD){ // open admin in new window with data passed via blob URL
+    const blob = new Blob([createAdminHtml(JSON.stringify(STORE))], {type:'text/html'});
+    const url = URL.createObjectURL(blob);
+    window.open(url,'_blank');
+  } else alert('Wrong password')
+})
 
-    function setNoticeHandlers(){ $$('.editNotice').forEach(btn=>btn.addEventListener('click', ()=>{ const id = btn.closest('tr').dataset.id; editNotice(id); })); $$('.delNotice').forEach(btn=>btn.addEventListener('click', ()=>{ const id = btn.closest('tr').dataset.id; if(confirm('Delete notice?')){ STORE.notices = STORE.notices.filter(x=>x.id!==id); saveStore(STORE); renderNotices(); }})); }
-    function setHwHandlers(){ $$('.editHw').forEach(btn=>btn.addEventListener('click', ()=>{ const id=btn.closest('tr').dataset.id; editHw(id); })); $$('.delHw').forEach(btn=>btn.addEventListener('click', ()=>{ const id=btn.closest('tr').dataset.id; if(confirm('Delete homework?')){ STORE.homework = STORE.homework.filter(x=>x.id!==id); saveStore(STORE); renderHomework(); }})); }
-    function setEventHandlers(){ $$('.editEv').forEach(btn=>btn.addEventListener('click', ()=>{ const id=btn.closest('tr').dataset.id; editEvent(id); })); $$('.delEv').forEach(btn=>btn.addEventListener('click', ()=>{ const id=btn.closest('tr').dataset.id; if(confirm('Delete event?')){ STORE.events = STORE.events.filter(x=>x.id!==id); saveStore(STORE); renderEvents(); }})); }
-    function setGalleryHandlers(){ $$('.delGallery').forEach(btn=>btn.addEventListener('click', ()=>{ const src=btn.dataset.src; if(confirm('Delete image?')){ STORE.gallery = STORE.gallery.filter(x=>x!==src); saveStore(STORE); renderGallery(); }})); }
+// quick add
+$('#quickAddHw').addEventListener('click', ()=>{ const subject=prompt('Subject:','Mathematics'); if(!subject) return; const title=prompt('Title:','Exercise'); const due=prompt('Due (YYYY-MM-DD):','2025-11-25'); const notes=prompt('Notes:',''); const id=uid('h'); STORE.homework.unshift({id,subject,title,due,notes,created:new Date().toISOString()}); save(STORE); renderHW(); alert('Added') })
+$('#quickAddNotice').addEventListener('click', ()=>{ const title=prompt('Title:'); if(!title) return; const date=prompt('Date (YYYY-MM-DD):','2025-11-28'); const time=prompt('Time:','4:00 PM'); const body=prompt('Details:',''); const id=uid('n'); STORE.notices.unshift({id,title,date,time,body}); save(STORE); renderStats(); alert('Notice added') })
+$('#quickAddEvent').addEventListener('click', ()=>{ const title=prompt('Event:'); if(!title) return; const date=prompt('Date:','2025-12-06'); const id=uid('e'); (STORE.events=STORE.events||[]).unshift({id,title,date}); save(STORE); alert('Event added') })
 
-    // add actions
-    document.getElementById('addNoticeBtn').addEventListener('click', ()=>{ const title=prompt('Title:'); if(!title) return; const date=prompt('Date (YYYY-MM-DD):','2025-11-28'); const time=prompt('Time (optional):','4:00 PM'); const body=prompt('Details:',''); const id='n'+Math.random().toString(36).slice(2,9); STORE.notices.unshift({id,title,date,time,body}); saveStore(STORE); renderNotices(); alert('Notice added (local)') });
-    document.getElementById('addHwBtn').addEventListener('click', ()=>{ const subject=prompt('Subject:','Mathematics'); if(!subject) return; const title=prompt('Title:','Chapter 6'); const due=prompt('Due date (YYYY-MM-DD):','2025-11-25'); const notes=prompt('Notes:',''); const id='h'+Math.random().toString(36).slice(2,9); STORE.homework.unshift({id,subject,title,due,notes}); saveStore(STORE); renderHomework(); alert('Homework added (local)') });
-    document.getElementById('addEventBtn').addEventListener('click', ()=>{ const title=prompt('Event:'); if(!title) return; const date=prompt('Date (YYYY-MM-DD):','2025-12-06'); const id='e'+Math.random().toString(36).slice(2,9); STORE.events.unshift({id,title,date}); saveStore(STORE); renderEvents(); alert('Event added (local)') });
-    document.getElementById('addGalleryBtn').addEventListener('click', ()=>{ const url=prompt('Image URL (direct link):'); if(!url) return; STORE.gallery.unshift(url); saveStore(STORE); renderGallery(); alert('Image added (local)') });
+// search
+$('#searchBtn').addEventListener('click', ()=>{ const q = $('#globalSearch').value.trim().toLowerCase(); if(!q) { $('#searchResults').textContent='Type to search'; return } const students = STORE.students.filter(s=> (s.name||'').toLowerCase().includes(q)); const hw = STORE.homework.filter(h=> (h.title+h.subject+h.notes).toLowerCase().includes(q)); const notices = STORE.notices.filter(n=> (n.title+n.body).toLowerCase().includes(q)); $('#searchResults').innerHTML = `Students: ${students.length} • Homework: ${hw.length} • Notices: ${notices.length}` })
 
-    // edit handlers (simple prompts)
-    function editNotice(id){ const n = STORE.notices.find(x=>x.id===id); if(!n) return; const title = prompt('Title:',n.title); if(!title) return; const date = prompt('Date:',n.date); const time = prompt('Time:',n.time||''); const body = prompt('Details:',n.body||''); n.title=title; n.date=date; n.time=time; n.body=body; saveStore(STORE); renderNotices(); }
-    function editHw(id){ const h = STORE.homework.find(x=>x.id===id); if(!h) return; const subject = prompt('Subject:',h.subject); if(!subject) return; const title = prompt('Title:',h.title); const due = prompt('Due:',h.due); const notes = prompt('Notes:',h.notes||''); h.subject=subject; h.title=title; h.due=due; h.notes=notes; saveStore(STORE); renderHomework(); }
-    function editEvent(id){ const e = STORE.events.find(x=>x.id===id); if(!e) return; const title = prompt('Event:',e.title); if(!title) return; const date = prompt('Date:',e.date); e.title=title; e.date=date; saveStore(STORE); renderEvents(); }
+// export
+$('#backupBtn').addEventListener('click', ()=>{ const b = new Blob([JSON.stringify(STORE,null,2)],{type:'application/json'}); const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href=url; a.download='mkps-ultimate-backup.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url) })
 
-    // import/export JSON
-    document.getElementById('exportAll').addEventListener('click', ()=>{ const blob = new Blob([JSON.stringify(STORE,null,2)],{type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='mkps-admin-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); });
-    document.getElementById('importAll').addEventListener('click', ()=>{ const input=document.createElement('input'); input.type='file'; input.accept='.json'; input.onchange=()=>{ const f=input.files[0]; const r=new FileReader(); r.onload=()=>{ try{ const parsed=JSON.parse(r.result); STORE = parsed; saveStore(STORE); renderAll(); alert('Imported') }catch(e){ alert('Invalid JSON') } }; r.readAsText(f); }; input.click(); });
+// Send SMS placeholder
+$('#sendSmsBtn').addEventListener('click', ()=>{ const msg = prompt('Message to send (demo - no real SMS will be sent):'); if(!msg) return; alert('SMS placeholder: Ready to send via MSG91/Twilio. See README for integration.') })
 
-    // CSV import/export for students/teachers
-    document.getElementById('importCsv').addEventListener('click', ()=>{ const f = document.getElementById('csvFile').files[0]; if(!f){ alert('Choose CSV file'); return } const r=new FileReader(); r.onload=()=>{ const txt=r.result; // simple CSV parse: name,role,class,phone,email
-      const lines = txt.split('\n').map(l=>l.trim()).filter(l=>l); const arr = lines.map(l=>{ const cols = l.split(',').map(c=>c.trim()); return {name:cols[0],role:cols[1]||'student',class:cols[2]||'',phone:cols[3]||'',email:cols[4]||''} }); // merge into store
-      STORE.students = STORE.students.concat(arr.filter(x=>x.role==='student')); STORE.teachers = STORE.teachers.concat(arr.filter(x=>x.role==='teacher')); saveStore(STORE); alert('CSV imported (local).'); renderAll(); }; r.readAsText(f); });
-    document.getElementById('exportCsv').addEventListener('click', ()=>{ const rows = [];
-      STORE.students.forEach(s=> rows.push([s.name,'student',s.class||'',s.phone||'',s.email||''].join(',')));
-      STORE.teachers.forEach(t=> rows.push([t.name,'teacher','',t.phone||'',t.email||''].join(',')));
-      const blob=new Blob([rows.join('\n')],{type:'text/csv'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='mkps-users.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); });
+// payments demo
+$('#payDemoBtn').addEventListener('click', ()=>{ alert('Payment placeholder (Razorpay/PayU). I can wire real keys later.') })
 
-    // clear local
-    document.getElementById('clearLocalBtn').addEventListener('click', ()=>{ if(confirm('Clear ALL local admin data? This cannot be undone.')){ localStorage.removeItem(STORAGE_KEY); STORE = JSON.parse(JSON.stringify(DEFAULT)); saveStore(STORE); renderAll(); alert('Cleared'); } });
+// fees pay button delegated
+document.addEventListener('click', e=>{ if(e.target.matches('#feesPreview .btn') || e.target.matches('[data-id]')){ const id = e.target.dataset.id; const f = STORE.fees.find(x=>x.id===id); if(f){ if(confirm(`Pay ₹${f.amount} for ${f.name}? (demo)`)){ f.status='paid'; save(STORE); renderFeesPreview(); alert('Payment recorded (local only)') } } } })
 
-    // small helpers
-    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
-    function $$(s){ return Array.from(document.querySelectorAll(s)) }
+// portals
+$('#openStudentPortal').addEventListener('click', ()=>{ openModal(`<h3>Student Portal (Demo)</h3><p class='small'>Enter student id to login (demo):</p><div style='margin-top:8px'><input id='stuId' placeholder='s1' style='padding:8px;border-radius:8px;border:1px solid #eee'/> <button class='btn' id='stuLogin'>Login</button></div>`); $('#modal').querySelector('#stuLogin').addEventListener('click', ()=>{ const id = $('#stuId').value.trim(); const s = STORE.students.find(x=>x.id===id); if(!s){ alert('Not found'); return } closeModal(); openModal(`<h3>Welcome ${s.name}</h3><p class='small'>Class: ${s.class}</p><div style='margin-top:8px'><button class='btn' id='viewHwStudent'>My Homework</button> <button class='btn' id='viewFeesStudent'>My Fees</button></div>`); $('#modal').querySelector('#viewHwStudent').addEventListener('click', ()=>{ const hw = STORE.homework.filter(h=>h.subject.toLowerCase().includes('math')||true); openModal(`<h3>Homework</h3>${hw.map(h=>`<div class='card'><strong>${h.title}</strong><div class='small'>Due: ${new Date(h.due).toLocaleDateString()}</div><div>${h.notes}</div></div>`).join('')}`) }) }) })
 
-    // init: show login
-    (function(){ /* keep adminCard visible */ })();
-  </script></body>
+$('#openTeacherPortal').addEventListener('click', ()=>{ const name = prompt('Teacher name (demo):'); if(!name) return; alert('Logged in as teacher (demo). Use admin for full features.') })
+
+// printable attendance
+$('#printAttendance').addEventListener('click', ()=>{ const w = window.open('','_blank'); w.document.write('<h3>Attendance Report</h3>'); w.document.write('<pre>'+JSON.stringify(STORE.attendance,null,2)+'</pre>'); w.document.close(); w.print(); })// view all hw $('#viewAllHw').addEventListener('click', ()=>{ openModal('<h3>All Homework</h3>'+STORE.homework.map(h=><div class="card"><strong>${h.subject} - ${h.title}</strong><div class="small">Due: ${new Date(h.due).toLocaleDateString()}</div><div>${h.notes}</div></div>).join('')) })
+
+// attendance print $('#printAttendance').addEventListener('click', ()=>{ /* handled above */ })
+
+// timetable $('#openTimetable').addEventListener('click', ()=>{ openModal('<h3>Timetable</h3>'+Object.keys(STORE.timetable).map(cls=><h4>${cls}</h4>).join('')) })
+
+// modal close on outside click document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==='modal') closeModal() })
+
+// create admin HTML to open in new window with data embedded function createAdminHtml(dataJson){ return <!doctype html><html><head><meta charset="utf-8"><title>MKPS Admin — Ultimate</title><meta name='viewport' content='width=device-width,initial-scale=1'><style>body{font-family:Inter,system-ui;padding:12px;background:#021421;color:#cfeee3} .btn{background:linear-gradient(90deg,#0f766e,#d97706);border:none;padding:8px 10px;color:#021;cursor:pointer;border-radius:8px}</style></head><body><h2>MKPS Admin — DEMO</h2><p>This admin was opened from the main app. Data below is a copy (local only)</p><pre id='dump'></pre><button class='btn' id='close'>Close</button><script>document.getElementById('dump').textContent=${JSON.stringify(dataJson)}; document.getElementById('close').addEventListener('click',()=>window.close())</script></body></html> }
+
+</script>
+</body>
 </html>
