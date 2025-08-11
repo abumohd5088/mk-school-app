@@ -1,529 +1,396 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+
+<!--
+  Mili Karwaan Public School - Student Dashboard (Home)
+  Professional, single-file, GitHub-ready HTML
+  - Uses localStorage to persist student session & data (homework, notices, attendance)
+  - Includes inline JS to handle navigation, CRUD for visible items (admin actions restricted)
+  - Admin page is referenced as "admin.html" (deliver separately on request)
+  - To host on GitHub Pages: push this file to a repo and enable Pages (README below)
+--><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mili Karwaan Public School - Balrampur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            color: #1e293b;
-            line-height: 1.7;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .hero {
-            text-align: center;
-            padding: 4rem 0 3rem;
-            background: linear-gradient(135deg, #1e40af, #1e3a8a);
-            color: white;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-        }
-        .hero h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-        }
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0.5rem auto 0;
-        }
-        .entry-box {
-            max-width: 600px;
-            margin: -60px auto 0;
-            background: white;
-            border-radius: 25px;
-            padding: 3rem;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.18);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .form-title {
-            text-align: center;
-            color: #1e40af;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        .form-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: #f59e0b;
-            border-radius: 2px;
-        }
-        .form-group {
-            margin-bottom: 1.8rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            color: #1e40af;
-            font-size: 1.1rem;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #dbeafe;
-            border-radius: 16px;
-            font-size: 1.1rem;
-            background: #f8fafc;
-            color: #1e293b;
-            font-weight: 500;
-        }
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #1e40af;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
-        }
-        .submit-btn {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            border: none;
-            padding: 16px 40px;
-            width: 100%;
-            font-size: 1.3rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
-        }
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(245, 158, 11, 0.4);
-        }
-        .main-container {
-            display: none;
-            margin-top: 3rem;
-            gap: 2.5rem;
-            min-height: 650px;
-            animation: fadeInUp 0.8s ease;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .sidebar {
-            width: 340px;
-            background: white;
-            border-radius: 25px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-            height: fit-content;
-        }
-        .sidebar-header {
-            text-align: center;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e2e8f0;
-            margin-bottom: 2rem;
-            color: #1e40af;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        .student-info {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1.8rem;
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            border-radius: 20px;
-            border: 2px solid #bfdbfe;
-        }
-        .student-name {
-            font-weight: 700;
-            color: #1e293b;
-            font-size: 1.3rem;
-            margin-bottom: 0.4rem;
-        }
-        .student-class {
-            color: #059669;
-            font-weight: 600;
-            font-size: 1.2rem;
-            background: white;
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 50px;
-            margin-top: 8px;
-        }
-        .sidebar-menu {
-            list-style: none;
-        }
-        .sidebar-menu li {
-            margin-bottom: 0.5rem;
-        }
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 16px 20px;
-            text-decoration: none;
-            color: #1e293b;
-            border-radius: 16px;
-            font-weight: 500;
-        }
-        .sidebar-menu a:hover, .sidebar-menu a.active {
-            background: #eff6ff;
-            color: #1e40af;
-            transform: translateX(8px);
-            font-weight: 600;
-        }
-        .sidebar-menu a.active {
-            background: #dbeafe;
-            font-weight: 700;
-        }
-        .content {
-            flex: 1;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        .content-header {
-            background: white;
-            padding: 1.8rem 2.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .content-title {
-            font-size: 1.8rem;
-            color: #1e40af;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-        .content-body {
-            background: white;
-            padding: 2.5rem;
-            min-height: 400px;
-        }
-        .section-title {
-            color: #1e40af;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .homework-item {
-            background: #f8fafc;
-            border-left: 6px solid #f59e0b;
-            padding: 1.4rem;
-            margin-bottom: 1.4rem;
-            border-radius: 12px;
-        }
-        .homework-item h4 {
-            color: #1e293b;
-            margin-bottom: 0.6rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-        .homework-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95rem;
-            color: #64748b;
-            margin-bottom: 0.8rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .homework-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .info-card {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1.4rem;
-            margin-bottom: 1.4rem;
-            border-left: 5px solid #1e40af;
-        }
-        .info-card h4 {
-            color: #1e40af;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-        .attendance {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1.8rem;
-            gap: 1.2rem;
-        }
-        .attendance-item {
-            flex: 1;
-            text-align: center;
-            padding: 1.4rem;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        }
-        .attendance-value {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 0.6rem 0;
-        }
-        .present { color: #10b981; }
-        .absent { color: #ef4444; }
-        .on-time { color: #f59e0b; }
-        .whatsapp-btn, .call-btn, .admin-btn {
-            position: fixed;
-            bottom: 25px;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.7rem;
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-            z-index: 1000;
-            border: 3px solid white;
-        }
-        .whatsapp-btn { right: 25px; background: #25D366; }
-        .call-btn { right: 110px; background: #10B981; }
-        .admin-btn { right: 195px; background: #ef4444; }
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-            }
-            .whatsapp-btn, .call-btn, .admin-btn {
-                width: 60px;
-                height: 60px;
-                font-size: 1.4rem;
-                bottom: 15px;
-            }
-            .call-btn { right: 90px; }
-            .admin-btn { right: 160px; }
-            .hero h2 { font-size: 2.3rem; }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mili Karwaan Public School — Student Dashboard</title>
+  <meta name="description" content="Student dashboard for Mili Karwaan Public School — homework, attendance, notices, contact."/>
+  <meta name="theme-color" content="#1e40af" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="" crossorigin="anonymous">
+  <style>
+    :root{
+      --brand-1:#1e40af; --brand-2:#1e3a8a; --accent:#f59e0b; --bg-start:#f0f9ff; --bg-end:#e0f2fe; --card:#ffffff;
+      --maxw:1200px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg-start),var(--bg-end));color:#10223b;line-height:1.6}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}/* HERO */
+.hero{background:linear-gradient(135deg,var(--brand-1),var(--brand-2));color:#fff;padding:48px 20px;border-bottom-left-radius:26px;border-bottom-right-radius:26px;text-align:center}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:2.2rem}
+.hero p{margin-top:6px;opacity:.92}
+
+/* ENTRY CARD */
+.entry-box{max-width:640px;margin:-48px auto 28px;background:var(--card);border-radius:18px;padding:26px;box-shadow:0 20px 40px rgba(2,6,23,.12)}
+.form-title{color:var(--brand-1);font-weight:700;font-family:'Montserrat',sans-serif;text-align:center;margin-bottom:18px}
+.row{display:flex;gap:12px}
+.form-control{margin-bottom:14px}
+label{display:block;font-weight:600;color:var(--brand-1);margin-bottom:8px}
+input[type=text],select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e6eefc;background:#f8fafc;font-weight:600}
+button.primary{background:linear-gradient(135deg,var(--accent),#d97706);border:none;color:#fff;padding:12px 18px;border-radius:999px;font-weight:700;cursor:pointer;width:100%}
+button.ghost{background:transparent;border:1px solid #e2e8f0;padding:10px 14px;border-radius:10px;cursor:pointer}
+
+/* LAYOUT */
+.main-grid{display:flex;gap:22px;margin-top:28px}
+.sidebar{width:320px;background:var(--card);padding:20px;border-radius:16px;box-shadow:0 14px 28px rgba(2,6,23,.08)}
+.content{flex:1}
+.sidebar-header{text-align:center;color:var(--brand-1);font-weight:800;font-family:'Montserrat',sans-serif;margin-bottom:12px}
+.student-info{background:linear-gradient(135deg,#eff6ff,#dbeafe);padding:16px;border-radius:12px;text-align:center;margin-bottom:12px}
+.student-name{font-weight:800}
+.student-class{display:inline-block;margin-top:8px;padding:6px 14px;border-radius:999px;background:#fff;font-weight:700;color:#065f46}
+.menu{list-style:none;margin-top:12px}
+.menu a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#10223b;font-weight:600}
+.menu a.active{background:#eff6ff;color:var(--brand-1);transform:translateX(6px)}
+
+.card{background:var(--card);padding:18px;border-radius:14px;margin-bottom:16px;box-shadow:0 8px 18px rgba(2,6,23,.06)}
+.section-title{display:flex;align-items:center;gap:12px;color:var(--brand-1);font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:12px}
+
+.homework-list .item{background:#f8fafc;padding:12px;border-left:6px solid var(--accent);border-radius:10px;margin-bottom:10px}
+.meta{display:flex;gap:12px;color:#64748b;font-size:.95rem;margin-top:8px}
+
+/* fixed actions */
+.fab-row{position:fixed;right:20px;bottom:20px;display:flex;flex-direction:column;gap:12px;z-index:999}
+.fab{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;box-shadow:0 8px 24px rgba(2,6,23,.18);border:3px solid #fff}
+.fab.whatsapp{background:#25D366}
+.fab.call{background:#10B981}
+.fab.admin{background:#ef4444}
+
+/* responsive */
+@media (max-width:900px){.main-grid{flex-direction:column}.sidebar{width:100%}.entry-box{margin: -36px 12px 10px}}
+
+/* small helper */
+.muted{color:#64748b}
+a.small{font-size:.95rem}
+.hidden{display:none}
+
+  </style>
 </head>
 <body>
-    <section class="hero">
-        <div class="container">
-            <h2>Mili Karwaan Public School</h2>
-            <p>Balrampur, Uttar Pradesh | +91 97589 19151</p>
-        </div>
-    </section>
-
-    <!-- Entry Form -->
+  <header class="hero">
     <div class="container">
-        <div class="entry-box" id="entryForm">
-            <h3 class="form-title">Student Authentication</h3>
-            <div class="form-group">
-                <label for="studentName">Student's Full Name</label>
-                <input type="text" id="studentName" placeholder="Enter your complete name">
-            </div>
-            <div class="form-group">
-                <label for="studentClass">Class</label>
-                <select id="studentClass">
-                    <option value="">Select Your Class</option>
-                    <option>Nursery</option>
-                    <option>LKG</option>
-                    <option>UKG</option>
-                    <option>Class 1</option>
-                    <option>Class 2</option>
-                    <option>Class 3</option>
-                    <option>Class 4</option>
-                    <option>Class 5</option>
-                    <option>Class 6</option>
-                    <option>Class 7</option>
-                    <option>Class 8</option>
-                    <option>Class 9</option>
-                    <option>Class 10</option>
-                    <option>Class 11</option>
-                    <option>Class 12</option>
-                </select>
-            </div>
-            <button id="accessButton" class="submit-btn">Access My Dashboard</button>
+      <h1>Mili Karwaan Public School</h1>
+      <p>Balrampur, Uttar Pradesh • +91 97589 19151</p>
+    </div>
+  </header>  <main class="container">
+    <!-- Entry box -->
+    <section class="entry-box" id="entryBox" aria-labelledby="authTitle">
+      <h2 id="authTitle" class="form-title">Student Authentication</h2>
+      <div class="form-control">
+        <label for="studentName">Student's Full Name</label>
+        <input id="studentName" type="text" placeholder="Enter student name" autocomplete="name" />
+      </div>
+      <div class="row" style="margin-bottom:12px">
+        <div style="flex:1" class="form-control">
+          <label for="studentClass">Class</label>
+          <select id="studentClass">
+            <option value="">Select Class</option>
+            <option>Nursery</option>
+            <option>LKG</option>
+            <option>UKG</option>
+            <option>Class 1</option>
+            <option>Class 2</option>
+            <option>Class 3</option>
+            <option>Class 4</option>
+            <option>Class 5</option>
+            <option>Class 6</option>
+            <option>Class 7</option>
+            <option>Class 8</option>
+            <option>Class 9</option>
+            <option>Class 10</option>
+            <option>Class 11</option>
+            <option>Class 12</option>
+          </select>
         </div>
-
-        <!-- Main Dashboard -->
-        <div class="main-container" id="dashboard">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <div class="sidebar-header">Student Portal</div>
-                
-                <div class="student-info">
-                    <div class="student-name" id="displayName">Student Name</div>
-                    <div class="student-class" id="displayClass">Class: Not Selected</div>
-                </div>
-
-                <ul class="sidebar-menu">
-                    <li><a href="#" class="active" id="menuHomework"><i class="fas fa-pen"></i> Homework</a></li>
-                    <li><a href="#" id="menuAttendance"><i class="fas fa-check-circle"></i> Attendance</a></li>
-                    <li><a href="#" id="menuMaterials"><i class="fas fa-book"></i> Study Materials</a></li>
-                    <li><a href="#" id="menuExams"><i class="fas fa-file-alt"></i> Exam Schedule</a></li>
-                    <li><a href="#" id="menuAchievements"><i class="fas fa-trophy"></i> Achievements</a></li>
-                    <li><a href="#" id="menuTimings"><i class="fas fa-clock"></i> School Timings</a></li>
-                    <li><a href="#" id="menuHolidays"><i class="fas fa-calendar-alt"></i> Holidays</a></li>
-                    <li><a href="#" id="menuNotices"><i class="fas fa-bullhorn"></i> Notices</a></li>
-                    <li><a href="#" id="menuContact"><i class="fas fa-phone"></i> Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Content Area -->
-            <div class="content">
-                <div class="content-header">
-                    <div class="content-title" id="pageTitle">Homework</div>
-                </div>
-
-                <div class="content-body">
-                    <!-- Homework Section -->
-                    <div id="homework" class="content-section">
-                        <div class="homework-item">
-                            <h4>Mathematics</h4>
-                            <div class="homework-meta">
-                                <span><i class="fas fa-book"></i> Chapter 5: Algebra</span>
-                                <span><i class="fas fa-calendar"></i> Due: 25 Nov 2025</span>
-                            </div>
-                            <p>Solve exercise 5.3, questions 1-15. Focus on linear equations and word problems.</p>
-                        </div>
-
-                        <div class="homework-item">
-                            <h4>English</h4>
-                            <div class="homework-meta">
-                                <span><i class="fas fa-book"></i> Literature</span>
-                                <span><i class="fas fa-calendar"></i> Due: 26 Nov 2025</span>
-                            </div>
-                            <p>Read Chapter 7 of "The Adventures of Tom Sawyer" and write 200-word summary.</p>
-                        </div>
-                    </div>
-
-                    <!-- Attendance Section -->
-                    <div id="attendance" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-check-circle"></i> Attendance Record</h3>
-                        <div class="attendance">
-                            <div class="attendance-item">
-                                <div class="attendance-value present">98%</div>
-                                <div>Present</div>
-                            </div>
-                            <div class="attendance-item">
-                                <div class="attendance-value absent">2%</div>
-                                <div>Absent</div>
-                            </div>
-                            <div class="attendance-item">
-                                <div class="attendance-value on-time">100%</div>
-                                <div>On Time</div>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <p><strong>July 2025:</strong> 30/30 days</p>
-                            <p><strong>August 2025:</strong> 28/30 days</p>
-                            <p><strong>September 2025:</strong> 29/30 days</p>
-                        </div>
-                    </div>
-
-                    <!-- Study Materials -->
-                    <div id="materials" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-book"></i> Study Materials</h3>
-                        <div class="info-card">
-                            <h4><i class="fas fa-file-pdf"></i> Mathematics Notes</h4>
-                            <p><strong>Chapter 5:</strong> <a href="#" style="color: #1e40af;">Download PDF</a></p>
-                        </div>
-                        <div class="info-card">
-                            <h4><i class="fas fa-video"></i> Science Videos</h4>
-                            <p><strong>Physics:</strong> <a href="#" style="color: #1e40af;">Watch Now</a></p>
-                        </div>
-                    </div>
-
-                    <!-- Exam Schedule -->
-                    <div id="exams" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-file-alt"></i> Exam Schedule</h3>
-                        <div class="info-card">
-                            <h4>Mid-Term Exams</h4>
-                            <p><strong>Start:</strong> 15 Dec 2025</p>
-                            <p><strong>End:</strong> 20 Dec 2025</p>
-                        </div>
-                    </div>
-
-                    <!-- Achievements -->
-                    <div id="achievements" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-trophy"></i> Achievements</h3>
-                        <div class="info-card">
-                            <h4><i class="fas fa-medal"></i> Science Olympiad - 2nd Position</h4>
-                            <p>Awarded on 15 Sep 2025</p>
-                        </div>
-                    </div>
-
-                    <!-- Timings -->
-                    <div id="timings" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-clock"></i> School Timings</h3>
-                        <div class="info-card">
-                            <p><strong>Mon-Fri:</strong> 8:00 AM - 3:00 PM</p>
-                            <p><strong>Saturday:</strong> 8:00 AM - 1:00 PM</p>
-                        </div>
-                    </div>
-
-                    <!-- Holidays -->
-                    <div id="holidays" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-calendar-alt"></i> Upcoming Holidays</h3>
-                        <div class="info-card">
-                            <h4><i class="fas fa-diagram-project"></i> Diwali Holiday</h4>
-                            <p><strong>31 Oct - 3 Nov 2025</strong></p>
-                        </div>
-                    </div>
-
-                    <!-- Notices -->
-                    <div id="notices" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-bullhorn"></i> Notices</h3>
-                        <div class="info-card">
-                            <h4>Parent-Teacher Meeting</h4>
-                            <p><strong>Date:</strong> 28 Nov 2025 | <strong>Time:</strong> 4:00 PM</p>
-                        </div>
-                    </div>
-
-                    <!-- Contact -->
-                    <div id="contact" class="content-section" style="display: none;">
-                        <h3 class="section-title"><i class="fas fa-phone"></i> Contact</h3>
-                        <div class="info-card">
-                            <h4>Principal's Office</h4>
-                            <p><strong>Phone:</strong> +91 97589 19151</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div style="width:160px;align-self:end">
+          <button id="accessButton" class="primary">Access Dashboard</button>
         </div>
+      </div><div style="display:flex;gap:10px;justify-content:center">
+    <button id="demoBtn" class="ghost">Use Demo Student</button>
+    <button id="clearBtn" class="ghost">Clear Session</button>
+  </div>
+</section>
+
+<!-- Dashboard -->
+<section id="dashboard" class="main-grid hidden" aria-hidden="true">
+  <aside class="sidebar" role="navigation" aria-label="Student sidebar">
+    <div class="sidebar-header">Student Portal</div>
+    <div class="student-info">
+      <div class="student-name" id="displayName">Student Name</div>
+      <div class="student-class" id="displayClass">Class: Not Selected</div>
     </div>
 
-    <!-- Fixed Buttons -->
-    <a href="https://wa.me/919758919151" class="whatsapp-btn" target="_blank">
+    <ul class="menu" id="menu">
+      <li><a href="#" data-view="homework" class="active"><i class="fas fa-pen"></i> Homework</a></li>
+      <li><a href="#" data-view="attendance"><i class="fas fa-check-circle"></i> Attendance</a></li>
+      <li><a href="#" data-view="materials"><i class="fas fa-book"></i> Study Materials</a></li>
+      <li><a href="#" data-view="exams"><i class="fas fa-file-alt"></i> Exam Schedule</a></li>
+      <li><a href="#" data-view="achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+      <li><a href="#" data-view="timings"><i class="fas fa-clock"></i> School Timings</a></li>
+      <li><a href="#" data-view="holidays"><i class="fas fa-calendar-alt"></i> Holidays</a></li>
+      <li><a href="#" data-view="notices"><i class="fas fa-bullhorn"></i> Notices</a></li>
+      <li><a href="#" data-view="contact"><i class="fas fa-phone"></i> Contact</a></li>
+    </ul>
+
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <a id="exportBtn" class="small" href="#">Export Data</a>
+      <a id="importBtn" class="small" href="#">Import Data</a>
+      <a id="openAdmin" class="small" href="admin.html">Admin</a> <!-- admin.html will be provided separately -->
+    </div>
+  </aside>
+
+  <section class="content" aria-live="polite">
+    <div class="card content-header" style="display:flex;justify-content:space-between;align-items:center">
+      <div class="content-title" id="pageTitle">Homework</div>
+      <div class="muted" id="sessionNote">Logged in</div>
+    </div>
+
+    <div class="card content-body" id="contentBody">
+      <!-- dynamic content goes here -->
+    </div>
+  </section>
+</section>
+
+  </main>  <!-- Floating action buttons -->  <div class="fab-row" aria-hidden="false">
+    <a class="fab whatsapp" href="https://wa.me/919758919151" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a class="fab call" href="tel:+919758919151" aria-label="Call"><i class="fas fa-phone"></i></a>
+    <a class="fab admin" id="fabAdmin" href="admin.html" aria-label="Admin"><i class="fas fa-user-shield"></i></a>
+  </div>  <footer style="text-align:center;padding:24px 6px;color:#64748b;font-size:.95rem">
+    © Mili Karwaan Public School — Built for GitHub Pages • This is a demo student dashboard. For admin features, request the admin panel.
+  </footer>  <script>
+    /* -----------------------------
+       Client-side app (single-file)
+       - Saves session to localStorage under key: MKPS_SESSION
+       - Stores app data under key: MKPS_DATA
+       - Demo admin operations are disabled in this file (admin.html will enable CRUD)
+       ----------------------------- */
+
+    const SELECTORS = {
+      entryBox: document.getElementById('entryBox'),
+      dashboard: document.getElementById('dashboard'),
+      accessButton: document.getElementById('accessButton'),
+      demoBtn: document.getElementById('demoBtn'),
+      clearBtn: document.getElementById('clearBtn'),
+      displayName: document.getElementById('displayName'),
+      displayClass: document.getElementById('displayClass'),
+      pageTitle: document.getElementById('pageTitle'),
+      contentBody: document.getElementById('contentBody'),
+      menu: document.getElementById('menu')
+    }
+
+    const STORAGE = {
+      sessionKey: 'MKPS_SESSION_v1',
+      dataKey: 'MKPS_DATA_v1'
+    }
+
+    // Starter sample data (used when there's no saved data)
+    const SAMPLE_DATA = {
+      homework: [
+        { id: 'hw1', subject: 'Mathematics', title: 'Chapter 5: Algebra', due: '2025-11-25', notes: 'Solve exercise 5.3, Q1-15.' },
+        { id: 'hw2', subject: 'English', title: 'Literature', due: '2025-11-26', notes: 'Read Chapter 7 and write 200-word summary.' }
+      ],
+      attendance: { presentPercent: 98, absentPercent: 2, onTimePercent: 100, months: { 'July 2025':'30/30','August 2025':'28/30' } },
+      materials: [ { id:'mat1', title:'Mathematics Notes - Chapter 5', url:'#' } ],
+      exams: { start:'2025-12-15', end:'2025-12-20' },
+      achievements: [ { id:'a1', title:'Science Olympiad - 2nd Position', date:'2025-09-15'} ],
+      timings: { weekdays:'8:00 AM - 3:00 PM', saturday:'8:00 AM - 1:00 PM' },
+      holidays: [ { id:'h1', title:'Diwali Holiday', range:'31 Oct - 3 Nov 2025' } ],
+      notices: [ { id:'n1', title:'Parent-Teacher Meeting', date:'2025-11-28', time:'4:00 PM' } ],
+      contact: { principalPhone:'+919758919151' }
+    }
+
+    // Utility functions
+    const qs = sel => document.querySelector(sel)
+    const qsa = sel => Array.from(document.querySelectorAll(sel))
+    const uid = prefix => prefix + Math.random().toString(36).slice(2,9)
+
+    function saveData(data){ localStorage.setItem(STORAGE.dataKey, JSON.stringify(data)) }
+    function loadData(){ const v = localStorage.getItem(STORAGE.dataKey); return v ? JSON.parse(v) : JSON.parse(JSON.stringify(SAMPLE_DATA)) }
+    function saveSession(session){ localStorage.setItem(STORAGE.sessionKey, JSON.stringify(session)) }
+    function loadSession(){ const v = localStorage.getItem(STORAGE.sessionKey); return v ? JSON.parse(v) : null }
+    function clearSession(){ localStorage.removeItem(STORAGE.sessionKey) }
+
+    // Render helpers for each view
+    function renderHomework(data){
+      const list = data.homework
+      const html = `
+        <div class="section-title"><i class="fas fa-pen"></i> Homework</div>
+        <div class="homework-list">
+          ${list.map(hw => `
+            <div class="item" data-id="${hw.id}">
+              <strong>${hw.subject} — ${hw.title}</strong>
+              <div class="meta"><span><i class="fas fa-calendar"></i> Due: ${formatDate(hw.due)}</span></div>
+              <p style="margin-top:8px">${escapeHtml(hw.notes || '')}</p>
+            </div>
+          `).join('')}
+        </div>
+      `
+      return html
+    }
+
+    function renderAttendance(data){
+      const att = data.attendance
+      return `
+        <div class="section-title"><i class="fas fa-check-circle"></i> Attendance Record</div>
+        <div style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap">
+          <div style="flex:1" class="card"><div style="font-weight:800;font-size:1.6rem;color:#10b981">${att.presentPercent}%</div><div class="muted">Present</div></div>
+          <div style="flex:1" class="card"><div style="font-weight:800;font-size:1.6rem;color:#ef4444">${att.absentPercent}%</div><div class="muted">Absent</div></div>
+          <div style="flex:1" class="card"><div style="font-weight:800;font-size:1.6rem;color:#f59e0b">${att.onTimePercent}%</div><div class="muted">On Time</div></div>
+        </div>
+        <div class="card">
+          ${Object.keys(att.months || {}).map(m => `<p><strong>${m}:</strong> ${att.months[m]}</p>`).join('')}
+        </div>
+      `
+    }
+
+    function renderMaterials(data){
+      return `
+        <div class="section-title"><i class="fas fa-book"></i> Study Materials</div>
+        ${data.materials.map(m => `<div class="card"><h4>${m.title}</h4><p><a href="${m.url}" target="_blank">Open</a></p></div>`).join('')}
+      `
+    }
+
+    function renderExams(data){
+      return `
+        <div class="section-title"><i class="fas fa-file-alt"></i> Exam Schedule</div>
+        <div class="card"><p><strong>Start:</strong> ${formatDate(data.exams.start)}<br/><strong>End:</strong> ${formatDate(data.exams.end)}</p></div>
+      `
+    }
+
+    function renderAchievements(data){
+      return `
+        <div class="section-title"><i class="fas fa-trophy"></i> Achievements</div>
+        ${data.achievements.map(a => `<div class="card"><h4>${a.title}</h4><p><strong>Awarded:</strong> ${formatDate(a.date)}</p></div>`).join('')}
+      `
+    }
+
+    function renderTimings(data){
+      return `
+        <div class="section-title"><i class="fas fa-clock"></i> School Timings</div>
+        <div class="card"><p><strong>Mon-Fri:</strong> ${data.timings.weekdays}<br/><strong>Saturday:</strong> ${data.timings.saturday}</p></div>
+      `
+    }
+
+    function renderHolidays(data){
+      return `
+        <div class="section-title"><i class="fas fa-calendar-alt"></i> Upcoming Holidays</div>
+        ${data.holidays.map(h => `<div class="card"><h4>${h.title}</h4><p>${h.range}</p></div>`).join('')}
+      `
+    }
+
+    function renderNotices(data){
+      return `
+        <div class="section-title"><i class="fas fa-bullhorn"></i> Notices</div>
+        ${data.notices.map(n => `<div class="card"><h4>${n.title}</h4><p><strong>Date:</strong> ${formatDate(n.date)} ${n.time ? '| <strong>Time:</strong> ' + n.time : ''}</p></div>`).join('')}
+      `
+    }
+
+    function renderContact(data){
+      return `
+        <div class="section-title"><i class="fas fa-phone"></i> Contact</div>
+        <div class="card"><h4>Principal's Office</h4><p><strong>Phone:</strong> <a href="tel:${data.contact.principalPhone}">${data.contact.principalPhone}</a></p></div>
+      `
+    }
+
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+    function formatDate(d){ if(!d) return '-'; try{ const dt = new Date(d); if(isNaN(dt)) return d; return dt.toLocaleDateString(); }catch(e){return d} }
+
+    // Router: set active view and render
+    let currentView = 'homework'
+    function setView(view){
+      currentView = view
+      qsa('.menu a').forEach(a => a.classList.toggle('active', a.dataset.view === view))
+      document.getElementById('pageTitle').textContent = view.charAt(0).toUpperCase() + view.slice(1)
+      const data = loadData()
+      let html = ''
+      switch(view){
+        case 'homework': html = renderHomework(data); break
+        case 'attendance': html = renderAttendance(data); break
+        case 'materials': html = renderMaterials(data); break
+        case 'exams': html = renderExams(data); break
+        case 'achievements': html = renderAchievements(data); break
+        case 'timings': html = renderTimings(data); break
+        case 'holidays': html = renderHolidays(data); break
+        case 'notices': html = renderNotices(data); break
+        case 'contact': html = renderContact(data); break
+        default: html = '<div class="card">Not found</div>'
+      }
+      SELECTORS.contentBody.innerHTML = html
+    }
+
+    // Setup menu clicks
+    qsa('.menu a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); setView(a.dataset.view) }))
+
+    // Session handling
+    function openDashboard(session){
+      SELECTORS.displayName.textContent = session.name
+      SELECTORS.displayClass.textContent = session.class ? session.class : 'Class: Not Selected'
+      SELECTORS.entryBox.classList.add('hidden')
+      const dash = SELECTORS.dashboard
+      dash.classList.remove('hidden')
+      dash.removeAttribute('aria-hidden')
+      renderAll()
+    }
+
+    function renderAll(){ setView(currentView) }
+
+    SELECTORS.accessButton.addEventListener('click', ()=>{
+      const name = document.getElementById('studentName').value.trim()
+      const cls = document.getElementById('studentClass').value
+      if(!name || !cls){ alert('Please enter name and class to continue.') ; return }
+      const session = { name, class: cls, loggedAt: new Date().toISOString() }
+      saveSession(session)
+      openDashboard(session)
+    })
+
+    document.getElementById('demoBtn').addEventListener('click', ()=>{
+      const session = { name: 'Demo Student', class: 'Class 6', loggedAt: new Date().toISOString() }
+      saveSession(session)
+      // ensure data exists
+      if(!localStorage.getItem(STORAGE.dataKey)) saveData(SAMPLE_DATA)
+      openDashboard(session)
+    })
+
+    document.getElementById('clearBtn').addEventListener('click', ()=>{
+      if(confirm('Clear session and return to sign-in?')){ clearSession(); location.reload() }
+    })
+
+    // Export / Import
+    document.getElementById('exportBtn').addEventListener('click', (e)=>{
+      e.preventDefault()
+      const data = loadData()
+      const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'})
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url; a.download = 'mkps-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url)
+    })
+
+    document.getElementById('importBtn').addEventListener('click', (e)=>{
+      e.preventDefault()
+      const input = document.createElement('input'); input.type='file'; input.accept='.json'
+      input.onchange = ()=>{
+        const f = input.files[0]; if(!f) return; const reader = new FileReader();
+        reader.onload = ()=>{ try{ const parsed = JSON.parse(reader.result); saveData(parsed); alert('Data imported — refresh to view.'); }catch(err){ alert('Invalid JSON file.') } }
+        reader.readAsText(f)
+      }
+      input.click()
+    })
+
+    // On load: restore session if exists
+    (function init(){
+      const session = loadSession()
+      if(session){ openDashboard(session) }
+      // ensure data exists
+      if(!localStorage.getItem(STORAGE.dataKey)) saveData(SAMPLE_DATA)
+    })()
+
+    // Small accessibility & UX helpers
+    // Secret keyboard shortcut (for dev) to open admi
