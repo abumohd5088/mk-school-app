@@ -1,226 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Mili Karwaan School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f1f5f9;
-            color: #1e293b;
-        }
-        .admin-container {
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar {
-            width: 280px;
-            background: #1e40af;
-            color: white;
-            padding: 2rem 0;
-        }
-        .sidebar-header {
-            text-align: center;
-            padding: 0 1rem 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .sidebar-header h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-        }
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            color: white;
-            text-decoration: none;
-            gap: 1rem;
-            transition: background 0.3s;
-        }
-        .sidebar-menu a:hover, .sidebar-menu a.active {
-            background: rgba(255,255,255,0.1);
-        }
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-        }
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        .card h4 {
-            color: #1e40af;
-            margin-bottom: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-        }
-        .submit-btn {
-            background: #f59e0b;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            cursor: pointer;
-        }
-        .instructions {
-            background: #fffbeb;
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #f59e0b;
-        }
-        .code-block {
-            background: #0f172a;
-            color: #e2e8f0;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MKPS Admin Panel</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="admin-container">
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <h3>Admin Panel</h3>
-                <p>Mili Karwaan School</p>
-            </div>
-            <div class="sidebar-menu">
-                <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
-                <a href="#"><i class="fas fa-book"></i> Add Homework</a>
-                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
-            </div>
-        </div>
-
-        <div class="main-content">
-            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
-            
-            <div class="card">
-                <h4>Add New Homework</h4>
-                <div class="instructions">
-                    <p><strong>How to Add Homework:</strong></p>
-                    <ol>
-                        <li>Fill the form below</li>
-                        <li>Click "Generate Code"</li>
-                        <li>Copy the generated HTML code</li>
-                        <li>Paste it in <code>index.html</code> inside the homework section</li>
-                        <li>Re-upload both files to GitHub</li>
-                    </ol>
-                </div>
-
-                <div class="form-group">
-                    <label>Class</label>
-                    <select id="adminClass">
-                        <option>Select Class</option>
-                        <option>Nursery</option>
-                        <option>LKG</option>
-                        <option>UKG</option>
-                        <option>Class 1</option>
-                        <option>Class 2</option>
-                        <option>Class 3</option>
-                        <option>Class 4</option>
-                        <option>Class 5</option>
-                        <option>Class 6</option>
-                        <option>Class 7</option>
-                        <option>Class 8</option>
-                        <option>Class 9</option>
-                        <option>Class 10</option>
-                        <option>Class 11</option>
-                        <option>Class 12</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Subject</label>
-                    <input type="text" id="subject" placeholder="Enter subject name">
-                </div>
-                <div class="form-group">
-                    <label>Homework Details</label>
-                    <textarea id="details" rows="4" placeholder="Enter homework description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Due Date</label>
-                    <input type="date" id="dueDate">
-                </div>
-                <button class="submit-btn" onclick="generateCode()">Generate Code</button>
-
-                <div id="codeOutput" style="display: none; margin-top: 1rem;">
-                    <h4>Copy This Code:</h4>
-                    <div class="code-block" id="codeBlock"></div>
-                    <button class="submit-btn" onclick="copyCode()">Copy Code</button>
-                </div>
-            </div>
-        </div>
+  <div class="admin-wrap">
+    <div class="admin-login card">
+      <h2>Admin Login</h2>
+      <p class="muted">Enter admin password to proceed.</p>
+      <input id="adminPwd" type="password" placeholder="Password">
+      <div style="display:flex;gap:8px;margin-top:8px"><button id="adminLogin" class="btn">Login</button><button id="adminLogout" class="btn ghost">Clear</button></div>
+      <p class="small muted">Default password: <strong>Abutalha</strong></p>
     </div>
 
-    <script>
-        // Admin Login
-        (() => {
-            const password = prompt("Enter Admin Password:");
-            if (password !== "Abutalha") {
-                alert("Access Denied!");
-                window.location.href = "index.html";
-            }
-        })();
+    <div id="adminPanel" class="admin-panel hidden">
+      <header class="admin-header card">
+        <h3>MKPS Admin</h3>
+        <div class="admin-tools"><button id="exportData" class="btn">Export JSON</button><button id="importData" class="btn ghost">Import JSON</button></div>
+      </header>
 
-        function generateCode() {
-            const cls = document.getElementById('adminClass').value;
-            const subject = document.getElementById('subject').value;
-            const details = document.getElementById('details').value;
-            const dueDate = document.getElementById('dueDate').value;
+      <div class="admin-grid container">
+        <aside class="admin-sidebar card">
+          <nav>
+            <ul>
+              <li><a href="#noticesTab" class="active">Notices</a></li>
+              <li><a href="#eventsTab">Events</a></li>
+              <li><a href="#galleryTab">Gallery</a></li>
+              <li><a href="#studentsTab">Students</a></li>
+              <li><a href="#teachersTab">Teachers</a></li>
+              <li><a href="#settingsTab">Settings</a></li>
+            </ul>
+          </nav>
+        </aside>
 
-            if (!cls || !subject || !details || !dueDate) {
-                alert("Please fill all fields");
-                return;
-            }
-
-            const date = new Date(dueDate).toLocaleDateString('en-IN');
-
-            const code = `<div class="homework-item">
-    <h4>${subject}</h4>
-    <div class="homework-meta">
-        <span><i class="fas fa-book"></i> ${cls}</span>
-        <span><i class="fas fa-calendar"></i> Due: ${date}</span>
+        <section class="admin-content card" id="adminContent">
+          <!-- dynamic admin content injected here -->
+        </section>
+      </div>
     </div>
-    <p>${details}</p>
-</div>`;
+  </div>
 
-            document.getElementById('codeBlock').textContent = code;
-            document.getElementById('codeOutput').style.display = 'block';
-        }
-
-        function copyCode() {
-            const code = document.getElementById('codeBlock').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                alert("Code copied! Paste it in index.html under homework section.");
-            });
-        }
-    </script>
+  <script src="js/script.js"></script>
+  <script>
+    // admin.html uses the same script.js - it exposes admin functions
+    document.getElementById('adminLogin').addEventListener('click', ()=>{
+      const pwd = document.getElementById('adminPwd').value.trim(); if(window.MKPS && MKPS.checkAdminPwd(pwd)){ document.querySelector('.admin-login').classList.add('hidden'); document.getElementById('adminPanel').classList.remove('hidden'); MKPS.openAdminPanel(); } else alert('Wrong password'); });
+    document.getElementById('adminLogout').addEventListener('click', ()=>{ localStorage.removeItem('MKPS_HOME_v1'); alert('Local data cleared.'); });
+  </script>
 </body>
-    </html>
+</html>
