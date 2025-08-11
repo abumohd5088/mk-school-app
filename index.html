@@ -18,6 +18,8 @@
             --gray: #64748b;
             --success: #10b981;
             --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #0ea5e9;
         }
         
         * {
@@ -48,6 +50,7 @@
             width: 100%;
             z-index: 1000;
             transition: all 0.3s ease;
+            padding: 1rem 0;
         }
         
         .navbar.scrolled {
@@ -652,52 +655,44 @@
             box-shadow: 0 15px 30px rgba(251, 191, 36, 0.4);
         }
         
-        .login-modal {
+        /* Registration Modal */
+        .register-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
+            opacity: 1;
+            pointer-events: auto;
             transition: all 0.4s ease;
         }
         
-        .login-modal.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        
-        .modal-content {
+        .register-content {
             background: white;
             width: 95%;
-            max-width: 550px;
+            max-width: 700px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            transform: translateY(50px);
+            transform: translateY(0);
             transition: all 0.5s ease;
-            max-height: 90vh;
+            max-height: 95vh;
             overflow-y: auto;
         }
         
-        .login-modal.show .modal-content {
-            transform: translateY(0);
-        }
-        
-        .modal-header {
+        .register-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 25px;
             position: relative;
         }
         
-        .modal-header h5 {
+        .register-header h5 {
             font-size: 1.5rem;
             margin: 0;
             display: flex;
@@ -705,7 +700,7 @@
             gap: 10px;
         }
         
-        .close-modal {
+        .close-register {
             position: absolute;
             top: 15px;
             right: 15px;
@@ -723,42 +718,81 @@
             transition: all 0.3s;
         }
         
-        .close-modal:hover {
+        .close-register:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: rotate(90deg);
         }
         
-        .modal-body {
+        .register-body {
             padding: 35px;
         }
         
-        .student-login {
-            text-align: center;
+        .register-steps {
+            display: flex;
             margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
         }
         
-        .student-login h4 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-        }
-        
-        .login-form .form-control {
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 14px 20px;
-            font-size: 1rem;
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 20px;
+            color: var(--gray);
         }
         
-        .login-form .form-control:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 0.2rem rgba(29, 78, 216, 0.25);
+        .step.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .step.active:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .step i {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: #e2e8f0;
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 1.2rem;
+        }
+        
+        .step.active i {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .step-form {
+            display: none;
+        }
+        
+        .step-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .form-group label {
@@ -769,43 +803,322 @@
             font-size: 0.95rem;
         }
         
-        .login-btn {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        .form-control {
+            width: 100%;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.2rem rgba(29, 78, 216, 0.25);
+        }
+        
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .col {
+            flex: 1;
+        }
+        
+        .btn-next, .btn-prev {
+            background: var(--secondary);
             color: white;
             border: none;
-            padding: 14px 30px;
+            padding: 12px 25px;
             border-radius: 50px;
-            font-size: 1.1rem;
             font-weight: 600;
-            width: 100%;
+            cursor: pointer;
             transition: all 0.3s;
-            margin-top: 10px;
         }
         
-        .login-btn:hover {
+        .btn-next:hover, .btn-prev:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(10, 42, 102, 0.3);
+            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.3);
         }
         
-        .admin-login {
-            background: #f8fafc;
-            padding: 30px;
+        .btn-next {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .btn-next:disabled {
+            background: #cbd5e1;
+            color: #64748b;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-next:disabled:hover {
+            box-shadow: none;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--accent);
+            width: 20%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Student Dashboard */
+        .dashboard {
+            display: none;
+            padding: 100px 0;
+            background: #f1f5f9;
+        }
+        
+        .dashboard-header {
+            background: white;
             border-radius: 15px;
-            margin-top: 30px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
         }
         
-        .admin-login h4 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
+        .student-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
         }
         
-        .admin-login h4 i {
+        .student-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        
+        .student-details h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .student-details p {
+            color: var(--gray);
+            margin: 0;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .stat-card h4 {
+            color: var(--primary);
+            margin: 10px 0 5px;
+            font-size: 1.1rem;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 30px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .dashboard-card h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .homework-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        .homework-item:last-child {
+            border-bottom: none;
+        }
+        
+        .homework-item:hover {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .hw-icon {
+            width: 50px;
+            height: 50px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .hw-icon i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .hw-details {
+            flex: 1;
+        }
+        
+        .hw-details h5 {
+            margin: 0 0 5px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .hw-subject {
+            display: inline-block;
+            background: rgba(29, 78, 216, 0.1);
+            color: var(--secondary);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .hw-date {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .hw-status {
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .status-pending {
+            background: rgba(239, 68, 68, 0.1);
             color: var(--danger);
+        }
+        
+        .status-submitted {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .announcements {
+            margin-top: 20px;
+        }
+        
+        .announcement {
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .announcement h5 {
+            margin: 0 0 8px;
+            color: var(--primary);
+        }
+        
+        .announcement p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .announcement-date {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
+        }
+        
+        .action-btn i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .action-btn span {
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        /* Class-Specific Content */
+        .class-content {
+            display: none;
+        }
+        
+        .class-content.active {
+            display: block;
         }
         
         .toast {
@@ -840,6 +1153,10 @@
             .navbar-brand {
                 font-size: 1.6rem;
             }
+            
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -866,6 +1183,19 @@
             
             .contact-info {
                 padding: 30px 20px;
+            }
+            
+            .row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .col {
+                width: 100%;
+            }
+            
+            .register-content {
+                margin: 20px;
             }
         }
     </style>
@@ -1246,61 +1576,469 @@
         </div>
     </section>
 
-    <!-- Login Modal -->
-    <div class="login-modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5><i class="fas fa-user-graduate"></i> Student & Staff Login</h5>
-                <button class="close-modal" id="closeModal">&times;</button>
+    <!-- Registration Modal -->
+    <div class="register-modal" id="registerModal">
+        <div class="register-content">
+            <div class="register-header">
+                <h5><i class="fas fa-user-plus"></i> Student Registration</h5>
+                <button class="close-register" id="closeRegister">&times;</button>
             </div>
-            <div class="modal-body">
-                <div class="student-login">
-                    <h4><i class="fas fa-user"></i> Student Login Portal</h4>
-                    <form class="login-form" id="studentLoginForm">
-                        <div class="form-group">
-                            <label for="studentName">Full Name</label>
-                            <input type="text" class="form-control" id="studentName" placeholder="Enter your full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="studentClass">Class</label>
-                            <select class="form-control" id="studentClass" required>
-                                <option value="">Select Your Class</option>
-                                <option value="1">Class 1</option>
-                                <option value="2">Class 2</option>
-                                <option value="3">Class 3</option>
-                                <option value="4">Class 4</option>
-                                <option value="5">Class 5</option>
-                                <option value="6">Class 6</option>
-                                <option value="7">Class 7</option>
-                                <option value="8">Class 8</option>
-                                <option value="9">Class 9</option>
-                                <option value="10">Class 10</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="rollNumber">Roll Number</label>
-                            <input type="text" class="form-control" id="rollNumber" placeholder="Enter your roll number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                        </div>
-                        <button type="submit" class="login-btn">
-                            <i class="fas fa-sign-in-alt me-2"></i> Login to Dashboard
-                        </button>
-                    </form>
+            <div class="register-body">
+                <div class="register-steps">
+                    <div class="step active" data-step="1">
+                        <i class="fas fa-user"></i>
+                        <div>Personal Info</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <i class="fas fa-home"></i>
+                        <div>Parent Info</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>Academic Info</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <i class="fas fa-check"></i>
+                        <div>Confirmation</div>
+                    </div>
                 </div>
                 
-                <div class="admin-login">
-                    <h4><i class="fas fa-user-shield"></i> Administrative Access</h4>
-                    <p>Authorized personnel only. Access to homework management, attendance records, and academic administration.</p>
-                    <a href="admin.html" class="btn btn-primary w-100">
-                        <i class="fas fa-cogs me-2"></i> Admin Panel
-                    </a>
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                
+                <!-- Step 1: Personal Information -->
+                <div class="step-form active" id="step1">
+                    <h4>Personal Information</h4>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentEmail">Email Address</label>
+                        <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentPhone">Phone Number</label>
+                        <input type="tel" class="form-control" id="studentPhone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select class="form-control" id="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea class="form-control" id="address" rows="3" placeholder="Enter your full address" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="admissionNo">Admission Number</label>
+                        <input type="text" class="form-control" id="admissionNo" placeholder="Enter your admission number" required>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn-prev" disabled>Previous</button>
+                        <button class="btn-next" id="nextToStep2">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Parent Information -->
+                <div class="step-form" id="step2">
+                    <h4>Parent/Guardian Information</h4>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="fatherName">Father's Name</label>
+                                <input type="text" class="form-control" id="fatherName" placeholder="Enter father's name" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="fatherPhone">Father's Phone</label>
+                                <input type="tel" class="form-control" id="fatherPhone" placeholder="Enter father's phone number" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="motherName">Mother's Name</label>
+                                <input type="text" class="form-control" id="motherName" placeholder="Enter mother's name" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="motherPhone">Mother's Phone</label>
+                                <input type="tel" class="form-control" id="motherPhone" placeholder="Enter mother's phone number" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentEmail">Parent's Email</label>
+                        <input type="email" class="form-control" id="parentEmail" placeholder="Enter parent's email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentAddress">Parent's Address (if different)</label>
+                        <textarea class="form-control" id="parentAddress" rows="3" placeholder="Enter parent's address if different from student"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="occupation">Parent's Occupation</label>
+                        <input type="text" class="form-control" id="occupation" placeholder="Enter parent's occupation" required>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn-prev" id="prevToStep1">Previous</button>
+                        <button class="btn-next" id="nextToStep3">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Academic Information -->
+                <div class="step-form" id="step3">
+                    <h4>Academic Information</h4>
+                    <div class="form-group">
+                        <label for="currentClass">Current Class</label>
+                        <select class="form-control" id="currentClass" required>
+                            <option value="">Select Your Current Class</option>
+                            <option value="1">Class 1</option>
+                            <option value="2">Class 2</option>
+                            <option value="3">Class 3</option>
+                            <option value="4">Class 4</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="section">Section</label>
+                        <select class="form-control" id="section" required>
+                            <option value="">Select Section</option>
+                            <option value="A">Section A</option>
+                            <option value="B">Section B</option>
+                            <option value="C">Section C</option>
+                            <option value="D">Section D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rollNumber">Roll Number</label>
+                        <input type="text" class="form-control" id="rollNumber" placeholder="Enter your roll number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="previousSchool">Previous School (if any)</label>
+                        <input type="text" class="form-control" id="previousSchool" placeholder="Enter name of previous school">
+                    </div>
+                    <div class="form-group">
+                        <label for="previousMarks">Previous Academic Performance</label>
+                        <input type="text" class="form-control" id="previousMarks" placeholder="Enter your previous academic performance">
+                    </div>
+                    <div class="form-group">
+                        <label for="subjects">Subjects of Interest</label>
+                        <select class="form-control" id="subjects" multiple required>
+                            <option value="english">English</option>
+                            <option value="hindi">Hindi</option>
+                            <option value="urdu">Urdu</option>
+                            <option value="math">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="social">Social Studies</option>
+                            <option value="computer">Computer Science</option>
+                            <option value="arts">Arts & Craft</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn-prev" id="prevToStep2">Previous</button>
+                        <button class="btn-next" id="nextToStep4">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Confirmation -->
+                <div class="step-form" id="step4">
+                    <h4>Review and Confirm</h4>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Please review all information carefully before submitting.</strong>
+                        Once submitted, you won't be able to change your personal details.
+                    </div>
+                    
+                    <div class="confirmation-details">
+                        <h5>Personal Information</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Name:</strong></td>
+                                <td id="confirmName">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email:</strong></td>
+                                <td id="confirmEmail">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phone:</strong></td>
+                                <td id="confirmPhone">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date of Birth:</strong></td>
+                                <td id="confirmDob">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gender:</strong></td>
+                                <td id="confirmGender">-</td>
+                            </tr>
+                        </table>
+                        
+                        <h5>Parent Information</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Father's Name:</strong></td>
+                                <td id="confirmFather">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mother's Name:</strong></td>
+                                <td id="confirmMother">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Parent's Phone:</strong></td>
+                                <td id="confirmParentPhone">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Parent's Email:</strong></td>
+                                <td id="confirmParentEmail">-</td>
+                            </tr>
+                        </table>
+                        
+                        <h5>Academic Information</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Class:</strong></td>
+                                <td id="confirmClass">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Section:</strong></td>
+                                <td id="confirmSection">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Roll Number:</strong></td>
+                                <td id="confirmRoll">-</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                        <label class="form-check-label" for="termsCheck">
+                            I confirm that all information provided is accurate and I agree to the school's <a href="#" style="color: var(--accent);">terms and conditions</a>.
+                        </label>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn-prev" id="prevToStep3">Previous</button>
+                        <button class="btn-next" id="submitRegistration">Submit Registration</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Student Dashboard -->
+    <section class="dashboard" id="studentDashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="student-info">
+                    <div class="student-avatar" id="studentInitial">MK</div>
+                    <div class="student-details">
+                        <h3 id="studentFullName">Muhammad Khan</h3>
+                        <p id="studentClassInfo">Class 8, Section B • Roll No: 8B023</p>
+                        <p id="studentEmailInfo">muhammad.khan@student.millikarwaan.edu</p>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="attendanceRate">94%</div>
+                        <h4>Attendance</h4>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avgGrade">A</div>
+                        <h4>Performance</h4>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="homeworkCount">3</div>
+                        <h4>Pending HW</h4>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="testCount">2</div>
+                        <h4>Upcoming Tests</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <div class="dashboard-card">
+                    <h4>Homework & Assignments</h4>
+                    <div id="homeworkList">
+                        <!-- Homework items will be populated based on class -->
+                        <div class="homework-item">
+                            <div class="hw-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="hw-details">
+                                <h5>Mathematics: Algebra Problems</h5>
+                                <span class="hw-subject">Mathematics</span>
+                                <div class="hw-date">Due: Oct 15, 2023</div>
+                            </div>
+                            <span class="hw-status status-pending">Pending</span>
+                        </div>
+                        <div class="homework-item">
+                            <div class="hw-icon">
+                                <i class="fas fa-globe-asia"></i>
+                            </div>
+                            <div class="hw-details">
+                                <h5>Geography: Map of India</h5>
+                                <span class="hw-subject">Social Studies</span>
+                                <div class="hw-date">Due: Oct 16, 2023</div>
+                            </div>
+                            <span class="hw-status status-pending">Pending</span>
+                        </div>
+                        <div class="homework-item">
+                            <div class="hw-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="hw-details">
+                                <h5>Science: Experiment Report</h5>
+                                <span class="hw-subject">Science</span>
+                                <div class="hw-date">Due: Oct 18, 2023</div>
+                            </div>
+                            <span class="hw-status status-pending">Pending</span>
+                        </div>
+                    </div>
+                    
+                    <div class="announcements">
+                        <h4>Announcements</h4>
+                        <div class="announcement">
+                            <h5>Annual Sports Day - Oct 25, 2023</h5>
+                            <p>Don't forget to register for your preferred sports event by Oct 20. All students are encouraged to participate.</p>
+                            <div class="announcement-date">Posted: Oct 10, 2023</div>
+                        </div>
+                        <div class="announcement">
+                            <h5>Parent-Teacher Meeting - Oct 30, 2023</h5>
+                            <p>Schedule your appointment through the parent portal. Individual meetings will be held from 9 AM to 4 PM.</p>
+                            <div class="announcement-date">Posted: Oct 8, 2023</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h4>Quick Actions</h4>
+                    <div class="quick-actions">
+                        <div class="action-btn">
+                            <i class="fas fa-upload"></i>
+                            <span>Submit Homework</span>
+                        </div>
+                        <div class="action-btn">
+                            <i class="fas fa-video"></i>
+                            <span>Online Class</span>
+                        </div>
+                        <div class="action-btn">
+                            <i class="fas fa-book"></i>
+                            <span>Digital Library</span>
+                        </div>
+                        <div class="action-btn">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progress Report</span>
+                        </div>
+                        <div class="action-btn">
+                            <i class="fas fa-comments"></i>
+                            <span>Message Teacher</span>
+                        </div>
+                        <div class="action-btn">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Event Calendar</span>
+                        </div>
+                        <div class="action-btn">
+                            <i class="fas fa-cog"></i>
+                            <span>Account Settings</span>
+                        </div>
+                        <div class="action-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </div>
+                    </div>
+                    
+                    <h4 class="mt-4">Class Schedule</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>8:00-9:00</td>
+                                    <td>Math</td>
+                                    <td>English</td>
+                                    <td>Hindi</td>
+                                    <td>Urdu</td>
+                                    <td>Science</td>
+                                </tr>
+                                <tr>
+                                    <td>9:00-10:00</td>
+                                    <td>Science</td>
+                                    <td>Math</td>
+                                    <td>English</td>
+                                    <td>Hindi</td>
+                                    <td>Computer</td>
+                                </tr>
+                                <tr>
+                                    <td>10:15-11:15</td>
+                                    <td>English</td>
+                                    <td>Science</td>
+                                    <td>Math</td>
+                                    <td>Computer</td>
+                                    <td>Urdu</td>
+                                </tr>
+                                <tr>
+                                    <td>11:15-12:15</td>
+                                    <td>Hindi</td>
+                                    <td>Urdu</td>
+                                    <td>Computer</td>
+                                    <td>Science</td>
+                                    <td>Math</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Floating Action Button -->
     <div class="floating-button" id="callButton">
@@ -1308,7 +2046,7 @@
     </div>
 
     <!-- Toast Notification -->
-    <div class="toast" id="toast">Login successful! Redirecting to dashboard...</div>
+    <div class="toast" id="toast">Registration successful! Welcome to Milli Karwaan Public School.</div>
 
     <!-- Footer -->
     <footer>
@@ -1374,6 +2112,75 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Current step in registration
+        let currentStep = 1;
+        const totalSteps = 4;
+        const progressBar = document.getElementById('progressBar');
+        
+        // Registration Modal Elements
+        const registerModal = document.getElementById('registerModal');
+        const closeRegister = document.getElementById('closeRegister');
+        const steps = document.querySelectorAll('.step');
+        const stepForms = document.querySelectorAll('.step-form');
+        
+        // Navigation buttons
+        const nextToStep2 = document.getElementById('nextToStep2');
+        const prevToStep1 = document.getElementById('prevToStep1');
+        const nextToStep3 = document.getElementById('nextToStep3');
+        const prevToStep2 = document.getElementById('prevToStep2');
+        const nextToStep4 = document.getElementById('nextToStep4');
+        const prevToStep3 = document.getElementById('prevToStep3');
+        const submitRegistration = document.getElementById('submitRegistration');
+        
+        // Form elements
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const studentEmail = document.getElementById('studentEmail');
+        const studentPhone = document.getElementById('studentPhone');
+        const dob = document.getElementById('dob');
+        const gender = document.getElementById('gender');
+        const address = document.getElementById('address');
+        const admissionNo = document.getElementById('admissionNo');
+        
+        const fatherName = document.getElementById('fatherName');
+        const fatherPhone = document.getElementById('fatherPhone');
+        const motherName = document.getElementById('motherName');
+        const motherPhone = document.getElementById('motherPhone');
+        const parentEmail = document.getElementById('parentEmail');
+        const parentAddress = document.getElementById('parentAddress');
+        const occupation = document.getElementById('occupation');
+        
+        const currentClass = document.getElementById('currentClass');
+        const section = document.getElementById('section');
+        const rollNumber = document.getElementById('rollNumber');
+        const previousSchool = document.getElementById('previousSchool');
+        const previousMarks = document.getElementById('previousMarks');
+        const subjects = document.getElementById('subjects');
+        
+        // Confirmation elements
+        const confirmName = document.getElementById('confirmName');
+        const confirmEmail = document.getElementById('confirmEmail');
+        const confirmPhone = document.getElementById('confirmPhone');
+        const confirmDob = document.getElementById('confirmDob');
+        const confirmGender = document.getElementById('confirmGender');
+        const confirmFather = document.getElementById('confirmFather');
+        const confirmMother = document.getElementById('confirmMother');
+        const confirmParentPhone = document.getElementById('confirmParentPhone');
+        const confirmParentEmail = document.getElementById('confirmParentEmail');
+        const confirmClass = document.getElementById('confirmClass');
+        const confirmSection = document.getElementById('confirmSection');
+        const confirmRoll = document.getElementById('confirmRoll');
+        
+        // Other elements
+        const loginBtn = document.getElementById('loginBtn');
+        const callButton = document.getElementById('callButton');
+        const toast = document.getElementById('toast');
+        const studentDashboard = document.getElementById('studentDashboard');
+        const studentInitial = document.getElementById('studentInitial');
+        const studentFullName = document.getElementById('studentFullName');
+        const studentClassInfo = document.getElementById('studentClassInfo');
+        const studentEmailInfo = document.getElementById('studentEmailInfo');
+        
         // Navigation scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
@@ -1384,50 +2191,21 @@
             }
         });
         
-        // Login Modal Functionality
-        const loginBtn = document.getElementById('loginBtn');
-        const loginModal = document.getElementById('loginModal');
-        const closeModal = document.getElementById('closeModal');
-        const studentLoginForm = document.getElementById('studentLoginForm');
-        const toast = document.getElementById('toast');
-        const callButton = document.getElementById('callButton');
+        // Close registration modal
+        closeRegister.addEventListener('click', () => {
+            registerModal.style.opacity = '0';
+            setTimeout(() => {
+                registerModal.style.display = 'none';
+            }, 300);
+        });
         
-        // Show modal
+        // Show registration modal when login button is clicked
         loginBtn.addEventListener('click', () => {
-            loginModal.classList.add('show');
-        });
-        
-        // Close modal
-        closeModal.addEventListener('click', () => {
-            loginModal.classList.remove('show');
-        });
-        
-        // Close modal when clicking outside
-        loginModal.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.classList.remove('show');
-            }
-        });
-        
-        // Form submission
-        studentLoginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('studentName').value;
-            const className = document.getElementById('studentClass').value;
-            const rollNumber = document.getElementById('rollNumber').value;
-            const password = document.getElementById('password').value;
-            
-            if (name && className && rollNumber && password) {
-                // Show success toast
-                toast.classList.add('show');
-                
-                // Hide modal and toast after animation
-                setTimeout(() => {
-                    loginModal.classList.remove('show');
-                    toast.classList.remove('show');
-                    alert(`Welcome ${name}! You are now logged in to Class ${className} dashboard.`);
-                }, 2000);
-            }
+            registerModal.style.display = 'flex';
+            setTimeout(() => {
+                registerModal.style.opacity = '1';
+            }, 100);
+            resetRegistration();
         });
         
         // Call button functionality
@@ -1449,32 +2227,179 @@
             });
         });
         
-        // Form validation
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.addEventListener('submit', function(e) {
-                const requiredFields = this.querySelectorAll('[required]');
-                let isValid = true;
-                
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        isValid = false;
-                        field.style.borderColor = '#ef4444';
-                    } else {
-                        field.style.borderColor = '#e2e8f0';
-                    }
-                });
-                
-                if (!isValid) {
-                    e.preventDefault();
-                    alert('Please fill in all required fields.');
+        // Step navigation functions
+        function goToStep(step) {
+            // Validate current step before proceeding
+            if (step > currentStep) {
+                if (!validateStep(currentStep)) {
+                    return;
+                }
+            }
+            
+            // Update current step
+            currentStep = step;
+            
+            // Update steps display
+            steps.forEach((s, index) => {
+                if (index + 1 === currentStep) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+            
+            // Show current step form
+            stepForms.forEach(form => {
+                form.classList.remove('active');
+            });
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            
+            // Update progress bar
+            const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        // Validate step fields
+        function validateStep(step) {
+            let isValid = true;
+            let elementsToCheck = [];
+            
+            switch (step) {
+                case 1:
+                    elementsToCheck = [firstName, lastName, studentEmail, studentPhone, dob, gender, address, admissionNo];
+                    break;
+                case 2:
+                    elementsToCheck = [fatherName, fatherPhone, motherName, motherPhone, parentEmail, occupation];
+                    break;
+                case 3:
+                    elementsToCheck = [currentClass, section, rollNumber];
+                    break;
+            }
+            
+            elementsToCheck.forEach(element => {
+                if (!element.value.trim()) {
+                    element.style.borderColor = '#ef4444';
+                    isValid = false;
+                } else {
+                    element.style.borderColor = '#e2e8f0';
+                }
+            });
+            
+            if (!isValid) {
+                showToast('Please fill in all required fields.', 'error');
+            }
+            
+            return isValid;
+        }
+        
+        // Update confirmation step
+        function updateConfirmation() {
+            confirmName.textContent = `${firstName.value} ${lastName.value}`;
+            confirmEmail.textContent = studentEmail.value;
+            confirmPhone.textContent = studentPhone.value;
+            confirmDob.textContent = dob.value ? new Date(dob.value).toLocaleDateString() : '';
+            confirmGender.textContent = gender.value;
+            
+            confirmFather.textContent = fatherName.value;
+            confirmMother.textContent = motherName.value;
+            confirmParentPhone.textContent = fatherPhone.value;
+            confirmParentEmail.textContent = parentEmail.value;
+            
+            confirmClass.textContent = currentClass.value ? `Class ${currentClass.value}` : '';
+            confirmSection.textContent = section.value;
+            confirmRoll.textContent = rollNumber.value;
+        }
+        
+        // Reset registration form
+        function resetRegistration() {
+            currentStep = 1;
+            progressBar.style.width = '0%';
+            
+            // Reset form fields
+            const formFields = document.querySelectorAll('input, select, textarea');
+            formFields.forEach(field => {
+                if (field.type !== 'checkbox') {
+                    field.value = '';
+                }
+            });
+            
+            // Reset validation styles
+            const formControls = document.querySelectorAll('.form-control');
+            formControls.forEach(control => {
+                control.style.borderColor = '#e2e8f0';
+            });
+            
+            // Reset steps
+            goToStep(1);
+        }
+        
+        // Show toast message
+        function showToast(message, type = 'success') {
+            toast.textContent = message;
+            toast.style.background = type === 'success' ? var(--success) : var(--danger);
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Event Listeners for navigation buttons
+        nextToStep2.addEventListener('click', () => goToStep(2));
+        prevToStep1.addEventListener('click', () => goToStep(1));
+        nextToStep3.addEventListener('click', () => goToStep(3));
+        prevToStep2.addEventListener('click', () => goToStep(2));
+        nextToStep4.addEventListener('click', () => {
+            updateConfirmation();
+            goToStep(4);
+        });
+        prevToStep3.addEventListener('click', () => goToStep(3));
+        
+        // Submit registration
+        submitRegistration.addEventListener('click', () => {
+            if (document.getElementById('termsCheck').checked) {
+                // Hide registration modal
+                registerModal.style.opacity = '0';
+                setTimeout(() => {
+                    registerModal.style.display = 'none';
+                    
+                    // Show student dashboard
+                    studentDashboard.style.display = 'block';
+                    
+                    // Set student information
+                    const studentName = `${firstName.value} ${lastName.value}`;
+                    studentFullName.textContent = studentName;
+                    studentClassInfo.textContent = `Class ${currentClass.value}, Section ${section.value} • Roll No: ${currentClass.value}${section.value}${rollNumber.value}`;
+                    studentEmailInfo.textContent = studentName.toLowerCase().replace(' ', '.') + '@student.millikarwaan.edu';
+                    
+                    // Set student initial
+                    studentInitial.textContent = firstName.value.charAt(0) + lastName.value.charAt(0);
+                    
+                    // Show success toast
+                    showToast('Registration successful! Welcome to Milli Karwaan Public School.');
+                    
+                }, 300);
+            } else {
+                showToast('Please agree to the terms and conditions.', 'error');
+            }
+        });
+        
+        // Form validation in real-time
+        const allInputs = document.querySelectorAll('input, select, textarea');
+        allInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim() && this.style.borderColor === 'rgb(239, 68, 68)') {
+                    this.style.borderColor = '#e2e8f0';
                 }
             });
         });
         
-        // Initialize tooltips if needed
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            // Any initialization code here
+            // Hide dashboard initially
+            studentDashboard.style.display = 'none';
+            
+            // Any other initialization code here
             console.log('Milli Karwaan Public School website loaded successfully.');
         });
     </script>
