@@ -4,317 +4,172 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mili Karwaan Public School — Official Website</title>
-  <meta name="description" content="Mili Karwaan Public School — Balrampur. Official site: Admissions, Academics, Facilities, Gallery, News & Contact."/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>MKPS Admin Panel — Firebase-ready</title>
+  <meta name="description" content="Admin panel for Mili Karwaan Public School — manage homework, notices, events, gallery, students, teachers." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta name="theme-color" content="#065f46">
   <style>
-    /* ---------- Theme: Green-Gold Premium ---------- */
-    :root{
-      --g1:#0f766e; --g2:#065f46; --gold:#f59e0b; --muted:#6b7280; --card:#ffffff; --glass:rgba(255,255,255,0.85); --maxw:1200px;
-    }
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#0f766e;--accent2:#f59e0b;--muted:#94a3b8}
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{background:linear-gradient(180deg,#f7fffb,#f0fdf4);color:#0b2a28}
-    a{color:inherit}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}/* NAVBAR */
-header{position:sticky;top:0;z-index:999;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:10px 0;box-shadow:0 6px 18px rgba(4,22,18,0.12)}
-.nav-inner{display:flex;align-items:center;gap:18px;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{width:56px;height:56px;border-radius:10px;border:2px solid rgba(255,255,255,0.12);background:#fff;padding:6px}
-.brand h1{font-family:'Montserrat',sans-serif;font-size:1.15rem;margin:0}
-nav ul{list-style:none;display:flex;gap:8px;margin:0;padding:0}
-nav a{display:inline-block;padding:10px 12px;border-radius:8px;color:rgba(255,255,255,0.95);font-weight:600;text-decoration:none}
-nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
-.cta{background:linear-gradient(90deg,var(--gold),#d97706);padding:10px 14px;border-radius:10px;color:#10221a;font-weight:800}
-
-/* HERO */
-.hero{padding:64px 0 40px;background-image:linear-gradient(180deg, rgba(4,32,27,0.12), rgba(255,255,255,0));}
-.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:34px;align-items:center}
-.hero-text h2{font-family:'Montserrat',sans-serif;font-size:2.2rem;margin:0 0 12px;color:var(--g2)}
-.hero-text p.lead{font-size:1.05rem;color:var(--muted);margin-bottom:18px}
-.hero-cta{display:flex;gap:12px}
-.stat-row{display:flex;gap:12px;margin-top:18px}
-.stat{background:linear-gradient(180deg,#fff,#fbfff8);padding:12px;border-radius:12px;box-shadow:0 10px 28px rgba(2,8,6,0.04);min-width:120px;text-align:center}
-.stat strong{display:block;font-size:1.4rem;color:var(--g2)}
-
-.hero-card{background:linear-gradient(180deg,#fff,#fbfff8);padding:18px;border-radius:14px;box-shadow:0 18px 40px rgba(2,8,6,0.06)}
-.hero-card h3{margin:0 0 8px;color:var(--g2)}
-.hero-card p{margin:0;color:var(--muted)}
-
-/* SECTIONS */
-section{padding:42px 0}
-.section-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.section-head h3{margin:0;color:var(--g2);font-family:'Montserrat',sans-serif}
-
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 12px 32px rgba(2,8,6,0.04)}
-.card h4{margin:0 0 8px;color:var(--g2)}
-.muted{color:var(--muted)}
-
-/* FACILITIES */
-.facilities .icon{width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,#f7fff7,#f4fff3);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--g2);margin-bottom:10px}
-
-/* NEWS TICKER */
-.ticker{background:#f7fff7;border-left:4px solid var(--g2);padding:10px;border-radius:8px;overflow:hidden}
-.ticker-inner{display:inline-block;white-space:nowrap;animation:marquee 18s linear infinite}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* GALLERY */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
-.gallery-grid img{width:100%;height:120px;object-fit:cover;border-radius:10px;cursor:pointer}
-
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
-.contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f3ee;margin-bottom:10px}
-.contact-form button{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
-
-/* FOOTER */
-footer{background:linear-gradient(180deg,#062b25,#0a2f27);color:#cfeee3;padding:28px 0;margin-top:28px}
-.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-footer a{color:#dff6e9}
-
-/* MODAL */
-.modal{position:fixed;inset:0;background:rgba(3,7,7,0.56);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s}
-.modal.open{opacity:1;pointer-events:auto}
-.modal-card{background:#fff;border-radius:12px;max-width:940px;width:94%;padding:18px}
-
-/* Responsive */
-@media (max-width:980px){.hero-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
-@media (max-width:560px){nav ul{display:none}.brand h1{font-size:.98rem}}
-
-/* back to top */
-.to-top{position:fixed;right:20px;bottom:20px;background:var(--g2);color:#fff;padding:12px;border-radius:10px;box-shadow:0 10px 30px rgba(2,8,6,0.2);display:none}
-.to-top.show{display:block}
-
+    body{font-family:'Inter',system-ui,Segoe UI,Roboto,sans-serif;margin:0;background:linear-gradient(180deg,#02121a,#071827);color:#e6f3ef}
+    .wrap{max-width:1200px;margin:20px auto;padding:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.08));padding:14px;border-radius:12px;margin-bottom:12px;box-shadow:0 8px 24px rgba(2,6,23,.5)}
+    h1{margin:0 0 8px;font-size:1.25rem}
+    .row{display:flex;gap:12px}
+    input,select,textarea{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    button{background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;padding:10px 12px;border-radius:8px;color:#042018;font-weight:700;cursor:pointer}
+    .muted{color:var(--muted)}
+    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.03);text-align:left}
+    .small{font-size:.9rem}
+    .hidden{display:none}
+    .toolbar{display:flex;gap:8px;align-items:center}
+    .badge{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px}
+    .file-preview{max-height:120px;border-radius:8px}
   </style>
 </head>
 <body>
-  <!-- NAV -->
-  <header>
-    <div class="container nav-inner">
-      <div class="brand">
-        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="Mili Karwaan Logo" onerror="this.src='https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'"/>
-        <div>
-          <h1>Mili Karwaan Public School</h1>
-          <div style="font-size:.85rem;color:rgba(255,255,255,0.9)">Balrampur, Uttar Pradesh</div>
-        </div>
-      </div><nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#academics">Academics</a></li>
-      <li><a href="#facilities">Facilities</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li style="display:inline-block;margin-left:8px"><a class="cta" href="#admissions">Admissions</a></li>
-    </ul>
-  </nav>
+  <div class="wrap">
+    <div class="card" id="loginCard">
+      <h1>Admin Login (Local guard)</h1>
+      <p class="muted">This admin panel is Firebase-ready. If you enable Firebase Auth later, switch the login flow — see README comments inside the file.</p>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
+        <input id="adminPwd" type="password" placeholder="Enter admin password" style="flex:1" />
+        <button id="loginBtn">Login</button>
+      </div>
+      <p class="muted small">Default admin password: <strong>Abutalha</strong></p>
+    </div><div id="adminPanel" class="hidden">
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:12px;justify-content:space-between">
+      <div>
+        <h1>MKPS Admin</h1>
+        <div class="muted small">Manage site data: homework, notices, events, gallery, students, teachers. LocalStorage & Firebase-ready.</div>
+      </div>
+      <div class="toolbar">
+        <button id="logoutBtn" style="background:#ffb4b4">Logout</button>
+        <button id="exportAll">Export JSON</button>
+        <button id="importAll">Import JSON</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Quick Actions</h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <button id="addNoticeBtn">Add Notice</button>
+      <button id="addHwBtn">Add Homework</button>
+      <button id="addEventBtn">Add Event</button>
+      <button id="addGalleryBtn">Add Gallery Image</button>
+      <button id="clearLocalBtn" style="background:#ffb4b4">Clear Local Data</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Notices</h2>
+    <div id="noticesArea"></div>
+  </div>
+
+  <div class="card">
+    <h2>Homework</h2>
+    <div id="homeworkArea"></div>
+  </div>
+
+  <div class="card">
+    <h2>Events</h2>
+    <div id="eventsArea"></div>
+  </div>
+
+  <div class="card">
+    <h2>Gallery</h2>
+    <div id="galleryArea"></div>
+  </div>
+
+  <div class="card">
+    <h2>Students & Teachers (CSV Import/Export)</h2>
+    <div style="display:flex;gap:8px;align-items:center">
+      <input id="csvFile" type="file" accept=".csv" />
+      <button id="importCsv">Import CSV</button>
+      <button id="exportCsv">Export CSV</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Firebase Setup (Optional)</h2>
+    <p class="muted small">Paste your Firebase config here to enable Firestore/Storage integration. For now the panel works with localStorage. Replace the placeholders in the comments to connect to Firebase.</p>
+    <pre style="background:#021421;padding:10px;border-radius:8px;color:#8be5cf;font-size:.85rem;overflow:auto">// firebaseConfig = {
+
+//   apiKey: "...", //   authDomain: "...", //   projectId: "...", //   storageBucket: "...", //   messagingSenderId: "...", //   appId: "..." // }</pre> </div>
+
 </div>
 
-  </header>  <!-- HERO -->  <main>
-    <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <h2>Shaping Minds, Building Futures — Mili Karwaan</h2>
-          <p class="lead">A modern campus focused on holistic development, academic excellence and character building. Admissions open for the new session.</p>
-          <div class="hero-cta">
-            <a class="cta" href="#admissions">Apply Now</a>
-            <a class="btn" href="#contact" style="background:#fff;padding:10px 12px;border-radius:10px;color:var(--g2);font-weight:700">Visit Campus</a>
-          </div><div class="stat-row">
-        <div class="stat"><strong class="counter" data-target="1200">0</strong><div class="muted">Students</div></div>
-        <div class="stat"><strong class="counter" data-target="78">0</strong><div class="muted">Teachers</div></div>
-        <div class="stat"><strong class="counter" data-target="45">0</strong><div class="muted">Awards</div></div>
-      </div>
-    </div>
-
-    <aside class="hero-card">
-      <h3>Quick Links</h3>
-      <p class="muted">For parents & students — download prospectus, view timetable and check notices.</p>
-      <div style="margin-top:12px;display:flex;gap:8px">
-        <a class="btn" href="#notices"><i class="fas fa-bullhorn"></i> Notices</a>
-        <a class="btn" href="#gallery"><i class="fas fa-image"></i> Gallery</a>
-      </div>
-    </aside>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="container">
-  <div class="section-head">
-    <h3>About Us</h3>
-  </div>
-  <div class="card" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-    <div style="flex:1">
-      <h4>Our Vision</h4>
-      <p class="muted">To create a learning environment that empowers students to be responsible, creative, and resilient learners ready for a global future.</p>
-      <ul class="muted" style="margin-top:10px">
-        <li>CBSE-aligned curriculum with modern teaching methods</li>
-        <li>Emphasis on sports, arts and life skills</li>
-        <li>Safe campus & modern infrastructure</li>
-      </ul>
-    </div>
-    <div style="width:320px">
-      <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="school" style="width:100%;border-radius:10px;object-fit:cover"/>
-    </div>
-  </div>
-</section>
-
-<!-- ACADEMICS -->
-<section id="academics" class="container">
-  <div class="section-head"><h3>Academics</h3></div>
-  <div class="grid-3">
-    <div class="card"><h4>Curriculum</h4><p class="muted">Balanced approach with strong fundamentals in Maths, Science and Languages plus project-based learning.</p></div>
-    <div class="card"><h4>Assessment</h4><p class="muted">Periodic assessments, remedial support and continuous feedback for students.</p></div>
-    <div class="card"><h4>Co-curricular</h4><p class="muted">Clubs, sports, debating and arts for holistic development.</p></div>
-  </div>
-</section>
-
-<!-- FACILITIES -->
-<section id="facilities" class="container facilities">
-  <div class="section-head"><h3>Facilities</h3></div>
-  <div class="grid-3">
-    <div class="card"><div class="icon"><i class="fas fa-chalkboard-teacher"></i></div><h4>Smart Classrooms</h4><p class="muted">Interactive learning with AV tools and modern seating.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-flask"></i></div><h4>Science Labs</h4><p class="muted">Well-equipped labs for practical learning.</p></div>
-    <div class="card"><div class="icon"><i class="fas fa-futbol"></i></div><h4>Sports Complex</h4><p class="muted">Playgrounds, coaching and annual sports meet.</p></div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery" class="container">
-  <div class="section-head"><h3>Gallery</h3></div>
-  <div class="card gallery-grid" id="galleryGrid">
-    <!-- JS will populate gallery thumbnails -->
-  </div>
-</section>
-
-<!-- NEWS / NOTICES -->
-<section id="news" class="container">
-  <div class="section-head"><h3>News & Notices</h3></div>
-  <div style="display:flex;gap:18px;flex-wrap:wrap">
-    <div style="flex:1">
-      <div class="card ticker"><div class="ticker-inner" id="newsTicker">Loading notices... • Loading notices... • </div></div>
-      <div style="margin-top:12px" id="newsList"></div>
-    </div>
-    <aside style="width:320px">
-      <div class="card">
-        <h4>Upcoming Events</h4>
-        <ul id="eventsList" class="muted"></ul>
-      </div>
-    </aside>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="container">
-  <div class="section-head"><h3>Contact & Admissions</h3></div>
-  <div class="card contact-grid">
-    <div>
-      <h4>Get in touch</h4>
-      <p class="muted">Call us or send a message for enquiries and admissions.</p>
-      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-        <a class="cta" href="tel:+919758919151"><i class="fas fa-phone"></i> +91 97589 19151</a>
-        <a class="btn" href="mailto:madamsir066@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-      </div>
-
-      <div style="margin-top:18px">
-        <form class="contact-form" id="contactForm">
-          <input id="cname" placeholder="Your name" required />
-          <input id="cemail" placeholder="Email or phone" required />
-          <textarea id="cmessage" rows="5" placeholder="Your message"></textarea>
-          <button type="submit">Send Enquiry</button>
-        </form>
-      </div>
-    </div>
-
-    <div>
-      <h4>Visit Us</h4>
-      <div style="height:220px;border-radius:10px;overflow:hidden">
-        <iframe style="border:0;width:100%;height:100%" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..." aria-hidden="false"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-  </main>  <!-- Footer -->  <footer>
-    <div class="container footer-grid">
-      <div>
-        <h4 style="color:#fff">Mili Karwaan Public School</h4>
-        <p class="muted">Baluha Police Chowki, Balrampur • Email: madamsir066@gmail.com</p>
-      </div>
-      <div>
-        <h4 style="color:#fff">Quick Links</h4>
-        <ul class="muted">
-          <li><a href="#admissions">Admissions</a></li>
-          <li><a href="#academics">Academics</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:#fff">Follow</h4>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <a href="#" aria-label="facebook"><i class="fab fa-facebook fa-lg"></i></a>
-          <a href="#" aria-label="instagram"><i class="fab fa-instagram fa-lg"></i></a>
-          <a href="#" aria-label="youtube"><i class="fab fa-youtube fa-lg"></i></a>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;padding-top:18px;color:#cfeee3">© Mili Karwaan Public School • All rights reserved</div>
-  </footer>  <!-- Modals / helpers -->  <div class="modal" id="modal"><div class="modal-card" id="modalCard"></div></div>
-  <button class="to-top" id="toTop" title="Back to top"><i class="fas fa-chevron-up"></i></button>  <script>
-    /* ---------- Data store (localStorage) ---------- */
-    const STORAGE_KEY = 'MKPS_SITE_v1'
+  </div>  <script>
+    // Admin panel (local + firebase-ready)
+    const ADMIN_PWD = 'Abutalha' // set by you
+    const STORAGE_KEY = 'MKPS_ADMIN_v1'
     const DEFAULT = {
       notices:[{id:'n1',title:'Parent-Teacher Meeting',date:'2025-11-28',time:'4:00 PM',body:'All parents are requested to attend.'}],
-      events:[{id:'e1',title:'Annual Sports Day',date:'2025-12-06'}],
-      gallery:[
-        'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'
-      ]
+      homework:[{id:'h1',subject:'Mathematics',title:'Chapter 5: Algebra',due:'2025-11-25',notes:'Solve exercise 5.3 Q1-15.'}],
+      events:[{id:'e1',title:'Annual Sports Day',date:'2025-12-06',desc:'Sports activities for all grades.'}],
+      gallery:['https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'],
+      students:[], teachers:[]
     }
+
     function loadStore(){ try{ const raw = localStorage.getItem(STORAGE_KEY); return raw?JSON.parse(raw):JSON.parse(JSON.stringify(DEFAULT)); }catch(e){ return JSON.parse(JSON.stringify(DEFAULT)) }}
     function saveStore(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)) }
+    let STORE = loadStore()
 
-    // init
-    const STORE = loadStore()
+    // login
+    const loginCard = document.getElementById('loginCard');
+    const adminPanel = document.getElementById('adminPanel');
+    document.getElementById('loginBtn').addEventListener('click', ()=>{ const v=document.getElementById('adminPwd').value; if(v===ADMIN_PWD){ loginCard.classList.add('hidden'); adminPanel.classList.remove('hidden'); renderAll(); } else alert('Wrong password') });
+    document.getElementById('logoutBtn').addEventListener('click', ()=>{ if(confirm('Logout?')) location.reload() })
 
-    /* ---------- Renderers ---------- */
-    function renderGallery(){ const g = STORE.gallery || []; const el = document.getElementById('galleryGrid'); el.innerHTML = g.map(src=>`<img src="${src}" loading="lazy" alt="gallery" />`).join(''); el.querySelectorAll('img').forEach(img=>img.addEventListener('click', ()=>openModal(`<img src='${img.src}' style='width:100%;height:auto;border-radius:8px' />`))) }
-    function renderNews(){ const n = STORE.notices || []; document.getElementById('newsList').innerHTML = n.map(x=>`<div class='card'><h4>${x.title}</h4><p class='muted'>${x.date} ${x.time? '|' + x.time: ''}</p><p>${x.body||''}</p></div>`).join('')
-      // ticker
-      const ticker = document.getElementById('newsTicker'); ticker.innerText = n.map(i=>i.title+' • ').join('') + n.map(i=>i.title+' • ').join('') }
-    function renderEvents(){ const e = STORE.events||[]; document.getElementById('eventsList').innerHTML = e.map(ev=>`<li>${ev.title} — ${ev.date}</li>`).join('') }
+    // render functions
+    function renderAll(){ renderNotices(); renderHomework(); renderEvents(); renderGallery(); }
 
-    // counters
-    function animateCounters(){ document.querySelectorAll('.counter').forEach(c=>{ const target = +c.dataset.target; let start=0; const step = Math.max(1, Math.floor(target/80)); const t = setInterval(()=>{ start += step; if(start>=target){ c.textContent = target; clearInterval(t) } else c.textContent = start },12) }) }
+    function renderNotices(){ const el=document.getElementById('noticesArea'); if(!STORE.notices.length) el.innerHTML='<div class="muted">No notices</div>'; else el.innerHTML = `<table><thead><tr><th>Title</th><th>Date</th><th>Actions</th></tr></thead><tbody>${STORE.notices.map(n=>`<tr data-id="${n.id}"><td>${escapeHtml(n.title)}</td><td>${n.date} ${n.time? ' | '+n.time : ''}</td><td><button class="editNotice">Edit</button> <button class="delNotice" style="background:#ffb4b4">Delete</button></td></tr>`).join('')}</tbody></table>`; setNoticeHandlers(); }
+    function renderHomework(){ const el=document.getElementById('homeworkArea'); if(!STORE.homework.length) el.innerHTML='<div class="muted">No homework</div>'; else el.innerHTML = `<table><thead><tr><th>Subject</th><th>Title</th><th>Due</th><th>Actions</th></tr></thead><tbody>${STORE.homework.map(h=>`<tr data-id="${h.id}"><td>${escapeHtml(h.subject)}</td><td>${escapeHtml(h.title)}</td><td>${h.due}</td><td><button class="editHw">Edit</button> <button class="delHw" style="background:#ffb4b4">Delete</button></td></tr>`).join('')}</tbody></table>`; setHwHandlers(); }
+    function renderEvents(){ const el=document.getElementById('eventsArea'); if(!STORE.events.length) el.innerHTML='<div class="muted">No events</div>'; else el.innerHTML = `<table><thead><tr><th>Event</th><th>Date</th><th>Actions</th></tr></thead><tbody>${STORE.events.map(ev=>`<tr data-id="${ev.id}"><td>${escapeHtml(ev.title)}</td><td>${ev.date}</td><td><button class="editEv">Edit</button> <button class="delEv" style="background:#ffb4b4">Delete</button></td></tr>`).join('')}</tbody></table>`; setEventHandlers(); }
+    function renderGallery(){ const el=document.getElementById('galleryArea'); if(!STORE.gallery.length) el.innerHTML='<div class="muted">No images</div>'; else el.innerHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap">${STORE.gallery.map((g,i)=>`<div style="width:120px"><img src="${g}" alt="g${i}" style="width:100%;height:80px;object-fit:cover;border-radius:8px" /><div style="display:flex;gap:6px;margin-top:6px"><button class="delGallery" data-src="${g}" style="background:#ffb4b4">Del</button></div></div>`).join('')}</div>`; setGalleryHandlers(); }
 
-    // modal
-    function openModal(html){ const modal = document.getElementById('modal'); document.getElementById('modalCard').innerHTML = html; modal.classList.add('open'); modal.addEventListener('click', e=>{ if(e.target===modal) closeModal() }) }
-    function closeModal(){ document.getElementById('modal').classList.remove('open') }
+    function setNoticeHandlers(){ $$('.editNotice').forEach(btn=>btn.addEventListener('click', ()=>{ const id = btn.closest('tr').dataset.id; editNotice(id); })); $$('.delNotice').forEach(btn=>btn.addEventListener('click', ()=>{ const id = btn.closest('tr').dataset.id; if(confirm('Delete notice?')){ STORE.notices = STORE.notices.filter(x=>x.id!==id); saveStore(STORE); renderNotices(); }})); }
+    function setHwHandlers(){ $$('.editHw').forEach(btn=>btn.addEventListener('click', ()=>{ const id=btn.closest('tr').dataset.id; editHw(id); })); $$('.delHw').forEach(btn=>btn.addEventListener('click', ()=>{ const id=btn.closest('tr').dataset.id; if(confirm('Delete homework?')){ STORE.homework = STORE.homework.filter(x=>x.id!==id); saveStore(STORE); renderHomework(); }})); }
+    function setEventHandlers(){ $$('.editEv').forEach(btn=>btn.addEventListener('click', ()=>{ const id=btn.closest('tr').dataset.id; editEvent(id); })); $$('.delEv').forEach(btn=>btn.addEventListener('click', ()=>{ const id=btn.closest('tr').dataset.id; if(confirm('Delete event?')){ STORE.events = STORE.events.filter(x=>x.id!==id); saveStore(STORE); renderEvents(); }})); }
+    function setGalleryHandlers(){ $$('.delGallery').forEach(btn=>btn.addEventListener('click', ()=>{ const src=btn.dataset.src; if(confirm('Delete image?')){ STORE.gallery = STORE.gallery.filter(x=>x!==src); saveStore(STORE); renderGallery(); }})); }
 
-    // contact form
-    document.getElementById('contactForm').addEventListener('submit', function(e){ e.preventDefault(); const name=document.getElementById('cname').value.trim(); const contact=document.getElementById('cemail').value.trim(); const msg=document.getElementById('cmessage').value.trim(); if(!name||!contact){ alert('Please provide name and contact'); return } alert('Thank you — your enquiry has been noted. (This demo stores nothing server-side)'); this.reset(); })
+    // add actions
+    document.getElementById('addNoticeBtn').addEventListener('click', ()=>{ const title=prompt('Title:'); if(!title) return; const date=prompt('Date (YYYY-MM-DD):','2025-11-28'); const time=prompt('Time (optional):','4:00 PM'); const body=prompt('Details:',''); const id='n'+Math.random().toString(36).slice(2,9); STORE.notices.unshift({id,title,date,time,body}); saveStore(STORE); renderNotices(); alert('Notice added (local)') });
+    document.getElementById('addHwBtn').addEventListener('click', ()=>{ const subject=prompt('Subject:','Mathematics'); if(!subject) return; const title=prompt('Title:','Chapter 6'); const due=prompt('Due date (YYYY-MM-DD):','2025-11-25'); const notes=prompt('Notes:',''); const id='h'+Math.random().toString(36).slice(2,9); STORE.homework.unshift({id,subject,title,due,notes}); saveStore(STORE); renderHomework(); alert('Homework added (local)') });
+    document.getElementById('addEventBtn').addEventListener('click', ()=>{ const title=prompt('Event:'); if(!title) return; const date=prompt('Date (YYYY-MM-DD):','2025-12-06'); const id='e'+Math.random().toString(36).slice(2,9); STORE.events.unshift({id,title,date}); saveStore(STORE); renderEvents(); alert('Event added (local)') });
+    document.getElementById('addGalleryBtn').addEventListener('click', ()=>{ const url=prompt('Image URL (direct link):'); if(!url) return; STORE.gallery.unshift(url); saveStore(STORE); renderGallery(); alert('Image added (local)') });
 
-    // back to top
-    const toTop = document.getElementById('toTop'); window.addEventListener('scroll', ()=>{ if(window.scrollY>300) toTop.classList.add('show'); else toTop.classList.remove('show') }); toTop.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}))
+    // edit handlers (simple prompts)
+    function editNotice(id){ const n = STORE.notices.find(x=>x.id===id); if(!n) return; const title = prompt('Title:',n.title); if(!title) return; const date = prompt('Date:',n.date); const time = prompt('Time:',n.time||''); const body = prompt('Details:',n.body||''); n.title=title; n.date=date; n.time=time; n.body=body; saveStore(STORE); renderNotices(); }
+    function editHw(id){ const h = STORE.homework.find(x=>x.id===id); if(!h) return; const subject = prompt('Subject:',h.subject); if(!subject) return; const title = prompt('Title:',h.title); const due = prompt('Due:',h.due); const notes = prompt('Notes:',h.notes||''); h.subject=subject; h.title=title; h.due=due; h.notes=notes; saveStore(STORE); renderHomework(); }
+    function editEvent(id){ const e = STORE.events.find(x=>x.id===id); if(!e) return; const title = prompt('Event:',e.title); if(!title) return; const date = prompt('Date:',e.date); e.title=title; e.date=date; saveStore(STORE); renderEvents(); }
 
-    // smooth nav links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', function(e){ const href=this.getAttribute('href'); if(href==='#') return; if(href.startsWith('#')){ e.preventDefault(); const target=document.querySelector(href); if(target) target.scrollIntoView({behavior:'smooth',block:'start'}); } }))
+    // import/export JSON
+    document.getElementById('exportAll').addEventListener('click', ()=>{ const blob = new Blob([JSON.stringify(STORE,null,2)],{type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='mkps-admin-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); });
+    document.getElementById('importAll').addEventListener('click', ()=>{ const input=document.createElement('input'); input.type='file'; input.accept='.json'; input.onchange=()=>{ const f=input.files[0]; const r=new FileReader(); r.onload=()=>{ try{ const parsed=JSON.parse(r.result); STORE = parsed; saveStore(STORE); renderAll(); alert('Imported') }catch(e){ alert('Invalid JSON') } }; r.readAsText(f); }; input.click(); });
 
-    // small admin utilities (client-side only) — add notice / event / gallery image via prompt
-    function promptAddNotice(){ const t=prompt('Notice title:'); if(!t) return; const date=prompt('Date (YYYY-MM-DD):','2025-11-28'); const time=prompt('Time (optional):','4:00 PM'); const body=prompt('Details (optional):',''); const id='n'+Math.random().toString(36).slice(2,9); STORE.notices.unshift({id,title:t,date,time,body}); saveStore(STORE); renderNews(); alert('Notice added (local only).') }
-    function promptAddEvent(){ const t=prompt('Event title:'); if(!t) return; const date=prompt('Date (YYYY-MM-DD):','2025-12-01'); const id='e'+Math.random().toString(36).slice(2,9); STORE.events.unshift({id,title:t,date}); saveStore(STORE); renderEvents(); alert('Event added (local only).') }
-    function promptAddGallery(){ const url=prompt('Image URL (direct link):'); if(!url) return; STORE.gallery.unshift(url); saveStore(STORE); renderGallery(); alert('Image added to gallery (local only).') }
+    // CSV import/export for students/teachers
+    document.getElementById('importCsv').addEventListener('click', ()=>{ const f = document.getElementById('csvFile').files[0]; if(!f){ alert('Choose CSV file'); return } const r=new FileReader(); r.onload=()=>{ const txt=r.result; // simple CSV parse: name,role,class,phone,email
+      const lines = txt.split('\n').map(l=>l.trim()).filter(l=>l); const arr = lines.map(l=>{ const cols = l.split(',').map(c=>c.trim()); return {name:cols[0],role:cols[1]||'student',class:cols[2]||'',phone:cols[3]||'',email:cols[4]||''} }); // merge into store
+      STORE.students = STORE.students.concat(arr.filter(x=>x.role==='student')); STORE.teachers = STORE.teachers.concat(arr.filter(x=>x.role==='teacher')); saveStore(STORE); alert('CSV imported (local).'); renderAll(); }; r.readAsText(f); });
+    document.getElementById('exportCsv').addEventListener('click', ()=>{ const rows = [];
+      STORE.students.forEach(s=> rows.push([s.name,'student',s.class||'',s.phone||'',s.email||''].join(',')));
+      STORE.teachers.forEach(t=> rows.push([t.name,'teacher','',t.phone||'',t.email||''].join(',')));
+      const blob=new Blob([rows.join('\n')],{type:'text/csv'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='mkps-users.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); });
 
-    // Expose admin helper via console for you: addNotice(), addEvent(), addGallery()
-    window.addNotice = promptAddNotice; window.addEvent = promptAddEvent; window.addGallery = promptAddGallery;
+    // clear local
+    document.getElementById('clearLocalBtn').addEventListener('click', ()=>{ if(confirm('Clear ALL local admin data? This cannot be undone.')){ localStorage.removeItem(STORAGE_KEY); STORE = JSON.parse(JSON.stringify(DEFAULT)); saveStore(STORE); renderAll(); alert('Cleared'); } });
 
-    // init on load
-    document.addEventListener('DOMContentLoaded', ()=>{ renderGallery(); renderNews(); renderEvents(); animateCounters(); // accessibility: announce
-      // small keyboard shortcuts for admin local actions
-      document.addEventListener('keydown', e=>{ if(e.ctrlKey && e.key.toLowerCase()==='n'){ promptAddNotice(); } if(e.ctrlKey && e.key.toLowerCase()==='g'){ promptAddGallery(); } if(e.ctrlKey && e.key.toLowerCase()==='e'){ promptAddEvent(); } });
-    })
+    // small helpers
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+    function $$(s){ return Array.from(document.querySelectorAll(s)) }
 
+    // init: show login
+    (function(){ /* keep adminCard visible */ })();
   </script></body>
 </html>
