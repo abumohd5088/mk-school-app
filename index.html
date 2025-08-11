@@ -3,170 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Milli Karwaan Public School - Portal</title>
+<title>Milli Karwaan Public School</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
     body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f4f4f4;
-    }
-    header {
-        background: #004aad;
-        color: white;
-        padding: 15px;
-        text-align: center;
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-    .container {
-        display: flex;
-        height: 100vh;
+        background-color: #f8f9fa;
     }
     .sidebar {
-        background: #002b5b;
+        height: 100vh;
+        background: #003366;
         color: white;
-        width: 220px;
         padding-top: 20px;
         position: fixed;
-        top: 60px;
-        bottom: 0;
+        width: 250px;
+        left: 0;
+        top: 0;
+        transition: all 0.3s;
     }
     .sidebar a {
-        display: block;
-        padding: 12px;
         color: white;
+        display: block;
+        padding: 10px 20px;
         text-decoration: none;
-        font-size: 1.1em;
     }
     .sidebar a:hover {
-        background: #0056b3;
+        background: #0055a5;
     }
     .content {
-        margin-left: 220px;
+        margin-left: 250px;
         padding: 20px;
-        width: 100%;
     }
     footer {
-        background: #002b5b;
+        background: #003366;
         color: white;
-        padding: 10px;
         text-align: center;
+        padding: 10px;
         position: fixed;
         bottom: 0;
-        left: 220px;
-        right: 0;
+        left: 250px;
+        width: calc(100% - 250px);
     }
-    .hidden { display: none; }
-    .card {
-        background: white;
-        padding: 15px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    .hidden {
+        display: none;
     }
 </style>
 </head>
 <body>
 
-<header>Milli Karwaan Public School - Student Portal</header>
-
-<div class="container">
-
-    <div class="sidebar">
-        <a href="#" onclick="showSection('home')">🏠 Home</a>
-        <a href="#" onclick="showSection('homework')">📚 Homework</a>
-        <a href="#" onclick="showSection('notice')">📢 Notice Board</a>
-        <a href="#" onclick="showSection('timetable')">🕒 Timetable</a>
-        <a href="#" onclick="showSection('gallery')">🖼 Gallery</a>
-        <a href="#" onclick="showSection('contact')">📞 Contact</a>
-        <a href="#" onclick="adminLogin()">🔑 Admin</a>
+<!-- Name & Class Selection -->
+<div id="startForm" class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Welcome to Milli Karwaan Public School</h2>
+        <form id="userForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Enter Your Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+                <label for="class" class="form-label">Select Your Class</label>
+                <select class="form-select" id="class" required>
+                    <option value="">-- Select Class --</option>
+                    <option>1</option><option>2</option><option>3</option>
+                    <option>4</option><option>5</option><option>6</option>
+                    <option>7</option><option>8</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Enter</button>
+        </form>
     </div>
-
-    <div class="content">
-        <div id="loginForm">
-            <h2>Welcome Student 👋</h2>
-            <p>Please enter your details to continue.</p>
-            <input type="text" id="studentName" placeholder="Enter your name" style="padding:8px; width:250px;"><br><br>
-            <select id="studentClass" style="padding:8px; width:250px;">
-                <option value="">Select your class</option>
-                <option value="1">Class 1</option>
-                <option value="2">Class 2</option>
-                <option value="3">Class 3</option>
-                <option value="4">Class 4</option>
-                <option value="5">Class 5</option>
-                <option value="6">Class 6</option>
-                <option value="7">Class 7</option>
-                <option value="8">Class 8</option>
-            </select><br><br>
-            <button onclick="startPortal()" style="padding:10px 20px;">Enter</button>
-        </div>
-
-        <div id="home" class="hidden">
-            <h2>Welcome, <span id="showName"></span>!</h2>
-            <div class="card">📚 Your Class: <span id="showClass"></span></div>
-            <div class="card">✨ Latest News: School will remain closed on Friday due to holiday.</div>
-        </div>
-
-        <div id="homework" class="hidden">
-            <h2>Homework for Class <span id="hwClass"></span></h2>
-            <div class="card">📕 English: Read Chapter 3</div>
-            <div class="card">🧮 Math: Solve exercise 5</div>
-        </div>
-
-        <div id="notice" class="hidden">
-            <h2>Notice Board</h2>
-            <div class="card">🗓 Parent-teacher meeting on 15th August.</div>
-            <div class="card">🏆 Annual Sports Day registration open.</div>
-        </div>
-
-        <div id="timetable" class="hidden">
-            <h2>Timetable - Class <span id="ttClass"></span></h2>
-            <div class="card">Mon-Fri: 8:00 AM - 2:00 PM</div>
-        </div>
-
-        <div id="gallery" class="hidden">
-            <h2>School Gallery</h2>
-            <div class="card">📷 Images coming soon...</div>
-        </div>
-
-        <div id="contact" class="hidden">
-            <h2>Contact Us</h2>
-            <div class="card">📞 Phone: 9758919151</div>
-            <div class="card">📧 Email: madamsir066@gmail.com</div>
-            <div class="card">📍 Address: Baluha Police Chowki, Balrampur</div>
-        </div>
-    </div>
-
 </div>
 
+<!-- Main Content -->
+<div id="dashboard" class="hidden">
+    <div class="sidebar">
+        <h4 class="text-center">📚 MKPS</h4>
+        <a href="#" onclick="showSection('home')">🏠 Home</a>
+        <a href="#" onclick="showSection('homework')">📓 Homework</a>
+        <a href="#" onclick="showSection('timetable')">📅 Timetable</a>
+        <a href="#" onclick="showSection('notices')">📢 Notices</a>
+        <a href="#" onclick="showSection('events')">🎉 Events</a>
+        <a href="#" onclick="showSection('gallery')">🖼️ Gallery</a>
+        <a href="#" onclick="showSection('contact')">📞 Contact Us</a>
+    </div>
+    <div class="content">
+        <div id="home"><h2>Welcome <span id="userName"></span> (Class <span id="userClass"></span>)</h2><p>This is your school dashboard.</p></div>
+        <div id="homework" class="hidden"><h2>Homework</h2><p>Homework for your class will appear here.</p></div>
+        <div id="timetable" class="hidden"><h2>Timetable</h2><p>Your class timetable will appear here.</p></div>
+        <div id="notices" class="hidden"><h2>Notices</h2><p>Important notices for your class.</p></div>
+        <div id="events" class="hidden"><h2>Events</h2><p>Upcoming school events.</p></div>
+        <div id="gallery" class="hidden"><h2>Gallery</h2><p>School photos & memories.</p></div>
+        <div id="contact" class="hidden"><h2>Contact Us</h2>
+            <p>📞 Phone: 9758919151</p>
+            <p>📧 Email: madamsir066@gmail.com</p>
+            <p>📍 Address: Baluha Police Chowki, Balrampur</p>
+            <button class="btn btn-warning" onclick="openAdmin()">Admin Panel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
 <footer>
-    📞 9758919151 | <a href="#" onclick="adminLogin()" style="color:white;">Admin Login</a>
+    📞 9758919151 | 📧 madamsir066@gmail.com | 📍 Baluha Police Chowki, Balrampur
 </footer>
 
 <script>
-    function startPortal() {
-        let name = document.getElementById("studentName").value.trim();
-        let cls = document.getElementById("studentClass").value;
-        if(name === "" || cls === ""){
-            alert("Please enter your name and select your class.");
-            return;
-        }
-        document.getElementById("loginForm").classList.add("hidden");
-        document.getElementById("home").classList.remove("hidden");
-        document.getElementById("showName").innerText = name;
-        document.getElementById("showClass").innerText = cls;
-        document.getElementById("hwClass").innerText = cls;
-        document.getElementById("ttClass").innerText = cls;
+    const startForm = document.getElementById("startForm");
+    const dashboard = document.getElementById("dashboard");
+    const userNameDisplay = document.getElementById("userName");
+    const userClassDisplay = document.getElementById("userClass");
+
+    document.getElementById("userForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const userClass = document.getElementById("class").value;
+        userNameDisplay.textContent = name;
+        userClassDisplay.textContent = userClass;
+        startForm.classList.add("hidden");
+        dashboard.classList.remove("hidden");
+    });
+
+    function showSection(section){
+        document.querySelectorAll(".content > div").forEach(div => div.classList.add("hidden"));
+        document.getElementById(section).classList.remove("hidden");
     }
 
-    function showSection(sectionId) {
-        let sections = document.querySelectorAll(".content > div");
-        sections.forEach(sec => sec.classList.add("hidden"));
-        document.getElementById(sectionId).classList.remove("hidden");
-    }
-
-    function adminLogin() {
-        let pass = prompt("Enter Admin Password:");
+    function openAdmin(){
+        const pass = prompt("Enter Admin Password:");
         if(pass === "Abutalha"){
             window.location.href = "admin.html";
         } else {
