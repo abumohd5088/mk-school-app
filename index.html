@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Milli Karwaan Public School - Balrampur</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
         :root {
             --primary: #0a2a66;
@@ -20,6 +22,9 @@
             --danger: #ef4444;
             --warning: #f59e0b;
             --info: #0ea5e9;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --indigo: #6366f1;
         }
         
         * {
@@ -51,11 +56,15 @@
             z-index: 1000;
             transition: all 0.3s ease;
             padding: 1rem 0;
+            height: 70px;
+            display: flex;
+            align-items: center;
         }
         
         .navbar.scrolled {
             padding: 0.5rem 0;
             background: rgba(10, 42, 102, 0.95);
+            height: 60px;
         }
         
         .navbar-brand {
@@ -65,10 +74,16 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: all 0.3s;
         }
         
         .navbar-brand i {
             color: var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .navbar-brand:hover i {
+            transform: rotate(360deg);
         }
         
         .nav-link {
@@ -77,6 +92,9 @@
             position: relative;
             padding: 0.5rem 1rem !important;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .nav-link:after {
@@ -100,6 +118,11 @@
             transform: translateY(-2px);
         }
         
+        .nav-link i {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
         .btn-primary, .btn-accent {
             background: var(--accent);
             border: none;
@@ -109,6 +132,9 @@
             border-radius: 50px;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-primary:hover, .btn-accent:hover {
@@ -124,6 +150,9 @@
             padding: 10px 25px;
             border-radius: 50px;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-outline-light:hover {
@@ -194,6 +223,12 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             animation: fadeInUp 1s ease 0.4s both;
+            transition: all 0.3s;
+        }
+        
+        .floating-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
         
         .contact-badge {
@@ -207,6 +242,7 @@
             margin: 15px 0;
             font-weight: 500;
             transition: all 0.3s;
+            cursor: pointer;
         }
         
         .contact-badge:hover {
@@ -264,6 +300,8 @@
             transition: all 0.4s ease;
             height: 100%;
             border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
         }
         
         .feature-card:hover {
@@ -273,6 +311,26 @@
         
         .feature-card .card-body {
             padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(251, 191, 36, 0.1), rgba(29, 78, 216, 0.1));
+            z-index: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:hover:before {
+            transform: scaleX(1);
         }
         
         .feature-icon {
@@ -287,21 +345,25 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
             transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(29, 78, 216, 0.3);
         }
         
         .feature-card:hover .feature-icon {
             transform: scale(1.1) rotate(10deg);
             background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
         }
         
         .feature-card h4 {
             font-size: 1.4rem;
             color: var(--primary);
             margin-bottom: 15px;
+            transition: all 0.3s;
         }
         
         .feature-card p {
             color: var(--gray);
+            transition: all 0.3s;
         }
         
         .teachers-section {
@@ -318,6 +380,8 @@
             text-align: center;
             height: 100%;
             border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
         }
         
         .teacher-card:hover {
@@ -339,22 +403,26 @@
             font-size: 3.5rem;
             color: var(--primary);
             transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.2);
         }
         
         .teacher-card:hover .teacher-img {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
         }
         
         .teacher-info h5 {
             font-size: 1.3rem;
             color: var(--primary);
             margin-bottom: 5px;
+            transition: all 0.3s;
         }
         
         .teacher-info p {
             color: var(--gray);
             font-size: 0.95rem;
             margin-bottom: 10px;
+            transition: all 0.3s;
         }
         
         .subject-tag {
@@ -365,6 +433,7 @@
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 500;
+            transition: all 0.3s;
         }
         
         .services-section {
@@ -380,6 +449,8 @@
             transition: all 0.4s ease;
             border: 1px solid #e2e8f0;
             margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
         }
         
         .service-item:hover {
@@ -399,20 +470,39 @@
             font-size: 1.5rem;
             margin-bottom: 20px;
             transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
         }
         
         .service-item:hover .service-icon {
             transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
         }
         
         .service-item h4 {
             font-size: 1.4rem;
             color: var(--primary);
             margin-bottom: 15px;
+            transition: all 0.3s;
         }
         
         .service-item p {
             color: var(--gray);
+            transition: all 0.3s;
+        }
+        
+        .service-item:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: all 0.8s;
+        }
+        
+        .service-item:hover:after {
+            left: 100%;
         }
         
         .contact-section {
@@ -443,6 +533,7 @@
             align-items: flex-start;
             margin-bottom: 25px;
             transition: all 0.3s;
+            cursor: pointer;
         }
         
         .contact-item:hover {
@@ -461,16 +552,25 @@
             font-size: 1.4rem;
             margin-right: 20px;
             flex-shrink: 0;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.2);
+        }
+        
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
         }
         
         .contact-item h5 {
             margin-bottom: 5px;
             font-size: 1.2rem;
+            transition: all 0.3s;
         }
         
         .contact-item p {
             margin: 0;
             opacity: 0.9;
+            transition: all 0.3s;
         }
         
         .contact-form .form-control {
@@ -507,6 +607,10 @@
             font-weight: 600;
             transition: all 0.3s;
             width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
         .contact-form button:hover {
@@ -624,37 +728,6 @@
             font-size: 0.9rem;
         }
         
-        .floating-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
-            transition: all 0.3s;
-            z-index: 999;
-            cursor: pointer;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(251, 191, 36, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
-        }
-        
-        .floating-button:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(251, 191, 36, 0.4);
-        }
-        
         /* Registration Modal */
         .register-modal {
             position: fixed;
@@ -675,7 +748,7 @@
         .register-content {
             background: white;
             width: 95%;
-            max-width: 700px;
+            max-width: 800px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
@@ -690,6 +763,9 @@
             color: white;
             padding: 25px;
             position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .register-header h5 {
@@ -731,16 +807,34 @@
             display: flex;
             margin-bottom: 30px;
             border-bottom: 2px solid #e2e8f0;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+        }
+        
+        .register-steps::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .register-steps::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        .register-steps::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
         }
         
         .step {
-            flex: 1;
+            min-width: 200px;
             text-align: center;
             padding: 15px;
             position: relative;
             cursor: pointer;
             transition: all 0.3s;
             color: var(--gray);
+            white-space: nowrap;
         }
         
         .step.active {
@@ -770,11 +864,17 @@
             justify-content: center;
             margin: 0 auto 10px;
             font-size: 1.2rem;
+            transition: all 0.3s;
         }
         
         .step.active i {
             background: var(--accent);
             color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .step:hover i {
+            transform: scale(1.1);
         }
         
         .step-form {
@@ -828,25 +928,29 @@
             flex: 1;
         }
         
-        .btn-next, .btn-prev {
-            background: var(--secondary);
-            color: white;
-            border: none;
+        .btn-nav {
             padding: 12px 25px;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
         }
         
-        .btn-next:hover, .btn-prev:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.3);
+        .btn-prev {
+            background: var(--secondary);
+            color: white;
         }
         
         .btn-next {
             background: var(--accent);
             color: var(--primary);
+        }
+        
+        .btn-prev:hover, .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.3);
         }
         
         .btn-next:disabled {
@@ -878,7 +982,7 @@
         /* Student Dashboard */
         .dashboard {
             display: none;
-            padding: 100px 0;
+            padding: 100px 0 60px;
             background: #f1f5f9;
         }
         
@@ -889,6 +993,18 @@
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dashboard-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
         }
         
         .student-info {
@@ -908,16 +1024,25 @@
             justify-content: center;
             font-size: 2rem;
             font-weight: 600;
+            box-shadow: 0 5px 15px rgba(29, 78, 216, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .student-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(29, 78, 216, 0.4);
         }
         
         .student-details h3 {
             color: var(--primary);
             margin-bottom: 5px;
+            font-size: 1.5rem;
         }
         
         .student-details p {
             color: var(--gray);
             margin: 0;
+            font-size: 0.95rem;
         }
         
         .stats {
@@ -936,6 +1061,24 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
             text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .stat-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent);
         }
         
         .stat-card h4 {
@@ -962,6 +1105,24 @@
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .dashboard-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
         }
         
         .dashboard-card h4 {
@@ -969,6 +1130,9 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .homework-item {
@@ -976,6 +1140,8 @@
             padding: 15px 0;
             border-bottom: 1px solid #e2e8f0;
             transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
         }
         
         .homework-item:last-child {
@@ -998,11 +1164,21 @@
             justify-content: center;
             margin-right: 15px;
             flex-shrink: 0;
+            transition: all 0.3s;
         }
         
         .hw-icon i {
             color: var(--secondary);
             font-size: 1.2rem;
+        }
+        
+        .homework-item:hover .hw-icon {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .homework-item:hover .hw-icon i {
+            color: var(--primary);
         }
         
         .hw-details {
@@ -1013,6 +1189,7 @@
             margin: 0 0 5px;
             color: var(--primary);
             font-size: 1.1rem;
+            transition: all 0.3s;
         }
         
         .hw-subject {
@@ -1058,6 +1235,13 @@
             border-radius: 10px;
             margin-bottom: 15px;
             border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .announcement:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .announcement h5 {
@@ -1092,6 +1276,8 @@
             text-align: center;
             transition: all 0.3s;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         
         .action-btn:hover {
@@ -1100,25 +1286,193 @@
             box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
         }
         
+        .action-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+            transition: all 0.8s;
+        }
+        
+        .action-btn:hover:before {
+            left: 100%;
+        }
+        
         .action-btn i {
             font-size: 1.5rem;
             color: var(--secondary);
             margin-bottom: 10px;
             display: block;
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover i {
+            transform: scale(1.1);
         }
         
         .action-btn span {
             font-weight: 500;
             color: var(--primary);
+            transition: all 0.3s;
         }
         
-        /* Class-Specific Content */
+        .class-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: thin;
+        }
+        
+        .class-tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .class-tabs::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        .class-tabs::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        
+        .class-tab {
+            padding: 10px 20px;
+            background: #f8fafc;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border: 1px solid #e2e8f0;
+            border-bottom: none;
+        }
+        
+        .class-tab.active {
+            background: white;
+            border-color: #e2e8f0;
+            border-bottom: 2px solid white;
+            margin-bottom: -2px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .class-tab:hover:not(.active) {
+            background: #f1f5f9;
+        }
+        
         .class-content {
             display: none;
         }
         
         .class-content.active {
             display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .subject-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .subject-info h5 {
+            color: var(--primary);
+            margin: 0;
+        }
+        
+        .subject-info p {
+            color: var(--gray);
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .subject-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .subject-btn {
+            flex: 1;
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            color: var(--primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .subject-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .grade-progress {
+            margin-top: 15px;
+        }
+        
+        .grade-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.8s ease;
         }
         
         .toast {
@@ -1134,11 +1488,75 @@
             opacity: 0;
             transform: translateY(-50px);
             transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 300px;
         }
         
         .toast.show {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        .toast.error {
+            background: var(--danger);
+        }
+        
+        .toast.warning {
+            background: var(--warning);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Admin Panel Link */
+        .admin-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--purple);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s;
+            z-index: 999;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .admin-link:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .register-content {
+                margin: 20px;
+            }
         }
         
         @media (max-width: 992px) {
@@ -1154,8 +1572,13 @@
                 font-size: 1.6rem;
             }
             
-            .dashboard-content {
-                grid-template-columns: 1fr;
+            .row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .col {
+                width: 100%;
             }
         }
         
@@ -1185,17 +1608,59 @@
                 padding: 30px 20px;
             }
             
-            .row {
+            .register-steps {
+                justify-content: flex-start;
+            }
+            
+            .step {
+                min-width: 150px;
+            }
+            
+            .stats {
                 flex-direction: column;
-                gap: 10px;
             }
             
-            .col {
-                width: 100%;
+            .stat-card {
+                min-width: 100%;
             }
             
-            .register-content {
-                margin: 20px;
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .step {
+                min-width: 120px;
+                padding: 10px;
+            }
+            
+            .step i {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .register-header h5 {
+                font-size: 1.3rem;
+            }
+            
+            .close-register {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .register-body {
+                padding: 20px;
             }
         }
     </style>
@@ -1214,25 +1679,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="nav-link" href="#home"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
+                        <a class="nav-link" href="#features"><i class="fas fa-star"></i> Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" href="#services"><i class="fas fa-cogs"></i> Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#teachers">Faculty</a>
+                        <a class="nav-link" href="#teachers"><i class="fas fa-chalkboard-teacher"></i> Faculty</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#contact"><i class="fas fa-phone"></i> Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-accent" id="loginBtn">Student Login</a>
+                        <a class="nav-link btn btn-accent" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Student Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin.html">Admin</a>
+                        <a class="nav-link" href="admin.html"><i class="fas fa-user-shield"></i> Admin</a>
                     </li>
                 </ul>
             </div>
@@ -1336,6 +1801,39 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <h4>Online Learning</h4>
+                            <p>Interactive video lectures, recorded classes, and virtual learning sessions for continuous education.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h4>Digital Library</h4>
+                            <p>Extensive collection of e-books, research papers, and educational resources accessible 24/7 from any device.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Performance Analytics</h4>
+                            <p>Detailed academic performance reports, progress tracking, and personalized learning recommendations for each student.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1370,6 +1868,13 @@
                         <h4>Parent-Teacher Portal</h4>
                         <p>Secure communication platform for regular updates, meeting scheduling, and collaborative academic planning.</p>
                     </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4>Certification Programs</h4>
+                        <p>Specialized courses and certification programs in various fields to enhance students' skills and career prospects.</p>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="service-item">
@@ -1388,10 +1893,17 @@
                     </div>
                     <div class="service-item">
                         <div class="service-icon">
-                            <i class="fas fa-certificate"></i>
+                            <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <h4>Certification Programs</h4>
-                        <p>Specialized courses and certification programs in various fields to enhance students' skills and career prospects.</p>
+                        <h4>Event Calendar</h4>
+                        <p>Comprehensive calendar of school events, holidays, exams, and extracurricular activities.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Achievement Tracking</h4>
+                        <p>System to track and celebrate student achievements in academics, sports, and co-curricular activities.</p>
                     </div>
                 </div>
             </div>
@@ -1569,7 +2081,7 @@
                             <label for="message">Message</label>
                             <textarea class="form-control" id="message" placeholder="Enter your message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
                     </form>
                 </div>
             </div>
@@ -1580,7 +2092,7 @@
     <div class="register-modal" id="registerModal">
         <div class="register-content">
             <div class="register-header">
-                <h5><i class="fas fa-user-plus"></i> Student Registration</h5>
+                <h5><i class="fas fa-user-plus"></i> Student Registration Portal</h5>
                 <button class="close-register" id="closeRegister">&times;</button>
             </div>
             <div class="register-body">
@@ -1598,6 +2110,10 @@
                         <div>Academic Info</div>
                     </div>
                     <div class="step" data-step="4">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>Security</div>
+                    </div>
+                    <div class="step" data-step="5">
                         <i class="fas fa-check"></i>
                         <div>Confirmation</div>
                     </div>
@@ -1609,39 +2125,39 @@
                 
                 <!-- Step 1: Personal Information -->
                 <div class="step-form active" id="step1">
-                    <h4>Personal Information</h4>
+                    <h4><i class="fas fa-user"></i> Personal Information</h4>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="firstName">First Name</label>
+                                <label for="firstName">First Name *</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="lastName">Last Name</label>
+                                <label for="lastName">Last Name *</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="studentEmail">Email Address</label>
+                        <label for="studentEmail">Email Address *</label>
                         <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email address" required>
                     </div>
                     <div class="form-group">
-                        <label for="studentPhone">Phone Number</label>
+                        <label for="studentPhone">Phone Number *</label>
                         <input type="tel" class="form-control" id="studentPhone" placeholder="Enter your phone number" required>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="dob">Date of Birth</label>
+                                <label for="dob">Date of Birth *</label>
                                 <input type="date" class="form-control" id="dob" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="gender">Gender</label>
+                                <label for="gender">Gender *</label>
                                 <select class="form-control" id="gender" required>
                                     <option value="">Select Gender</option>
                                     <option value="male">Male</option>
@@ -1652,32 +2168,56 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="address">Address</label>
+                        <label for="address">Address *</label>
                         <textarea class="form-control" id="address" rows="3" placeholder="Enter your full address" required></textarea>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="admissionNo">Admission Number *</label>
+                                <input type="text" class="form-control" id="admissionNo" placeholder="Enter your admission number" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="bloodGroup">Blood Group</label>
+                                <select class="form-control" id="bloodGroup">
+                                    <option value="">Select Blood Group</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="admissionNo">Admission Number</label>
-                        <input type="text" class="form-control" id="admissionNo" placeholder="Enter your admission number" required>
+                        <label for="emergencyContact">Emergency Contact *</label>
+                        <input type="tel" class="form-control" id="emergencyContact" placeholder="Enter emergency contact number" required>
                     </div>
                     <div class="d-flex justify-content-between mt-4">
-                        <button class="btn-prev" disabled>Previous</button>
-                        <button class="btn-next" id="nextToStep2">Next</button>
+                        <button class="btn-nav btn-prev" disabled>Previous</button>
+                        <button class="btn-nav btn-next" id="nextToStep2">Next <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
                 
                 <!-- Step 2: Parent Information -->
                 <div class="step-form" id="step2">
-                    <h4>Parent/Guardian Information</h4>
+                    <h4><i class="fas fa-home"></i> Parent/Guardian Information</h4>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="fatherName">Father's Name</label>
+                                <label for="fatherName">Father's Name *</label>
                                 <input type="text" class="form-control" id="fatherName" placeholder="Enter father's name" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="fatherPhone">Father's Phone</label>
+                                <label for="fatherPhone">Father's Phone *</label>
                                 <input type="tel" class="form-control" id="fatherPhone" placeholder="Enter father's phone number" required>
                             </div>
                         </div>
@@ -1685,19 +2225,19 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="motherName">Mother's Name</label>
+                                <label for="motherName">Mother's Name *</label>
                                 <input type="text" class="form-control" id="motherName" placeholder="Enter mother's name" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="motherPhone">Mother's Phone</label>
+                                <label for="motherPhone">Mother's Phone *</label>
                                 <input type="tel" class="form-control" id="motherPhone" placeholder="Enter mother's phone number" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="parentEmail">Parent's Email</label>
+                        <label for="parentEmail">Parent's Email *</label>
                         <input type="email" class="form-control" id="parentEmail" placeholder="Enter parent's email address" required>
                     </div>
                     <div class="form-group">
@@ -1705,20 +2245,32 @@
                         <textarea class="form-control" id="parentAddress" rows="3" placeholder="Enter parent's address if different from student"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="occupation">Parent's Occupation</label>
+                        <label for="occupation">Parent's Occupation *</label>
                         <input type="text" class="form-control" id="occupation" placeholder="Enter parent's occupation" required>
                     </div>
+                    <div class="form-group">
+                        <label for="annualIncome">Annual Family Income</label>
+                        <select class="form-control" id="annualIncome">
+                            <option value="">Select Income Range</option>
+                            <option value="below-1lakh">Below ₹1 Lakh</option>
+                            <option value="1-3lakh">₹1-3 Lakh</option>
+                            <option value="3-5lakh">₹3-5 Lakh</option>
+                            <option value="5-10lakh">₹5-10 Lakh</option>
+                            <option value="10-20lakh">₹10-20 Lakh</option>
+                            <option value="above-20lakh">Above ₹20 Lakh</option>
+                        </select>
+                    </div>
                     <div class="d-flex justify-content-between mt-4">
-                        <button class="btn-prev" id="prevToStep1">Previous</button>
-                        <button class="btn-next" id="nextToStep3">Next</button>
+                        <button class="btn-nav btn-prev" id="prevToStep1"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn-nav btn-next" id="nextToStep3">Next <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
                 
                 <!-- Step 3: Academic Information -->
                 <div class="step-form" id="step3">
-                    <h4>Academic Information</h4>
+                    <h4><i class="fas fa-graduation-cap"></i> Academic Information</h4>
                     <div class="form-group">
-                        <label for="currentClass">Current Class</label>
+                        <label for="currentClass">Current Class *</label>
                         <select class="form-control" id="currentClass" required>
                             <option value="">Select Your Current Class</option>
                             <option value="1">Class 1</option>
@@ -1734,7 +2286,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="section">Section</label>
+                        <label for="section">Section *</label>
                         <select class="form-control" id="section" required>
                             <option value="">Select Section</option>
                             <option value="A">Section A</option>
@@ -1744,7 +2296,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="rollNumber">Roll Number</label>
+                        <label for="rollNumber">Roll Number *</label>
                         <input type="text" class="form-control" id="rollNumber" placeholder="Enter your roll number" required>
                     </div>
                     <div class="form-group">
@@ -1767,17 +2319,66 @@
                             <option value="computer">Computer Science</option>
                             <option value="arts">Arts & Craft</option>
                             <option value="sports">Sports</option>
+                            <option value="music">Music</option>
+                            <option value="dance">Dance</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="extracurricular">Extracurricular Activities</label>
+                        <textarea class="form-control" id="extracurricular" rows="3" placeholder="List any extracurricular activities you're interested in"></textarea>
+                    </div>
                     <div class="d-flex justify-content-between mt-4">
-                        <button class="btn-prev" id="prevToStep2">Previous</button>
-                        <button class="btn-next" id="nextToStep4">Next</button>
+                        <button class="btn-nav btn-prev" id="prevToStep2"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn-nav btn-next" id="nextToStep4">Next <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
                 
-                <!-- Step 4: Confirmation -->
+                <!-- Step 4: Security -->
                 <div class="step-form" id="step4">
-                    <h4>Review and Confirm</h4>
+                    <h4><i class="fas fa-shield-alt"></i> Security & Login</h4>
+                    <div class="form-group">
+                        <label for="username">Username *</label>
+                        <input type="text" class="form-control" id="username" placeholder="Create a username" required>
+                        <small class="text-muted">This will be your login ID</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password" class="form-control" id="password" placeholder="Create a strong password" required>
+                        <small class="text-muted">Use at least 8 characters with numbers and symbols</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityQuestion">Security Question *</label>
+                        <select class="form-control" id="securityQuestion" required>
+                            <option value="">Select a security question</option>
+                            <option value="pet">What was your first pet's name?</option>
+                            <option value="school">What was the name of your first school?</option>
+                            <option value="city">In which city were you born?</option>
+                            <option value="mother">What is your mother's maiden name?</option>
+                            <option value="father">What is your father's middle name?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityAnswer">Security Answer *</label>
+                        <input type="text" class="form-control" id="securityAnswer" placeholder="Answer to your security question" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recoveryEmail">Recovery Email (optional)</label>
+                        <input type="email" class="form-control" id="recoveryEmail" placeholder="Enter a recovery email address">
+                        <small class="text-muted">Used for password recovery</small>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn-nav btn-prev" id="prevToStep3"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn-nav btn-next" id="nextToStep5">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 5: Confirmation -->
+                <div class="step-form" id="step5">
+                    <h4><i class="fas fa-check"></i> Review and Confirm</h4>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i>
                         <strong>Please review all information carefully before submitting.</strong>
@@ -1785,7 +2386,7 @@
                     </div>
                     
                     <div class="confirmation-details">
-                        <h5>Personal Information</h5>
+                        <h5><i class="fas fa-user"></i> Personal Information</h5>
                         <table class="table table-borderless">
                             <tr>
                                 <td><strong>Name:</strong></td>
@@ -1807,9 +2408,17 @@
                                 <td><strong>Gender:</strong></td>
                                 <td id="confirmGender">-</td>
                             </tr>
+                            <tr>
+                                <td><strong>Address:</strong></td>
+                                <td id="confirmAddress">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Admission No:</strong></td>
+                                <td id="confirmAdmission">-</td>
+                            </tr>
                         </table>
                         
-                        <h5>Parent Information</h5>
+                        <h5><i class="fas fa-home"></i> Parent Information</h5>
                         <table class="table table-borderless">
                             <tr>
                                 <td><strong>Father's Name:</strong></td>
@@ -1827,9 +2436,13 @@
                                 <td><strong>Parent's Email:</strong></td>
                                 <td id="confirmParentEmail">-</td>
                             </tr>
+                            <tr>
+                                <td><strong>Occupation:</strong></td>
+                                <td id="confirmOccupation">-</td>
+                            </tr>
                         </table>
                         
-                        <h5>Academic Information</h5>
+                        <h5><i class="fas fa-graduation-cap"></i> Academic Information</h5>
                         <table class="table table-borderless">
                             <tr>
                                 <td><strong>Class:</strong></td>
@@ -1844,18 +2457,30 @@
                                 <td id="confirmRoll">-</td>
                             </tr>
                         </table>
+                        
+                        <h5><i class="fas fa-shield-alt"></i> Security Information</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Username:</strong></td>
+                                <td id="confirmUsername">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Security Question:</strong></td>
+                                <td id="confirmSecurityQ">-</td>
+                            </tr>
+                        </table>
                     </div>
                     
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" id="termsCheck" required>
                         <label class="form-check-label" for="termsCheck">
-                            I confirm that all information provided is accurate and I agree to the school's <a href="#" style="color: var(--accent);">terms and conditions</a>.
+                            I confirm that all information provided is accurate and I agree to the school's <a href="#" style="color: var(--accent);">terms and conditions</a> and <a href="#" style="color: var(--accent);">privacy policy</a>.
                         </label>
                     </div>
                     
                     <div class="d-flex justify-content-between mt-4">
-                        <button class="btn-prev" id="prevToStep3">Previous</button>
-                        <button class="btn-next" id="submitRegistration">Submit Registration</button>
+                        <button class="btn-nav btn-prev" id="prevToStep4"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn-nav btn-next" id="submitRegistration"><i class="fas fa-paper-plane"></i> Submit Registration</button>
                     </div>
                 </div>
             </div>
@@ -1894,11 +2519,21 @@
                 </div>
             </div>
             
+            <div class="class-tabs">
+                <div class="class-tab active" data-class="8">Class 8</div>
+                <div class="class-tab" data-class="7">Class 7</div>
+                <div class="class-tab" data-class="6">Class 6</div>
+                <div class="class-tab" data-class="5">Class 5</div>
+                <div class="class-tab" data-class="4">Class 4</div>
+                <div class="class-tab" data-class="3">Class 3</div>
+                <div class="class-tab" data-class="2">Class 2</div>
+                <div class="class-tab" data-class="1">Class 1</div>
+            </div>
+            
             <div class="dashboard-content">
                 <div class="dashboard-card">
-                    <h4>Homework & Assignments</h4>
+                    <h4><i class="fas fa-book"></i> Homework & Assignments</h4>
                     <div id="homeworkList">
-                        <!-- Homework items will be populated based on class -->
                         <div class="homework-item">
                             <div class="hw-icon">
                                 <i class="fas fa-book"></i>
@@ -1935,7 +2570,7 @@
                     </div>
                     
                     <div class="announcements">
-                        <h4>Announcements</h4>
+                        <h4><i class="fas fa-bullhorn"></i> Announcements</h4>
                         <div class="announcement">
                             <h5>Annual Sports Day - Oct 25, 2023</h5>
                             <p>Don't forget to register for your preferred sports event by Oct 20. All students are encouraged to participate.</p>
@@ -1946,11 +2581,16 @@
                             <p>Schedule your appointment through the parent portal. Individual meetings will be held from 9 AM to 4 PM.</p>
                             <div class="announcement-date">Posted: Oct 8, 2023</div>
                         </div>
+                        <div class="announcement">
+                            <h5>Science Exhibition - Nov 5, 2023</h5>
+                            <p>All students of classes 6-10 must prepare a science project for the upcoming exhibition.</p>
+                            <div class="announcement-date">Posted: Oct 5, 2023</div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="dashboard-card">
-                    <h4>Quick Actions</h4>
+                    <h4><i class="fas fa-th-large"></i> Quick Actions</h4>
                     <div class="quick-actions">
                         <div class="action-btn">
                             <i class="fas fa-upload"></i>
@@ -1986,7 +2626,58 @@
                         </div>
                     </div>
                     
-                    <h4 class="mt-4">Class Schedule</h4>
+                    <h4 class="mt-4"><i class="fas fa-book-open"></i> Subject Overview</h4>
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-icon" style="background: rgba(29, 78, 216, 0.1); color: var(--secondary);">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="subject-info">
+                                <h5>Mathematics</h5>
+                                <p>Frahan Sir • Period 3, 5</p>
+                            </div>
+                        </div>
+                        <div class="subject-actions">
+                            <button class="subject-btn"><i class="fas fa-play"></i> Watch Lecture</button>
+                            <button class="subject-btn"><i class="fas fa-download"></i> Notes</button>
+                        </div>
+                        <div class="grade-progress">
+                            <div class="grade-label">
+                                <span>Current Grade</span>
+                                <span>A</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar-fill" style="width: 88%; background: linear-gradient(90deg, var(--success), var(--accent));"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="subject-info">
+                                <h5>Science</h5>
+                                <p>Zeba Mam • Period 2, 4</p>
+                            </div>
+                        </div>
+                        <div class="subject-actions">
+                            <button class="subject-btn"><i class="fas fa-play"></i> Watch Lecture</button>
+                            <button class="subject-btn"><i class="fas fa-download"></i> Notes</button>
+                        </div>
+                        <div class="grade-progress">
+                            <div class="grade-label">
+                                <span>Current Grade</span>
+                                <span>A-</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar-fill" style="width: 82%; background: linear-gradient(90deg, var(--success), var(--accent));"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="mt-4"><i class="fas fa-calendar-alt"></i> Class Schedule</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm">
                             <thead class="table-light">
@@ -2032,6 +2723,18 @@
                                     <td>Science</td>
                                     <td>Math</td>
                                 </tr>
+                                <tr>
+                                    <td>1:00-2:00</td>
+                                    <td colspan="5">Lunch Break</td>
+                                </tr>
+                                <tr>
+                                    <td>2:00-3:00</td>
+                                    <td>Art</td>
+                                    <td>Sports</td>
+                                    <td>Music</td>
+                                    <td>Library</td>
+                                    <td>Club</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -2040,13 +2743,16 @@
         </div>
     </section>
 
-    <!-- Floating Action Button -->
-    <div class="floating-button" id="callButton">
-        <i class="fas fa-phone-alt"></i>
-    </div>
+    <!-- Admin Panel Link -->
+    <a href="admin.html" class="admin-link" title="Admin Panel">
+        <i class="fas fa-user-shield"></i>
+    </a>
 
     <!-- Toast Notification -->
-    <div class="toast" id="toast">Registration successful! Welcome to Milli Karwaan Public School.</div>
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Registration successful! Welcome to Milli Karwaan Public School.</span>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -2114,7 +2820,7 @@
     <script>
         // Current step in registration
         let currentStep = 1;
-        const totalSteps = 4;
+        const totalSteps = 5;
         const progressBar = document.getElementById('progressBar');
         
         // Registration Modal Elements
@@ -2130,6 +2836,8 @@
         const prevToStep2 = document.getElementById('prevToStep2');
         const nextToStep4 = document.getElementById('nextToStep4');
         const prevToStep3 = document.getElementById('prevToStep3');
+        const nextToStep5 = document.getElementById('nextToStep5');
+        const prevToStep4 = document.getElementById('prevToStep4');
         const submitRegistration = document.getElementById('submitRegistration');
         
         // Form elements
@@ -2141,6 +2849,8 @@
         const gender = document.getElementById('gender');
         const address = document.getElementById('address');
         const admissionNo = document.getElementById('admissionNo');
+        const emergencyContact = document.getElementById('emergencyContact');
+        const bloodGroup = document.getElementById('bloodGroup');
         
         const fatherName = document.getElementById('fatherName');
         const fatherPhone = document.getElementById('fatherPhone');
@@ -2149,6 +2859,7 @@
         const parentEmail = document.getElementById('parentEmail');
         const parentAddress = document.getElementById('parentAddress');
         const occupation = document.getElementById('occupation');
+        const annualIncome = document.getElementById('annualIncome');
         
         const currentClass = document.getElementById('currentClass');
         const section = document.getElementById('section');
@@ -2156,6 +2867,14 @@
         const previousSchool = document.getElementById('previousSchool');
         const previousMarks = document.getElementById('previousMarks');
         const subjects = document.getElementById('subjects');
+        const extracurricular = document.getElementById('extracurricular');
+        
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const securityQuestion = document.getElementById('securityQuestion');
+        const securityAnswer = document.getElementById('securityAnswer');
+        const recoveryEmail = document.getElementById('recoveryEmail');
         
         // Confirmation elements
         const confirmName = document.getElementById('confirmName');
@@ -2163,31 +2882,43 @@
         const confirmPhone = document.getElementById('confirmPhone');
         const confirmDob = document.getElementById('confirmDob');
         const confirmGender = document.getElementById('confirmGender');
+        const confirmAddress = document.getElementById('confirmAddress');
+        const confirmAdmission = document.getElementById('confirmAdmission');
+        
         const confirmFather = document.getElementById('confirmFather');
         const confirmMother = document.getElementById('confirmMother');
         const confirmParentPhone = document.getElementById('confirmParentPhone');
         const confirmParentEmail = document.getElementById('confirmParentEmail');
+        const confirmOccupation = document.getElementById('confirmOccupation');
+        
         const confirmClass = document.getElementById('confirmClass');
         const confirmSection = document.getElementById('confirmSection');
         const confirmRoll = document.getElementById('confirmRoll');
+        
+        const confirmUsername = document.getElementById('confirmUsername');
+        const confirmSecurityQ = document.getElementById('confirmSecurityQ');
         
         // Other elements
         const loginBtn = document.getElementById('loginBtn');
         const callButton = document.getElementById('callButton');
         const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
         const studentDashboard = document.getElementById('studentDashboard');
         const studentInitial = document.getElementById('studentInitial');
         const studentFullName = document.getElementById('studentFullName');
         const studentClassInfo = document.getElementById('studentClassInfo');
         const studentEmailInfo = document.getElementById('studentEmailInfo');
+        const classTabs = document.querySelectorAll('.class-tab');
         
         // Navigation scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
+                navbar.style.height = '60px';
             } else {
                 navbar.classList.remove('scrolled');
+                navbar.style.height = '70px';
             }
         });
         
@@ -2224,6 +2955,17 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+        
+        // Class tab functionality
+        classTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                classTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // In a real application, this would load class-specific content
+                showToast(`Loading information for ${tab.textContent}`, 'success');
             });
         });
         
@@ -2266,13 +3008,22 @@
             
             switch (step) {
                 case 1:
-                    elementsToCheck = [firstName, lastName, studentEmail, studentPhone, dob, gender, address, admissionNo];
+                    elementsToCheck = [firstName, lastName, studentEmail, studentPhone, dob, gender, address, admissionNo, emergencyContact];
                     break;
                 case 2:
                     elementsToCheck = [fatherName, fatherPhone, motherName, motherPhone, parentEmail, occupation];
                     break;
                 case 3:
                     elementsToCheck = [currentClass, section, rollNumber];
+                    break;
+                case 4:
+                    elementsToCheck = [username, password, confirmPassword, securityQuestion, securityAnswer];
+                    if (password.value !== confirmPassword.value) {
+                        password.style.borderColor = '#ef4444';
+                        confirmPassword.style.borderColor = '#ef4444';
+                        showToast('Passwords do not match.', 'error');
+                        return false;
+                    }
                     break;
             }
             
@@ -2299,15 +3050,21 @@
             confirmPhone.textContent = studentPhone.value;
             confirmDob.textContent = dob.value ? new Date(dob.value).toLocaleDateString() : '';
             confirmGender.textContent = gender.value;
+            confirmAddress.textContent = address.value;
+            confirmAdmission.textContent = admissionNo.value;
             
             confirmFather.textContent = fatherName.value;
             confirmMother.textContent = motherName.value;
-            confirmParentPhone.textContent = fatherPhone.value;
+            confirmParentPhone.textContent = parentEmail.value ? parentEmail.value : fatherPhone.value;
             confirmParentEmail.textContent = parentEmail.value;
+            confirmOccupation.textContent = occupation.value;
             
             confirmClass.textContent = currentClass.value ? `Class ${currentClass.value}` : '';
             confirmSection.textContent = section.value;
             confirmRoll.textContent = rollNumber.value;
+            
+            confirmUsername.textContent = username.value;
+            confirmSecurityQ.textContent = securityQuestion.options[securityQuestion.selectedIndex].text;
         }
         
         // Reset registration form
@@ -2335,8 +3092,9 @@
         
         // Show toast message
         function showToast(message, type = 'success') {
-            toast.textContent = message;
-            toast.style.background = type === 'success' ? var(--success) : var(--danger);
+            toastMessage.textContent = message;
+            toast.className = 'toast';
+            toast.classList.add(type);
             toast.classList.add('show');
             
             setTimeout(() => {
@@ -2349,11 +3107,13 @@
         prevToStep1.addEventListener('click', () => goToStep(1));
         nextToStep3.addEventListener('click', () => goToStep(3));
         prevToStep2.addEventListener('click', () => goToStep(2));
-        nextToStep4.addEventListener('click', () => {
-            updateConfirmation();
-            goToStep(4);
-        });
+        nextToStep4.addEventListener('click', () => goToStep(4));
         prevToStep3.addEventListener('click', () => goToStep(3));
+        nextToStep5.addEventListener('click', () => {
+            updateConfirmation();
+            goToStep(5);
+        });
+        prevToStep4.addEventListener('click', () => goToStep(4));
         
         // Submit registration
         submitRegistration.addEventListener('click', () => {
@@ -2394,12 +3154,59 @@
             });
         });
         
+        // Password strength indicator (basic)
+        password.addEventListener('input', function() {
+            const pwd = this.value;
+            if (pwd.length >= 8) {
+                this.style.borderColor = '#10b981';
+            } else if (pwd.length >= 4) {
+                this.style.borderColor = '#f59e0b';
+            } else if (pwd.length > 0) {
+                this.style.borderColor = '#ef4444';
+            }
+        });
+        
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             // Hide dashboard initially
             studentDashboard.style.display = 'none';
             
-            // Any other initialization code here
+            // Add click events to quick action buttons
+            const actionButtons = document.querySelectorAll('.action-btn');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.querySelector('span').textContent;
+                    showToast(`Redirecting to ${action}...`, 'success');
+                });
+            });
+            
+            // Add click events to subject buttons
+            const subjectButtons = document.querySelectorAll('.subject-btn');
+            subjectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.querySelector('span').textContent;
+                    showToast(`Loading ${action}...`, 'success');
+                });
+            });
+            
+            // Add click events to announcements
+            const announcements = document.querySelectorAll('.announcement');
+            announcements.forEach(announcement => {
+                announcement.addEventListener('click', function() {
+                    const title = this.querySelector('h5').textContent;
+                    showToast(`Viewing announcement: ${title}`, 'success');
+                });
+            });
+            
+            // Add click events to homework items
+            const homeworkItems = document.querySelectorAll('.homework-item');
+            homeworkItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('h5').textContent;
+                    showToast(`Viewing homework: ${title}`, 'success');
+                });
+            });
+            
             console.log('Milli Karwaan Public School website loaded successfully.');
         });
     </script>
