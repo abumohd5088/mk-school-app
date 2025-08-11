@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
         
         * {
             font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
         
         .montserrat {
@@ -149,8 +153,8 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -161,6 +165,7 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
             z-index: 100;
             transition: all 0.3s ease;
+            font-size: 20px;
         }
         
         .chat-bubble:hover {
@@ -172,8 +177,8 @@
             position: fixed;
             bottom: 80px;
             right: 20px;
-            width: 350px;
-            max-height: 500px;
+            width: 380px;
+            max-height: 550px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
@@ -201,14 +206,14 @@
         }
         
         .chat-messages {
-            height: 300px;
+            height: 380px;
             overflow-y: auto;
             padding: 15px;
             background: #f8f9fa;
         }
         
         .message {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             max-width: 80%;
         }
         
@@ -217,9 +222,10 @@
         }
         
         .message-content {
-            padding: 10px 15px;
+            padding: 12px 18px;
             border-radius: 18px;
             font-size: 14px;
+            position: relative;
         }
         
         .message-sent {
@@ -234,6 +240,13 @@
             border-bottom-left-radius: 5px;
         }
         
+        .message-time {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
         .chat-input {
             display: flex;
             padding: 10px;
@@ -243,7 +256,7 @@
         
         .chat-input input {
             flex: 1;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: 1px solid #dee2e6;
             border-radius: 25px;
             outline: none;
@@ -251,12 +264,13 @@
         
         .chat-input button {
             margin-left: 10px;
-            padding: 10px 15px;
+            padding: 12px 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 25px;
             cursor: pointer;
+            font-size: 16px;
         }
         
         .dark-mode {
@@ -308,12 +322,171 @@
         .dark-mode-footer .text-gray-400 {
             color: #64748b !important;
         }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .accordion-button {
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion-active .accordion-content {
+            max-height: 500px;
+        }
+        
+        .floating-button {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .zoom-in {
+            transition: transform 0.3s ease;
+        }
+        
+        .zoom-in:hover {
+            transform: scale(1.05);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .counter {
+            display: inline-block;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .counter::before {
+            content: attr(data-target);
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        
+        .counter.visible::before {
+            opacity: 1;
+        }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen transition-colors duration-300">
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div id="scrollTop" class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- School Header -->
-    <header class="bg-white shadow-xl border-b-4 border-indigo-600 sticky top-0 z-40 transition-colors duration-300">
+    <header class="bg-white shadow-xl border-b-4 border-indigo-600 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center space-x-4">
@@ -338,6 +511,21 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Navigation -->
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex space-x-8 overflow-x-auto">
+                    <a href="#home" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="#about" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">About</a>
+                    <a href="#academics" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Academics</a>
+                    <a href="#facilities" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Facilities</a>
+                    <a href="#admissions" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Admissions</a>
+                    <a href="#gallery" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Gallery</a>
+                    <a href="#contact" class="nav-link block py-4 px-2 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <!-- Student Login Modal -->
@@ -448,7 +636,7 @@
     <!-- Main Dashboard (Initially Hidden) -->
     <div id="dashboard" class="hidden">
         <!-- Hero Section -->
-        <section class="bg-gradient text-white py-20">
+        <section id="home" class="bg-gradient text-white py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div class="stagger stagger-1">
@@ -774,6 +962,433 @@
                 </div>
             </div>
 
+            <!-- About Section -->
+            <section id="about" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6">About Milli Karwaan Public School</h3>
+                        <p class="text-gray-600 mb-4">Established in 2005, Milli Karwaan Public School has been committed to providing quality education to children in Balrampur and surrounding areas. Our mission is to nurture young minds and prepare them for a successful future through innovative teaching methods and holistic development programs.</p>
+                        <p class="text-gray-600 mb-6">We believe in creating a learning environment that fosters academic excellence, character development, and social responsibility. Our experienced faculty members are dedicated to helping each student reach their full potential.</p>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl">
+                                <div class="text-3xl font-bold text-blue-600 counter" data-target="15+">0</div>
+                                <p class="text-gray-600">Years of Excellence</p>
+                            </div>
+                            <div class="text-center p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
+                                <div class="text-3xl font-bold text-green-600 counter" data-target="1000+">0</div>
+                                <p class="text-gray-600">Students</p>
+                            </div>
+                            <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
+                                <div class="text-3xl font-bold text-purple-600 counter" data-target="50+">0</div>
+                                <p class="text-gray-600">Teachers</p>
+                            </div>
+                            <div class="text-center p-4 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl">
+                                <div class="text-3xl font-bold text-orange-600 counter" data-target="98%">0</div>
+                                <p class="text-gray-600">Pass Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="https://placehold.co/500x400/667eea/ffffff?text=School+Campus" alt="School Campus" class="rounded-2xl shadow-2xl">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academics Section -->
+            <section id="academics" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
+                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Academic Programs</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl hover-scale">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-math text-blue-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Mathematics</h4>
+                        <p class="text-gray-600">Our mathematics curriculum focuses on developing problem-solving skills, logical reasoning, and numerical proficiency through interactive learning methods.</p>
+                    </div>
+                    <div class="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl hover-scale">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-flask text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Science</h4>
+                        <p class="text-gray-600">Hands-on experiments, science fairs, and project-based learning help students understand scientific concepts and develop critical thinking skills.</p>
+                    </div>
+                    <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl hover-scale">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-purple-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Languages</h4>
+                        <p class="text-gray-600">We offer comprehensive language programs in English, Hindi, and Sanskrit, focusing on reading, writing, speaking, and listening skills.</p>
+                    </div>
+                    <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl hover-scale">
+                        <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-palette text-orange-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Arts & Music</h4>
+                        <p class="text-gray-600">Creative expression is encouraged through visual arts, music, dance, and drama programs that nurture students' artistic talents.</p>
+                    </div>
+                    <div class="text-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl hover-scale">
+                        <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-laptop-code text-indigo-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Computer Science</h4>
+                        <p class="text-gray-600">Our computer labs are equipped with modern technology, and our curriculum includes programming, digital literacy, and internet safety.</p>
+                    </div>
+                    <div class="text-center p-6 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl hover-scale">
+                        <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-futbol text-teal-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Physical Education</h4>
+                        <p class="text-gray-600">Regular sports activities, yoga, and fitness programs promote physical health, teamwork, and sportsmanship among students.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Facilities Section -->
+            <section id="facilities" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
+                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">School Facilities</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-blue-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Library</h4>
+                        <p class="text-gray-600">Our well-stocked library has thousands of books, periodicals, and digital resources to support students' reading and research needs.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-flask text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Science Labs</h4>
+                        <p class="text-gray-600">Equipped with modern instruments and safety features, our science labs provide hands-on learning experiences in physics, chemistry, and biology.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-laptop text-purple-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Computer Labs</h4>
+                        <p class="text-gray-600">State-of-the-art computer labs with high-speed internet and the latest software support digital learning and programming education.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
+                        <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-futbol text-orange-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Sports Facilities</h4>
+                        <p class="text-gray-600">Our school has a large playground, basketball court, and indoor games room to promote physical fitness and sportsmanship.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
+                        <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-music text-indigo-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Music & Dance Room</h4>
+                        <p class="text-gray-600">Dedicated spaces for music and dance education with instruments, sound systems, and professional-grade equipment.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl text-center hover-scale">
+                        <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-medkit text-teal-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Medical Room</h4>
+                        <p class="text-gray-600">Our medical room is staffed with trained personnel and equipped to handle minor injuries and health emergencies.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admissions Section -->
+            <section id="admissions" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6">Admissions</h3>
+                        <p class="text-gray-600 mb-6">We welcome new students throughout the academic year. Our admission process is designed to be simple and transparent, ensuring a smooth transition for both students and parents.</p>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-lg mr-3 mt-1">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Eligibility</h4>
+                                    <p class="text-gray-600">Children between the ages of 3-16 are eligible for admission based on their age and previous academic records.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-lg mr-3 mt-1">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Documents Required</h4>
+                                    <p class="text-gray-600">Birth certificate, previous school records, address proof, and passport-sized photographs.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-lg mr-3 mt-1">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Admission Process</h4>
+                                    <p class="text-gray-600">Submit application → Document verification → Interaction session → Admission confirmation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center space-x-2">
+                            <i class="fas fa-download"></i>
+                            <span>Download Admission Form</span>
+                        </button>
+                    </div>
+                    <div>
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl">
+                            <h4 class="text-xl font-bold text-gray-800 mb-6">Fees Structure</h4>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                    <span class="font-medium">Admission Fee</span>
+                                    <span class="font-bold">₹5,000</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                    <span class="font-medium">Monthly Fee</span>
+                                    <span class="font-bold">₹2,500</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                    <span class="font-medium">Annual Charges</span>
+                                    <span class="font-bold">₹3,000</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                    <span class="font-medium">Transport (Optional)</span>
+                                    <span class="font-bold">₹1,500</span>
+                                </div>
+                                <div class="border-t pt-3 mt-4">
+                                    <div class="flex justify-between items-center font-bold text-lg">
+                                        <span>Total (First Month)</span>
+                                        <span>₹11,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
+                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">What Parents Say</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="testimonial-card bg-gray-50 p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/60x60/667eea/ffffff?text=SM" alt="Parent" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Sunita Mehta</h4>
+                                <p class="text-sm text-gray-600">Mother of Class 5 Student</p>
+                            </div>
+                        </div>
+                        <div class="text-yellow-400 mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 italic">"Milli Karwaan has transformed my child's learning experience. The teachers are dedicated, and the curriculum is well-balanced between academics and extracurricular activities."</p>
+                    </div>
+                    <div class="testimonial-card bg-gray-50 p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/60x60/764ba2/ffffff?text=RK" alt="Parent" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Rajesh Kumar</h4>
+                                <p class="text-sm text-gray-600">Father of Class 8 Student</p>
+                            </div>
+                        </div>
+                        <div class="text-yellow-400 mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 italic">"The school's focus on holistic development is impressive. My son has not only improved academically but also gained confidence through various activities and competitions."</p>
+                    </div>
+                    <div class="testimonial-card bg-gray-50 p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/60x60/667eea/ffffff?text=AP" alt="Parent" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Anjali Patel</h4>
+                                <p class="text-sm text-gray-600">Mother of Nursery Student</p>
+                            </div>
+                        </div>
+                        <div class="text-yellow-400 mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 italic">"As a parent of a young child, I was concerned about the transition to school life. The caring teachers and nurturing environment have made this journey smooth and enjoyable for my daughter."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
+                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h3>
+                <div class="space-y-4">
+                    <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-gray-800">What are the school hours?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-6">
+                                <p class="text-gray-600">School hours are from 9:00 AM to 2:00 PM, Monday through Friday. The morning assembly starts at 9:00 AM, and classes begin at 9:15 AM.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-gray-800">Does the school provide transportation?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-6">
+                                <p class="text-gray-600">Yes, we provide transportation services for students living within a 10 km radius of the school. Our buses are equipped with GPS tracking and attendants for student safety.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-gray-800">What extracurricular activities are offered?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-6">
+                                <p class="text-gray-600">We offer a wide range of extracurricular activities including sports (cricket, football, basketball), arts (drawing, painting, sculpture), music (vocal, instrumental), dance, drama, debate, and various clubs (science, robotics, eco-club).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-gray-800">How does the school handle student safety?</span>
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-6">
+                                <p class="text-gray-600">Student safety is our top priority. We have CCTV surveillance throughout the campus, trained security personnel, strict visitor protocols, and regular safety drills. All staff members are trained in first aid and emergency procedures.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
+                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">School Gallery</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x200/667eea/ffffff?text=Classroom" alt="Classroom" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x200/764ba2/ffffff?text=Science+Lab" alt="Science Lab" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x200/667eea/ffffff?text=Library" alt="Library" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x200/764ba2/ffffff?text=Sports+Day" alt="Sports Day" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x200/667eea/ffffff?text=Annual+Day" alt="Annual Day" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x200/764ba2/ffffff?text=Art+Class" alt="Art Class" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x200/667eea/ffffff?text=Music+Room" alt="Music Room" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x200/764ba2/ffffff?text=Computer+Lab" alt="Computer Lab" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6">Contact Us</h3>
+                        <p class="text-gray-600 mb-8">Have questions or want to learn more about our school? Get in touch with us through any of the following channels.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-xl mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Address</h4>
+                                    <p class="text-gray-600">Near Police Chowki, Balrampur, Uttar Pradesh 271201, India</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-xl mr-4 mt-1">
+                                    <i class="fas fa-phone-alt text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">+91 9758919158</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-xl mr-4 mt-1">
+                                    <i class="fas fa-envelope text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">mainmadamsir066@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-xl mr-4 mt-1">
+                                    <i class="fas fa-clock text-orange-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Office Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 8:00 AM - 4:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl p-6">
+                            <h4 class="text-xl font-bold text-gray-800 mb-6">Send us a Message</h4>
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Your name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Your email">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                    <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Your phone number">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                    <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Your message"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Timetable Section -->
             <div class="bg-white rounded-3xl shadow-xl p-8 mb-8 card-hover hover-scale">
                 <div class="flex items-center mb-6">
@@ -949,19 +1564,25 @@
                     <div>
                         <h3 class="text-xl font-bold mb-4">Quick Links</h3>
                         <div class="space-y-2">
-                            <a href="#" class="block text-gray-300 hover:text-white transition-colors flex items-center">
+                            <a href="#home" class="block text-gray-300 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Home
+                            </a>
+                            <a href="#about" class="block text-gray-300 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-chevron-right mr-2 text-sm"></i> About Us
+                            </a>
+                            <a href="#academics" class="block text-gray-300 hover:text-white transition-colors flex items-center">
                                 <i class="fas fa-chevron-right mr-2 text-sm"></i> Academics
                             </a>
-                            <a href="#" class="block text-gray-300 hover:text-white transition-colors flex items-center">
+                            <a href="#facilities" class="block text-gray-300 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Facilities
+                            </a>
+                            <a href="#admissions" class="block text-gray-300 hover:text-white transition-colors flex items-center">
                                 <i class="fas fa-chevron-right mr-2 text-sm"></i> Admissions
                             </a>
-                            <a href="#" class="block text-gray-300 hover:text-white transition-colors flex items-center">
-                                <i class="fas fa-chevron-right mr-2 text-sm"></i> Events
-                            </a>
-                            <a href="#" class="block text-gray-300 hover:text-white transition-colors flex items-center">
+                            <a href="#gallery" class="block text-gray-300 hover:text-white transition-colors flex items-center">
                                 <i class="fas fa-chevron-right mr-2 text-sm"></i> Gallery
                             </a>
-                            <a href="#" class="block text-gray-300 hover:text-white transition-colors flex items-center">
+                            <a href="#contact" class="block text-gray-300 hover:text-white transition-colors flex items-center">
                                 <i class="fas fa-chevron-right mr-2 text-sm"></i> Contact Us
                             </a>
                         </div>
@@ -975,7 +1596,7 @@
                                 </div>
                                 <div>
                                     <p class="font-medium">Address</p>
-                                    <p class="text-gray-300 text-sm">Near Police Chowki, Balrampur, Uttar Pradesh</p>
+                                    <p class="text-gray-300 text-sm">Near Police Chowki, Balrampur, Uttar Pradesh 271201, India</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -984,7 +1605,7 @@
                                 </div>
                                 <div>
                                     <p class="font-medium">Phone</p>
-                                    <p class="text-gray-300 text-sm">9758919158</p>
+                                    <p class="text-gray-300 text-sm">+91 9758919158</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -994,6 +1615,15 @@
                                 <div>
                                     <p class="font-medium">Email</p>
                                     <p class="text-gray-300 text-sm">mainmadamsir066@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-gray-700 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Office Hours</p>
+                                    <p class="text-gray-300 text-sm">Mon-Fri: 8:00 AM - 4:00 PM<br>Sat: 9:00 AM - 1:00 PM</p>
                                 </div>
                             </div>
                         </div>
@@ -1200,6 +1830,8 @@
         const chatInput = document.getElementById('chatInput');
         const sendChat = document.getElementById('sendChat');
         const notificationsBtn = document.getElementById('notificationsBtn');
+        const scrollTop = document.getElementById('scrollTop');
+        const loadingOverlay = document.getElementById('loadingOverlay');
 
         // Initialize performance chart
         let performanceChart;
@@ -1402,6 +2034,51 @@
             notificationsBtn.querySelector('.notification-badge').style.display = 'none';
         });
 
+        // Scroll to top functionality
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Navigation smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                button.parentElement.classList.toggle('accordion-active');
+            });
+        });
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                counter.classList.add('visible');
+            });
+        }
+
         // Populate homework based on class
         function populateHomework(studentClass) {
             homeworkContent.innerHTML = '';
@@ -1450,8 +2127,17 @@
             performanceChart.update();
         }
 
-        // Initialize chart when page loads
+        // Initialize all features when page loads
         document.addEventListener('DOMContentLoaded', () => {
+            // Hide loading overlay after 1.5 seconds
+            setTimeout(() => {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 300);
+            }, 1500);
+            
+            // Initialize chart
             initChart();
             
             // Add stagger class to elements for animation
@@ -1460,6 +2146,22 @@
                 el.style.opacity = 0;
                 el.style.transform = 'translateY(30px)';
             });
+            
+            // Set up intersection observer for counters
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            // Observe the about section for counter animation
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                observer.observe(aboutSection);
+            }
         });
 
         // Allow pressing Enter key to login
@@ -1477,3 +2179,4 @@
     </script>
 </body>
 </html>
+```
