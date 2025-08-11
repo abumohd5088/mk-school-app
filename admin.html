@@ -1,512 +1,130 @@
-<!doctype html>
-
-<html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin — Milli Karwaan Public School</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Milli Karwaan Public School</title>
   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#0b5cff;--muted:#94a3b8}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter, system-ui, -apple-system,'Segoe UI',Roboto,Arial;color:#e6eef8;background:linear-gradient(180deg,#071025 0%, #081229 60%);min-height:100vh}
-    .wrap{max-width:1100px;margin:2rem auto;padding:1rem}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:1rem;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    header{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    h1{margin:0;font-size:1.25rem}
-    .small{color:var(--muted);font-size:0.95rem}
-    nav{display:flex;gap:0.5rem;margin-top:1rem}
-    .tab{padding:0.5rem 0.75rem;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
-    .tab.active{background:var(--accent);color:#021133}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:1rem;margin-top:1rem}
-    .panel{padding:0.8rem}
-    label{display:block;margin-top:0.6rem;font-size:0.9rem;color:var(--muted)}
-    input,textarea,select{width:100%;padding:0.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    button{margin-top:0.8rem;padding:0.6rem 0.9rem;border-radius:8px;border:none;cursor:pointer}
-    .btn-primary{background:var(--accent);color:#021133}
-    .btn-muted{background:transparent;border:1px solid rgba(255,255,255,0.06)}
-    table{width:100%;border-collapse:collapse;margin-top:0.5rem}
-    th,td{padding:0.45rem;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:0.95rem}
-    .danger{background:#7f1d1d;color:#fff}
-    footer{margin-top:1rem;color:var(--muted);font-size:0.85rem}/* Password modal */
-.overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(rgba(1,2,6,0.6),rgba(2,6,23,0.8));z-index:60}
-.modal{background:var(--card);padding:1rem;border-radius:12px;max-width:460px;width:95%;box-shadow:0 12px 50px rgba(2,6,23,0.7)}
-.notice{background:#072033;padding:0.6rem;border-radius:8px;margin-top:0.6rem;color:var(--muted);font-size:0.9rem}
-
-@media (max-width:980px){.grid{grid-template-columns:1fr}}
-
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f3f4f6;
+    }
+    header {
+      background: #0b5cff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background: #1f2937;
+      padding: 0.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+    }
+    section {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #0b5cff;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap card" id="app">
-    <header>
-      <div>
-        <h1>Admin Panel — Milli Karwaan Public School</h1>
-        <div class="small">Secure admin area — changes reflect on site when you export and deploy the updated index.html</div>
-      </div>
-      <div class="small" id="loggedInfo">---</div>
-    </header><nav id="tabs" role="tablist" aria-label="Admin tabs">
-  <button class="tab active" data-tab="dashboard">Dashboard</button>
-  <button class="tab" data-tab="edit">Edit Site</button>
-  <button class="tab" data-tab="ann">Announcements</button>
-  <button class="tab" data-tab="admissions">Admissions</button>
-  <button class="tab" data-tab="contact">Contact Submissions</button>
-  <button class="tab" data-tab="settings">Settings</button>
-</nav>
-
-<div class="grid">
-  <main class="panel card" id="mainPanel">
-    <!-- content injected by JS -->
-  </main>
-
-  <aside class="panel card">
-    <h3>Quick actions</h3>
-    <div style="margin-top:0.5rem">
-      <button class="btn-primary" id="exportBtn">Export updated index.html</button>
-      <button class="btn-muted" id="previewBtn">Preview generated HTML</button>
-      <button class="btn-muted" id="clearDataBtn">Reset all saved data</button>
-    </div>
-
-    <div class="notice" style="margin-top:0.8rem">
-      सुरक्षा सूचना: यह पासवर्ड-आधारित गेट केवल ब्राउज़र स्तर पर है। सही सुरक्षा के लिए इसे सर्वर-साइड ऑथेंटिकेशन से जोड़ें।
-    </div>
-
-    <div style="margin-top:0.8rem">
-      <h4>Storage status</h4>
-      <div id="storageInfo" class="small">---</div>
-    </div>
-  </aside>
-</div>
-
-<footer>
-  <div class="small">Designed for local/static hosting — export and replace your public index.html to apply changes.</div>
-</footer>
-
-  </div>  <!-- Password modal -->  <div id="pwOverlay" class="overlay" aria-hidden="false">
-    <div class="modal">
-      <h2>Admin Login</h2>
-      <p class="small">कृपया पासवर्ड दर्ज करें ताकि आप एडमिन पैनल का उपयोग कर सकें।</p>
-      <label for="pwInput">Password</label>
-      <input id="pwInput" type="password" autocomplete="current-password" placeholder="Enter password">
-      <div style="display:flex;gap:0.5rem;margin-top:0.6rem">
-        <button id="pwSubmit" class="btn-primary">Login</button>
-        <button id="pwCancel" class="btn-muted">Close</button>
-      </div>
-      <div id="pwMessage" class="notice" style="display:none;margin-top:0.6rem"></div>
-    </div>
-  </div>  <script>
-    // -----------------------------
-    // CONFIG / Default site data
-    // -----------------------------
-    const DEFAULT = {
-      schoolName: 'Milli Karwaan Public School',
-      tagline: 'एक समर्पित शैक्षणिक संस्थान — बच्चों की समग्र वृद्धि और नैतिक शिक्षा पर जोर।',
-      address: 'Boluha Police Chowki, Balrampur',
-      officeHours: 'सोम — शनि: 9:00 AM — 4:00 PM',
-      sunday: 'रविवार: अवकाश (विशेष कार्यक्रम के लिए खुला हो सकता है)',
-      announcements: [
-        {id: Date.now(), text: 'स्वागत है! प्रवेश प्रक्रिया खुली है।'}
-      ],
-      logoData: '', // base64 dataURL
-      submissions: [], // contact form submissions
-      admissionsList: []
-    };
-
-    // password (case-sensitive) - initial value as provided by you
-    // store hashed or plain? For simplicity keep base64-encoded in localStorage; admin can change it.
-    const INITIAL_PASSWORD = btoa('Abutalha'); // base64 to avoid plain text in source
-
-    // -----------------------------
-    // Helper utilities
-    // -----------------------------
-    function $q(sel){return document.querySelector(sel)}
-    function $qa(sel){return Array.from(document.querySelectorAll(sel))}
-
-    // load/save from localStorage
-    function loadData(){
-      try{
-        const raw = localStorage.getItem('mkps_data');
-        if(!raw) return {...DEFAULT};
-        const parsed = JSON.parse(raw);
-        return Object.assign({}, DEFAULT, parsed);
-      }catch(e){console.error(e); return {...DEFAULT};}
-    }
-    function saveData(obj){
-      localStorage.setItem('mkps_data', JSON.stringify(obj));
-      refreshStorageInfo();
-    }
-    function resetData(){
-      if(confirm('क्या आप सुनिश्चित हैं कि आप सभी सहेजे गए डेटा को क्लियर करना चाहते हैं?')){
-        localStorage.removeItem('mkps_data');
-        localStorage.removeItem('mkps_pw');
-        init();
-        alert('डेटा रीसेट कर दिया गया है');
-      }
-    }
-
-    function refreshStorageInfo(){
-      const data = localStorage.getItem('mkps_data');
-      const size = data ? new Blob([data]).size : 0;
-      $q('#storageInfo').textContent = `Saved: ${data? 'Yes' : 'No'} · ${size} bytes`;
-    }
-
-    // -----------------------------
-    // Password gate logic
-    // -----------------------------
-    let attempts = 0; let lockedUntil = 0;
-    function getStoredPw(){
-      return localStorage.getItem('mkps_pw') || INITIAL_PASSWORD;
-    }
-    function checkPassword(plain){
-      try{
-        const encoded = btoa(plain);
-        return encoded === getStoredPw();
-      }catch(e){return false}
-    }
-
-    // lockout helper
-    function lockout(minutes){
-      lockedUntil = Date.now() + minutes*60*1000;
-      localStorage.setItem('mkps_locked', String(lockedUntil));
-    }
-    function isLocked(){
-      const v = parseInt(localStorage.getItem('mkps_locked')||'0',10);
-      if(!v) return false;
-      if(Date.now()>v){localStorage.removeItem('mkps_locked');return false}
-      lockedUntil = v; return true;
-    }
-
-    // -----------------------------
-    // UI rendering for tabs
-    // -----------------------------
-    const appState = {data: loadData()};
-
-    function renderDashboard(){
-      const d = appState.data;
-      return `
-        <h2>Dashboard</h2>
-        <p class="small">Welkom, Admin. नीचे साइट का सारांश और हाल की गतिविधियाँ देखें।</p>
-        <div style="display:flex;gap:0.6rem;margin-top:0.8rem">
-          <div class="card" style="flex:1;padding:0.6rem">
-            <strong>School:</strong>
-            <div>${escapeHtml(d.schoolName)}</div>
-            <div class="small">Address: ${escapeHtml(d.address)}</div>
-          </div>
-          <div class="card" style="flex:1;padding:0.6rem">
-            <strong>Announcements</strong>
-            <div class="small">${d.announcements.length} active</div>
-            <strong style="margin-top:0.5rem;display:block">Admissions</strong>
-            <div class="small">${d.admissionsList.length} applicants</div>
-          </div>
-        </div>
-
-        <h3 style="margin-top:0.8rem">Recent actions</h3>
-        <div class="small">Last saved: <span id="lastSaved"></span></div>
-      `;
-    }
-
-    function renderEdit(){
-      const d = appState.data;
-      return `
-        <h2>Edit Site</h2>
-        <label>School name</label>
-        <input id="inpSchool" value="${escapeHtml(d.schoolName)}">
-        <label>Tagline</label>
-        <input id="inpTag" value="${escapeHtml(d.tagline)}">
-        <label>Address</label>
-        <input id="inpAddress" value="${escapeHtml(d.address)}">
-        <label>Office hours (display text)</label>
-        <input id="inpHours" value="${escapeHtml(d.officeHours)}">
-        <label>Sunday note</label>
-        <input id="inpSunday" value="${escapeHtml(d.sunday)}">
-
-        <label>Logo (upload)</label>
-        <input id="inpLogo" type="file" accept="image/*">
-        <div id="logoPreview" class="small" style="margin-top:0.6rem">${d.logoData? '<img src="'+d.logoData+'" alt="logo" style="max-width:140px;border-radius:6px">' : 'No logo uploaded'}</div>
-
-        <button class="btn-primary" id="saveSiteBtn">Save changes</button>
-      `;
-    }
-
-    function renderAnnouncements(){
-      const d = appState.data;
-      const rows = d.announcements.map(a => `
-        <tr><td>${escapeHtml(a.text)}</td><td style="width:120px;text-align:right"><button data-id="${a.id}" class="btn-muted delAnn">Delete</button></td></tr>
-      `).join('');
-      return `
-        <h2>Announcements</h2>
-        <label>New announcement</label>
-        <input id="annText" placeholder="Type announcement here">
-        <button class="btn-primary" id="addAnnBtn">Add</button>
-        <table><thead><tr><th>Text</th><th></th></tr></thead><tbody>${rows}</tbody></table>
-      `;
-    }
-
-    function renderAdmissions(){
-      const d = appState.data;
-      const rows = d.admissionsList.map((a,i)=>`<tr><td>${i+1}</td><td>${escapeHtml(a.name)}</td><td>${escapeHtml(a.grade||'—')}</td><td style="text-align:right"><button data-idx="${i}" class="btn-muted viewApp">View</button></td></tr>`).join('');
-      return `
-        <h2>Admissions</h2>
-        <p class="small">यहाँ आवेदन जो index.html के फॉर्म से जोड़ा गया हो दिखेंगे।</p>
-        <table><thead><tr><th>#</th><th>Name</th><th>Grade</th><th></th></tr></thead><tbody>${rows}</tbody></table>
-      `;
-    }
-
-    function renderContacts(){
-      const d = appState.data;
-      const rows = d.submissions.map((s,i)=>`<tr><td>${i+1}</td><td>${escapeHtml(s.name)}</td><td>${escapeHtml(s.phone)}</td><td style="width:180px">${escapeHtml(s.message||'')}</td><td style="text-align:right"><button data-idx="${i}" class="btn-muted delContact">Delete</button></td></tr>`).join('');
-      return `
-        <h2>Contact submissions</h2>
-        <p class="small">${d.submissions.length} messages collected from the site contact form.</p>
-        <table><thead><tr><th>#</th><th>Name</th><th>Phone</th><th>Message</th><th></th></tr></thead><tbody>${rows}</tbody></table>
-      `;
-    }
-
-    function renderSettings(){
-      return `
-        <h2>Settings</h2>
-        <label>Change admin password</label>
-        <input id="newPw" type="password" placeholder="Enter new password">
-        <label>Confirm</label>
-        <input id="newPw2" type="password" placeholder="Confirm new password">
-        <button class="btn-primary" id="changePwBtn">Change password</button>
-
-        <h3 style="margin-top:0.6rem">Export / Import</h3>
-        <p class="small">You can export the saved data as JSON or import a JSON file to populate admin data.</p>
-        <button id="exportJson" class="btn-muted">Export JSON</button>
-        <input id="importJson" type="file" accept="application/json" style="margin-top:0.6rem">
-      `;
-    }
-
-    // Escape helper
-    function escapeHtml(str=''){return String(str).replace(/[&<>\"']/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]})}
-
-    // -----------------------------
-    // Event wiring and render dispatcher
-    // -----------------------------
-    function init(){
-      appState.data = loadData();
-      refreshStorageInfo();
-      document.getElementById('pwOverlay').style.display = isLocked() ? 'flex' : 'flex'; // show overlay when landing
-
-      // populate tabs
-      $qa('#tabs .tab').forEach(btn=>btn.addEventListener('click', (e)=>{
-        $qa('#tabs .tab').forEach(x=>x.classList.remove('active'));
-        btn.classList.add('active');
-        renderTab(btn.dataset.tab);
-      }));
-
-      // quick actions
-      $q('#exportBtn').addEventListener('click', ()=>exportIndexHTML());
-      $q('#previewBtn').addEventListener('click', ()=>previewHTML());
-      $q('#clearDataBtn').addEventListener('click', ()=>resetData());
-
-      // password modal
-      $q('#pwSubmit').addEventListener('click', tryPw);
-      $q('#pwCancel').addEventListener('click', ()=>{
-        if(confirm('क्या आप वाकई पैनल बंद करना चाहते हैं?')) window.location.href='index.html';
-      });
-      $q('#pwInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') tryPw(); });
-
-      // default render
-      renderTab('dashboard');
-      document.getElementById('loggedInfo').textContent = 'Ready';
-      $q('#lastSaved') && ($q('#lastSaved').textContent = localStorage.getItem('mkps_saved_at') || 'Never');
-    }
-
-    function renderTab(name){
-      let html = '';
-      if(name==='dashboard') html = renderDashboard();
-      if(name==='edit') html = renderEdit();
-      if(name==='ann') html = renderAnnouncements();
-      if(name==='admissions') html = renderAdmissions();
-      if(name==='contact') html = renderContacts();
-      if(name==='settings') html = renderSettings();
-      $q('#mainPanel').innerHTML = html;
-
-      // attach handlers for dynamic content
-      attachHandlers(name);
-    }
-
-    function attachHandlers(name){
-      if(name==='edit'){
-        $q('#saveSiteBtn').addEventListener('click', ()=>{
-          const d = appState.data;
-          d.schoolName = $q('#inpSchool').value.trim() || d.schoolName;
-          d.tagline = $q('#inpTag').value.trim() || d.tagline;
-          d.address = $q('#inpAddress').value.trim() || d.address;
-          d.officeHours = $q('#inpHours').value.trim() || d.officeHours;
-          d.sunday = $q('#inpSunday').value.trim() || d.sunday;
-          // logo file
-          const fileInput = $q('#inpLogo');
-          if(fileInput && fileInput.files && fileInput.files[0]){
-            const f = fileInput.files[0];
-            const reader = new FileReader();
-            reader.onload = function(ev){ d.logoData = ev.target.result; saveData(d); alert('Saved and logo updated'); renderTab('edit'); };
-            reader.readAsDataURL(f);
-          } else { saveData(d); alert('Saved changes'); }
-          localStorage.setItem('mkps_saved_at', new Date().toISOString());
-          $q('#lastSaved') && ($q('#lastSaved').textContent = localStorage.getItem('mkps_saved_at'));
-        });
-      }
-
-      if(name==='ann'){
-        $q('#addAnnBtn').addEventListener('click', ()=>{
-          const text = $q('#annText').value.trim();
-          if(!text) return alert('Please type announcement text');
-          appState.data.announcements.unshift({id: Date.now(), text});
-          saveData(appState.data);
-          renderTab('ann');
-        });
-        $qa('.delAnn').forEach(btn=>btn.addEventListener('click', (e)=>{
-          const id = Number(btn.dataset.id);
-          appState.data.announcements = appState.data.announcements.filter(a=>a.id!==id);
-          saveData(appState.data); renderTab('ann');
-        }));
-      }
-
-      if(name==='admissions'){
-        $qa('.viewApp').forEach(btn=>btn.addEventListener('click', ()=>{
-          const idx = Number(btn.dataset.idx);
-          const app = appState.data.admissionsList[idx];
-          alert('Applicant details:\nName: '+app.name+'\nGrade: '+(app.grade||'—')+'\nPhone: '+(app.phone||'—')+'\nMessage: '+(app.message||'—'));
-        }));
-      }
-
-      if(name==='contact'){
-        $qa('.delContact').forEach(btn=>btn.addEventListener('click', ()=>{
-          const idx = Number(btn.dataset.idx);
-          if(confirm('Delete this message?')){ appState.data.submissions.splice(idx,1); saveData(appState.data); renderTab('contact'); }
-        }));
-      }
-
-      if(name==='settings'){
-        $q('#changePwBtn').addEventListener('click', ()=>{
-          const a = $q('#newPw').value; const b = $q('#newPw2').value;
-          if(!a||a!==b) return alert('Passwords do not match or empty');
-          localStorage.setItem('mkps_pw', btoa(a));
-          alert('Password changed'); $q('#newPw').value='';$q('#newPw2').value='';
-        });
-        $q('#exportJson').addEventListener('click', ()=>{
-          const blob = new Blob([JSON.stringify(appState.data, null, 2)], {type:'application/json'});
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a'); a.href=url; a.download='mkps_data.json'; a.click(); URL.revokeObjectURL(url);
-        });
-        $q('#importJson').addEventListener('change', (e)=>{
-          const f = e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=function(ev){ try{ const parsed=JSON.parse(ev.target.result); appState.data=Object.assign({}, DEFAULT, parsed); saveData(appState.data); alert('Imported'); renderTab('settings'); }catch(er){alert('Invalid JSON');}}; r.readAsText(f);
-        });
-      }
-    }
-
-    // -----------------------------
-    // Password handling
-    // -----------------------------
-    function tryPw(){
-      if(isLocked()){
-        const remain = Math.ceil((lockedUntil - Date.now())/60000);
-        $q('#pwMessage').style.display='block'; $q('#pwMessage').textContent = `Too many attempts. Locked for ${remain} more minute(s).`;
-        return;
-      }
-      const val = $q('#pwInput').value || '';
-      if(checkPassword(val)){
-        // success
-        document.getElementById('pwOverlay').style.display='none';
-        $q('#pwMessage').style.display='none';
-        attempts = 0;
-        document.getElementById('loggedInfo').textContent = 'Signed in';
-        renderTab('dashboard');
-      } else {
-        attempts++;
-        $q('#pwMessage').style.display='block';
-        $q('#pwMessage').textContent = `गलत पासवर्ड (कوشिश: ${attempts}). 5 गलतों के बाद लॉक होगा।`;
-        if(attempts>=5){ lockout(10); $q('#pwMessage').textContent = 'बहुत अधिक प्रयास — 10 मिनट के लिए लॉक कर दिया गया है।'; }
-      }
-    }
-
-    // -----------------------------
-    // Export generated index.html
-    // -----------------------------
-    function generateIndexHTML(){
-      const d = appState.data;
-      // A simple templated index.html that reads from localStorage (mkps_data) so changes from admin will reflect if both files are hosted together.
-      const template = `<!doctype html>
-<html lang="hi">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${escapeHtml(d.schoolName)} — Balrampur</title>
-  <style>/* Minimal styles copied from original */ body{font-family:Inter,system-ui,Arial;background:#f3f4f6;color:#111} header{background:linear-gradient(90deg,#0b5cff,#0ea5a4);color:#fff;padding:1rem}.container{max-width:1000px;margin:0 auto;padding:1rem}.card{background:#fff;padding:1rem;border-radius:10px}</style></head>
-<body>
   <header>
-    <div class="container">
-      <h1 id="siteName">${escapeHtml(d.schoolName)}</h1>
-      <p id="tagline">${escapeHtml(d.tagline)}</p>
-      <p id="addr">Address: ${escapeHtml(d.address)}</p>
-    </div>
+    <h1>Admin Panel</h1>
+    <p>Milli Karwaan Public School - Balrampur</p>
   </header>
-  <main class="container">
-    <section class="card">
-      <h2>Announcements</h2>
-      <ul id="annList">
-        ${d.announcements.map(a=>'<li>'+escapeHtml(a.text)+'</li>').join('\n')}
+
+  <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#site-content">Site Content</a>
+    <a href="#announcements">Announcements</a>
+    <a href="#admissions">Admissions</a>
+    <a href="#contact">Contact Messages</a>
+  </nav>
+
+  <main>
+    <section id="dashboard">
+      <h2>Dashboard</h2>
+      <p>Welcome, Admin! Here is your static admin panel layout.</p>
+      <ul>
+        <li>Total Admissions: 0</li>
+        <li>Unread Messages: 0</li>
+        <li>Announcements Posted: 0</li>
       </ul>
-    </section><section class="card" style="margin-top:1rem">
-  <h2>Contact Form</h2>
-  <form id="contactForm">
-    <label>नाम</label><input id="c_name" required>
-    <label>फ़ोन</label><input id="c_phone" required>
-    <label>संदेश</label><textarea id="c_msg"></textarea>
-    <button type="submit">सबमिट करें</button>
-  </form>
-  <p class="small">(यह फॉर्म केवल लोकल-स्टोरेज पर सहेजेगा। वास्तविक सर्वर-इंटीग्रेशन के लिए बैकएंड की आवश्यकता है।)</p>
-</section>
+    </section>
 
+    <section id="site-content">
+      <h2>Edit Site Content</h2>
+      <label>School Name</label>
+      <input type="text" placeholder="Milli Karwaan Public School">
+
+      <label>Tagline</label>
+      <input type="text" placeholder="Enter school tagline">
+
+      <label>Address</label>
+      <textarea placeholder="Boluha Police Chowki, Balrampur"></textarea>
+
+      <label>Office Hours</label>
+      <input type="text" placeholder="Mon-Sat: 9AM - 4PM">
+
+      <button>Save Changes</button>
+    </section>
+
+    <section id="announcements">
+      <h2>Announcements</h2>
+      <label>New Announcement</label>
+      <textarea placeholder="Enter announcement"></textarea>
+      <button>Post Announcement</button>
+    </section>
+
+    <section id="admissions">
+      <h2>Admissions</h2>
+      <p>No admissions recorded yet.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Messages</h2>
+      <p>No messages received yet.</p>
+    </section>
   </main>
-  <script>
-    // Make the site read the admin-saved mkps_data if present
-    (function(){
-      try{
-        const raw = localStorage.getItem('mkps_data');
-        if(!raw) return; const d = JSON.parse(raw);
-        if(d.schoolName) document.getElementById('siteName').textContent = d.schoolName;
-        if(d.tagline) document.getElementById('tagline').textContent = d.tagline;
-        if(d.address) document.getElementById('addr').textContent = 'Address: '+d.address;
-        const ann = document.getElementById('annList'); ann.innerHTML = (d.announcements || []).map(a=>'<li>'+a.text+'</li>').join('\n');
-      }catch(e){console.warn(e)}// contact form saves to localStorage so admin can view it from admin panel
-  document.getElementById('contactForm').addEventListener('submit', function(ev){ ev.preventDefault(); const s = JSON.parse(localStorage.getItem('mkps_data')||'{}'); s.submissions = s.submissions || []; s.submissions.unshift({name:document.getElementById('c_name').value, phone:document.getElementById('c_phone').value, message:document.getElementById('c_msg').value, at:new Date().toISOString()}); localStorage.setItem('mkps_data', JSON.stringify(s)); alert('Submitted — thank you'); this.reset(); });
-})();
 
-  </script>
-</body>
-</html>`;
-      return template;
-    }function exportIndexHTML(){
-  const html = generateIndexHTML();
-  const blob = new Blob([html], {type:'text/html'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = 'index_updated.html'; a.click(); URL.revokeObjectURL(url);
-  alert('index_updated.html डाउनलोड किया गया — इसे अपने सर्वर पर index.html के रूप में अपलोड करें');
-}
-
-function previewHTML(){
-  const html = generateIndexHTML();
-  const w = window.open(); w.document.open(); w.document.write(html); w.document.close();
-}
-
-// small utility to show current saved time etc.
-function escapeHtml(str=''){return String(str).replace(/[&<>\"']/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]})}
-
-// try to initialize saved password if none
-if(!localStorage.getItem('mkps_pw')) localStorage.setItem('mkps_pw', INITIAL_PASSWORD);
-
-// event for clearing data
-$q && $q('#clearDataBtn') && $q('#clearDataBtn').addEventListener('click', ()=>{ if(confirm('Reset all saved admin data?')){ localStorage.removeItem('mkps_data'); localStorage.removeItem('mkps_pw'); alert('Cleared'); init(); }});
-
-// wire reset button in aside (duplicate safe)
-$q && $q('#clearDataBtn') && $q('#clearDataBtn').addEventListener('click', ()=>{});
-
-// small on-load
-window.addEventListener('load', init);
-
-  </script>
+  <footer>
+    &copy; 2025 Milli Karwaan Public School - Balrampur
+  </footer>
 </body>
 </html>
