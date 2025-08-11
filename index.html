@@ -1,291 +1,725 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Sunrise Public School — Official</title>
-  <meta name="description" content="Sunrise Public School — Excellence in learning. Admissions, Academics, Events, Faculty, Gallery and Contact.">
-  <meta name="author" content="Sunrise Public School">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Sunrise Public School">
-  <meta property="og:description" content="Excellence in learning — Admissions open. Visit our website.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="/assets/og-image.jpg">
-  <link rel="icon" href="data:;base64,iVBORw0KGgo="> <!-- placeholder -->
-  
-  <!-- Structured data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "School",
-    "name": "Sunrise Public School",
-    "url": "https://USERNAME.github.io/REPO/",
-    "description": "A modern co-educational school focused on holistic development.",
-    "address": {"@type":"PostalAddress","addressLocality":"Your City","addressRegion":"Your State","postalCode":"000000","addressCountry":"IN"}
-  }
-  </script>
-
-  <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --muted:#9aa7bf; --accent:#1e90ff; --glass: rgba(255,255,255,0.06);
-      --radius:12px; --max-width:1100px; --gap:18px;
-      color-scheme: dark;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef8;background:linear-gradient(180deg,#061021 0%, #071528 60%);}
-    a{color:var(--accent);text-decoration:none}
-    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
-
-    header{position:sticky;top:12px;z-index:50;margin-bottom:22px}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:16px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#2b6ef6,#00d4ff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-    nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
-    nav li{padding:6px 10px;border-radius:8px}
-    nav li:hover{background:var(--glass)}
-
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin:24px 0}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:16px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
-    .hero h1{margin:0;font-size:36px;line-height:1.05}
-    .lead{color:var(--muted);margin-top:8px}
-    .cta{display:inline-block;background:var(--accent);color:white;padding:10px 14px;border-radius:10px;margin-top:14px}
-
-    /* Features grid */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
-    .feature{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));border:1px solid rgba(255,255,255,0.02)}
-    .feature h3{margin:0 0 8px 0}
-
-    /* Faculty & cards */
-    .people{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
-    .person{background:var(--card);padding:12px;border-radius:12px;text-align:center}
-    .person img{width:100%;height:160px;object-fit:cover;border-radius:8px}
-
-    /* Events carousel simple */
-    .carousel{position:relative;overflow:hidden;border-radius:12px}
-    .slides{display:flex;transition:transform .45s ease}
-    .slide{min-width:100%;padding:18px}
-    .dots{display:flex;gap:8px;justify-content:center;margin-top:8px}
-    .dot{width:10px;height:10px;border-radius:50%;opacity:.35;background:white}
-    .dot.active{opacity:1;transform:scale(1.1)}
-
-    footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg,#031020,#051426);text-align:center;color:var(--muted)}
-
-    /* Responsive */
-    @media(max-width:980px){.hero{grid-template-columns:1fr}} 
-    /* small helper */
-    .muted{color:var(--muted)}
-    .small{font-size:13px}
-
-    /* search box */
-    .search{display:flex;gap:8px;background:var(--card);padding:10px;border-radius:10px}
-    input[type="search"]{flex:1;background:transparent;border:0;color:inherit;outline:none}
-
-    /* accessibility focus */
-    a:focus, button:focus, input:focus{outline:2px solid rgba(30,144,255,0.18);outline-offset:2px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milli Karwaan Public School, Balrampur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a3a6e, #2c5aa0);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+        
+        .school-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .school-location {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        
+        .nav-menu a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://placehold.co/1200x500/1a3a6e/ffffff?text=Milli+Karwaan+Public+School') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #1a3a6e;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background-color: #e0a800;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1a3a6e;
+            margin-bottom: 50px;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #1a3a6e;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: #f0f4f8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #1a3a6e;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #1a3a6e;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        /* Gallery */
+        .gallery {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: #1a3a6e;
+            color: white;
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #ffc107;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #ffc107;
+            margin-top: 5px;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #ffc107;
+            color: #1a3a6e;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0a1c36;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h4 {
+            color: #ffc107;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ffc107;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: #ffc107;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-menu {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
     <header>
-      <div class="nav">
-        <div class="brand">
-          <div class="logo">S</div>
-          <div>
-            <div style="font-weight:700">Sunrise Public School</div>
-            <div class="small muted">Learning • Character • Future</div>
-          </div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://placehold.co/80x80/1a3a6e/ffffff?text=MKPS" alt="Milli Karwaan Public School Logo" class="logo-img">
+                    <div>
+                        <h1 class="school-name">Milli Karwaan Public School</h1>
+                        <p class="school-location">Balrampur, Uttar Pradesh</p>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#academics">Academics</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
-        <nav aria-label="Main navigation">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#academics">Academics</a></li>
-            <li><a href="#admissions">Admissions</a></li>
-            <li><a href="#faculty">Faculty</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
     </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="card">
-          <h1>Welcome to Sunrise Public School</h1>
-          <p class="lead">A safe, inclusive and stimulating environment where every child discovers their potential. Modern classrooms, experienced faculty and a strong co-curricular program.</p>
-          <a class="cta" href="#admissions">Apply for Admission</a>
-
-          <div class="grid" style="margin-top:18px">
-            <div class="feature">
-              <h3>CBSE Curriculum</h3>
-              <p class="muted">Strong academic foundation with personalized learning plans.</p>
-            </div>
-            <div class="feature">
-              <h3>Smart Classes</h3>
-              <p class="muted">Projectors, e-learning and blended learning techniques.</p>
-            </div>
-            <div class="feature">
-              <h3>Sports & Arts</h3>
-              <p class="muted">Wide range of activities: football, music, dance and robotics.</p>
-            </div>
-            <div class="feature">
-              <h3>Safe Campus</h3>
-              <p class="muted">24/7 CCTV, entry management and trained staff.</p>
-            </div>
-          </div>
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Excellence in Education</h1>
+            <p>Milli Karwaan Public School is dedicated to providing quality education with Islamic values, nurturing future leaders of our community.</p>
+            <a href="#contact" class="cta-button">Admission Open</a>
         </div>
+    </section>
 
-        <aside class="card">
-          <h3 class="small" id="admissions">Admissions 2025 — Seats Open</h3>
-          <p class="muted small">Class-wise seats, fee details and important dates. Contact admissions for prospectus.</p>
-          <div style="display:flex;gap:8px;margin-top:10px">
-            <button onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})" class="cta">Apply Now</button>
-            <a href="#contact" class="small muted">Visit / Contact</a>
-          </div>
-
-          <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
-          <div>
-            <strong>Quick Links</strong>
-            <ul class="small muted">
-              <li>Prospectus (PDF)</li>
-              <li>Fee Structure</li>
-              <li>Transport Routes</li>
-            </ul>
-          </div>
-        </aside>
-      </section>
-
-      <!-- ACADEMICS -->
-      <section id="academics" class="card">
-        <h2>Academics</h2>
-        <p class="muted">Holistic curriculum backed by continuous assessment, remedial support and enrichment programmes.</p>
-        <div class="grid" style="margin-top:12px">
-          <div class="feature"><h3>Primary</h3><p class="muted">Playway, activity based learning and phonics.</p></div>
-          <div class="feature"><h3>Middle</h3><p class="muted">Concept clarity with lab-based science & math.</p></div>
-          <div class="feature"><h3>Senior</h3><p class="muted">Subject breadth, career counselling and competitive prep.</p></div>
-        </div>
-      </section>
-
-      <!-- FACULTY -->
-      <section id="faculty" class="card" style="margin-top:18px">
-        <h2>Our Faculty</h2>
-        <p class="muted">Experienced teachers with continuous professional development.</p>
-        <div class="people" style="margin-top:12px">
-          <div class="person"><img src="https://images.unsplash.com/photo-1555212697-7b7b77b2d8da?q=80&w=600&auto=format&fit=crop" alt="Ms A">
-            <strong>Ms. A</strong><div class="small muted">Head - Primary</div></div>
-          <div class="person"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" alt="Mr B">
-            <strong>Mr. B</strong><div class="small muted">Science Teacher</div></div>
-          <div class="person"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop" alt="Ms C">
-            <strong>Ms. C</strong><div class="small muted">Maths Teacher</div></div>
-        </div>
-      </section>
-
-      <!-- EVENTS / NEWS -->
-      <section id="events" style="margin-top:18px">
-        <div class="card">
-          <h2>Events & News</h2>
-          <div class="carousel" aria-roledescription="carousel">
-            <div class="slides" id="slides">
-              <div class="slide"><h3>Annual Day 2024 — Highlights</h3><p class="muted">Celebration of student talent and awards night.</p></div>
-              <div class="slide"><h3>Science Fair Winners</h3><p class="muted">Students presented eco-friendly energy projects.</p></div>
-              <div class="slide"><h3>Sports Meet</h3><p class="muted">Inter-school athletics and football tournament.</p></div>
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Our School</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Shaping Future Generations Since 2005</h3>
+                    <p>Milli Karwaan Public School in Balrampur has been a beacon of quality education, combining modern academic excellence with strong moral and Islamic values. Our mission is to develop well-rounded individuals who excel academically while maintaining strong ethical foundations.</p>
+                    <p>We offer a comprehensive curriculum from Nursery to Class XII, following the CBSE pattern while incorporating Islamic studies and moral education. Our experienced faculty is dedicated to providing personalized attention to each student, ensuring their holistic development.</p>
+                    <p>With state-of-the-art facilities, a safe learning environment, and extracurricular activities that foster creativity and leadership, we prepare our students to become responsible citizens and future leaders.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://placehold.co/500x400/f0f4f8/1a3a6e?text=School+Campus" alt="Milli Karwaan Public School Campus">
+                </div>
             </div>
-          </div>
-          <div class="dots" id="dots"></div>
         </div>
-      </section>
+    </section>
 
-      <!-- GALLERY (modal) -->
-      <section style="margin-top:18px">
-        <div class="card">
-          <h2>Gallery</h2>
-          <p class="muted">Click an image to enlarge.</p>
-          <div class="grid" style="margin-top:12px">
-            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop" alt="students" style="width:100%;border-radius:10px;cursor:pointer" onclick="openModal(this.src)">
-            <img src="https://images.unsplash.com/photo-1528747029015-5f5a9f3c4fbb?q=80&w=1200&auto=format&fit=crop" alt="library" style="width:100%;border-radius:10px;cursor:pointer" onclick="openModal(this.src)">
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT / APPLY -->
-      <section id="contact" class="card" style="margin-top:18px">
-        <h2>Contact & Apply</h2>
-        <div style="display:grid;grid-template-columns:1fr 320px;gap:18px">
-          <form id="contactForm" onsubmit="submitForm(event)">
-            <label class="small muted">Name<input required name="name" placeholder="Full name" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"></label>
-            <label class="small muted">Email<input required type="email" name="email" placeholder="name@example.com" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"></label>
-            <label class="small muted">Message<textarea name="message" rows="4" placeholder="Your message" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"></textarea></label>
-            <div style="margin-top:10px">
-              <button class="cta" type="submit">Send Message</button>
-              <a class="small muted" href="mailto:admissions@sunrise.edu">Or email admissions@sunrise.edu</a>
+    <section class="features" id="academics">
+        <div class="container">
+            <h2 class="section-title">Our Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Quality Education</h3>
+                    <p>CBSE curriculum with focus on conceptual understanding and critical thinking skills for academic excellence.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🕌</div>
+                    <h3>Islamic Values</h3>
+                    <p>Integrated Islamic studies and moral education to develop strong ethical foundations in students.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👩‍🏫</div>
+                    <h3>Expert Faculty</h3>
+                    <p>Highly qualified and experienced teachers dedicated to student success and personal development.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Modern Facilities</h3>
+                    <p>Well-equipped science labs, computer labs, library, and smart classrooms for enhanced learning.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Extracurricular</h3>
+                    <p>Wide range of activities including sports, arts, Quran recitation, and leadership programs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Safe Environment</h3>
+                    <p>Secure campus with proper supervision, promoting a safe and nurturing learning atmosphere.</p>
+                </div>
             </div>
-          </form>
-
-          <div class="card" style="background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006))">
-            <h3 class="small">School Info</h3>
-            <p class="muted small">Address: 123 Main Rd, Your City<br>Phone: +91 99999 99999<br>Office: Mon-Fri 9:00–16:30</p>
-            <hr style="margin:10px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
-            <h3 class="small">Subscribe</h3>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <input id="newsletter" placeholder="Your email" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit">
-              <button onclick="subscribe()" class="small">Subscribe</button>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-    </main>
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Classroom" alt="Classroom">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x200/2c5aa0/ffffff?text=Science+Lab" alt="Science Lab">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Library" alt="Library">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x200/2c5aa0/ffffff?text=Sports" alt="Sports Activities">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Events" alt="School Events">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x200/2c5aa0/ffffff?text=Students" alt="Students">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Islamic+Studies" alt="Islamic Studies">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x200/2c5aa0/ffffff?text=Faculty" alt="Faculty">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Address</h4>
+                            <p>Milli Karwaan Public School, Near Jama Masjid, Balrampur, Uttar Pradesh, India - 271201</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>+91 98765 43210</p>
+                            <p>+91 87654 32109</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>info@millikarwaanschool.com</p>
+                            <p>admission@millikarwaanschool.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-text">
+                            <h4>Office Hours</h4>
+                            <p>Monday - Saturday: 8:00 AM - 4:00 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 20px;">Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" placeholder="Your Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-      <div class="small muted">© <span id="year"></span> Sunrise Public School • Built for GitHub Pages • Made with ❤️</div>
-      <div class="small muted">Tip: Rename this file to <code>index.html</code> and push to a repo named <code>USERNAME.github.io</code> or enable GitHub Pages in repo settings.</div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Milli Karwaan Public School</h4>
+                    <p>Excellence in education with Islamic values, nurturing future leaders of our community.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">y</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#academics">Academics</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Academics</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Nursery to Class V</a></li>
+                        <li><a href="#">Class VI to VIII</a></li>
+                        <li><a href="#">Class IX to X</a></li>
+                        <li><a href="#">Class XI to XII</a></li>
+                        <li><a href="#">Islamic Studies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Admissions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Admission Process</a></li>
+                        <li><a href="#">Required Documents</a></li>
+                        <li><a href="#">Fee Structure</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                        <li><a href="#">Visit School</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Milli Karwaan Public School, Balrampur. All Rights Reserved.</p>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <!-- Lightbox modal -->
-  <div id="modal" role="dialog" aria-hidden="true" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(2,6,23,0.8);z-index:9999">
-    <button onclick="closeModal()" style="position:absolute;right:18px;top:18px;padding:10px;border-radius:8px;">Close</button>
-    <img id="modalImg" src="" alt="enlarged" style="max-width:92%;max-height:92%;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6)">
-  </div>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-  <script>
-    // small utilities
-    document.getElementById('year').textContent = new Date().getFullYear();
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
 
-    // Carousel
-    const slides = document.getElementById('slides');
-    const dots = document.getElementById('dots');
-    let index = 0;
-    const total = slides.children.length;
-    function makeDots(){
-      for(let i=0;i<total;i++){const d=document.createElement('div');d.className='dot';d.onclick=(()=>{go(i)});dots.appendChild(d)}
-      dots.children[0].classList.add('active');
-    }
-    function go(i){index=i;update();}
-    function update(){slides.style.transform = `translateX(-${index*100}%)`;
-      Array.from(dots.children).forEach((d,ii)=>d.classList.toggle('active',ii===index));
-    }
-    makeDots();
-    setInterval(()=>{index=(index+1)%total;update();},4500);
+        // Simple animation on scroll
+        const featureCards = document.querySelectorAll('.feature-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
 
-    // Modal
-    function openModal(src){document.getElementById('modalImg').src=src;document.getElementById('modal').style.display='flex';document.getElementById('modal').setAttribute('aria-hidden','false')}
-    function closeModal(){document.getElementById('modal').style.display='none';document.getElementById('modal').setAttribute('aria-hidden','true')}
-
-    // Contact form (client side demo) - replace endpoint with Formspree or your server
-    function submitForm(e){e.preventDefault();const f=new FormData(e.target);console.log('Form data',Object.fromEntries(f.entries()));alert('Thank you — message captured (demo). Replace submitForm with real endpoint or Formspree).');e.target.reset();}
-
-    // Newsletter - stores locally as demo
-    function subscribe(){const email=document.getElementById('newsletter').value.trim();if(!email){alert('Please enter email');return}let list=JSON.parse(localStorage.getItem('newsletter')||'[]');list.push({email:email,date:new Date().toISOString()});localStorage.setItem('newsletter',JSON.stringify(list));alert('Subscribed (demo). Configure server-side to collect emails.');document.getElementById('newsletter').value=''}
-
-    // Simple client-side search (searches visible headings & text)
-    function simpleSearch(q){q=q.toLowerCase().trim();if(!q){alert('Enter search term');return}const hits=[];document.querySelectorAll('h1,h2,h3,p,li').forEach(el=>{if(el.innerText.toLowerCase().includes(q)){hits.push({text:el.innerText,tag:el.tagName})}});if(hits.length===0){alert('No results')}else{alert('Found '+hits.length+' matches — check console for details');console.log(hits)} }
-
-    // Accessibility: keyboard escape to close modal
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal()}})
-
-  </script>
-
+        featureCards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
+```
