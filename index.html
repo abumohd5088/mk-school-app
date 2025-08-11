@@ -4,23 +4,108 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mili Karwaan Public School — Home</title>
-  <meta name="description" content="Mili Karwaan Public School — Official Home" />
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Mili Karwaan Public School — Admissions, Academics, Facilities, Gallery, Notices & Contact." />
+  <meta name="theme-color" content="#065f46" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --g1:#0f766e; --g2:#065f46; --gold:#f59e0b;
+      --muted:#6b7280; --card:#ffffff; --maxw:1200px;
+      --glass: rgba(255,255,255,0.85);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#f7fffb,#f0fdf4);color:#04282a}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* NAV */
+    header{position:sticky;top:0;z-index:999;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:12px 0;box-shadow:0 6px 18px rgba(4,22,18,0.12)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:64px;height:64px;border-radius:12px;background:#fff;padding:6px;object-fit:contain}
+    .brand h1{font-family:'Montserrat',sans-serif;font-size:1.05rem;margin:0}
+    nav ul{list-style:none;display:flex;gap:8px;margin:0;padding:0;align-items:center}
+    nav a{display:inline-block;padding:8px 12px;border-radius:8px;color:rgba(255,255,255,0.95);font-weight:700;text-decoration:none}
+    nav a:hover{background:rgba(255,255,255,0.06)}
+    .cta{background:linear-gradient(90deg,var(--gold),#d97706);padding:10px 14px;border-radius:10px;color:#06221a;font-weight:800}
+
+    /* HERO */
+    .hero{padding:56px 0}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:34px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .hero h2{font-family:'Montserrat',sans-serif;font-size:2.4rem;margin:0 0 12px;color:var(--g2)}
+    .lead{font-size:1.05rem;color:var(--muted);margin-bottom:18px}
+    .hero-actions{display:flex;gap:12px}
+    .stat-row{display:flex;gap:12px;margin-top:18px}
+    .stat{background:#fff;padding:12px;border-radius:12px;min-width:120px;text-align:center;box-shadow:0 10px 28px rgba(2,8,6,0.04)}
+    .stat strong{display:block;font-size:1.4rem;color:var(--g2)}
+
+    .hero-card{background:linear-gradient(180deg,#fff,#fbfff8);padding:18px;border-radius:14px;box-shadow:0 18px 40px rgba(2,8,6,0.06)}
+
+    /* SECTIONS */
+    section{padding:42px 0}
+    .container--narrow{max-width:1100px;margin:0 auto;padding:0 20px}
+    .section-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+    .section-head h3{margin:0;color:var(--g2);font-family:'Montserrat',sans-serif}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 12px 32px rgba(2,8,6,0.04)}
+
+    /* Facilities icon */
+    .icon{width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,#f7fff7,#f4fff3);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--g2);margin-bottom:10px}
+
+    /* Gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+    .gallery-grid img{width:100%;height:120px;object-fit:cover;border-radius:10px;cursor:pointer}
+
+    /* News ticker */
+    .ticker{background:#f7fff7;border-left:4px solid var(--g2);padding:10px;border-radius:8px;overflow:hidden}
+    .ticker-inner{display:inline-block;white-space:nowrap;animation:marquee 18s linear infinite}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f3ee;margin-bottom:10px}
+    .contact-form button{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
+
+    /* Footer + small */
+    footer{padding:24px 0;text-align:center;color:var(--muted)}
+    .muted{color:var(--muted)}
+
+    /* Floating admin button */
+    .admin-fab{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:999px;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 12px 28px rgba(2,8,6,0.2);z-index:2000;display:flex;align-items:center;justify-content:center}
+    .admin-fab.small{width:48px;height:48px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,6,0.45);z-index:9999;opacity:0;pointer-events:none;transition:opacity .12s}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal-card{background:#fff;padding:18px;border-radius:10px;width:94%;max-width:940px}
+
+    /* back to top */
+    .to-top{position:fixed;right:20px;bottom:90px;background:var(--g2);color:#fff;padding:8px;border-radius:8px;display:none}
+    .to-top.show{display:block}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.brand h1{font-size:1rem}
+    }
+    @media (max-width:560px){ nav ul{display:none} }
+
+    /* admin sidebar (slide-in) - hidden here (admin separate) */
+    .hidden{display:none}
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-inner">
+  <!-- NAV -->
+  <header>
+    <div class="nav-inner">
       <div class="brand">
-        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="Mili Karwaan Logo" class="logo">
+        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="Mili Karwaan Logo" />
         <div>
-          <h1 class="site-title">Mili Karwaan Public School</h1>
-          <div class="site-sub">Baluha Police Chowki, Balrampur</div>
+          <h1>Mili Karwaan Public School</h1>
+          <div style="font-size:.85rem;color:rgba(255,255,255,0.9)">Baluha Police Chowki, Balrampur</div>
         </div>
       </div>
 
-      <nav class="main-nav" aria-label="Main navigation">
+      <nav aria-label="Main navigation">
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -29,111 +114,313 @@
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#news">News</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a class="cta" href="#admissions">Admissions</a></li>
         </ul>
       </nav>
-
-      <div class="header-actions">
-        <a class="btn cta" href="#admissions">Admissions</a>
-      </div>
     </div>
   </header>
 
+  <!-- HERO -->
   <main>
     <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-content">
+      <div class="hero-grid">
+        <div>
           <h2>Shaping Minds, Building Futures — Mili Karwaan</h2>
           <p class="lead">A modern campus focused on academic excellence, discipline and holistic development. Admissions open for the next session.</p>
+
           <div class="hero-actions">
-            <a class="btn cta" href="#admissions">Apply Now</a>
+            <a class="cta" href="#admissions">Apply Now</a>
             <button class="btn" id="openNotices">Latest Notices</button>
           </div>
 
-          <div class="stats">
-            <div class="stat"><span class="counter" data-target="1200">0</span><small>Students</small></div>
-            <div class="stat"><span class="counter" data-target="78">0</span><small>Teachers</small></div>
-            <div class="stat"><span class="counter" data-target="45">0</span><small>Awards</small></div>
+          <div class="stat-row" style="margin-top:18px">
+            <div class="stat"><strong class="counter" data-target="1200">0</strong><span style="display:block;color:var(--muted)">Students</span></div>
+            <div class="stat"><strong class="counter" data-target="78">0</strong><span style="display:block;color:var(--muted)">Teachers</span></div>
+            <div class="stat"><strong class="counter" data-target="45">0</strong><span style="display:block;color:var(--muted)">Awards</span></div>
           </div>
         </div>
 
         <aside class="hero-card">
           <h3>Quick Links</h3>
-          <ul class="quick-links">
+          <ul style="padding-left:16px;margin-top:10px">
             <li><a href="#news">Notices</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <div class="contact-mini">Call: <a href="tel:+919758919151">+91 97589 19151</a></div>
+          <div style="margin-top:12px"><strong>Contact:</strong><div class="muted">+91 97589 19151</div></div>
+          <div style="margin-top:12px">
+            <button class="btn" id="exportDataBtn" style="margin-right:8px"><i class="fas fa-file-export"></i> Export</button>
+            <button class="btn" id="importDataBtn">Import</button>
+          </div>
         </aside>
       </div>
     </section>
 
-    <section id="about" class="section container">
+    <!-- ABOUT -->
+    <section id="about" class="container--narrow section">
       <div class="section-head"><h3>About Us</h3></div>
       <div class="card">
         <p>We nurture responsible, confident and well-rounded students. CBSE-aligned curriculum, strong sports & arts, trained staff and safe campus.</p>
       </div>
     </section>
 
-    <section id="academics" class="section container">
+    <!-- Academics -->
+    <section id="academics" class="container--narrow section">
       <div class="section-head"><h3>Academics</h3></div>
       <div class="grid-3">
-        <div class="card"><h4>Curriculum</h4><p class="muted">Project-based learning and assessments.</p></div>
-        <div class="card"><h4>Assessment</h4><p class="muted">Continuous feedback & remedial support.</p></div>
-        <div class="card"><h4>Co-curricular</h4><p class="muted">Clubs, sports and arts.</p></div>
+        <div class="card"><div class="icon"><i class="fas fa-book"></i></div><h4>Curriculum</h4><p class="muted">Project-based learning and assessments.</p></div>
+        <div class="card"><div class="icon"><i class="fas fa-graduation-cap"></i></div><h4>Assessment</h4><p class="muted">Continuous feedback & remedial support.</p></div>
+        <div class="card"><div class="icon"><i class="fas fa-users"></i></div><h4>Co-curricular</h4><p class="muted">Clubs, cultural events and sports.</p></div>
       </div>
     </section>
 
-    <section id="facilities" class="section container">
+    <!-- Facilities -->
+    <section id="facilities" class="container--narrow section">
       <div class="section-head"><h3>Facilities</h3></div>
       <div class="grid-3">
-        <div class="card"><h4>Smart Classrooms</h4></div>
-        <div class="card"><h4>Science Labs</h4></div>
-        <div class="card"><h4>Sports Complex</h4></div>
+        <div class="card"><h4>Smart Classrooms</h4><p class="muted">Interactive AV-enabled learning.</p></div>
+        <div class="card"><h4>Science Labs</h4><p class="muted">Practical labs for hands-on learning.</p></div>
+        <div class="card"><h4>Sports Complex</h4><p class="muted">Grounds, coaching and competitions.</p></div>
       </div>
     </section>
 
-    <section id="gallery" class="section container">
+    <!-- Gallery -->
+    <section id="gallery" class="container--narrow section">
       <div class="section-head"><h3>Gallery</h3></div>
-      <div id="galleryGrid" class="gallery-grid card"></div>
+      <div class="card gallery-grid" id="galleryGrid"></div>
     </section>
 
-    <section id="news" class="section container">
+    <!-- News & Notices -->
+    <section id="news" class="container--narrow section">
       <div class="section-head"><h3>News & Notices</h3></div>
-      <div class="card ticker">
-        <div id="newsTicker" class="ticker-inner">Loading notices...</div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
+        <div style="flex:1">
+          <div class="card ticker"><div id="newsTicker" class="ticker-inner">Loading notices...</div></div>
+          <div id="newsList" class="card" style="margin-top:12px"></div>
+        </div>
+        <aside style="width:320px">
+          <div class="card">
+            <h4>Events</h4>
+            <ul id="eventsList" class="muted"></ul>
+          </div>
+          <div class="card" style="margin-top:12px">
+            <h4>Download</h4>
+            <p class="muted">Prospectus & admission forms</p>
+            <a id="downloadProspectus" class="cta" href="#" onclick="alert('Prospectus placeholder — add file link')">Download Prospectus (PDF)</a>
+          </div>
+        </aside>
       </div>
-      <div id="newsList" class="card" style="margin-top:12px"></div>
     </section>
 
-    <section id="contact" class="section container">
+    <!-- Contact -->
+    <section id="contact" class="container--narrow section">
       <div class="section-head"><h3>Contact & Admissions</h3></div>
       <div class="card contact-grid">
         <div>
-          <form id="contactForm">
+          <h4>Get in touch</h4>
+          <p class="muted">Call us or send a message for enquiries and admissions.</p>
+          <form id="contactForm" class="contact-form" style="margin-top:12px">
             <input id="cname" placeholder="Your name" required>
             <input id="cinfo" placeholder="Email or phone" required>
-            <textarea id="cmessage" rows="4" placeholder="Message"></textarea>
+            <textarea id="cmessage" rows="4" placeholder="Your message"></textarea>
             <button type="submit" class="btn">Send Enquiry</button>
           </form>
         </div>
+
         <div>
-          <div class="map-wrap"><iframe loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!..." style="border:0;width:100%;height:220px;border-radius:8px"></iframe></div>
+          <h4>Visit Us</h4>
+          <div style="height:220px;border-radius:10px;overflow:hidden">
+            <!-- Add real Google Maps embed coords here -->
+            <iframe style="border:0;width:100%;height:100%" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..." aria-hidden="false"></iframe>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer>
     <div class="container">
       <div>© Mili Karwaan Public School — Baluha Police Chowki, Balrampur</div>
-      <div class="muted">Email: madamsir066@gmail.com</div>
+      <div class="muted">Email: madamsir066@gmail.com • Phone: +91 97589 19151</div>
     </div>
   </footer>
 
-  <!-- Floating Admin Button -->
-  <button id="adminFloat" class="admin-fab" aria-label="Admin">🔒</button>
+  <!-- Floating Admin Button (password -> opens admin.html) -->
+  <button id="adminFloat" class="admin-fab" title="Admin access"><i class="fas fa-user-shield"></i></button>
 
-  <script src="js/script.js"></script>
+  <!-- Modal used for gallery / notices -->
+  <div id="modal" class="modal" aria-hidden="true"><div class="modal-card" id="modalCard"></div></div>
+
+  <!-- Back to top -->
+  <button id="toTop" class="to-top" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <script>
+    /* -------------------------
+       MKPS Home — single-file JS
+       Features:
+       - local data store (notices/events/gallery)
+       - counters, news ticker, gallery modal
+       - contact form stores enquiry locally
+       - export/import JSON helpers
+       - floating admin button: prompt password "Abutalha" -> opens admin.html
+       ------------------------- */
+
+    const STORAGE_KEY = 'MKPS_HOME_v1';
+    const DEFAULT = {
+      notices:[{id:'n1',title:'Parent-Teacher Meeting',date:'2025-11-28',time:'4:00 PM',body:'All parents are requested to attend in the school hall.'}],
+      events:[{id:'e1',title:'Annual Sports Day',date:'2025-12-06'}],
+      gallery:[
+        'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'
+      ]
+    };
+
+    function loadStore(){ try{ const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT)); }catch(e){ return JSON.parse(JSON.stringify(DEFAULT)); } }
+    function saveStore(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+    let STORE = loadStore();
+
+    // render gallery
+    function renderGallery(){
+      const g = STORE.gallery || [];
+      const el = document.getElementById('galleryGrid');
+      if(!el) return;
+      if(!g.length){ el.innerHTML = '<div class="muted">No images</div>'; return; }
+      el.innerHTML = g.map(src => `<img src="${src}" loading="lazy" alt="gallery" />`).join('');
+      document.querySelectorAll('#galleryGrid img').forEach(img => img.addEventListener('click', ()=> openModal(`<img src="${img.src}" style="width:100%;height:auto;border-radius:8px" />`)));
+    }
+
+    // render notices and ticker
+    function renderNews(){
+      const n = STORE.notices || [];
+      const list = document.getElementById('newsList');
+      const ticker = document.getElementById('newsTicker');
+      if(ticker) ticker.innerText = n.map(i => i.title + ' • ').join('') + ' ' + n.map(i => i.title + ' • ').join('');
+      if(list) list.innerHTML = n.map(i => `
+        <div class="card" style="margin-bottom:10px">
+          <h4>${i.title}</h4>
+          <p class="muted">${i.date} ${i.time ? ' | ' + i.time : ''}</p>
+          <p>${i.body || ''}</p>
+        </div>`).join('');
+    }
+
+    // render events
+    function renderEvents(){
+      const e = STORE.events || [];
+      const el = document.getElementById('eventsList');
+      if(!el) return;
+      el.innerHTML = e.map(ev => `<li>${ev.title} — ${ev.date}</li>`).join('');
+    }
+
+    // counters
+    function animateCounters(){
+      document.querySelectorAll('.counter').forEach(c => {
+        const target = +c.dataset.target || 0;
+        let start = 0;
+        const step = Math.max(1, Math.floor(target / 80));
+        const t = setInterval(()=> {
+          start += step;
+          if(start >= target){ c.textContent = target; clearInterval(t); }
+          else c.textContent = start;
+        }, 12);
+      });
+    }
+
+    // modal
+    function openModal(html){
+      const modal = document.getElementById('modal');
+      const body = document.getElementById('modalCard');
+      body.innerHTML = html;
+      modal.classList.add('open');
+    }
+    function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+    document.getElementById('modal').addEventListener('click', e => { if(e.target.id === 'modal') closeModal(); });
+
+    // contact form
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('cname').value.trim();
+      const info = document.getElementById('cinfo').value.trim();
+      const msg = document.getElementById('cmessage').value.trim();
+      if(!name || !info){ alert('Please provide name and contact'); return; }
+      const enquiries = JSON.parse(localStorage.getItem('MKPS_ENQUIRIES') || '[]');
+      enquiries.unshift({id:'q'+Math.random().toString(36).slice(2,8), name, info, msg, at: new Date().toISOString()});
+      localStorage.setItem('MKPS_ENQUIRIES', JSON.stringify(enquiries));
+      alert('Thank you — your enquiry was received (local demo).');
+      this.reset();
+    });
+
+    // Export/import site data (owner)
+    function exportData(){
+      const blob = new Blob([JSON.stringify(STORE, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'mkps-home-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+    function importDataFile(){
+      const input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
+      input.onchange = ()=> {
+        const f = input.files[0]; if(!f) return;
+        const r = new FileReader();
+        r.onload = ()=> {
+          try{
+            const parsed = JSON.parse(r.result);
+            STORE = parsed; saveStore(STORE); renderAll(); alert('Data imported (local).');
+          }catch(err){ alert('Invalid JSON file.'); }
+        };
+        r.readAsText(f);
+      };
+      input.click();
+    }
+
+    // floating admin -> password -> open admin.html
+    document.getElementById('adminFloat').addEventListener('click', ()=>{
+      const pwd = prompt('Enter admin password:');
+      if(!pwd) return;
+      if(String(pwd) === 'Abutalha'){
+        // open admin.html in new tab (assumes admin.html file present)
+        window.open('admin.html', '_blank');
+      } else {
+        alert('Access Denied');
+      }
+    });
+
+    // open notices button
+    document.getElementById('openNotices').addEventListener('click', ()=> {
+      document.querySelector('a[href="#news"]').scrollIntoView({behavior:'smooth'});
+    });
+
+    // export/import buttons
+    document.getElementById('exportDataBtn').addEventListener('click', exportData);
+    document.getElementById('importDataBtn').addEventListener('click', importDataFile);
+
+    // back-to-top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', ()=> {
+      if(window.scrollY > 300) toTop.classList.add('show'); else toTop.classList.remove('show');
+    });
+    toTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+
+    // initial render
+    function renderAll(){
+      renderGallery(); renderNews(); renderEvents(); animateCounters();
+    }
+
+    // ensure store exists
+    document.addEventListener('DOMContentLoaded', ()=> {
+      // Save default if nothing present
+      if(!localStorage.getItem(STORAGE_KEY)){ saveStore(STORE); }
+      // ensure STORE is fresh
+      STORE = loadStore();
+      renderAll();
+
+      // safety: fallback for image error
+      document.querySelectorAll('img').forEach(img => img.addEventListener('error', ()=> img.src = 'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'));
+    });
+
+    // Expose admin check & helpers on window for admin.html if needed
+    window.MKPS = window.MKPS || {};
+    window.MKPS.checkAdminPwd = (pwd) => String(pwd) === 'Abutalha';
+    window.MKPS.exportHomeData = exportData;
+    window.MKPS.importHomeData = importDataFile;
+    window.MKPS.store = STORE;
+  </script>
 </body>
-  </html>
+</html>
