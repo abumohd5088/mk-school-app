@@ -1,1396 +1,512 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Milli Karwaan Public School</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #1a3a6e;
-            --secondary: #ffc107;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #28a745;
-            --info: #17a2b8;
-            --warning: #ffc107;
-            --danger: #dc3545;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        
-        .login-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .login-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            overflow: hidden;
-            max-width: 450px;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .login-header {
-            background: var(--primary);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .login-header h2 {
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .login-header p {
-            opacity: 0.9;
-            margin-bottom: 0;
-        }
-        
-        .login-body {
-            padding: 40px;
-        }
-        
-        .form-control {
-            border-radius: 12px;
-            padding: 14px 18px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(26, 58, 110, 0.25);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #2c5282);
-            border: none;
-            padding: 14px 30px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(26, 58, 110, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(26, 58, 110, 0.5);
-        }
-        
-        .admin-panel {
-            display: none;
-            min-height: 100vh;
-            background: #f5f7fa;
-        }
-        
-        .sidebar {
-            width: 280px;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: linear-gradient(135deg, var(--primary), #2c5282);
-            color: white;
-            padding: 20px 0;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .sidebar-header {
-            padding: 20px 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .sidebar-header h4 {
-            margin-bottom: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .sidebar-header img {
-            border-radius: 8px;
-        }
-        
-        .nav-link {
-            color: rgba(255,255,255,0.8) !important;
-            padding: 15px 30px;
-            margin: 5px 15px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            background: rgba(255,255,255,0.15);
-            color: white !important;
-            transform: translateX(5px);
-        }
-        
-        .nav-link.active {
-            background: rgba(255,255,255,0.2);
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .nav-link i {
-            font-size: 1.2rem;
-            width: 25px;
-            text-align: center;
-        }
-        
-        .main-content {
-            margin-left: 280px;
-            min-height: 100vh;
-            padding: 30px;
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .header h1 {
-            color: var(--primary);
-            margin-bottom: 0;
-            font-weight: 600;
-        }
-        
-        .logout-btn {
-            background: var(--danger);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .logout-btn:hover {
-            background: #c82333;
-            transform: translateY(-2px);
-        }
-        
-        .card {
-            border: none;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-bottom: 30px;
-            background: white;
-        }
-        
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.18);
-        }
-        
-        .card-header {
-            background: var(--primary);
-            color: white;
-            padding: 25px 25px;
-            font-size: 1.4rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .card-header i {
-            font-size: 1.8rem;
-        }
-        
-        .card-body {
-            padding: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .btn-success {
-            background: linear-gradient(135deg, var(--success), #218838);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
-        }
-        
-        .btn-success:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
-        }
-        
-        .btn-warning {
-            background: linear-gradient(135deg, var(--warning), #e0a800);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
-        }
-        
-        .btn-warning:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.5);
-        }
-        
-        .message-item {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border: 1px solid rgba(26, 58, 110, 0.1);
-            position: relative;
-        }
-        
-        .message-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .message-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .message-name {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .message-date {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .message-content {
-            color: #555;
-            line-height: 1.6;
-        }
-        
-        .message-actions {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .action-btn {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border: 1px solid #ddd;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        
-        .action-btn.delete {
-            background: #f8d7da;
-            color: #721c24;
-            border-color: #f5c6cb;
-        }
-        
-        .action-btn.delete:hover {
-            background: #f1b0b7;
-        }
-        
-        .homework-item {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border: 1px solid rgba(26, 58, 110, 0.1);
-            position: relative;
-        }
-        
-        .homework-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .homework-subject {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-        
-        .homework-class {
-            background: var(--primary);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .homework-date {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        
-        .homework-content {
-            color: #555;
-            line-height: 1.6;
-        }
-        
-        .homework-actions {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .no-items {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-style: italic;
-        }
-        
-        .no-items i {
-            font-size: 3rem;
-            color: #ddd;
-            margin-bottom: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                transform: translateX(-100%);
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-            }
-            
-            .login-container {
-                padding: 10px;
-            }
-            
-            .login-body {
-                padding: 30px 20px;
-            }
-            
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin — Milli Karwaan Public School</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#0b5cff;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system,'Segoe UI',Roboto,Arial;color:#e6eef8;background:linear-gradient(180deg,#071025 0%, #081229 60%);min-height:100vh}
+    .wrap{max-width:1100px;margin:2rem auto;padding:1rem}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:1rem;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    h1{margin:0;font-size:1.25rem}
+    .small{color:var(--muted);font-size:0.95rem}
+    nav{display:flex;gap:0.5rem;margin-top:1rem}
+    .tab{padding:0.5rem 0.75rem;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .tab.active{background:var(--accent);color:#021133}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:1rem;margin-top:1rem}
+    .panel{padding:0.8rem}
+    label{display:block;margin-top:0.6rem;font-size:0.9rem;color:var(--muted)}
+    input,textarea,select{width:100%;padding:0.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    button{margin-top:0.8rem;padding:0.6rem 0.9rem;border-radius:8px;border:none;cursor:pointer}
+    .btn-primary{background:var(--accent);color:#021133}
+    .btn-muted{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+    table{width:100%;border-collapse:collapse;margin-top:0.5rem}
+    th,td{padding:0.45rem;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:0.95rem}
+    .danger{background:#7f1d1d;color:#fff}
+    footer{margin-top:1rem;color:var(--muted);font-size:0.85rem}/* Password modal */
+.overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(rgba(1,2,6,0.6),rgba(2,6,23,0.8));z-index:60}
+.modal{background:var(--card);padding:1rem;border-radius:12px;max-width:460px;width:95%;box-shadow:0 12px 50px rgba(2,6,23,0.7)}
+.notice{background:#072033;padding:0.6rem;border-radius:8px;margin-top:0.6rem;color:var(--muted);font-size:0.9rem}
+
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
+
+  </style>
 </head>
 <body>
-    <!-- Login Page -->
-    <div class="login-container" id="loginPage">
-        <div class="login-card">
-            <div class="login-header">
-                <h2><i class="fas fa-user-shield me-2"></i>Admin Login</h2>
-                <p>Milli Karwaan Public School Balrampur</p>
-            </div>
-            <div class="login-body">
-                <form id="loginForm">
-                    <div class="mb-4">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your username">
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login <i class="fas fa-arrow-right ms-2"></i></button>
-                </form>
-            </div>
-        </div>
+  <div class="wrap card" id="app">
+    <header>
+      <div>
+        <h1>Admin Panel — Milli Karwaan Public School</h1>
+        <div class="small">Secure admin area — changes reflect on site when you export and deploy the updated index.html</div>
+      </div>
+      <div class="small" id="loggedInfo">---</div>
+    </header><nav id="tabs" role="tablist" aria-label="Admin tabs">
+  <button class="tab active" data-tab="dashboard">Dashboard</button>
+  <button class="tab" data-tab="edit">Edit Site</button>
+  <button class="tab" data-tab="ann">Announcements</button>
+  <button class="tab" data-tab="admissions">Admissions</button>
+  <button class="tab" data-tab="contact">Contact Submissions</button>
+  <button class="tab" data-tab="settings">Settings</button>
+</nav>
+
+<div class="grid">
+  <main class="panel card" id="mainPanel">
+    <!-- content injected by JS -->
+  </main>
+
+  <aside class="panel card">
+    <h3>Quick actions</h3>
+    <div style="margin-top:0.5rem">
+      <button class="btn-primary" id="exportBtn">Export updated index.html</button>
+      <button class="btn-muted" id="previewBtn">Preview generated HTML</button>
+      <button class="btn-muted" id="clearDataBtn">Reset all saved data</button>
     </div>
 
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <!-- Sidebar -->
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div>
-                    <img src="https://i.ibb.co/Y3f7zGJ/mkps-logo.png" alt="MKPS Logo" height="40">
-                    <h4>Admin Panel</h4>
-                </div>
-            </div>
-            <a href="#" class="nav-link active" id="messagesLink">
-                <i class="fas fa-envelope"></i>
-                <span>Messages</span>
-            </a>
-            <a href="#" class="nav-link" id="homeworkLink">
-                <i class="fas fa-tasks"></i>
-                <span>Homework</span>
-            </a>
-            <a href="#" class="nav-link" id="announcementsLink">
-                <i class="fas fa-bullhorn"></i>
-                <span>Announcements</span>
-            </a>
-            <a href="#" class="nav-link" id="teachersLink">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span>Teachers</span>
-            </a>
-            <a href="#" class="nav-link" id="settingsLink">
-                <i class="fas fa-cog"></i>
-                <span>Settings</span>
-            </a>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="header">
-                <h1><span id="pageTitle">Messages</span> Management</h1>
-                <button class="logout-btn" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </div>
-
-            <!-- Messages Section -->
-            <div id="messagesSection">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-envelope"></i>
-                                Received Messages
-                            </div>
-                            <div class="card-body">
-                                <div id="messagesList">
-                                    <!-- Messages will be populated here -->
-                                    <div class="no-items">
-                                        <i class="fas fa-inbox"></i>
-                                        <p>No messages yet. Messages from parents and visitors will appear here.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-comment-dots"></i>
-                                Quick Reply
-                            </div>
-                            <div class="card-body">
-                                <form id="replyForm">
-                                    <div class="form-group">
-                                        <label>Send Announcement</label>
-                                        <textarea class="form-control" id="announcementText" placeholder="Type your announcement here..."></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-success w-100">
-                                        <i class="fas fa-paper-plane me-2"></i>Send Announcement
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Homework Section (Hidden by default) -->
-            <div id="homeworkSection" style="display: none;">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-tasks"></i>
-                                Homework Assignments
-                            </div>
-                            <div class="card-body">
-                                <div id="homeworkList">
-                                    <!-- Homework will be populated here -->
-                                    <div class="no-items">
-                                        <i class="fas fa-book"></i>
-                                        <p>No homework assignments yet. Add new homework using the form on the right.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-plus-circle"></i>
-                                Add New Homework
-                            </div>
-                            <div class="card-body">
-                                <form id="homeworkForm">
-                                    <div class="form-group">
-                                        <label>Class</label>
-                                        <select class="form-control" id="homeworkClass">
-                                            <option value="">Select Class</option>
-                                            <option value="1">Class 1</option>
-                                            <option value="2">Class 2</option>
-                                            <option value="3">Class 3</option>
-                                            <option value="4">Class 4</option>
-                                            <option value="5">Class 5</option>
-                                            <option value="6">Class 6</option>
-                                            <option value="7">Class 7</option>
-                                            <option value="8">Class 8</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Subject</label>
-                                        <input type="text" class="form-control" id="homeworkSubject" placeholder="Enter subject">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" class="form-control" id="homeworkTitle" placeholder="Enter homework title">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea class="form-control" id="homeworkDescription" placeholder="Enter homework details..."></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Due Date</label>
-                                        <input type="date" class="form-control" id="homeworkDate">
-                                    </div>
-                                    <button type="submit" class="btn btn-success w-100">
-                                        <i class="fas fa-plus me-2"></i>Add Homework
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Announcements Section (Hidden by default) -->
-            <div id="announcementsSection" style="display: none;">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-bullhorn"></i>
-                                Recent Announcements
-                            </div>
-                            <div class="card-body">
-                                <div id="announcementsList">
-                                    <!-- Announcements will be populated here -->
-                                    <div class="no-items">
-                                        <i class="fas fa-megaphone"></i>
-                                        <p>No announcements yet. Create important announcements for students and parents.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-plus-circle"></i>
-                                Create Announcement
-                            </div>
-                            <div class="card-body">
-                                <form id="announcementForm">
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" class="form-control" id="announcementTitle" placeholder="Enter announcement title">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Content</label>
-                                        <textarea class="form-control" id="announcementContent" placeholder="Enter announcement details..."></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Type</label>
-                                        <select class="form-control" id="announcementType">
-                                            <option value="general">General Announcement</option>
-                                            <option value="urgent">Urgent Notice</option>
-                                            <option value="event">Upcoming Event</option>
-                                            <option value="holiday">Holiday Notice</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-success w-100">
-                                        <i class="fas fa-bullhorn me-2"></i>Create Announcement
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Teachers Section (Hidden by default) -->
-            <div id="teachersSection" style="display: none;">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-chalkboard-teacher"></i>
-                                Teachers Management
-                            </div>
-                            <div class="card-body">
-                                <div id="teachersList">
-                                    <!-- Teachers will be populated here -->
-                                    <div class="no-items">
-                                        <i class="fas fa-users"></i>
-                                        <p>No teachers added yet. Add your teaching staff using the form on the right.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-plus-circle"></i>
-                                Add New Teacher
-                            </div>
-                            <div class="card-body">
-                                <form id="teacherForm">
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control" id="teacherName" placeholder="Enter teacher name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Subject</label>
-                                        <input type="text" class="form-control" id="teacherSubject" placeholder="Enter subject">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Role</label>
-                                        <input type="text" class="form-control" id="teacherRole" placeholder="Enter role (e.g., Teacher, HOD)">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Experience</label>
-                                        <input type="text" class="form-control" id="teacherExperience" placeholder="Enter years of experience">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Contact</label>
-                                        <input type="text" class="form-control" id="teacherContact" placeholder="Enter contact number">
-                                    </div>
-                                    <button type="submit" class="btn btn-success w-100">
-                                        <i class="fas fa-plus me-2"></i>Add Teacher
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Settings Section (Hidden by default) -->
-            <div id="settingsSection" style="display: none;">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-cog"></i>
-                                System Settings
-                            </div>
-                            <div class="card-body">
-                                <form id="settingsForm">
-                                    <div class="form-group">
-                                        <label>School Name</label>
-                                        <input type="text" class="form-control" id="schoolName" value="Milli Karwaan Public School Balrampur">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <textarea class="form-control" id="schoolAddress">Bolhua Police Chowki, Balrampur, Uttar Pradesh, India</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Contact Number</label>
-                                        <input type="text" class="form-control" id="schoolContact" value="9758919151">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" id="schoolEmail" value="principal@millikarwaan.edu.in">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Working Hours</label>
-                                        <input type="text" class="form-control" id="workingHours" value="Monday - Saturday: 8:00 AM - 3:00 PM">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Admin Password</label>
-                                        <input type="password" class="form-control" id="adminPassword" placeholder="Enter current password to change">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>New Password</label>
-                                        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Confirm New Password</label>
-                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
-                                    </div>
-                                    <button type="submit" class="btn btn-warning w-100">
-                                        <i class="fas fa-save me-2"></i>Save Settings
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-info-circle"></i>
-                                System Information
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <h6>Admin Panel Version</h6>
-                                    <p class="text-muted">1.0.0</p>
-                                </div>
-                                <div class="mb-3">
-                                    <h6>Last Login</h6>
-                                    <p class="text-muted" id="lastLogin">Never</p>
-                                </div>
-                                <div class="mb-3">
-                                    <h6>Total Messages</h6>
-                                    <p class="text-muted" id="totalMessages">0</p>
-                                </div>
-                                <div class="mb-3">
-                                    <h6>Total Homework</h6>
-                                    <p class="text-muted" id="totalHomework">0</p>
-                                </div>
-                                <div class="mb-3">
-                                    <h6>Total Teachers</h6>
-                                    <p class="text-muted" id="totalTeachers">0</p>
-                                </div>
-                                <div class="mb-3">
-                                    <h6>Storage Used</h6>
-                                    <p class="text-muted">12.5 MB of 1 GB</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="notice" style="margin-top:0.8rem">
+      सुरक्षा सूचना: यह पासवर्ड-आधारित गेट केवल ब्राउज़र स्तर पर है। सही सुरक्षा के लिए इसे सर्वर-साइड ऑथेंटिकेशन से जोड़ें।
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // DOM Elements
-        const loginPage = document.getElementById('loginPage');
-        const adminPanel = document.getElementById('adminPanel');
-        const loginForm = document.getElementById('loginForm');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const messagesLink = document.getElementById('messagesLink');
-        const homeworkLink = document.getElementById('homeworkLink');
-        const announcementsLink = document.getElementById('announcementsLink');
-        const teachersLink = document.getElementById('teachersLink');
-        const settingsLink = document.getElementById('settingsLink');
-        const pageTitle = document.getElementById('pageTitle');
-        
-        // Section Elements
-        const messagesSection = document.getElementById('messagesSection');
-        const homeworkSection = document.getElementById('homeworkSection');
-        const announcementsSection = document.getElementById('announcementsSection');
-        const teachersSection = document.getElementById('teachersSection');
-        const settingsSection = document.getElementById('settingsSection');
-        
-        // Form Elements
-        const replyForm = document.getElementById('replyForm');
-        const homeworkForm = document.getElementById('homeworkForm');
-        const announcementForm = document.getElementById('announcementForm');
-        const teacherForm = document.getElementById('teacherForm');
-        const settingsForm = document.getElementById('settingsForm');
-        
-        // List Elements
-        const messagesList = document.getElementById('messagesList');
-        const homeworkList = document.getElementById('homeworkList');
-        const announcementsList = document.getElementById('announcementsList');
-        const teachersList = document.getElementById('teachersList');
-        
-        // Counter Elements
-        const totalMessages = document.getElementById('totalMessages');
-        const totalHomework = document.getElementById('totalHomework');
-        const totalTeachers = document.getElementById('totalTeachers');
-        const lastLogin = document.getElementById('lastLogin');
-        
-        // Data Storage
-        let messagesData = [];
-        let homeworkData = [];
-        let announcementsData = [];
-        let teachersData = [
-            { name: 'Mr. Rajesh Sharma', subject: 'Mathematics', role: 'Principal', experience: '20+ Years', contact: '9876543210' },
-            { name: 'Misba Mam', subject: 'English', role: 'Senior Teacher', experience: '8 Years', contact: '9876543211' },
-            { name: 'Nayla Mam', subject: 'Science', role: 'Science Teacher', experience: '6 Years', contact: '9876543212' },
-            { name: 'Sayma Mam', subject: 'Primary Education', role: 'Primary Teacher', experience: '7 Years', contact: '9876543213' },
-            { name: 'Zeba Mam', subject: 'Hindi', role: 'Hindi Teacher', experience: '5 Years', contact: '9876543214' },
-            { name: 'Farhan Sir', subject: 'Computer Science', role: 'Computer Teacher', experience: '4 Years', contact: '9876543215' },
-            { name: 'Mrs. Anjali Verma', subject: 'Mathematics', role: 'Vice Principal', experience: '12 Years', contact: '9876543216' },
-            { name: 'Mr. Vikram Singh', subject: 'Physics & Chemistry', role: 'Science Head', experience: '15 Years', contact: '9876543217' }
-        ];
-        
-        // Current date for display
-        const currentDate = new Date().toLocaleDateString();
-        
-        // Login Form Submission
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple authentication (in a real app, this would be more secure)
-            if (password === 'Abutalha') {
-                loginPage.style.display = 'none';
-                adminPanel.style.display = 'block';
-                
-                // Update last login
-                lastLogin.textContent = new Date().toLocaleString();
-                
-                // Initialize data
-                initAdminPanel();
-            } else {
-                alert('Invalid password! Please try again.');
-            }
+    <div style="margin-top:0.8rem">
+      <h4>Storage status</h4>
+      <div id="storageInfo" class="small">---</div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="small">Designed for local/static hosting — export and replace your public index.html to apply changes.</div>
+</footer>
+
+  </div>  <!-- Password modal -->  <div id="pwOverlay" class="overlay" aria-hidden="false">
+    <div class="modal">
+      <h2>Admin Login</h2>
+      <p class="small">कृपया पासवर्ड दर्ज करें ताकि आप एडमिन पैनल का उपयोग कर सकें।</p>
+      <label for="pwInput">Password</label>
+      <input id="pwInput" type="password" autocomplete="current-password" placeholder="Enter password">
+      <div style="display:flex;gap:0.5rem;margin-top:0.6rem">
+        <button id="pwSubmit" class="btn-primary">Login</button>
+        <button id="pwCancel" class="btn-muted">Close</button>
+      </div>
+      <div id="pwMessage" class="notice" style="display:none;margin-top:0.6rem"></div>
+    </div>
+  </div>  <script>
+    // -----------------------------
+    // CONFIG / Default site data
+    // -----------------------------
+    const DEFAULT = {
+      schoolName: 'Milli Karwaan Public School',
+      tagline: 'एक समर्पित शैक्षणिक संस्थान — बच्चों की समग्र वृद्धि और नैतिक शिक्षा पर जोर।',
+      address: 'Boluha Police Chowki, Balrampur',
+      officeHours: 'सोम — शनि: 9:00 AM — 4:00 PM',
+      sunday: 'रविवार: अवकाश (विशेष कार्यक्रम के लिए खुला हो सकता है)',
+      announcements: [
+        {id: Date.now(), text: 'स्वागत है! प्रवेश प्रक्रिया खुली है।'}
+      ],
+      logoData: '', // base64 dataURL
+      submissions: [], // contact form submissions
+      admissionsList: []
+    };
+
+    // password (case-sensitive) - initial value as provided by you
+    // store hashed or plain? For simplicity keep base64-encoded in localStorage; admin can change it.
+    const INITIAL_PASSWORD = btoa('Abutalha'); // base64 to avoid plain text in source
+
+    // -----------------------------
+    // Helper utilities
+    // -----------------------------
+    function $q(sel){return document.querySelector(sel)}
+    function $qa(sel){return Array.from(document.querySelectorAll(sel))}
+
+    // load/save from localStorage
+    function loadData(){
+      try{
+        const raw = localStorage.getItem('mkps_data');
+        if(!raw) return {...DEFAULT};
+        const parsed = JSON.parse(raw);
+        return Object.assign({}, DEFAULT, parsed);
+      }catch(e){console.error(e); return {...DEFAULT};}
+    }
+    function saveData(obj){
+      localStorage.setItem('mkps_data', JSON.stringify(obj));
+      refreshStorageInfo();
+    }
+    function resetData(){
+      if(confirm('क्या आप सुनिश्चित हैं कि आप सभी सहेजे गए डेटा को क्लियर करना चाहते हैं?')){
+        localStorage.removeItem('mkps_data');
+        localStorage.removeItem('mkps_pw');
+        init();
+        alert('डेटा रीसेट कर दिया गया है');
+      }
+    }
+
+    function refreshStorageInfo(){
+      const data = localStorage.getItem('mkps_data');
+      const size = data ? new Blob([data]).size : 0;
+      $q('#storageInfo').textContent = `Saved: ${data? 'Yes' : 'No'} · ${size} bytes`;
+    }
+
+    // -----------------------------
+    // Password gate logic
+    // -----------------------------
+    let attempts = 0; let lockedUntil = 0;
+    function getStoredPw(){
+      return localStorage.getItem('mkps_pw') || INITIAL_PASSWORD;
+    }
+    function checkPassword(plain){
+      try{
+        const encoded = btoa(plain);
+        return encoded === getStoredPw();
+      }catch(e){return false}
+    }
+
+    // lockout helper
+    function lockout(minutes){
+      lockedUntil = Date.now() + minutes*60*1000;
+      localStorage.setItem('mkps_locked', String(lockedUntil));
+    }
+    function isLocked(){
+      const v = parseInt(localStorage.getItem('mkps_locked')||'0',10);
+      if(!v) return false;
+      if(Date.now()>v){localStorage.removeItem('mkps_locked');return false}
+      lockedUntil = v; return true;
+    }
+
+    // -----------------------------
+    // UI rendering for tabs
+    // -----------------------------
+    const appState = {data: loadData()};
+
+    function renderDashboard(){
+      const d = appState.data;
+      return `
+        <h2>Dashboard</h2>
+        <p class="small">Welkom, Admin. नीचे साइट का सारांश और हाल की गतिविधियाँ देखें।</p>
+        <div style="display:flex;gap:0.6rem;margin-top:0.8rem">
+          <div class="card" style="flex:1;padding:0.6rem">
+            <strong>School:</strong>
+            <div>${escapeHtml(d.schoolName)}</div>
+            <div class="small">Address: ${escapeHtml(d.address)}</div>
+          </div>
+          <div class="card" style="flex:1;padding:0.6rem">
+            <strong>Announcements</strong>
+            <div class="small">${d.announcements.length} active</div>
+            <strong style="margin-top:0.5rem;display:block">Admissions</strong>
+            <div class="small">${d.admissionsList.length} applicants</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:0.8rem">Recent actions</h3>
+        <div class="small">Last saved: <span id="lastSaved"></span></div>
+      `;
+    }
+
+    function renderEdit(){
+      const d = appState.data;
+      return `
+        <h2>Edit Site</h2>
+        <label>School name</label>
+        <input id="inpSchool" value="${escapeHtml(d.schoolName)}">
+        <label>Tagline</label>
+        <input id="inpTag" value="${escapeHtml(d.tagline)}">
+        <label>Address</label>
+        <input id="inpAddress" value="${escapeHtml(d.address)}">
+        <label>Office hours (display text)</label>
+        <input id="inpHours" value="${escapeHtml(d.officeHours)}">
+        <label>Sunday note</label>
+        <input id="inpSunday" value="${escapeHtml(d.sunday)}">
+
+        <label>Logo (upload)</label>
+        <input id="inpLogo" type="file" accept="image/*">
+        <div id="logoPreview" class="small" style="margin-top:0.6rem">${d.logoData? '<img src="'+d.logoData+'" alt="logo" style="max-width:140px;border-radius:6px">' : 'No logo uploaded'}</div>
+
+        <button class="btn-primary" id="saveSiteBtn">Save changes</button>
+      `;
+    }
+
+    function renderAnnouncements(){
+      const d = appState.data;
+      const rows = d.announcements.map(a => `
+        <tr><td>${escapeHtml(a.text)}</td><td style="width:120px;text-align:right"><button data-id="${a.id}" class="btn-muted delAnn">Delete</button></td></tr>
+      `).join('');
+      return `
+        <h2>Announcements</h2>
+        <label>New announcement</label>
+        <input id="annText" placeholder="Type announcement here">
+        <button class="btn-primary" id="addAnnBtn">Add</button>
+        <table><thead><tr><th>Text</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+      `;
+    }
+
+    function renderAdmissions(){
+      const d = appState.data;
+      const rows = d.admissionsList.map((a,i)=>`<tr><td>${i+1}</td><td>${escapeHtml(a.name)}</td><td>${escapeHtml(a.grade||'—')}</td><td style="text-align:right"><button data-idx="${i}" class="btn-muted viewApp">View</button></td></tr>`).join('');
+      return `
+        <h2>Admissions</h2>
+        <p class="small">यहाँ आवेदन जो index.html के फॉर्म से जोड़ा गया हो दिखेंगे।</p>
+        <table><thead><tr><th>#</th><th>Name</th><th>Grade</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+      `;
+    }
+
+    function renderContacts(){
+      const d = appState.data;
+      const rows = d.submissions.map((s,i)=>`<tr><td>${i+1}</td><td>${escapeHtml(s.name)}</td><td>${escapeHtml(s.phone)}</td><td style="width:180px">${escapeHtml(s.message||'')}</td><td style="text-align:right"><button data-idx="${i}" class="btn-muted delContact">Delete</button></td></tr>`).join('');
+      return `
+        <h2>Contact submissions</h2>
+        <p class="small">${d.submissions.length} messages collected from the site contact form.</p>
+        <table><thead><tr><th>#</th><th>Name</th><th>Phone</th><th>Message</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+      `;
+    }
+
+    function renderSettings(){
+      return `
+        <h2>Settings</h2>
+        <label>Change admin password</label>
+        <input id="newPw" type="password" placeholder="Enter new password">
+        <label>Confirm</label>
+        <input id="newPw2" type="password" placeholder="Confirm new password">
+        <button class="btn-primary" id="changePwBtn">Change password</button>
+
+        <h3 style="margin-top:0.6rem">Export / Import</h3>
+        <p class="small">You can export the saved data as JSON or import a JSON file to populate admin data.</p>
+        <button id="exportJson" class="btn-muted">Export JSON</button>
+        <input id="importJson" type="file" accept="application/json" style="margin-top:0.6rem">
+      `;
+    }
+
+    // Escape helper
+    function escapeHtml(str=''){return String(str).replace(/[&<>\"']/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]})}
+
+    // -----------------------------
+    // Event wiring and render dispatcher
+    // -----------------------------
+    function init(){
+      appState.data = loadData();
+      refreshStorageInfo();
+      document.getElementById('pwOverlay').style.display = isLocked() ? 'flex' : 'flex'; // show overlay when landing
+
+      // populate tabs
+      $qa('#tabs .tab').forEach(btn=>btn.addEventListener('click', (e)=>{
+        $qa('#tabs .tab').forEach(x=>x.classList.remove('active'));
+        btn.classList.add('active');
+        renderTab(btn.dataset.tab);
+      }));
+
+      // quick actions
+      $q('#exportBtn').addEventListener('click', ()=>exportIndexHTML());
+      $q('#previewBtn').addEventListener('click', ()=>previewHTML());
+      $q('#clearDataBtn').addEventListener('click', ()=>resetData());
+
+      // password modal
+      $q('#pwSubmit').addEventListener('click', tryPw);
+      $q('#pwCancel').addEventListener('click', ()=>{
+        if(confirm('क्या आप वाकई पैनल बंद करना चाहते हैं?')) window.location.href='index.html';
+      });
+      $q('#pwInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') tryPw(); });
+
+      // default render
+      renderTab('dashboard');
+      document.getElementById('loggedInfo').textContent = 'Ready';
+      $q('#lastSaved') && ($q('#lastSaved').textContent = localStorage.getItem('mkps_saved_at') || 'Never');
+    }
+
+    function renderTab(name){
+      let html = '';
+      if(name==='dashboard') html = renderDashboard();
+      if(name==='edit') html = renderEdit();
+      if(name==='ann') html = renderAnnouncements();
+      if(name==='admissions') html = renderAdmissions();
+      if(name==='contact') html = renderContacts();
+      if(name==='settings') html = renderSettings();
+      $q('#mainPanel').innerHTML = html;
+
+      // attach handlers for dynamic content
+      attachHandlers(name);
+    }
+
+    function attachHandlers(name){
+      if(name==='edit'){
+        $q('#saveSiteBtn').addEventListener('click', ()=>{
+          const d = appState.data;
+          d.schoolName = $q('#inpSchool').value.trim() || d.schoolName;
+          d.tagline = $q('#inpTag').value.trim() || d.tagline;
+          d.address = $q('#inpAddress').value.trim() || d.address;
+          d.officeHours = $q('#inpHours').value.trim() || d.officeHours;
+          d.sunday = $q('#inpSunday').value.trim() || d.sunday;
+          // logo file
+          const fileInput = $q('#inpLogo');
+          if(fileInput && fileInput.files && fileInput.files[0]){
+            const f = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(ev){ d.logoData = ev.target.result; saveData(d); alert('Saved and logo updated'); renderTab('edit'); };
+            reader.readAsDataURL(f);
+          } else { saveData(d); alert('Saved changes'); }
+          localStorage.setItem('mkps_saved_at', new Date().toISOString());
+          $q('#lastSaved') && ($q('#lastSaved').textContent = localStorage.getItem('mkps_saved_at'));
         });
-        
-        // Logout Functionality
-        logoutBtn.addEventListener('click', function() {
-            if (confirm('Are you sure you want to logout?')) {
-                adminPanel.style.display = 'none';
-                loginPage.style.display = 'block';
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-            }
+      }
+
+      if(name==='ann'){
+        $q('#addAnnBtn').addEventListener('click', ()=>{
+          const text = $q('#annText').value.trim();
+          if(!text) return alert('Please type announcement text');
+          appState.data.announcements.unshift({id: Date.now(), text});
+          saveData(appState.data);
+          renderTab('ann');
         });
-        
-        // Navigation
-        function setActiveLink(link) {
-            // Remove active class from all links
-            [messagesLink, homeworkLink, announcementsLink, teachersLink, settingsLink].forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            // Add active class to clicked link
-            link.classList.add('active');
-        }
-        
-        // Show Section
-        function showSection(section) {
-            [messagesSection, homeworkSection, announcementsSection, teachersSection, settingsSection].forEach(el => {
-                el.style.display = 'none';
-            });
-            section.style.display = 'block';
-        }
-        
-        // Messages Link
-        messagesLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            setActiveLink(messagesLink);
-            pageTitle.textContent = 'Messages';
-            showSection(messagesSection);
+        $qa('.delAnn').forEach(btn=>btn.addEventListener('click', (e)=>{
+          const id = Number(btn.dataset.id);
+          appState.data.announcements = appState.data.announcements.filter(a=>a.id!==id);
+          saveData(appState.data); renderTab('ann');
+        }));
+      }
+
+      if(name==='admissions'){
+        $qa('.viewApp').forEach(btn=>btn.addEventListener('click', ()=>{
+          const idx = Number(btn.dataset.idx);
+          const app = appState.data.admissionsList[idx];
+          alert('Applicant details:\nName: '+app.name+'\nGrade: '+(app.grade||'—')+'\nPhone: '+(app.phone||'—')+'\nMessage: '+(app.message||'—'));
+        }));
+      }
+
+      if(name==='contact'){
+        $qa('.delContact').forEach(btn=>btn.addEventListener('click', ()=>{
+          const idx = Number(btn.dataset.idx);
+          if(confirm('Delete this message?')){ appState.data.submissions.splice(idx,1); saveData(appState.data); renderTab('contact'); }
+        }));
+      }
+
+      if(name==='settings'){
+        $q('#changePwBtn').addEventListener('click', ()=>{
+          const a = $q('#newPw').value; const b = $q('#newPw2').value;
+          if(!a||a!==b) return alert('Passwords do not match or empty');
+          localStorage.setItem('mkps_pw', btoa(a));
+          alert('Password changed'); $q('#newPw').value='';$q('#newPw2').value='';
         });
-        
-        // Homework Link
-        homeworkLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            setActiveLink(homeworkLink);
-            pageTitle.textContent = 'Homework';
-            showSection(homeworkSection);
+        $q('#exportJson').addEventListener('click', ()=>{
+          const blob = new Blob([JSON.stringify(appState.data, null, 2)], {type:'application/json'});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a'); a.href=url; a.download='mkps_data.json'; a.click(); URL.revokeObjectURL(url);
         });
-        
-        // Announcements Link
-        announcementsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            setActiveLink(announcementsLink);
-            pageTitle.textContent = 'Announcements';
-            showSection(announcementsSection);
+        $q('#importJson').addEventListener('change', (e)=>{
+          const f = e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=function(ev){ try{ const parsed=JSON.parse(ev.target.result); appState.data=Object.assign({}, DEFAULT, parsed); saveData(appState.data); alert('Imported'); renderTab('settings'); }catch(er){alert('Invalid JSON');}}; r.readAsText(f);
         });
-        
-        // Teachers Link
-        teachersLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            setActiveLink(teachersLink);
-            pageTitle.textContent = 'Teachers';
-            showSection(teachersSection);
-        });
-        
-        // Settings Link
-        settingsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            setActiveLink(settingsLink);
-            pageTitle.textContent = 'Settings';
-            showSection(settingsSection);
-        });
-        
-        // Reply Form Submission (Announcement)
-        replyForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const announcementText = document.getElementById('announcementText').value;
-            
-            if (announcementText.trim() === '') {
-                alert('Please enter an announcement message.');
-                return;
-            }
-            
-            // Create new announcement object
-            const newAnnouncement = {
-                id: Date.now(),
-                title: 'Important Announcement',
-                content: announcementText,
-                type: 'general',
-                date: currentDate
-            };
-            
-            // Add to announcements array
-            announcementsData.unshift(newAnnouncement);
-            
-            // Clear form
-            document.getElementById('announcementText').value = '';
-            
-            // Update display
-            renderAnnouncements();
-            updateCounters();
-            
-            alert('Announcement sent successfully!');
-        });
-        
-        // Homework Form Submission
-        homeworkForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const homeworkClass = document.getElementById('homeworkClass').value;
-            const homeworkSubject = document.getElementById('homeworkSubject').value;
-            const homeworkTitle = document.getElementById('homeworkTitle').value;
-            const homeworkDescription = document.getElementById('homeworkDescription').value;
-            const homeworkDate = document.getElementById('homeworkDate').value;
-            
-            if (!homeworkClass || !homeworkSubject || !homeworkTitle || !homeworkDescription || !homeworkDate) {
-                alert('Please fill in all fields.');
-                return;
-            }
-            
-            // Create new homework object
-            const newHomework = {
-                id: Date.now(),
-                class: homeworkClass,
-                subject: homeworkSubject,
-                title: homeworkTitle,
-                description: homeworkDescription,
-                date: homeworkDate,
-                createdAt: currentDate
-            };
-            
-            // Add to homework array
-            homeworkData.unshift(newHomework);
-            
-            // Clear form
-            homeworkForm.reset();
-            
-            // Update display
-            renderHomework();
-            updateCounters();
-            
-            alert('Homework added successfully!');
-        });
-        
-        // Announcement Form Submission
-        announcementForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const announcementTitle = document.getElementById('announcementTitle').value;
-            const announcementContent = document.getElementById('announcementContent').value;
-            const announcementType = document.getElementById('announcementType').value;
-            
-            if (!announcementTitle || !announcementContent) {
-                alert('Please fill in all fields.');
-                return;
-            }
-            
-            // Create new announcement object
-            const newAnnouncement = {
-                id: Date.now(),
-                title: announcementTitle,
-                content: announcementContent,
-                type: announcementType,
-                date: currentDate
-            };
-            
-            // Add to announcements array
-            announcementsData.unshift(newAnnouncement);
-            
-            // Clear form
-            announcementForm.reset();
-            
-            // Update display
-            renderAnnouncements();
-            updateCounters();
-            
-            alert('Announcement created successfully!');
-        });
-        
-        // Teacher Form Submission
-        teacherForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const teacherName = document.getElementById('teacherName').value;
-            const teacherSubject = document.getElementById('teacherSubject').value;
-            const teacherRole = document.getElementById('teacherRole').value;
-            const teacherExperience = document.getElementById('teacherExperience').value;
-            const teacherContact = document.getElementById('teacherContact').value;
-            
-            if (!teacherName || !teacherSubject || !teacherRole || !teacherExperience || !teacherContact) {
-                alert('Please fill in all fields.');
-                return;
-            }
-            
-            // Create new teacher object
-            const newTeacher = {
-                id: Date.now(),
-                name: teacherName,
-                subject: teacherSubject,
-                role: teacherRole,
-                experience: teacherExperience,
-                contact: teacherContact
-            };
-            
-            // Add to teachers array
-            teachersData.unshift(newTeacher);
-            
-            // Clear form
-            teacherForm.reset();
-            
-            // Update display
-            renderTeachers();
-            updateCounters();
-            
-            alert('Teacher added successfully!');
-        });
-        
-        // Settings Form Submission
-        settingsForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const currentPassword = document.getElementById('adminPassword').value;
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (currentPassword !== 'Abutalha') {
-                alert('Current password is incorrect!');
-                return;
-            }
-            
-            if (newPassword && newPassword !== confirmPassword) {
-                alert('New passwords do not match!');
-                return;
-            }
-            
-            // In a real app, we would hash the password
-            if (newPassword) {
-                // Update password (in this demo, we're just storing it in a variable)
-                // In a real app, this would be handled by the server
-                alert('Password updated successfully!');
-            }
-            
-            // Update school information
-            alert('Settings saved successfully!');
-        });
-        
-        // Delete Message Function
-        function deleteMessage(id) {
-            if (confirm('Are you sure you want to delete this message?')) {
-                messagesData = messagesData.filter(msg => msg.id !== id);
-                renderMessages();
-                updateCounters();
-            }
-        }
-        
-        // Delete Homework Function
-        function deleteHomework(id) {
-            if (confirm('Are you sure you want to delete this homework assignment?')) {
-                homeworkData = homeworkData.filter(hw => hw.id !== id);
-                renderHomework();
-                updateCounters();
-            }
-        }
-        
-        // Delete Announcement Function
-        function deleteAnnouncement(id) {
-            if (confirm('Are you sure you want to delete this announcement?')) {
-                announcementsData = announcementsData.filter(ann => ann.id !== id);
-                renderAnnouncements();
-                updateCounters();
-            }
-        }
-        
-        // Delete Teacher Function
-        function deleteTeacher(id) {
-            if (confirm('Are you sure you want to delete this teacher?')) {
-                teachersData = teachersData.filter(t => t.id !== id);
-                renderTeachers();
-                updateCounters();
-            }
-        }
-        
-        // Render Messages
-        function renderMessages() {
-            if (messagesData.length === 0) {
-                messagesList.innerHTML = `
-                    <div class="no-items">
-                        <i class="fas fa-inbox"></i>
-                        <p>No messages yet. Messages from parents and visitors will appear here.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            messagesList.innerHTML = '';
-            messagesData.forEach(msg => {
-                const messageItem = document.createElement('div');
-                messageItem.className = 'message-item';
-                messageItem.innerHTML = `
-                    <div class="message-actions">
-                        <div class="action-btn delete" onclick="deleteMessage(${msg.id})" title="Delete">
-                            <i class="fas fa-trash"></i>
-                        </div>
-                    </div>
-                    <div class="message-header">
-                        <div>
-                            <div class="message-name">${msg.name}</div>
-                            <div class="message-email">${msg.email}</div>
-                        </div>
-                        <div class="message-date">${msg.date}</div>
-                    </div>
-                    <div class="message-content">
-                        <strong>Subject:</strong> ${msg.subject}<br><br>
-                        ${msg.message.replace(/\n/g, '<br>')}
-                    </div>
-                    <div class="message-contact mt-3">
-                        <strong>Contact:</strong> ${msg.phone}
-                    </div>
-                `;
-                messagesList.appendChild(messageItem);
-            });
-        }
-        
-        // Render Homework
-        function renderHomework() {
-            if (homeworkData.length === 0) {
-                homeworkList.innerHTML = `
-                    <div class="no-items">
-                        <i class="fas fa-book"></i>
-                        <p>No homework assignments yet. Add new homework using the form on the right.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            homeworkList.innerHTML = '';
-            homeworkData.forEach(hw => {
-                const homeworkItem = document.createElement('div');
-                homeworkItem.className = 'homework-item';
-                homeworkItem.innerHTML = `
-                    <div class="homework-header">
-                        <div class="homework-subject">${hw.subject}</div>
-                        <div class="homework-class">Class ${hw.class}</div>
-                    </div>
-                    <div class="homework-date"><i class="far fa-calendar-alt me-1"></i> Due: ${hw.date}</div>
-                    <div class="homework-title" style="font-weight: 600; margin-bottom: 10px;">${hw.title}</div>
-                    <div class="homework-content">${hw.description}</div>
-                    <div class="homework-actions">
-                        <button class="btn btn-sm btn-outline-secondary" disabled>
-                            <i class="fas fa-edit me-1"></i>Edit
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger" onclick="deleteHomework(${hw.id})">
-                            <i class="fas fa-trash me-1"></i>Delete
-                        </button>
-                    </div>
-                `;
-                homeworkList.appendChild(homeworkItem);
-            });
-        }
-        
-        // Render Announcements
-        function renderAnnouncements() {
-            if (announcementsData.length === 0) {
-                announcementsList.innerHTML = `
-                    <div class="no-items">
-                        <i class="fas fa-megaphone"></i>
-                        <p>No announcements yet. Create important announcements for students and parents.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            announcementsList.innerHTML = '';
-            announcementsData.forEach(ann => {
-                const typeClass = ann.type === 'urgent' ? 'bg-danger text-white' : 
-                                ann.type === 'event' ? 'bg-success text-white' :
-                                ann.type === 'holiday' ? 'bg-warning text-dark' : 'bg-primary text-white';
-                                
-                const typeIcon = ann.type === 'urgent' ? 'fas fa-exclamation-triangle' :
-                               ann.type === 'event' ? 'fas fa-calendar-alt' :
-                               ann.type === 'holiday' ? 'fas fa-gift' : 'fas fa-bullhorn';
-                
-                const announcementItem = document.createElement('div');
-                announcementItem.className = 'message-item';
-                announcementItem.innerHTML = `
-                    <div class="message-actions">
-                        <div class="action-btn delete" onclick="deleteAnnouncement(${ann.id})" title="Delete">
-                            <i class="fas fa-trash"></i>
-                        </div>
-                    </div>
-                    <div class="message-header">
-                        <div>
-                            <div class="message-name ${typeClass}" style="display: inline-block; padding: 5px 12px; border-radius: 20px;">
-                                <i class="${typeIcon} me-1"></i>${ann.type.charAt(0).toUpperCase() + ann.type.slice(1)}
-                            </div>
-                        </div>
-                        <div class="message-date">${ann.date}</div>
-                    </div>
-                    <div class="message-content">
-                        <div style="font-weight: 600; font-size: 1.1rem; color: var(--primary); margin-bottom: 10px;">${ann.title}</div>
-                        ${ann.content.replace(/\n/g, '<br>')}
-                    </div>
-                `;
-                announcementsList.appendChild(announcementItem);
-            });
-        }
-        
-        // Render Teachers
-        function renderTeachers() {
-            if (teachersData.length === 0) {
-                teachersList.innerHTML = `
-                    <div class="no-items">
-                        <i class="fas fa-users"></i>
-                        <p>No teachers added yet. Add your teaching staff using the form on the right.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            teachersList.innerHTML = '';
-            teachersData.forEach(teacher => {
-                const teacherItem = document.createElement('div');
-                teacherItem.className = 'message-item';
-                teacherItem.innerHTML = `
-                    <div class="message-actions">
-                        <div class="action-btn delete" onclick="deleteTeacher(${teacher.id})" title="Delete">
-                            <i class="fas fa-trash"></i>
-                        </div>
-                    </div>
-                    <div class="message-header">
-                        <div>
-                            <div class="message-name">${teacher.name}</div>
-                            <div class="message-email">${teacher.role}</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <strong>Subject:</strong> ${teacher.subject}<br>
-                        <strong>Experience:</strong> ${teacher.experience}<br>
-                        <strong>Contact:</strong> ${teacher.contact}
-                    </div>
-                `;
-                teachersList.appendChild(teacherItem);
-            });
-        }
-        
-        // Update Counters
-        function updateCounters() {
-            totalMessages.textContent = messagesData.length;
-            totalHomework.textContent = homeworkData.length;
-            totalTeachers.textContent = teachersData.length;
-        }
-        
-        // Initialize Admin Panel
-        function initAdminPanel() {
-            // Set current date for homework form
-            document.getElementById('homeworkDate').valueAsDate = new Date();
-            
-            // Render all data
-            renderMessages();
-            renderHomework();
-            renderAnnouncements();
-            renderTeachers();
-            updateCounters();
-            
-            // Show messages section by default
-            showSection(messagesSection);
-        }
-        
-        // Make delete functions available globally
-        window.deleteMessage = deleteMessage;
-        window.deleteHomework = deleteHomework;
-        window.deleteAnnouncement = deleteAnnouncement;
-        window.deleteTeacher = deleteTeacher;
-        
-        // Mobile menu toggle (for small screens)
-        if (window.innerWidth <= 768) {
-            document.querySelector('.header h1').addEventListener('click', function() {
-                document.getElementById('sidebar').classList.toggle('active');
-            });
-        }
-        
-        // Initialize with login page visible
-        adminPanel.style.display = 'none';
-    </script>
+      }
+    }
+
+    // -----------------------------
+    // Password handling
+    // -----------------------------
+    function tryPw(){
+      if(isLocked()){
+        const remain = Math.ceil((lockedUntil - Date.now())/60000);
+        $q('#pwMessage').style.display='block'; $q('#pwMessage').textContent = `Too many attempts. Locked for ${remain} more minute(s).`;
+        return;
+      }
+      const val = $q('#pwInput').value || '';
+      if(checkPassword(val)){
+        // success
+        document.getElementById('pwOverlay').style.display='none';
+        $q('#pwMessage').style.display='none';
+        attempts = 0;
+        document.getElementById('loggedInfo').textContent = 'Signed in';
+        renderTab('dashboard');
+      } else {
+        attempts++;
+        $q('#pwMessage').style.display='block';
+        $q('#pwMessage').textContent = `गलत पासवर्ड (कوشिश: ${attempts}). 5 गलतों के बाद लॉक होगा।`;
+        if(attempts>=5){ lockout(10); $q('#pwMessage').textContent = 'बहुत अधिक प्रयास — 10 मिनट के लिए लॉक कर दिया गया है।'; }
+      }
+    }
+
+    // -----------------------------
+    // Export generated index.html
+    // -----------------------------
+    function generateIndexHTML(){
+      const d = appState.data;
+      // A simple templated index.html that reads from localStorage (mkps_data) so changes from admin will reflect if both files are hosted together.
+      const template = `<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapeHtml(d.schoolName)} — Balrampur</title>
+  <style>/* Minimal styles copied from original */ body{font-family:Inter,system-ui,Arial;background:#f3f4f6;color:#111} header{background:linear-gradient(90deg,#0b5cff,#0ea5a4);color:#fff;padding:1rem}.container{max-width:1000px;margin:0 auto;padding:1rem}.card{background:#fff;padding:1rem;border-radius:10px}</style></head>
+<body>
+  <header>
+    <div class="container">
+      <h1 id="siteName">${escapeHtml(d.schoolName)}</h1>
+      <p id="tagline">${escapeHtml(d.tagline)}</p>
+      <p id="addr">Address: ${escapeHtml(d.address)}</p>
+    </div>
+  </header>
+  <main class="container">
+    <section class="card">
+      <h2>Announcements</h2>
+      <ul id="annList">
+        ${d.announcements.map(a=>'<li>'+escapeHtml(a.text)+'</li>').join('\n')}
+      </ul>
+    </section><section class="card" style="margin-top:1rem">
+  <h2>Contact Form</h2>
+  <form id="contactForm">
+    <label>नाम</label><input id="c_name" required>
+    <label>फ़ोन</label><input id="c_phone" required>
+    <label>संदेश</label><textarea id="c_msg"></textarea>
+    <button type="submit">सबमिट करें</button>
+  </form>
+  <p class="small">(यह फॉर्म केवल लोकल-स्टोरेज पर सहेजेगा। वास्तविक सर्वर-इंटीग्रेशन के लिए बैकएंड की आवश्यकता है।)</p>
+</section>
+
+  </main>
+  <script>
+    // Make the site read the admin-saved mkps_data if present
+    (function(){
+      try{
+        const raw = localStorage.getItem('mkps_data');
+        if(!raw) return; const d = JSON.parse(raw);
+        if(d.schoolName) document.getElementById('siteName').textContent = d.schoolName;
+        if(d.tagline) document.getElementById('tagline').textContent = d.tagline;
+        if(d.address) document.getElementById('addr').textContent = 'Address: '+d.address;
+        const ann = document.getElementById('annList'); ann.innerHTML = (d.announcements || []).map(a=>'<li>'+a.text+'</li>').join('\n');
+      }catch(e){console.warn(e)}// contact form saves to localStorage so admin can view it from admin panel
+  document.getElementById('contactForm').addEventListener('submit', function(ev){ ev.preventDefault(); const s = JSON.parse(localStorage.getItem('mkps_data')||'{}'); s.submissions = s.submissions || []; s.submissions.unshift({name:document.getElementById('c_name').value, phone:document.getElementById('c_phone').value, message:document.getElementById('c_msg').value, at:new Date().toISOString()}); localStorage.setItem('mkps_data', JSON.stringify(s)); alert('Submitted — thank you'); this.reset(); });
+})();
+
+  </script>
+</body>
+</html>`;
+      return template;
+    }function exportIndexHTML(){
+  const html = generateIndexHTML();
+  const blob = new Blob([html], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'index_updated.html'; a.click(); URL.revokeObjectURL(url);
+  alert('index_updated.html डाउनलोड किया गया — इसे अपने सर्वर पर index.html के रूप में अपलोड करें');
+}
+
+function previewHTML(){
+  const html = generateIndexHTML();
+  const w = window.open(); w.document.open(); w.document.write(html); w.document.close();
+}
+
+// small utility to show current saved time etc.
+function escapeHtml(str=''){return String(str).replace(/[&<>\"']/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]})}
+
+// try to initialize saved password if none
+if(!localStorage.getItem('mkps_pw')) localStorage.setItem('mkps_pw', INITIAL_PASSWORD);
+
+// event for clearing data
+$q && $q('#clearDataBtn') && $q('#clearDataBtn').addEventListener('click', ()=>{ if(confirm('Reset all saved admin data?')){ localStorage.removeItem('mkps_data'); localStorage.removeItem('mkps_pw'); alert('Cleared'); init(); }});
+
+// wire reset button in aside (duplicate safe)
+$q && $q('#clearDataBtn') && $q('#clearDataBtn').addEventListener('click', ()=>{});
+
+// small on-load
+window.addEventListener('load', init);
+
+  </script>
 </body>
 </html>
-```
