@@ -1,524 +1,191 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mili Karwaan — Student Dashboard (Class-based)</title>
-  <meta name="description" content="Mili Karwaan Public School — personalized student dashboard (class-wise). Admin access via password 'Abutalha'." />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root{
-      --g1:#0f766e; --g2:#065f46; --gold:#f59e0b; --muted:#6b7280; --card:#fff;
-      --maxw:1200px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milli Karwaan Public School</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f8;
+        color: #333;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#f7fffb,#f0fdf4);color:#04282a}
-    .container{max-width:var(--maxw);margin:0 auto;padding:20px}
-
-    /* header */
-    header.site-header{position:sticky;top:0;z-index:999;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:12px 0;box-shadow:0 6px 18px rgba(4,22,18,0.12)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:var(--maxw);margin:0 auto;padding:0 20px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{width:56px;height:56px;border-radius:10px;background:#fff;padding:6px;object-fit:contain}
-    .brand h1{font-family:'Montserrat',sans-serif;font-size:1.05rem;margin:0}
-    nav ul{list-style:none;display:flex;gap:8px;margin:0;padding:0}
-    nav a{color:rgba(255,255,255,0.95);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:700}
-    .header-actions{display:flex;gap:10px;align-items:center}
-
-    .btn{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.12)}
-    .btn.cta{background:linear-gradient(90deg,var(--gold),#d97706);color:#06221a}
-
-    /* login modal */
-    .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(3,7,7,0.45);z-index:2000}
-    .card{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 18px 40px rgba(2,8,6,0.08);width:100%;max-width:720px}
-    .login-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:center}
-    .form-row{display:flex;gap:8px;margin-bottom:10px}
-    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f3ee;font-weight:600}
-    label{display:block;font-weight:700;margin-bottom:6px;color:var(--g2)}
-
-    /* layout */
-    .app{display:grid;grid-template-columns:260px 1fr;gap:18px;margin-top:18px;padding:0 20px}
-    aside.sidebar{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 12px 30px rgba(2,8,6,0.06);height:calc(100vh - 120px);position:sticky;top:70px;overflow:auto}
-    aside .profile{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:12px}
-    aside .menu{list-style:none;padding:0;margin:12px 0}
-    aside .menu a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;text-decoration:none;color:inherit;font-weight:600}
-    aside .menu a.active{background:linear-gradient(90deg,#ecfdf5,#effaf0);border-left:4px solid var(--g2);transform:translateX(6px)}
-    main.content{min-height:560px}
-    .section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
-
-    /* cards */
-    .grid-2{display:grid;grid-template-columns:1fr 320px;gap:18px}
-    .home-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .home-cards .box{background:#fff;padding:12px;border-radius:10px;box-shadow:0 10px 28px rgba(2,8,6,0.04)}
-
-    .list .item{padding:12px;border-radius:8px;background:#fbfff8;border-left:6px solid var(--gold);margin-bottom:10px;cursor:pointer}
-    .muted{color:var(--muted)}
-
-    /* gallery */
-    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
-    .gallery-grid img{width:100%;height:90px;object-fit:cover;border-radius:8px;cursor:pointer}
-
-    /* admin floating */
-    .admin-fab{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:999px;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:0 12px 28px rgba(2,8,6,0.18);z-index:2001;display:flex;align-items:center;justify-content:center}
-    .to-top{position:fixed;right:20px;bottom:90px;background:var(--g2);color:#fff;padding:8px;border-radius:8px;display:none;z-index:2001}
-    .to-top.show{display:block}
-
-    /* modal generic */
-    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,6,0.55);z-index:2005;opacity:0;pointer-events:none;transition:opacity .12s}
-    .modal.open{opacity:1;pointer-events:auto}
-    .modal .modal-inner{background:#fff;padding:16px;border-radius:10px;max-width:900px;width:94%}
-
-    /* responsive */
-    @media (max-width:980px){ .app{grid-template-columns:1fr} aside.sidebar{position:static;height:auto} .login-grid{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} .home-cards{grid-template-columns:1fr} }
-  </style>
+    header {
+        background-color: #004aad;
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 20px;
+    }
+    .sidebar {
+        width: 220px;
+        background-color: #00337C;
+        color: white;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: 70px;
+    }
+    .sidebar a {
+        display: block;
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+    .sidebar a:hover {
+        background-color: #0055CC;
+    }
+    .content {
+        margin-left: 240px;
+        padding: 20px;
+    }
+    .card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #004aad;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    /* Welcome Screen */
+    #welcomeScreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    #welcomeBox {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+        text-align: center;
+        width: 300px;
+    }
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+</style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="nav-inner">
-      <div class="brand">
-        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="logo">
-        <div>
-          <h1>Mili Karwaan Public School</h1>
-          <div style="font-size:.85rem;opacity:.95">Balrampur, Uttar Pradesh</div>
-        </div>
-      </div>
-
-      <div class="header-actions">
-        <div style="color:#fff;font-weight:700;margin-right:12px" id="topGreeting">Welcome</div>
-        <button class="btn cta" id="changeUserBtn">Change Student</button>
-      </div>
-    </div>
-  </header>
-
-  <!-- LOGIN / NAME & CLASS MODAL (shown on page load) -->
-  <div id="loginOverlay" class="overlay" role="dialog" aria-modal="true">
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div>
-          <h2 style="margin:0;color:var(--g2)">Welcome to Mili Karwaan</h2>
-          <p class="muted" style="margin-top:8px">Enter your name and select class (1–8) to see your personalised dashboard.</p>
-        </div>
-        <div><img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="logo" style="width:86px;border-radius:10px" /></div>
-      </div>
-
-      <div style="margin-top:14px" class="login-grid">
-        <div>
-          <label for="stuName">Student Full Name</label>
-          <input id="stuName" placeholder="e.g. Rahul Kumar" autocomplete="name" />
-
-          <label for="stuClass" style="margin-top:12px">Class</label>
-          <select id="stuClass">
+<!-- Welcome Screen -->
+<div id="welcomeScreen">
+    <div id="welcomeBox">
+        <h2>Welcome to MKPS</h2>
+        <input type="text" id="studentName" placeholder="Enter Your Name">
+        <select id="studentClass">
             <option value="">Select Class</option>
-            <option>Class 1</option>
-            <option>Class 2</option>
-            <option>Class 3</option>
-            <option>Class 4</option>
-            <option>Class 5</option>
-            <option>Class 6</option>
-            <option>Class 7</option>
-            <option>Class 8</option>
-          </select>
-
-          <div style="display:flex;gap:8px;margin-top:12px">
-            <button class="btn cta" id="enterBtn">Enter Dashboard</button>
-            <button class="btn ghost" id="demoBtn">Use Demo (Class 6)</button>
-          </div>
-
-          <p class="muted" style="margin-top:12px">Data is stored locally in your browser. Admin access available via the icon at bottom-right.</p>
-        </div>
-
-        <aside style="padding:12px;background:linear-gradient(180deg,#fbfff8,#fff);border-radius:10px">
-          <h4 style="margin:0;color:var(--g2)">Quick Features</h4>
-          <ul class="muted" style="margin-top:8px">
-            <li>Personalised homework & timetable</li>
-            <li>Announcements & events for your class</li>
-            <li>Gallery & contact</li>
-            <li>Export / Import data (owner/admin)</li>
-          </ul>
-        </aside>
-      </div>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+        </select>
+        <button class="btn" onclick="saveStudent()">Continue</button>
     </div>
-  </div>
+</div>
 
-  <!-- APP -->
-  <div class="container" id="appRoot" style="display:none">
-    <div class="app">
-      <!-- SIDEBAR -->
-      <aside class="sidebar" aria-label="Sidebar">
-        <div class="profile">
-          <img id="profileAvatar" src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="avatar" style="width:84px;height:84px;border-radius:12px;object-fit:cover" />
-          <div id="studentName" style="font-weight:800">Student Name</div>
-          <div id="studentClass" class="muted">Class -</div>
-        </div>
+<header>
+    <h1>Milli Karwaan Public School</h1>
+    <span id="userInfo"></span>
+</header>
 
-        <nav>
-          <ul class="menu" id="sideMenu">
-            <li><a href="#" data-view="home" class="active"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#" data-view="homework"><i class="fas fa-pen"></i> Homework</a></li>
-            <li><a href="#" data-view="timetable"><i class="fas fa-clock"></i> Timetable</a></li>
-            <li><a href="#" data-view="announcements"><i class="fas fa-bullhorn"></i> Announcements</a></li>
-            <li><a href="#" data-view="events"><i class="fas fa-calendar-alt"></i> Events</a></li>
-            <li><a href="#" data-view="gallery"><i class="fas fa-image"></i> Gallery</a></li>
-            <li><a href="#" data-view="attendance"><i class="fas fa-check-circle"></i> Attendance</a></li>
-            <li><a href="#" data-view="contact"><i class="fas fa-phone"></i> Contact</a></li>
-            <li style="margin-top:10px"><a href="#" id="exportBtn"><i class="fas fa-file-export"></i> Export Data</a></li>
-            <li><a href="#" id="importBtn"><i class="fas fa-file-import"></i> Import Data</a></li>
-          </ul>
-        </nav>
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="#">🏠 Home</a>
+    <a href="#">📚 Homework</a>
+    <a href="#">📅 Timetable</a>
+    <a href="#">📢 Announcements</a>
+    <a href="#">🎉 Events</a>
+    <a href="#">🖼 Gallery</a>
+    <a href="#" onclick="adminLogin()">⚙ Admin</a>
+</div>
 
-        <div style="margin-top:14px">
-          <button class="btn" id="logoutBtn" style="width:100%">Logout</button>
-        </div>
-      </aside>
+<!-- Main Content -->
+<div class="content">
+    <div class="card" id="homeworkSection">📚 Homework will appear here.</div>
+    <div class="card" id="timetableSection">📅 Timetable will appear here.</div>
+    <div class="card" id="announcementSection">📢 Announcements will appear here.</div>
+    <div class="card" id="eventSection">🎉 Events will appear here.</div>
+    <div class="card" id="gallerySection">🖼 Gallery will appear here.</div>
+</div>
 
-      <!-- CONTENT -->
-      <main class="content" id="mainContent">
-        <!-- dynamic content injected here -->
-      </main>
-    </div>
-  </div>
-
-  <!-- admin floating -->
-  <button id="adminFab" class="admin-fab" title="Admin (staff)"><i class="fas fa-user-shield"></i></button>
-  <button id="toTop" class="to-top" title="Back to top"><i class="fas fa-chevron-up"></i></button>
-
-  <!-- modal (for gallery / details) -->
-  <div id="modal" class="modal" aria-hidden="true"><div class="modal-inner" id="modalInner"></div></div>
-
-  <script>
-  /***** MKPS — Class-based personalized home (single file) *****/
-
-  const STORAGE_KEY = 'MKPS_CLASS_HOME_v1';
-
-  const SAMPLE = {
-    // sample data keyed by class (Class 1 .. Class 8)
-    homework: {
-      'Class 1': [{id:'h-c1-1',subject:'English',title:'Alphabet Practice',due:'2025-11-25',notes:'Practice letters A to F.'}],
-      'Class 2': [{id:'h-c2-1',subject:'Math',title:'Additions',due:'2025-11-26',notes:'Solve sheet 1-10.'}],
-      'Class 6': [{id:'h-c6-1',subject:'Mathematics',title:'Algebra',due:'2025-11-25',notes:'Exercise 5.3 Q1-15.'}],
-      'Class 8': []
-    },
-    timetable: {
-      'Class 1': [{day:'Mon',time:'9:00-9:30',subject:'English'}],
-      'Class 6': [{day:'Mon',time:'8:00-9:00',subject:'Mathematics'}, {day:'Mon',time:'9:00-10:00',subject:'Science'}]
-    },
-    announcements: {
-      'Class 1': [{id:'a1-c1',title:'Drawing Competition',date:'2025-11-28',body:'Bring colours and pencils.'}],
-      'Class 6': [{id:'a1-c6',title:'Science Exhibition',date:'2025-12-10',body:'Project presentation in hall.'}]
-    },
-    events: [
-      {id:'ev1',title:'Annual Sports Day',date:'2025-12-06'},
-      {id:'ev2',title:'Diwali Holidays',date:'2025-10-31'}
-    ],
-    gallery: [
-      'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'
-    ],
-    attendance: {
-      'Class 6': {present:28,total:30},
-      'Class 1': {present:25,total:30}
-    },
-    contact: {phone:'+919758919151',email:'madamsir066@gmail.com',address:'Baluha Police Chowki, Balrampur'}
-  };
-
-  // load / save
-  function loadStore(){
-    try{ const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(SAMPLE)); }
-    catch(e){ return JSON.parse(JSON.stringify(SAMPLE)); }
-  }
-  function saveStore(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
-  let STORE = loadStore();
-
-  // session (student)
-  let SESSION = null; // {name, class}
-
-  // helpers
-  const $ = sel => document.querySelector(sel);
-  const $$ = sel => Array.from(document.querySelectorAll(sel));
-  const uid = (p='id') => p + Math.random().toString(36).slice(2,9);
-
-  // initial: show login overlay until user enters name+class
-  const loginOverlay = $('#loginOverlay');
-  const appRoot = $('#appRoot');
-
-  function openLogin(){
-    loginOverlay.style.display = 'flex';
-    appRoot.style.display = 'none';
-  }
-  function closeLogin(){
-    loginOverlay.style.display = 'none';
-    appRoot.style.display = 'block';
-  }
-
-  // set session (after entering)
-  function setSession(name, cls){
-    SESSION = {name: name.trim(), class: cls};
-    localStorage.setItem('MKPS_SESSION', JSON.stringify(SESSION));
-    $('#studentName').textContent = SESSION.name;
-    $('#studentClass').textContent = SESSION.class;
-    $('#topGreeting').textContent = `Welcome, ${SESSION.name}`;
-    closeLogin();
-    renderView('home');
-  }
-
-  // check for existing session
-  const savedSession = localStorage.getItem('MKPS_SESSION');
-  if(savedSession){
-    try{ SESSION = JSON.parse(savedSession); $('#studentName').textContent = SESSION.name; $('#studentClass').textContent = SESSION.class; $('#topGreeting').textContent = `Welcome, ${SESSION.name}`; loginOverlay.style.display='none'; appRoot.style.display='block'; }catch(e){ openLogin(); }
-  } else {
-    openLogin();
-  }
-
-  // Login actions
-  $('#enterBtn').addEventListener('click', ()=>{
-    const name = $('#stuName').value || '';
-    const cls = $('#stuClass').value || '';
-    if(!name.trim() || !cls){ alert('Please enter name and select class (1–8)'); return; }
-    setSession(name, cls);
-  });
-  $('#demoBtn').addEventListener('click', ()=> setSession('Demo Student','Class 6'));
-  $('#changeUserBtn').addEventListener('click', ()=> {
-    if(confirm('Change student? Current session will end.')){ localStorage.removeItem('MKPS_SESSION'); SESSION = null; openLogin(); }
-  });
-
-  // Sidebar nav
-  $$('#sideMenu a').forEach(a => a.addEventListener('click', (e)=>{
-    e.preventDefault();
-    $$('#sideMenu a').forEach(x=>x.classList.remove('active'));
-    a.classList.add('active');
-    renderView(a.dataset.view);
-  }));
-
-  // render views per class
-  function renderView(view){
-    if(!SESSION){ openLogin(); return; }
-    const cls = SESSION.class;
-    const main = $('#mainContent');
-    main.innerHTML = ''; // clear
-
-    if(view === 'home'){
-      main.innerHTML = `
-        <div class="section-title"><h2>Dashboard — ${cls}</h2><div class="muted">Personalised for ${SESSION.name}</div></div>
-        <div class="grid-2">
-          <div>
-            <div class="home-cards">
-              <div class="box">
-                <h3>Homework (Latest)</h3>
-                <div id="hwPreview"></div>
-                <div style="margin-top:8px"><a href="#" id="viewAllHw">View all homework</a></div>
-              </div>
-
-              <div class="box">
-                <h3>Announcements</h3>
-                <div id="annPreview"></div>
-                <div style="margin-top:8px"><a href="#" id="viewAllAnn">View all announcements</a></div>
-              </div>
-            </div>
-
-            <div style="margin-top:12px" class="box">
-              <h3>Upcoming Events</h3>
-              <ul id="eventsPreview" class="muted"></ul>
-            </div>
-          </div>
-
-          <aside>
-            <div class="box">
-              <h4>Attendance</h4>
-              <div id="attendanceBox" class="muted"></div>
-            </div>
-
-            <div class="box" style="margin-top:12px">
-              <h4>Quick Links</h4>
-              <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-                <button class="btn" id="goHomework">Go to Homework</button>
-                <button class="btn" id="goTimetable">Timetable</button>
-                <button class="btn" id="goAnnouncements">Announcements</button>
-              </div>
-            </div>
-          </aside>
-        </div>
-      `;
-      // fill previews
-      renderHomeworkPreview(cls);
-      renderAnnouncementsPreview(cls);
-      renderEvents();
-      renderAttendance(cls);
-
-      // attach handlers
-      $('#viewAllHw').addEventListener('click', (e)=>{ e.preventDefault(); renderView('homework'); });
-      $('#viewAllAnn').addEventListener('click', (e)=>{ e.preventDefault(); renderView('announcements'); });
-      $('#goHomework').addEventListener('click', ()=> renderView('homework'));
-      $('#goTimetable').addEventListener('click', ()=> renderView('timetable'));
-      $('#goAnnouncements').addEventListener('click', ()=> renderView('announcements'));
+<script>
+function saveStudent() {
+    let name = document.getElementById("studentName").value.trim();
+    let studentClass = document.getElementById("studentClass").value;
+    if (!name || !studentClass) {
+        alert("Please enter your name and select class.");
+        return;
     }
+    localStorage.setItem("studentName", name);
+    localStorage.setItem("studentClass", studentClass);
+    document.getElementById("welcomeScreen").style.display = "none";
+    loadContent();
+}
 
-    else if(view === 'homework'){
-      main.innerHTML = `<div class="section-title"><h2>Homework — ${cls}</h2><div></div></div><div id="hwList" class="list"></div>`;
-      renderHomeworkList(cls);
+function loadContent() {
+    let name = localStorage.getItem("studentName");
+    let studentClass = localStorage.getItem("studentClass");
+    if (!name || !studentClass) return;
+    document.getElementById("userInfo").innerText = `Hello, ${name} (Class ${studentClass})`;
+
+    // Example content based on class
+    document.getElementById("homeworkSection").innerHTML = `📚 Homework for Class ${studentClass}`;
+    document.getElementById("timetableSection").innerHTML = `📅 Timetable for Class ${studentClass}`;
+    document.getElementById("announcementSection").innerHTML = `📢 Important announcements for Class ${studentClass}`;
+    document.getElementById("eventSection").innerHTML = `🎉 Upcoming events for Class ${studentClass}`;
+    document.getElementById("gallerySection").innerHTML = `🖼 Photos for Class ${studentClass}`;
+}
+
+function adminLogin() {
+    let pass = prompt("Enter Admin Password:");
+    if (pass === "Abutalha") {
+        window.location.href = "admin.html";
+    } else {
+        alert("Incorrect password!");
     }
+}
 
-    else if(view === 'timetable'){
-      main.innerHTML = `<div class="section-title"><h2>Timetable — ${cls}</h2><div></div></div><div id="ttTable"></div>`;
-      renderTimetable(cls);
+window.onload = function() {
+    let name = localStorage.getItem("studentName");
+    let studentClass = localStorage.getItem("studentClass");
+    if (name && studentClass) {
+        document.getElementById("welcomeScreen").style.display = "none";
+        loadContent();
     }
+}
+</script>
 
-    else if(view === 'announcements'){
-      main.innerHTML = `<div class="section-title"><h2>Announcements — ${cls}</h2></div><div id="annList"></div>`;
-      renderAnnouncementsList(cls);
-    }
-
-    else if(view === 'events'){
-      main.innerHTML = `<div class="section-title"><h2>Events</h2></div><div id="eventsList"></div>`;
-      renderEvents(true);
-    }
-
-    else if(view === 'gallery'){
-      main.innerHTML = `<div class="section-title"><h2>Gallery</h2></div><div id="gall" class="gallery-grid"></div>`;
-      renderGallery();
-    }
-
-    else if(view === 'attendance'){
-      main.innerHTML = `<div class="section-title"><h2>Attendance — ${cls}</h2></div><div id="attDetails"></div>`;
-      renderAttendanceDetails(cls);
-    }
-
-    else if(view === 'contact'){
-      main.innerHTML = `
-        <div class="section-title"><h2>Contact & Support</h2></div>
-        <div class="card">
-          <h4>Contact Information</h4>
-          <p class="muted">Phone: ${STORE.contact.phone} • Email: ${STORE.contact.email}</p>
-          <h4 style="margin-top:12px">Send a Message</h4>
-          <form id="contactStudentForm">
-            <input id="sname" placeholder="Your name" required />
-            <input id="scontact" placeholder="Phone or email" required />
-            <textarea id="smsg" rows="4" placeholder="Message"></textarea>
-            <button class="btn" type="submit">Send</button>
-          </form>
-        </div>
-      `;
-      $('#contactStudentForm').addEventListener('submit',(e)=>{ e.preventDefault(); alert('Message saved locally (demo).'); e.target.reset(); });
-    }
-  }
-
-  // render helpers
-  function renderHomeworkPreview(cls){
-    const container = $('#hwPreview');
-    const hw = (STORE.homework[cls] || []).slice(0,3);
-    if(!hw.length) container.innerHTML = '<div class="muted">No homework assigned.</div>';
-    else container.innerHTML = hw.map(h => `<div class="item"><strong>${h.subject} — ${h.title}</strong><div class="muted">Due: ${h.due}</div><div style="margin-top:6px">${h.notes}</div></div>`).join('');
-  }
-  function renderHomeworkList(cls){
-    const node = $('#hwList');
-    const hw = STORE.homework[cls] || [];
-    if(!hw.length){ node.innerHTML = '<div class="muted card">No homework for this class.</div>'; return; }
-    node.innerHTML = hw.map(h=>`<div class="item"><strong>${h.subject} — ${h.title}</strong><div class="muted">Due: ${h.due}</div><div style="margin-top:6px">${h.notes}</div></div>`).join('');
-  }
-
-  function renderAnnouncementsPreview(cls){
-    const c = $('#annPreview');
-    const arr = STORE.announcements[cls] || [];
-    if(!arr.length) c.innerHTML = '<div class="muted">No announcements.</div>';
-    else c.innerHTML = arr.slice(0,3).map(a => `<div style="margin-bottom:8px"><strong>${a.title}</strong><div class="muted">${a.date}</div><div style="margin-top:6px">${a.body}</div></div>`).join('');
-  }
-  function renderAnnouncementsList(cls){
-    const node = $('#annList');
-    const arr = STORE.announcements[cls] || [];
-    if(!arr.length){ node.innerHTML = '<div class="muted card">No announcements for this class.</div>'; return; }
-    node.innerHTML = arr.map(a=>`<div class="card"><h4>${a.title}</h4><div class="muted">${a.date}</div><p>${a.body}</p></div>`).join('');
-  }
-
-  function renderEvents(full=false){
-    const el = full ? $('#eventsList') : $('#eventsPreview');
-    if(!el) return;
-    el.innerHTML = STORE.events.map(ev => `<li>${ev.title} — ${ev.date}</li>`).join('');
-  }
-
-  function renderTimetable(cls){
-    const el = $('#ttTable');
-    const t = STORE.timetable[cls] || [];
-    if(!t.length) { el.innerHTML = '<div class="muted card">No timetable available.</div>'; return; }
-    el.innerHTML = `<div class="card">${t.map(r=>`<div><strong>${r.day}</strong> — ${r.time} — ${r.subject}</div>`).join('')}</div>`;
-  }
-
-  function renderGallery(){
-    const el = $('#gall');
-    el.innerHTML = (STORE.gallery || []).map(src => `<img src="${src}" alt="gallery" />`).join('');
-    $$('#gall img').forEach(img => img.addEventListener('click', ()=> openModal(`<img src="${img.src}" style="width:100%;height:auto;border-radius:8px" />`)));
-  }
-
-  function renderAttendance(cls){
-    const el = $('#attendanceBox');
-    const a = STORE.attendance[cls];
-    if(!a) el.innerHTML = '<div class="muted">No attendance data.</div>';
-    else el.innerHTML = `<div style="font-weight:800">${a.present}/${a.total}</div><div class="muted">${Math.round((a.present/a.total)*100 || 0)}% present</div>`;
-  }
-  function renderAttendanceDetails(cls){
-    const el = $('#attDetails');
-    const a = STORE.attendance[cls];
-    if(!a) el.innerHTML = '<div class="muted card">No attendance records.</div>';
-    else el.innerHTML = `<div class="card"><h4>Attendance</h4><div>Present: ${a.present}</div><div>Total: ${a.total}</div><div class="muted">Percentage: ${Math.round((a.present/a.total)*100)}%</div></div>`;
-  }
-
-  // export/import
-  $('#exportBtn').addEventListener('click', (e)=>{ e.preventDefault(); const blob = new Blob([JSON.stringify(STORE,null,2)],{type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='mkps-class-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); });
-  $('#importBtn').addEventListener('click', (e)=>{ e.preventDefault(); const input=document.createElement('input'); input.type='file'; input.accept='.json'; input.onchange=()=>{ const f=input.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const parsed=JSON.parse(r.result); STORE = parsed; saveStore(STORE); alert('Data imported (local).'); if(SESSION) renderView('home'); }catch(err){ alert('Invalid JSON'); } }; r.readAsText(f); }; input.click(); });
-
-  // modal helpers
-  function openModal(html){ $('#modal').classList.add('open'); $('#modalInner').innerHTML = html; }
-  function closeModal(){ $('#modal').classList.remove('open'); }
-  $('#modal').addEventListener('click', (e)=>{ if(e.target.id === 'modal') closeModal(); });
-
-  // to-top
-  const toTop = $('#toTop');
-  window.addEventListener('scroll', ()=> { if(window.scrollY > 300) toTop.classList.add('show'); else toTop.classList.remove('show'); });
-  toTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
-
-  // open admin (password prompt) -> opens admin UI in new tab (uses same localStorage key)
-  $('#adminFab').addEventListener('click', ()=>{
-    const pwd = prompt('Admin password:');
-    if(!pwd) return;
-    if(String(pwd) === 'Abutalha'){
-      // create a standalone admin page as a Blob and open in new tab
-      const adminHtml = createAdminHtml();
-      const blob = new Blob([adminHtml], {type:'text/html'});
-      const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
-    } else alert('Access Denied');
-  });
-
-  // Admin HTML generator (string)
-  function createAdminHtml(){
-    // admin page will share same localStorage key STORAGE_KEY
-    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MKPS Admin</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"><style>body{font-family:Poppins,system-ui;padding:18px;background:#02121a;color:#cfeee3} .card{background:linear-gradient(180deg,#012a25,#021a1a);padding:12px;border-radius:8px;margin-bottom:10px} input,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);margin-bottom:8px} button{padding:8px 10px;border-radius:8px;border:none;background:linear-gradient(90deg,#0f766e,#d97706);color:#021} table{width:100%;border-collapse:collapse;color:#cfeee3} th,td{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.04)}</style></head><body><h2>MKPS Admin (Local Demo)</h2><div class="card"><strong>Data controls</strong><div style="margin-top:8px"><button id="exportAll">Export All (JSON)</button> <button id="resetBtn" style="background:#c94b4b">Reset Local</button></div></div><div class="card"><h3>Notices (All classes)</h3><div id="noticesArea"></div><button id="addNotice">Add Notice</button></div><div class="card"><h3>Homework (per class)</h3><div id="homeworkArea"></div><button id="addHw">Add Homework</button></div><div class="card"><h3>Events</h3><div id="eventsArea"></div><button id="addEvent">Add Event</button></div><script>const STORAGE_KEY='${STORAGE_KEY}'; function load(){try{const r=localStorage.getItem(STORAGE_KEY);return r?JSON.parse(r):null}catch(e){return null}} function save(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));} let S=load(); if(!S){ alert('No data found — admin will initialise sample data.'); S=${JSON.stringify(SAMPLE)}; save(S); S=load(); } function renderAll(){ renderNotices(); renderHw(); renderEvents(); } function renderNotices(){ const el=document.getElementById('noticesArea'); const classes=Object.keys(S.announcements||{}); let html=''; classes.forEach(c=>{ html+='<h4>'+c+'</h4>'; const arr=S.announcements[c]||[]; if(!arr.length) html+='<div class=\"muted\">No notices</div>'; else html+='<ul>'+arr.map(n=>'<li><strong>'+n.title+'</strong> ('+n.date+') — <button data-class=\"'+c+'\" data-id=\"'+n.id+'\" class=\"delN\">Delete</button></li>').join('')+'</ul>'; }); el.innerHTML=html; document.querySelectorAll('.delN').forEach(b=>b.addEventListener('click',e=>{ const cid=b.dataset.class; const id=b.dataset.id; if(confirm('Delete?')){ S.announcements[cid]=S.announcements[cid].filter(x=>x.id!==id); save(S); renderAll(); } })); } function renderHw(){ const el=document.getElementById('homeworkArea'); const classes=Object.keys(S.homework||{}); let html=''; classes.forEach(c=>{ html+='<h4>'+c+'</h4>'; const arr=S.homework[c]||[]; if(!arr.length) html+='<div class=\"muted\">No homework</div>'; else html+='<ul>'+arr.map(h=>'<li><strong>'+h.subject+' - '+h.title+'</strong> ('+h.due+') <button data-class=\"'+c+'\" data-id=\"'+h.id+'\" class=\"delH\">Del</button></li>').join('')+'</ul>'; }); el.innerHTML=html; document.querySelectorAll('.delH').forEach(b=>b.addEventListener('click',e=>{ const cid=b.dataset.class; const id=b.dataset.id; if(confirm('Delete homework?')){ S.homework[cid]=S.homework[cid].filter(x=>x.id!==id); save(S); renderAll(); } })); } function renderEvents(){ const el=document.getElementById('eventsArea'); el.innerHTML = '<ul>'+ (S.events||[]).map(ev=>'<li>'+ev.title+' ('+ev.date+') <button data-id=\"'+ev.id+'\" class=\"delE\">Del</button></li>').join('') +'</ul>'; document.querySelectorAll('.delE').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.id; if(confirm('Delete event?')){ S.events=S.events.filter(x=>x.id!==id); save(S); renderAll(); } })); } document.getElementById('addNotice').addEventListener('click',()=>{ const cls=prompt('Class (e.g. Class 6):'); if(!cls) return; const title=prompt('Title:'); if(!title) return; const date=prompt('Date (YYYY-MM-DD):',new Date().toISOString().slice(0,10)); const body=prompt('Details:',''); S.announcements[S.announcements?Object.keys(S.announcements)[0]:'Class 6'] = S.announcements||{}; if(!S.announcements[cls]) S.announcements[cls]=[]; S.announcements[cls].unshift({id:'n'+Math.random().toString(36).slice(2,8),title,date,body}); save(S); renderAll(); alert('Notice added (local)'); }); document.getElementById('addHw').addEventListener('click',()=>{ const cls=prompt('Class (e.g. Class 6):'); if(!cls) return; const subject=prompt('Subject:','Mathematics'); const title=prompt('Title:','Exercise'); const due=prompt('Due (YYYY-MM-DD):','2025-11-30'); const notes=prompt('Notes:',''); if(!S.homework) S.homework={}; if(!S.homework[cls]) S.homework[cls]=[]; S.homework[cls].unshift({id:'h'+Math.random().toString(36).slice(2,8),subject,title,due,notes}); save(S); renderAll(); alert('Homework added (local)'); }); document.getElementById('addEvent').addEventListener('click',()=>{ const title=prompt('Event title:'); if(!title) return; const date=prompt('Date:','2025-12-01'); if(!S.events) S.events=[]; S.events.unshift({id:'e'+Math.random().toString(36).slice(2,8),title,date}); save(S); renderAll(); alert('Event added'); }); document.getElementById('exportAll').addEventListener('click',()=>{ const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='mkps-admin-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }); document.getElementById('resetBtn').addEventListener('click',()=>{ if(confirm('Reset local data?')){ localStorage.removeItem(STORAGE_KEY); alert('Local data removed. Close and re-open home to reinitialize.'); } }); renderAll();</script></body></html>`;
-  }
-
-  // initial view if session exists
-  if(SESSION) renderView('home');
-
-  // render counters (on home) after content insertion
-  function animateCounters(){
-    $$('.counter').forEach(c=>{
-      const target = +c.dataset.target || 0;
-      let start = 0;
-      const step = Math.max(1, Math.floor(target/80));
-      const t = setInterval(()=>{ start += step; if(start >= target){ c.textContent = target; clearInterval(t);} else c.textContent = start; }, 12);
-    });
-  }
-
-  // ensure UI updates after import
-  window.addEventListener('storage', (e)=>{ if(e.key === STORAGE_KEY){ STORE = loadStore(); if(SESSION) renderView('home'); } });
-
-  // small safety: save initial if none
-  if(!localStorage.getItem(STORAGE_KEY)){ saveStore(STORE); }
-
-  // animate counters when DOM changes
-  const mo = new MutationObserver(()=>{ animateCounters(); });
-  mo.observe(document.body,{childList:true,subtree:true});
-
-  </script>
 </body>
 </html>
