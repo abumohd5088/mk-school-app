@@ -4,357 +4,703 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Milli Karwaan Public School</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwidth.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #1e40af;
-            --secondary: #059669;
-            --accent: #d97706;
-            --light: #f8fafc;
-            --dark: #0f172a;
+            --primary: #1a3a6c;
+            --secondary: #2c5aa0;
+            --accent: #f8c400;
+            --light: #f8f9fa;
+            --dark: #212529;
         }
-        .header-bg {
-            background: linear-gradient(135deg, #1e40af 0%, #059669 100%);
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--dark);
         }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .timeline-item {
-            transition: all 0.3s ease;
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            font-size: 1.5rem;
         }
-        .timeline-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s;
         }
-        .subject-card {
-            background: linear-gradient(120deg, #e0f2fe 0%, #f0fdfa 100%);
+        
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
         }
-        .subject-card:hover {
-            background: linear-gradient(120deg, #bae6fd 0%, #d0f5e6 100%);
+        
+        .hero {
+            background: linear-gradient(rgba(26, 58, 108, 0.8), rgba(26, 58, 108, 0.9)), url('https://placehold.co/1920x600/1a3a6c/ffffff?text=Milli+Karwaan+Public+School') no-repeat center center/cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
         }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e6b500;
+            border-color: #e6b500;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            margin-bottom: 30px;
+            background: white;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            padding: 15px 20px;
+            border-bottom: none;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
         .teacher-card {
-            background: linear-gradient(120deg, #fef3c7 0%, #f0fdfa 100%);
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
         }
+        
         .teacher-card:hover {
-            background: linear-gradient(120deg, #fde68a 0%, #d0f5e6 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
-        .announcement {
-            animation: fadeInUp 0.6s ease;
+        
+        .teacher-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            margin: 0 auto 15px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
         }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        
+        .subject-tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        
+        .login-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(30px);
+            transition: all 0.4s;
+        }
+        
+        .login-modal.show .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        
+        .close-btn:hover {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .hero p {
+                font-size: 1rem;
             }
-        }
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+            
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <!-- Authentication Modal -->
-    <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 shadow-2xl">
-            <div class="text-center mb-6">
-                <div class="inline-block p-3 bg-blue-600 text-white rounded-full mb-4">
-                    <i class="fas fa-user-graduate text-3xl"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-800">Welcome to Milli Karwaan Public School</h2>
-                <p class="text-gray-600 mt-2">Please enter your details to continue</p>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Milli Karwaan Public School
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#teachers">Teachers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-dark" id="loginBtn">Student Login</a>
+                    </li>
+                </ul>
             </div>
-            <form id="authForm" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                    <input type="text" id="studentName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Welcome to Milli Karwaan Public School</h1>
+            <p>Excellence in Education Since 2005. Providing quality education with modern facilities and dedicated faculty for holistic development of students.</p>
+            <div class="mt-4">
+                <a href="#features" class="btn btn-primary me-3">Explore Features</a>
+                <a href="#contact" class="btn btn-outline-light">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5" id="features">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Our Features</h2>
+                <p class="text-muted">Comprehensive educational platform with modern facilities</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-book feature-icon"></i>
+                            <h4>Digital Learning</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Interactive digital classrooms with smart boards, multimedia content, and online resources for enhanced learning experience.</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Class</label>
-                    <select id="studentClass" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <option value="">Select your class</option>
-                        <option value="Nursery">Nursery</option>
-                        <option value="LKG">LKG</option>
-                        <option value="UKG">UKG</option>
-                        <option value="Class 1">Class 1</option>
-                        <option value="Class 2">Class 2</option>
-                        <option value="Class 3">Class 3</option>
-                        <option value="Class 4">Class 4</option>
-                        <option value="Class 5">Class 5</option>
-                        <option value="Class 6">Class 6</option>
-                        <option value="Class 7">Class 7</option>
-                        <option value="Class 8">Class 8</option>
-                        <option value="Class 9">Class 9</option>
-                        <option value="Class 10">Class 10</option>
-                    </select>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-calendar feature-icon"></i>
+                            <h4>Homework Portal</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Online homework submission system with deadlines, reminders, and teacher feedback for continuous academic progress.</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                    <select id="userRole" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="admin">Admin</option>
-                    </select>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line feature-icon"></i>
+                            <h4>Progress Tracking</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Detailed performance analytics, attendance records, and personalized learning paths to monitor student development.</p>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
-                    Continue to Dashboard
-                </button>
-            </form>
-            <div class="mt-4 text-center text-sm text-gray-500">
-                <p>Your information will be securely stored</p>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-users feature-icon"></i>
+                            <h4>Parent Communication</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Regular updates, parent-teacher meetings, and communication channels to ensure collaborative educational journey.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-laptop feature-icon"></i>
+                            <h4>Computer Lab</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>State-of-the-art computer lab with high-speed internet, modern software, and programming resources for digital literacy.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-flask feature-icon"></i>
+                            <h4>Science Lab</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Well-equipped science laboratory for practical experiments in physics, chemistry, and biology with safety measures.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section class="py-5 bg-light" id="teachers">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Our Faculty</h2>
+                <p class="text-muted">Meet our dedicated and experienced teaching staff</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="teacher-card">
+                        <div class="teacher-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>Urdu Hafiz Gi</h5>
+                        <p class="text-muted mb-1">Urdu Teacher</p>
+                        <span class="subject-tag">Urdu</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="teacher-card">
+                        <div class="teacher-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>Frahan Sir</h5>
+                        <p class="text-muted mb-1">English Teacher</p>
+                        <span class="subject-tag">English</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="teacher-card">
+                        <div class="teacher-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>Sayma Mam</h5>
+                        <p class="text-muted mb-1">Mathematics Teacher</p>
+                        <span class="subject-tag">Mathematics</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="teacher-card">
+                        <div class="teacher-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>Misba Mam</h5>
+                        <p class="text-muted mb-1">Computer Teacher</p>
+                        <span class="subject-tag">Computer</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="teacher-card">
+                        <div class="teacher-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>Zeba Mam</h5>
+                        <p class="text-muted mb-1">Science Teacher</p>
+                        <span class="subject-tag">Science</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="teacher-card">
+                        <div class="teacher-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>Nayla Mam</h5>
+                        <p class="text-muted mb-1">Hindi Teacher</p>
+                        <span class="subject-tag">Hindi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">Contact Information</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div>
+                                <h5>Address</h5>
+                                <p>Boluha Police Chowki, Balrampur, Uttar Pradesh</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>9758919158</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p>millikarwaanschool@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Working Hours</h5>
+                                <p>Monday - Saturday: 8:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">Get In Touch</h2>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control" placeholder="Your Phone">
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-control" required>
+                                <option value="">Select Purpose</option>
+                                <option value="admission">Admission Inquiry</option>
+                                <option value="fees">Fee Structure</option>
+                                <option value="transfer">Transfer Certificate</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="mb-0">Student Login</h5>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label">Student Name</label>
+                        <input type="text" class="form-control" id="studentName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Class</label>
+                        <select class="form-control" id="studentClass" required>
+                            <option value="">Select Class</option>
+                            <option value="1">Class 1</option>
+                            <option value="2">Class 2</option>
+                            <option value="3">Class 3</option>
+                            <option value="4">Class 4</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Roll Number</label>
+                        <input type="text" class="form-control" id="rollNumber" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login to Dashboard</button>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- Main Dashboard -->
-    <div id="dashboard" class="hidden">
-        <!-- Header -->
-        <header class="header-bg text-white shadow-lg">
-            <div class="container mx-auto px-4 py-6">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="text-center md:text-left mb-4 md:mb-0">
-                        <h1 class="text-3xl font-bold mb-2">Milli Karwaan Public School</h1>
-                        <p class="text-blue-100 flex items-center justify-center md:justify-start">
-                            <i class="fas fa-map-marker-alt mr-2"></i>
-                            Boluha Police Chowki, Balrampur
-                        </p>
-                        <p class="text-blue-100 flex items-center justify-center md:justify-start mt-1">
-                            <i class="fas fa-phone-alt mr-2"></i>
-                            +91 9758919158
-                        </p>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Milli Karwaan Public School</h5>
+                    <p class="mt-3">Providing quality education with modern facilities and dedicated faculty for holistic development of students since 2005.</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links mt-3">
+                        <p><a href="#home">Home</a></p>
+                        <p><a href="#features">Features</a></p>
+                        <p><a href="#teachers">Teachers</a></p>
+                        <p><a href="#contact">Contact</a></p>
                     </div>
-                    <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
-                        <div id="userInfo" class="text-white">
-                            <p class="font-semibold" id="displayName">Student Name</p>
-                            <p class="text-sm opacity-90" id="displayClass">Class</p>
-                            <p class="text-xs opacity-75" id="displayRole">Role</p>
-                        </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Info</h5>
+                    <div class="mt-3">
+                        <p><i class="fas fa-map-marker-alt me-2"></i> Boluha Police Chowki, Balrampur</p>
+                        <p><i class="fas fa-phone me-2"></i> 9758919158</p>
+                        <p><i class="fas fa-envelope me-2"></i> millikarwaanschool@gmail.com</p>
                     </div>
                 </div>
             </div>
-        </header>
-
-        <!-- Navigation -->
-        <nav class="bg-white shadow-md">
-            <div class="container mx-auto px-4">
-                <div class="flex space-x-8 overflow-x-auto">
-                    <button class="nav-tab active text-blue-600 border-b-2 border-blue-600 py-4 px-2 font-medium whitespace-nowrap flex items-center">
-                        <i class="fas fa-home mr-2"></i> Dashboard
-                    </button>
-                    <button class="nav-tab text-gray-600 hover:text-blue-600 py-4 px-2 font-medium whitespace-nowrap flex items-center">
-                        <i class="fas fa-book mr-2"></i> Homework
-                    </button>
-                    <button class="nav-tab text-gray-600 hover:text-blue-600 py-4 px-2 font-medium whitespace-nowrap flex items-center">
-                        <i class="fas fa-calendar-alt mr-2"></i> Timetable
-                    </button>
-                    <button class="nav-tab text-gray-600 hover:text-blue-600 py-4 px-2 font-medium whitespace-nowrap flex items-center">
-                        <i class="fas fa-chalkboard-teacher mr-2"></i> Teachers
-                    </button>
-                    <button class="nav-tab text-gray-600 hover:text-blue-600 py-4 px-2 font-medium whitespace-nowrap flex items-center">
-                        <i class="fas fa-award mr-2"></i> Results
-                    </button>
-                    <button class="nav-tab text-gray-600 hover:text-blue-600 py-4 px-2 font-medium whitespace-nowrap flex items-center">
-                        <i class="fas fa-bullhorn mr-2"></i> Announcements
-                    </button>
-                    <button class="nav-tab text-gray-600 hover:text-blue-600 py-4 px-2 font-medium whitespace-nowrap flex items-center">
-                        <i class="fas fa-calendar-check mr-2"></i> Attendance
-                    </button>
-                    <button class="nav-tab text-gray-600 hover:text-blue-600 py-4 px-2 font-medium whitespace-nowrap flex items-center">
-                        <i class="fas fa-certificate mr-2"></i> Certificates
-                    </button>
-                </div>
+            <hr class="mt-4 mb-3" style="background-color: rgba(255,255,255,0.2);">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Milli Karwaan Public School. All Rights Reserved.</p>
             </div>
-        </nav>
+        </div>
+    </footer>
 
-        <!-- Main Content -->
-        <main class="container mx-auto px-4 py-8">
-            <!-- Dashboard View -->
-            <div id="dashboardView" class="space-y-8">
-                <!-- Welcome Section -->
-                <div class="bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-2xl p-8 shadow-xl">
-                    <div class="flex flex-col md:flex-row items-center">
-                        <div class="md:w-2/3 mb-6 md:mb-0">
-                            <h2 class="text-3xl font-bold mb-4">Welcome to Milli Karwaan Public School</h2>
-                            <p class="text-blue-100 text-lg mb-6">Your educational journey starts here. Stay updated with homework, timetable, results, and school announcements.</p>
-                            <div class="flex flex-wrap gap-4">
-                                <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2">
-                                    <i class="fas fa-calendar-check mr-2"></i>
-                                    <span id="todayDate">Loading...</span>
-                                </div>
-                                <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2">
-                                    <i class="fas fa-school mr-2"></i>
-                                    <span>Academic Year 2023-2024</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:w-1/3 text-center">
-                            <div class="bg-white bg-opacity-10 rounded-full p-6 inline-block floating">
-                                <i class="fas fa-graduation-cap text-6xl"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white rounded-xl p-6 shadow-lg card-hover border border-gray-100">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-blue-100 rounded-full mr-4">
-                                <i class="fas fa-book text-blue-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Homework</h3>
-                                <p class="text-gray-600 text-sm">Check your assignments</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 text-2xl font-bold text-blue-600" id="homeworkCount">0</div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg card-hover border border-gray-100">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-green-100 rounded-full mr-4">
-                                <i class="fas fa-calendar-alt text-green-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Timetable</h3>
-                                <p class="text-gray-600 text-sm">Daily schedule</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 text-2xl font-bold text-green-600">6</div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg card-hover border border-gray-100">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-purple-100 rounded-full mr-4">
-                                <i class="fas fa-award text-purple-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Results</h3>
-                                <p class="text-gray-600 text-sm">Academic performance</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 text-2xl font-bold text-purple-600">Latest</div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg card-hover border border-gray-100">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-orange-100 rounded-full mr-4">
-                                <i class="fas fa-bullhorn text-orange-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">Announcements</h3>
-                                <p class="text-gray-600 text-sm">School updates</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 text-2xl font-bold text-orange-600" id="announcementCount">0</div>
-                    </div>
-                </div>
-
-                <!-- Subjects & Teachers -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Subjects -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-                        <div class="bg-blue-600 text-white p-4">
-                            <h3 class="font-bold text-lg flex items-center">
-                                <i class="fas fa-book-open mr-2"></i>
-                                Subjects
-                            </h3>
-                        </div>
-                        <div class="p-6">
-                            <div class="space-y-4">
-                                <div class="subject-card rounded-lg p-4 border border-blue-200">
-                                    <div class="flex items-center">
-                                        <div class="p-2 bg-blue-100 rounded-lg mr-3">
-                                            <i class="fas fa-language text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-gray-800">Urdu</h4>
-                                            <p class="text-sm text-gray-600">Hafiz Gi</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="subject-card rounded-lg p-4 border border-blue-200">
-                                    <div class="flex items-center">
-                                        <div class="p-2 bg-blue-100 rounded-lg mr-3">
-                                            <i class="fas fa-globe-americas text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-gray-800">English</h4>
-                                            <p class="text-sm text-gray-600">Frahan Sir</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="subject-card rounded-lg p-4 border border-blue-200">
-                                    <div class="flex items-center">
-                                        <div class="p-2 bg-blue-100 rounded-lg mr-3">
-                                            <i class="fas fa-calculator text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-gray-800">Mathematics</h4>
-                                            <p class="text-sm text-gray-600">Sayma Mam</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="subject-card rounded-lg p-4 border border-blue-200">
-                                    <div class="flex items-center">
-                                        <div class="p-2 bg-blue-100 rounded-lg mr-3">
-                                            <i class="fas fa-laptop text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-gray-800">Computer</h4>
-                                            <p class="text-sm text-gray-600">Misba Mam</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="subject-card rounded-lg p-4 border border-blue-200">
-                                    <div class="flex items-center">
-                                        <div class="p-2 bg-blue-100 rounded-lg mr-3">
-                                            <i class="fas fa-flask text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-gray-800">Science</h4>
-                                            <p class="text-sm text-gray-600">Zeba Mam</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="subject-card rounded-lg p-4 border border-blue-200">
-                                    <div class="flex items-center">
-                                        <div class="p-2 bg-blue-100 rounded-lg mr-3">
-                                            <i class="fas fa-feather-alt text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-gray-800">Hindi</h4>
-                                            <p class="text-sm text-gray-600">Nayla Mam</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Teachers -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-                        <div class="bg-green-600 text-white p-4">
-                            <h3 class="font-bold text-lg flex items-center">
-                                <i class="fas fa-chalkboard-teacher mr-2"></i>
-                                Our Teachers
-                            </h3>
-                        </div>
-                        <div class="p-6">
-                            <div class="space-y-4">
-                                <div class="teacher-card rounded-lg p-4 border border-green-200">
-                                    <div class="
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Login Modal Functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+        const loginForm = document.getElementById('loginForm');
+        
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.add('show');
+        });
+        
+        closeModal.addEventListener('click', () => {
+            loginModal.classList.remove('show');
+        });
+        
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('show');
+            }
+        });
+        
+        // Form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('studentName').value;
+            const className = document.getElementById('studentClass').value;
+            const rollNumber = document.getElementById('rollNumber').value;
+            
+            if (name && className && rollNumber) {
+                // In a real application, this would validate credentials
+                // For demo purposes, we'll just hide the modal
+                loginModal.classList.remove('show');
+                alert(`Welcome ${name}! You are now logged in to Class ${className}.`);
+            }
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Add animation classes
+        document.querySelectorAll('.card, .teacher-card, .contact-item').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+```
