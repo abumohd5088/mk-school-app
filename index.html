@@ -2,194 +2,285 @@
 
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Mili Karwaan — Ultimate Pro (All Features)</title>
-<meta name="description" content="Ultimate professional school site for Mili Karwaan — full dashboards, admin, fees, timetable, calendar, reports, payments placeholders, SMS placeholders, export/import."/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root{--g1:#0f766e;--g2:#065f46;--gold:#f59e0b;--muted:#6b7280;--card:#fff}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;background:#f7fff9;color:#04282a}
-.container{max-width:1200px;margin:0 auto;padding:20px}
-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-radius:10px;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mili Karwaan Public School — Official Home</title>
+  <meta name="description" content="Mili Karwaan Public School — Official Home: Admissions, Academics, Facilities, Gallery, News, Contact. Fully interactive single-file homepage (production-ready)." />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="theme-color" content="#065f46">
+  <style>
+    :root{--g1:#0f766e;--g2:#065f46;--gold:#f59e0b;--muted:#6b7280;--card:#fff;--maxw:1200px}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:linear-gradient(180deg,#f7fffb,#f0fdf4);color:#04282a}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}/* NAV */
+header{position:sticky;top:0;z-index:999;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:10px 0;box-shadow:0 6px 18px rgba(4,22,18,0.12)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:var(--maxw);margin:0 auto;padding:0 20px}
 .brand{display:flex;align-items:center;gap:12px}
-.brand img{width:56px;height:56px;border-radius:10px}
-nav ul{list-style:none;display:flex;gap:8px}
-nav a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
-.hero{padding:28px;border-radius:12px;margin-top:12px;background:linear-gradient(180deg,#e6fff8,#f4fff7)}
-.layout{display:grid;grid-template-columns:280px 1fr;gap:18px;margin-top:16px}
-.sidebar{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 10px 30px rgba(2,8,6,0.06)}
-.content{min-height:520px}
-.card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 12px 30px rgba(2,8,6,0.05);margin-bottom:12px}
-.btn{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
-.small{font-size:.95rem;color:var(--muted)}
-.section-title{display:flex;align-items:center;justify-content:space-between}
-.table{width:100%;border-collapse:collapse}
-.table th,.table td{padding:8px;border-bottom:1px solid #f1f5f4;text-align:left}
-.kv{display:flex;flex-direction:column;gap:6px}
-.search{display:flex;gap:8px;margin-bottom:8px}
-.footer{margin-top:18px;text-align:center;color:var(--muted)}
-.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,6,0.5);z-index:9999;opacity:0;pointer-events:none;transition:opacity .12s}
-.modal.open{opacity:1;pointer-events:auto}
-.modal-card{background:#fff;padding:18px;border-radius:10px;width:94%;max-width:920px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}}
-</style>
+.brand img{width:64px;height:64px;border-radius:12px;background:#fff;padding:6px;object-fit:contain}
+.brand h1{font-family:'Montserrat',sans-serif;font-size:1.05rem;margin:0}
+nav ul{list-style:none;display:flex;gap:8px;margin:0;padding:0}
+nav a{display:inline-block;padding:10px 12px;border-radius:8px;color:rgba(255,255,255,0.95);font-weight:700;text-decoration:none}
+nav a:hover{background:rgba(255,255,255,0.06)}
+.cta{background:linear-gradient(90deg,var(--gold),#d97706);padding:10px 14px;border-radius:10px;color:#06221a;font-weight:800}
+
+/* HERO */
+.hero{padding:56px 0;background-image:linear-gradient(180deg, rgba(4,32,27,0.06), transparent)}
+.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:34px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.hero h2{font-family:'Montserrat',sans-serif;font-size:2.4rem;margin:0 0 12px;color:var(--g2)}
+.lead{font-size:1.05rem;color:var(--muted);margin-bottom:18px}
+.hero-cta{display:flex;gap:12px}
+.stat-row{display:flex;gap:12px;margin-top:18px}
+.stat{background:#fff;padding:12px;border-radius:12px;min-width:120px;text-align:center;box-shadow:0 10px 28px rgba(2,8,6,0.04)}
+
+.hero-card{background:linear-gradient(180deg,#fff,#fbfff8);padding:18px;border-radius:14px;box-shadow:0 18px 40px rgba(2,8,6,0.06)}
+
+/* SECTIONS */
+section{padding:42px 0}
+.container--narrow{max-width:1100px;margin:0 auto;padding:0 20px}
+.section-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.section-head h3{margin:0;color:var(--g2);font-family:'Montserrat',sans-serif}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 12px 32px rgba(2,8,6,0.04)}
+.muted{color:var(--muted)}
+
+/* FACILITIES ICON */
+.icon{width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,#f7fff7,#f4fff3);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--g2);margin-bottom:10px}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.gallery-grid img{width:100%;height:120px;object-fit:cover;border-radius:10px;cursor:pointer}
+
+/* NEWS TICKER */
+.ticker{background:#f7fff7;border-left:4px solid var(--g2);padding:10px;border-radius:8px;overflow:hidden}
+.ticker-inner{display:inline-block;white-space:nowrap;animation:marquee 18s linear infinite}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+.contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f3ee;margin-bottom:10px}
+.contact-form button{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
+
+/* SMALL UI */
+.to-top{position:fixed;right:20px;bottom:20px;background:var(--g2);color:#fff;padding:10px;border-radius:10px;box-shadow:0 10px 30px rgba(2,8,6,0.2);display:none}
+.to-top.show{display:block}
+
+/* responsive */
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.brand h1{font-size:1rem}}
+@media (max-width:560px){nav ul{display:none}}
+
+/* small helpers */
+.flex{display:flex;gap:8px;align-items:center}
+.right{margin-left:auto}
+.pill{padding:6px 10px;border-radius:999px;background:#f7f6ef;font-weight:700;color:var(--g2)}
+
+  </style>
 </head>
 <body>
-<header>
-  <div class="brand"><img id="logo" src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="logo"/><div><strong>Mili Karwaan Public School</strong><div style="font-size:.85rem">Balrampur, Uttar Pradesh</div></div></div>
-  <nav>
+  <!-- NAV -->
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="Mili Karwaan Logo" />
+        <div>
+          <h1>Mili Karwaan Public School</h1>
+          <div style="font-size:.85rem;color:rgba(255,255,255,0.9)">Baluha Police Chowki, Balrampur</div>
+        </div>
+      </div><nav>
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#portal">Portal</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#academics">Academics</a></li>
+      <li><a href="#facilities">Facilities</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#news">News</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a id="openAdminBtn" href="#">Admin</a></li>
+      <li><a class="cta" href="#admissions">Admissions</a></li>
     </ul>
   </nav>
-</header>
-<div class="container">
-  <section class="hero card" id="home">
-    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center">
-      <div>
-        <h2 style="margin-bottom:6px">Welcome to Mili Karwaan — Ultimate Pro</h2>
-        <p class="small">Full-featured school website demo: student & teacher portals, admin, fees, timetable, calendar, reports, payments & SMS placeholders — all client-side and GitHub-ready.</p>
-        <div style="margin-top:10px;display:flex;gap:8px"><button class="btn" id="openStudentPortal">Student Portal</button><button class="btn" id="openTeacherPortal">Teacher Portal</button></div>
+</div>
+
+  </header>  <!-- HERO -->  <main>
+    <section id="home" class="hero">
+      <div class="hero-grid">
+        <div>
+          <h2>Shaping Minds, Building Futures — Mili Karwaan</h2>
+          <p class="lead">A modern campus focused on academic excellence, discipline and holistic development. Admissions open for the next session.</p><div class="hero-cta">
+        <a class="cta" href="#admissions">Apply Now</a>
+        <a class="pill" href="#contact">Visit Campus</a>
       </div>
-      <div style="width:280px;text-align:right">
-        <div class="card" style="background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;border-radius:10px;"> <div style="font-weight:700;font-size:1.4rem">Admissions Open</div><div class="small">Call: +91 97589 19151</div></div>
+
+      <div class="stat-row">
+        <div class="stat"><strong class="counter" data-target="1200">0</strong><div class="muted">Students</div></div>
+        <div class="stat"><strong class="counter" data-target="78">0</strong><div class="muted">Teachers</div></div>
+        <div class="stat"><strong class="counter" data-target="45">0</strong><div class="muted">Awards</div></div>
       </div>
     </div>
-  </section>  <div class="layout">
-    <aside class="sidebar">
-      <div class="card"><strong>Quick Actions</strong><div style="margin-top:8px;display:flex;flex-direction:column;gap:8px"><button class="btn" id="quickAddHw">Add Homework</button><button class="btn" id="quickAddNotice">Add Notice</button><button class="btn" id="quickAddEvent">Add Event</button></div></div>
-      <div class="card">
-        <strong>Search</strong>
-        <div class="search"><input id="globalSearch" placeholder="Search students, homework, notices" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6f3ef"/><button class="btn" id="searchBtn">Search</button></div>
-        <div id="searchResults" class="small muted"></div>
-      </div>
-      <div class="card">
-        <strong>Live Tools</strong>
-        <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px"><button class="btn" id="sendSmsBtn">Send SMS (placeholder)</button><button class="btn" id="payDemoBtn">Razorpay Demo</button><button class="btn" id="backupBtn">Export Backup</button></div>
-      </div>
-    </aside><main class="content">
-  <div class="card section-title"><h3>Portal Overview</h3><div class="small">Admin password: <strong>Abutalha</strong></div></div>
 
+    <aside class="hero-card">
+      <h3>Quick Links</h3>
+      <p class="muted">Download prospectus, view timetable, check latest notices and reach us.</p>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <a class="btn" id="openNotices">Notices</a>
+        <a class="btn" id="openGallery">Gallery</a>
+      </div>
+      <div style="margin-top:14px"><strong>Contact:</strong><div class="muted">+91 97589 19151</div></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container--narrow">
+  <div class="section-head"><h3>About Us</h3></div>
+  <div class="card" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <div style="flex:1">
+      <h4>Our Vision & Mission</h4>
+      <p class="muted">To nurture responsible, confident and well-rounded students. We follow a balanced curriculum with strong focus on sports, arts and life skills.</p>
+      <ul class="muted" style="margin-top:10px">
+        <li>CBSE-aligned curriculum with modern pedagogy</li>
+        <li>Safe campus with trained staff and CCTV</li>
+        <li>Smart classrooms, labs and sports facilities</li>
+      </ul>
+    </div>
+    <div style="width:320px">
+      <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="school" style="width:100%;border-radius:10px;object-fit:cover"/>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMICS -->
+<section id="academics" class="container--narrow">
+  <div class="section-head"><h3>Academics</h3></div>
   <div class="grid-3">
-    <div class="card"><strong>Students</strong><div id="statStudents" style="font-size:1.4rem">0</div></div>
-    <div class="card"><strong>Teachers</strong><div id="statTeachers" style="font-size:1.4rem">0</div></div>
-    <div class="card"><strong>Active Notices</strong><div id="statNotices" style="font-size:1.4rem">0</div></div>
+    <div class="card"><div class="icon"><i class="fas fa-book"></i></div><h4>Curriculum</h4><p class="muted">Strong fundamentals + project work and assessments.</p></div>
+    <div class="card"><div class="icon"><i class="fas fa-graduation-cap"></i></div><h4>Assessment</h4><p class="muted">Regular tests, remedial help and progress reports.</p></div>
+    <div class="card"><div class="icon"><i class="fas fa-users"></i></div><h4>Co-curricular</h4><p class="muted">Clubs, cultural events and sports coaching.</p></div>
   </div>
+</section>
 
-  <div class="card">
-    <div class="section-title"><h4>Homework (Recent)</h4><div><button class="btn" id="viewAllHw">View All</button></div></div>
-    <div id="hwList"></div>
+<!-- FACILITIES -->
+<section id="facilities" class="container--narrow">
+  <div class="section-head"><h3>Facilities</h3></div>
+  <div class="grid-3">
+    <div class="card"><h4>Smart Classrooms</h4><p class="muted">AV-enabled classrooms for interactive lessons.</p></div>
+    <div class="card"><h4>Science Labs</h4><p class="muted">Practical-based labs for all science subjects.</p></div>
+    <div class="card"><h4>Sports Complex</h4><p class="muted">Grounds, coaching and tournaments.</p></div>
   </div>
+</section>
 
-  <div class="card">
-    <div class="section-title"><h4>Attendance Snapshot</h4><div><button class="btn" id="printAttendance">Print</button></div></div>
-    <div id="attendanceSnapshot" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"></div>
+<!-- GALLERY -->
+<section id="gallery" class="container--narrow">
+  <div class="section-head"><h3>Gallery</h3></div>
+  <div class="card gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- NEWS -->
+<section id="news" class="container--narrow">
+  <div class="section-head"><h3>News & Notices</h3></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <div style="flex:1">
+      <div class="card ticker"><div class="ticker-inner" id="newsTicker">Loading notices... • </div></div>
+      <div style="margin-top:12px" id="newsList"></div>
+    </div>
+    <aside style="width:320px">
+      <div class="card">
+        <h4>Events</h4>
+        <ul id="eventsList" class="muted"></ul>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h4>Download</h4>
+        <p class="muted">Prospectus & forms</p>
+        <a id="downloadProspectus" class="btn" href="#">Download Prospectus (PDF)</a>
+      </div>
+    </aside>
   </div>
+</section>
 
-  <div class="card">
-    <div class="section-title"><h4>Fees Module</h4><div><button class="btn" id="openFees">Open Fees</button></div></div>
-    <div id="feesPreview"></div>
+<!-- CONTACT & ADMISSIONS -->
+<section id="contact" class="container--narrow">
+  <div class="section-head"><h3>Contact & Admissions</h3></div>
+  <div class="card contact-grid">
+    <div>
+      <h4>Get in touch</h4>
+      <p class="muted">Call or email for enquiries and admissions.</p>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+        <a class="cta" href="tel:+919758919151"><i class="fas fa-phone"></i> +91 97589 19151</a>
+        <a class="btn" href="mailto:madamsir066@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      </div>
+
+      <div style="margin-top:18px">
+        <form id="contactForm" class="contact-form">
+          <input id="cname" placeholder="Your name" required />
+          <input id="cinfo" placeholder="Email or phone" required />
+          <textarea id="cmessage" rows="4" placeholder="Your message"></textarea>
+          <button type="submit">Send Enquiry</button>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <h4>Visit Us</h4>
+      <div style="height:220px;border-radius:10px;overflow:hidden">
+        <iframe style="border:0;width:100%;height:100%" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..." aria-hidden="false"></iframe>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="card">
-    <div class="section-title"><h4>Timetable</h4><div><button class="btn" id="openTimetable">Open Timetable</button></div></div>
-    <div id="timetablePreview"></div>
-  </div>
+  </main>  <footer style="text-align:center;padding:24px 6px;color:var(--muted)">© Mili Karwaan Public School — Baluha Police Chowki, Balrampur • Email: madamsir066@gmail.com</footer><button class="to-top" id="toTop" title="Back to top"><i class="fas fa-chevron-up"></i></button>
 
-</main>
+  <!-- Modal (used for gallery / notices) -->  <div id="modal" class="modal" aria-hidden="true"><div class="modal-card" id="modalCard"></div></div>  <script>
+    // Home single-file — all interactive features (client-side)
+    const STORAGE_KEY = 'MKPS_HOME_v1'
+    const SAMPLE = {
+      notices:[{id:'n1',title:'Parent-Teacher Meeting',date:'2025-11-28',time:'4:00 PM',body:'All parents are requested to attend in the school hall.'}],
+      events:[{id:'e1',title:'Annual Sports Day',date:'2025-12-06'}],
+      gallery:[
+        'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'
+      ]
+    }
 
-  </div>  <div class="footer">Built: Ultimate Pro • Local demo — export/import works. Want cloud? I can add Firebase or Node backend.</div>
-</div><!-- Modal --><div class="modal" id="modal"><div class="modal-card" id="modalCard"></div></div><script>
-// Ultimate Pro — single-file full features (client-side demo)
-const ADMIN_PWD = 'Abutalha'
-const KEY = 'MKPS_ULTIMATE_v1'
-const SAMPLE = {
-  students:[{id:'s1',name:'Aman Kumar',class:'Class 6',phone:'9876543210'}],
-  teachers:[{id:'t1',name:'Mrs. Sharma',subject:'Science'}],
-  homework:[{id:'h1',subject:'Mathematics',title:'Algebra Exercise',due:'2025-11-25',notes:'Do Q1-20',created:new Date().toISOString()}],
-  notices:[{id:'n1',title:'PTM',date:'2025-11-28',time:'4:00 PM',body:'Parents must attend'}],
-  attendance:{'Class 6':{present:28,total:30}},
-  fees:[{id:'f1',studentId:'s1',name:'Aman Kumar',amount:15000,status:'unpaid'}],
-  timetable:{'Class 6':[ {day:'Mon',time:'8:00-9:00',sub:'Maths'} ] }
-}
-function load(){ try{ const raw=localStorage.getItem(KEY); return raw?JSON.parse(raw):JSON.parse(JSON.stringify(SAMPLE)) }catch(e){return JSON.parse(JSON.stringify(SAMPLE))}}
-function save(d){ localStorage.setItem(KEY,JSON.stringify(d)) }
-let STORE = load()
+    function loadStore(){ try{ const raw=localStorage.getItem(STORAGE_KEY); return raw?JSON.parse(raw):JSON.parse(JSON.stringify(SAMPLE)) }catch(e){ return JSON.parse(JSON.stringify(SAMPLE)) }}
+    function saveStore(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)) }
+    let STORE = loadStore()
 
-// UI helpers
-const $ = s=>document.querySelector(s)
-const $$ = s=>Array.from(document.querySelectorAll(s))
-const uid = p=>p+Math.random().toString(36).slice(2,9)
-function openModal(html){ $('#modalCard').innerHTML = html; $('#modal').classList.add('open'); }
-function closeModal(){ $('#modal').classList.remove('open'); }
+    // renderers
+    function renderGallery(){ const g = STORE.gallery || []; const el = document.getElementById('galleryGrid'); if(!g.length) el.innerHTML = '<div class="muted">No images</div>'; else el.innerHTML = g.map(src=>`<img src="${src}" loading="lazy" alt="gallery" />`).join(''); document.querySelectorAll('#galleryGrid img').forEach(img=>img.addEventListener('click', ()=>openModal(`<img src='${img.src}' style='width:100%;height:auto;border-radius:8px'/>`))) }
 
-// render summary
-function renderStats(){ $('#statStudents').textContent = STORE.students.length; $('#statTeachers').textContent = STORE.teachers.length; $('#statNotices').textContent = STORE.notices.length }
+    function renderNews(){ const n = STORE.notices || []; document.getElementById('newsList').innerHTML = n.map(i=>`<div class='card'><h4>${i.title}</h4><p class='muted'>${i.date} ${i.time? '|' + i.time : ''}</p><p>${i.body||''}</p></div>`).join(''); const ticker = document.getElementById('newsTicker'); ticker.innerText = n.map(i=>i.title+' • ').join('') + ' ' + n.map(i=>i.title+' • ').join('') }
 
-function renderHW(){ const list = STORE.homework.slice(0,6); $('#hwList').innerHTML = list.map(h=>`<div style="padding:10px;border-radius:8px;background:#fbfff8;margin-bottom:8px"><strong>${h.subject} - ${h.title}</strong><div class="small">Due: ${new Date(h.due).toLocaleDateString()}</div><div style="margin-top:6px">${h.notes}</div></div>`).join('') }
+    function renderEvents(){ const e = STORE.events || []; document.getElementById('eventsList').innerHTML = e.map(ev=>`<li>${ev.title} — ${ev.date}</li>`).join('') }
 
-function renderAttendance(){ const el = $('#attendanceSnapshot'); el.innerHTML=''; for(const cls in STORE.attendance){ const a = STORE.attendance[cls]; const pct = Math.round(a.present / a.total * 100 || 0); const div = document.createElement('div'); div.className='card'; div.style.minWidth='160px'; div.innerHTML=`<strong>${cls}</strong><div style='font-size:1.2rem'>${a.present}/${a.total}</div><div class='small'>${pct}% present</div>`; el.appendChild(div); } }
+    // counters
+    function animateCounters(){ document.querySelectorAll('.counter').forEach(c=>{ const target = +c.dataset.target; let start=0; const step = Math.max(1, Math.floor(target/80)); const t = setInterval(()=>{ start += step; if(start>=target){ c.textContent = target; clearInterval(t) } else c.textContent = start },12) }) }
 
-function renderFeesPreview(){ $('#feesPreview').innerHTML = STORE.fees.map(f=>`<div style="padding:8px;border-radius:8px;background:#fff8f2;margin-bottom:8px"><strong>${f.name}</strong> — ₹${f.amount} — <em>${f.status}</em> <button data-id='${f.id}' class='btn' style='margin-left:8px'>Pay</button></div>`).join('') }
+    // modal
+    function openModal(html){ document.getElementById('modalCard').innerHTML = html; document.getElementById('modal').classList.add('open'); }
+    function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+    document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==='modal') closeModal() })
 
-function renderTimetablePreview(){ const t = STORE.timetable || {}; let s=''; for(const cls in t){ s += `<div class='card'><strong>${cls}</strong>${t[cls].map(it=>`<div>${it.day} • ${it.time} • ${it.sub}</div>`).join('')}</div>` } $('#timetablePreview').innerHTML = s }
+    // contact form
+    document.getElementById('contactForm').addEventListener('submit', function(e){ e.preventDefault(); const name=document.getElementById('cname').value.trim(); const info=document.getElementById('cinfo').value.trim(); const msg=document.getElementById('cmessage').value.trim(); if(!name||!info){ alert('Please provide name and contact'); return } // demo: store enquiry locally (optional)
+      const enquiries = JSON.parse(localStorage.getItem('MKPS_ENQUIRIES')||'[]'); enquiries.unshift({id:'q'+Math.random().toString(36).slice(2,8),name,info,msg,at:new Date().toISOString()}); localStorage.setItem('MKPS_ENQUIRIES', JSON.stringify(enquiries)); alert('Thank you — your enquiry was received (local demo).'); this.reset(); })
 
-// initial render
-renderStats(); renderHW(); renderAttendance(); renderFeesPreview(); renderTimetablePreview();
+    // open notices / gallery buttons from hero
+    document.getElementById('openNotices').addEventListener('click', ()=>{ document.querySelector('a[href="#news"]').scrollIntoView({behavior:'smooth'}); })
+    document.getElementById('openGallery').addEventListener('click', ()=>{ document.querySelector('a[href="#gallery"]').scrollIntoView({behavior:'smooth'}); })
 
-// actions
-$('#openAdminBtn').addEventListener('click', ()=>{
-  const pwd = prompt('Enter admin password:')
-  if(pwd===ADMIN_PWD){ // open admin in new window with data passed via blob URL
-    const blob = new Blob([createAdminHtml(JSON.stringify(STORE))], {type:'text/html'});
-    const url = URL.createObjectURL(blob);
-    window.open(url,'_blank');
-  } else alert('Wrong password')
-})
+    // export / import for owner
+    function exportData(){ const b = new Blob([JSON.stringify(STORE,null,2)],{type:'application/json'}); const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href = url; a.download = 'mkps-home-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url) }
+    function importDataFile(){ const input = document.createElement('input'); input.type='file'; input.accept='.json'; input.onchange = ()=>{ const f = input.files[0]; if(!f) return; const r = new FileReader(); r.onload = ()=>{ try{ const parsed = JSON.parse(r.result); STORE = parsed; saveStore(STORE); renderAll(); alert('Data imported (local).') }catch(e){ alert('Invalid JSON') } }; r.readAsText(f); }; input.click(); }
 
-// quick add
-$('#quickAddHw').addEventListener('click', ()=>{ const subject=prompt('Subject:','Mathematics'); if(!subject) return; const title=prompt('Title:','Exercise'); const due=prompt('Due (YYYY-MM-DD):','2025-11-25'); const notes=prompt('Notes:',''); const id=uid('h'); STORE.homework.unshift({id,subject,title,due,notes,created:new Date().toISOString()}); save(STORE); renderHW(); alert('Added') })
-$('#quickAddNotice').addEventListener('click', ()=>{ const title=prompt('Title:'); if(!title) return; const date=prompt('Date (YYYY-MM-DD):','2025-11-28'); const time=prompt('Time:','4:00 PM'); const body=prompt('Details:',''); const id=uid('n'); STORE.notices.unshift({id,title,date,time,body}); save(STORE); renderStats(); alert('Notice added') })
-$('#quickAddEvent').addEventListener('click', ()=>{ const title=prompt('Event:'); if(!title) return; const date=prompt('Date:','2025-12-06'); const id=uid('e'); (STORE.events=STORE.events||[]).unshift({id,title,date}); save(STORE); alert('Event added') })
+    // back to top
+    const toTop = document.getElementById('toTop'); window.addEventListener('scroll', ()=>{ if(window.scrollY>300) toTop.classList.add('show'); else toTop.classList.remove('show') }); toTop.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}))
 
-// search
-$('#searchBtn').addEventListener('click', ()=>{ const q = $('#globalSearch').value.trim().toLowerCase(); if(!q) { $('#searchResults').textContent='Type to search'; return } const students = STORE.students.filter(s=> (s.name||'').toLowerCase().includes(q)); const hw = STORE.homework.filter(h=> (h.title+h.subject+h.notes).toLowerCase().includes(q)); const notices = STORE.notices.filter(n=> (n.title+n.body).toLowerCase().includes(q)); $('#searchResults').innerHTML = `Students: ${students.length} • Homework: ${hw.length} • Notices: ${notices.length}` })
+    // init
+    function renderAll(){ renderGallery(); renderNews(); renderEvents(); animateCounters(); }
+    document.addEventListener('DOMContentLoaded', ()=>{ renderAll(); // fallback logo error
+      document.querySelectorAll('img').forEach(img=>img.addEventListener('error', ()=>img.src='https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'))
+    })
 
-// export
-$('#backupBtn').addEventListener('click', ()=>{ const b = new Blob([JSON.stringify(STORE,null,2)],{type:'application/json'}); const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href=url; a.download='mkps-ultimate-backup.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url) })
-
-// Send SMS placeholder
-$('#sendSmsBtn').addEventListener('click', ()=>{ const msg = prompt('Message to send (demo - no real SMS will be sent):'); if(!msg) return; alert('SMS placeholder: Ready to send via MSG91/Twilio. See README for integration.') })
-
-// payments demo
-$('#payDemoBtn').addEventListener('click', ()=>{ alert('Payment placeholder (Razorpay/PayU). I can wire real keys later.') })
-
-// fees pay button delegated
-document.addEventListener('click', e=>{ if(e.target.matches('#feesPreview .btn') || e.target.matches('[data-id]')){ const id = e.target.dataset.id; const f = STORE.fees.find(x=>x.id===id); if(f){ if(confirm(`Pay ₹${f.amount} for ${f.name}? (demo)`)){ f.status='paid'; save(STORE); renderFeesPreview(); alert('Payment recorded (local only)') } } } })
-
-// portals
-$('#openStudentPortal').addEventListener('click', ()=>{ openModal(`<h3>Student Portal (Demo)</h3><p class='small'>Enter student id to login (demo):</p><div style='margin-top:8px'><input id='stuId' placeholder='s1' style='padding:8px;border-radius:8px;border:1px solid #eee'/> <button class='btn' id='stuLogin'>Login</button></div>`); $('#modal').querySelector('#stuLogin').addEventListener('click', ()=>{ const id = $('#stuId').value.trim(); const s = STORE.students.find(x=>x.id===id); if(!s){ alert('Not found'); return } closeModal(); openModal(`<h3>Welcome ${s.name}</h3><p class='small'>Class: ${s.class}</p><div style='margin-top:8px'><button class='btn' id='viewHwStudent'>My Homework</button> <button class='btn' id='viewFeesStudent'>My Fees</button></div>`); $('#modal').querySelector('#viewHwStudent').addEventListener('click', ()=>{ const hw = STORE.homework.filter(h=>h.subject.toLowerCase().includes('math')||true); openModal(`<h3>Homework</h3>${hw.map(h=>`<div class='card'><strong>${h.title}</strong><div class='small'>Due: ${new Date(h.due).toLocaleDateString()}</div><div>${h.notes}</div></div>`).join('')}`) }) }) })
-
-$('#openTeacherPortal').addEventListener('click', ()=>{ const name = prompt('Teacher name (demo):'); if(!name) return; alert('Logged in as teacher (demo). Use admin for full features.') })
-
-// printable attendance
-$('#printAttendance').addEventListener('click', ()=>{ const w = window.open('','_blank'); w.document.write('<h3>Attendance Report</h3>'); w.document.write('<pre>'+JSON.stringify(STORE.attendance,null,2)+'</pre>'); w.document.close(); w.print(); })// view all hw $('#viewAllHw').addEventListener('click', ()=>{ openModal('<h3>All Homework</h3>'+STORE.homework.map(h=><div class="card"><strong>${h.subject} - ${h.title}</strong><div class="small">Due: ${new Date(h.due).toLocaleDateString()}</div><div>${h.notes}</div></div>).join('')) })
-
-// attendance print $('#printAttendance').addEventListener('click', ()=>{ /* handled above */ })
-
-// timetable $('#openTimetable').addEventListener('click', ()=>{ openModal('<h3>Timetable</h3>'+Object.keys(STORE.timetable).map(cls=><h4>${cls}</h4>).join('')) })
-
-// modal close on outside click document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==='modal') closeModal() })
-
-// create admin HTML to open in new window with data embedded function createAdminHtml(dataJson){ return <!doctype html><html><head><meta charset="utf-8"><title>MKPS Admin — Ultimate</title><meta name='viewport' content='width=device-width,initial-scale=1'><style>body{font-family:Inter,system-ui;padding:12px;background:#021421;color:#cfeee3} .btn{background:linear-gradient(90deg,#0f766e,#d97706);border:none;padding:8px 10px;color:#021;cursor:pointer;border-radius:8px}</style></head><body><h2>MKPS Admin — DEMO</h2><p>This admin was opened from the main app. Data below is a copy (local only)</p><pre id='dump'></pre><button class='btn' id='close'>Close</button><script>document.getElementById('dump').textContent=${JSON.stringify(dataJson)}; document.getElementById('close').addEventListener('click',()=>window.close())</script></body></html> }
-
-</script>
-</body>
+    // expose utility for owner (console)
+    window.exportHomeData = exportData; window.importHomeData = importDataFile; window.addDemoNotice = ()=>{ const id='n'+Math.random().toString(36).slice(2,8); STORE.notices.unshift({id,title:'New Notice',date:new Date().toISOString().slice(0,10),time:'',body:'Demo added via console.'}); saveStore(STORE); renderNews(); }
+  </script></body>
 </html>
