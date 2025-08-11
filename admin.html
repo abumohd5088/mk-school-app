@@ -1,54 +1,330 @@
 <!doctype html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MKPS Admin Panel</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>MKPS — Admin Panel</title>
+  <meta name="description" content="Admin panel for Milli Karwaan Public School (local demo)." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;}
+    .muted{color:#6b7280}
+    pre {white-space:pre-wrap;word-break:break-word}
+    .hidden-row{display:none}
+  </style>
 </head>
-<body>
-  <div class="admin-wrap">
-    <div class="admin-login card">
-      <h2>Admin Login</h2>
-      <p class="muted">Enter admin password to proceed.</p>
-      <input id="adminPwd" type="password" placeholder="Password">
-      <div style="display:flex;gap:8px;margin-top:8px"><button id="adminLogin" class="btn">Login</button><button id="adminLogout" class="btn ghost">Clear</button></div>
-      <p class="small muted">Default password: <strong>Abutalha</strong></p>
-    </div>
-
-    <div id="adminPanel" class="admin-panel hidden">
-      <header class="admin-header card">
-        <h3>MKPS Admin</h3>
-        <div class="admin-tools"><button id="exportData" class="btn">Export JSON</button><button id="importData" class="btn ghost">Import JSON</button></div>
-      </header>
-
-      <div class="admin-grid container">
-        <aside class="admin-sidebar card">
-          <nav>
-            <ul>
-              <li><a href="#noticesTab" class="active">Notices</a></li>
-              <li><a href="#eventsTab">Events</a></li>
-              <li><a href="#galleryTab">Gallery</a></li>
-              <li><a href="#studentsTab">Students</a></li>
-              <li><a href="#teachersTab">Teachers</a></li>
-              <li><a href="#settingsTab">Settings</a></li>
-            </ul>
-          </nav>
-        </aside>
-
-        <section class="admin-content card" id="adminContent">
-          <!-- dynamic admin content injected here -->
-        </section>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-7xl mx-auto p-6">
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="MKPS" class="w-14 h-14 rounded-lg" />
+        <div>
+          <h1 class="text-2xl font-bold">MKPS — Local Admin</h1>
+          <div class="text-sm muted">Edit site data stored in localStorage (client-side demo)</div>
+        </div>
       </div>
+      <div class="flex items-center gap-3">
+        <div class="text-sm muted">Storage key: <code id="storageKey" class="bg-white px-2 py-1 rounded-md shadow-sm">MKPS_FULL_DATA_v1</code></div>
+        <button id="logoutBtn" class="px-4 py-2 bg-red-500 text-white rounded-lg">Logout</button>
+      </div>
+    </header><!-- Auth screen -->
+<div id="authScreen" class="bg-white rounded-xl shadow p-6 max-w-xl mx-auto">
+  <h2 class="text-lg font-semibold mb-2">Admin login</h2>
+  <p class="muted text-sm mb-4">Enter the admin password to edit site content. (Demo password: <code>Abutalha</code>)</p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <input id="adminPwd" type="password" placeholder="Admin password" class="p-3 border rounded" />
+    <div class="flex gap-2">
+      <button id="authBtn" class="px-4 py-3 bg-green-600 text-white rounded">Sign In</button>
+      <button id="loadDefault" class="px-4 py-3 border rounded">Load Default Demo</button>
     </div>
   </div>
+</div>
 
-  <script src="js/script.js"></script>
-  <script>
-    // admin.html uses the same script.js - it exposes admin functions
-    document.getElementById('adminLogin').addEventListener('click', ()=>{
-      const pwd = document.getElementById('adminPwd').value.trim(); if(window.MKPS && MKPS.checkAdminPwd(pwd)){ document.querySelector('.admin-login').classList.add('hidden'); document.getElementById('adminPanel').classList.remove('hidden'); MKPS.openAdminPanel(); } else alert('Wrong password'); });
-    document.getElementById('adminLogout').addEventListener('click', ()=>{ localStorage.removeItem('MKPS_HOME_v1'); alert('Local data cleared.'); });
-  </script>
-</body>
+<!-- Admin UI (hidden until auth) -->
+<div id="adminUI" class="hidden">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+    <div class="col-span-2 bg-white p-4 rounded-xl shadow">
+      <h3 class="font-semibold">Quick tools</h3>
+      <div class="flex flex-wrap gap-3 mt-3">
+        <button id="btnExport" class="px-3 py-2 bg-indigo-600 text-white rounded"><i class="fas fa-file-export"></i> Export JSON</button>
+        <button id="btnImport" class="px-3 py-2 border rounded"><i class="fas fa-file-import"></i> Import JSON</button>
+        <button id="btnAddNotice" class="px-3 py-2 bg-yellow-500 text-white rounded"><i class="fas fa-bullhorn"></i> Add Notice</button>
+        <button id="btnAddHw" class="px-3 py-2 bg-green-600 text-white rounded"><i class="fas fa-book"></i> Add Homework</button>
+        <button id="btnAddEvent" class="px-3 py-2 bg-pink-600 text-white rounded"><i class="fas fa-calendar-plus"></i> Add Event</button>
+        <button id="btnReset" class="px-3 py-2 border rounded text-red-600"><i class="fas fa-eraser"></i> Reset to Default</button>
+      </div>
+
+      <div class="mt-4">
+        <h4 class="font-medium">Raw JSON editor</h4>
+        <textarea id="rawEditor" class="w-full h-56 p-3 border rounded mt-2 font-mono text-sm"></textarea>
+        <div class="flex gap-2 mt-3">
+          <button id="saveRaw" class="px-4 py-2 bg-indigo-600 text-white rounded">Save to localStorage</button>
+          <button id="downloadRaw" class="px-4 py-2 border rounded">Download JSON</button>
+          <button id="refreshRaw" class="px-4 py-2 border rounded">Refresh from Storage</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="bg-white p-4 rounded-xl shadow">
+      <h4 class="font-semibold">Site preview</h4>
+      <div class="text-xs muted mt-2">Basic preview of key counts</div>
+      <div class="mt-3 grid grid-cols-2 gap-2">
+        <div class="p-3 bg-gray-50 rounded">
+          <div class="text-sm muted">Students</div>
+          <div id="previewStudents" class="text-lg font-bold">0</div>
+        </div>
+        <div class="p-3 bg-gray-50 rounded">
+          <div class="text-sm muted">Homework items</div>
+          <div id="previewHw" class="text-lg font-bold">0</div>
+        </div>
+        <div class="p-3 bg-gray-50 rounded">
+          <div class="text-sm muted">Notices</div>
+          <div id="previewNotices" class="text-lg font-bold">0</div>
+        </div>
+        <div class="p-3 bg-gray-50 rounded">
+          <div class="text-sm muted">Events</div>
+          <div id="previewEvents" class="text-lg font-bold">0</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- CRUD Tabs -->
+  <div class="bg-white p-4 rounded-xl shadow">
+    <div class="flex items-center justify-between">
+      <h3 class="font-semibold">Manage Content</h3>
+      <div class="flex items-center gap-2">
+        <select id="manageSelect" class="p-2 border rounded">
+          <option value="homework">Homework</option>
+          <option value="announcements">Notices</option>
+          <option value="events">Events</option>
+          <option value="gallery">Gallery</option>
+          <option value="videos">Videos</option>
+          <option value="timetable">Timetable</option>
+          <option value="teachers">Teachers</option>
+          <option value="achievements">Achievements</option>
+          <option value="attendance">Attendance</option>
+          <option value="fees">Fees</option>
+          <option value="downloads">Downloads</option>
+        </select>
+        <button id="btnNewItem" class="px-3 py-2 bg-green-600 text-white rounded">New Item</button>
+      </div>
+    </div>
+
+    <div id="manageList" class="mt-4 grid gap-3"></div>
+  </div>
+</div>
+
+<footer class="mt-8 text-sm muted">This admin panel edits the local demo data only (no server). Use Export / Import to move data between devices.</footer>
+
+  </div>  <script>
+  (function(){
+    const STORAGE_KEY = 'MKPS_FULL_DATA_v1';
+
+    // default demo used if user wants to reset
+    const DEFAULT = {
+      studentsCount: 1024,
+      homework: {
+        'Class 6': [{id:'h1',subject:'Mathematics',title:'Algebra Exercise',due:'2025-11-25',notes:'Solve Q1-10'}]
+      },
+      announcements: { 'Class 6': [{id:'n1',title:'Science Exhibition',date:'2025-12-10',body:'Bring models.'}] },
+      events: [{id:'e1',title:'Annual Sports Day',date:'2025-12-06'}],
+      gallery: ['https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'],
+      videos: [{id:'v1',title:'Welcome to MKPS',url:'https://www.youtube.com/embed/dQw4w9WgXcQ'}],
+      timetable: { 'Class 6': [{day:'Mon',time:'8:00-9:00',subject:'Mathematics'}] },
+      teachers: [{id:'t1',name:'Mrs. Sharma',subject:'Mathematics',note:'Senior teacher'}],
+      achievements: [{id:'a1',title:'Science Olympiad - 2nd Position',date:'2025-09-15'}],
+      attendance: {'Class 6':{present:28,total:30}},
+      fees: [{id:'f1',studentName:'Demo Student',class:'Class 6',amount:15000,status:'unpaid'}],
+      downloads: [{id:'d1',title:'Math Notes - Chapter 5',url:'#'}]
+    };
+
+    function loadData(){ try{ const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT)); } catch(e){ console.error(e); return JSON.parse(JSON.stringify(DEFAULT)); } }
+    function saveData(d){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }catch(e){ console.error(e); } }
+
+    let DATA = loadData();
+
+    // elements
+    const authScreen = document.getElementById('authScreen');
+    const adminUI = document.getElementById('adminUI');
+    const rawEditor = document.getElementById('rawEditor');
+    const previewStudents = document.getElementById('previewStudents');
+    const previewHw = document.getElementById('previewHw');
+    const previewNotices = document.getElementById('previewNotices');
+    const previewEvents = document.getElementById('previewEvents');
+    const storageKeyEl = document.getElementById('storageKey');
+
+    storageKeyEl.textContent = STORAGE_KEY;
+
+    // auth
+    document.getElementById('authBtn').addEventListener('click', ()=>{
+      const v = document.getElementById('adminPwd').value || '';
+      if(String(v) === 'Abutalha'){
+        authScreen.style.display = 'none'; adminUI.classList.remove('hidden'); mountAdmin();
+      } else alert('Wrong password');
+    });
+
+    document.getElementById('loadDefault').addEventListener('click', ()=>{
+      if(confirm('Load default demo data? This will overwrite local data.')){ DATA = JSON.parse(JSON.stringify(DEFAULT)); saveData(DATA); rawEditor.value = JSON.stringify(DATA, null, 2); alert('Default loaded'); }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', ()=> location.reload());
+
+    // export/import
+    document.getElementById('btnExport').addEventListener('click', ()=> downloadJSON());
+    document.getElementById('btnImport').addEventListener('click', ()=> importJSON());
+
+    document.getElementById('saveRaw').addEventListener('click', ()=>{
+      try{ const parsed = JSON.parse(rawEditor.value); DATA = parsed; saveData(DATA); renderPreview(); alert('Saved to localStorage'); }
+      catch(e){ alert('Invalid JSON'); }
+    });
+
+    document.getElementById('downloadRaw').addEventListener('click', ()=> downloadJSON());
+    document.getElementById('refreshRaw').addEventListener('click', ()=>{ DATA = loadData(); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); alert('Refreshed from storage'); });
+
+    function downloadJSON(){ const blob = new Blob([JSON.stringify(DATA,null,2)], {type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mkps-data.json'; document.body.appendChild(a); a.click(); a.remove(); }
+    function importJSON(){ const ip = document.createElement('input'); ip.type='file'; ip.accept='.json'; ip.onchange = ()=>{ const f=ip.files[0]; if(!f) return; const r=new FileReader(); r.onload = ()=>{ try{ const parsed = JSON.parse(r.result); DATA = parsed; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); alert('Imported'); }catch(e){ alert('Invalid JSON'); } }; r.readAsText(f); }; ip.click(); }
+
+    document.getElementById('btnAddNotice').addEventListener('click', ()=> addNotice());
+    document.getElementById('btnAddHw').addEventListener('click', ()=> addHomework());
+    document.getElementById('btnAddEvent').addEventListener('click', ()=> addEvent());
+    document.getElementById('btnReset').addEventListener('click', ()=>{ if(confirm('Reset local data to default?')){ DATA = JSON.parse(JSON.stringify(DEFAULT)); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); alert('Reset'); } });
+
+    // manage list
+    const manageSelect = document.getElementById('manageSelect');
+    const manageList = document.getElementById('manageList');
+    document.getElementById('btnNewItem').addEventListener('click', ()=> newItem(manageSelect.value));
+    manageSelect.addEventListener('change', ()=> renderManage(manageSelect.value));
+
+    // initial mount
+    function mountAdmin(){ rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); renderManage(manageSelect.value); }
+
+    function renderPreview(){ previewStudents.textContent = DATA.studentsCount || 0; previewHw.textContent = Object.values(DATA.homework || {}).reduce((s,a)=> s + (a.length||0),0); previewNotices.textContent = Object.values(DATA.announcements || {}).reduce((s,a)=> s + (a.length||0),0); previewEvents.textContent = (DATA.events||[]).length; }
+
+    function renderManage(key){ manageList.innerHTML = '';
+      if(key === 'homework'){
+        // show classes and items
+        const hw = DATA.homework || {};
+        Object.keys(hw).forEach(cls => {
+          const wrap = document.createElement('div'); wrap.className='p-3 border rounded mb-3';
+          wrap.innerHTML = `<div class="flex items-center justify-between"><div><strong>${cls}</strong> <span class="muted text-sm">(${hw[cls].length})</span></div></div>`;
+          hw[cls].forEach(item=>{
+            const it = document.createElement('div'); it.className='mt-2 p-2 bg-gray-50 rounded flex justify-between items-start';
+            it.innerHTML = `<div><div class="font-semibold">${escapeHtml(item.subject)} — ${escapeHtml(item.title)}</div><div class="text-xs muted">${escapeHtml(item.notes)}</div></div>
+              <div class="flex flex-col gap-2"><button data-id="${item.id}" data-cls="${cls}" class="edit-hw px-3 py-1 bg-indigo-600 text-white rounded text-sm">Edit</button><button data-id="${item.id}" data-cls="${cls}" class="del-hw px-3 py-1 border rounded text-sm">Delete</button></div>`;
+            wrap.appendChild(it);
+          });
+          manageList.appendChild(wrap);
+        });
+        // attach handlers
+        $$('.edit-hw').forEach(b=> b.addEventListener('click', ()=> editHomework(b.dataset.cls, b.dataset.id)));
+        $$('.del-hw').forEach(b=> b.addEventListener('click', ()=> deleteHomework(b.dataset.cls, b.dataset.id)));
+      }
+      else if(key === 'announcements'){
+        const arrs = DATA.announcements || {};
+        Object.keys(arrs).forEach(cls=>{
+          const wrap = document.createElement('div'); wrap.className='p-3 border rounded mb-3'; wrap.innerHTML = `<div class="flex items-center justify-between"><div><strong>${cls}</strong> <span class="muted text-sm">(${arrs[cls].length})</span></div></div>`;
+          arrs[cls].forEach(n=>{ const it = document.createElement('div'); it.className='mt-2 p-2 bg-gray-50 rounded flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(n.title)}</div><div class="text-xs muted">${escapeHtml(n.date)}</div><div class="text-xs mt-1">${escapeHtml(n.body)}</div></div><div class="flex flex-col gap-2"><button data-id="${n.id}" data-cls="${cls}" class="edit-ann px-3 py-1 bg-indigo-600 text-white rounded text-sm">Edit</button><button data-id="${n.id}" data-cls="${cls}" class="del-ann px-3 py-1 border rounded text-sm">Delete</button></div>`; wrap.appendChild(it); }); manageList.appendChild(wrap);
+        });
+        $$('.edit-ann').forEach(b=> b.addEventListener('click', ()=> editNotice(b.dataset.cls,b.dataset.id)));
+        $$('.del-ann').forEach(b=> b.addEventListener('click', ()=> deleteNotice(b.dataset.cls,b.dataset.id)));
+      }
+      else if(key === 'events'){
+        (DATA.events||[]).forEach(ev => {
+          const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(ev.title)}</div><div class="text-xs muted">${escapeHtml(ev.date)}</div></div><div class="flex gap-2"><button data-id="${ev.id}" class="edit-ev px-3 py-1 bg-indigo-600 text-white rounded text-sm">Edit</button><button data-id="${ev.id}" class="del-ev px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it);
+        }); $$('.edit-ev').forEach(b=> b.addEventListener('click', ()=> editEvent(b.dataset.id))); $$('.del-ev').forEach(b=> b.addEventListener('click', ()=> deleteEvent(b.dataset.id)));
+      }
+      else if(key === 'gallery'){
+        (DATA.gallery||[]).forEach((g, idx)=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex items-center gap-3'; it.innerHTML = `<img src="${escapeHtml(g)}" class="w-20 h-12 object-cover rounded" /><div class="flex-1 text-sm">${escapeHtml(g)}</div><div class="flex gap-2"><button data-idx="${idx}" class="del-img px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-img').forEach(b=> b.addEventListener('click', ()=> deleteImage(parseInt(b.dataset.idx))));
+      }
+      else if(key === 'videos'){
+        (DATA.videos||[]).forEach(v=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(v.title)}</div><div class="text-xs muted">${escapeHtml(v.url)}</div></div><div class="flex gap-2"><button data-id="${v.id}" class="del-video px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-video').forEach(b=> b.addEventListener('click', ()=> deleteVideo(b.dataset.id)));
+      }
+      else if(key === 'timetable'){
+        Object.keys(DATA.timetable||{}).forEach(cls=>{ const wrap = document.createElement('div'); wrap.className='p-3 border rounded mb-3'; wrap.innerHTML = `<div class="font-semibold">${cls}</div>`; (DATA.timetable[cls]||[]).forEach(tt=>{ const it = document.createElement('div'); it.className='mt-2 p-2 bg-gray-50 rounded flex justify-between items-center'; it.innerHTML = `<div class="text-sm">${escapeHtml(tt.day)} • ${escapeHtml(tt.time)} • ${escapeHtml(tt.subject)}</div><div class="flex gap-2"><button data-cls="${cls}" data-day="${tt.day}" class="del-tt px-3 py-1 border rounded text-sm">Delete</button></div>`; wrap.appendChild(it); }); manageList.appendChild(wrap); }); $$('.del-tt').forEach(b=> b.addEventListener('click', ()=> deleteTimetable(b.dataset.cls, b.dataset.day)));
+      }
+      else if(key === 'teachers'){
+        (DATA.teachers||[]).forEach(t=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(t.name)}</div><div class="text-xs muted">${escapeHtml(t.subject)}</div><div class="text-xs mt-1">${escapeHtml(t.note||'')}</div></div><div class="flex gap-2"><button data-id="${t.id}" class="del-t px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-t').forEach(b=> b.addEventListener('click', ()=> deleteTeacher(b.dataset.id)));
+      }
+      else if(key === 'achievements'){
+        (DATA.achievements||[]).forEach(a=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(a.title)}</div><div class="text-xs muted">${escapeHtml(a.date)}</div></div><div class="flex gap-2"><button data-id="${a.id}" class="del-ach px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-ach').forEach(b=> b.addEventListener('click', ()=> deleteAchievement(b.dataset.id)));
+      }
+      else if(key === 'attendance'){
+        Object.keys(DATA.attendance||{}).forEach(cls=>{ const a = DATA.attendance[cls]; const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-center'; it.innerHTML = `<div><div class="font-semibold">${cls}</div><div class="text-xs muted">Present: ${a.present} / ${a.total}</div></div><div class="flex gap-2"><button data-cls="${cls}" class="edit-att px-3 py-1 bg-indigo-600 text-white rounded text-sm">Edit</button></div>`; manageList.appendChild(it); }); $$('.edit-att').forEach(b=> b.addEventListener('click', ()=> editAttendance(b.dataset.cls)));
+      }
+      else if(key === 'fees'){
+        (DATA.fees||[]).forEach(f=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(f.studentName)}</div><div class="text-xs muted">${escapeHtml(f.class)} • ₹${escapeHtml(f.amount)}</div></div><div class="flex gap-2"><button data-id="${f.id}" class="del-fee px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-fee').forEach(b=> b.addEventListener('click', ()=> deleteFee(b.dataset.id)));
+      }
+      else if(key === 'downloads'){
+        (DATA.downloads||[]).forEach(d=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(d.title)}</div><div class="text-xs muted">${escapeHtml(d.url)}</div></div><div class="flex gap-2"><button data-id="${d.id}" class="del-d px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-d').forEach(b=> b.addEventListener('click', ()=> deleteDownload(b.dataset.id)));
+      }
+    }
+
+    /* ---------- CRUD helpers ---------- */
+    function newItem(kind){
+      if(kind === 'homework') addHomework();
+      else if(kind === 'announcements') addNotice();
+      else if(kind === 'events') addEvent();
+      else if(kind === 'gallery') addImage();
+      else if(kind === 'videos') addVideo();
+      else if(kind === 'timetable') addTimetable();
+      else if(kind === 'teachers') addTeacher();
+      else if(kind === 'achievements') addAchievement();
+      else if(kind === 'attendance') addAttendance();
+      else if(kind === 'fees') addFee();
+      else if(kind === 'downloads') addDownload();
+      setTimeout(()=> renderManage(manageSelect.value),200);
+    }
+
+    function addHomework(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const sub = prompt('Subject:'); const title = prompt('Title:'); const due = prompt('Due (YYYY-MM-DD):'); const notes = prompt('Notes:'); DATA.homework = DATA.homework || {}; DATA.homework[cls] = DATA.homework[cls] || []; DATA.homework[cls].unshift({id: uid('h'), subject: sub, title, due, notes}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); }
+    function editHomework(cls,id){ const arr = DATA.homework[cls] || []; const it = arr.find(x=> x.id===id); if(!it) return alert('Not found'); const sub = prompt('Subject', it.subject); const title = prompt('Title', it.title); const due = prompt('Due', it.due); const notes = prompt('Notes', it.notes); it.subject=sub; it.title=title; it.due=due; it.notes=notes; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage(manageSelect.value); }
+    function deleteHomework(cls,id){ if(!confirm('Delete homework?')) return; DATA.homework[cls] = (DATA.homework[cls]||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage(manageSelect.value); }
+
+    function addNotice(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const title = prompt('Title:'); const date = prompt('Date (YYYY-MM-DD):', new Date().toISOString().slice(0,10)); const body = prompt('Details:'); DATA.announcements = DATA.announcements || {}; DATA.announcements[cls] = DATA.announcements[cls] || []; DATA.announcements[cls].unshift({id: uid('n'), title, date, body}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); }
+    function editNotice(cls,id){ const arr = DATA.announcements[cls]||[]; const it = arr.find(x=> x.id===id); if(!it) return alert('Not found'); const title = prompt('Title',it.title); const date = prompt('Date',it.date); const body = prompt('Body',it.body); it.title=title; it.date=date; it.body=body; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('announcements'); }
+    function deleteNotice(cls,id){ if(!confirm('Delete notice?')) return; DATA.announcements[cls] = (DATA.announcements[cls]||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('announcements'); }
+
+    function addEvent(){ const title = prompt('Event title:'); if(!title) return; const date = prompt('Date:', new Date().toISOString().slice(0,10)); DATA.events = DATA.events || []; DATA.events.unshift({id: uid('e'), title, date}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); }
+    function editEvent(id){ const it = (DATA.events||[]).find(x=> x.id===id); if(!it) return alert('Not found'); const title = prompt('Title',it.title); const date = prompt('Date',it.date); it.title=title; it.date=date; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('events'); }
+    function deleteEvent(id){ if(!confirm('Delete event?')) return; DATA.events = (DATA.events||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('events'); }
+
+    function addImage(){ const url = prompt('Image URL:'); if(!url) return; DATA.gallery = DATA.gallery || []; DATA.gallery.unshift(url); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); }
+    function deleteImage(idx){ if(!confirm('Delete image?')) return; DATA.gallery.splice(idx,1); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('gallery'); }
+
+    function addVideo(){ const title = prompt('Title:'); if(!title) return; const url = prompt('Embed URL (youtube embed)'); DATA.videos = DATA.videos || []; DATA.videos.unshift({id: uid('v'), title, url}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('videos'); }
+    function deleteVideo(id){ if(!confirm('Delete video?')) return; DATA.videos = (DATA.videos||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('videos'); }
+
+    function addTimetable(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const day = prompt('Day (Mon/Tue):'); const time = prompt('Time (8:00-9:00):'); const subject = prompt('Subject:'); DATA.timetable = DATA.timetable||{}; DATA.timetable[cls] = DATA.timetable[cls] || []; DATA.timetable[cls].push({day,time,subject}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('timetable'); }
+    function deleteTimetable(cls,day){ if(!confirm('Delete timetable row?')) return; DATA.timetable[cls] = (DATA.timetable[cls]||[]).filter(x=> x.day!==day); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('timetable'); }
+
+    function addTeacher(){ const name = prompt('Name:'); if(!name) return; const subject = prompt('Subject:'); const note = prompt('Note:'); DATA.teachers = DATA.teachers || []; DATA.teachers.unshift({id: uid('t'), name, subject, note}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('teachers'); }
+    function deleteTeacher(id){ if(!confirm('Delete teacher?')) return; DATA.teachers = (DATA.teachers||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('teachers'); }
+
+    function addAchievement(){ const title = prompt('Title:'); if(!title) return; const date = prompt('Date:'); DATA.achievements = DATA.achievements||[]; DATA.achievements.unshift({id: uid('a'), title, date}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('achievements'); }
+    function deleteAchievement(id){ if(!confirm('Delete achievement?')) return; DATA.achievements = (DATA.achievements||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('achievements'); }
+
+    function addAttendance(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const present = parseInt(prompt('Present:','0')||'0'); const total = parseInt(prompt('Total:','0')||'0'); DATA.attendance = DATA.attendance||{}; DATA.attendance[cls] = {present,total}; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('attendance'); }
+    function editAttendance(cls){ const a = DATA.attendance[cls]||{present:0,total:0}; const present = parseInt(prompt('Present:',a.present)||'0'); const total = parseInt(prompt('Total:',a.total)||'0'); DATA.attendance[cls] = {present,total}; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('attendance'); }
+
+    function addFee(){ const studentName = prompt('Student name:'); if(!studentName) return; const cls = prompt('Class:'); const amount = parseInt(prompt('Amount:','0')||'0'); DATA.fees = DATA.fees||[]; DATA.fees.unshift({id: uid('f'), studentName, class: cls, amount, status: 'unpaid'}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('fees'); }
+    function deleteFee(id){ if(!confirm('Delete fee record?')) return; DATA.fees = (DATA.fees||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('fees'); }
+
+    function addDownload(){ const title = prompt('Title:'); if(!title) return; const url = prompt('File URL:'); DATA.downloads = DATA.downloads||[]; DATA.downloads.unshift({id: uid('d'), title, url}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('downloads'); }
+    function deleteDownload(id){ if(!confirm('Delete download?')) return; DATA.downloads = (DATA.downloads||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('downloads'); }
+
+    // utility functions
+    function uid(prefix){ return prefix + Math.random().toString(36).slice(2,9); }
+    function escapeHtml(s){ if(s==null) return ''; return String(s).replace(/[&<>\"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+
+    // delete helpers reference for earlier attached listeners
+    function deleteEvent(id){ if(!confirm('Delete?')){return;} DATA.events = (DATA.events||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('events'); }
+
+    // initial render manage (call after auth)
+    // expose functions
+    window.MKPS_ADMIN = { loadData: ()=> loadData(), saveData: ()=> saveData(DATA) };
+
+  })();
+  </script></body>
 </html>
