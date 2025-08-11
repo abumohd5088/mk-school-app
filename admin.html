@@ -1,330 +1,1055 @@
-<!doctype html>
-
+```html
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MKPS — Admin Panel</title>
-  <meta name="description" content="Admin panel for Milli Karwaan Public School (local demo)." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;}
-    .muted{color:#6b7280}
-    pre {white-space:pre-wrap;word-break:break-word}
-    .hidden-row{display:none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milli Karwaan Public School Balrampur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3a6e;
+            --secondary: #ffc107;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), #2c5282);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            margin: 0 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26, 58, 110, 0.8), rgba(26, 58, 110, 0.9)), url('https://placehold.co/1920x600/1a3a6e/ffffff?text=Milli+Karwaan+Public+School') no-repeat center center/cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background: white;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .about-img {
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .teacher-card {
+            text-align: center;
+        }
+        
+        .teacher-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 0 auto 15px;
+        }
+        
+        .teacher-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin: 10px 0 5px;
+        }
+        
+        .teacher-role {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-title {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+        
+        .student-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(26, 58, 110, 0.25);
+        }
+        
+        .welcome-section {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .subject-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .subject-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .subject-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .homework-card {
+            border-left: 4px solid var(--secondary);
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .homework-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .homework-subject {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .back-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #2c5282;
+            transform: translateY(-2px);
+        }
+
+        .announcement {
+            background: linear-gradient(135deg, #ffc107, #ff8f00);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .announcement h5 {
+            margin-bottom: 5px;
+            color: #1a1a1a;
+        }
+
+        .announcement p {
+            margin-bottom: 0;
+            color: #1a1a1a;
+        }
+
+        .time-display {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-  <div class="max-w-7xl mx-auto p-6">
-    <header class="flex items-center justify-between mb-6">
-      <div class="flex items-center gap-4">
-        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="MKPS" class="w-14 h-14 rounded-lg" />
-        <div>
-          <h1 class="text-2xl font-bold">MKPS — Local Admin</h1>
-          <div class="text-sm muted">Edit site data stored in localStorage (client-side demo)</div>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>Milli Karwaan Public School
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="home-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#academics">Academics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#teachers">Teachers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="flex items-center gap-3">
-        <div class="text-sm muted">Storage key: <code id="storageKey" class="bg-white px-2 py-1 rounded-md shadow-sm">MKPS_FULL_DATA_v1</code></div>
-        <button id="logoutBtn" class="px-4 py-2 bg-red-500 text-white rounded-lg">Logout</button>
-      </div>
-    </header><!-- Auth screen -->
-<div id="authScreen" class="bg-white rounded-xl shadow p-6 max-w-xl mx-auto">
-  <h2 class="text-lg font-semibold mb-2">Admin login</h2>
-  <p class="muted text-sm mb-4">Enter the admin password to edit site content. (Demo password: <code>Abutalha</code>)</p>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-    <input id="adminPwd" type="password" placeholder="Admin password" class="p-3 border rounded" />
-    <div class="flex gap-2">
-      <button id="authBtn" class="px-4 py-3 bg-green-600 text-white rounded">Sign In</button>
-      <button id="loadDefault" class="px-4 py-3 border rounded">Load Default Demo</button>
-    </div>
-  </div>
-</div>
+    </nav>
 
-<!-- Admin UI (hidden until auth) -->
-<div id="adminUI" class="hidden">
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-    <div class="col-span-2 bg-white p-4 rounded-xl shadow">
-      <h3 class="font-semibold">Quick tools</h3>
-      <div class="flex flex-wrap gap-3 mt-3">
-        <button id="btnExport" class="px-3 py-2 bg-indigo-600 text-white rounded"><i class="fas fa-file-export"></i> Export JSON</button>
-        <button id="btnImport" class="px-3 py-2 border rounded"><i class="fas fa-file-import"></i> Import JSON</button>
-        <button id="btnAddNotice" class="px-3 py-2 bg-yellow-500 text-white rounded"><i class="fas fa-bullhorn"></i> Add Notice</button>
-        <button id="btnAddHw" class="px-3 py-2 bg-green-600 text-white rounded"><i class="fas fa-book"></i> Add Homework</button>
-        <button id="btnAddEvent" class="px-3 py-2 bg-pink-600 text-white rounded"><i class="fas fa-calendar-plus"></i> Add Event</button>
-        <button id="btnReset" class="px-3 py-2 border rounded text-red-600"><i class="fas fa-eraser"></i> Reset to Default</button>
-      </div>
-
-      <div class="mt-4">
-        <h4 class="font-medium">Raw JSON editor</h4>
-        <textarea id="rawEditor" class="w-full h-56 p-3 border rounded mt-2 font-mono text-sm"></textarea>
-        <div class="flex gap-2 mt-3">
-          <button id="saveRaw" class="px-4 py-2 bg-indigo-600 text-white rounded">Save to localStorage</button>
-          <button id="downloadRaw" class="px-4 py-2 border rounded">Download JSON</button>
-          <button id="refreshRaw" class="px-4 py-2 border rounded">Refresh from Storage</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to Milli Karwaan Public School</h1>
+            <p>Excellence in Education Since 2005 - Shaping Future Leaders with Quality Education and Values</p>
+            <button class="btn btn-primary" id="get-started-btn">Get Started</button>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <aside class="bg-white p-4 rounded-xl shadow">
-      <h4 class="font-semibold">Site preview</h4>
-      <div class="text-xs muted mt-2">Basic preview of key counts</div>
-      <div class="mt-3 grid grid-cols-2 gap-2">
-        <div class="p-3 bg-gray-50 rounded">
-          <div class="text-sm muted">Students</div>
-          <div id="previewStudents" class="text-lg font-bold">0</div>
+    <!-- Student Registration Form -->
+    <section id="registration" class="py-5">
+        <div class="container">
+            <div class="student-form">
+                <h3 class="form-title"><i class="fas fa-user-graduate me-2"></i>Student Information</h3>
+                <div class="mb-3">
+                    <label for="studentName" class="form-label">Student Name</label>
+                    <input type="text" class="form-control" id="studentName" placeholder="Enter your full name">
+                </div>
+                <div class="mb-3">
+                    <label for="studentClass" class="form-label">Class</label>
+                    <select class="form-control" id="studentClass">
+                        <option value="">Select Class</option>
+                        <option value="1">Class 1</option>
+                        <option value="2">Class 2</option>
+                        <option value="3">Class 3</option>
+                        <option value="4">Class 4</option>
+                        <option value="5">Class 5</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="parentName" class="form-label">Parent/Guardian Name</label>
+                    <input type="text" class="form-control" id="parentName" placeholder="Enter parent/guardian name">
+                </div>
+                <button class="btn btn-primary w-100" id="submit-form">Continue to Dashboard</button>
+            </div>
         </div>
-        <div class="p-3 bg-gray-50 rounded">
-          <div class="text-sm muted">Homework items</div>
-          <div id="previewHw" class="text-lg font-bold">0</div>
+    </section>
+
+    <!-- Welcome & Dashboard Section -->
+    <section id="welcome-section" class="welcome-section py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><span id="greeting"></span> <span id="display-name"></span>!</h2>
+                <button class="back-btn" id="back-to-form"><i class="fas fa-arrow-left me-1"></i> Change Student</button>
+            </div>
+
+            <div class="time-display">
+                <i class="far fa-clock me-2"></i><span id="current-time"></span>
+            </div>
+
+            <!-- Announcements -->
+            <div class="announcement">
+                <h5><i class="fas fa-bullhorn me-2"></i>Important Announcement</h5>
+                <p>Annual Day Celebration will be held on 15th March 2024. All students are requested to participate in the preparations.</p>
+            </div>
+
+            <div class="announcement">
+                <h5><i class="fas fa-calendar-alt me-2"></i>Upcoming Events</h5>
+                <p>Science Exhibition - 25th February 2024 | Parent-Teacher Meeting - 5th March 2024</p>
+            </div>
+
+            <!-- Class Specific Dashboard -->
+            <div id="class-dashboard">
+                <h3 class="mb-4"><i class="fas fa-book-open me-2"></i>My Subjects</h3>
+                <div class="row" id="subject-cards">
+                    <!-- Subjects will be populated based on class -->
+                </div>
+
+                <h3 class="mt-5 mb-4"><i class="fas fa-tasks me-2"></i>Recent Homework</h3>
+                <div id="homework-list">
+                    <!-- Homework will be populated based on class -->
+                </div>
+            </div>
         </div>
-        <div class="p-3 bg-gray-50 rounded">
-          <div class="text-sm muted">Notices</div>
-          <div id="previewNotices" class="text-lg font-bold">0</div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title">About Our School</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://placehold.co/600x400/1a3a6e/ffffff?text=School+Building" alt="School Building" class="img-fluid about-img">
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <h3>Excellence in Education</h3>
+                    <p>Milli Karwaan Public School, established in 2005, is committed to providing quality education that combines academic excellence with moral values. Our mission is to nurture young minds and prepare them to become responsible citizens and future leaders.</p>
+                    <p>Located in Balrampur near Police Chowki, our school provides a safe and conducive learning environment with modern facilities and experienced faculty members.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>
+                                    <h5>Quality Education</h5>
+                                    <p>CBSE Curriculum with modern teaching methods</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>
+                                    <h5>Experienced Faculty</h5>
+                                    <p>Dedicated teachers with specialized training</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>
+                                    <h5>Safe Environment</h5>
+                                    <p>Secure campus with proper supervision</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>
+                                    <h5>Modern Facilities</h5>
+                                    <p>Smart classrooms and science labs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="p-3 bg-gray-50 rounded">
-          <div class="text-sm muted">Events</div>
-          <div id="previewEvents" class="text-lg font-bold">0</div>
+    </section>
+
+    <!-- Academics Section -->
+    <section id="academics" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Academic Programs</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-atom me-2"></i>Science
+                        </div>
+                        <div class="card-body">
+                            <p class="feature-icon"><i class="fas fa-flask"></i></p>
+                            <p>Our science program emphasizes hands-on learning through experiments and practical applications. Students learn scientific concepts through observation, experimentation, and critical thinking.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Physics, Chemistry, Biology</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Science Labs</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Science Projects</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Science Exhibition</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-calculator me-2"></i>Mathematics
+                        </div>
+                        <div class="card-body">
+                            <p class="feature-icon"><i class="fas fa-square-root-alt"></i></p>
+                            <p>Our mathematics curriculum focuses on developing problem-solving skills and logical reasoning. We use innovative teaching methods to make mathematics engaging and accessible to all students.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Arithmetic, Algebra, Geometry</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Maths Lab</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Maths Olympiad</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Maths Games</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-language me-2"></i>Language
+                        </div>
+                        <div class="card-body">
+                            <p class="feature-icon"><i class="fas fa-book"></i></p>
+                            <p>Our language program develops reading, writing, speaking, and listening skills. We emphasize creative expression, comprehension, and effective communication in English and other languages.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>English, Hindi, Sanskrit</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Reading Program</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Debate & Elocution</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Story Telling</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </aside>
-  </div>
+    </section>
 
-  <!-- CRUD Tabs -->
-  <div class="bg-white p-4 rounded-xl shadow">
-    <div class="flex items-center justify-between">
-      <h3 class="font-semibold">Manage Content</h3>
-      <div class="flex items-center gap-2">
-        <select id="manageSelect" class="p-2 border rounded">
-          <option value="homework">Homework</option>
-          <option value="announcements">Notices</option>
-          <option value="events">Events</option>
-          <option value="gallery">Gallery</option>
-          <option value="videos">Videos</option>
-          <option value="timetable">Timetable</option>
-          <option value="teachers">Teachers</option>
-          <option value="achievements">Achievements</option>
-          <option value="attendance">Attendance</option>
-          <option value="fees">Fees</option>
-          <option value="downloads">Downloads</option>
-        </select>
-        <button id="btnNewItem" class="px-3 py-2 bg-green-600 text-white rounded">New Item</button>
-      </div>
-    </div>
+    <!-- Teachers Section -->
+    <section id="teachers" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Our Dedicated Teachers</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="card teacher-card">
+                        <img src="https://placehold.co/150x150/1a3a6e/ffffff?text=Mr.+Sharma" alt="Teacher" class="teacher-img">
+                        <div class="card-body">
+                            <h5 class="teacher-name">Mr. Rajesh Sharma</h5>
+                            <p class="teacher-role">Principal</p>
+                            <p>20+ years of experience in education leadership</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card teacher-card">
+                        <img src="https://placehold.co/150x150/1a3a6e/ffffff?text=Mrs.+Verma" alt="Teacher" class="teacher-img">
+                        <div class="card-body">
+                            <h5 class="teacher-name">Mrs. Anjali Verma</h5>
+                            <p class="teacher-role">Vice Principal</p>
+                            <p>Specialist in Mathematics Education</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card teacher-card">
+                        <img src="https://placehold.co/150x150/1a3a6e/ffffff?text=Mr.+Singh" alt="Teacher" class="teacher-img">
+                        <div class="card-body">
+                            <h5 class="teacher-name">Mr. Vikram Singh</h5>
+                            <p class="teacher-role">Science Head</p>
+                            <p>Expert in Physics and Chemistry</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card teacher-card">
+                        <img src="https://placehold.co/150x150/1a3a6e/ffffff?text=Mrs.+Patel" alt="Teacher" class="teacher-img">
+                        <div class="card-body">
+                            <h5 class="teacher-name">Mrs. Meena Patel</h5>
+                            <p class="teacher-role">English Head</p>
+                            <p>Literature and Language Specialist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div id="manageList" class="mt-4 grid gap-3"></div>
-  </div>
-</div>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">School Gallery</h2>
+            <div class="row">
+                <div class="col-md-4 col-6 mb-4">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Classroom" alt="Classroom" class="gallery-img">
+                </div>
+                <div class="col-md-4 col-6 mb-4">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Science+Lab" alt="Science Lab" class="gallery-img">
+                </div>
+                <div class="col-md-4 col-6 mb-4">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Library" alt="Library" class="gallery-img">
+                </div>
+                <div class="col-md-4 col-6 mb-4">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Sports+Day" alt="Sports Day" class="gallery-img">
+                </div>
+                <div class="col-md-4 col-6 mb-4">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Cultural+Event" alt="Cultural Event" class="gallery-img">
+                </div>
+                <div class="col-md-4 col-6 mb-4">
+                    <img src="https://placehold.co/300x200/1a3a6e/ffffff?text=Annual+Day" alt="Annual Day" class="gallery-img">
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer class="mt-8 text-sm muted">This admin panel edits the local demo data only (no server). Use Export / Import to move data between devices.</footer>
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Address</h5>
+                                <p>Bolhua Police Chowki, Balrampur, Uttar Pradesh, India</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>+91 9758919151</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p>principal@millikarwaan.edu.in</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Working Hours</h5>
+                                <p>Monday - Saturday: 8:00 AM - 3:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <h4>Send us a Message</h4>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email">
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" placeholder="Your Phone">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </div>  <script>
-  (function(){
-    const STORAGE_KEY = 'MKPS_FULL_DATA_v1';
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="footer-title">Milli Karwaan Public School</h5>
+                    <p>Providing quality education since 2005. Our mission is to nurture young minds and prepare them to become responsible citizens and future leaders.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#about">About Us</a>
+                        <a href="#academics">Academics</a>
+                        <a href="#teachers">Our Teachers</a>
+                        <a href="#gallery">Gallery</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="footer-title">Academic Classes</h5>
+                    <div class="footer-links">
+                        <a href="#">Nursery & KG</a>
+                        <a href="#">Class 1-5 (Primary)</a>
+                        <a href="#">Class 6-8 (Middle)</a>
+                        <a href="#">Class 9-10 (Secondary)</a>
+                        <a href="#">Class 11-12 (Senior Secondary)</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title">Important Notices</h5>
+                    <div class="footer-links">
+                        <a href="#">Admission Open 2024-25</a>
+                        <a href="#">Exam Schedule</a>
+                        <a href="#">Holiday List</a>
+                        <a href="#">Fee Structure</a>
+                        <a href="#">School Calendar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Milli Karwaan Public School Balrampur. All Rights Reserved.</p>
+                <p>Designed with <i class="fas fa-heart text-danger"></i> for Quality Education</p>
+            </div>
+        </div>
+    </footer>
 
-    // default demo used if user wants to reset
-    const DEFAULT = {
-      studentsCount: 1024,
-      homework: {
-        'Class 6': [{id:'h1',subject:'Mathematics',title:'Algebra Exercise',due:'2025-11-25',notes:'Solve Q1-10'}]
-      },
-      announcements: { 'Class 6': [{id:'n1',title:'Science Exhibition',date:'2025-12-10',body:'Bring models.'}] },
-      events: [{id:'e1',title:'Annual Sports Day',date:'2025-12-06'}],
-      gallery: ['https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'],
-      videos: [{id:'v1',title:'Welcome to MKPS',url:'https://www.youtube.com/embed/dQw4w9WgXcQ'}],
-      timetable: { 'Class 6': [{day:'Mon',time:'8:00-9:00',subject:'Mathematics'}] },
-      teachers: [{id:'t1',name:'Mrs. Sharma',subject:'Mathematics',note:'Senior teacher'}],
-      achievements: [{id:'a1',title:'Science Olympiad - 2nd Position',date:'2025-09-15'}],
-      attendance: {'Class 6':{present:28,total:30}},
-      fees: [{id:'f1',studentName:'Demo Student',class:'Class 6',amount:15000,status:'unpaid'}],
-      downloads: [{id:'d1',title:'Math Notes - Chapter 5',url:'#'}]
-    };
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample homework data for different classes
+        const homeworkData = {
+            '1': [
+                { subject: 'English', title: 'Practice writing alphabets A to E', date: 'Feb 15, 2024', details: 'Write each alphabet 5 times in your notebook with proper formation.' },
+                { subject: 'Mathematics', title: 'Counting 1 to 20', date: 'Feb 15, 2024', details: 'Practice counting numbers 1 to 20 and write them in your notebook.' },
+                { subject: 'EVS', title: 'Draw your family', date: 'Feb 16, 2024', details: 'Draw a picture of your family members and color it nicely.' }
+            ],
+            '2': [
+                { subject: 'English', title: 'Reading comprehension - The Little Puppy', date: 'Feb 15, 2024', details: 'Read the story on page 45 and answer questions 1-5 in your notebook.' },
+                { subject: 'Mathematics', title: 'Addition sums 1-100', date: 'Feb 15, 2024', details: 'Complete exercise 3.2 on addition of two-digit numbers.' },
+                { subject: 'EVS', title: 'Plants around us', date: 'Feb 16, 2024', details: 'List 5 plants you see around your house and draw one of them.' }
+            ],
+            '3': [
+                { subject: 'English', title: 'Paragraph writing - My School', date: 'Feb 15, 2024', details: 'Write a paragraph of 8-10 sentences about your school and what you like about it.' },
+                { subject: 'Mathematics', title: 'Multiplication tables 2-10', date: 'Feb 15, 2024', details: 'Practice multiplication tables from 2 to 10 and write them 3 times each.' },
+                { subject: 'Science', title: 'Parts of a plant', date: 'Feb 16, 2024', details: 'Draw and label the parts of a plant in your science notebook.' }
+            ],
+            '4': [
+                { subject: 'English', title: 'Letter writing - To your friend', date: 'Feb 15, 2024', details: 'Write a letter to your friend describing your last weekend activities.' },
+                { subject: 'Mathematics', title: 'Division sums', date: 'Feb 15, 2024', details: 'Complete exercise 4.3 on division of 3-digit numbers by 1-digit numbers.' },
+                { subject: 'Science', title: 'States of matter', date: 'Feb 16, 2024', details: 'List 5 examples each of solids, liquids, and gases around your home.' }
+            ],
+            '5': [
+                { subject: 'English', title: 'Story writing - The Magic Pencil', date: 'Feb 15, 2024', details: 'Write a creative story of 150-200 words using the title "The Magic Pencil".' },
+                { subject: 'Mathematics', title: 'Fractions practice', date: 'Feb 15, 2024', details: 'Complete the worksheet on addition and subtraction of fractions.' },
+                { subject: 'Science', title: 'Human digestive system', date: 'Feb 16, 2024', details: 'Draw and label the human digestive system in your science notebook.' }
+            ],
+            '6': [
+                { subject: 'English', title: 'Essay - Importance of Trees', date: 'Feb 15, 2024', details: 'Write an essay of 250 words on the importance of trees in our lives.' },
+                { subject: 'Mathematics', title: 'Algebraic expressions', date: 'Feb 15, 2024', details: 'Solve exercise 10.2 on simplification of algebraic expressions.' },
+                { subject: 'Science', title: 'Electric circuits', date: 'Feb 16, 2024', details: 'Draw a simple electric circuit with battery, wire, and bulb. Explain how it works.' }
+            ],
+            '7': [
+                { subject: 'English', title: 'Report writing - School Annual Day', date: 'Feb 15, 2024', details: 'Write a report on the school annual day celebration in about 300 words.' },
+                { subject: 'Mathematics', title: 'Triangles and properties', date: 'Feb 15, 2024', details: 'Prove the angle sum property of triangles and solve related problems.' },
+                { subject: 'Science', title: 'Acids, bases and salts', date: 'Feb 16, 2024', details: 'Prepare a chart showing common acids, bases and salts with their chemical formulas.' }
+            ],
+            '8': [
+                { subject: 'English', title: 'Debate - Social media: Boon or Bane', date: 'Feb 15, 2024', details: 'Prepare points for and against the motion "Social media: Boon or Bane" for class debate.' },
+                { subject: 'Mathematics', title: 'Comparing quantities', date: 'Feb 15, 2024', details: 'Solve problems on percentage, profit and loss, and simple interest from chapter 8.' },
+                { subject: 'Science', title: 'Pollution of air and water', date: 'Feb 16, 2024', details: 'Collect information about air and water pollution in your area and suggest solutions.' }
+            ]
+        };
 
-    function loadData(){ try{ const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT)); } catch(e){ console.error(e); return JSON.parse(JSON.stringify(DEFAULT)); } }
-    function saveData(d){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }catch(e){ console.error(e); } }
+        // Subject data for different classes
+        const subjectsData = {
+            '1': [
+                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
+                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
+                { name: 'EVS', icon: 'fas fa-tree', color: '#36b9cc' },
+                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' }
+            ],
+            '2': [
+                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
+                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
+                { name: 'EVS', icon: 'fas fa-tree', color: '#36b9cc' },
+                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' }
+            ],
+            '3': [
+                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
+                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
+                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
+                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
+                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
+            ],
+            '4': [
+                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
+                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
+                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
+                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
+                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
+            ],
+            '5': [
+                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
+                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
+                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
+                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
+                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
+            ],
+            '6': [
+                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
+                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
+                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
+                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
+                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
+            ],
+            '7': [
+                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
+                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
+                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
+                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
+                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
+            ],
+            '8': [
+                { name: 'English', icon: 'fas fa-book', color: '#4e73df' },
+                { name: 'Mathematics', icon: 'fas fa-calculator', color: '#1cc88a' },
+                { name: 'Science', icon: 'fas fa-flask', color: '#36b9cc' },
+                { name: 'Hindi', icon: 'fas fa-language', color: '#f6c23e' },
+                { name: 'Social Science', icon: 'fas fa-globe', color: '#e74a3b' }
+            ]
+        };
 
-    let DATA = loadData();
+        // DOM Elements
+        const getStartedBtn = document.getElementById('get-started-btn');
+        const submitForm = document.getElementById('submit-form');
+        const registrationSection = document.getElementById('registration');
+        const welcomeSection = document.getElementById('welcome-section');
+        const displayName = document.getElementById('display-name');
+        const greeting = document.getElementById('greeting');
+        const backToForm = document.getElementById('back-to-form');
+        const subjectCards = document.getElementById('subject-cards');
+        const homeworkList = document.getElementById('homework-list');
+        const currentTime = document.getElementById('current-time');
+        const homeLink = document.getElementById('home-link');
 
-    // elements
-    const authScreen = document.getElementById('authScreen');
-    const adminUI = document.getElementById('adminUI');
-    const rawEditor = document.getElementById('rawEditor');
-    const previewStudents = document.getElementById('previewStudents');
-    const previewHw = document.getElementById('previewHw');
-    const previewNotices = document.getElementById('previewNotices');
-    const previewEvents = document.getElementById('previewEvents');
-    const storageKeyEl = document.getElementById('storageKey');
+        // Show current time
+        function updateTime() {
+            const now = new Date();
+            currentTime.textContent = now.toLocaleString();
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
 
-    storageKeyEl.textContent = STORAGE_KEY;
-
-    // auth
-    document.getElementById('authBtn').addEventListener('click', ()=>{
-      const v = document.getElementById('adminPwd').value || '';
-      if(String(v) === 'Abutalha'){
-        authScreen.style.display = 'none'; adminUI.classList.remove('hidden'); mountAdmin();
-      } else alert('Wrong password');
-    });
-
-    document.getElementById('loadDefault').addEventListener('click', ()=>{
-      if(confirm('Load default demo data? This will overwrite local data.')){ DATA = JSON.parse(JSON.stringify(DEFAULT)); saveData(DATA); rawEditor.value = JSON.stringify(DATA, null, 2); alert('Default loaded'); }
-    });
-
-    document.getElementById('logoutBtn').addEventListener('click', ()=> location.reload());
-
-    // export/import
-    document.getElementById('btnExport').addEventListener('click', ()=> downloadJSON());
-    document.getElementById('btnImport').addEventListener('click', ()=> importJSON());
-
-    document.getElementById('saveRaw').addEventListener('click', ()=>{
-      try{ const parsed = JSON.parse(rawEditor.value); DATA = parsed; saveData(DATA); renderPreview(); alert('Saved to localStorage'); }
-      catch(e){ alert('Invalid JSON'); }
-    });
-
-    document.getElementById('downloadRaw').addEventListener('click', ()=> downloadJSON());
-    document.getElementById('refreshRaw').addEventListener('click', ()=>{ DATA = loadData(); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); alert('Refreshed from storage'); });
-
-    function downloadJSON(){ const blob = new Blob([JSON.stringify(DATA,null,2)], {type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mkps-data.json'; document.body.appendChild(a); a.click(); a.remove(); }
-    function importJSON(){ const ip = document.createElement('input'); ip.type='file'; ip.accept='.json'; ip.onchange = ()=>{ const f=ip.files[0]; if(!f) return; const r=new FileReader(); r.onload = ()=>{ try{ const parsed = JSON.parse(r.result); DATA = parsed; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); alert('Imported'); }catch(e){ alert('Invalid JSON'); } }; r.readAsText(f); }; ip.click(); }
-
-    document.getElementById('btnAddNotice').addEventListener('click', ()=> addNotice());
-    document.getElementById('btnAddHw').addEventListener('click', ()=> addHomework());
-    document.getElementById('btnAddEvent').addEventListener('click', ()=> addEvent());
-    document.getElementById('btnReset').addEventListener('click', ()=>{ if(confirm('Reset local data to default?')){ DATA = JSON.parse(JSON.stringify(DEFAULT)); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); alert('Reset'); } });
-
-    // manage list
-    const manageSelect = document.getElementById('manageSelect');
-    const manageList = document.getElementById('manageList');
-    document.getElementById('btnNewItem').addEventListener('click', ()=> newItem(manageSelect.value));
-    manageSelect.addEventListener('change', ()=> renderManage(manageSelect.value));
-
-    // initial mount
-    function mountAdmin(){ rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); renderManage(manageSelect.value); }
-
-    function renderPreview(){ previewStudents.textContent = DATA.studentsCount || 0; previewHw.textContent = Object.values(DATA.homework || {}).reduce((s,a)=> s + (a.length||0),0); previewNotices.textContent = Object.values(DATA.announcements || {}).reduce((s,a)=> s + (a.length||0),0); previewEvents.textContent = (DATA.events||[]).length; }
-
-    function renderManage(key){ manageList.innerHTML = '';
-      if(key === 'homework'){
-        // show classes and items
-        const hw = DATA.homework || {};
-        Object.keys(hw).forEach(cls => {
-          const wrap = document.createElement('div'); wrap.className='p-3 border rounded mb-3';
-          wrap.innerHTML = `<div class="flex items-center justify-between"><div><strong>${cls}</strong> <span class="muted text-sm">(${hw[cls].length})</span></div></div>`;
-          hw[cls].forEach(item=>{
-            const it = document.createElement('div'); it.className='mt-2 p-2 bg-gray-50 rounded flex justify-between items-start';
-            it.innerHTML = `<div><div class="font-semibold">${escapeHtml(item.subject)} — ${escapeHtml(item.title)}</div><div class="text-xs muted">${escapeHtml(item.notes)}</div></div>
-              <div class="flex flex-col gap-2"><button data-id="${item.id}" data-cls="${cls}" class="edit-hw px-3 py-1 bg-indigo-600 text-white rounded text-sm">Edit</button><button data-id="${item.id}" data-cls="${cls}" class="del-hw px-3 py-1 border rounded text-sm">Delete</button></div>`;
-            wrap.appendChild(it);
-          });
-          manageList.appendChild(wrap);
+        // Get started button click
+        getStartedBtn.addEventListener('click', () => {
+            document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
         });
-        // attach handlers
-        $$('.edit-hw').forEach(b=> b.addEventListener('click', ()=> editHomework(b.dataset.cls, b.dataset.id)));
-        $$('.del-hw').forEach(b=> b.addEventListener('click', ()=> deleteHomework(b.dataset.cls, b.dataset.id)));
-      }
-      else if(key === 'announcements'){
-        const arrs = DATA.announcements || {};
-        Object.keys(arrs).forEach(cls=>{
-          const wrap = document.createElement('div'); wrap.className='p-3 border rounded mb-3'; wrap.innerHTML = `<div class="flex items-center justify-between"><div><strong>${cls}</strong> <span class="muted text-sm">(${arrs[cls].length})</span></div></div>`;
-          arrs[cls].forEach(n=>{ const it = document.createElement('div'); it.className='mt-2 p-2 bg-gray-50 rounded flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(n.title)}</div><div class="text-xs muted">${escapeHtml(n.date)}</div><div class="text-xs mt-1">${escapeHtml(n.body)}</div></div><div class="flex flex-col gap-2"><button data-id="${n.id}" data-cls="${cls}" class="edit-ann px-3 py-1 bg-indigo-600 text-white rounded text-sm">Edit</button><button data-id="${n.id}" data-cls="${cls}" class="del-ann px-3 py-1 border rounded text-sm">Delete</button></div>`; wrap.appendChild(it); }); manageList.appendChild(wrap);
+
+        // Submit form
+        submitForm.addEventListener('click', () => {
+            const studentName = document.getElementById('studentName').value;
+            const studentClass = document.getElementById('studentClass').value;
+            const parentName = document.getElementById('parentName').value;
+
+            if (!studentName || !studentClass || !parentName) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Set greeting based on time
+            const hour = new Date().getHours();
+            if (hour < 12) {
+                greeting.textContent = 'Good Morning';
+            } else if (hour < 17) {
+                greeting.textContent = 'Good Afternoon';
+            } else {
+                greeting.textContent = 'Good Evening';
+            }
+
+            // Display student info
+            displayName.textContent = studentName;
+            
+            // Show welcome section
+            registrationSection.style.display = 'none';
+            welcomeSection.style.display = 'block';
+            welcomeSection.scrollIntoView({ behavior: 'smooth' });
+
+            // Populate subjects based on class
+            populateSubjects(studentClass);
+            
+            // Populate homework based on class
+            populateHomework(studentClass);
         });
-        $$('.edit-ann').forEach(b=> b.addEventListener('click', ()=> editNotice(b.dataset.cls,b.dataset.id)));
-        $$('.del-ann').forEach(b=> b.addEventListener('click', ()=> deleteNotice(b.dataset.cls,b.dataset.id)));
-      }
-      else if(key === 'events'){
-        (DATA.events||[]).forEach(ev => {
-          const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(ev.title)}</div><div class="text-xs muted">${escapeHtml(ev.date)}</div></div><div class="flex gap-2"><button data-id="${ev.id}" class="edit-ev px-3 py-1 bg-indigo-600 text-white rounded text-sm">Edit</button><button data-id="${ev.id}" class="del-ev px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it);
-        }); $$('.edit-ev').forEach(b=> b.addEventListener('click', ()=> editEvent(b.dataset.id))); $$('.del-ev').forEach(b=> b.addEventListener('click', ()=> deleteEvent(b.dataset.id)));
-      }
-      else if(key === 'gallery'){
-        (DATA.gallery||[]).forEach((g, idx)=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex items-center gap-3'; it.innerHTML = `<img src="${escapeHtml(g)}" class="w-20 h-12 object-cover rounded" /><div class="flex-1 text-sm">${escapeHtml(g)}</div><div class="flex gap-2"><button data-idx="${idx}" class="del-img px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-img').forEach(b=> b.addEventListener('click', ()=> deleteImage(parseInt(b.dataset.idx))));
-      }
-      else if(key === 'videos'){
-        (DATA.videos||[]).forEach(v=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(v.title)}</div><div class="text-xs muted">${escapeHtml(v.url)}</div></div><div class="flex gap-2"><button data-id="${v.id}" class="del-video px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-video').forEach(b=> b.addEventListener('click', ()=> deleteVideo(b.dataset.id)));
-      }
-      else if(key === 'timetable'){
-        Object.keys(DATA.timetable||{}).forEach(cls=>{ const wrap = document.createElement('div'); wrap.className='p-3 border rounded mb-3'; wrap.innerHTML = `<div class="font-semibold">${cls}</div>`; (DATA.timetable[cls]||[]).forEach(tt=>{ const it = document.createElement('div'); it.className='mt-2 p-2 bg-gray-50 rounded flex justify-between items-center'; it.innerHTML = `<div class="text-sm">${escapeHtml(tt.day)} • ${escapeHtml(tt.time)} • ${escapeHtml(tt.subject)}</div><div class="flex gap-2"><button data-cls="${cls}" data-day="${tt.day}" class="del-tt px-3 py-1 border rounded text-sm">Delete</button></div>`; wrap.appendChild(it); }); manageList.appendChild(wrap); }); $$('.del-tt').forEach(b=> b.addEventListener('click', ()=> deleteTimetable(b.dataset.cls, b.dataset.day)));
-      }
-      else if(key === 'teachers'){
-        (DATA.teachers||[]).forEach(t=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(t.name)}</div><div class="text-xs muted">${escapeHtml(t.subject)}</div><div class="text-xs mt-1">${escapeHtml(t.note||'')}</div></div><div class="flex gap-2"><button data-id="${t.id}" class="del-t px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-t').forEach(b=> b.addEventListener('click', ()=> deleteTeacher(b.dataset.id)));
-      }
-      else if(key === 'achievements'){
-        (DATA.achievements||[]).forEach(a=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(a.title)}</div><div class="text-xs muted">${escapeHtml(a.date)}</div></div><div class="flex gap-2"><button data-id="${a.id}" class="del-ach px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-ach').forEach(b=> b.addEventListener('click', ()=> deleteAchievement(b.dataset.id)));
-      }
-      else if(key === 'attendance'){
-        Object.keys(DATA.attendance||{}).forEach(cls=>{ const a = DATA.attendance[cls]; const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-center'; it.innerHTML = `<div><div class="font-semibold">${cls}</div><div class="text-xs muted">Present: ${a.present} / ${a.total}</div></div><div class="flex gap-2"><button data-cls="${cls}" class="edit-att px-3 py-1 bg-indigo-600 text-white rounded text-sm">Edit</button></div>`; manageList.appendChild(it); }); $$('.edit-att').forEach(b=> b.addEventListener('click', ()=> editAttendance(b.dataset.cls)));
-      }
-      else if(key === 'fees'){
-        (DATA.fees||[]).forEach(f=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(f.studentName)}</div><div class="text-xs muted">${escapeHtml(f.class)} • ₹${escapeHtml(f.amount)}</div></div><div class="flex gap-2"><button data-id="${f.id}" class="del-fee px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-fee').forEach(b=> b.addEventListener('click', ()=> deleteFee(b.dataset.id)));
-      }
-      else if(key === 'downloads'){
-        (DATA.downloads||[]).forEach(d=>{ const it = document.createElement('div'); it.className='p-3 border rounded mb-2 flex justify-between items-start'; it.innerHTML = `<div><div class="font-semibold">${escapeHtml(d.title)}</div><div class="text-xs muted">${escapeHtml(d.url)}</div></div><div class="flex gap-2"><button data-id="${d.id}" class="del-d px-3 py-1 border rounded text-sm">Delete</button></div>`; manageList.appendChild(it); }); $$('.del-d').forEach(b=> b.addEventListener('click', ()=> deleteDownload(b.dataset.id)));
-      }
-    }
 
-    /* ---------- CRUD helpers ---------- */
-    function newItem(kind){
-      if(kind === 'homework') addHomework();
-      else if(kind === 'announcements') addNotice();
-      else if(kind === 'events') addEvent();
-      else if(kind === 'gallery') addImage();
-      else if(kind === 'videos') addVideo();
-      else if(kind === 'timetable') addTimetable();
-      else if(kind === 'teachers') addTeacher();
-      else if(kind === 'achievements') addAchievement();
-      else if(kind === 'attendance') addAttendance();
-      else if(kind === 'fees') addFee();
-      else if(kind === 'downloads') addDownload();
-      setTimeout(()=> renderManage(manageSelect.value),200);
-    }
+        // Back to form
+        backToForm.addEventListener('click', () => {
+            welcomeSection.style.display = 'none';
+            registrationSection.style.display = 'block';
+            registrationSection.scrollIntoView({ behavior: 'smooth' });
+        });
 
-    function addHomework(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const sub = prompt('Subject:'); const title = prompt('Title:'); const due = prompt('Due (YYYY-MM-DD):'); const notes = prompt('Notes:'); DATA.homework = DATA.homework || {}; DATA.homework[cls] = DATA.homework[cls] || []; DATA.homework[cls].unshift({id: uid('h'), subject: sub, title, due, notes}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); }
-    function editHomework(cls,id){ const arr = DATA.homework[cls] || []; const it = arr.find(x=> x.id===id); if(!it) return alert('Not found'); const sub = prompt('Subject', it.subject); const title = prompt('Title', it.title); const due = prompt('Due', it.due); const notes = prompt('Notes', it.notes); it.subject=sub; it.title=title; it.due=due; it.notes=notes; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage(manageSelect.value); }
-    function deleteHomework(cls,id){ if(!confirm('Delete homework?')) return; DATA.homework[cls] = (DATA.homework[cls]||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage(manageSelect.value); }
+        // Home link
+        homeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (welcomeSection.style.display === 'block') {
+                welcomeSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
 
-    function addNotice(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const title = prompt('Title:'); const date = prompt('Date (YYYY-MM-DD):', new Date().toISOString().slice(0,10)); const body = prompt('Details:'); DATA.announcements = DATA.announcements || {}; DATA.announcements[cls] = DATA.announcements[cls] || []; DATA.announcements[cls].unshift({id: uid('n'), title, date, body}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); }
-    function editNotice(cls,id){ const arr = DATA.announcements[cls]||[]; const it = arr.find(x=> x.id===id); if(!it) return alert('Not found'); const title = prompt('Title',it.title); const date = prompt('Date',it.date); const body = prompt('Body',it.body); it.title=title; it.date=date; it.body=body; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('announcements'); }
-    function deleteNotice(cls,id){ if(!confirm('Delete notice?')) return; DATA.announcements[cls] = (DATA.announcements[cls]||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('announcements'); }
+        // Populate subjects
+        function populateSubjects(classLevel) {
+            subjectCards.innerHTML = '';
+            const subjects = subjectsData[classLevel] || subjectsData['1'];
+            
+            subjects.forEach(subject => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4';
+                col.innerHTML = `
+                    <div class="card subject-card" style="border-top: 4px solid ${subject.color}">
+                        <div class="card-body text-center">
+                            <div class="subject-icon" style="color: ${subject.color}">
+                                <i class="${subject.icon}"></i>
+                            </div>
+                            <h5>${subject.name}</h5>
+                            <p>Click to view resources and assignments</p>
+                        </div>
+                    </div>
+                `;
+                subjectCards.appendChild(col);
+            });
+        }
 
-    function addEvent(){ const title = prompt('Event title:'); if(!title) return; const date = prompt('Date:', new Date().toISOString().slice(0,10)); DATA.events = DATA.events || []; DATA.events.unshift({id: uid('e'), title, date}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); }
-    function editEvent(id){ const it = (DATA.events||[]).find(x=> x.id===id); if(!it) return alert('Not found'); const title = prompt('Title',it.title); const date = prompt('Date',it.date); it.title=title; it.date=date; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('events'); }
-    function deleteEvent(id){ if(!confirm('Delete event?')) return; DATA.events = (DATA.events||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('events'); }
+        // Populate homework
+        function populateHomework(classLevel) {
+            homeworkList.innerHTML = '';
+            const homework = homeworkData[classLevel] || homeworkData['1'];
+            
+            homework.forEach(hw => {
+                const hwCard = document.createElement('div');
+                hwCard.className = 'homework-card';
+                hwCard.innerHTML = `
+                    <div class="homework-date"><i class="far fa-calendar-alt me-1"></i>${hw.date}</div>
+                    <div class="homework-subject">${hw.subject}</div>
+                    <div class="homework-title">${hw.title}</div>
+                    <div class="homework-details">${hw.details}</div>
+                `;
+                homeworkList.appendChild(hwCard);
+            });
+        }
 
-    function addImage(){ const url = prompt('Image URL:'); if(!url) return; DATA.gallery = DATA.gallery || []; DATA.gallery.unshift(url); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderPreview(); }
-    function deleteImage(idx){ if(!confirm('Delete image?')) return; DATA.gallery.splice(idx,1); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('gallery'); }
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
-    function addVideo(){ const title = prompt('Title:'); if(!title) return; const url = prompt('Embed URL (youtube embed)'); DATA.videos = DATA.videos || []; DATA.videos.unshift({id: uid('v'), title, url}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('videos'); }
-    function deleteVideo(id){ if(!confirm('Delete video?')) return; DATA.videos = (DATA.videos||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('videos'); }
+        // Animation for section appearance
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
 
-    function addTimetable(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const day = prompt('Day (Mon/Tue):'); const time = prompt('Time (8:00-9:00):'); const subject = prompt('Subject:'); DATA.timetable = DATA.timetable||{}; DATA.timetable[cls] = DATA.timetable[cls] || []; DATA.timetable[cls].push({day,time,subject}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('timetable'); }
-    function deleteTimetable(cls,day){ if(!confirm('Delete timetable row?')) return; DATA.timetable[cls] = (DATA.timetable[cls]||[]).filter(x=> x.day!==day); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('timetable'); }
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
 
-    function addTeacher(){ const name = prompt('Name:'); if(!name) return; const subject = prompt('Subject:'); const note = prompt('Note:'); DATA.teachers = DATA.teachers || []; DATA.teachers.unshift({id: uid('t'), name, subject, note}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('teachers'); }
-    function deleteTeacher(id){ if(!confirm('Delete teacher?')) return; DATA.teachers = (DATA.teachers||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('teachers'); }
-
-    function addAchievement(){ const title = prompt('Title:'); if(!title) return; const date = prompt('Date:'); DATA.achievements = DATA.achievements||[]; DATA.achievements.unshift({id: uid('a'), title, date}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('achievements'); }
-    function deleteAchievement(id){ if(!confirm('Delete achievement?')) return; DATA.achievements = (DATA.achievements||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('achievements'); }
-
-    function addAttendance(){ const cls = prompt('Class (e.g. Class 6):'); if(!cls) return; const present = parseInt(prompt('Present:','0')||'0'); const total = parseInt(prompt('Total:','0')||'0'); DATA.attendance = DATA.attendance||{}; DATA.attendance[cls] = {present,total}; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('attendance'); }
-    function editAttendance(cls){ const a = DATA.attendance[cls]||{present:0,total:0}; const present = parseInt(prompt('Present:',a.present)||'0'); const total = parseInt(prompt('Total:',a.total)||'0'); DATA.attendance[cls] = {present,total}; saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('attendance'); }
-
-    function addFee(){ const studentName = prompt('Student name:'); if(!studentName) return; const cls = prompt('Class:'); const amount = parseInt(prompt('Amount:','0')||'0'); DATA.fees = DATA.fees||[]; DATA.fees.unshift({id: uid('f'), studentName, class: cls, amount, status: 'unpaid'}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('fees'); }
-    function deleteFee(id){ if(!confirm('Delete fee record?')) return; DATA.fees = (DATA.fees||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('fees'); }
-
-    function addDownload(){ const title = prompt('Title:'); if(!title) return; const url = prompt('File URL:'); DATA.downloads = DATA.downloads||[]; DATA.downloads.unshift({id: uid('d'), title, url}); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('downloads'); }
-    function deleteDownload(id){ if(!confirm('Delete download?')) return; DATA.downloads = (DATA.downloads||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('downloads'); }
-
-    // utility functions
-    function uid(prefix){ return prefix + Math.random().toString(36).slice(2,9); }
-    function escapeHtml(s){ if(s==null) return ''; return String(s).replace(/[&<>\"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
-
-    // delete helpers reference for earlier attached listeners
-    function deleteEvent(id){ if(!confirm('Delete?')){return;} DATA.events = (DATA.events||[]).filter(x=> x.id!==id); saveData(DATA); rawEditor.value = JSON.stringify(DATA,null,2); renderManage('events'); }
-
-    // initial render manage (call after auth)
-    // expose functions
-    window.MKPS_ADMIN = { loadData: ()=> loadData(), saveData: ()=> saveData(DATA) };
-
-  })();
-  </script></body>
+        // Initialize with registration visible
+        welcomeSection.style.display = 'none';
+    </script>
+</body>
 </html>
+```
