@@ -4,332 +4,317 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mili Karwaan Public School — Student Dashboard (Green‑Gold)</title>
-  <meta name="description" content="Mili Karwaan Public School student dashboard — homework, attendance, notices, gallery."/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <title>Mili Karwaan Public School — Official Website</title>
+  <meta name="description" content="Mili Karwaan Public School — Balrampur. Official site: Admissions, Academics, Facilities, Gallery, News & Contact."/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="theme-color" content="#065f46">
   <style>
+    /* ---------- Theme: Green-Gold Premium ---------- */
     :root{
-      --green-1:#0f766e; --green-2:#065f46; --gold:#f59e0b; --bg-start:#f6fffa; --bg-end:#ecfeff; --card:#ffffff; --muted:#6b7280; --maxw:1200px;
+      --g1:#0f766e; --g2:#065f46; --gold:#f59e0b; --muted:#6b7280; --card:#ffffff; --glass:rgba(255,255,255,0.85); --maxw:1200px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg-start),var(--bg-end));color:#042028}
-    .container{max-width:var(--maxw);margin:0 auto;padding:20px}/* HEADER */
-header.hero{display:flex;align-items:center;gap:18px;justify-content:space-between;padding:22px;border-radius:14px;background:linear-gradient(135deg,var(--green-1),var(--green-2));color:#fff}
-.brand{display:flex;align-items:center;gap:14px}
-.brand img{width:72px;height:72px;object-fit:contain;border-radius:12px;background:rgba(255,255,255,0.06);padding:6px}
-.brand h1{font-family:'Montserrat',sans-serif;font-size:1.4rem;margin-bottom:2px}
-.brand p{font-size:.95rem;opacity:.95}
-.header-actions{display:flex;gap:10px;align-items:center}
-.btn{background:transparent;border:2px solid rgba(255,255,255,0.14);color:#fff;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700}
-.btn.primary{background:linear-gradient(90deg,var(--gold),#d97706);color:#fff;border:none}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#f7fffb,#f0fdf4);color:#0b2a28}
+    a{color:inherit}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}/* NAVBAR */
+header{position:sticky;top:0;z-index:999;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:10px 0;box-shadow:0 6px 18px rgba(4,22,18,0.12)}
+.nav-inner{display:flex;align-items:center;gap:18px;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:56px;height:56px;border-radius:10px;border:2px solid rgba(255,255,255,0.12);background:#fff;padding:6px}
+.brand h1{font-family:'Montserrat',sans-serif;font-size:1.15rem;margin:0}
+nav ul{list-style:none;display:flex;gap:8px;margin:0;padding:0}
+nav a{display:inline-block;padding:10px 12px;border-radius:8px;color:rgba(255,255,255,0.95);font-weight:600;text-decoration:none}
+nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+.cta{background:linear-gradient(90deg,var(--gold),#d97706);padding:10px 14px;border-radius:10px;color:#10221a;font-weight:800}
 
-/* ENTRY */
-.entry-card{max-width:760px;margin:-36px auto 18px;background:var(--card);border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(2,6,23,0.08)}
-.entry-row{display:flex;gap:12px}
-input, select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e6f0ec;background:#fbfffe;font-weight:600}
-.ghost{background:transparent;border:1px solid #e6eef0;padding:10px 12px;border-radius:10px}
+/* HERO */
+.hero{padding:64px 0 40px;background-image:linear-gradient(180deg, rgba(4,32,27,0.12), rgba(255,255,255,0));}
+.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:34px;align-items:center}
+.hero-text h2{font-family:'Montserrat',sans-serif;font-size:2.2rem;margin:0 0 12px;color:var(--g2)}
+.hero-text p.lead{font-size:1.05rem;color:var(--muted);margin-bottom:18px}
+.hero-cta{display:flex;gap:12px}
+.stat-row{display:flex;gap:12px;margin-top:18px}
+.stat{background:linear-gradient(180deg,#fff,#fbfff8);padding:12px;border-radius:12px;box-shadow:0 10px 28px rgba(2,8,6,0.04);min-width:120px;text-align:center}
+.stat strong{display:block;font-size:1.4rem;color:var(--g2)}
 
-/* LAYOUT */
-.main-grid{display:grid;grid-template-columns:340px 1fr;gap:20px;margin-top:22px}
-.sidebar{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 16px 36px rgba(2,6,23,0.06)}
-.student-info{background:linear-gradient(135deg,#ecfdf5,#bbf7d0);padding:14px;border-radius:10px;text-align:center;margin-bottom:12px}
-.student-name{font-weight:800}
-.student-class{display:inline-block;margin-top:8px;padding:6px 12px;border-radius:999px;background:#fff;font-weight:700;color:var(--green-2)}
-.menu{list-style:none;margin-top:10px}
-.menu a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#042028;font-weight:600}
-.menu a.active{background:linear-gradient(90deg,#ecfdf5,#effaf0);transform:translateX(6px);border-left:4px solid var(--green-2)}
+.hero-card{background:linear-gradient(180deg,#fff,#fbfff8);padding:18px;border-radius:14px;box-shadow:0 18px 40px rgba(2,8,6,0.06)}
+.hero-card h3{margin:0 0 8px;color:var(--g2)}
+.hero-card p{margin:0;color:var(--muted)}
 
-.content{background:transparent}
-.card{background:var(--card);padding:16px;border-radius:12px;margin-bottom:14px;box-shadow:0 10px 24px rgba(2,6,23,0.06)}
-.section-title{display:flex;align-items:center;gap:12px;color:var(--green-2);font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:8px}
+/* SECTIONS */
+section{padding:42px 0}
+.section-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.section-head h3{margin:0;color:var(--g2);font-family:'Montserrat',sans-serif}
 
-.homework-list .item{background:#fbfffe;padding:12px;border-left:6px solid var(--gold);border-radius:8px;margin-bottom:10px;cursor:pointer;transition:transform .18s}
-.homework-list .item:hover{transform:translateY(-4px)}
-
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 12px 32px rgba(2,8,6,0.04)}
+.card h4{margin:0 0 8px;color:var(--g2)}
 .muted{color:var(--muted)}
 
-/* Gallery */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
-.thumb{height:90px;border-radius:8px;object-fit:cover;width:100%;cursor:pointer}
+/* FACILITIES */
+.facilities .icon{width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,#f7fff7,#f4fff3);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--g2);margin-bottom:10px}
 
-/* Modal */
-.modal{position:fixed;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(3,7,18,0.5);z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s}
+/* NEWS TICKER */
+.ticker{background:#f7fff7;border-left:4px solid var(--g2);padding:10px;border-radius:8px;overflow:hidden}
+.ticker-inner{display:inline-block;white-space:nowrap;animation:marquee 18s linear infinite}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.gallery-grid img{width:100%;height:120px;object-fit:cover;border-radius:10px;cursor:pointer}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+.contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f3ee;margin-bottom:10px}
+.contact-form button{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
+
+/* FOOTER */
+footer{background:linear-gradient(180deg,#062b25,#0a2f27);color:#cfeee3;padding:28px 0;margin-top:28px}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+footer a{color:#dff6e9}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(3,7,7,0.56);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s}
 .modal.open{opacity:1;pointer-events:auto}
-.modal-card{width:94%;max-width:760px;background:var(--card);border-radius:12px;padding:18px}
+.modal-card{background:#fff;border-radius:12px;max-width:940px;width:94%;padding:18px}
 
-/* FABs */
-.fab-row{position:fixed;right:20px;bottom:20px;display:flex;flex-direction:column;gap:12px;z-index:999}
-.fab{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;box-shadow:0 8px 24px rgba(2,6,23,.18);border:3px solid #fff}
-.fab.whatsapp{background:#25D366}
-.fab.call{background:#10B981}
-.fab.admin{background:#ef4444}
+/* Responsive */
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
+@media (max-width:560px){nav ul{display:none}.brand h1{font-size:.98rem}}
 
-/* responsive */
-@media (max-width:980px){.main-grid{grid-template-columns:1fr}.brand h1{font-size:1.1rem}.brand img{width:58px;height:58px}.entry-card{margin: -28px 12px 10px}}
-
-/* small helpers */
-.flex{display:flex;align-items:center;gap:8px}
-.right{margin-left:auto}
-.pill{padding:6px 10px;border-radius:999px;background:#f7f6ef;font-weight:700;color:var(--green-2)}
+/* back to top */
+.to-top{position:fixed;right:20px;bottom:20px;background:var(--g2);color:#fff;padding:12px;border-radius:10px;box-shadow:0 10px 30px rgba(2,8,6,0.2);display:none}
+.to-top.show{display:block}
 
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="hero" role="banner">
+  <!-- NAV -->
+  <header>
+    <div class="container nav-inner">
       <div class="brand">
-        <!-- USER LOGO inserted here -->
-        <img id="schoolLogo" src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="Mili Karwaan Logo" />
+        <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="Mili Karwaan Logo" onerror="this.src='https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'"/>
         <div>
           <h1>Mili Karwaan Public School</h1>
-          <p>Balrampur, Uttar Pradesh • +91 97589 19151</p>
+          <div style="font-size:.85rem;color:rgba(255,255,255,0.9)">Balrampur, Uttar Pradesh</div>
+        </div>
+      </div><nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#academics">Academics</a></li>
+      <li><a href="#facilities">Facilities</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li style="display:inline-block;margin-left:8px"><a class="cta" href="#admissions">Admissions</a></li>
+    </ul>
+  </nav>
+</div>
+
+  </header>  <!-- HERO -->  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h2>Shaping Minds, Building Futures — Mili Karwaan</h2>
+          <p class="lead">A modern campus focused on holistic development, academic excellence and character building. Admissions open for the new session.</p>
+          <div class="hero-cta">
+            <a class="cta" href="#admissions">Apply Now</a>
+            <a class="btn" href="#contact" style="background:#fff;padding:10px 12px;border-radius:10px;color:var(--g2);font-weight:700">Visit Campus</a>
+          </div><div class="stat-row">
+        <div class="stat"><strong class="counter" data-target="1200">0</strong><div class="muted">Students</div></div>
+        <div class="stat"><strong class="counter" data-target="78">0</strong><div class="muted">Teachers</div></div>
+        <div class="stat"><strong class="counter" data-target="45">0</strong><div class="muted">Awards</div></div>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <h3>Quick Links</h3>
+      <p class="muted">For parents & students — download prospectus, view timetable and check notices.</p>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <a class="btn" href="#notices"><i class="fas fa-bullhorn"></i> Notices</a>
+        <a class="btn" href="#gallery"><i class="fas fa-image"></i> Gallery</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container">
+  <div class="section-head">
+    <h3>About Us</h3>
+  </div>
+  <div class="card" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <div style="flex:1">
+      <h4>Our Vision</h4>
+      <p class="muted">To create a learning environment that empowers students to be responsible, creative, and resilient learners ready for a global future.</p>
+      <ul class="muted" style="margin-top:10px">
+        <li>CBSE-aligned curriculum with modern teaching methods</li>
+        <li>Emphasis on sports, arts and life skills</li>
+        <li>Safe campus & modern infrastructure</li>
+      </ul>
+    </div>
+    <div style="width:320px">
+      <img src="https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png" alt="school" style="width:100%;border-radius:10px;object-fit:cover"/>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMICS -->
+<section id="academics" class="container">
+  <div class="section-head"><h3>Academics</h3></div>
+  <div class="grid-3">
+    <div class="card"><h4>Curriculum</h4><p class="muted">Balanced approach with strong fundamentals in Maths, Science and Languages plus project-based learning.</p></div>
+    <div class="card"><h4>Assessment</h4><p class="muted">Periodic assessments, remedial support and continuous feedback for students.</p></div>
+    <div class="card"><h4>Co-curricular</h4><p class="muted">Clubs, sports, debating and arts for holistic development.</p></div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities" class="container facilities">
+  <div class="section-head"><h3>Facilities</h3></div>
+  <div class="grid-3">
+    <div class="card"><div class="icon"><i class="fas fa-chalkboard-teacher"></i></div><h4>Smart Classrooms</h4><p class="muted">Interactive learning with AV tools and modern seating.</p></div>
+    <div class="card"><div class="icon"><i class="fas fa-flask"></i></div><h4>Science Labs</h4><p class="muted">Well-equipped labs for practical learning.</p></div>
+    <div class="card"><div class="icon"><i class="fas fa-futbol"></i></div><h4>Sports Complex</h4><p class="muted">Playgrounds, coaching and annual sports meet.</p></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="container">
+  <div class="section-head"><h3>Gallery</h3></div>
+  <div class="card gallery-grid" id="galleryGrid">
+    <!-- JS will populate gallery thumbnails -->
+  </div>
+</section>
+
+<!-- NEWS / NOTICES -->
+<section id="news" class="container">
+  <div class="section-head"><h3>News & Notices</h3></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <div style="flex:1">
+      <div class="card ticker"><div class="ticker-inner" id="newsTicker">Loading notices... • Loading notices... • </div></div>
+      <div style="margin-top:12px" id="newsList"></div>
+    </div>
+    <aside style="width:320px">
+      <div class="card">
+        <h4>Upcoming Events</h4>
+        <ul id="eventsList" class="muted"></ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="container">
+  <div class="section-head"><h3>Contact & Admissions</h3></div>
+  <div class="card contact-grid">
+    <div>
+      <h4>Get in touch</h4>
+      <p class="muted">Call us or send a message for enquiries and admissions.</p>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+        <a class="cta" href="tel:+919758919151"><i class="fas fa-phone"></i> +91 97589 19151</a>
+        <a class="btn" href="mailto:madamsir066@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      </div>
+
+      <div style="margin-top:18px">
+        <form class="contact-form" id="contactForm">
+          <input id="cname" placeholder="Your name" required />
+          <input id="cemail" placeholder="Email or phone" required />
+          <textarea id="cmessage" rows="5" placeholder="Your message"></textarea>
+          <button type="submit">Send Enquiry</button>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <h4>Visit Us</h4>
+      <div style="height:220px;border-radius:10px;overflow:hidden">
+        <iframe style="border:0;width:100%;height:100%" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..." aria-hidden="false"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>  <!-- Footer -->  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4 style="color:#fff">Mili Karwaan Public School</h4>
+        <p class="muted">Baluha Police Chowki, Balrampur • Email: madamsir066@gmail.com</p>
+      </div>
+      <div>
+        <h4 style="color:#fff">Quick Links</h4>
+        <ul class="muted">
+          <li><a href="#admissions">Admissions</a></li>
+          <li><a href="#academics">Academics</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#fff">Follow</h4>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <a href="#" aria-label="facebook"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="#" aria-label="instagram"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="#" aria-label="youtube"><i class="fab fa-youtube fa-lg"></i></a>
         </div>
       </div>
-      <div class="header-actions">
-        <button class="btn" id="openGalleryBtn"><i class="fas fa-image"></i> Gallery</button>
-        <button class="btn" id="openNoticesBtn"><i class="fas fa-bullhorn"></i> Notices</button>
-        <button class="btn primary" id="openAdminBtn"><i class="fas fa-user-shield"></i> Admin</button>
-      </div>
-    </header><!-- AUTH / ENTRY -->
-<section class="entry-card" id="entryCard" aria-label="Student sign-in">
-  <div style="display:flex;gap:12px;align-items:end;flex-wrap:wrap">
-    <div style="flex:1">
-      <label for="studentName"><strong>Student's Full Name</strong></label>
-      <input id="studentName" type="text" placeholder="Enter student name" autocomplete="name" />
     </div>
-    <div style="width:180px">
-      <label for="studentClass"><strong>Class</strong></label>
-      <select id="studentClass">
-        <option value="">Select Class</option>
-        <option>Nursery</option>
-        <option>LKG</option>
-        <option>UKG</option>
-        <option>Class 1</option>
-        <option>Class 2</option>
-        <option>Class 3</option>
-        <option>Class 4</option>
-        <option>Class 5</option>
-        <option>Class 6</option>
-        <option>Class 7</option>
-        <option>Class 8</option>
-        <option>Class 9</option>
-        <option>Class 10</option>
-        <option>Class 11</option>
-        <option>Class 12</option>
-      </select>
-    </div>
-    <div style="width:160px">
-      <button id="accessBtn" class="btn primary">Access Dashboard</button>
-    </div>
-  </div>
-  <div style="display:flex;gap:8px;margin-top:12px">
-    <button id="demoBtn" class="btn">Use Demo Student</button>
-    <button id="clearBtn" class="btn">Clear Session</button>
-    <div class="right muted">Tip: Click any card to expand / edit (admin only)</div>
-  </div>
-</section>
+    <div style="text-align:center;padding-top:18px;color:#cfeee3">© Mili Karwaan Public School • All rights reserved</div>
+  </footer>  <!-- Modals / helpers -->  <div class="modal" id="modal"><div class="modal-card" id="modalCard"></div></div>
+  <button class="to-top" id="toTop" title="Back to top"><i class="fas fa-chevron-up"></i></button>  <script>
+    /* ---------- Data store (localStorage) ---------- */
+    const STORAGE_KEY = 'MKPS_SITE_v1'
+    const DEFAULT = {
+      notices:[{id:'n1',title:'Parent-Teacher Meeting',date:'2025-11-28',time:'4:00 PM',body:'All parents are requested to attend.'}],
+      events:[{id:'e1',title:'Annual Sports Day',date:'2025-12-06'}],
+      gallery:[
+        'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'
+      ]
+    }
+    function loadStore(){ try{ const raw = localStorage.getItem(STORAGE_KEY); return raw?JSON.parse(raw):JSON.parse(JSON.stringify(DEFAULT)); }catch(e){ return JSON.parse(JSON.stringify(DEFAULT)) }}
+    function saveStore(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)) }
 
-<!-- MAIN APP -->
-<section class="main-grid" id="mainApp" style="display:none">
-  <aside class="sidebar" role="navigation">
-    <div class="student-info">
-      <div class="student-name" id="displayName">Student Name</div>
-      <div class="student-class" id="displayClass">Class: -</div>
-    </div>
+    // init
+    const STORE = loadStore()
 
-    <ul class="menu" id="menu">
-      <li><a href="#" data-view="homework" class="active"><i class="fas fa-pen"></i> Homework</a></li>
-      <li><a href="#" data-view="attendance"><i class="fas fa-check-circle"></i> Attendance</a></li>
-      <li><a href="#" data-view="materials"><i class="fas fa-book"></i> Study Materials</a></li>
-      <li><a href="#" data-view="exams"><i class="fas fa-file-alt"></i> Exam Schedule</a></li>
-      <li><a href="#" data-view="achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
-      <li><a href="#" data-view="timings"><i class="fas fa-clock"></i> School Timings</a></li>
-      <li><a href="#" data-view="holidays"><i class="fas fa-calendar-alt"></i> Holidays</a></li>
-      <li><a href="#" data-view="notices"><i class="fas fa-bullhorn"></i> Notices</a></li>
-      <li><a href="#" data-view="contact"><i class="fas fa-phone"></i> Contact</a></li>
-    </ul>
+    /* ---------- Renderers ---------- */
+    function renderGallery(){ const g = STORE.gallery || []; const el = document.getElementById('galleryGrid'); el.innerHTML = g.map(src=>`<img src="${src}" loading="lazy" alt="gallery" />`).join(''); el.querySelectorAll('img').forEach(img=>img.addEventListener('click', ()=>openModal(`<img src='${img.src}' style='width:100%;height:auto;border-radius:8px' />`))) }
+    function renderNews(){ const n = STORE.notices || []; document.getElementById('newsList').innerHTML = n.map(x=>`<div class='card'><h4>${x.title}</h4><p class='muted'>${x.date} ${x.time? '|' + x.time: ''}</p><p>${x.body||''}</p></div>`).join('')
+      // ticker
+      const ticker = document.getElementById('newsTicker'); ticker.innerText = n.map(i=>i.title+' • ').join('') + n.map(i=>i.title+' • ').join('') }
+    function renderEvents(){ const e = STORE.events||[]; document.getElementById('eventsList').innerHTML = e.map(ev=>`<li>${ev.title} — ${ev.date}</li>`).join('') }
 
-    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-      <a id="exportBtn" class="muted" href="#">Export Data</a>
-      <a id="importBtn" class="muted" href="#">Import Data</a>
-      <a id="openAdmin" class="muted" href="admin.html">Open Admin Panel</a>
-    </div>
-  </aside>
+    // counters
+    function animateCounters(){ document.querySelectorAll('.counter').forEach(c=>{ const target = +c.dataset.target; let start=0; const step = Math.max(1, Math.floor(target/80)); const t = setInterval(()=>{ start += step; if(start>=target){ c.textContent = target; clearInterval(t) } else c.textContent = start },12) }) }
 
-  <main class="content" aria-live="polite">
-    <div class="card" style="display:flex;align-items:center;gap:12px;justify-content:space-between">
-      <div class="section-title" id="pageTitle"><i class="fas fa-pen"></i> Homework</div>
-      <div class="flex">
-        <div class="pill">Session: <span id="sessionTime" style="margin-left:8px;font-weight:800"></span></div>
-        <button id="addHomeworkBtn" class="btn" style="margin-left:12px"><i class="fas fa-plus"></i> Add</button>
-      </div>
-    </div>
+    // modal
+    function openModal(html){ const modal = document.getElementById('modal'); document.getElementById('modalCard').innerHTML = html; modal.classList.add('open'); modal.addEventListener('click', e=>{ if(e.target===modal) closeModal() }) }
+    function closeModal(){ document.getElementById('modal').classList.remove('open') }
 
-    <div id="contentBody" class="card">
-      <!-- dynamic content injected here -->
-    </div>
+    // contact form
+    document.getElementById('contactForm').addEventListener('submit', function(e){ e.preventDefault(); const name=document.getElementById('cname').value.trim(); const contact=document.getElementById('cemail').value.trim(); const msg=document.getElementById('cmessage').value.trim(); if(!name||!contact){ alert('Please provide name and contact'); return } alert('Thank you — your enquiry has been noted. (This demo stores nothing server-side)'); this.reset(); })
 
-  </main>
-</section>
+    // back to top
+    const toTop = document.getElementById('toTop'); window.addEventListener('scroll', ()=>{ if(window.scrollY>300) toTop.classList.add('show'); else toTop.classList.remove('show') }); toTop.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}))
 
-<!-- Modals -->
-<div class="modal" id="modal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-      <h3 id="modalTitle">Modal</h3>
-      <button id="closeModal" class="btn">Close</button>
-    </div>
-    <div id="modalBody" style="margin-top:12px"></div>
-  </div>
-</div>
+    // smooth nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', function(e){ const href=this.getAttribute('href'); if(href==='#') return; if(href.startsWith('#')){ e.preventDefault(); const target=document.querySelector(href); if(target) target.scrollIntoView({behavior:'smooth',block:'start'}); } }))
 
-<!-- Gallery Modal -->
-<div class="modal" id="galleryModal">
-  <div class="modal-card">
-    <div style="display:flex;align-items:center;justify-content:space-between">
-      <h3>School Gallery</h3>
-      <button id="closeGallery" class="btn">Close</button>
-    </div>
-    <div style="margin-top:12px">
-      <div class="gallery-grid" id="galleryGrid"></div>
-    </div>
-  </div>
-</div>
+    // small admin utilities (client-side only) — add notice / event / gallery image via prompt
+    function promptAddNotice(){ const t=prompt('Notice title:'); if(!t) return; const date=prompt('Date (YYYY-MM-DD):','2025-11-28'); const time=prompt('Time (optional):','4:00 PM'); const body=prompt('Details (optional):',''); const id='n'+Math.random().toString(36).slice(2,9); STORE.notices.unshift({id,title:t,date,time,body}); saveStore(STORE); renderNews(); alert('Notice added (local only).') }
+    function promptAddEvent(){ const t=prompt('Event title:'); if(!t) return; const date=prompt('Date (YYYY-MM-DD):','2025-12-01'); const id='e'+Math.random().toString(36).slice(2,9); STORE.events.unshift({id,title:t,date}); saveStore(STORE); renderEvents(); alert('Event added (local only).') }
+    function promptAddGallery(){ const url=prompt('Image URL (direct link):'); if(!url) return; STORE.gallery.unshift(url); saveStore(STORE); renderGallery(); alert('Image added to gallery (local only).') }
 
-<!-- Floating action buttons -->
-<div class="fab-row">
-  <a class="fab whatsapp" href="https://wa.me/919758919151" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  <a class="fab call" href="tel:+919758919151" aria-label="Call"><i class="fas fa-phone"></i></a>
-  <a class="fab admin" id="fabAdmin" href="admin.html" aria-label="Admin"><i class="fas fa-user-shield"></i></a>
-</div>
+    // Expose admin helper via console for you: addNotice(), addEvent(), addGallery()
+    window.addNotice = promptAddNotice; window.addEvent = promptAddEvent; window.addGallery = promptAddGallery;
 
-<footer style="text-align:center;padding:22px 6px;color:var(--muted);font-size:.95rem">
-  © Mili Karwaan Public School — Built for GitHub Pages • Click any card to expand or use Admin to edit.
-</footer>
+    // init on load
+    document.addEventListener('DOMContentLoaded', ()=>{ renderGallery(); renderNews(); renderEvents(); animateCounters(); // accessibility: announce
+      // small keyboard shortcuts for admin local actions
+      document.addEventListener('keydown', e=>{ if(e.ctrlKey && e.key.toLowerCase()==='n'){ promptAddNotice(); } if(e.ctrlKey && e.key.toLowerCase()==='g'){ promptAddGallery(); } if(e.ctrlKey && e.key.toLowerCase()==='e'){ promptAddEvent(); } });
+    })
 
-  </div>  <script>
-  // Single-file app: Green-Gold pro version
-  const STORAGE = { sessionKey:'MKPS_SESSION_v2', dataKey:'MKPS_DATA_v2' }
-  const SAMPLE = {
-    homework:[{id:'hw1',subject:'Mathematics',title:'Chapter 5: Algebra',due:'2025-11-25',notes:'Solve exercise 5.3 Q1-15.'}],
-    attendance:{present:98,absent:2,onTime:100,months:{'July 2025':'30/30','Aug 2025':'28/30'}},
-    materials:[{id:'m1',title:'Math Notes - Chapter 5',url:'#'}],
-    exams:{start:'2025-12-15',end:'2025-12-20'},
-    achievements:[{id:'a1',title:'Science Olympiad - 2nd Position',date:'2025-09-15'}],
-    timings:{week:'8:00 AM - 3:00 PM',sat:'8:00 AM - 1:00 PM'},
-    holidays:[{id:'h1',title:'Diwali',range:'31 Oct - 3 Nov 2025'}],
-    notices:[{id:'n1',title:'Parent-Teacher Meeting',date:'2025-11-28',time:'4:00 PM'}],
-    gallery:[
-      'https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png'
-    ],
-    contact:{phone:'+919758919151'}
-  }
-
-  // util
-  const $ = sel => document.querySelector(sel)
-  const $$ = sel => Array.from(document.querySelectorAll(sel))
-  const uid = (p='id') => p + Math.random().toString(36).slice(2,9)
-  function loadData(){ try{ const raw = localStorage.getItem(STORAGE.dataKey); return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(SAMPLE)) }catch(e){ return JSON.parse(JSON.stringify(SAMPLE)) }}
-  function saveData(d){ localStorage.setItem(STORAGE.dataKey, JSON.stringify(d)) }
-  function loadSession(){ try{ return JSON.parse(localStorage.getItem(STORAGE.sessionKey)) }catch(e){return null} }
-  function saveSession(s){ localStorage.setItem(STORAGE.sessionKey, JSON.stringify(s)) }
-  function clearSession(){ localStorage.removeItem(STORAGE.sessionKey) }
-
-  // render helpers
-  function formatDate(d){ if(!d) return '-'; try{ const dt = new Date(d); if(isNaN(dt)) return d; return dt.toLocaleDateString(); }catch(e){return d} }
-  function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
-
-  // views
-  let currentView = 'homework'
-  function render(){ const data = loadData(); $('#sessionTime').textContent = new Date().toLocaleString(); switch(currentView){
-    case 'homework': return renderHomework(data)
-    case 'attendance': return renderAttendance(data)
-    case 'materials': return renderMaterials(data)
-    case 'exams': return renderExams(data)
-    case 'achievements': return renderAchievements(data)
-    case 'timings': return renderTimings(data)
-    case 'holidays': return renderHolidays(data)
-    case 'notices': return renderNotices(data)
-    case 'contact': return renderContact(data)
-    default: return '<div class="card">Not found</div>'
-  }}
-
-  function renderHomework(data){
-    const list = data.homework || []
-    const html = `
-      <div class="section-title"><i class="fas fa-pen"></i> Homework</div>
-      <div class="homework-list">
-        ${list.map(hw=>`<div class="item" data-id="${hw.id}"><strong>${escapeHtml(hw.subject)} — ${escapeHtml(hw.title)}</strong><div class="muted">Due: ${formatDate(hw.due)}</div><p style="margin-top:6px">${escapeHtml(hw.notes)}</p></div>`).join('')}
-      </div>
-    `
-    $('#contentBody').innerHTML = html
-    // attach click handlers to open modal with details and edit (admin)
-    $$('.homework-list .item').forEach(el=>el.addEventListener('click', ()=>openHomeworkModal(el.dataset.id)))
-  }
-
-  function renderAttendance(data){
-    $('#contentBody').innerHTML = `
-      <div class="section-title"><i class="fas fa-check-circle"></i> Attendance Record</div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <div style="flex:1" class="card"><div style="font-weight:800;font-size:1.6rem;color:#10b981">${data.attendance.present}%</div><div class="muted">Present</div></div>
-        <div style="flex:1" class="card"><div style="font-weight:800;font-size:1.6rem;color:#ef4444">${data.attendance.absent}%</div><div class="muted">Absent</div></div>
-        <div style="flex:1" class="card"><div style="font-weight:800;font-size:1.6rem;color:#f59e0b">${data.attendance.onTime}%</div><div class="muted">On Time</div></div>
-      </div>
-      <div class="card">${Object.keys(data.attendance.months||{}).map(m=>`<p><strong>${m}:</strong> ${data.attendance.months[m]}</p>`).join('')}</div>
-    `}
-
-  function renderMaterials(data){
-    $('#contentBody').innerHTML = `<div class="section-title"><i class="fas fa-book"></i> Study Materials</div>${data.materials.map(m=>`<div class="card"><h4>${m.title}</h4><p><a href="${m.url}" target="_blank">Open</a></p></div>`).join('')}`
-  }
-  function renderExams(data){ $('#contentBody').innerHTML = `<div class="section-title"><i class="fas fa-file-alt"></i> Exam Schedule</div><div class="card"><p><strong>Start:</strong> ${formatDate(data.exams.start)}<br/><strong>End:</strong> ${formatDate(data.exams.end)}</p></div>` }
-  function renderAchievements(data){ $('#contentBody').innerHTML = `<div class="section-title"><i class="fas fa-trophy"></i> Achievements</div>${data.achievements.map(a=>`<div class="card"><h4>${a.title}</h4><p><strong>Awarded:</strong> ${formatDate(a.date)}</p></div>`).join('')}`
-  function renderTimings(data){ $('#contentBody').innerHTML = `<div class="section-title"><i class="fas fa-clock"></i> School Timings</div><div class="card"><p><strong>Mon-Fri:</strong> ${data.timings.week}<br/><strong>Saturday:</strong> ${data.timings.sat}</p></div>` }
-  function renderHolidays(data){ $('#contentBody').innerHTML = `<div class="section-title"><i class="fas fa-calendar-alt"></i> Holidays</div>${data.holidays.map(h=>`<div class="card"><h4>${h.title}</h4><p>${h.range}</p></div>`).join('')}`
-  function renderNotices(data){ $('#contentBody').innerHTML = `<div class="section-title"><i class="fas fa-bullhorn"></i> Notices</div>${data.notices.map(n=>`<div class="card"><h4>${n.title}</h4><p><strong>Date:</strong> ${formatDate(n.date)} ${n.time? '| <strong>Time:</strong> ' + n.time : ''}</p></div>`).join('')}`
-  function renderContact(data){ $('#contentBody').innerHTML = `<div class="section-title"><i class="fas fa-phone"></i> Contact</div><div class="card"><h4>Principal's Office</h4><p><strong>Phone:</strong> <a href="tel:${data.contact.phone}">${data.contact.phone}</a></p></div>` }
-
-  // Modal helpers
-  function openModal(title,html){ $('#modalTitle').textContent = title; $('#modalBody').innerHTML = html; $('#modal').classList.add('open'); }
-  function closeModal(){ $('#modal').classList.remove('open'); }
-
-  // Homework modal with edit/delete for admin (admin not enforced in this file)
-  function openHomeworkModal(id){ const data = loadData(); const hw = data.homework.find(x=>x.id===id); if(!hw) return; const html = `
-    <div>
-      <label><strong>Subject</strong></label>
-      <input id="m-subject" value="${escapeHtml(hw.subject)}" />
-      <label style="margin-top:8px"><strong>Title</strong></label>
-      <input id="m-title" value="${escapeHtml(hw.title)}" />
-      <label style="margin-top:8px"><strong>Due Date</strong></label>
-      <input id="m-due" type="date" value="${hw.due || ''}" />
-      <label style="margin-top:8px"><strong>Notes</strong></label>
-      <textarea id="m-notes" style="width:100%;height:80px;border-radius:8px;padding:8px">${escapeHtml(hw.notes)}</textarea><div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
-    <button id="deleteHw" class="btn" style="background:#fee2e2;color:#b91c1c">Delete</button>
-    <button id="saveHw" class="btn primary">Save</button>
-  </div>
-</div>
-
-`; openModal('Edit Homework',html); $('#deleteHw').addEventListener('click', ()=>{ if(confirm('Delete this homework?')){ data.homework = data.homework.filter(x=>x.id!==id); saveData(data); closeModal(); render(); }}); $('#saveHw').addEventListener('click', ()=>{ hw.subject = $('#m-subject').value.trim(); hw.title = $('#m-title').value.trim(); hw.due = $('#m-due').value; hw.notes = $('#m-notes').value.trim(); saveData(data); closeModal(); render(); }); }
-
-function openAddHomework(){ const html = <div> <label><strong>Subject</strong></label> <input id="a-subject" placeholder="Mathematics" /> <label style="margin-top:8px"><strong>Title</strong></label> <input id="a-title" placeholder="Chapter 6: Geometry" /> <label style="margin-top:8px"><strong>Due Date</strong></label> <input id="a-due" type="date" /> <label style="margin-top:8px"><strong>Notes</strong></label> <textarea id="a-notes" style="width:100%;height:80px;border-radius:8px;padding:8px" placeholder="Instructions..."></textarea> <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end"> <button id="cancelAdd" class="btn">Cancel</button> <button id="saveAdd" class="btn primary">Add Homework</button> </div> </div>; openModal('Add Homework',html); $('#cancelAdd').addEventListener('click', closeModal); $('#saveAdd').addEventListener('click', ()=>{ const subject = $('#a-subject').value.trim(); const title = $('#a-title').value.trim(); const due = $('#a-due').value; const notes = $('#a-notes').value.trim(); if(!subject||!title){ alert('Please provide subject and title'); return } const data = loadData(); data.homework.unshift({ id:uid('hw'), subject, title, due, notes }); saveData(data); closeModal(); render(); }); }
-
-// Gallery function openGallery(){ const data = loadData(); const g = data.gallery || []; $('#galleryGrid').innerHTML = g.map(src=><img src="${src}" class="thumb" loading="lazy" />).join(''); $('#galleryModal').classList.add('open'); $$('.thumb').forEach(t=>t.addEventListener('click', ()=>{ window.open(t.src,'_blank') })); }
-
-// import/export function exportData(){ const d = loadData(); const blob = new Blob([JSON.stringify(d,null,2)],{type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='mkps-data.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); } function importData(){ const input = document.createElement('input'); input.type='file'; input.accept='.json'; input.onchange = ()=>{ const f = input.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const parsed = JSON.parse(r.result); saveData(parsed); alert('Data imported.'); render(); }catch(e){ alert('Invalid JSON') } }; r.readAsText(f); }; input.click(); }
-
-// session open function openDashboard(session){ $('#displayName').textContent = session.name; $('#displayClass').textContent = session.class; $('#entryCard').style.display='none'; $('#mainApp').style.display='grid'; render(); }
-
-// attach events $('#accessBtn').addEventListener('click', ()=>{ const name = $('#studentName').value.trim(); const cls = $('#studentClass').value; if(!name||!cls){ alert('Please enter name and class'); return } const session={name, class:cls, loggedAt:new Date().toISOString()}; saveSession(session); if(!localStorage.getItem(STORAGE.dataKey)) saveData(SAMPLE); openDashboard(session); }); $('#demoBtn').addEventListener('click', ()=>{ const session={name:'Demo Student', class:'Class 6', loggedAt:new Date().toISOString()}; saveSession(session); if(!localStorage.getItem(STORAGE.dataKey)) saveData(SAMPLE); openDashboard(session); }); $('#clearBtn').addEventListener('click', ()=>{ if(confirm('Clear session?')){ clearSession(); location.reload(); } });
-
-$$('.menu a').forEach(a=>a.addEventListener('click', e=>{ e.preventDefault(); $$('.menu a').forEach(x=>x.classList.remove('active')); a.classList.add('active'); currentView = a.dataset.view; render(); }));
-
-$('#addHomeworkBtn').addEventListener('click', openAddHomework); $('#closeModal').addEventListener('click', closeModal); $('#openGalleryBtn').addEventListener('click', openGallery); $('#closeGallery').addEventListener('click', ()=>$('#galleryModal').classList.remove('open'));
-
-$('#openNoticesBtn').addEventListener('click', ()=>{ currentView='notices'; $$('.menu a').forEach(x=>x.classList.toggle('active', x.dataset.view==='notices')); render(); window.scrollTo({top:0,behavior:'smooth'}); }); $('#exportBtn').addEventListener('click', (e)=>{ e.preventDefault(); exportData(); }); $('#importBtn').addEventListener('click', (e)=>{ e.preventDefault(); importData(); }); $('#openAdminBtn').addEventListener('click', ()=>{ window.open('admin.html','_blank') });
-
-// gallery load — ensure logo link is included document.addEventListener('DOMContentLoaded', ()=>{ const session = loadSession(); if(session) openDashboard(session); if(!localStorage.getItem(STORAGE.dataKey)) saveData(SAMPLE); // insert user logo (already set in HTML) but ensure it loads const logo = $('#schoolLogo'); logo.addEventListener('error', ()=>{ logo.src='https://i.postimg.cc/Zqm9DSvt/erasebg-transformed.png' }); });
-
-  </script>
-</body>
+  </script></body>
 </html>
