@@ -1,1941 +1,3119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milli Karwaan Public School Balrampur</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #1a3a6c;
-            --secondary-color: #c9a65a;
-            --accent-color: #d4af37;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-            --gray-color: #6c757d;
-            --light-gray: #e9ecef;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--light-color);
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Merriweather', serif;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary-color);
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--primary-color);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        
-        .header-top {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 8px 0;
-            font-size: 14px;
-        }
-        
-        .header-top .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header-top-info {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .header-top-info a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .header-top-info a:hover {
-            text-decoration: underline;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-icons a {
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-        
-        .main-header {
-            padding: 15px 0;
-        }
-        
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo img {
-            height: 80px;
-            width: auto;
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .school-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        
-        .school-tagline {
-            font-size: 14px;
-            color: var(--secondary-color);
-            font-weight: 500;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 500;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-menu a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary-color);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--primary-color);
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(26, 58, 108, 0.8), rgba(26, 58, 108, 0.9)), url('https://placehold.co/1920x800/1a3a6c/ffffff?text=School+Excellence') no-repeat center center/cover;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            color: white;
-            text-align: center;
-            padding: 100px 0;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--secondary-color);
-        }
-        
-        .section-title p {
-            color: var(--gray-color);
-            margin-top: 15px;
-            font-size: 18px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .about-content {
-            display: flex;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-text h3 {
-            font-size: 28px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-            color: #555;
-        }
-        
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .feature-icon {
-            background-color: var(--secondary-color);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .feature-text h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: var(--primary-color);
-        }
-        
-        /* Programs Section */
-        .programs {
-            padding: 100px 0;
-            background-color: #f8f9fa;
-        }
-        
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .program-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .program-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .program-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .program-card:hover .program-image img {
-            transform: scale(1.1);
-        }
-        
-        .program-content {
-            padding: 25px;
-        }
-        
-        .program-content h3 {
-            font-size: 22px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .program-content p {
-            color: #555;
-            margin-bottom: 20px;
-        }
-        
-        .program-meta {
-            display: flex;
-            justify-content: space-between;
-            color: var(--gray-color);
-            font-size: 14px;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--light-gray);
-        }
-        
-        /* Facilities Section */
-        .facilities {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .facilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .facility {
-            text-align: center;
-            padding: 30px 20px;
-            border-radius: 10px;
-            background-color: #f8f9fa;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .facility:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            background-color: white;
-        }
-        
-        .facility-icon {
-            background-color: var(--secondary-color);
-            color: white;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 32px;
-        }
-        
-        .facility h3 {
-            font-size: 20px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .facility p {
-            color: #555;
-            font-size: 15px;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 0;
-            background-color: #f8f9fa;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .testimonial {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin: 0 auto;
-        }
-        
-        .testimonial-text {
-            font-size: 18px;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .testimonial-text::before {
-            content: '"';
-            font-size: 60px;
-            color: var(--secondary-color);
-            opacity: 0.3;
-            position: absolute;
-            top: -20px;
-            left: -15px;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .author-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        
-        .author-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .author-info h4 {
-            font-size: 18px;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-        
-        .author-info p {
-            color: var(--gray-color);
-            font-size: 14px;
-        }
-        
-        .slider-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .slider-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .slider-btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-        
-        /* Events */
-        .events {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .event-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .event-image {
-            height: 220px;
-            overflow: hidden;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .event-card:hover .event-image img {
-            transform: scale(1.1);
-        }
-        
-        .event-content {
-            padding: 25px;
-        }
-        
-        .event-date {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-        
-        .event-content h3 {
-            font-size: 22px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .event-content p {
-            color: #555;
-            margin-bottom: 20px;
-        }
-        
-        .read-more {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
-        }
-        
-        .read-more:hover {
-            color: var(--secondary-color);
-            gap: 10px;
-        }
-        
-        /* Admission Section */
-        .admission {
-            padding: 100px 0;
-            background: linear-gradient(rgba(26, 58, 108, 0.9), rgba(26, 58, 108, 0.9)), url('https://placehold.co/1920x600/1a3a6c/ffffff?text=Admissions+Open') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-        }
-        
-        .admission h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .admission p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .admission-features {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 50px;
-        }
-        
-        .admission-feature {
-            text-align: center;
-            max-width: 250px;
-        }
-        
-        .admission-feature-icon {
-            background-color: var(--secondary-color);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 24px;
-        }
-        
-        .admission-feature h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .admission-feature p {
-            font-size: 15px;
-            opacity: 0.9;
-        }
-        
-        /* Gallery */
-        .gallery {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 50px;
-        }
-        
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            height: 250px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(26, 58, 108, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        
-        .gallery-icon {
-            color: white;
-            font-size: 32px;
-            background-color: var(--secondary-color);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background-color: #f8f9fa;
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-        
-        .contact-icon {
-            background-color: var(--secondary-color);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 20px;
-        }
-        
-        .contact-text h4 {
-            font-size: 18px;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-        
-        .contact-text p, .contact-text a {
-            color: #555;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .contact-text a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .contact-form {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--primary-color);
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(201, 166, 90, 0.2);
-        }
-        
-        textarea.form-control {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 70px 0 0;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-col h3 {
-            font-size: 20px;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary-color);
-        }
-        
-        .footer-col p {
-            color: #ddd;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary-color);
-            transform: translateX(5px);
-        }
-        
-        .footer-links a i {
-            font-size: 14px;
-        }
-        
-        .footer-newsletter p {
-            color: #ddd;
-            margin-bottom: 20px;
-        }
-        
-        .newsletter-form {
-            display: flex;
-        }
-        
-        .newsletter-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            font-size: 16px;
-        }
-        
-        .newsletter-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0 15px;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .newsletter-btn:hover {
-            background-color: var(--accent-color);
-        }
-        
-        .footer-bottom {
-            background-color: rgba(0, 0, 0, 0.1);
-            padding: 20px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .footer-bottom p {
-            color: #ddd;
-            font-size: 14px;
-        }
-        
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--secondary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 40px;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-image, .about-text {
-                flex: none;
-                width: 100%;
-            }
-            
-            .admission-features {
-                gap: 20px;
-            }
-            
-            .admission-feature {
-                max-width: 100%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: white;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding: 50px 0;
-                transition: all 0.5s ease;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu a {
-                display: block;
-                margin: 15px 0;
-                font-size: 18px;
-            }
-            
-            .hero {
-                height: 70vh;
-            }
-            
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .section-title h2 {
-                font-size: 30px;
-            }
-            
-            .admission {
-                padding: 80px 0;
-            }
-            
-            .admission h2 {
-                font-size: 28px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .header-top .container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .header-top-info, .social-icons {
-                justify-content: center;
-            }
-            
-            .main-header .container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .logo {
-                justify-content: center;
-            }
-            
-            .hero {
-                height: 60vh;
-                padding: 80px 0;
-            }
-            
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .section-title {
-                margin-bottom: 40px;
-            }
-            
-            .section-title h2 {
-                font-size: 26px;
-            }
-            
-            .about, .programs, .facilities, .testimonials, .events, .admission, .gallery, .contact {
-                padding: 60px 0;
-            }
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Milli Karwaan Public School Balrampur - Official Website" />
+  <meta name="keywords" content="school, education, balrampur, milli karwaan" />
+  <meta name="author" content="MKPS Web Team" />
+  <title>Milli Karwaan Public School Balrampur</title>
 
-        /* Animation classes */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease forwards;
-        }
-        
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-        
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        
-        .preloader-content {
-            text-align: center;
-        }
-        
-        .preloader-logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 20px;
-        }
-        
-        .preloader-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
-        .preloader-text {
-            color: var(--primary-color);
-            font-size: 18px;
-            font-weight: 500;
-        }
-        
-        .preloader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-    </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #1a3a6e;
+      --secondary: #007bff;
+      --accent: #ffc107;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --success: #28a745;
+      --danger: #dc3545;
+      --warning: #ffc107;
+      --info: #17a2b8;
+      --white: #ffffff;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --border-radius: 8px;
+      --font-main: 'Poppins', sans-serif;
+      --font-title: 'Playfair Display', serif;
+    }
+
+    .dark-mode {
+      --primary: #0d1b3d;
+      --secondary: #0056b3;
+      --light: #121212;
+      --dark: #e9e9e9;
+      --gray: #adb5bd;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      transition: var(--transition);
+      overflow-x: hidden;
+    }
+
+    body.dark-mode {
+      background-color: var(--light);
+      color: var(--dark);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-title);
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+    }
+
+    a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--secondary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary);
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: var(--dark);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--secondary);
+      color: var(--white);
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .btn-lg {
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .dark-mode header {
+      background-color: var(--dark);
+      color: var(--white);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      height: 60px;
+      width: auto;
+    }
+
+    .school-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .school-name {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .school-address {
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-actions a {
+      color: var(--primary);
+      font-size: 1.25rem;
+      transition: var(--transition);
+    }
+
+    .header-actions a:hover {
+      color: var(--secondary);
+      transform: scale(1.1);
+    }
+
+    .real-time-clock {
+      font-size: 0.875rem;
+      color: var(--gray);
+      margin-left: 1rem;
+    }
+
+    /* Navigation Styles */
+    nav {
+      background-color: var(--primary);
+      color: var(--white);
+      position: sticky;
+      top: 72px;
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 0;
+    }
+
+    .nav-menu li {
+      position: relative;
+    }
+
+    .nav-menu a {
+      display: block;
+      padding: 1rem 1.25rem;
+      color: var(--white);
+      text-decoration: none;
+      transition: var(--transition);
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-bottom-color: var(--accent);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      cursor: pointer;
+      padding: 1rem 1.25rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: transparent;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--white);
+      min-width: 200px;
+      box-shadow: var(--shadow);
+      border-radius: var(--border-radius);
+      list-style: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--dark);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: var(--light);
+      color: var(--primary);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Student Access Form */
+    .student-access-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 1;
+      visibility: visible;
+      transition: var(--transition);
+    }
+
+    .student-access-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .student-access-form {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transform: translateY(0);
+      transition: var(--transition);
+      animation: slideIn 0.6s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .student-access-form h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+
+    .error-message {
+      color: var(--danger);
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .welcome-message {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--light);
+      border-radius: var(--border-radius);
+      margin: 2rem auto;
+      max-width: 600px;
+      box-shadow: var(--shadow);
+    }
+
+    .welcome-message h2 {
+      color: var(--success);
+    }
+
+    .welcome-message p {
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    /* Main Content */
+    main {
+      min-height: calc(100vh - 140px);
+      padding: 2rem 0;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+
+    /* Homework Section */
+    .homework-container {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+
+    .homework-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .homework-filters {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-bar {
+      display: flex;
+      position: relative;
+      flex: 1;
+      max-width: 300px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+    }
+
+    .search-bar i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+    }
+
+    .filter-dropdown {
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      background-color: var(--white);
+    }
+
+    .homework-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .homework-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-top: 4px solid var(--secondary);
+    }
+
+    .homework-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .homework-card-header {
+      padding: 1rem;
+      background-color: var(--light);
+      border-bottom: 1px solid #eee;
+    }
+
+    .homework-card-header h3 {
+      margin-bottom: 0.25rem;
+      font-size: 1.25rem;
+    }
+
+    .homework-date {
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+
+    .homework-card-body {
+      padding: 1.5rem;
+    }
+
+    .homework-subject {
+      display: inline-block;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .homework-instructions {
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .no-homework {
+      text-align: center;
+      padding: 2rem;
+      color: var(--gray);
+      font-style: italic;
+    }
+
+    /* Teachers Section */
+    .teachers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .teacher-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .teacher-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .teacher-img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .teacher-info {
+      padding: 1.5rem;
+    }
+
+    .teacher-info h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .teacher-subject {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .teacher-contact {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .teacher-contact a {
+      color: var(--gray);
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .teacher-contact a:hover {
+      color: var(--secondary);
+    }
+
+    /* Events Section */
+    .events-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    .events-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--primary);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      width: 100%;
+      display: flex;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: 0;
+      margin-right: 3rem;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::before {
+      left: auto;
+      right: -15px;
+      border-color: transparent transparent transparent var(--white);
+    }
+
+    .timeline-date {
+      position: absolute;
+      top: 0;
+      width: 100px;
+      text-align: center;
+      padding: 0.5rem;
+      background-color: var(--primary);
+      color: var(--white);
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item:nth-child(even) .timeline-date {
+      transform: translateX(50%);
+    }
+
+    .timeline-content {
+      width: calc(50% - 60px);
+      background-color: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-left: 3rem;
+      position: relative;
+    }
+
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: -15px;
+      width: 0;
+      height: 0;
+      border: 15px solid transparent;
+      border-color: transparent var(--white) transparent transparent;
+    }
+
+    .timeline-content h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .timeline-content p {
+      margin-bottom: 1rem;
+    }
+
+    .timeline-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-badge.upcoming {
+      background-color: var(--info);
+      color: var(--white);
+    }
+
+    .timeline-badge.ongoing {
+      background-color: var(--success);
+      color: var(--white);
+    }
+
+    .timeline-badge.completed {
+      background-color: var(--gray);
+      color: var(--white);
+    }
+
+    /* Notice Board */
+    .notice-board {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .notice-item {
+      display: flex;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .notice-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .notice-badge {
+      min-width: 60px;
+      padding: 0.5rem;
+      text-align: center;
+      border-radius: var(--border-radius);
+      font-weight: 700;
+      color: var(--white);
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    .notice-badge.urgent {
+      background-color: var(--danger);
+    }
+
+    .notice-badge.info {
+      background-color: var(--info);
+    }
+
+    .notice-badge.warning {
+      background-color: var(--warning);
+      color: var(--dark);
+    }
+
+    .notice-content {
+      flex: 1;
+    }
+
+    .notice-content h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .notice-date {
+      font-size: 0.875rem;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Timetable */
+    .timetable-container {
+      overflow-x: auto;
+    }
+
+    .timetable {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .timetable th,
+    .timetable td {
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #eee;
+    }
+
+    .timetable th {
+      background-color: var(--primary);
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .timetable tr:nth-child(even) {
+      background-color: var(--light);
+    }
+
+    .timetable tr:hover {
+      background-color: rgba(0, 123, 255, 0.05);
+    }
+
+    .subject-cell {
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      height: 200px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      color: var(--white);
+      font-size: 2rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: var(--border-radius);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .lightbox-nav.prev {
+      left: 20px;
+    }
+
+    .lightbox-nav.next {
+      right: 20px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: var(--white);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    /* FAQ */
+    .faq-container {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid #eee;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1rem;
+      background-color: var(--light);
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      background-color: #f0f0f0;
+    }
+
+    .faq-question.active {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .faq-question i {
+      transition: var(--transition);
+    }
+
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-answer.open {
+      max-height: 500px;
+      padding: 1rem;
+    }
+
+    /* Contact Form */
+    .contact-container {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    .form-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      display: none;
+    }
+
+    .form-message.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 140px;
+      right: -300px;
+      width: 300px;
+      height: calc(100vh - 140px);
+      background-color: var(--white);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 900;
+      transition: var(--transition);
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+
+    .sidebar.open {
+      right: 0;
+    }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sidebar-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray);
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-menu a {
+      display: block;
+      padding: 0.75rem;
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    .sidebar-menu a:hover {
+      background-color: var(--light);
+      color: var(--primary);
+    }
+
+    .quick-actions {
+      margin-top: 2rem;
+    }
+
+    .quick-actions h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .quick-actions .btn {
+      display: block;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+
+    .quick-actions .btn i {
+      margin-right: 0.5rem;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 899;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-section h3 {
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.875rem;
+    }
+
+    .footer-bottom a {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-bottom a:hover {
+      color: var(--white);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .theme-toggle i {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Messages Popup */
+    .messages-popup {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      max-width: 300px;
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .messages-popup.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .messages-header {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 0.75rem;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .messages-header h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .messages-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .messages-list {
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .message-item {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .message-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .message-item h5 {
+      margin: 0 0 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .message-date {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .message-content {
+      font-size: 0.875rem;
+      color: var(--dark);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .dropdown-menu {
+        left: auto;
+        right: 0;
+      }
+
+      .timeline-item {
+        flex-direction: column;
+      }
+
+      .timeline-item:nth-child(even) {
+        flex-direction: column;
+      }
+
+      .timeline-date {
+        position: relative;
+        transform: none;
+        width: auto;
+        margin-bottom: 1rem;
+      }
+
+      .timeline-content {
+        width: 100%;
+        margin: 0;
+      }
+
+      .timeline-content::before {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      .header-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .school-info {
+        text-align: center;
+      }
+
+      .header-actions {
+        justify-content: center;
+      }
+
+      .homework-header {
+        flex-direction: column;
+      }
+
+      .homework-filters {
+        justify-content: center;
+      }
+
+      .search-bar {
+        max-width: 100%;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+
+      .student-access-form {
+        width: 95%;
+        padding: 1.5rem;
+      }
+
+      .welcome-message {
+        padding: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .messages-popup {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0,0,0);
+      }
+      40%, 43% {
+        transform: translate3d(0, -10px, 0);
+      }
+      70% {
+        transform: translate3d(0, -5px, 0);
+      }
+      90% {
+        transform: translate3d(0, -2px, 0);
+      }
+    }
+
+    .animate-bounce {
+      animation: bounce 2s infinite;
+    }
+
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .mb-1 {
+      margin-bottom: 0.5rem;
+    }
+
+    .mb-2 {
+      margin-bottom: 1rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 1.5rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 2rem;
+    }
+
+    .mt-1 {
+      margin-top: 0.5rem;
+    }
+
+    .mt-2 {
+      margin-top: 1rem;
+    }
+
+    .mt-3 {
+      margin-top: 1.5rem;
+    }
+
+    .mt-4 {
+      margin-top: 2rem;
+    }
+
+    .bg-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .bg-secondary {
+      background-color: var(--secondary);
+      color: var(--white);
+    }
+
+    .bg-light {
+      background-color: var(--light);
+    }
+
+    .bg-dark {
+      background-color: var(--dark);
+      color: var(--white);
+    }
+
+    .text-primary {
+      color: var(--primary);
+    }
+
+    .text-secondary {
+      color: var(--secondary);
+    }
+
+    .text-success {
+      color: var(--success);
+    }
+
+    .text-danger {
+      color: var(--danger);
+    }
+
+    .text-warning {
+      color: var(--warning);
+    }
+
+    .text-info {
+      color: var(--info);
+    }
+
+    .rounded {
+      border-radius: var(--border-radius);
+    }
+
+    .shadow {
+      box-shadow: var(--shadow);
+    }
+
+    .d-none {
+      display: none;
+    }
+
+    .d-block {
+      display: block;
+    }
+
+    .d-flex {
+      display: flex;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+
+    .justify-content-center {
+      justify-content: center;
+    }
+
+    .align-items-center {
+      align-items: center;
+    }
+
+    .gap-1 {
+      gap: 0.5rem;
+    }
+
+    .gap-2 {
+      gap: 1rem;
+    }
+
+    .gap-3 {
+      gap: 1.5rem;
+    }
+
+    .gap-4 {
+      gap: 2rem;
+    }
+
+    .position-relative {
+      position: relative;
+    }
+
+    .position-absolute {
+      position: absolute;
+    }
+
+    .overflow-hidden {
+      overflow: hidden;
+    }
+
+    .cursor-pointer {
+      cursor: pointer;
+    }
+
+    /* Print Styles */
+    @media print {
+      .no-print,
+      .no-print * {
+        display: none !important;
+      }
+
+      body {
+        background: none;
+        color: black;
+      }
+
+      header,
+      nav,
+      footer,
+      .sidebar,
+      .theme-toggle,
+      .messages-popup {
+        display: none;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      .container {
+        max-width: 100%;
+      }
+
+      .section {
+        margin-bottom: 2rem;
+      }
+
+      .homework-card,
+      .teacher-card,
+      .notice-item,
+      .faq-item {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-content">
-            <div class="preloader-logo">
-                <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Milli Karwaan Public School Logo">
-            </div>
-            <div class="preloader-text">Loading...</div>
+  <!-- Student Access Form Overlay -->
+  <div id="studentAccessOverlay" class="student-access-overlay">
+    <div class="student-access-form">
+      <h2>Welcome to Milli Karwaan Public School</h2>
+      <p>Please enter your details to access your personalized content.</p>
+      <form id="studentForm">
+        <div class="form-group">
+          <label for="studentName">Student Name</label>
+          <input type="text" id="studentName" class="form-control" placeholder="Enter your full name" />
+          <div id="nameError" class="error-message">Please enter your name</div>
         </div>
+        <div class="form-group">
+          <label for="studentClass">Class</label>
+          <select id="studentClass" class="form-control">
+            <option value="">Select your class</option>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+          </select>
+          <div id="classError" class="error-message">Please select your class</div>
+        </div>
+        <div class="form-group">
+          <label for="parentName">Parent's Name</label>
+          <input type="text" id="parentName" class="form-control" placeholder="Enter parent's full name" />
+          <div id="parentError" class="error-message">Please enter parent's name</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Continue to Dashboard</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="no-print">
+    <div class="container header-container">
+      <div class="logo-container">
+        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Milli Karwaan Public School Logo" class="logo" />
+        <div class="school-info">
+          <h1 class="school-name">Milli Karwaan Public School</h1>
+          <p class="school-address">Boluha Police Chowki Balrampur</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="tel:9758919151" title="Call us"><i class="fas fa-phone"></i></a>
+        <a href="mailto:madamsir066@gmail.com" title="Email us"><i class="fas fa-envelope"></i></a>
+        <div class="real-time-clock" id="realTimeClock"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="no-print">
+    <div class="container nav-container">
+      <ul class="nav-menu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#homework">Homework</a></li>
+        <li><a href="#teachers">Teachers</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#notice-board">Notice Board</a></li>
+        <li><a href="#timetable">Timetable</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="dropdown">
+        <button class="dropdown-toggle">
+          <i class="fas fa-ellipsis-v"></i> More
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#" id="adminLoginLink"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+          <li><a href="#" id="exportDataLink"><i class="fas fa-file-export"></i> Export Data</a></li>
+          <li><a href="#" id="downloadSnapshotLink"><i class="fas fa-download"></i> Download Snapshot</a></li>
+          <li><a href="#" id="printPageLink"><i class="fas fa-print"></i> Print Page</a></li>
+        </ul>
+      </div>
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Welcome Message (shown after form submission) -->
+    <div id="welcomeMessage" class="welcome-message d-none">
+      <h2>Welcome, <span id="welcomeName"></span>!</h2>
+      <p>You are in Class <span id="welcomeClass"></span>. Here's your personalized content.</p>
     </div>
 
-    <!-- Header -->
-    <header>
-        <div class="header-top">
-            <div class="container">
-                <div class="header-top-info">
-                    <a href="tel:9758919151"><i class="fas fa-phone"></i> +91 9758919151</a>
-                    <a href="mailto:madamsir066@gmail.com"><i class="fas fa-envelope"></i> madamsir066@gmail.com</a>
-                </div>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
+    <!-- Home Section -->
+    <section id="home" class="section container">
+      <h2 class="section-title">Welcome to Milli Karwaan Public School</h2>
+      <p>Milli Karwaan Public School Balrampur is dedicated to providing quality education with a focus on academic excellence, character development, and holistic growth. Our mission is to nurture young minds and prepare them for a successful future.</p>
+      
+      <div class="d-flex flex-column gap-3 mt-4">
+        <div class="bg-light p-3 rounded shadow">
+          <h3><i class="fas fa-graduation-cap text-primary"></i> Academic Excellence</h3>
+          <p>Our curriculum is designed to challenge students while providing the support they need to succeed. We offer a comprehensive education from Class 1 to Class 12.</p>
         </div>
-        <div class="main-header">
-            <div class="container">
-                <div class="logo">
-                    <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Milli Karwaan Public School Logo">
-                    <div class="logo-text">
-                        <h1 class="school-name">Milli Karwaan Public School</h1>
-                        <p class="school-tagline">Excellence in Education</p>
-                    </div>
-                </div>
-                <button class="mobile-toggle" id="mobile-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#programs">Academics</a></li>
-                    <li><a href="#facilities">Facilities</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
+        
+        <div class="bg-light p-3 rounded shadow">
+          <h3><i class="fas fa-users text-primary"></i> Experienced Faculty</h3>
+          <p>Our dedicated teachers are experts in their fields and committed to helping every student reach their full potential.</p>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content fade-in">
-            <h1>Welcome to Milli Karwaan Public School</h1>
-            <p>Empowering young minds for a brighter future through quality education and holistic development.</p>
-            <div class="hero-buttons">
-                <a href="#admission" class="btn">Admission Open</a>
-                <a href="#contact" class="btn btn-outline">Contact Us</a>
-            </div>
+        
+        <div class="bg-light p-3 rounded shadow">
+          <h3><i class="fas fa-certificate text-primary"></i> Holistic Development</h3>
+          <p>We believe in educating the whole child—academically, socially, emotionally, and physically. Our extracurricular programs foster well-rounded individuals.</p>
         </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>About Our School</h2>
-                <p>Learn more about our mission, vision, and the values that guide our educational approach.</p>
+    <!-- Homework Section -->
+    <section id="homework" class="section container">
+      <h2 class="section-title">Homework</h2>
+      <div class="homework-container">
+        <div class="homework-header">
+          <h3>Current Assignments</h3>
+          <div class="homework-filters">
+            <div class="search-bar">
+              <i class="fas fa-search"></i>
+              <input type="text" id="homeworkSearch" placeholder="Search homework..." />
             </div>
-            <div class="about-content">
-                <div class="about-image fade-in delay-1">
-                    <img src="https://placehold.co/600x400/1a3a6c/ffffff?text=School+Building" alt="Milli Karwaan Public School">
-                </div>
-                <div class="about-text fade-in delay-2">
-                    <h3>Dedicated to Educational Excellence</h3>
-                    <p>Milli Karwaan Public School Balrampur is a premier educational institution committed to providing quality education in a nurturing environment. Established with a vision to create future leaders, we blend traditional values with modern teaching methodologies to ensure holistic development of our students.</p>
-                    <p>Our school is located in the heart of Balrampur at Boluha Police Chowki, providing easy access for students from surrounding areas. We believe in creating a learning environment that fosters academic excellence, character development, and social responsibility.</p>
-                    <div class="features">
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Experienced Faculty</h4>
-                                <p>Our dedicated team of educators are experts in their fields and passionate about teaching.</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Modern Infrastructure</h4>
-                                <p>State-of-the-art facilities including smart classrooms, science labs, and sports amenities.</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>CBSE Curriculum</h4>
-                                <p>Following the latest CBSE syllabus with emphasis on practical learning and skill development.</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Safe Environment</h4>
-                                <p>Secure campus with 24/7 surveillance and trained staff to ensure student safety.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <select id="subjectFilter" class="filter-dropdown">
+              <option value="">All Subjects</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Science">Science</option>
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+              <option value="Social Studies">Social Studies</option>
+              <option value="Computer Science">Computer Science</option>
+            </select>
+          </div>
         </div>
+        <div id="homeworkGrid" class="homework-grid">
+          <!-- Homework cards will be dynamically inserted here -->
+          <div class="no-homework">No homework assignments found for your class.</div>
+        </div>
+      </div>
     </section>
 
-    <!-- Programs Section -->
-    <section class="programs" id="programs">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Our Academic Programs</h2>
-                <p>Comprehensive educational programs designed to nurture every aspect of student development.</p>
-            </div>
-            <div class="programs-grid">
-                <div class="program-card fade-in delay-1">
-                    <div class="program-image">
-                        <img src="https://placehold.co/400x250/1a3a6c/ffffff?text=Nursery+to+Class+5" alt="Primary Education">
-                    </div>
-                    <div class="program-content">
-                        <div class="program-meta">
-                            <span><i class="fas fa-users"></i> Nursery - Class 5</span>
-                            <span><i class="fas fa-book"></i> CBSE</span>
-                        </div>
-                        <h3>Primary Education</h3>
-                        <p>Our primary program focuses on building strong foundational skills in literacy, numeracy, and critical thinking through interactive and play-based learning approaches.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="program-card fade-in delay-2">
-                    <div class="program-image">
-                        <img src="https://placehold.co/400x250/1a3a6c/ffffff?text=Class+6+to+8" alt="Middle School">
-                    </div>
-                    <div class="program-content">
-                        <div class="program-meta">
-                            <span><i class="fas fa-users"></i> Class 6 - 8</span>
-                            <span><i class="fas fa-book"></i> CBSE</span>
-                        </div>
-                        <h3>Middle School</h3>
-                        <p>The middle school curriculum expands students' knowledge across various subjects while developing analytical skills and independent learning habits.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="program-card fade-in delay-3">
-                    <div class="program-image">
-                        <img src="https://placehold.co/400x250/1a3a6c/ffffff?text=Class+9+to+10" alt="Secondary Education">
-                    </div>
-                    <div class="program-content">
-                        <div class="program-meta">
-                            <span><i class="fas fa-users"></i> Class 9 - 10</span>
-                            <span><i class="fas fa-book"></i> CBSE</span>
-                        </div>
-                        <h3>Secondary Education</h3>
-                        <p>Our secondary program prepares students for board examinations while encouraging exploration of interests and career possibilities through various co-curricular activities.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="program-card fade-in delay-4">
-                    <div class="program-image">
-                        <img src="https://placehold.co/400x250/1a3a6c/ffffff?text=Class+11+to+12" alt="Senior Secondary">
-                    </div>
-                    <div class="program-content">
-                        <div class="program-meta">
-                            <span><i class="fas fa-users"></i> Class 11 - 12</span>
-                            <span><i class="fas fa-book"></i> CBSE</span>
-                        </div>
-                        <h3>Senior Secondary</h3>
-                        <p>The senior secondary program offers specialized streams in Science, Commerce, and Humanities, preparing students for higher education and competitive examinations.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Facilities Section -->
-    <section class="facilities" id="facilities">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>School Facilities</h2>
-                <p>Our campus is equipped with modern facilities to support comprehensive learning and development.</p>
-            </div>
-            <div class="facilities-grid">
-                <div class="facility fade-in delay-1">
-                    <div class="facility-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3>Smart Classrooms</h3>
-                    <p>Equipped with digital boards, projectors, and internet connectivity for interactive and engaging learning experiences.</p>
-                </div>
-                <div class="facility fade-in delay-2">
-                    <div class="facility-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3>Science Labs</h3>
-                    <p>Well-equipped physics, chemistry, and biology labs for hands-on experiments and practical learning.</p>
-                </div>
-                <div class="facility fade-in delay-3">
-                    <div class="facility-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Library</h3>
-                    <p>Extensive collection of books, journals, and digital resources to encourage reading and research.</p>
-                </div>
-                <div class="facility fade-in delay-4">
-                    <div class="facility-icon">
-                        <i class="fas fa-futbol"></i>
-                    </div>
-                    <h3>Sports Complex</h3>
-                    <p>Facilities for cricket, football, basketball, volleyball, and athletics with trained coaches.</p>
-                </div>
-                <div class="facility fade-in delay-5">
-                    <div class="facility-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <h3>Music & Arts</h3>
-                    <p>Dedicated spaces for music, dance, painting, and other creative arts with professional instructors.</p>
-                </div>
-                <div class="facility fade-in delay-1">
-                    <div class="facility-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Hygienic Canteen</h3>
-                    <p>Clean and hygienic canteen serving nutritious meals and snacks prepared under strict quality standards.</p>
-                </div>
-                <div class="facility fade-in delay-2">
-                    <div class="facility-icon">
-                        <i class="fas fa-bus"></i>
-                    </div>
-                    <h3>Transport</h3>
-                    <p>Safe and reliable transportation services with GPS tracking and trained drivers for student convenience.</p>
-                </div>
-                <div class="facility fade-in delay-3">
-                    <div class="facility-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>Medical Care</h3>
-                    <p>On-campus medical room with first aid facilities and regular health check-ups by qualified medical staff.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>What People Say</h2>
-                <p>Feedback from parents, students, and community members about their experiences with our school.</p>
-            </div>
-            <div class="testimonial-slider fade-in delay-1">
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        "Milli Karwaan Public School has transformed my child's learning experience. The teachers are not just educators but mentors who genuinely care about each student's growth. The balance between academics and extracurricular activities is perfect."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://placehold.co/100x100/e9ecef/6c757d?text=Parent" alt="Parent">
-                        </div>
-                        <div class="author-info">
-                            <h4>Smt. Anjali Singh</h4>
-                            <p>Parent of Class 8 Student</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-controls">
-                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
+    <!-- Teachers Section -->
+    <section id="teachers" class="section container">
+      <h2 class="section-title">Our Teachers</h2>
+      <div id="teachersGrid" class="teachers-grid">
+        <!-- Teacher cards will be dynamically inserted here -->
+      </div>
     </section>
 
     <!-- Events Section -->
-    <section class="events" id="events">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Upcoming Events</h2>
-                <p>Stay updated with our school events, celebrations, and special programs.</p>
-            </div>
-            <div class="events-grid">
-                <div class="event-card fade-in delay-1">
-                    <div class="event-image">
-                        <img src="https://placehold.co/400x250/1a3a6c/ffffff?text=Annual+Day" alt="Annual Day Celebration">
-                    </div>
-                    <div class="event-content">
-                        <span class="event-date"><i class="far fa-calendar-alt"></i> 15 Dec 2023</span>
-                        <h3>Annual Day Celebration</h3>
-                        <p>Join us for our annual day celebration featuring cultural performances, award ceremonies, and special guest appearances. A night of talent, entertainment, and pride.</p>
-                        <a href="#" class="read-more">View Details <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="event-card fade-in delay-2">
-                    <div class="event-image">
-                        <img src="https://placehold.co/400x250/1a3a6c/ffffff?text=Sports+Day" alt="Sports Day">
-                    </div>
-                    <div class="event-content">
-                        <span class="event-date"><i class="far fa-calendar-alt"></i> 22 Jan 2024</span>
-                        <h3>Sports Day</h3>
-                        <p>Our annual sports day event showcasing student athleticism, teamwork, and sportsmanship. Various track and field events, relay races, and fun games for all age groups.</p>
-                        <a href="#" class="read-more">View Details <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="event-card fade-in delay-3">
-                    <div class="event-image">
-                        <img src="https://placehold.co/400x250/1a3a6c/ffffff?text=Science+Expo" alt="Science Exhibition">
-                    </div>
-                    <div class="event-content">
-                        <span class="event-date"><i class="far fa-calendar-alt"></i> 10 Feb 2024</span>
-                        <h3>Science Exhibition</h3>
-                        <p>Students will present innovative science projects and experiments demonstrating their understanding of scientific concepts and problem-solving skills.</p>
-                        <a href="#" class="read-more">View Details <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section id="events" class="section container">
+      <h2 class="section-title">School Events</h2>
+      <div class="events-timeline" id="eventsTimeline">
+        <!-- Events will be dynamically inserted here -->
+      </div>
     </section>
 
-    <!-- Admission Section -->
-    <section class="admission" id="admission">
-        <div class="container">
-            <h2 class="fade-in">Admission Open for 2024-25</h2>
-            <p class="fade-in delay-1">Secure your child's future with quality education at Milli Karwaan Public School. Limited seats available for all classes.</p>
-            <div class="admission-features">
-                <div class="admission-feature fade-in delay-2">
-                    <div class="admission-feature-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Admission Process</h3>
-                    <p>Simple and transparent admission procedure with counseling sessions for parents.</p>
-                </div>
-                <div class="admission-feature fade-in delay-3">
-                    <div class="admission-feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Age Criteria</h3>
-                    <p>Clear age guidelines for each class as per CBSE regulations and school policy.</p>
-                </div>
-                <div class="admission-feature fade-in delay-4">
-                    <div class="admission-feature-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>Required Documents</h3>
-                    <p>Complete list of documents needed for smooth admission process.</p>
-                </div>
-                <div class="admission-feature fade-in delay-5">
-                    <div class="admission-feature-icon">
-                        <i class="fas fa-rupee-sign"></i>
-                    </div>
-                    <h3>Fees Structure</h3>
-                    <p>Transparent fee structure with various payment options and scholarship opportunities.</p>
-                </div>
-            </div>
-            <a href="#contact" class="btn btn-secondary fade-in delay-1" style="margin-top: 40px;">Apply Now</a>
+    <!-- Notice Board -->
+    <section id="notice-board" class="section container">
+      <h2 class="section-title">Notice Board</h2>
+      <div class="notice-board">
+        <div id="noticesList">
+          <!-- Notices will be dynamically inserted here -->
         </div>
+      </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>School Gallery</h2>
-                <p>A glimpse into our vibrant school life through photographs of events, facilities, and student activities.</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in delay-1">
-                    <img src="https://placehold.co/400x300/1a3a6c/ffffff?text=Classroom" alt="Classroom">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in delay-2">
-                    <img src="https://placehold.co/400x300/1a3a6c/ffffff?text=Science+Lab" alt="Science Lab">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in delay-3">
-                    <img src="https://placehold.co/400x300/1a3a6c/ffffff?text=Library" alt="Library">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in delay-4">
-                    <img src="https://placehold.co/400x300/1a3a6c/ffffff?text=Sports" alt="Sports">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in delay-5">
-                    <img src="https://placehold.co/400x300/1a3a6c/ffffff?text=Annual+Day" alt="Annual Day">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in delay-1">
-                    <img src="https://placehold.co/400x300/1a3a6c/ffffff?text=Music" alt="Music">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in delay-2">
-                    <img src="https://placehold.co/400x300/1a3a6c/ffffff?text=Canteen" alt="Canteen">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in delay-3">
-                    <img src="https://placehold.co/400x300/1a3a6c/ffffff?text=Assembly" alt="Assembly">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Timetable -->
+    <section id="timetable" class="section container">
+      <h2 class="section-title">Class Timetable</h2>
+      <div class="timetable-container">
+        <div id="timetableContainer">
+          <!-- Timetable will be dynamically inserted here -->
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Contact Us</h2>
-                <p>Get in touch with us for admissions, inquiries, or any other information about our school.</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info fade-in delay-1">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Address</h4>
-                            <p>Boluha Police Chowki, Balrampur, Uttar Pradesh, India</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Phone</h4>
-                            <p><a href="tel:9758919151">+91 9758919151</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p><a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Office Hours</h4>
-                            <p>Monday - Saturday: 8:00 AM - 4:00 PM</p>
-                            <p>Sunday: Closed</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-bus"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Transport</h4>
-                            <p>Bus services available for major areas in Balrampur and surrounding regions.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form fade-in delay-2">
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">Send us a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" class="form-control" id="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea class="form-control" id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <!-- Gallery -->
+    <section id="gallery" class="section container">
+      <h2 class="section-title">School Gallery</h2>
+      <div id="galleryGrid" class="gallery-grid">
+        <!-- Gallery items will be dynamically inserted here -->
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3>About School</h3>
-                    <p>Milli Karwaan Public School is committed to providing quality education that nurtures academic excellence, character development, and social responsibility in a safe and inclusive environment.</p>
-                    <div class="social-icons" style="margin-top: 20px;">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#programs"><i class="fas fa-chevron-right"></i> Academics</a></li>
-                        <li><a href="#facilities"><i class="fas fa-chevron-right"></i> Facilities</a></li>
-                        <li><a href="#events"><i class="fas fa-chevron-right"></i> Events</a></li>
-                        <li><a href="#gallery"><i class="fas fa-chevron-right"></i> Gallery</a></li>
-                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Academic Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Nursery to Class 5</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Class 6 to 8</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Class 9 to 10</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Class 11 to 12 (Science)</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Class 11 to 12 (Commerce)</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Class 11 to 12 (Humanities)</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col footer-newsletter">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to our newsletter to receive updates about school events, achievements, and important announcements.</p>
-                    <form class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Your Email Address" required>
-                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
-                    </form>
-                </div>
-            </div>
+    <!-- FAQ -->
+    <section id="faq" class="section container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div id="faqList">
+          <!-- FAQ items will be dynamically inserted here -->
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2023 Milli Karwaan Public School Balrampur. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--secondary-color);"></i> for excellence in education</p>
-            </div>
-        </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <!-- Contact Form -->
+    <section id="contact" class="section container">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="contact-container">
+        <form id="contactForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactName">Name</label>
+              <input type="text" id="contactName" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input type="email" id="contactEmail" class="form-control" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contactSubject">Subject</label>
+            <input type="text" id="contactSubject" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          <div id="contactMessageStatus" class="form-message"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h3>Quick Access</h3>
+      <button id="sidebarClose" class="sidebar-close"><i class="fas fa-times"></i></button>
     </div>
+    <ul class="sidebar-menu">
+      <li><a href="#homework"><i class="fas fa-book"></i> Homework</a></li>
+      <li><a href="#teachers"><i class="fas fa-chalkboard-teacher"></i> Teachers</a></li>
+      <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+      <li><a href="#notice-board"><i class="fas fa-bullhorn"></i> Notices</a></li>
+      <li><a href="#timetable"><i class="fas fa-table"></i> Timetable</a></li>
+      <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+      <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+    <div class="quick-actions">
+      <h3>Quick Actions</h3>
+      <button id="quickCall" class="btn btn-block"><i class="fas fa-phone"></i> Call School</button>
+      <button id="quickEmail" class="btn btn-block"><i class="fas fa-envelope"></i> Email Us</button>
+      <button id="quickSearch" class="btn btn-block"><i class="fas fa-search"></i> Search Homework</button>
+      <button id="exportDataBtn" class="btn btn-block"><i class="fas fa-file-export"></i> Export Data</button>
+    </div>
+  </div>
+  <div id="overlay" class="overlay"></div>
 
-    <script>
-        // Preloader
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-            }, 1000);
-        });
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <img id="lightboxImg" class="lightbox-img" src="" alt="" />
+      <div class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></div>
+      <div class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></div>
+      <div class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></div>
+    </div>
+  </div>
 
-        // Mobile Menu Toggle
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navMenu = document.getElementById('nav-menu');
+  <!-- Messages Popup -->
+  <div id="messagesPopup" class="messages-popup">
+    <div class="messages-header">
+      <h4>New Messages</h4>
+      <button id="messagesClose" class="messages-close">&times;</button>
+    </div>
+    <div id="messagesList" class="messages-list">
+      <!-- Messages will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <div id="themeToggle" class="theme-toggle">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-section">
+        <h3>About Us</h3>
+        <p>Milli Karwaan Public School Balrampur is committed to providing quality education and holistic development for students from Class 1 to Class 12.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#homework">Homework</a></li>
+          <li><a href="#teachers">Teachers</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#notice-board">Notice Board</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <div class="footer-contact">
+          <p><i class="fas fa-map-marker-alt"></i> Boluha Police Chowki Balrampur</p>
+          <p><i class="fas fa-phone"></i> <a href="tel:9758919151">9758919151</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p>&copy; <span id="currentYear"></span> Milli Karwaan Public School Balrampur. All rights reserved. | 
+         <a href="#" id="privacyLink">Privacy Policy</a> | 
+         <a href="#" id="termsLink">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // DOM Elements
+    const studentAccessOverlay = document.getElementById('studentAccessOverlay');
+    const studentForm = document.getElementById('studentForm');
+    const studentNameInput = document.getElementById('studentName');
+    const studentClassInput = document.getElementById('studentClass');
+    const parentNameInput = document.getElementById('parentName');
+    const nameError = document.getElementById('nameError');
+    const classError = document.getElementById('classError');
+    const parentError = document.getElementById('parentError');
+    
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const welcomeName = document.getElementById('welcomeName');
+    const welcomeClass = document.getElementById('welcomeClass');
+    
+    const realTimeClock = document.getElementById('realTimeClock');
+    const homeworkSearch = document.getElementById('homeworkSearch');
+    const subjectFilter = document.getElementById('subjectFilter');
+    const homeworkGrid = document.getElementById('homeworkGrid');
+    
+    const teachersGrid = document.getElementById('teachersGrid');
+    const eventsTimeline = document.getElementById('eventsTimeline');
+    const noticesList = document.getElementById('noticesList');
+    const timetableContainer = document.getElementById('timetableContainer');
+    const galleryGrid = document.getElementById('galleryGrid');
+    const faqList = document.getElementById('faqList');
+    
+    const contactForm = document.getElementById('contactForm');
+    const contactName = document.getElementById('contactName');
+    const contactEmail = document.getElementById('contactEmail');
+    const contactSubject = document.getElementById('contactSubject');
+    const contactMessage = document.getElementById('contactMessage');
+    const contactMessageStatus = document.getElementById('contactMessageStatus');
+    
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const quickCall = document.getElementById('quickCall');
+    const quickEmail = document.getElementById('quickEmail');
+    const quickSearch = document.getElementById('quickSearch');
+    const exportDataBtn = document.getElementById('exportDataBtn');
+    
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const lightboxClose = document.getElementById('lightboxClose');
+    
+    const messagesPopup = document.getElementById('messagesPopup');
+    const messagesList = document.getElementById('messagesList');
+    const messagesClose = document.getElementById('messagesClose');
+    
+    const themeToggle = document.getElementById('themeToggle');
+    const currentYear = document.getElementById('currentYear');
+    
+    // Navigation elements
+    const navMenu = document.querySelector('.nav-menu');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    // More dropdown links
+    const adminLoginLink = document.getElementById('adminLoginLink');
+    const exportDataLink = document.getElementById('exportDataLink');
+    const downloadSnapshotLink = document.getElementById('downloadSnapshotLink');
+    const printPageLink = document.getElementById('printPageLink');
+    
+    // Initialize localStorage keys if they don't exist
+    function initializeLocalStorage() {
+      const defaultHomework = [
+        { class: 1, subject: "Mathematics", date: "2023-10-15", instructions: "Complete exercises 1-5 on addition and subtraction." },
+        { class: 1, subject: "English", date: "2023-10-16", instructions: "Read chapter 3 and write 5 sentences about the story." },
+        { class: 2, subject: "Mathematics", date: "2023-10-15", instructions: "Solve word problems on multiplication from page 45." },
+        { class: 2, subject: "Science", date: "2023-10-17", instructions: "Draw and label the parts of a plant." },
+        { class: 3, subject: "Mathematics", date: "2023-10-16", instructions: "Complete the division exercises on page 67." },
+        { class: 3, subject: "Hindi", date: "2023-10-18", instructions: "Write a short paragraph about your favorite festival." },
+        { class: 4, subject: "Mathematics", date: "2023-10-15", instructions: "Solve the geometry problems on angles and triangles." },
+        { class: 4, subject: "Science", date: "2023-10-17", instructions: "Prepare a project on the water cycle." },
+        { class: 5, subject: "Mathematics", date: "2023-10-16", instructions: "Complete the fractions worksheet." },
+        { class: 5, subject: "Social Studies", date: "2023-10-18", instructions: "Research and write about the Indus Valley Civilization." },
+        { class: 6, subject: "Mathematics", date: "2023-10-15", instructions: "Solve the algebraic expressions on page 89." },
+        { class: 6, subject: "Science", date: "2023-10-17", instructions: "Prepare a model of the solar system." },
+        { class: 7, subject: "Mathematics", date: "2023-10-16", instructions: "Complete the geometry proofs on triangles." },
+        { class: 7, subject: "English", date: "2023-10-18", instructions: "Write a narrative essay about a memorable day." },
+        { class: 8, subject: "Mathematics", date: "2023-10-15", instructions: "Solve the quadratic equations on page 120." },
+        { class: 8, subject: "Science", date: "2023-10-17", instructions: "Conduct an experiment on chemical reactions and write a report." },
+        { class: 9, subject: "Mathematics", date: "2023-10-16", instructions: "Complete the trigonometry problems on page 150." },
+        { class: 9, subject: "Physics", date: "2023-10-18", instructions: "Solve the problems on motion and acceleration." },
+        { class: 10, subject: "Mathematics", date: "2023-10-15", instructions: "Practice the probability problems for the upcoming test." },
+        { class: 10, subject: "Chemistry", date: "2023-10-17", instructions: "Prepare for the practical exam on titration." },
+        { class: 11, subject: "Mathematics", date: "2023-10-16", instructions: "Complete the calculus exercises on derivatives." },
+        { class: 11, subject: "Physics", date: "2023-10-18", instructions: "Solve the problems on electromagnetic induction." },
+        { class: 12, subject: "Mathematics", date: "2023-10-15", instructions: "Practice integration problems for the board exam." },
+        { class: 12, subject: "Biology", date: "2023-10-17", instructions: "Revise the chapter on genetics and heredity." }
+      ];
+      
+      const defaultTeachers = [
+        { name: "Dr. A. Rahman", subject: "Mathematics", photo: "https://i.postimg.cc/0yv9X4qL/teacher1.jpg", contact: "arahman@mkps.edu.in", phone: "9876543210" },
+        { name: "Prof. S. Khan", subject: "Physics", photo: "https://i.postimg.cc/25k5pG8d/teacher2.jpg", contact: "skhan@mkps.edu.in", phone: "9876543211" },
+        { name: "Ms. P. Singh", subject: "Chemistry", photo: "https://i.postimg.cc/3x1Z2qXG/teacher3.jpg", contact: "psingh@mkps.edu.in", phone: "9876543212" },
+        { name: "Mr. R. Patel", subject: "Biology", photo: "https://i.postimg.cc/85m8m7kL/teacher4.jpg", contact: "rpatel@mkps.edu.in", phone: "9876543213" },
+        { name: "Mrs. N. Gupta", subject: "English", photo: "https://i.postimg.cc/XYd7s6pL/teacher5.jpg", contact: "ngupta@mkps.edu.in", phone: "9876543214" },
+        { name: "Dr. M. Ali", subject: "Hindi", photo: "https://i.postimg.cc/gk6p7fXs/teacher6.jpg", contact: "mali@mkps.edu.in", phone: "9876543215" },
+        { name: "Prof. K. Sharma", subject: "Social Studies", photo: "https://i.postimg.cc/63G3fJ9W/teacher7.jpg", contact: "ksharma@mkps.edu.in", phone: "9876543216" },
+        { name: "Ms. T. Verma", subject: "Computer Science", photo: "https://i.postimg.cc/7Y4sNq2N/teacher8.jpg", contact: "tverma@mkps.edu.in", phone: "9876543217" },
+        { name: "Mr. J. Ahmed", subject: "Physical Education", photo: "https://i.postimg.cc/XYd7s6pL/teacher5.jpg", contact: "jahmed@mkps.edu.in", phone: "9876543218" },
+        { name: "Mrs. L. Kapoor", subject: "Art & Craft", photo: "https://i.postimg.cc/3x1Z2qXG/teacher3.jpg", contact: "lkapoor@mkps.edu.in", phone: "9876543219" }
+      ];
+      
+      const defaultEvents = [
+        { title: "Annual Day Celebration", date: "2023-11-15", description: "Join us for our annual day celebration with cultural programs and awards.", status: "upcoming" },
+        { title: "Sports Day", date: "2023-10-25", description: "Our annual sports day event with various competitions and activities.", status: "upcoming" },
+        { title: "Parent-Teacher Meeting", date: "2023-10-20", description: "Regular parent-teacher meeting to discuss student progress.", status: "upcoming" },
+        { title: "Science Exhibition", date: "2023-10-10", description: "Students will showcase their science projects and experiments.", status: "completed" },
+        { title: "Independence Day", date: "2023-08-15", description: "Celebrating India's independence with flag hoisting and cultural programs.", status: "completed" },
+        { title: "Teachers' Day", date: "2023-09-05", description: "Celebrating our wonderful teachers with special programs and gifts.", status: "completed" }
+      ];
+      
+      const defaultNotices = [
+        { title: "School Closed for Diwali", date: "2023-10-24", content: "The school will remain closed from October 24 to October 27 for Diwali holidays.", type: "urgent" },
+        { title: "PTM Rescheduled", date: "2023-10-18", content: "The parent-teacher meeting originally scheduled for October 20 has been rescheduled to October 27.", type: "info" },
+        { title: "New Uniform Policy", date: "2023-10-15", content: "Starting November 1, all students are required to wear the new school uniform.", type: "info" },
+        { title: "Library Closed", date: "2023-10-12", content: "The school library will be closed on October 15 for inventory and reorganization.", type: "warning" },
+        { title: "Exam Schedule Released", date: "2023-10-10", content: "The final exam schedule for the first term has been released. Please check the notice board.", type: "info" }
+      ];
+      
+      const defaultTimetable = {
+        "1": {
+          "Monday": ["Mathematics", "English", "Hindi", "EVS", "Art"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "EVS", "Music"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "EVS", "PE"],
+          "Thursday": ["Mathematics", "English", "Hindi", "EVS", "Craft"],
+          "Friday": ["Mathematics", "English", "Hindi", "EVS", "Story Time"]
+        },
+        "2": {
+          "Monday": ["Mathematics", "English", "Hindi", "Science", "Art"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Science", "Music"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Science", "PE"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Science", "Craft"],
+          "Friday": ["Mathematics", "English", "Hindi", "Science", "Story Time"]
+        },
+        "3": {
+          "Monday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Art"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Music"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "PE"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Craft"],
+          "Friday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Library"]
+        },
+        "4": {
+          "Monday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Computer"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Art"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Music"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Library"]
+        },
+        "5": {
+          "Monday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Computer"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Art"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Music"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Library"]
+        },
+        "6": {
+          "Monday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Computer"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Art"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Music"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Library"]
+        },
+        "7": {
+          "Monday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Computer"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Art"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Music"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Library"]
+        },
+        "8": {
+          "Monday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Computer"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Art"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Music"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Science", "Social Studies", "Library"]
+        },
+        "9": {
+          "Monday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Biology"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Computer"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Art"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Library"]
+        },
+        "10": {
+          "Monday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Biology"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Computer"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Art"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Library"]
+        },
+        "11": {
+          "Monday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Biology"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Computer"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Art"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Library"]
+        },
+        "12": {
+          "Monday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Biology"],
+          "Tuesday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Computer"],
+          "Wednesday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Art"],
+          "Thursday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "PE"],
+          "Friday": ["Mathematics", "English", "Hindi", "Physics", "Chemistry", "Library"]
+        }
+      };
+      
+      const defaultGallery = [
+        { src: "https://i.postimg.cc/XYd7s6pL/teacher5.jpg", alt: "Annual Day Celebration" },
+        { src: "https://i.postimg.cc/3x1Z2qXG/teacher3.jpg", alt: "Sports Day" },
+        { src: "https://i.postimg.cc/85m8m7kL/teacher4.jpg", alt: "Science Exhibition" },
+        { src: "https://i.postimg.cc/25k5pG8d/teacher2.jpg", alt: "Cultural Program" },
+        { src: "https://i.postimg.cc/0yv9X4qL/teacher1.jpg", alt: "Art Competition" },
+        { src: "https://i.postimg.cc/7Y4sNq2N/teacher8.jpg", alt: "Computer Lab" },
+        { src: "https://i.postimg.cc/gk6p7fXs/teacher6.jpg", alt: "Library" },
+        { src: "https://i.postimg.cc/63G3fJ9W/teacher7.jpg", alt: "Classroom" }
+      ];
+      
+      const defaultFAQ = [
+        { question: "What are the school hours?", answer: "School hours are from 8:00 AM to 2:30 PM, Monday to Friday." },
+        { question: "What is the admission process?", answer: "Admission forms are available at the school office. Please bring the required documents and the child's birth certificate." },
+        { question: "Are there any extracurricular activities?", answer: "Yes, we offer various extracurricular activities including sports, music, dance, art, and debate." },
+        { question: "What is the school's uniform policy?", answer: "Students are required to wear the official school uniform. Details are provided in the student handbook." },
+        { question: "How can parents stay informed about school events?", answer: "We send regular updates through our website, notice board, and parent-teacher meetings." },
+        { question: "Is transportation provided?", answer: "Yes, we provide transportation services for students living within a 10 km radius of the school." },
+        { question: "What are the school's academic achievements?", answer: "Our students consistently achieve excellent results in board exams and various academic competitions." }
+      ];
+      
+      // Initialize localStorage if keys don't exist
+      if (!localStorage.getItem('mkps_homework')) {
+        localStorage.setItem('mkps_homework', JSON.stringify(defaultHomework));
+      }
+      
+      if (!localStorage.getItem('mkps_teachers')) {
+        localStorage.setItem('mkps_teachers', JSON.stringify(defaultTeachers));
+      }
+      
+      if (!localStorage.getItem('mkps_events')) {
+        localStorage.setItem('mkps_events', JSON.stringify(defaultEvents));
+      }
+      
+      if (!localStorage.getItem('mkps_notices')) {
+        localStorage.setItem('mkps_notices', JSON.stringify(defaultNotices));
+      }
+      
+      if (!localStorage.getItem('mkps_timetable')) {
+        localStorage.setItem('mkps_timetable', JSON.stringify(defaultTimetable));
+      }
+      
+      if (!localStorage.getItem('mkps_gallery')) {
+        localStorage.setItem('mkps_gallery', JSON.stringify(defaultGallery));
+      }
+      
+      if (!localStorage.getItem('mkps_faq')) {
+        localStorage.setItem('mkps_faq', JSON.stringify(defaultFAQ));
+      }
+      
+      if (!localStorage.getItem('mkps_messages')) {
+        localStorage.setItem('mkps_messages', JSON.stringify([]));
+      }
+    }
+    
+    // Check if student data exists in localStorage
+    function checkStudentData() {
+      const studentData = localStorage.getItem('mkps_student');
+      if (studentData) {
+        const student = JSON.parse(studentData);
+        showWelcomeMessage(student);
+        hideStudentForm();
+        loadContent();
+        showMessagesPopup();
+      } else {
+        showStudentForm();
+      }
+    }
+    
+    // Show student access form
+    function showStudentForm() {
+      studentAccessOverlay.classList.remove('hidden');
+      // Prevent back button navigation
+      history.pushState(null, null, location.href);
+      window.addEventListener('popstate', function(e) {
+        history.pushState(null, null, location.href);
+      });
+    }
+    
+    // Hide student access form
+    function hideStudentForm() {
+      studentAccessOverlay.classList.add('hidden');
+    }
+    
+    // Show welcome message
+    function showWelcomeMessage(student) {
+      welcomeName.textContent = student.studentName;
+      welcomeClass.textContent = student.studentClass;
+      welcomeMessage.classList.remove('d-none');
+    }
+    
+    // Validate form inputs
+    function validateForm() {
+      let isValid = true;
+      
+      // Reset error messages
+      nameError.style.display = 'none';
+      classError.style.display = 'none';
+      parentError.style.display = 'none';
+      
+      // Validate student name
+      if (!studentNameInput.value.trim()) {
+        nameError.style.display = 'block';
+        isValid = false;
+      }
+      
+      // Validate class
+      if (!studentClassInput.value) {
+        classError.style.display = 'block';
+        isValid = false;
+      }
+      
+      // Validate parent name
+      if (!parentNameInput.value.trim()) {
+        parentError.style.display = 'block';
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+    
+    // Format date to display
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+    
+    // Format date for sorting
+    function formatDateString(dateString) {
+      return new Date(dateString).toISOString().split('T')[0];
+    }
+    
+    // Load homework for the student's class
+    function loadHomework() {
+      const studentData = localStorage.getItem('mkps_student');
+      if (!studentData) return;
+      
+      const student = JSON.parse(studentData);
+      const homeworkData = JSON.parse(localStorage.getItem('mkps_homework'));
+      
+      // Filter homework for the student's class
+      const classHomework = homeworkData.filter(item => item.class == student.studentClass);
+      
+      if (classHomework.length === 0) {
+        homeworkGrid.innerHTML = '<div class="no-homework">No homework assignments found for your class.</div>';
+        return;
+      }
+      
+      // Sort by date (newest first)
+      classHomework.sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+      // Generate homework cards
+      let homeworkHTML = '';
+      classHomework.forEach(item => {
+        homeworkHTML += `
+          <div class="homework-card">
+            <div class="homework-card-header">
+              <h3>${item.subject}</h3>
+              <div class="homework-date">${formatDate(item.date)}</div>
+            </div>
+            <div class="homework-card-body">
+              <span class="homework-subject">${item.subject}</span>
+              <p class="homework-instructions">${item.instructions}</p>
+            </div>
+          </div>
+        `;
+      });
+      
+      homeworkGrid.innerHTML = homeworkHTML;
+      
+      // Add event listeners for search and filter
+      setupHomeworkFilters(classHomework);
+    }
+    
+    // Setup homework search and filter functionality
+    function setupHomeworkFilters(allHomework) {
+      const studentData = localStorage.getItem('mkps_student');
+      if (!studentData) return;
+      
+      const student = JSON.parse(studentData);
+      const classHomework = allHomework.filter(item => item.class == student.studentClass);
+      
+      function filterHomework() {
+        const searchTerm = homeworkSearch.value.toLowerCase();
+        const selectedSubject = subjectFilter.value;
         
-        mobileToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            this.innerHTML = navMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close mobile menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // Back to Top Button
-        const backToTopButton = document.getElementById('backToTop');
+        let filteredHomework = classHomework;
         
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
+        // Filter by search term
+        if (searchTerm) {
+          filteredHomework = filteredHomework.filter(item => 
+            item.subject.toLowerCase().includes(searchTerm) || 
+            item.instructions.toLowerCase().includes(searchTerm)
+          );
+        }
+        
+        // Filter by subject
+        if (selectedSubject) {
+          filteredHomework = filteredHomework.filter(item => item.subject === selectedSubject);
+        }
+        
+        // Sort by date (newest first)
+        filteredHomework.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        // Generate filtered homework cards
+        if (filteredHomework.length === 0) {
+          homeworkGrid.innerHTML = '<div class="no-homework">No homework assignments match your search criteria.</div>';
+          return;
+        }
+        
+        let homeworkHTML = '';
+        filteredHomework.forEach(item => {
+          homeworkHTML += `
+            <div class="homework-card">
+              <div class="homework-card-header">
+                <h3>${item.subject}</h3>
+                <div class="homework-date">${formatDate(item.date)}</div>
+              </div>
+              <div class="homework-card-body">
+                <span class="homework-subject">${item.subject}</span>
+                <p class="homework-instructions">${item.instructions}</p>
+              </div>
+            </div>
+          `;
         });
         
-        backToTopButton.addEventListener('click', function() {
+        homeworkGrid.innerHTML = homeworkHTML;
+      }
+      
+      // Add event listeners
+      homeworkSearch.addEventListener('input', filterHomework);
+      subjectFilter.addEventListener('change', filterHomework);
+    }
+    
+    // Load teachers data
+    function loadTeachers() {
+      const teachersData = JSON.parse(localStorage.getItem('mkps_teachers'));
+      
+      let teachersHTML = '';
+      teachersData.forEach(teacher => {
+        teachersHTML += `
+          <div class="teacher-card">
+            <img src="${teacher.photo}" alt="${teacher.name}" class="teacher-img" />
+            <div class="teacher-info">
+              <h3>${teacher.name}</h3>
+              <div class="teacher-subject">${teacher.subject}</div>
+              <div class="teacher-contact">
+                <a href="tel:${teacher.phone}" title="Call ${teacher.name}"><i class="fas fa-phone"></i></a>
+                <a href="mailto:${teacher.contact}" title="Email ${teacher.name}"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      teachersGrid.innerHTML = teachersHTML;
+    }
+    
+    // Load events data
+    function loadEvents() {
+      const eventsData = JSON.parse(localStorage.getItem('mkps_events'));
+      
+      // Sort events by date (newest first)
+      eventsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+      let eventsHTML = '';
+      eventsData.forEach((event, index) => {
+        const positionClass = index % 2 === 0 ? '' : 'even';
+        eventsHTML += `
+          <div class="timeline-item ${positionClass}">
+            <div class="timeline-date">${formatDate(event.date)}</div>
+            <div class="timeline-content">
+              <span class="timeline-badge ${event.status}">${event.status.charAt(0).toUpperCase() + event.status.slice(1)}</span>
+              <h3>${event.title}</h3>
+              <p>${event.description}</p>
+            </div>
+          </div>
+        `;
+      });
+      
+      eventsTimeline.innerHTML = eventsHTML;
+    }
+    
+    // Load notices data
+    function loadNotices() {
+      const noticesData = JSON.parse(localStorage.getItem('mkps_notices'));
+      
+      // Sort notices by date (newest first)
+      noticesData.sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+      let noticesHTML = '';
+      noticesData.forEach(notice => {
+        noticesHTML += `
+          <div class="notice-item">
+            <div class="notice-badge ${notice.type}">${notice.type.toUpperCase()}</div>
+            <div class="notice-content">
+              <h3>${notice.title}</h3>
+              <div class="notice-date">${formatDate(notice.date)}</div>
+              <p>${notice.content}</p>
+            </div>
+          </div>
+        `;
+      });
+      
+      noticesList.innerHTML = noticesHTML;
+    }
+    
+    // Load timetable data
+    function loadTimetable() {
+      const studentData = localStorage.getItem('mkps_student');
+      if (!studentData) return;
+      
+      const student = JSON.parse(studentData);
+      const timetableData = JSON.parse(localStorage.getItem('mkps_timetable'));
+      
+      // Get timetable for the student's class
+      const classTimetable = timetableData[student.studentClass];
+      if (!classTimetable) {
+        timetableContainer.innerHTML = '<p>Timetable not available for your class.</p>';
+        return;
+      }
+      
+      // Generate timetable HTML
+      let timetableHTML = `
+        <table class="timetable">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+      
+      // Define time slots based on number of periods
+      const periods = Object.values(classTimetable)[0].length;
+      const timeSlots = [];
+      
+      // Set default time slots (adjust as needed)
+      if (periods === 5) {
+        timeSlots.push("8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-1:00");
+      } else if (periods === 6) {
+        timeSlots.push("8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-1:00", "1:00-2:00");
+      } else {
+        // Default for any other number of periods
+        for (let i = 0; i < periods; i++) {
+          const startHour = 8 + i;
+          const endHour = 9 + i;
+          timeSlots.push(`${startHour}:00-${endHour}:00`);
+        }
+      }
+      
+      // Generate table rows
+      for (let i = 0; i < periods; i++) {
+        timetableHTML += `<tr>`;
+        timetableHTML += `<td>${timeSlots[i]}</td>`;
+        
+        const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+        days.forEach(day => {
+          const subject = classTimetable[day][i];
+          timetableHTML += `<td class="subject-cell">${subject}</td>`;
+        });
+        
+        timetableHTML += `</tr>`;
+      }
+      
+      timetableHTML += `
+          </tbody>
+        </table>
+      `;
+      
+      timetableContainer.innerHTML = timetableHTML;
+    }
+    
+    // Load gallery data
+    function loadGallery() {
+      const galleryData = JSON.parse(localStorage.getItem('mkps_gallery'));
+      
+      let galleryHTML = '';
+      galleryData.forEach(item => {
+        galleryHTML += `
+          <div class="gallery-item" data-src="${item.src}">
+            <img src="${item.src}" alt="${item.alt}" />
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+        `;
+      });
+      
+      galleryGrid.innerHTML = galleryHTML;
+      
+      // Add event listeners to gallery items
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', () => {
+          openLightbox(item.dataset.src);
+        });
+      });
+    }
+    
+    // Open lightbox with image
+    function openLightbox(imageSrc) {
+      lightboxImg.src = imageSrc;
+      lightbox.classList.add('open');
+      
+      // Prevent scrolling when lightbox is open
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Close lightbox
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      
+      // Re-enable scrolling
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Navigate to previous image in lightbox
+    function prevImage() {
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const currentSrc = lightboxImg.src;
+      let currentIndex = -1;
+      
+      // Find current image index
+      galleryItems.forEach((item, index) => {
+        if (item.dataset.src === currentSrc) {
+          currentIndex = index;
+        }
+      });
+      
+      // Get previous image
+      if (currentIndex > 0) {
+        const prevIndex = currentIndex - 1;
+        lightboxImg.src = galleryItems[prevIndex].dataset.src;
+      } else {
+        // Loop to the last image
+        const lastIndex = galleryItems.length - 1;
+        lightboxImg.src = galleryItems[lastIndex].dataset.src;
+      }
+    }
+    
+    // Navigate to next image in lightbox
+    function nextImage() {
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const currentSrc = lightboxImg.src;
+      let currentIndex = -1;
+      
+      // Find current image index
+      galleryItems.forEach((item, index) => {
+        if (item.dataset.src === currentSrc) {
+          currentIndex = index;
+        }
+      });
+      
+      // Get next image
+      if (currentIndex < galleryItems.length - 1) {
+        const nextIndex = currentIndex + 1;
+        lightboxImg.src = galleryItems[nextIndex].dataset.src;
+      } else {
+        // Loop to the first image
+        lightboxImg.src = galleryItems[0].dataset.src;
+      }
+    }
+    
+    // Load FAQ data
+    function loadFAQ() {
+      const faqData = JSON.parse(localStorage.getItem('mkps_faq'));
+      
+      let faqHTML = '';
+      faqData.forEach((item, index) => {
+        faqHTML += `
+          <div class="faq-item">
+            <div class="faq-question" data-index="${index}">
+              ${item.question}
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer" id="faq-answer-${index}">
+              <p>${item.answer}</p>
+            </div>
+          </div>
+        `;
+      });
+      
+      faqList.innerHTML = faqHTML;
+      
+      // Add event listeners to FAQ questions
+      document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+          const index = question.dataset.index;
+          const answer = document.getElementById(`faq-answer-${index}`);
+          
+          // Toggle active class on question
+          question.classList.toggle('active');
+          
+          // Toggle open class on answer
+          answer.classList.toggle('open');
+        });
+      });
+    }
+    
+    // Handle contact form submission
+    function handleContactForm(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const name = contactName.value.trim();
+      const email = contactEmail.value.trim();
+      const subject = contactSubject.value.trim();
+      const message = contactMessage.value.trim();
+      
+      // Validate form
+      if (!name || !email || !subject || !message) {
+        showMessage('Please fill in all fields.', 'error');
+        return;
+      }
+      
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showMessage('Please enter a valid email address.', 'error');
+        return;
+      }
+      
+      // Create message object
+      const newMessage = {
+        id: Date.now(),
+        name,
+        email,
+        subject,
+        message,
+        date: new Date().toISOString()
+      };
+      
+      // Get existing messages
+      const messages = JSON.parse(localStorage.getItem('mkps_messages')) || [];
+      
+      // Add new message
+      messages.unshift(newMessage);
+      
+      // Save to localStorage
+      localStorage.setItem('mkps_messages', JSON.stringify(messages));
+      
+      // Reset form
+      contactForm.reset();
+      
+      // Show success message
+      showMessage('Your message has been sent successfully. We will get back to you soon.', 'success');
+      
+      // Show messages popup
+      showMessagesPopup();
+    }
+    
+    // Show message in contact form
+    function showMessage(text, type) {
+      contactMessageStatus.textContent = text;
+      contactMessageStatus.className = `form-message ${type}`;
+      contactMessageStatus.style.display = 'block';
+      
+      // Hide message after 5 seconds
+      setTimeout(() => {
+        contactMessageStatus.style.display = 'none';
+      }, 5000);
+    }
+    
+    // Show messages popup
+    function showMessagesPopup() {
+      const messages = JSON.parse(localStorage.getItem('mkps_messages')) || [];
+      
+      // Only show popup if there are messages
+      if (messages.length === 0) {
+        messagesPopup.classList.remove('open');
+        return;
+      }
+      
+      // Display latest 3 messages
+      let messagesHTML = '';
+      const recentMessages = messages.slice(0, 3);
+      
+      recentMessages.forEach(message => {
+        const messageDate = new Date(message.date);
+        const formattedDate = messageDate.toLocaleDateString() + ' ' + messageDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        messagesHTML += `
+          <div class="message-item">
+            <h5>${message.subject}</h5>
+            <div class="message-date">${formattedDate}</div>
+            <div class="message-content">${message.message.substring(0, 100)}${message.message.length > 100 ? '...' : ''}</div>
+          </div>
+        `;
+      });
+      
+      messagesList.innerHTML = messagesHTML;
+      messagesPopup.classList.add('open');
+    }
+    
+    // Close messages popup
+    function closeMessagesPopup() {
+      messagesPopup.classList.remove('open');
+    }
+    
+    // Toggle sidebar
+    function toggleSidebar() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    
+    // Close sidebar
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+    }
+    
+    // Toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      
+      // Save preference to localStorage
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    }
+    
+    // Check dark mode preference
+    function checkDarkMode() {
+      const darkMode = localStorage.getItem('darkMode');
+      if (darkMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      }
+    }
+    
+    // Update real-time clock
+    function updateClock() {
+      const now = new Date();
+      realTimeClock.textContent = now.toLocaleTimeString();
+    }
+    
+    // Export data as JSON
+    function exportData() {
+      // Get all data from localStorage
+      const data = {
+        mkps_student: localStorage.getItem('mkps_student'),
+        mkps_homework: localStorage.getItem('mkps_homework'),
+        mkps_teachers: localStorage.getItem('mkps_teachers'),
+        mkps_events: localStorage.getItem('mkps_events'),
+        mkps_notices: localStorage.getItem('mkps_notices'),
+        mkps_timetable: localStorage.getItem('mkps_timetable'),
+        mkps_gallery: localStorage.getItem('mkps_gallery'),
+        mkps_faq: localStorage.getItem('mkps_faq'),
+        mkps_messages: localStorage.getItem('mkps_messages')
+      };
+      
+      // Create JSON string
+      const dataStr = JSON.stringify(data, null, 2);
+      const dataBlob = new Blob([dataStr], {type: 'application/json'});
+      
+      // Create download link
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `mkps_data_backup_${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+      
+      // Clean up
+      URL.revokeObjectURL(url);
+    }
+    
+    // Download HTML snapshot
+    function downloadSnapshot() {
+      // Get the entire HTML content
+      const htmlContent = document.documentElement.outerHTML;
+      
+      // Create blob
+      const blob = new Blob([htmlContent], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      
+      // Create download link
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `mkps_website_snapshot_${new Date().toISOString().split('T')[0]}.html`;
+      link.click();
+      
+      // Clean up
+      URL.revokeObjectURL(url);
+    }
+    
+    // Print page
+    function printPage() {
+      window.print();
+    }
+    
+    // Load all content
+    function loadContent() {
+      loadHomework();
+      loadTeachers();
+      loadEvents();
+      loadNotices();
+      loadTimetable();
+      loadGallery();
+      loadFAQ();
+      
+      // Add animation to sections
+      const sections = document.querySelectorAll('.section');
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      sections.forEach(section => {
+        sectionObserver.observe(section);
+      });
+    }
+    
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize localStorage with sample data if needed
+      initializeLocalStorage();
+      
+      // Check for existing student data
+      checkStudentData();
+      
+      // Set current year in footer
+      currentYear.textContent = new Date().getFullYear();
+      
+      // Update clock every second
+      updateClock();
+      setInterval(updateClock, 1000);
+      
+      // Check dark mode preference
+      checkDarkMode();
+      
+      // Student form submission
+      studentForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (validateForm()) {
+          // Save student data to localStorage
+          const studentData = {
+            studentName: studentNameInput.value.trim(),
+            studentClass: studentClassInput.value,
+            parentName: parentNameInput.value.trim()
+          };
+          
+          localStorage.setItem('mkps_student', JSON.stringify(studentData));
+          
+          // Show welcome message
+          showWelcomeMessage(studentData);
+          
+          // Hide form
+          hideStudentForm();
+          
+          // Load content
+          loadContent();
+          
+          // Show messages popup
+          showMessagesPopup();
+        }
+      });
+      
+      // Contact form submission
+      contactForm.addEventListener('submit', handleContactForm);
+      
+      // Sidebar toggle
+      document.querySelectorAll('[href="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+        });
+      });
+      
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener('click', toggleSidebar);
+      sidebarClose.addEventListener('click', closeSidebar);
+      overlay.addEventListener('click', closeSidebar);
+      
+      // Quick actions
+      quickCall.addEventListener('click', () => {
+        window.location.href = 'tel:9758919151';
+      });
+      
+      quickEmail.addEventListener('click', () => {
+        window.location.href = 'mailto:madamsir066@gmail.com';
+      });
+      
+      quickSearch.addEventListener('click', () => {
+        homeworkSearch.focus();
+      });
+      
+      exportDataBtn.addEventListener('click', exportData);
+      
+      // Lightbox controls
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightboxPrev.addEventListener('click', prevImage);
+      lightboxNext.addEventListener('click', nextImage);
+      
+      // Close lightbox when clicking outside image
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+      
+      // Messages popup
+      messagesClose.addEventListener('click', closeMessagesPopup);
+      
+      // Theme toggle
+      themeToggle.addEventListener('click', toggleDarkMode);
+      
+      // More dropdown links
+      exportDataLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        exportData();
+      });
+      
+      downloadSnapshotLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        downloadSnapshot();
+      });
+      
+      printPageLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        printPage();
+      });
+      
+      // Navigation links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Remove active class from all links
+          navLinks.forEach(l => l.classList.remove('active'));
+          
+          // Add active class to clicked link
+          this.classList.add('active');
+          
+          // Close mobile menu if open
+          closeSidebar();
+        });
+      });
+      
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          e.preventDefault();
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
             window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
             });
+          }
         });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! We will get back to you soon.');
-                this.reset();
-            });
-        }
-
-        // Newsletter form submission
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for subscribing to our newsletter!');
-                this.reset();
-            });
-        }
-
-        // Testimonial slider
-        const testimonial = document.querySelector('.testimonial');
-        const testimonials = [
-            {
-                text: "Milli Karwaan Public School has transformed my child's learning experience. The teachers are not just educators but mentors who genuinely care about each student's growth. The balance between academics and extracurricular activities is perfect.",
-                author: "Smt. Anjali Singh",
-                role: "Parent of Class 8 Student"
-            },
-            {
-                text: "As a student of Milli Karwaan Public School, I appreciate the supportive environment that encourages both academic excellence and personal development. The teachers are always available to help, and the facilities are excellent.",
-                author: "Rahul Kumar",
-                role: "Class 12 Student"
-            },
-            {
-                text: "The school administration is highly professional and responsive. They maintain excellent communication with parents and are always open to suggestions. The focus on values and character building sets this school apart from others.",
-                author: "Mr. Vijay Sharma",
-                role: "Parent of Class 5 Student"
-            }
-        ];
-
-        let currentTestimonial = 0;
-
-        function updateTestimonial(index) {
-            const testimonialText = testimonial.querySelector('.testimonial-text');
-            const authorName = testimonial.querySelector('.author-info h4');
-            const authorRole = testimonial.querySelector('.author-info p');
-            
-            testimonialText.innerHTML = `"${testimonials[index].text}"`;
-            authorName.textContent = testimonials[index].author;
-            authorRole.textContent = testimonials[index].role;
-        }
-
-        document.querySelector('.next-btn').addEventListener('click', function() {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            updateTestimonial(currentTestimonial);
-        });
-
-        document.querySelector('.prev-btn').addEventListener('click', function() {
-            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-            updateTestimonial(currentTestimonial);
-        });
-
-        // Animation on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        fadeElements.forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Initialize first testimonial
-        updateTestimonial(currentTestimonial);
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
-```
