@@ -1,683 +1,771 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Milli Karwaan Public School Balrampur</title>
-<style>
-  /* ---------- Basic Reset & Layout ---------- */
-  :root{
-    --brand:#004080;
-    --brand-dark:#00294d;
-    --accent:#0077cc;
-    --muted:#666;
-    --bg:#f5f7fb;
-    --card:#ffffff;
-    --glass: rgba(255,255,255,0.7);
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%; margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:#111;}
-  a{color:inherit; text-decoration:none}
-  img{max-width:100%; display:block}
-  .container{max-width:1100px; margin:20px auto; padding:0 16px;}
-
-  /* ---------- Header ---------- */
-  header.site-header{
-    background: linear-gradient(90deg,var(--brand),var(--brand-dark));
-    color:white;
-    padding:12px 16px;
-    position:sticky;
-    top:0;
-    z-index:40;
-    box-shadow: 0 2px 8px rgba(2,6,23,0.15);
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
-  header .brand {display:flex; align-items:center; gap:12px; flex:1;}
-  header .brand img{height:64px; width:64px; object-fit:cover; border-radius:8px; background: #fff; padding:6px;}
-  header .brand .title{line-height:1;}
-  header .brand h1{margin:0;font-size:1.15rem; font-weight:700}
-  header .brand p{margin:0;font-size:0.85rem; opacity:0.95}
-  header .contact{ text-align:right; font-size:0.85rem; opacity:0.95; }
-  header .contact div{margin:2px 0}
-
-  /* ---------- Nav ---------- */
-  nav.main-nav{
-    background: #fff;
-    border-bottom: 1px solid #e6eef9;
-    display:flex;
-    align-items:center;
-    padding:10px 16px;
-    gap:12px;
-    position:sticky;
-    top:86px;
-    z-index:30;
-  }
-  nav .left {flex:1; display:flex; gap:8px; align-items:center}
-  nav .right {display:flex; gap:8px; align-items:center}
-  .nav-link {padding:8px 12px; border-radius:6px; font-weight:600; color:var(--brand-dark);}
-  .nav-link:hover {background: #f0f6ff}
-  .dot-menu {font-size:22px; cursor:pointer; padding:6px; border-radius:6px; color:var(--brand-dark)}
-  .more-panel{position:absolute; right:18px; top:124px; background:var(--card); box-shadow:0 6px 24px rgba(2,6,23,0.15); border-radius:8px; padding:12px; display:none; min-width:220px; z-index:80;}
-  .more-panel a{display:block; padding:8px 6px; color:var(--brand-dark); border-radius:6px}
-  .more-panel a:hover{background:#f3faff}
-
-  /* ---------- Grid & Sections ---------- */
-  .grid{display:grid; grid-template-columns: 1fr 360px; gap:20px; align-items:start;}
-  @media (max-width:980px){ .grid{grid-template-columns:1fr} header .contact{display:none} .more-panel{right:10px; top:132px} }
-  .card{background:var(--card); padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(15,33,64,0.04);}
-  .section-title{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px}
-  .section-title h2{margin:0; color:var(--brand); font-size:1.05rem;}
-  small.muted{color:var(--muted); font-size:0.85rem}
-
-  /* ---------- Form ---------- */
-  label{display:block; font-size:0.9rem; margin:8px 0 4px;}
-  input[type=text], input[type=email], select, textarea{width:100%; padding:10px 12px; border-radius:8px; border:1px solid #d6e6fb; background:#fcfeff}
-  button.btn{background:var(--brand); color:white; padding:10px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:700}
-  button.ghost{background:transparent; color:var(--brand); border:1px solid #e6f0ff}
-  .row{display:flex; gap:12px}
-  .row .col{flex:1}
-  @media (max-width:540px){ .row{flex-direction:column} }
-
-  /* ---------- Homework List ---------- */
-  ul.hw-list{list-style:none; margin:0; padding:0}
-  ul.hw-list li{padding:10px; border-radius:8px; border:1px dashed #e8f1ff; margin-bottom:8px; background:linear-gradient(180deg,#fff,#fbfdff)}
-  .hw-meta{font-size:0.8rem; color:var(--muted)}
-
-  /* ---------- Teachers ---------- */
-  .teacher{display:flex; gap:12px; align-items:center}
-  .teacher .avatar{height:56px; width:56px; border-radius:8px; background:#eef6ff; display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--brand)}
-  .teacher .info small{color:var(--muted)}
-
-  /* ---------- Gallery ---------- */
-  .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
-  .gallery img{width:100%; height:110px; object-fit:cover; border-radius:8px; cursor:pointer}
-  @media (max-width:700px){ .gallery{grid-template-columns:repeat(2,1fr)} }
-
-  /* ---------- Notices & Events ---------- */
-  .notice{padding:8px; border-radius:8px; background:#fff8e6; border:1px solid #fff0c9; margin-bottom:8px}
-  .event{padding:10px; border-radius:8px; background:#f3faff; border:1px solid #dceeff; margin-bottom:8px}
-
-  /* ---------- Timetable ---------- */
-  .table{width:100%; border-collapse:collapse}
-  .table th, .table td{padding:8px; border:1px solid #eef6ff; text-align:left}
-
-  /* ---------- Footer ---------- */
-  footer.site-footer{margin-top:24px; padding:18px; background:linear-gradient(90deg,var(--brand-dark),var(--brand)); color:white; border-radius:10px; text-align:center}
-
-  /* ---------- Lightbox ---------- */
-  .lightbox{position:fixed; inset:0; background:rgba(0,0,0,0.7); display:none; align-items:center; justify-content:center; z-index:200}
-  .lightbox img{max-width:95%; max-height:85%; border-radius:6px}
-
-  /* small helpers */
-  .muted-pill{padding:6px 8px; border-radius:20px; background:#f3f8ff; color:var(--brand-dark); font-weight:600; font-size:0.85rem}
-  .flex{display:flex; gap:8px; align-items:center}
-  .center{text-align:center}
-</style>
-</head>
-<body>
-
-<!-- HEADER -->
-<header class="site-header" role="banner">
-  <div class="brand">
-    <img src="https://i.ibb.co/7z2QyfM/logo.png" alt="School Logo">
-    <div>
-      <h1>Milli Karwaan Public School Balrampur</h1>
-      <p>Boluha Police Chowki Balrampur — Excellence in Learning</p>
-    </div>
-  </div>
-
-  <div class="contact" aria-hidden="false">
-    <div>📞 9758919151</div>
-    <div>✉ madamsir066@gmail.com</div>
-  </div>
-</header>
-
-<!-- NAV -->
-<nav class="main-nav" role="navigation">
-  <div class="left">
-    <a class="nav-link" href="#home">Home</a>
-    <a class="nav-link" href="#homework">Homework</a>
-    <a class="nav-link" href="#teachers">Teachers</a>
-    <a class="nav-link" href="#gallery">Gallery</a>
-    <a class="nav-link" href="#contact">Contact</a>
-  </div>
-  <div class="right">
-    <div class="dot-menu" onclick="toggleMore()">⋮</div>
-    <div class="more-panel card" id="morePanel" role="menu">
-      <a href="#gallery">Gallery</a>
-      <a href="#events">Events</a>
-      <a href="#notices">Notices</a>
-      <a href="#timetable">Timetable</a>
-      <a href="admin.html">Admin Login</a>
-      <a href="#" onclick="downloadSnapshot()">Download Snapshot</a>
-    </div>
-  </div>
-</nav>
-
-<!-- MAIN -->
-<main class="container" id="home">
-  <div class="grid">
-
-    <!-- LEFT: Primary content -->
-    <div>
-
-      <!-- STUDENT ACCESS FORM -->
-      <section class="card" id="student-access" aria-labelledby="student-title">
-        <div class="section-title">
-          <h2 id="student-title">Student Access</h2>
-          <small class="muted">Enter details to view class-specific homework</small>
-        </div>
-
-        <div>
-          <label for="stuName">Student Name</label>
-          <input id="stuName" type="text" placeholder="e.g. Rahim Kumar">
-
-          <div class="row" style="margin-top:6px">
-            <div class="col">
-              <label for="stuClass">Class</label>
-              <select id="stuClass">
-                <option value="">Select Class</option>
-                <!-- class options generated by JS -->
-              </select>
-            </div>
-            <div class="col">
-              <label for="parentName">Parent's Name</label>
-              <input id="parentName" type="text" placeholder="e.g. Mrs. Singh">
-            </div>
-          </div>
-
-          <div style="margin-top:12px; display:flex; gap:8px">
-            <button class="btn" onclick="handleStudent()">View Homework</button>
-            <button class="ghost" onclick="clearStudent()">Reset</button>
-          </div>
-
-          <div id="student-welcome" style="margin-top:12px; display:none">
-            <div class="muted-pill" id="welcomeText"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- HOMEWORK SECTION -->
-      <section class="card" id="homework" aria-labelledby="hw-title" style="margin-top:18px">
-        <div class="section-title">
-          <h2 id="hw-title">Homework</h2>
-          <small class="muted">Homework for selected class (from admin)</small>
-        </div>
-        <div id="hw-content">
-          <p class="muted">Select your class using the form above and click <strong>View Homework</strong>. If no homework exists, ask your school admin to add it via the admin panel.</p>
-          <ul class="hw-list" id="hwList"></ul>
-        </div>
-      </section>
-
-      <!-- TEACHERS -->
-      <section class="card" id="teachers" style="margin-top:18px">
-        <div class="section-title">
-          <h2>Our Teachers</h2>
-          <small class="muted">Dedicated staff — click to view details</small>
-        </div>
-        <div id="teacherContainer">
-          <!-- teacher list inserted by JS -->
-        </div>
-      </section>
-
-      <!-- EVENTS -->
-      <section class="card" id="events" style="margin-top:18px">
-        <div class="section-title">
-          <h2>Upcoming Events</h2>
-          <small class="muted">Don't miss out — mark your calendar</small>
-        </div>
-        <div id="eventsList">
-          <!-- events generated by JS -->
-        </div>
-      </section>
-
-      <!-- NOTICE BOARD -->
-      <section class="card" id="notices" style="margin-top:18px">
-        <div class="section-title">
-          <h2>Notice Board</h2>
-          <small class="muted">Official announcements</small>
-        </div>
-        <div id="noticeBoard">
-          <!-- notices by JS -->
-        </div>
-      </section>
-
-      <!-- TIMETABLE -->
-      <section class="card" id="timetable" style="margin-top:18px">
-        <div class="section-title">
-          <h2>Class Timetable (Sample)</h2>
-          <small class="muted">Request detailed class-wise timetable from admin</small>
-        </div>
-        <div style="overflow:auto">
-          <table class="table" id="timetableTable" role="table">
-            <thead>
-              <tr><th>Day</th><th>8:00-9:00</th><th>9:00-10:00</th><th>10:15-11:15</th><th>11:15-12:15</th></tr>
-            </thead>
-            <tbody>
-              <!-- populated by JS -->
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="card" id="faq" style="margin-top:18px">
-        <div class="section-title">
-          <h2>FAQ</h2>
-          <small class="muted">Quick answers for parents & students</small>
-        </div>
-        <div>
-          <details><summary><strong>How do I view homework?</strong></summary><p>Enter your name, select class, enter parent's name and click <em>View Homework</em>.</p></details>
-          <details><summary><strong>How can admin add homework?</strong></summary><p>Admin must login via the Admin Login link and add homework for specific classes. Data is stored in your browser's localStorage.</p></details>
-          <details><summary><strong>Can I contact the school?</strong></summary><p>Yes — use the contact form below or call 9758919151.</p></details>
-        </div>
-      </section>
-
-    </div> <!-- LEFT END -->
-
-    <!-- RIGHT: Sidebar -->
-    <aside>
-
-      <!-- QUICK CONTACT -->
-      <div class="card" id="contact" style="margin-bottom:18px">
-        <div class="section-title"><h2>Contact</h2><small class="muted">Reach out to the school office</small></div>
-        <div>
-          <div class="flex"><strong>Address:</strong><div style="font-size:0.95rem; color:var(--muted); margin-left:6px">Boluha Police Chowki Balrampur</div></div>
-          <div class="flex" style="margin-top:8px"><strong>Phone:</strong><div style="margin-left:6px">9758919151</div></div>
-          <div class="flex" style="margin-top:8px"><strong>Email:</strong><div style="margin-left:6px">madamsir066@gmail.com</div></div>
-        </div>
-
-        <hr style="margin:12px 0;border:none;border-top:1px solid #f0f7ff">
-        <form id="contactForm" onsubmit="submitContact(event)">
-          <label for="cname">Your Name</label>
-          <input id="cname" type="text" required>
-          <label for="cemail">Your Email</label>
-          <input id="cemail" type="email" required>
-          <label for="cmsg">Message</label>
-          <textarea id="cmsg" rows="4" required placeholder="Write your message to the school..."></textarea>
-          <div style="margin-top:8px; display:flex; gap:8px">
-            <button class="btn" type="submit">Send Message</button>
-            <button type="button" class="ghost" onclick="viewMessages()">View Saved</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- SEARCH / QUICK HOMEWORK -->
-      <div class="card" style="margin-bottom:18px">
-        <div class="section-title"><h2>Quick Homework Search</h2><small class="muted">Search by class or keyword</small></div>
-        <div>
-          <label for="qClass">Class</label>
-          <select id="qClass"></select>
-          <label for="qKey">Keyword</label>
-          <input id="qKey" type="text" placeholder="e.g. maths">
-          <div style="margin-top:8px; display:flex; gap:8px">
-            <button class="btn" onclick="quickSearch()">Search</button>
-            <button class="ghost" onclick="resetSearch()">Reset</button>
-          </div>
-          <div id="quickResults" style="margin-top:8px"></div>
-        </div>
-      </div>
-
-      <!-- GALLERY PREVIEW -->
-      <div class="card" style="margin-bottom:18px">
-        <div class="section-title"><h2>Gallery</h2><small class="muted">Click to enlarge</small></div>
-        <div class="gallery" id="galleryPreview">
-          <!-- images by JS -->
-        </div>
-        <div style="margin-top:10px" class="center"><a class="nav-link" href="#gallery" onclick="scrollToEl('gallery')">View All Photos</a></div>
-      </div>
-
-      <!-- ADMIN QUICKLINK -->
-      <div class="card">
-        <div class="section-title"><h2>Admin</h2><small class="muted">Authorized users only</small></div>
-        <p class="muted">Admin functions (add homework, manage teachers) are available in the admin panel. Click the button to open admin login.</p>
-        <div style="display:flex; gap:8px">
-          <a class="btn" href="admin.html">Admin Login</a>
-          <button class="ghost" onclick="exportData()">Export Data</button>
-        </div>
-      </div>
-
-    </aside>
-
-  </div> <!-- grid end -->
-
-  <!-- FULL GALLERY SECTION -->
-  <section class="card" id="gallery" style="margin-top:18px">
-    <div class="section-title"><h2>Photo Gallery</h2><small class="muted">School events, classrooms, and activities</small></div>
-    <div id="galleryGrid" class="gallery"></div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
-        <div>
-          <strong>Milli Karwaan Public School Balrampur</strong><br>
-          <small>Boluha Police Chowki Balrampur • 📞 9758919151 • ✉ madamsir066@gmail.com</small>
-        </div>
-        <div>
-          <small>Designed for students & parents • Local data stored in browser (localStorage)</small>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-</main>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="hideLightbox()"><img id="lightboxImg" src="" alt=""/></div>
-
-<script>
-/* ===============================
-   Data keys & helpers
-   =============================== */
-const KEY_HOMEWORK = 'mkps_homework';
-const KEY_TEACHERS = 'mkps_teachers';
-const KEY_EVENTS = 'mkps_events';
-const KEY_NOTICES = 'mkps_notices';
-const KEY_TIMETABLE = 'mkps_timetable';
-const KEY_MESSAGES = 'mkps_messages';
-const CLASS_COUNT = 12;
-
-/* ---------- Utility ---------- */
-function $(id){return document.getElementById(id)}
-function save(key, value){localStorage.setItem(key, JSON.stringify(value))}
-function load(key, fallback){ const v=localStorage.getItem(key); return v? JSON.parse(v) : fallback; }
-
-/* ---------- Seed sample data if not present ---------- */
-function seedData(){
-  // homework: object where key = class number, value = array of strings
-  const hw = load(KEY_HOMEWORK, null);
-  if(!hw){
-    const sample = {};
-    for(let i=1;i<=CLASS_COUNT;i++){
-      sample[i] = [
-        `Maths: Practice chapter ${Math.min(i,10)} — 20 minutes`,
-        `English: Read page ${10+i} and write 5 sentences`,
-        `Science: Short notes on topic ${i <=6 ? 'Plants' : 'Energy'}`
-      ];
-    }
-    save(KEY_HOMEWORK, sample);
-  }
-
-  // teachers
-  const teachers = load(KEY_TEACHERS, null);
-  if(!teachers){
-    save(KEY_TEACHERS, [
-      {name:"Mr. Ali", subject:"Mathematics", phone:"9758919001"},
-      {name:"Mrs. Fatima", subject:"English", phone:"9758919002"},
-      {name:"Mr. Khan", subject:"Science", phone:"9758919003"},
-      {name:"Ms. S. Rani", subject:"Social Studies", phone:"9758919004"},
-      {name:"Ms. Neha", subject:"Computer", phone:"9758919005"}
-    ]);
-  }
-
-  // events
-  const events = load(KEY_EVENTS, null);
-  if(!events){
-    save(KEY_EVENTS, [
-      {title:"Annual Sports Day", date:"2025-08-25", desc:"Sports competitions & prizes."},
-      {title:"Parents-Teacher Meeting", date:"2025-09-10", desc:"Class wise PTM in school hall."},
-      {title:"Science Exhibition", date:"2025-10-05", desc:"Projects by students of classes 6-12."}
-    ]);
-  }
-
-  // notices
-  const notices = load(KEY_NOTICES, null);
-  if(!notices){
-    save(KEY_NOTICES, [
-      {title:"Holiday Notice", body:"School will remain closed on Friday due to a local holiday."},
-      {title:"Fee Reminder", body:"Please clear pending fees by the end of this month."}
-    ]);
-  }
-
-  // timetable (sample)
-  const tt = load(KEY_TIMETABLE, null);
-  if(!tt){
-    const sample = {
-      "Monday":["Maths","English","Science","Computer"],
-      "Tuesday":["Hindi","Maths","Social","Art"],
-      "Wednesday":["Science","Maths","PT","English"],
-      "Thursday":["Computer","Social","Maths","Science"],
-      "Friday":["English","Maths","Assembly","Sports"]
-    };
-    save(KEY_TIMETABLE, sample);
-  }
-}
-seedData();
-
-/* ---------- Populate UI controls ---------- */
-function populateClassOptions(){
-  const select = $('stuClass');
-  const qselect = $('qClass');
-  select.innerHTML = '<option value="">Select Class</option>';
-  qselect.innerHTML = '<option value="">All Classes</option>';
-  for(let i=1;i<=CLASS_COUNT;i++){
-    const opt = document.createElement('option'); opt.value=i; opt.textContent='Class '+i;
-    select.appendChild(opt);
-    const opt2 = opt.cloneNode(true); qselect.appendChild(opt2);
-  }
-}
-populateClassOptions();
-
-/* ---------- Render homework list (for chosen class) ---------- */
-function renderHomeworkFor(classNum){
-  const hw = load(KEY_HOMEWORK, {});
-  const list = $('hwList');
-  list.innerHTML = '';
-  if(!classNum){
-    list.innerHTML = '<li class="hw-meta">Please select a class to view homework.</li>';
-    return;
-  }
-  const arr = hw[classNum] || [];
-  if(arr.length===0){
-    list.innerHTML = '<li class="hw-meta">No homework assigned yet for Class '+classNum+'</li>';
-    return;
-  }
-  arr.forEach((h, idx)=>{
-    const li = document.createElement('li');
-    li.innerHTML = `<div><strong>${h}</strong></div><div class="hw-meta">Class ${classNum} • Item ${idx+1}</div>`;
-    list.appendChild(li);
-  });
-}
-
-/* ---------- Handle student form ---------- */
-function handleStudent(){
-  const name = $('stuName').value.trim();
-  const cls = $('stuClass').value;
-  const parent = $('parentName').value.trim();
-  if(!name || !cls || !parent){
-    alert('Please fill Student Name, Class and Parent\'s Name.');
-    return;
-  }
-  $('student-welcome').style.display='block';
-  $('welcomeText').textContent = `Welcome ${name} (Class ${cls}) — Parent: ${parent}`;
-  renderHomeworkFor(cls);
-  // Save last visited student info (for UX)
-  localStorage.setItem('mkps_last_student', JSON.stringify({name,cls,parent,ts:Date.now()}));
-  // scroll to homework
-  setTimeout(()=>location.hash='#homework',100);
-}
-function clearStudent(){
-  $('stuName').value=''; $('stuClass').value=''; $('parentName').value='';
-  $('hwList').innerHTML=''; $('student-welcome').style.display='none';
-}
-
-/* ---------- Teachers render ---------- */
-function renderTeachers(){
-  const teachers = load(KEY_TEACHERS, []);
-  const c = $('teacherContainer'); c.innerHTML='';
-  teachers.forEach(t=>{
-    const div = document.createElement('div'); div.className='teacher'; div.style.marginBottom='10px';
-    div.innerHTML = `<div class="avatar">${t.name.split(' ').map(s=>s[0]).slice(0,2).join('')}</div>
-      <div class="info"><strong>${t.name}</strong><div class="muted">${t.subject} • ${t.phone}</div></div>`;
-    c.appendChild(div);
-  });
-}
-renderTeachers();
-
-/* ---------- Events & Notices ---------- */
-function renderEvents(){
-  const events = load(KEY_EVENTS, []);
-  const el = $('eventsList'); el.innerHTML='';
-  events.forEach(e=>{
-    const div = document.createElement('div'); div.className='event';
-    div.innerHTML = `<strong>${e.title}</strong> <div class="muted">${e.date}</div><p style="margin:6px 0">${e.desc}</p>`;
-    el.appendChild(div);
-  });
-}
-function renderNotices(){
-  const nots = load(KEY_NOTICES, []);
-  const el = $('noticeBoard'); el.innerHTML='';
-  nots.forEach(n=>{
-    const d = document.createElement('div'); d.className='notice';
-    d.innerHTML = `<strong>${n.title}</strong><p style="margin:6px 0">${n.body}</p>`;
-    el.appendChild(d);
-  });
-}
-renderEvents(); renderNotices();
-
-/* ---------- Timetable ---------- */
-function renderTimetable(){
-  const tt = load(KEY_TIMETABLE, {});
-  const tbody = $('timetableTable').querySelector('tbody'); tbody.innerHTML='';
-  for(const day in tt){
-    const tr=document.createElement('tr');
-    const tdDay=document.createElement('td'); tdDay.textContent=day; tr.appendChild(tdDay);
-    tt[day].forEach(slot=>{ const td=document.createElement('td'); td.textContent=slot; tr.appendChild(td); });
-    tbody.appendChild(tr);
-  }
-}
-renderTimetable();
-
-/* ---------- Gallery ---------- */
-const sampleGallery = [
-  'https://picsum.photos/id/1018/800/600','https://picsum.photos/id/1025/800/600','https://picsum.photos/id/1032/800/600',
-  'https://picsum.photos/id/1041/800/600','https://picsum.photos/id/1050/800/600','https://picsum.photos/id/1067/800/600'
-];
-function renderGallery(){
-  const preview = $('galleryPreview'); const grid = $('galleryGrid');
-  preview.innerHTML=''; grid.innerHTML='';
-  const gallery = load('mkps_gallery', sampleGallery);
-  gallery.forEach((src, idx)=>{
-    const img = document.createElement('img'); img.src=src; img.alt='School Photo '+(idx+1);
-    img.onclick = ()=>showLightbox(src);
-    const img2 = img.cloneNode(true);
-    preview.appendChild(img);
-    grid.appendChild(img2);
-  });
-}
-renderGallery();
-
-/* ---------- Lightbox ---------- */
-function showLightbox(src){ $('lightboxImg').src = src; $('lightbox').style.display='flex'; }
-function hideLightbox(){ $('lightbox').style.display='none'; }
-
-/* ---------- Contact form (saved to localStorage) ---------- */
-function submitContact(e){
-  e.preventDefault();
-  const name = $('cname').value.trim(); const email = $('cemail').value.trim(); const msg = $('cmsg').value.trim();
-  if(!name || !email || !msg){ alert('Please fill all fields.'); return; }
-  const messages = load(KEY_MESSAGES, []);
-  messages.unshift({name,email,msg,ts:Date.now()});
-  save(KEY_MESSAGES, messages);
-  alert('Message saved locally. Admin can view it from admin panel.');
-  $('cname').value=''; $('cemail').value=''; $('cmsg').value='';
-}
-function viewMessages(){
-  const messages = load(KEY_MESSAGES, []);
-  if(messages.length===0) return alert('No messages saved yet.');
-  let html = messages.map(m=>`${new Date(m.ts).toLocaleString()}\n${m.name} (${m.email}):\n${m.msg}\n-------`).join('\n\n');
-  // show popup
-  const w = window.open('', '_blank', 'width=600,height=600,scrollbars=yes');
-  w.document.write('<pre style="white-space:pre-wrap;font-family:monospace;padding:12px">'+html+'</pre>');
-}
-
-/* ---------- Quick search ---------- */
-function quickSearch(){
-  const cls = $('qClass').value;
-  const key = $('qKey').value.trim().toLowerCase();
-  const hw = load(KEY_HOMEWORK, {});
-  const results = [];
-  if(cls){
-    const arr = hw[cls] || [];
-    arr.forEach(h=>{ if(!key || h.toLowerCase().includes(key)) results.push({class:cls,text:h}); });
-  } else {
-    for(const k in hw){
-      hw[k].forEach(h=>{ if(!key || h.toLowerCase().includes(key)) results.push({class:k,text:h}); });
-    }
-  }
-  const out = $('quickResults'); out.innerHTML='';
-  if(results.length===0) { out.innerHTML='<div class="muted">No results found.</div>'; return; }
-  const ul = document.createElement('ul'); ul.className='hw-list';
-  results.forEach(r=>{ const li=document.createElement('li'); li.innerHTML=`<strong>Class ${r.class}:</strong> ${r.text}`; ul.appendChild(li); });
-  out.appendChild(ul);
-}
-function resetSearch(){ $('qClass').value=''; $('qKey').value=''; $('quickResults').innerHTML=''; }
-
-/* ---------- Export & Snapshot ---------- */
-function exportData(){
-  const dump = {
-    homework: load(KEY_HOMEWORK,{}),
-    teachers: load(KEY_TEACHERS,[]),
-    events: load(KEY_EVENTS,[]),
-    notices: load(KEY_NOTICES,[]),
-    timetable: load(KEY_TIMETABLE,{}),
-    messages: load(KEY_MESSAGES,[])
-  };
-  const blob = new Blob([JSON.stringify(dump,null,2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download='mkps-data.json'; a.click();
-  URL.revokeObjectURL(url);
-}
-
-/* ---------- More menu toggling ---------- */
-function toggleMore(){
-  const p = $('morePanel');
-  p.style.display = p.style.display==='block' ? 'none' : 'block';
-}
-document.addEventListener('click', (e)=>{ if(!e.target.closest('.dot-menu') && !e.target.closest('.more-panel')) $('morePanel').style.display='none'; });
-
-/* ---------- Download snapshot: creates a simple HTML snapshot for printing ---------- */
-function downloadSnapshot(){
-  const hw = load(KEY_HOMEWORK, {});
-  let html = `<html><head><title>MKPS Snapshot</title></head><body><h1>Milli Karwaan Public School — Snapshot</h1>`;
-  html += `<h2>Homework</h2>`;
-  for(const c in hw){
-    html += `<h3>Class ${c}</h3><ul>`;
-    hw[c].forEach(h=>{ html += `<li>${h}</li>`; });
-    html += `</ul>`;
-  }
-  html += `<p>Generated on ${new Date().toLocaleString()}</p></body></html>`;
-  const blob = new Blob([html], {type:'text/html'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download='mkps-snapshot.html'; a.click();
-  URL.revokeObjectURL(url);
-}
-
-/* ---------- Helper to scroll to section ---------- */
-function scrollToEl(id){ document.querySelector('#'+id).scrollIntoView({behavior:'smooth'}); }
-
-/* ---------- Initialize page with current data ---------- */
-function init(){
-  // Render homework if last student exists
-  const last = JSON.parse(localStorage.getItem('mkps_last_student')||'null');
-  if(last){ $('stuName').value=last.name; $('stuClass').value=last.cls; $('parentName').value=last.parent; $('student-welcome').style.display='block'; $('welcomeText').textContent=`Welcome ${last.name} (Class ${last.cls})`; renderHomeworkFor(last.cls); }
-
-  // Populate quick results defaults
-  $('qClass').value='';
-
-  // Render teachers/events/notices/timetable/gallery
-  renderTeachers(); renderEvents(); renderNotices(); renderTimetable(); renderGallery();
-}
-init();
-
-/* ---------- Close lightbox on ESC ---------- */
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hideLightbox() });
-
-</script>
-
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milli Karwaan Public School Balrampur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a3a6e;
+            --secondary-color: #2c5aa0;
+            --accent-color: #f8c43e;
+            --text-color: #333;
+            --light-color: #f8f9ff;
+            --dark-color: #1a1a2e;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(44, 90, 160, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .school-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .school-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .school-address {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        .contact-info p {
+            font-size: 0.95rem;
+            margin: 3px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.9;
+            transform: translateX(5px);
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 90px;
+            z-index: 999;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--text-color);
+            background: none;
+            border: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 1000;
+            min-width: 200px;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+            padding-left: 30px;
+        }
+
+        .dropdown-menu a i {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 58, 110, 0.9), rgba(26, 58, 110, 0.8)), url('https://placehold.co/1920x600/2c5aa0/white?text=School+Excellence') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn-large {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section:nth-child(7) { animation-delay: 0.6s; }
+        .section:nth-child(8) { animation-delay: 0.7s; }
+        .section:nth-child(9) { animation-delay: 0.8s; }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 25px 35px;
+            font-size: 1.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-header i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .section-content {
+            padding: 40px;
+        }
+
+        /* Form Section */
+        .form-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            background-color: #fafafa;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+            background-color: white;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(44, 90, 160, 0.3);
+        }
+
+        .submit-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Homework Section */
+        .homework-container {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background-color: var(--light-color);
+            border-radius: 10px;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .homework-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .homework-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .class-badge {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .homework-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .homework-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .homework-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .homework-date {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .homework-subject {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .homework-subject i {
+            color: var(--accent-color);
+        }
+
+        .homework-content {
+            color: #555;
+            line-height: 1.6;
+            padding-left: 10px;
+            border-left: 2px solid #eee;
+        }
+
+        .no-homework {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .no-homework i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        /* Teachers Section */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .teacher-card {
+            background-color: var(--light-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .teacher-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+
+        .teacher-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .teacher-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .teacher-subject {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .teacher-contact {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .teacher-social {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .teacher-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .teacher-social a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .teacher-social i {
+            font-size: 1rem;
+        }
+
+        /* Events Section */
+        .events-list {
+            list-style: none;
+        }
+
+        .event-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+            transition: var(--transition);
+        }
+
+        .event-item:hover {
+            transform: translateX(10px);
+        }
+
+        .event-date {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(44, 90, 160, 0.3);
+        }
+
+        .event-day {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-month {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-details {
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .event-title i {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+        }
+
+        .event-description {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.95rem;
+        }
+
+        .event-time, .event-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        /* Notice Board */
+        .notice-list {
+            list-style: none;
+        }
+
+        .notice-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 2px solid #f0f0f0;
+            transition: var(--transition);
+        }
+
+        .notice-item:hover {
+            transform: translateX(10px);
+        }
+
+        .notice-priority {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        .notice-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .high {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .medium {
+            background-color: var(--warning-color);
+       
