@@ -3,90 +3,99 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin — Milli Karwaan Public School</title>
+  <title>Admin (Demo) — Milli Karwaan Public School</title>
   <link rel="icon" href="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png">
   <style>
     :root{
-      --bg:#f3f7fb;
+      --bg:#f4f7fb;
       --card:#ffffff;
       --primary:#0b4f8a;
       --accent:#f6b042;
-      --muted:#6b7280;
+      --muted:#61707a;
       --danger:#dc3545;
       --success:#28a745;
-      --radius:12px;
-      --shadow: 0 10px 30px rgba(10,25,60,0.08);
+      --radius:10px;
+      --shadow: 0 8px 30px rgba(10,25,60,0.06);
+      --maxw:1100px;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:var(--bg);color:#071233}
-    header{background:linear-gradient(90deg,var(--primary),#134e8a);color:white;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
-    header img{height:56px;width:56px;border-radius:10px;background:white;padding:6px;object-fit:contain}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:var(--bg);color:#0b1b2b}
+    header{background:linear-gradient(90deg,var(--primary),#0f4b7a);color:white;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
+    header img{height:56px;width:56px;border-radius:8px;background:white;padding:6px;object-fit:contain}
     header h1{font-size:1.05rem;margin:0}
     header p{margin:0;font-size:0.9rem;opacity:0.95}
-    .container{max-width:1200px;margin:18px auto;padding:0 18px}
-    .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:18px}
-    .grid{display:grid;grid-template-columns:260px 1fr;gap:18px}
-    @media(max-width:980px){.grid{grid-template-columns:1fr}}
+    .wrap{max-width:var(--maxw);margin:18px auto;padding:0 16px}
+    .card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);margin-bottom:16px}
+    .grid{display:grid;grid-template-columns:280px 1fr;gap:14px}
+    @media(max-width:920px){.grid{grid-template-columns:1fr}}
     .nav{display:flex;flex-direction:column;gap:8px}
-    .nav button{padding:10px;border-radius:10px;border:1px solid rgba(11,79,138,0.08);background:white;cursor:pointer;text-align:left}
-    .nav button.active{background:linear-gradient(90deg,#eef8ff,#f6fbff)}
-    .small{font-size:0.9rem;color:var(--muted)}
-    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .nav button{padding:10px;border-radius:8px;border:1px solid #e6f2ff;background:white;cursor:pointer;text-align:left}
+    .nav button.active{background:linear-gradient(90deg,#eef6ff,#f5fbff);border-color:rgba(11,79,138,0.08)}
+    h2{margin:0 0 6px 0}
+    .small{color:var(--muted);font-size:0.95rem}
     input,textarea,select,button{font-family:inherit}
-    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #eaf2ff;background:#fbfeff}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e9f0f8;background:#fbfeff}
     table{width:100%;border-collapse:collapse}
-    table th,table td{padding:10px;border-bottom:1px solid #f2f7ff;text-align:left}
-    .list{max-height:60vh;overflow:auto;padding-right:6px}
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:200}
-    .modal .box{width:94%;max-width:900px;background:white;border-radius:12px;padding:16px;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-height:85vh;overflow:auto}
-    .btn{padding:10px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
-    .btn.primary{background:linear-gradient(90deg,var(--primary),#134e8a);color:white}
-    .btn.ghost{background:transparent;border:1px solid #eef6ff;color:var(--primary)}
-    .btn.warn{background:var(--accent);color:#061430}
-    .btn.danger{background:var(--danger);color:white}
-    .badge{padding:6px 10px;border-radius:999px;background:#f1f8ff;color:var(--primary);font-weight:700}
+    table th,table td{padding:8px;border-bottom:1px solid #f2f7fb;text-align:left;font-size:0.95rem}
     .flex{display:flex;gap:8px;align-items:center}
-    .footer{margin-top:12px;text-align:center;color:var(--muted);font-size:0.9rem}
-    .note{background:#fff7e6;border-left:4px solid var(--accent);padding:10px;border-radius:8px}
-    .search-row{display:flex;gap:8px;align-items:center}
-    .chip{background:#f1f8ff;padding:6px 10px;border-radius:999px;color:var(--primary);font-weight:700}
+    .badge{padding:6px 10px;border-radius:999px;background:#f1f8ff;color:var(--primary);font-weight:700}
+    .btn{padding:9px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--primary),#144f86);color:white}
+    .btn.ghost{background:transparent;border:1px solid #eef6ff;color:var(--primary)}
+    .btn.warn{background:var(--accent);color:#081428}
+    .btn.danger{background:var(--danger);color:white}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:200}
+    .modal .box{width:94%;max-width:960px;background:white;border-radius:12px;padding:16px;box-shadow:0 10px 40px rgba(0,0,0,0.18);max-height:86vh;overflow:auto}
+    .note{background:#fff9ec;border-left:4px solid var(--accent);padding:10px;border-radius:8px}
+    .muted{color:var(--muted)}
+    .hidden{display:none}
+    pre{white-space:pre-wrap;word-break:break-word;background:#0f1722;color:#f8fafc;padding:12px;border-radius:8px;overflow:auto}
   </style>
 </head>
 <body>
   <header>
-    <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="logo">
+    <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Logo">
     <div>
       <h1>Admin Panel — Milli Karwaan Public School</h1>
-      <p class="small">Manage homework, teachers, events, notices, timetable, gallery & messages — Demo admin password: <strong>Abutalha</strong></p>
+      <p class="small">Client-side demo admin. Admin password: <strong>Abutalha</strong></p>
     </div>
   </header>
 
-  <div class="container">
-    <div id="loginCard" class="card" style="max-width:760px;margin:18px auto">
+  <main class="wrap">
+
+    <!-- Login card (demo) -->
+    <section id="loginCard" class="card">
       <h2>Admin Login (Demo)</h2>
-      <p class="small">This admin is client-side only for demo purposes. For production, use a server and secure authentication.</p>
-      <div style="margin-top:12px;display:grid;gap:8px">
+      <p class="small">This is a client-side demo login for managing localStorage data used by the public site (index.html). Not secure — for demo only.</p>
+
+      <div style="display:grid;gap:8px;margin-top:12px;max-width:520px">
         <label>Username</label>
-        <input id="adminUser" placeholder="admin">
+        <input id="adminUser" value="admin" placeholder="admin (optional)">
         <label>Password</label>
         <input id="adminPass" type="password" placeholder="Enter password">
         <div class="flex">
           <button class="btn primary" id="loginBtn">Login</button>
-          <button class="btn ghost" id="demoBtn">Demo</button>
+          <button class="btn ghost" id="demoBtn">Fill Demo Password</button>
+          <button class="btn" id="tryViewBtn">Skip (View Only)</button>
         </div>
-        <div id="loginError" class="small" style="color:var(--danger);display:none;">Invalid password</div>
+        <div id="loginError" class="small" style="color:var(--danger);display:none"></div>
       </div>
-    </div>
+    </section>
 
-    <div id="adminUI" class="grid" style="display:none">
-      <aside class="card" style="height:fit-content">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <h3 class="small">Admin Menu</h3>
-          <div class="badge" id="dataBadge">Loading...</div>
+    <!-- Admin UI (hidden until login) -->
+    <section id="adminUI" class="grid hidden">
+      <!-- Left nav -->
+      <aside class="card" style="min-height:320px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div>
+            <div class="small">Admin Menu</div>
+            <div style="margin-top:6px;font-weight:800">Control Center</div>
+          </div>
+          <div class="badge" id="lastUpdated">—</div>
         </div>
-        <div style="height:12px"></div>
+
         <nav class="nav" id="menuNav">
-          <button data-tab="dashboard" class="active">Dashboard</button>
+          <button data-tab="overview" class="active">Overview</button>
           <button data-tab="homework">Homework</button>
           <button data-tab="teachers">Teachers</button>
           <button data-tab="events">Events</button>
@@ -94,27 +103,29 @@
           <button data-tab="timetable">Timetable</button>
           <button data-tab="gallery">Gallery</button>
           <button data-tab="messages">Messages</button>
+          <button data-tab="storage">Storage Viewer</button>
           <button data-tab="settings">Settings</button>
           <button id="logoutBtn" style="margin-top:12px;background:#fff6f6;color:var(--danger);border:1px solid rgba(220,53,69,0.08)">Logout</button>
         </nav>
 
         <div style="margin-top:12px" class="note">
-          <strong>Note:</strong> All changes update localStorage keys used by index.html so that the public site reflects edits.
+          <strong>Note:</strong> Changes update localStorage keys used by index.html. After edits, index will refresh when it sees <code>mkps_update</code>.
         </div>
       </aside>
 
-      <main>
-        <!-- Dashboard -->
-        <section id="tab-dashboard" class="card tab">
+      <!-- Main area -->
+      <div>
+        <!-- Overview -->
+        <div id="tab-overview" class="card tab">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <div>
-              <h2>Dashboard</h2>
-              <p class="small">Overview & quick actions</p>
+              <h2>Overview</h2>
+              <p class="small">Quick stats & actions</p>
             </div>
             <div class="flex">
-              <button class="btn ghost" onclick="reloadAll()">Reload</button>
-              <button class="btn" onclick="exportData()">Export JSON</button>
-              <button class="btn primary" onclick="seedDefaultsConfirm()">Reset Sample Data</button>
+              <button class="btn ghost" onclick="renderAll()">Reload</button>
+              <button class="btn" onclick="exportAll()">Export JSON</button>
+              <button class="btn warn" onclick="seedConfirm()">Seed Sample Data</button>
             </div>
           </div>
 
@@ -132,295 +143,290 @@
               <div id="statEvents" style="font-weight:800;font-size:1.2rem">0</div>
             </div>
             <div class="card">
-              <div class="small">Unread Messages</div>
+              <div class="small">Unread messages</div>
               <div id="statMsgs" style="font-weight:800;font-size:1.2rem">0</div>
             </div>
           </div>
 
-          <div style="margin-top:12px" id="recentActivity">
-            <!-- Filled by JS -->
-          </div>
-        </section>
+          <div style="margin-top:12px" id="recentAct" class="small muted"></div>
+        </div>
 
-        <!-- Homework Manager -->
-        <section id="tab-homework" class="card tab" style="display:none">
+        <!-- Homework manager -->
+        <div id="tab-homework" class="card tab hidden">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <div>
               <h2>Homework Manager</h2>
-              <p class="small">Add / Edit / Delete homework per class</p>
+              <p class="small">Create / Edit / Delete homework per class</p>
             </div>
             <div class="flex">
-              <button class="btn primary" onclick="openHomeworkForm()">Add Homework</button>
-              <button class="btn ghost" onclick="bulkAddSampleHomework()">Bulk Add Sample</button>
-              <button class="btn" onclick="exportData()">Export</button>
+              <button class="btn primary" onclick="openHomeworkForm()">+ Add</button>
+              <button class="btn ghost" onclick="bulkAddSampleHW()">Bulk Add Sample</button>
             </div>
           </div>
 
-          <div style="margin-top:12px;display:flex;gap:12px">
-            <div style="flex:1" class="list">
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 360px;gap:12px">
+            <div class="card" style="padding:8px">
               <table>
-                <thead><tr><th>Class</th><th>Subject</th><th>Text</th><th>Date</th><th>Actions</th></tr></thead>
+                <thead><tr><th>Class</th><th>Subject</th><th>Teacher</th><th>Text</th><th>Date</th><th>Actions</th></tr></thead>
                 <tbody id="hwTable"></tbody>
               </table>
             </div>
 
-            <div style="width:360px">
-              <div class="card">
-                <h4 class="small">Add / Edit Homework</h4>
-                <label>Class</label>
-                <select id="hwClass"></select>
-                <label style="margin-top:8px">Subject</label>
-                <input id="hwSubject">
-                <label style="margin-top:8px">Teacher</label>
-                <select id="hwTeacher"></select>
-                <label style="margin-top:8px">Text</label>
-                <textarea id="hwText" rows="4"></textarea>
-                <label style="margin-top:8px">Date</label>
-                <input id="hwDate" type="date">
-                <div style="margin-top:8px;display:flex;gap:8px">
-                  <button class="btn primary" onclick="saveHomework()">Save</button>
-                  <button class="btn ghost" onclick="clearHomeworkForm()">Clear</button>
-                </div>
-                <input type="hidden" id="hwEditId">
+            <div class="card">
+              <h4 class="small">Add / Edit Homework</h4>
+              <label>Class</label><select id="hwClass"></select>
+              <label style="margin-top:8px">Subject</label><input id="hwSubject" placeholder="Mathematics">
+              <label style="margin-top:8px">Teacher</label><select id="hwTeacher"></select>
+              <label style="margin-top:8px">Details</label><textarea id="hwText" rows="4"></textarea>
+              <label style="margin-top:8px">Date</label><input id="hwDate" type="date">
+              <div style="margin-top:10px" class="flex">
+                <button class="btn primary" onclick="saveHomework()">Save</button>
+                <button class="btn ghost" onclick="clearHWForm()">Clear</button>
               </div>
+              <input type="hidden" id="hwEditId">
             </div>
           </div>
-        </section>
+        </div>
 
-        <!-- Teachers -->
-        <section id="tab-teachers" class="card tab" style="display:none">
+        <!-- Teachers manager -->
+        <div id="tab-teachers" class="card tab hidden">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><h2>Teachers</h2><p class="small">Manage teacher list</p></div>
-            <div><button class="btn primary" onclick="openTeacherForm()">Add Teacher</button></div>
+            <div><h2>Teachers</h2><p class="small">Manage teacher directory</p></div>
+            <div><button class="btn primary" onclick="openTeacherForm()">+ Add Teacher</button></div>
           </div>
 
-          <div style="margin-top:12px;display:flex;gap:12px">
-            <div style="flex:1" class="list">
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 360px;gap:12px">
+            <div class="card" style="padding:8px">
               <table>
                 <thead><tr><th>Name</th><th>Subject</th><th>Phone</th><th>Actions</th></tr></thead>
                 <tbody id="teachersTable"></tbody>
               </table>
             </div>
 
-            <div style="width:360px">
-              <div class="card">
-                <h4 class="small">Add / Edit Teacher</h4>
-                <label>Name</label><input id="tName">
-                <label style="margin-top:8px">Subject</label><input id="tSubject">
-                <label style="margin-top:8px">Phone</label><input id="tPhone">
-                <label style="margin-top:8px">Email</label><input id="tEmail">
-                <div style="margin-top:8px;display:flex;gap:8px">
-                  <button class="btn primary" onclick="saveTeacher()">Save</button>
-                  <button class="btn ghost" onclick="clearTeacherForm()">Clear</button>
-                </div>
-                <input type="hidden" id="tEditId">
+            <div class="card">
+              <h4 class="small">Add / Edit Teacher</h4>
+              <label>Name</label><input id="tName">
+              <label style="margin-top:8px">Subject</label><input id="tSubject">
+              <label style="margin-top:8px">Phone</label><input id="tPhone">
+              <label style="margin-top:8px">Email</label><input id="tEmail">
+              <div style="margin-top:10px" class="flex">
+                <button class="btn primary" onclick="saveTeacher()">Save</button>
+                <button class="btn ghost" onclick="clearTeacherForm()">Clear</button>
               </div>
+              <input type="hidden" id="tEditId">
             </div>
           </div>
-        </section>
+        </div>
 
-        <!-- Events -->
-        <section id="tab-events" class="card tab" style="display:none">
+        <!-- Events manager -->
+        <div id="tab-events" class="card tab hidden">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><h2>Events</h2><p class="small">Manage school events</p></div>
-            <div><button class="btn primary" onclick="openEventForm()">Add Event</button></div>
+            <div><h2>Events</h2><p class="small">Manage events</p></div>
+            <div><button class="btn primary" onclick="openEventForm()">+ Add Event</button></div>
           </div>
 
-          <div style="margin-top:12px;display:flex;gap:12px">
-            <div style="flex:1" class="list">
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 360px;gap:12px">
+            <div class="card" style="padding:8px">
               <table>
                 <thead><tr><th>Date</th><th>Title</th><th>Description</th><th>Actions</th></tr></thead>
                 <tbody id="eventsTable"></tbody>
               </table>
             </div>
 
-            <div style="width:360px">
-              <div class="card">
-                <h4 class="small">Add / Edit Event</h4>
-                <label>Title</label><input id="eTitle">
-                <label style="margin-top:8px">Date</label><input id="eDate" type="date">
-                <label style="margin-top:8px">Description</label><textarea id="eDesc" rows="4"></textarea>
-                <div style="margin-top:8px;display:flex;gap:8px">
-                  <button class="btn primary" onclick="saveEvent()">Save</button>
-                  <button class="btn ghost" onclick="clearEventForm()">Clear</button>
-                </div>
-                <input type="hidden" id="eEditId">
+            <div class="card">
+              <h4 class="small">Add / Edit Event</h4>
+              <label>Title</label><input id="eTitle">
+              <label style="margin-top:8px">Date</label><input id="eDate" type="date">
+              <label style="margin-top:8px">Description</label><textarea id="eDesc" rows="4"></textarea>
+              <div style="margin-top:10px" class="flex">
+                <button class="btn primary" onclick="saveEvent()">Save</button>
+                <button class="btn ghost" onclick="clearEventForm()">Clear</button>
               </div>
+              <input type="hidden" id="eEditId">
             </div>
           </div>
-        </section>
+        </div>
 
         <!-- Notices -->
-        <section id="tab-notices" class="card tab" style="display:none">
+        <div id="tab-notices" class="card tab hidden">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><h2>Notices</h2><p class="small">Important announcements</p></div>
-            <div><button class="btn primary" onclick="openNoticeForm()">Add Notice</button></div>
+            <div><h2>Notices</h2><p class="small">Add announcements</p></div>
+            <div><button class="btn primary" onclick="openNoticeForm()">+ Add Notice</button></div>
           </div>
 
-          <div style="margin-top:12px;display:flex;gap:12px">
-            <div style="flex:1" class="list">
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 360px;gap:12px">
+            <div class="card" style="padding:8px">
               <table>
                 <thead><tr><th>Title</th><th>Body</th><th>Priority</th><th>Actions</th></tr></thead>
                 <tbody id="noticesTable"></tbody>
               </table>
             </div>
 
-            <div style="width:360px">
-              <div class="card">
-                <h4 class="small">Add / Edit Notice</h4>
-                <label>Title</label><input id="nTitle">
-                <label style="margin-top:8px">Body</label><textarea id="nBody" rows="4"></textarea>
-                <label style="margin-top:8px">Priority</label>
-                <select id="nPriority"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select>
-                <div style="margin-top:8px;display:flex;gap:8px">
-                  <button class="btn primary" onclick="saveNotice()">Save</button>
-                  <button class="btn ghost" onclick="clearNoticeForm()">Clear</button>
-                </div>
-                <input type="hidden" id="nEditId">
+            <div class="card">
+              <h4 class="small">Add / Edit Notice</h4>
+              <label>Title</label><input id="nTitle">
+              <label style="margin-top:8px">Body</label><textarea id="nBody" rows="4"></textarea>
+              <label style="margin-top:8px">Priority</label><select id="nPriority"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select>
+              <div style="margin-top:10px" class="flex">
+                <button class="btn primary" onclick="saveNotice()">Save</button>
+                <button class="btn ghost" onclick="clearNoticeForm()">Clear</button>
               </div>
+              <input type="hidden" id="nEditId">
             </div>
           </div>
-        </section>
+        </div>
 
         <!-- Timetable -->
-        <section id="tab-timetable" class="card tab" style="display:none">
+        <div id="tab-timetable" class="card tab hidden">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><h2>Timetable</h2><p class="small">Class-wise timetable rows</p></div>
-            <div><button class="btn primary" onclick="openTimetableForm()">Add Row</button></div>
+            <div><h2>Timetable</h2><p class="small">Class timetable rows</p></div>
+            <div><button class="btn primary" onclick="openTimetableForm()">+ Add Row</button></div>
           </div>
 
-          <div style="margin-top:12px;display:flex;gap:12px">
-            <div style="flex:1" class="list">
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 360px;gap:12px">
+            <div class="card" style="padding:8px">
               <table>
-                <thead><tr><th>Day</th><th>Slot 1</th><th>Slot 2</th><th>Slot 3</th><th>Slot 4</th><th>Actions</th></tr></thead>
+                <thead><tr><th>Day</th><th>Slot1</th><th>Slot2</th><th>Slot3</th><th>Slot4</th><th>Actions</th></tr></thead>
                 <tbody id="timetableTable"></tbody>
               </table>
             </div>
 
-            <div style="width:360px">
-              <div class="card">
-                <h4 class="small">Add / Edit Timetable</h4>
-                <label>Day</label><input id="ttDay">
-                <label style="margin-top:8px">Slot 1</label><input id="tt1">
-                <label style="margin-top:8px">Slot 2</label><input id="tt2">
-                <label style="margin-top:8px">Slot 3</label><input id="tt3">
-                <label style="margin-top:8px">Slot 4</label><input id="tt4">
-                <div style="margin-top:8px;display:flex;gap:8px">
-                  <button class="btn primary" onclick="saveTimetable()">Save</button>
-                  <button class="btn ghost" onclick="clearTimetableForm()">Clear</button>
-                </div>
-                <input type="hidden" id="ttEditId">
+            <div class="card">
+              <h4 class="small">Add / Edit Row</h4>
+              <label>Day</label><input id="ttDay">
+              <label style="margin-top:8px">Slot 1</label><input id="tt1">
+              <label style="margin-top:8px">Slot 2</label><input id="tt2">
+              <label style="margin-top:8px">Slot 3</label><input id="tt3">
+              <label style="margin-top:8px">Slot 4</label><input id="tt4">
+              <div style="margin-top:10px" class="flex">
+                <button class="btn primary" onclick="saveTimetable()">Save</button>
+                <button class="btn ghost" onclick="clearTimetableForm()">Clear</button>
               </div>
+              <input type="hidden" id="ttEditId">
             </div>
           </div>
-        </section>
+        </div>
 
         <!-- Gallery -->
-        <section id="tab-gallery" class="card tab" style="display:none">
+        <div id="tab-gallery" class="card tab hidden">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><h2>Gallery</h2><p class="small">Manage gallery images (URLs)</p></div>
-            <div><button class="btn primary" onclick="openGalleryForm()">Add Photo</button></div>
+            <div><h2>Gallery</h2><p class="small">Manage gallery image URLs</p></div>
+            <div><button class="btn primary" onclick="openGalleryForm()">+ Add Photo</button></div>
           </div>
 
-          <div style="margin-top:12px;display:flex;gap:12px">
-            <div style="flex:1" class="list">
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 360px;gap:12px">
+            <div class="card" style="padding:8px">
               <table>
                 <thead><tr><th>Preview</th><th>URL</th><th>Actions</th></tr></thead>
                 <tbody id="galleryTable"></tbody>
               </table>
             </div>
 
-            <div style="width:360px">
-              <div class="card">
-                <h4 class="small">Add / Edit Photo</h4>
-                <label>Image URL</label><input id="gUrl">
-                <div style="margin-top:8px;display:flex;gap:8px">
-                  <button class="btn primary" onclick="saveGallery()">Save</button>
-                  <button class="btn ghost" onclick="clearGalleryForm()">Clear</button>
-                </div>
-                <input type="hidden" id="gEditId">
+            <div class="card">
+              <h4 class="small">Add / Edit Photo</h4>
+              <label>Image URL</label><input id="gUrl" placeholder="https://...">
+              <div style="margin-top:10px" class="flex">
+                <button class="btn primary" onclick="saveGallery()">Save</button>
+                <button class="btn ghost" onclick="clearGalleryForm()">Clear</button>
               </div>
+              <input type="hidden" id="gEditId">
             </div>
           </div>
-        </section>
+        </div>
 
         <!-- Messages -->
-        <section id="tab-messages" class="card tab" style="display:none">
+        <div id="tab-messages" class="card tab hidden">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><h2>Messages</h2><p class="small">Messages submitted from index contact form</p></div>
-            <div><button class="btn primary" onclick="markAllRead()">Mark All Read</button></div>
+            <div><h2>Messages</h2><p class="small">Messages submitted from public site</p></div>
+            <div><button class="btn primary" onclick="markAllRead()">Mark all read</button></div>
           </div>
 
-          <div style="margin-top:12px" class="list">
+          <div style="margin-top:12px" class="card" id="messagesCard" style="padding:8px">
             <table>
-              <thead><tr><th>Date</th><th>From</th><th>Email</th><th>Message</th><th>Actions</th></tr></thead>
+              <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Message</th><th>Actions</th></tr></thead>
               <tbody id="messagesTable"></tbody>
             </table>
           </div>
-        </section>
+        </div>
+
+        <!-- Storage viewer -->
+        <div id="tab-storage" class="card tab hidden">
+          <h2>Local Storage Viewer / Editor</h2>
+          <p class="small">View and edit the exact JSON stored under each mkps_* key. Use carefully.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 420px;gap:12px;margin-top:12px">
+            <div class="card" style="padding:8px">
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <select id="lsKeySelect"></select>
+                <button class="btn" onclick="viewSelectedKey()">View</button>
+                <button class="btn" onclick="deleteSelectedKey()">Delete</button>
+                <button class="btn ghost" onclick="reloadAll()">Refresh</button>
+              </div>
+              <pre id="lsViewer">// select a key and click View</pre>
+            </div>
+
+            <div class="card">
+              <h4 class="small">Raw Edit</h4>
+              <textarea id="lsEditor" rows="12" placeholder='Paste valid JSON here'></textarea>
+              <div style="margin-top:8px" class="flex">
+                <button class="btn primary" onclick="saveLS()">Save</button>
+                <button class="btn ghost" onclick="clearLSEditor()">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Settings -->
-        <section id="tab-settings" class="card tab" style="display:none">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><h2>Settings & Data</h2><p class="small">Export / Import / Reset</p></div>
+        <div id="tab-settings" class="card tab hidden">
+          <h2>Settings & Data</h2>
+          <p class="small">Export / import / reset data</p>
+
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <button class="btn primary" onclick="exportAll()">Export All JSON</button>
+            <label class="btn ghost" style="cursor:pointer">Import JSON<input id="importFile" type="file" accept=".json" style="display:none" onchange="importAll(event)"></label>
+            <button class="btn warn" onclick="seedConfirm()">Seed sample data</button>
+            <button class="btn danger" onclick="clearAllConfirm()">Clear ALL mkps_* data</button>
+            <button class="btn" onclick="downloadSnapshot()">Download Snapshot (HTML)</button>
           </div>
 
-          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 320px;gap:12px">
-            <div class="card">
-              <h4 class="small">Export / Import</h4>
-              <p class="small">Export localStorage data or import a previously exported file.</p>
-              <div style="display:flex;gap:8px">
-                <button class="btn primary" onclick="exportData()">Export JSON</button>
-                <label class="btn ghost" style="cursor:pointer">Import JSON<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"></label>
-                <button class="btn" onclick="downloadSnapshot()">Download Snapshot</button>
-              </div>
-
-              <hr style="margin:12px 0">
-              <h4 class="small">Danger Zone</h4>
-              <p class="small">Reset or clear data.</p>
-              <div style="display:flex;gap:8px">
-                <button class="btn ghost" onclick="seedDefaultsConfirm()">Reset to Sample</button>
-                <button class="btn danger" onclick="clearAllConfirm()">Clear All Data</button>
-              </div>
-            </div>
-
-            <div class="card">
-              <h4 class="small">Storage keys</h4>
-              <ul class="small">
-                <li>mkps_student</li>
-                <li>mkps_homework</li>
-                <li>mkps_teachers</li>
-                <li>mkps_events</li>
-                <li>mkps_notices</li>
-                <li>mkps_timetable</li>
-                <li>mkps_gallery</li>
-                <li>mkps_messages</li>
-                <li>mkps_update</li>
-              </ul>
-              <div style="margin-top:8px" class="small">Reminder: Admin password (demo) is <strong>Abutalha</strong>. Client-side only.</div>
-            </div>
+          <div style="margin-top:12px" class="card">
+            <h4 class="small">Storage Keys used</h4>
+            <ul class="small">
+              <li>mkps_student</li>
+              <li>mkps_homework</li>
+              <li>mkps_teachers</li>
+              <li>mkps_events</li>
+              <li>mkps_notices</li>
+              <li>mkps_timetable</li>
+              <li>mkps_gallery</li>
+              <li>mkps_messages</li>
+              <li>mkps_update</li>
+            </ul>
           </div>
-        </section>
+        </div>
 
-      </main>
+      </div>
+    </section>
+
+    <div class="card small muted">
+      <strong>Tip:</strong> Open the public site (index.html) in another tab to observe changes live. Admin writes a timestamp to <code>mkps_update</code> after edits so index can auto-refresh.
     </div>
 
-    <div class="footer small">© Milli Karwaan Public School Balrampur — Admin Panel (Demo)</div>
-  </div>
+  </main>
 
   <!-- Confirm modal -->
-  <div id="confirmModal" class="modal"><div class="box"><h3 id="confirmTitle">Confirm</h3><p id="confirmText"></p><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button class="btn ghost" onclick="closeConfirm()">Cancel</button><button id="confirmOk" class="btn danger">Confirm</button></div></div></div>
+  <div id="confirmModal" class="modal"><div class="box"><h3 id="confirmTitle">Confirm</h3><p id="confirmText"></p><div style="display:flex;justify-content:flex-end;margin-top:12px;gap:8px"><button class="btn ghost" onclick="closeConfirm()">Cancel</button><button id="confirmOk" class="btn danger">Confirm</button></div></div></div>
 
 <script>
 /*
-  Admin.html script
-  - Uses same localStorage keys as index.html
-  - Admin password: Abutalha (client-side demo)
-  - Exposes window.reloadAll() for index.html to call if needed
-  - Writes mkps_update timestamp to notify other tabs
+  admin-demo.html
+  - quick, usable admin panel to inspect & edit localStorage keys used by index.html
+  - Admin password (demo): Abutalha
+  - All edits update localStorage and set mkps_update timestamp so public index can react.
+  - This is a demo manager; for production use backend auth.
 */
 
-/* ---------- Storage keys ---------- */
+/* ---------- Keys ---------- */
 const K_STUDENT = 'mkps_student';
 const K_HOMEWORK = 'mkps_homework';
 const K_TEACHERS = 'mkps_teachers';
@@ -431,35 +437,39 @@ const K_GALLERY = 'mkps_gallery';
 const K_MESSAGES = 'mkps_messages';
 const K_UPDATE = 'mkps_update';
 
-/* ---------- Simple helpers ---------- */
+/* ---------- Helpers ---------- */
 const $ = id => document.getElementById(id);
-const save = (k,v) => localStorage.setItem(k, JSON.stringify(v));
-const load = (k,def=null) => {
-  try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch(e){ console.error('parse',k,e); return def; }
+const parseLS = (k, def=null) => {
+  try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; }
+  catch(e){ console.error('parse error',k,e); return def; }
 };
+const setLS = (k, v) => { localStorage.setItem(k, JSON.stringify(v)); localStorage.setItem(K_UPDATE, Date.now().toString()); };
+const rmLS = (k) => { localStorage.removeItem(k); localStorage.setItem(K_UPDATE, Date.now().toString()); };
 const uid = ()=> Date.now().toString(36) + Math.random().toString(36).slice(2,8);
-const notifyUpdate = ()=> localStorage.setItem(K_UPDATE, Date.now().toString());
 
 /* ---------- Auth ---------- */
 const DEMO_PW = 'Abutalha';
-$('loginBtn').addEventListener('click', ()=> doLogin());
-$('demoBtn').addEventListener('click', ()=> { $('adminPass').value = DEMO_PW; doLogin(); });
+$('loginBtn').addEventListener('click', doLogin);
+$('demoBtn').addEventListener('click', ()=>{ $('adminPass').value = DEMO_PW; });
+$('tryViewBtn').addEventListener('click', ()=>{ // view-only mode
+  $('loginCard').classList.add('hidden');
+  $('adminUI').classList.remove('hidden');
+  initUI(true);
+});
 
 function doLogin(){
   const pw = $('adminPass').value;
   if(pw === DEMO_PW){
-    document.getElementById('loginCard').style.display='none';
-    document.getElementById('adminUI').style.display='grid';
-    initAdmin();
+    sessionStorage.setItem('mkps_admin_logged_in','1');
+    $('loginCard').classList.add('hidden');
+    $('adminUI').classList.remove('hidden');
+    initUI(false);
   } else {
-    $('loginError').style.display = 'block';
+    $('loginError').style.display='block';
     $('loginError').textContent = 'Invalid password';
   }
 }
-
-$('logoutBtn').addEventListener('click', ()=>{
-  if(confirm('Logout admin?')) location.reload();
-});
+$('logoutBtn').addEventListener('click', ()=> { if(confirm('Logout?')) location.reload(); });
 
 /* ---------- Confirm modal ---------- */
 let confirmCb = null;
@@ -475,150 +485,144 @@ $('confirmOk').addEventListener('click', ()=> { if(confirmCb) confirmCb(); close
 
 /* ---------- Seed defaults ---------- */
 function seedDefaults(){
-  // Homework: for classes 1..12
+  // Homework for classes 1..12
   const hw = {};
   for(let i=1;i<=12;i++){
     hw[i] = [
-      {id: uid(), subject:'Mathematics', details:`Practice exercises chapter ${Math.min(i+2,12)}`, date:new Date().toISOString().slice(0,10), teacher:'Mr. Ali'},
-      {id: uid(), subject:'English', details:`Read and summarize page ${10+i}`, date:new Date().toISOString().slice(0,10), teacher:'Mrs. Fatima'}
+      { id: uid(), subject: 'Mathematics', details:`Practice chapter ${Math.min(i+2,12)} exercises`, date: new Date().toISOString().slice(0,10), teacher: 'Mr. Ali' },
+      { id: uid(), subject: 'English', details:`Read page ${10+i} & write summary`, date: new Date().toISOString().slice(0,10), teacher: 'Mrs. Fatima' }
     ];
   }
-  save(K_HOMEWORK, hw);
+  setLS(K_HOMEWORK, hw);
 
-  // Teachers
-  save(K_TEACHERS, [
-    {id:uid(), name:'Mr. Ali', subject:'Mathematics', phone:'9758919001', email:'ali@mkps.edu'},
-    {id:uid(), name:'Mrs. Fatima', subject:'English', phone:'9758919002', email:'fatima@mkps.edu'},
-    {id:uid(), name:'Mr. Khan', subject:'Science', phone:'9758919003', email:'khan@mkps.edu'}
+  const teachers = [
+    { id: uid(), name: 'Mr. Ali', subject: 'Mathematics', phone: '9758919001', email: 'ali@mkps.edu' },
+    { id: uid(), name: 'Mrs. Fatima', subject: 'English', phone: '9758919002', email: 'fatima@mkps.edu' },
+    { id: uid(), name: 'Mr. Khan', subject: 'Science', phone: '9758919003', email: 'khan@mkps.edu' }
+  ];
+  setLS(K_TEACHERS, teachers);
+
+  setLS(K_EVENTS, [
+    { id: uid(), title: 'Annual Sports Day', date: '2025-08-25', desc: 'Sports & prizes' },
+    { id: uid(), title: 'Parent-Teacher Meeting', date: '2025-09-10', desc: 'Hall – 10:00 AM' }
   ]);
 
-  // Events
-  save(K_EVENTS, [
-    {id:uid(), title:'Annual Sports Day', date:'2025-08-25', desc:'Sports & Prizes'},
-    {id:uid(), title:'Parents-Teachers Meeting', date:'2025-09-10', desc:'Hall A, 10:00 AM'}
+  setLS(K_NOTICES, [
+    { id: uid(), title: 'Holiday Notice', body: 'School closed on Friday', priority: 'high' },
+    { id: uid(), title: 'Fee Reminder', body: 'Please clear fees by month end', priority: 'medium' }
   ]);
 
-  // Notices
-  save(K_NOTICES, [
-    {id:uid(), title:'Holiday Notice', body:'School closed on Friday', priority:'high'},
-    {id:uid(), title:'Fee Reminder', body:'Please clear fees before month end', priority:'medium'}
-  ]);
-
-  // Timetable
-  save(K_TIMETABLE, {
-    Monday:['Math','English','Science','Computer'],
-    Tuesday:['Hindi','Math','Social','Art'],
-    Wednesday:['Science','Math','PT','English'],
-    Thursday:['Computer','Social','Math','Science'],
-    Friday:['English','Math','Assembly','Sports']
+  setLS(K_TIMETABLE, {
+    Monday: ['Math','English','Science','Computer'],
+    Tuesday: ['Hindi','Math','Social','Art'],
+    Wednesday: ['Science','Math','PT','English'],
+    Thursday: ['Computer','Social','Math','Science'],
+    Friday: ['English','Math','Assembly','Sports']
   });
 
-  // Gallery
-  save(K_GALLERY, [
+  setLS(K_GALLERY, [
     'https://picsum.photos/id/1015/800/600',
     'https://picsum.photos/id/1021/800/600',
     'https://picsum.photos/id/1032/800/600'
   ]);
 
-  // Messages empty
-  save(K_MESSAGES, []);
-  notifyUpdate();
+  setLS(K_MESSAGES, []);
+  // Do not touch mkps_student here
+  alert('Sample data seeded.');
+  renderAll();
 }
+function seedConfirm(){ showConfirm('Seed sample data','Overwrite certain keys with sample data? (mkps_homework, mkps_teachers, mkps_events, mkps_notices, mkps_timetable, mkps_gallery, mkps_messages)', 'Seed', seedDefaults); }
+function clearAllConfirm(){ showConfirm('Clear all mkps_* data','This will remove all mkps_* keys from localStorage. Continue?', 'Clear', clearAllData); }
 
-/* ---------- Clear all ---------- */
 function clearAllData(){
   [K_STUDENT,K_HOMEWORK,K_TEACHERS,K_EVENTS,K_NOTICES,K_TIMETABLE,K_GALLERY,K_MESSAGES].forEach(k=>localStorage.removeItem(k));
-  notifyUpdate();
+  localStorage.setItem(K_UPDATE, Date.now().toString());
+  alert('All mkps_* keys removed.');
+  renderAll();
 }
 
 /* ---------- Export / Import ---------- */
-function exportData(){
+function exportAll(){
   const dump = {
-    [K_STUDENT]: load(K_STUDENT,null),
-    [K_HOMEWORK]: load(K_HOMEWORK,{}),
-    [K_TEACHERS]: load(K_TEACHERS,[]),
-    [K_EVENTS]: load(K_EVENTS,[]),
-    [K_NOTICES]: load(K_NOTICES,[]),
-    [K_TIMETABLE]: load(K_TIMETABLE,{}),
-    [K_GALLERY]: load(K_GALLERY,[]),
-    [K_MESSAGES]: load(K_MESSAGES,[])
+    [K_STUDENT]: parseLS(K_STUDENT,null),
+    [K_HOMEWORK]: parseLS(K_HOMEWORK,{}),
+    [K_TEACHERS]: parseLS(K_TEACHERS,[]),
+    [K_EVENTS]: parseLS(K_EVENTS,[]),
+    [K_NOTICES]: parseLS(K_NOTICES,[]),
+    [K_TIMETABLE]: parseLS(K_TIMETABLE,{}),
+    [K_GALLERY]: parseLS(K_GALLERY,[]),
+    [K_MESSAGES]: parseLS(K_MESSAGES,[])
   };
   const blob = new Blob([JSON.stringify(dump,null,2)], {type:'application/json'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = 'mkps-data.json'; a.click(); URL.revokeObjectURL(url);
 }
 
-function importData(e){
+function importAll(e){
   const file = e.target.files[0]; if(!file) return;
   const fr = new FileReader();
   fr.onload = ()=> {
     try {
       const obj = JSON.parse(fr.result);
-      if(obj[K_HOMEWORK]) save(K_HOMEWORK,obj[K_HOMEWORK]);
-      if(obj[K_TEACHERS]) save(K_TEACHERS,obj[K_TEACHERS]);
-      if(obj[K_EVENTS]) save(K_EVENTS,obj[K_EVENTS]);
-      if(obj[K_NOTICES]) save(K_NOTICES,obj[K_NOTICES]);
-      if(obj[K_TIMETABLE]) save(K_TIMETABLE,obj[K_TIMETABLE]);
-      if(obj[K_GALLERY]) save(K_GALLERY,obj[K_GALLERY]);
-      if(obj[K_MESSAGES]) save(K_MESSAGES,obj[K_MESSAGES]);
-      if(obj[K_STUDENT]) save(K_STUDENT,obj[K_STUDENT]);
-      notifyUpdate();
-      alert('Import complete');
+      if(obj[K_HOMEWORK]) setLS(K_HOMEWORK,obj[K_HOMEWORK]);
+      if(obj[K_TEACHERS]) setLS(K_TEACHERS,obj[K_TEACHERS]);
+      if(obj[K_EVENTS]) setLS(K_EVENTS,obj[K_EVENTS]);
+      if(obj[K_NOTICES]) setLS(K_NOTICES,obj[K_NOTICES]);
+      if(obj[K_TIMETABLE]) setLS(K_TIMETABLE,obj[K_TIMETABLE]);
+      if(obj[K_GALLERY]) setLS(K_GALLERY,obj[K_GALLERY]);
+      if(obj[K_MESSAGES]) setLS(K_MESSAGES,obj[K_MESSAGES]);
+      if(obj[K_STUDENT]) setLS(K_STUDENT,obj[K_STUDENT]);
+      alert('Import complete.');
       renderAll();
     } catch(err){ alert('Invalid JSON file'); console.error(err); }
   };
   fr.readAsText(file);
 }
-$('importFile').addEventListener('change', importData);
 
 /* ---------- Homework CRUD ---------- */
-function populateClassSelects(){
-  const hwClass = $('hwClass');
-  hwClass.innerHTML='';
-  for(let i=1;i<=12;i++){ const o=document.createElement('option'); o.value=i; o.textContent='Class '+i; hwClass.appendChild(o); }
+function populateClassSelect(){
+  const sel = $('hwClass'); sel.innerHTML = '';
+  for(let i=1;i<=12;i++){ const o = document.createElement('option'); o.value = i; o.textContent = 'Class '+i; sel.appendChild(o); }
 }
-populateClassSelects();
+populateClassSelect();
 
 function renderHomework(){
-  const hw = load(K_HOMEWORK,{});
-  const tbody = $('hwTable'); tbody.innerHTML='';
+  const hw = parseLS(K_HOMEWORK,{});
+  const tbody = $('hwTable'); tbody.innerHTML = '';
   for(const cls in hw){
     (hw[cls]||[]).forEach(item=>{
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${cls}</td><td>${escapeHtml(item.subject)}</td><td style="max-width:420px">${escapeHtml(item.details)}</td><td>${item.date||''}</td>
+      tr.innerHTML = `<td>${cls}</td><td>${escapeHtml(item.subject)}</td><td>${escapeHtml(item.teacher||'')}</td><td style="max-width:360px">${escapeHtml(item.details)}</td><td>${escapeHtml(item.date||'')}</td>
         <td><button class="btn" onclick="editHw('${cls}','${item.id}')">Edit</button> <button class="btn ghost" onclick="deleteHw('${cls}','${item.id}')">Delete</button></td>`;
       tbody.appendChild(tr);
     });
   }
   updateStats();
 }
-
-function openHomeworkForm(){ openTab('homework'); clearHomeworkForm(); $('hwDate').value = new Date().toISOString().slice(0,10); renderTeachersSelect(); }
-
+function openHomeworkForm(){ openTab('homework'); clearHWForm(); renderTeachersSelect(); $('hwDate').value = new Date().toISOString().slice(0,10); }
+function clearHWForm(){ $('hwClass').value='1'; $('hwSubject').value=''; $('hwTeacher').innerHTML=''; $('hwText').value=''; $('hwDate').value=''; $('hwEditId').value=''; }
 function saveHomework(){
   const cls = $('hwClass').value;
   const subj = $('hwSubject').value.trim();
   const teacher = $('hwTeacher').value;
   const details = $('hwText').value.trim();
   const date = $('hwDate').value;
+  if(!cls || !subj || !details) return alert('Class, subject and details required');
+  const hw = parseLS(K_HOMEWORK,{});
+  if(!hw[cls]) hw[cls]=[];
   const editId = $('hwEditId').value;
-  if(!cls || !subj || !details) return alert('Class, subject and text required');
-  const hw = load(K_HOMEWORK,{});
-  if(!hw[cls]) hw[cls] = [];
   if(editId){
     const idx = hw[cls].findIndex(x=>x.id===editId);
-    if(idx>=0){ hw[cls][idx].subject=subj; hw[cls][idx].details=details; hw[cls][idx].date=date; hw[cls][idx].teacher=teacher; }
+    if(idx>=0){ hw[cls][idx].subject=subj; hw[cls][idx].teacher=teacher; hw[cls][idx].details=details; hw[cls][idx].date=date; }
   } else {
-    hw[cls].push({id:uid(), subject:subj, details, date, teacher});
+    hw[cls].push({ id: uid(), subject: subj, teacher, details, date });
   }
-  save(K_HOMEWORK,hw);
-  notifyUpdate();
+  setLS(K_HOMEWORK, hw);
   renderHomework();
-  clearHomeworkForm();
+  clearHWForm();
 }
-
 function editHw(cls,id){
-  const hw = load(K_HOMEWORK,{});
+  const hw = parseLS(K_HOMEWORK, {});
   const item = (hw[cls]||[]).find(x=>x.id===id);
   if(!item) return alert('Not found');
   $('hwClass').value = cls;
@@ -630,269 +634,241 @@ function editHw(cls,id){
   $('hwTeacher').value = item.teacher || '';
   openTab('homework');
 }
-
-function deleteHw(cls,id){
-  showConfirm('Delete homework','Delete this homework?', 'Delete', ()=>{
-    const hw = load(K_HOMEWORK,{});
-    hw[cls] = (hw[cls]||[]).filter(x=>x.id!==id);
-    save(K_HOMEWORK,hw);
-    notifyUpdate();
-    renderHomework();
-  });
-}
-
-function clearHomeworkForm(){ $('hwClass').value='1'; $('hwSubject').value=''; $('hwText').value=''; $('hwDate').value=''; $('hwEditId').value=''; $('hwTeacher').innerHTML=''; }
-
-/* Bulk add sample */
-function bulkAddSampleHomework(){
-  const hw = load(K_HOMEWORK,{});
+function deleteHw(cls,id){ showConfirm('Delete homework','Delete this homework item?', 'Delete', ()=>{ const hw = parseLS(K_HOMEWORK,{}); hw[cls] = (hw[cls]||[]).filter(x=>x.id!==id); setLS(K_HOMEWORK,hw); renderHomework(); }); }
+function bulkAddSampleHW(){ // add 1 sample per class
+  const hw = parseLS(K_HOMEWORK,{});
   for(let i=1;i<=12;i++){
     hw[i] = hw[i] || [];
-    for(let j=0;j<2;j++) hw[i].push({id:uid(), subject:'General', details:`Sample homework ${j+1} for class ${i}`, date:new Date().toISOString().slice(0,10), teacher:'Staff'});
+    hw[i].push({ id: uid(), subject: 'General', teacher: 'Staff', details: `Bulk sample homework for class ${i}`, date: new Date().toISOString().slice(0,10) });
   }
-  save(K_HOMEWORK,hw);
-  notifyUpdate();
+  setLS(K_HOMEWORK, hw);
   renderHomework();
 }
 
 /* ---------- Teachers CRUD ---------- */
 function renderTeachers(){
-  const arr = load(K_TEACHERS,[]);
-  const tbody = $('teachersTable'); tbody.innerHTML='';
+  const arr = parseLS(K_TEACHERS,[]);
+  const tbody = $('teachersTable'); tbody.innerHTML = '';
   arr.forEach(t=>{
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${escapeHtml(t.name)}</td><td>${escapeHtml(t.subject)}</td><td>${escapeHtml(t.phone)}</td>
-      <td><button class="btn" onclick="editTeacher('${t.id}')">Edit</button><button class="btn ghost" onclick="deleteTeacher('${t.id}')">Delete</button></td>`;
+    tr.innerHTML = `<td>${escapeHtml(t.name)}</td><td>${escapeHtml(t.subject)}</td><td>${escapeHtml(t.phone||'')}</td><td><button class="btn" onclick="editTeacher('${t.id}')">Edit</button> <button class="btn ghost" onclick="deleteTeacher('${t.id}')">Delete</button></td>`;
     tbody.appendChild(tr);
   });
   renderTeachersSelect();
   updateStats();
 }
-
+function renderTeachersSelect(){
+  const sel = $('hwTeacher'); if(!sel) return;
+  sel.innerHTML = '<option value="">--Select--</option>';
+  const arr = parseLS(K_TEACHERS,[]);
+  arr.forEach(t=>{ const o = document.createElement('option'); o.value = t.name; o.textContent = `${t.name} (${t.subject})`; sel.appendChild(o); });
+}
+function openTeacherForm(){ openTab('teachers'); clearTeacherForm(); }
+function clearTeacherForm(){ $('tName').value=''; $('tSubject').value=''; $('tPhone').value=''; $('tEmail').value=''; $('tEditId').value=''; }
 function saveTeacher(){
-  const name = $('tName').value.trim();
-  const subject = $('tSubject').value.trim();
-  const phone = $('tPhone').value.trim();
-  const email = $('tEmail').value.trim();
-  const editId = $('tEditId').value;
+  const name = $('tName').value.trim(); const subject = $('tSubject').value.trim(); const phone = $('tPhone').value.trim(); const email = $('tEmail').value.trim();
   if(!name||!subject) return alert('Name and subject required');
-  const arr = load(K_TEACHERS,[]);
+  const arr = parseLS(K_TEACHERS,[]);
+  const editId = $('tEditId').value;
   if(editId){
     const idx = arr.findIndex(x=>x.id===editId);
-    if(idx>=0){ arr[idx].name=name; arr[idx].subject=subject; arr[idx].phone=phone; arr[idx].email=email; }
-  } else arr.push({id:uid(), name, subject, phone, email});
-  save(K_TEACHERS,arr);
-  notifyUpdate();
+    if(idx>=0){ arr[idx].name = name; arr[idx].subject=subject; arr[idx].phone=phone; arr[idx].email=email; }
+  } else arr.push({ id: uid(), name, subject, phone, email });
+  setLS(K_TEACHERS, arr);
   renderTeachers();
   clearTeacherForm();
 }
-
-function editTeacher(id){
-  const arr = load(K_TEACHERS,[]);
-  const t = arr.find(x=>x.id===id); if(!t) return;
-  $('tName').value=t.name; $('tSubject').value=t.subject; $('tPhone').value=t.phone; $('tEmail').value=t.email; $('tEditId').value=t.id;
-  openTab('teachers');
-}
-
-function deleteTeacher(id){
-  showConfirm('Delete teacher','Delete this teacher?', 'Delete', ()=>{
-    const arr = load(K_TEACHERS,[]).filter(x=>x.id!==id); save(K_TEACHERS,arr); notifyUpdate(); renderTeachers();
-  });
-}
-function clearTeacherForm(){ $('tName').value=''; $('tSubject').value=''; $('tPhone').value=''; $('tEmail').value=''; $('tEditId').value=''; }
-function renderTeachersSelect(){
-  const sel = $('hwTeacher'); sel.innerHTML = '<option value="">--Select--</option>';
-  const arr = load(K_TEACHERS,[]);
-  arr.forEach(t=>{ const o=document.createElement('option'); o.value=t.name; o.textContent=`${t.name} (${t.subject})`; sel.appendChild(o); });
-}
+function editTeacher(id){ const arr = parseLS(K_TEACHERS,[]); const t = arr.find(x=>x.id===id); if(!t) return; $('tName').value=t.name; $('tSubject').value=t.subject; $('tPhone').value=t.phone; $('tEmail').value=t.email; $('tEditId').value=t.id; openTab('teachers'); }
+function deleteTeacher(id){ showConfirm('Delete teacher','Delete this teacher?', 'Delete', ()=>{ const arr = parseLS(K_TEACHERS,[]).filter(x=>x.id!==id); setLS(K_TEACHERS,arr); renderTeachers(); }); }
 
 /* ---------- Events CRUD ---------- */
-function renderEvents(){
-  const arr = load(K_EVENTS,[]);
-  const tbody = $('eventsTable'); tbody.innerHTML='';
-  arr.forEach(e=>{
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${escapeHtml(e.date)}</td><td>${escapeHtml(e.title)}</td><td>${escapeHtml(e.desc)}</td><td><button class="btn" onclick="editEvent('${e.id}')">Edit</button><button class="btn ghost" onclick="deleteEvent('${e.id}')">Delete</button></td>`;
-    tbody.appendChild(tr);
-  });
-  updateStats();
-}
-
-function saveEvent(){
-  const title = $('eTitle').value.trim(); const date = $('eDate').value; const desc = $('eDesc').value.trim();
-  if(!title||!date) return alert('Title & date required');
-  const arr = load(K_EVENTS,[]);
-  const editId = $('eEditId').value;
-  if(editId){ const idx=arr.findIndex(x=>x.id===editId); if(idx>=0){ arr[idx].title=title; arr[idx].date=date; arr[idx].desc=desc; } }
-  else arr.push({id:uid(), title, date, desc});
-  save(K_EVENTS,arr); notifyUpdate(); renderEvents(); clearEventForm();
-}
-function editEvent(id){ const arr=load(K_EVENTS,[]); const e=arr.find(x=>x.id===id); if(!e) return; $('eTitle').value=e.title; $('eDate').value=e.date; $('eDesc').value=e.desc; $('eEditId').value=e.id; openTab('events'); }
-function deleteEvent(id){ showConfirm('Delete event','Delete this event?', 'Delete', ()=>{ save(K_EVENTS, load(K_EVENTS,[]).filter(x=>x.id!==id)); notifyUpdate(); renderEvents(); }); }
+function renderEvents(){ const arr = parseLS(K_EVENTS,[]); const tbody = $('eventsTable'); tbody.innerHTML=''; arr.forEach(e=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${escapeHtml(e.date)}</td><td>${escapeHtml(e.title)}</td><td>${escapeHtml(e.desc||'')}</td><td><button class="btn" onclick="editEvent('${e.id}')">Edit</button> <button class="btn ghost" onclick="deleteEvent('${e.id}')">Delete</button></td>`; tbody.appendChild(tr); }); updateStats(); }
+function openEventForm(){ openTab('events'); clearEventForm(); }
 function clearEventForm(){ $('eTitle').value=''; $('eDate').value=''; $('eDesc').value=''; $('eEditId').value=''; }
+function saveEvent(){ const title=$('eTitle').value.trim(); const date=$('eDate').value; const desc=$('eDesc').value.trim(); if(!title||!date) return alert('Title & date required'); let arr=parseLS(K_EVENTS,[]); const editId=$('eEditId').value; if(editId){ const idx = arr.findIndex(x=>x.id===editId); if(idx>=0){ arr[idx].title=title; arr[idx].date=date; arr[idx].desc=desc; } } else arr.push({id:uid(),title,date,desc}); setLS(K_EVENTS,arr); renderEvents(); clearEventForm(); }
+function editEvent(id){ const arr = parseLS(K_EVENTS,[]); const e = arr.find(x=>x.id===id); if(!e) return; $('eTitle').value=e.title; $('eDate').value=e.date; $('eDesc').value=e.desc; $('eEditId').value=e.id; openTab('events'); }
+function deleteEvent(id){ showConfirm('Delete event','Delete this event?', 'Delete', ()=>{ setLS(K_EVENTS, parseLS(K_EVENTS,[]).filter(x=>x.id!==id)); renderEvents(); }); }
 
 /* ---------- Notices CRUD ---------- */
-function renderNotices(){
-  const arr = load(K_NOTICES,[]);
-  const tbody = $('noticesTable'); tbody.innerHTML='';
-  arr.forEach(n=>{
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${escapeHtml(n.title)}</td><td style="max-width:360px">${escapeHtml(n.body)}</td><td>${escapeHtml(n.priority)}</td><td><button class="btn" onclick="editNotice('${n.id}')">Edit</button><button class="btn ghost" onclick="deleteNotice('${n.id}')">Delete</button></td>`;
-    tbody.appendChild(tr);
-  });
-}
-function saveNotice(){ const title=$('nTitle').value.trim(); const body=$('nBody').value.trim(); const pri=$('nPriority').value; if(!title||!body) return alert('Title and body required'); const arr=load(K_NOTICES,[]); const editId=$('nEditId').value; if(editId){ const idx=arr.findIndex(x=>x.id===editId); if(idx>=0){ arr[idx].title=title; arr[idx].body=body; arr[idx].priority=pri;} } else arr.push({id:uid(), title, body, priority:pri}); save(K_NOTICES,arr); notifyUpdate(); renderNotices(); clearNoticeForm(); }
-function editNotice(id){ const arr=load(K_NOTICES,[]); const n=arr.find(x=>x.id===id); if(!n)return; $('nTitle').value=n.title; $('nBody').value=n.body; $('nPriority').value=n.priority; $('nEditId').value=n.id; openTab('notices'); }
-function deleteNotice(id){ showConfirm('Delete notice','Delete this notice?', 'Delete', ()=>{ save(K_NOTICES, load(K_NOTICES,[]).filter(x=>x.id!==id)); notifyUpdate(); renderNotices(); }); }
+function renderNotices(){ const arr = parseLS(K_NOTICES,[]); const tbody = $('noticesTable'); tbody.innerHTML=''; arr.forEach(n=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${escapeHtml(n.title)}</td><td style="max-width:360px">${escapeHtml(n.body)}</td><td>${escapeHtml(n.priority)}</td><td><button class="btn" onclick="editNotice('${n.id}')">Edit</button> <button class="btn ghost" onclick="deleteNotice('${n.id}')">Delete</button></td>`; tbody.appendChild(tr); }); }
+function openNoticeForm(){ openTab('notices'); clearNoticeForm(); }
 function clearNoticeForm(){ $('nTitle').value=''; $('nBody').value=''; $('nPriority').value='low'; $('nEditId').value=''; }
+function saveNotice(){ const title=$('nTitle').value.trim(); const body=$('nBody').value.trim(); const pri=$('nPriority').value; if(!title||!body) return alert('Title & body required'); const arr=parseLS(K_NOTICES,[]); const editId=$('nEditId').value; if(editId){ const idx=arr.findIndex(x=>x.id===editId); if(idx>=0){ arr[idx].title=title; arr[idx].body=body; arr[idx].priority=pri; } } else arr.push({id:uid(),title,body,priority:pri}); setLS(K_NOTICES,arr); renderNotices(); clearNoticeForm(); }
+function editNotice(id){ const arr=parseLS(K_NOTICES,[]); const n=arr.find(x=>x.id===id); if(!n) return; $('nTitle').value=n.title; $('nBody').value=n.body; $('nPriority').value=n.priority; $('nEditId').value=n.id; openTab('notices'); }
+function deleteNotice(id){ showConfirm('Delete notice','Delete this notice?', 'Delete', ()=>{ setLS(K_NOTICES, parseLS(K_NOTICES,[]).filter(x=>x.id!==id)); renderNotices(); }); }
 
 /* ---------- Timetable CRUD ---------- */
-function renderTimetable(){
-  const tt = load(K_TIMETABLE,{});
-  const tbody = $('timetableTable'); tbody.innerHTML='';
-  for(const day in tt){
-    const slots = tt[day]; const tr=document.createElement('tr');
-    tr.innerHTML = `<td>${escapeHtml(day)}</td><td>${escapeHtml(slots[0]||'')}</td><td>${escapeHtml(slots[1]||'')}</td><td>${escapeHtml(slots[2]||'')}</td><td>${escapeHtml(slots[3]||'')}</td><td><button class="btn" onclick="editTimetable('${day}')">Edit</button><button class="btn ghost" onclick="deleteTimetable('${day}')">Delete</button></td>`;
-    tbody.appendChild(tr);
-  }
-}
-function saveTimetable(){ const day=$('ttDay').value.trim(); if(!day) return alert('Day required'); const slots=[ $('tt1').value, $('tt2').value, $('tt3').value, $('tt4').value ]; const tt=load(K_TIMETABLE,{}); const editId=$('ttEditId').value; if(editId) delete tt[editId]; tt[day]=slots; save(K_TIMETABLE, tt); notifyUpdate(); renderTimetable(); clearTimetableForm(); }
-function editTimetable(day){ const tt=load(K_TIMETABLE,{}); const slots=tt[day]||[]; $('ttDay').value=day; $('tt1').value=slots[0]||''; $('tt2').value=slots[1]||''; $('tt3').value=slots[2]||''; $('tt4').value=slots[3]||''; $('ttEditId').value=day; openTab('timetable'); }
-function deleteTimetable(day){ showConfirm('Delete row','Delete timetable for '+day+'?', 'Delete', ()=>{ const tt=load(K_TIMETABLE,{}); delete tt[day]; save(K_TIMETABLE, tt); notifyUpdate(); renderTimetable(); }); }
+function renderTimetable(){ const tt = parseLS(K_TIMETABLE,{}); const tbody = $('timetableTable'); tbody.innerHTML=''; for(const day in tt){ const slots = tt[day]; const tr=document.createElement('tr'); tr.innerHTML = `<td>${escapeHtml(day)}</td><td>${escapeHtml(slots[0]||'')}</td><td>${escapeHtml(slots[1]||'')}</td><td>${escapeHtml(slots[2]||'')}</td><td>${escapeHtml(slots[3]||'')}</td><td><button class="btn" onclick="editTimetable('${day}')">Edit</button> <button class="btn ghost" onclick="deleteTimetable('${day}')">Delete</button></td>`; tbody.appendChild(tr); } }
+function openTimetableForm(){ openTab('timetable'); clearTimetableForm(); }
 function clearTimetableForm(){ $('ttDay').value=''; $('tt1').value=''; $('tt2').value=''; $('tt3').value=''; $('tt4').value=''; $('ttEditId').value=''; }
+function saveTimetable(){ const day=$('ttDay').value.trim(); if(!day) return alert('Day required'); const slots=[ $('tt1').value, $('tt2').value, $('tt3').value, $('tt4').value ]; const tt = parseLS(K_TIMETABLE,{}); const editId = $('ttEditId').value; if(editId && editId !== day) delete tt[editId]; tt[day] = slots; setLS(K_TIMETABLE, tt); renderTimetable(); clearTimetableForm(); }
+function editTimetable(day){ const tt = parseLS(K_TIMETABLE,{}); const slots = tt[day] || []; $('ttDay').value = day; $('tt1').value = slots[0]||''; $('tt2').value = slots[1]||''; $('tt3').value = slots[2]||''; $('tt4').value = slots[3]||''; $('ttEditId').value = day; openTab('timetable'); }
+function deleteTimetable(day){ showConfirm('Delete row','Delete timetable for '+day+'?', 'Delete', ()=>{ const tt = parseLS(K_TIMETABLE,{}); delete tt[day]; setLS(K_TIMETABLE, tt); renderTimetable(); }); }
 
 /* ---------- Gallery CRUD ---------- */
-function renderGallery(){
-  const g = load(K_GALLERY,[]);
-  const tbody = $('galleryTable'); tbody.innerHTML='';
-  g.forEach((src,idx)=>{ const tr=document.createElement('tr'); tr.innerHTML = `<td><img src="${escapeHtml(src)}" style="height:48px;border-radius:6px;object-fit:cover"></td><td style="max-width:420px;word-break:break-all">${escapeHtml(src)}</td><td><button class="btn" onclick="editGallery(${idx})">Edit</button><button class="btn ghost" onclick="deleteGallery(${idx})">Delete</button></td>`; tbody.appendChild(tr); });
-}
-function saveGallery(){ const url=$('gUrl').value.trim(); const editId=$('gEditId').value; if(!url) return alert('URL required'); const g=load(K_GALLERY,[]); if(editId){ g[parseInt(editId,10)]=url; } else g.push(url); save(K_GALLERY,g); notifyUpdate(); renderGallery(); clearGalleryForm(); }
-function editGallery(idx){ const g=load(K_GALLERY,[]); $('gUrl').value=g[idx]||''; $('gEditId').value=idx; openTab('gallery'); }
-function deleteGallery(idx){ showConfirm('Delete photo','Remove this photo?', 'Delete', ()=>{ const g=load(K_GALLERY,[]); g.splice(idx,1); save(K_GALLERY,g); notifyUpdate(); renderGallery(); }); }
+function renderGallery(){ const g = parseLS(K_GALLERY,[]); const tbody = $('galleryTable'); tbody.innerHTML=''; g.forEach((src,idx)=>{ const tr=document.createElement('tr'); tr.innerHTML = `<td><img src="${escapeHtml(src)}" style="height:48px;border-radius:6px;object-fit:cover"></td><td style="max-width:420px;word-break:break-all">${escapeHtml(src)}</td><td><button class="btn" onclick="editGallery(${idx})">Edit</button> <button class="btn ghost" onclick="deleteGallery(${idx})">Delete</button></td>`; tbody.appendChild(tr); }); }
+function openGalleryForm(){ openTab('gallery'); clearGalleryForm(); }
 function clearGalleryForm(){ $('gUrl').value=''; $('gEditId').value=''; }
+function saveGallery(){ const url=$('gUrl').value.trim(); const editId=$('gEditId').value; if(!url) return alert('URL required'); const g = parseLS(K_GALLERY,[]); if(editId){ g[parseInt(editId,10)] = url; } else g.push(url); setLS(K_GALLERY,g); renderGallery(); clearGalleryForm(); }
+function editGallery(idx){ const g = parseLS(K_GALLERY,[]); $('gUrl').value = g[idx] || ''; $('gEditId').value = idx; openTab('gallery'); }
+function deleteGallery(idx){ showConfirm('Delete photo','Remove this photo?', 'Delete', ()=>{ const g = parseLS(K_GALLERY,[]); g.splice(idx,1); setLS(K_GALLERY,g); renderGallery(); }); }
 
 /* ---------- Messages ---------- */
-function renderMessages(){
-  const msgs = load(K_MESSAGES,[]);
-  const tbody = $('messagesTable'); tbody.innerHTML='';
-  msgs.forEach((m,idx)=>{ const tr=document.createElement('tr'); tr.innerHTML = `<td>${new Date(m.ts||Date.now()).toLocaleString()}</td><td>${escapeHtml(m.name)}</td><td>${escapeHtml(m.email)}</td><td style="max-width:420px">${escapeHtml(m.msg)}</td><td><button class="btn" onclick="toggleRead(${idx})">${m.read? 'Mark Unread':'Mark Read'}</button><button class="btn ghost" onclick="deleteMessage(${idx})">Delete</button></td>`; tbody.appendChild(tr); });
-  updateStats();
-}
-function toggleRead(idx){ const msgs=load(K_MESSAGES,[]); msgs[idx].read = !msgs[idx].read; save(K_MESSAGES,msgs); notifyUpdate(); renderMessages(); }
-function deleteMessage(idx){ showConfirm('Delete message','Delete this message?', 'Delete', ()=>{ const msgs=load(K_MESSAGES,[]); msgs.splice(idx,1); save(K_MESSAGES,msgs); notifyUpdate(); renderMessages(); }); }
-function markAllRead(){ const msgs=load(K_MESSAGES,[]); msgs.forEach(m=>m.read=true); save(K_MESSAGES,msgs); notifyUpdate(); renderMessages(); }
+function renderMessages(){ const msgs = parseLS(K_MESSAGES,[]); const tbody = $('messagesTable'); tbody.innerHTML=''; msgs.forEach((m,idx)=>{ const tr=document.createElement('tr'); tr.innerHTML = `<td>${new Date(m.ts||Date.now()).toLocaleString()}</td><td>${escapeHtml(m.name)}</td><td>${escapeHtml(m.email)}</td><td style="max-width:420px">${escapeHtml(m.msg)}</td><td><button class="btn" onclick="toggleRead(${idx})">${m.read? 'Mark Unread':'Mark Read'}</button> <button class="btn ghost" onclick="deleteMessage(${idx})">Delete</button></td>`; tbody.appendChild(tr); }); updateStats(); }
+function toggleRead(idx){ const msgs = parseLS(K_MESSAGES,[]); msgs[idx].read = !msgs[idx].read; setLS(K_MESSAGES,msgs); renderMessages(); }
+function deleteMessage(idx){ showConfirm('Delete Message','Delete this message?', 'Delete', ()=>{ const msgs = parseLS(K_MESSAGES,[]); msgs.splice(idx,1); setLS(K_MESSAGES,msgs); renderMessages(); }); }
+function markAllRead(){ const msgs = parseLS(K_MESSAGES,[]); msgs.forEach(m=>m.read=true); setLS(K_MESSAGES,msgs); renderMessages(); }
 
-/* ---------- Utilities & UI ---------- */
-function escapeHtml(s){ if(!s && s!==0) return ''; return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+/* ---------- Storage viewer ---------- */
+function populateLSKeys(){
+  const keys = [K_STUDENT,K_HOMEWORK,K_TEACHERS,K_EVENTS,K_NOTICES,K_TIMETABLE,K_GALLERY,K_MESSAGES];
+  const sel = $('lsKeySelect'); sel.innerHTML=''; keys.forEach(k=>{ const o=document.createElement('option'); o.value=k; o.textContent=k; sel.appendChild(o); });
+}
+populateLSKeys();
+
+function viewSelectedKey(){
+  const key = $('lsKeySelect').value;
+  if(!key) return;
+  const val = localStorage.getItem(key);
+  $('lsViewer').textContent = val ? JSON.stringify(JSON.parse(val), null, 2) : '// key not present';
+  $('lsEditor').value = val ? JSON.stringify(JSON.parse(val), null, 2) : '';
+}
+function deleteSelectedKey(){
+  const key = $('lsKeySelect').value;
+  if(!key) return;
+  showConfirm('Delete key','Delete '+key+' from localStorage?', 'Delete', ()=>{ localStorage.removeItem(key); localStorage.setItem(K_UPDATE, Date.now().toString()); viewSelectedKey(); renderAll(); });
+}
+function saveLS(){
+  const key = $('lsKeySelect').value;
+  const raw = $('lsEditor').value.trim();
+  if(!key) return alert('Select a key');
+  if(!raw) return alert('Editor empty');
+  try {
+    const parsed = JSON.parse(raw);
+    localStorage.setItem(key, JSON.stringify(parsed));
+    localStorage.setItem(K_UPDATE, Date.now().toString());
+    alert('Saved.');
+    viewSelectedKey();
+    renderAll();
+  } catch(e){
+    alert('Invalid JSON: ' + e.message);
+  }
+}
+function clearLSEditor(){ $('lsEditor').value=''; }
+
+/* ---------- Snapshot (download simple html) ---------- */
+function downloadSnapshot(){
+  const hw = parseLS(K_HOMEWORK,{});
+  let html = '<!doctype html><html><head><meta charset="utf-8"><title>MKPS Snapshot</title></head><body><h1>Milli Karwaan Public School — Snapshot</h1>';
+  for(const c in hw){ html += `<h2>Class ${c}</h2><ul>`; hw[c].forEach(h=> html += `<li><strong>${escapeHtml(h.subject)}</strong> — ${escapeHtml(h.details)}</li>`); html += '</ul>'; }
+  html += `<p>Generated: ${new Date().toLocaleString()}</p></body></html>`;
+  const blob = new Blob([html],{type:'text/html'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='mkps-snapshot.html'; a.click(); URL.revokeObjectURL(url);
+}
+
+/* ---------- Utility & UI ---------- */
+function escapeHtml(s){ if(!s && s!==0) return ''; return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function updateStats(){
-  const hw = load(K_HOMEWORK,{}); let count=0; for(const k in hw) count+=(hw[k]||[]).length;
+  const hw = parseLS(K_HOMEWORK,{}); let count=0; for(const k in hw) count += (hw[k]||[]).length;
   $('statHW').textContent = count;
-  $('statTeachers').textContent = load(K_TEACHERS,[]).length;
-  $('statEvents').textContent = load(K_EVENTS,[]).length;
-  $('statMsgs').textContent = load(K_MESSAGES,[]).filter(m=>!m.read).length;
-  $('dataBadge').textContent = `Updated: ${new Date().toLocaleTimeString()}`;
-  // recent activity (simple)
-  const rec = [];
-  const msgs = load(K_MESSAGES,[]).slice(0,3); msgs.forEach(m=>rec.push(`${m.name}: ${m.msg.slice(0,40)}...`));
-  const recent = rec.length? ('<ul class="small">'+rec.map(r=>'<li>'+escapeHtml(r)+'</li>').join('')+'</ul>') : '<div class="small">No recent activity</div>';
-  $('recentActivity').innerHTML = recent;
+  $('statTeachers').textContent = parseLS(K_TEACHERS,[]).length;
+  $('statEvents').textContent = parseLS(K_EVENTS,[]).length;
+  $('statMsgs').textContent = parseLS(K_MESSAGES,[]).filter(m=>!m.read).length;
+  $('lastUpdated').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+  // recent activities (simple)
+  const msgs = parseLS(K_MESSAGES,[]).slice(0,3);
+  $('recentAct').innerHTML = msgs.length ? ('Recent messages:<ul class="small">'+msgs.map(m=>`<li>${escapeHtml(m.name)}: ${escapeHtml((m.msg||'').slice(0,40))}...</li>`).join('')+'</ul>') : 'No recent activity';
 }
 
-/* Tab navigation */
+/* ---------- Tab navigation ---------- */
 document.querySelectorAll('#menuNav button').forEach(btn=>{
   btn.addEventListener('click', (e)=>{
     document.querySelectorAll('#menuNav button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const tab = btn.dataset.tab;
-    document.querySelectorAll('section.tab').forEach(s=>s.style.display='none');
-    const show = document.getElementById('tab-'+tab);
-    if(show) show.style.display='block';
+    document.querySelectorAll('.tab').forEach(s=>s.classList.add('hidden'));
+    const el = document.getElementById('tab-' + tab);
+    if(el) el.classList.remove('hidden');
+    // some tabs require rendering
+    if(tab === 'homework') renderHomework();
+    if(tab === 'teachers') renderTeachers();
+    if(tab === 'events') renderEvents();
+    if(tab === 'notices') renderNotices();
+    if(tab === 'timetable') renderTimetable();
+    if(tab === 'gallery') renderGallery();
+    if(tab === 'messages') renderMessages();
+    if(tab === 'storage') { populateLSKeys(); viewSelectedKey(); }
   });
 });
 
-/* Open a tab by name */
-function openTab(name){
-  const btn = Array.from(document.querySelectorAll('#menuNav button')).find(b=>b.dataset.tab===name);
-  if(btn) btn.click();
-}
-
 /* ---------- Render all ---------- */
 function renderAll(){
-  renderHomework(); renderTeachers(); renderEvents(); renderNotices(); renderTimetable(); renderGallery(); renderMessages(); updateStats();
+  renderHomework(); renderTeachers(); renderEvents(); renderNotices(); renderTimetable(); renderGallery(); renderMessages(); populateLSKeys(); updateStats();
 }
-window.reloadAll = function(){ renderAll(); };
 
-/* ---------- Init admin ---------- */
-function initAdmin(){
-  // If keys missing, seed
-  if(!load(K_HOMEWORK)) seedDefaults();
-  if(!load(K_TEACHERS)) save(K_TEACHERS,[]);
-  if(!load(K_EVENTS)) save(K_EVENTS,[]);
-  if(!load(K_NOTICES)) save(K_NOTICES,[]);
-  if(!load(K_TIMETABLE)) save(K_TIMETABLE,{});
-  if(!load(K_GALLERY)) save(K_GALLERY,[]);
-  if(!load(K_MESSAGES)) save(K_MESSAGES,[]);
-  populateClassSelects();
+/* ---------- Init UI after login or view-only ---------- */
+function initUI(viewOnly=false){
+  // seed if missing minimal keys so UI shows up cleanly (do not overwrite student)
+  if(!localStorage.getItem(K_HOMEWORK)) seedDefaults();
+  if(!localStorage.getItem(K_TEACHERS)) setLS(K_TEACHERS, []);
+  if(!localStorage.getItem(K_EVENTS)) setLS(K_EVENTS, []);
+  if(!localStorage.getItem(K_NOTICES)) setLS(K_NOTICES, []);
+  if(!localStorage.getItem(K_TIMETABLE)) setLS(K_TIMETABLE, {});
+  if(!localStorage.getItem(K_GALLERY)) setLS(K_GALLERY, []);
+  if(!localStorage.getItem(K_MESSAGES)) setLS(K_MESSAGES, []);
+  // show first tab
+  openTab('overview');
   renderAll();
-  openTab('dashboard');
+  // prepare teacher select list for homework form
+  renderTeachersSelect();
 }
 
-/* ---------- Seed / Clear with confirmations ---------- */
-function seedDefaultsConfirm(){ showConfirm('Reset to sample data','This will overwrite current editable data with sample seed. Continue?','Reset', ()=>{ seedDefaults(); renderAll(); alert('Sample data seeded.'); }); }
-function clearAllConfirm(){ showConfirm('Clear ALL data','This will remove ALL mkps_* data keys. Continue?','Clear', ()=>{ clearAllData(); renderAll(); alert('All data cleared.'); }); }
+/* ---------- Small wrappers for opening forms (used by buttons) ---------- */
+function openTab(name){ const btn = Array.from(document.querySelectorAll('#menuNav button')).find(b=>b.dataset.tab===name); if(btn) btn.click(); }
 
-/* ---------- Export snapshot (simple html) ---------- */
-function downloadSnapshot(){
-  const hw = load(K_HOMEWORK,{});
-  let html = '<!doctype html><html><head><meta charset="utf-8"><title>MKPS Snapshot</title></head><body><h1>Milli Karwaan Public School — Snapshot</h1>';
-  for(const c in hw){ html += `<h2>Class ${escapeHtml(c)}</h2><ul>`; hw[c].forEach(h=> html += `<li><strong>${escapeHtml(h.subject)}</strong> — ${escapeHtml(h.details)}</li>`); html += '</ul>'; }
-  html += `<p>Generated: ${new Date().toLocaleString()}</p></body></html>`;
-  const blob = new Blob([html],{type:'text/html'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='mkps-snapshot.html'; a.click(); URL.revokeObjectURL(url);
-}
-
-/* ---------- Storage listener: if other tab updates mkps_update, refresh UI ---------- */
+/* ---------- Storage synchronization: listen for mkps_update from other tabs ---------- */
 window.addEventListener('storage', (e)=>{
   if(e.key === K_UPDATE){
+    // other tab updated data -> refresh
     renderAll();
+    populateLSKeys();
+    $('lastUpdated').textContent = 'Updated (other tab): ' + new Date().toLocaleTimeString();
   }
 });
 
-/* ---------- Initial render call (if needed) ---------- */
+/* ---------- Utilities exposed ---------- */
+window.renderAll = renderAll;
+window.reloadAll = renderAll;
+window.exportData = exportAll;
+
+/* ---------- On load: if admin logged in (sessionStorage) auto show admin UI ---------- */
 (function autoInit(){
-  // If admin wants to auto-login in demo (not secure) you can set adminPass and call doLogin()
-  // For now show login card; if sessionStorage flag exists, auto open
-  if(sessionStorage.getItem('mkps_admin_logged_in')==='1'){ document.getElementById('loginCard').style.display='none'; document.getElementById('adminUI').style.display='grid'; initAdmin(); }
+  if(sessionStorage.getItem('mkps_admin_logged_in') === '1'){
+    $('loginCard').classList.add('hidden');
+    $('adminUI').classList.remove('hidden');
+    initUI(false);
+  }
 })();
 
-/* ---------- Simple helpers used by UI buttons above ---------- */
-function openTeacherForm(){ openTab('teachers'); }
-function openEventForm(){ openTab('events'); }
-function openNoticeForm(){ openTab('notices'); }
-function openTimetableForm(){ openTab('timetable'); }
-function openGalleryForm(){ openTab('gallery'); }
+/* ---------- Additional actions ---------- */
+function seedDefaultsManual(){ seedDefaults(); }
+function clearAllConfirm(){ showConfirm('Clear all mkps_* data','This will remove mkps_ keys. Continue?', 'Clear', ()=>{ [K_STUDENT,K_HOMEWORK,K_TEACHERS,K_EVENTS,K_NOTICES,K_TIMETABLE,K_GALLERY,K_MESSAGES].forEach(k=>localStorage.removeItem(k)); localStorage.setItem(K_UPDATE,Date.now().toString()); renderAll(); alert('Cleared.'); }); }
 
-/* ---------- Small CRUD wrappers already referenced earlier (to ensure hoisting) ---------- */
-// (functions already declared above; this ensures scope)
-
-function renderTeachersSelect(){ renderTeachersSelect = renderTeachersSelect || function(){}; } // noop if missing
-
-/* ---------- Misc helpers: ensure functions exist for referenced UI callbacks ---------- */
-window.exportData = exportData;
-window.seedDefaultsConfirm = seedDefaultsConfirm;
+/* alias for UI buttons with names used above */
+window.seedConfirm = seedConfirm;
 window.clearAllConfirm = clearAllConfirm;
+window.clearAllData = clearAllData;
+window.exportAll = exportAll;
+window.importAll = importAll;
 window.downloadSnapshot = downloadSnapshot;
-window.reloadAll = reloadAll;
 
-/* ---------- Safe defaults on page load if no data ---------- */
-if(!load(K_HOMEWORK) || !load(K_TEACHERS)){
-  // keep seed only when admin logs in (seedDefaults is called in initAdmin)
-}
+/* safety: ensure UI elements exist before attaching some optional handlers */
+document.getElementById('importFile')?.addEventListener('change', importAll);
 
-/* ---------- small safety: update stats periodically ---------- */
-setInterval(()=>{ updateStats(); }, 15000);
+/* small helper for editing raw storage: automatically populate key select */
+populateLSKeys();
 
 </script>
 </body>
 </html>
+
