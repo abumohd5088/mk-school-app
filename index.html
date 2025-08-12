@@ -1,2465 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milli Karwaan Public School Balrampur</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary-color: #1a3a6e;
-            --secondary-color: #2c5aa0;
-            --accent-color: #f8c43e;
-            --text-color: #333;
-            --light-color: #f8f9ff;
-            --dark-color: #1a1a2e;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --border-radius: 12px;
-            --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            color: var(--text-color);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(44, 90, 160, 0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--secondary-color);
-            color: var(--secondary-color);
-        }
-
-        .btn-outline:hover {
-            background: var(--secondary-color);
-            color: white;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 18px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(10px);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .school-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .school-name {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .school-address {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            text-align: right;
-        }
-
-        .contact-info p {
-            font-size: 0.95rem;
-            margin: 3px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-info a:hover {
-            opacity: 0.9;
-            transform: translateX(5px);
-        }
-
-        /* Navigation Styles */
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 90px;
-            z-index: 999;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            transition: var(--transition);
-            border-radius: 3px;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 1.8rem;
-            color: var(--text-color);
-            background: none;
-            border: none;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 20px;
-            background-color: white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-radius: 12px;
-            overflow: hidden;
-            z-index: 1000;
-            min-width: 200px;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 15px 25px;
-            text-decoration: none;
-            color: var(--text-color);
-            transition: var(--transition);
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: var(--light-color);
-            color: var(--secondary-color);
-            padding-left: 30px;
-        }
-
-        .dropdown-menu a i {
-            font-size: 1.1rem;
-            color: var(--secondary-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(26, 58, 110, 0.9), rgba(26, 58, 110, 0.8)), url('https://placehold.co/1920x600/2c5aa0/white?text=School+Excellence') center/cover;
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .btn-large {
-            padding: 15px 35px;
-            font-size: 1.1rem;
-        }
-
-        /* Main Content */
-        main {
-            padding: 60px 0;
-        }
-
-        .section {
-            margin-bottom: 80px;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section:nth-child(2) { animation-delay: 0.1s; }
-        .section:nth-child(3) { animation-delay: 0.2s; }
-        .section:nth-child(4) { animation-delay: 0.3s; }
-        .section:nth-child(5) { animation-delay: 0.4s; }
-        .section:nth-child(6) { animation-delay: 0.5s; }
-        .section:nth-child(7) { animation-delay: 0.6s; }
-        .section:nth-child(8) { animation-delay: 0.7s; }
-        .section:nth-child(9) { animation-delay: 0.8s; }
-
-        .section-header {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            padding: 25px 35px;
-            font-size: 1.7rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-header i {
-            font-size: 1.8rem;
-            color: var(--accent-color);
-        }
-
-        .section-content {
-            padding: 40px;
-        }
-
-        /* Form Section */
-        .form-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--primary-color);
-            font-size: 1.05rem;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            transition: var(--transition);
-            background-color: #fafafa;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
-            background-color: white;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            border: none;
-            padding: 14px 40px;
-            font-size: 1.1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(44, 90, 160, 0.3);
-        }
-
-        .submit-btn i {
-            font-size: 1.2rem;
-        }
-
-        /* Homework Section */
-        .homework-container {
-            display: none;
-            margin-top: 30px;
-            padding: 25px;
-            background-color: var(--light-color);
-            border-radius: 10px;
-            border-left: 5px solid var(--secondary-color);
-        }
-
-        .homework-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e0e0e0;
-        }
-
-        .homework-title {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .class-badge {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .homework-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .homework-item {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--secondary-color);
-            transition: var(--transition);
-        }
-
-        .homework-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .homework-date {
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .homework-subject {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .homework-subject i {
-            color: var(--accent-color);
-        }
-
-        .homework-content {
-            color: #555;
-            line-height: 1.6;
-            padding-left: 10px;
-            border-left: 2px solid #eee;
-        }
-
-        .no-homework {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .no-homework i {
-            font-size: 3rem;
-            color: #ddd;
-            margin-bottom: 15px;
-        }
-
-        /* Teachers Section */
-        .teachers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .teacher-card {
-            background-color: var(--light-color);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .teacher-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .teacher-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 5px solid var(--secondary-color);
-        }
-
-        .teacher-info {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .teacher-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--primary-color);
-        }
-
-        .teacher-subject {
-            color: var(--secondary-color);
-            font-weight: 500;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .teacher-contact {
-            font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .teacher-social {
-            display: flex;
-            gap: 15px;
-            margin-top: auto;
-        }
-
-        .teacher-social a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            transition: var(--transition);
-        }
-
-        .teacher-social a:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-
-        .teacher-social i {
-            font-size: 1rem;
-        }
-
-        /* Events Section */
-        .events-list {
-            list-style: none;
-        }
-
-        .event-item {
-            display: flex;
-            gap: 25px;
-            margin-bottom: 35px;
-            padding-bottom: 25px;
-            border-bottom: 2px solid #f0f0f0;
-            transition: var(--transition);
-        }
-
-        .event-item:hover {
-            transform: translateX(10px);
-        }
-
-        .event-date {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            width: 90px;
-            height: 90px;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(44, 90, 160, 0.3);
-        }
-
-        .event-day {
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .event-month {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .event-details {
-            flex: 1;
-        }
-
-        .event-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .event-title i {
-            color: var(--accent-color);
-            font-size: 1.4rem;
-        }
-
-        .event-description {
-            color: #555;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .event-meta {
-            display: flex;
-            gap: 20px;
-            font-size: 0.95rem;
-        }
-
-        .event-time, .event-location {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--secondary-color);
-            font-weight: 500;
-        }
-
-        /* Notice Board */
-        .notice-list {
-            list-style: none;
-        }
-
-        .notice-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 20px 0;
-            border-bottom: 2px solid #f0f0f0;
-            transition: var(--transition);
-        }
-
-        .notice-item:hover {
-            transform: translateX(10px);
-        }
-
-        .notice-priority {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            flex-shrink: 0;
-        }
-
-        .notice-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-        }
-
-        .high {
-            background-color: var(--danger-color);
-            color: white;
-        }
-
-        .medium {
-            background-color: var(--warning-color);
-            color: #333;
-        }
-
-        .low {
-            background-color: var(--success-color);
-            color: white;
-        }
-
-        .notice-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .high .notice-dot {
-            background-color: white;
-        }
-
-        .medium .notice-dot {
-            background-color: #333;
-        }
-
-        .low .notice-dot {
-            background-color: white;
-        }
-
-        .notice-content {
-            flex: 1;
-        }
-
-        .notice-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .notice-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            flex-grow: 1;
-        }
-
-        .notice-date {
-            font-size: 0.85rem;
-            color: #666;
-            margin-left: 15px;
-            white-space: nowrap;
-        }
-
-        .notice-text {
-            color: #555;
-            line-height: 1.6;
-            padding-left: 5px;
-            border-left: 2px solid #eee;
-        }
-
-        /* Timetable */
-        .timetable-container {
-            overflow-x: auto;
-            margin-top: 20px;
-        }
-
-        .timetable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .timetable th {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            padding: 15px 20px;
-            text-align: left;
-            font-weight: 500;
-            font-size: 1.05rem;
-        }
-
-        .timetable td {
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-            transition: var(--transition);
-        }
-
-        .timetable tr:hover td {
-            background-color: #f8f9ff;
-            transform: scale(1.01);
-        }
-
-        .timetable tr:last-child td {
-            border-bottom: none;
-        }
-
-        .subject {
-            font-weight: 500;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .subject i {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-        }
-
-        .time {
-            color: var(--secondary-color);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .time i {
-            font-size: 1.1rem;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            border-radius: 15px;
-            overflow: hidden;
-            height: 220px;
-            position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 20px;
-            font-size: 0.95rem;
-            backdrop-filter: blur(5px);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-overlay i {
-            color: white;
-            font-size: 2rem;
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .contact-info-box {
-            background: linear-gradient(135deg, white, #f8f9ff);
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-            border: 1px solid #eee;
-        }
-
-        .contact-info-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-
-        .contact-title {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--light-color);
-        }
-
-        .contact-title i {
-            color: var(--secondary-color);
-            font-size: 1.5rem;
-        }
-
-        .contact-details {
-            list-style: none;
-        }
-
-        .contact-details li {
-            margin-bottom: 18px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            color: #555;
-        }
-
-        .contact-details i {
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            min-width: 24px;
-            margin-top: 3px;
-        }
-
-        .contact-form {
-            background: linear-gradient(135deg, white, #f8f9ff);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border: 1px solid #eee;
-        }
-
-        .contact-form:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-
-        .contact-form h3 {
-            margin-bottom: 25px;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .contact-form h3 i {
-            color: var(--secondary-color);
-        }
-
-        .form-row {
-            margin-bottom: 20px;
-        }
-
-        .form-row label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--primary-color);
-            font-size: 1.05rem;
-        }
-
-        .form-row input, .form-row textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            transition: var(--transition);
-            background-color: #fafafa;
-        }
-
-        .form-row input:focus, .form-row textarea:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
-            background-color: white;
-        }
-
-        .form-row textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-contact-btn {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            border: none;
-            padding: 14px 35px;
-            font-size: 1.1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .submit-contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(44, 90, 160, 0.3);
-        }
-
-        .submit-contact-btn i {
-            font-size: 1.2rem;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 80px 0;
-            margin: 80px 0;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 25px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background-color: var(--light-color);
-            padding: 80px 0;
-            margin: 80px 0;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        .testimonials-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonials-list {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .testimonial-item {
-            min-width: 100%;
-            padding: 30px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            margin: 0 20px;
-        }
-
-        .testimonial-content {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            position: relative;
-            padding: 0 20px;
-        }
-
-        .testimonial-content::before,
-        .testimonial-content::after {
-            content: '"';
-            font-size: 3rem;
-            color: var(--secondary-color);
-            opacity: 0.3;
-            position: absolute;
-        }
-
-        .testimonial-content::before {
-            top: -20px;
-            left: 0;
-        }
-
-        .testimonial-content::after {
-            bottom: -40px;
-            right: 0;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .author-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--secondary-color);
-        }
-
-        .author-info h4 {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .author-info p {
-            color: var(--secondary-color);
-            font-weight: 500;
-        }
-
-        .testimonial-nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .testimonial-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #ccc;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .testimonial-dot.active {
-            background-color: var(--secondary-color);
-            transform: scale(1.3);
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
-            color: white;
-            padding: 70px 0 30px;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 12px;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
-            border-radius: 3px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-            transform: translateX(5px);
-        }
-
-        .footer-links i {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-
-        .footer-contact li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .footer-contact i {
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-            margin-top: 5px;
-        }
-
-        .footer-newsletter {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .newsletter-text {
-            color: #ddd;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-        }
-
-        .newsletter-form button {
-            background: var(--accent-color);
-            color: var(--dark-color);
-            border: none;
-            padding: 0 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .newsletter-form button:hover {
-            background: #e8b52d;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.95rem;
-            color: #aaa;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-
-        .social-links i {
-            font-size: 1.1rem;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 999;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(44, 90, 160, 0.3);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .section-content {
-                padding: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-
-            .contact-info {
-                align-items: center;
-                margin-top: 10px;
-            }
-
-            .nav-container {
-                justify-content: space-between;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: block;
-                z-index: 1000;
-            }
-
-            .dropdown-menu {
-                right: 20px;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .section-content {
-                padding: 25px;
-            }
-
-            .form-container {
-                grid-template-columns: 1fr;
-            }
-
-            .event-item {
-                flex-direction: column;
-            }
-
-            .event-date {
-                width: 80px;
-                height: 80px;
-                margin-bottom: 15px;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .school-name {
-                font-size: 1.3rem;
-            }
-
-            .contact-info p {
-                font-size: 0.85rem;
-            }
-
-            .hero {
-                padding: 70px 0;
-            }
-
-            .hero-title {
-                font-size: 2.2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .btn-large {
-                width: 100%;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .section-header {
-                font-size: 1.5rem;
-                padding: 20px 25px;
-            }
-
-            .section-header i {
-                font-size: 1.5rem;
-            }
-
-            .section-content {
-                padding: 20px;
-            }
-
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonial-item {
-                padding: 20px;
-            }
-
-            .testimonial-content {
-                font-size: 1rem;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin Panel - Milli Karwaan Public School</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --brand:#004080;
+    --brand-2:#2c5aa0;
+    --accent:#f8c43e;
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --success:#28a745;
+    --danger:#dc3545;
+    --glass: rgba(255,255,255,0.85);
+    --radius:12px;
+    --shadow: 0 8px 30px rgba(2,6,23,0.08);
+    --trans: all .25s ease;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:Inter,Segoe UI,Helvetica,Arial; background:linear-gradient(180deg,#eef5ff,#f4f7fb); color:#111; min-height:100vh;}
+  .wrap{max-width:1200px; margin:28px auto; padding:0 16px;}
+  header{display:flex; align-items:center; gap:14px; margin-bottom:18px;}
+  header img{height:64px; width:64px; object-fit:cover; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+  header h1{font-size:1.35rem; margin:0; color:var(--brand)}
+  header p{margin:0; color:var(--muted); font-size:0.95rem}
+  .card{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
+  .grid{display:grid; grid-template-columns: 320px 1fr; gap:18px}
+  @media(max-width:980px){ .grid{grid-template-columns:1fr} }
+
+  /* login */
+  .login-wrap{max-width:520px; margin:30px auto}
+  .login-box{padding:22px; border-radius:12px}
+  .field{margin-bottom:12px}
+  label{display:block; font-weight:600; margin-bottom:6px; color:var(--brand)}
+  input[type="text"], input[type="password"], select, textarea{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #e6eef9; font-size:1rem; background:#fcfeff}
+  .btn{display:inline-block; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff; padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:700}
+  .btn-ghost{background:transparent; border:1px solid #dbeafe; color:var(--brand); padding:9px 12px}
+
+  /* sidebar nav */
+  .sidebar .menu-item{padding:12px 14px; border-radius:10px; display:flex; gap:10px; align-items:center; cursor:pointer; color:var(--brand); margin-bottom:8px; font-weight:600}
+  .sidebar .menu-item:hover{background:rgba(0,64,128,0.05)}
+  .sidebar .small{font-size:0.9rem; color:var(--muted); margin-bottom:12px}
+
+  /* main admin content */
+  .admin-top{display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:14px}
+  .section-title{font-size:1.05rem; font-weight:700; color:var(--brand); margin-bottom:8px}
+  .tools{display:flex; gap:8px; align-items:center}
+  .panel{margin-bottom:16px}
+
+  /* lists */
+  .list{list-style:none; padding:0; margin:0}
+  .list li{display:flex; justify-content:space-between; gap:12px; align-items:center; padding:10px; border-radius:10px; border:1px solid #f0f5ff; background:linear-gradient(180deg,#fff,#fbfdff); margin-bottom:8px}
+  .list li .meta{color:var(--muted); font-size:0.95rem}
+  .actions{display:flex; gap:8px}
+
+  /* form row */
+  .row{display:flex; gap:10px}
+  .row .col{flex:1}
+
+  /* modal */
+  .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.45); z-index:200}
+  .modal .modal-card{width:100%; max-width:760px; padding:18px; border-radius:12px; background:var(--card)}
+  .modal .modal-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
+
+  /* small helpers */
+  .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:#f3faff; color:var(--brand-2); font-weight:700}
+  .muted{color:var(--muted)}
+  .danger{color:var(--danger)}
+  .success{color:var(--success)}
+
+  /* responsive tweaks */
+  @media(max-width:640px){
+    header h1{font-size:1rem}
+    .grid{gap:12px}
+  }
+
+  /* file input */
+  .file-row{display:flex; gap:8px; align-items:center}
+  .small-btn{padding:8px 10px; border-radius:8px; border:none; background:#f3f8ff; color:var(--brand); cursor:pointer}
+  .inline-input{display:flex; gap:8px; align-items:center}
+  pre {white-space:pre-wrap; word-wrap:break-word; font-family:monospace; font-size:0.9rem; background:#f7fbff; padding:12px; border-radius:8px}
+</style>
 </head>
 <body>
-    <!-- Header -->
+  <div class="wrap">
     <header>
-        <div class="container header-container">
-            <div class="logo-container">
-                <img src="https://i.ibb.co/7z2QyfM/logo.png" alt="School Logo" class="logo">
-                <div class="school-info">
-                    <h1 class="school-name">Milli Karwaan Public School Balrampur</h1>
-                    <p class="school-address"><i class="fas fa-map-marker-alt"></i> Boluha Police Chowki Balrampur</p>
-                </div>
-            </div>
-            <div class="contact-info">
-                <p><a href="tel:9758919151"><i class="fas fa-phone"></i> 9758919151</a></p>
-                <p><a href="mailto:madamsir066@gmail.com"><i class="fas fa-envelope"></i> madamsir066@gmail.com</a></p>
-            </div>
-        </div>
+      <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo">
+      <div>
+        <h1>Milli Karwaan Public School Balrampur — Admin</h1>
+        <p class="muted">Manage Homework, Teachers, Events, Notices, Timetable, Gallery & Messages</p>
+      </div>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <ul class="nav-links">
-                <li><a href="#homework"><i class="fas fa-book"></i> Homework</a></li>
-                <li><a href="#teachers"><i class="fas fa-chalkboard-teacher"></i> Teachers</a></li>
-                <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
-                <li><a href="#notices"><i class="fas fa-bullhorn"></i> Notice Board</a></li>
-                <li><a href="#timetable"><i class="fas fa-clock"></i> Timetable</a></li>
-                <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="#contact"><i class="fas fa-headset"></i> Contact</a></li>
-            </ul>
-            <button class="menu-toggle">
-                <i class="fas fa-ellipsis-v"></i>
-            </button>
-            <div class="dropdown-menu">
-                <a href="admin.html"><i class="fas fa-user-shield"></i> Admin Login</a>
-                <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-                <a href="#admissions"><i class="fas fa-user-graduate"></i> Admissions</a>
-                <a href="#facilities"><i class="fas fa-building"></i> Facilities</a>
-                <a href="#achievements"><i class="fas fa-trophy"></i> Achievements</a>
-            </div>
+    <!-- LOGIN VIEW -->
+    <div id="loginView" class="card login-wrap" style="display:block">
+      <div class="login-box">
+        <h2 style="margin-bottom:6px">Admin Login</h2>
+        <p class="muted" style="margin-bottom:12px">Enter admin password to manage school content. (Password set by owner)</p>
+        <div class="field">
+          <label>Username</label>
+          <input id="adminUser" type="text" placeholder="admin">
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1 class="hero-title">Excellence in Education</h1>
-            <p class="hero-subtitle">Empowering young minds for a brighter future through quality education and holistic development.</p>
-            <div class="hero-buttons">
-                <a href="#homework" class="btn btn-primary btn-large"><i class="fas fa-book-open"></i> View Homework</a>
-                <a href="#contact" class="btn btn-outline btn-large"><i class="fas fa-phone-alt"></i> Contact Us</a>
-            </div>
+        <div class="field">
+          <label>Password</label>
+          <input id="adminPass" type="password" placeholder="Enter password">
         </div>
-    </section>
-
-    <main class="container">
-        <!-- Homework Form Section -->
-        <section class="section" id="homework">
-            <div class="section-header">
-                <i class="fas fa-book-open"></i> Student Homework Portal
-            </div>
-            <div class="section-content">
-                <p class="section-subtitle">Please fill in your details to access your homework assignments.</p>
-                <form id="homeworkForm" style="margin: 30px 0;">
-                    <div class="form-container">
-                        <div class="form-group">
-                            <label for="studentName"><i class="fas fa-user"></i> Student Name</label>
-                            <input type="text" id="studentName" placeholder="Enter your full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="className"><i class="fas fa-school"></i> Class</label>
-                            <select id="className" required>
-                                <option value="">Select Class</option>
-                                <option value="Nursery">Nursery</option>
-                                <option value="LKG">LKG</option>
-                                <option value="UKG">UKG</option>
-                                <option value="Class 1">Class 1</option>
-                                <option value="Class 2">Class 2</option>
-                                <option value="Class 3">Class 3</option>
-                                <option value="Class 4">Class 4</option>
-                                <option value="Class 5">Class 5</option>
-                                <option value="Class 6">Class 6</option>
-                                <option value="Class 7">Class 7</option>
-                                <option value="Class 8">Class 8</option>
-                                <option value="Class 9">Class 9</option>
-                                <option value="Class 10">Class 10</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="parentName"><i class="fas fa-user-friends"></i> Parent's Name</label>
-                            <input type="text" id="parentName" placeholder="Enter parent's full name" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-arrow-right"></i> View Homework
-                    </button>
-                </form>
-                <div id="homeworkContainer" class="homework-container">
-                    <div class="homework-header">
-                        <h3 class="homework-title">Homework Assignments</h3>
-                        <span class="class-badge" id="selectedClass">Class</span>
-                    </div>
-                    <div class="homework-list" id="homeworkList"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="stats animate-on-scroll">
-            <div class="container">
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <span class="stat-number" id="studentCount">550+</span>
-                        <span class="stat-label">Students</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="teacherCount">35+</span>
-                        <span class="stat-label">Teachers</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Years of Excellence</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">95%</span>
-                        <span class="stat-label">Pass Rate</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Teachers Section -->
-        <section class="section animate-on-scroll" id="teachers">
-            <div class="section-header">
-                <i class="fas fa-chalkboard-teacher"></i> Our Teaching Staff
-            </div>
-            <div class="section-content">
-                <p class="section-subtitle">Meet our dedicated and experienced teaching staff who are committed to providing quality education.</p>
-                <div class="teachers-grid" id="teachersList">
-                    <!-- Teachers will be populated by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="testimonials animate-on-scroll">
-            <div class="container">
-                <h2 class="section-title text-center">What Parents Say</h2>
-                <p class="section-subtitle text-center">Hear from parents about their experience with our school</p>
-                <div class="testimonials-slider">
-                    <div class="testimonials-list" id="testimonialsList">
-                        <!-- Testimonials will be populated by JavaScript -->
-                    </div>
-                    <div class="testimonial-nav" id="testimonialDots">
-                        <!-- Dots will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Events Section -->
-        <section class="section animate-on-scroll" id="events">
-            <div class="section-header">
-                <i class="fas fa-calendar-alt"></i> Upcoming Events
-            </div>
-            <div class="section-content">
-                <p class="section-subtitle">Stay updated with our school events and activities.</p>
-                <ul class="events-list" id="eventsList">
-                    <!-- Events will be populated by JavaScript -->
-                </ul>
-            </div>
-        </section>
-
-        <!-- Notice Board Section -->
-        <section class="section animate-on-scroll" id="notices">
-            <div class="section-header">
-                <i class="fas fa-bullhorn"></i> Notice Board
-            </div>
-            <div class="section-content">
-                <p class="section-subtitle">Important announcements and notices from the school administration.</p>
-                <ul class="notice-list" id="noticesList">
-                    <!-- Notices will be populated by JavaScript -->
-                </ul>
-            </div>
-        </section>
-
-        <!-- Timetable Section -->
-        <section class="section animate-on-scroll" id="timetable">
-            <div class="section-header">
-                <i class="fas fa-clock"></i> Class Timetable
-            </div>
-            <div class="section-content">
-                <p class="section-subtitle">Weekly schedule for all classes.</p>
-                <div class="timetable-container">
-                    <table class="timetable">
-                        <thead>
-                            <tr>
-                                <th><i class="fas fa-clock"></i> Time</th>
-                                <th><i class="fas fa-calendar-day"></i> Monday</th>
-                                <th><i class="fas fa-calendar-day"></i> Tuesday</th>
-                                <th><i class="fas fa-calendar-day"></i> Wednesday</th>
-                                <th><i class="fas fa-calendar-day"></i> Thursday</th>
-                                <th><i class="fas fa-calendar-day"></i> Friday</th>
-                                <th><i class="fas fa-calendar-day"></i> Saturday</th>
-                            </tr>
-                        </thead>
-                        <tbody id="timetableBody">
-                            <!-- Timetable will be populated by JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section class="section animate-on-scroll" id="gallery">
-            <div class="section-header">
-                <i class="fas fa-images"></i> School Gallery
-            </div>
-            <div class="section-content">
-                <p class="section-subtitle">Explore moments from our school life and activities.</p>
-                <div class="gallery-grid" id="galleryList">
-                    <!-- Gallery items will be populated by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="section animate-on-scroll" id="contact">
-            <div class="section-header">
-                <i class="fas fa-headset"></i> Contact Us
-            </div>
-            <div class="section-content">
-                <div class="contact-container">
-                    <div class="contact-info-box">
-                        <h3 class="contact-title"><i class="fas fa-map-marker-alt"></i> Address</h3>
-                        <ul class="contact-details">
-                            <li><i class="fas fa-school"></i> Milli Karwaan Public School Balrampur</li>
-                            <li><i class="fas fa-map-marker-alt"></i> Boluha Police Chowki Balrampur</li>
-                        </ul>
-                    </div>
-                    <div class="contact-info-box">
-                        <h3 class="contact-title"><i class="fas fa-phone-alt"></i> Contact Information</h3>
-                        <ul class="contact-details">
-                            <li><i class="fas fa-phone"></i> <a href="tel:9758919151">9758919151</a></li>
-                            <li><i class="fas fa-envelope"></i> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></li>
-                            <li><i class="fas fa-clock"></i> Monday - Saturday: 8:00 AM - 4:00 PM</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3><i class="fas fa-comments"></i> Send us a message</h3>
-                    <form id="contactForm">
-                        <div class="form-row">
-                            <label for="contactName"><i class="fas fa-user"></i> Name</label>
-                            <input type="text" id="contactName" placeholder="Your full name" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="contactEmail"><i class="fas fa-envelope"></i> Email</label>
-                            <input type="email" id="contactEmail" placeholder="Your email address" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="contactSubject"><i class="fas fa-tag"></i> Subject</label>
-                            <input type="text" id="contactSubject" placeholder="Message subject" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="contactMessage"><i class="fas fa-comment-dots"></i> Message</label>
-                            <textarea id="contactMessage" placeholder="Your message here..." required></textarea>
-                        </div>
-                        <button type="submit" class="submit-contact-btn">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-section">
-                    <h3>About Us</h3>
-                    <p>Milli Karwaan Public School Balrampur is dedicated to providing quality education with a focus on academic excellence and character development. We nurture young minds to become responsible citizens and lifelong learners.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#homework"><i class="fas fa-angle-right"></i> Homework</a></li>
-                        <li><a href="#teachers"><i class="fas fa-angle-right"></i> Teachers</a></li>
-                        <li><a href="#events"><i class="fas fa-angle-right"></i> Events</a></li>
-                        <li><a href="#notices"><i class="fas fa-angle-right"></i> Notice Board</a></li>
-                        <li><a href="#timetable"><i class="fas fa-angle-right"></i> Timetable</a></li>
-                        <li><a href="#gallery"><i class="fas fa-angle-right"></i> Gallery</a></li>
-                        <li><a href="admin.html"><i class="fas fa-angle-right"></i> Admin Login</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> Boluha Police Chowki Balrampur</li>
-                        <li><i class="fas fa-phone"></i> <a href="tel:9758919151">9758919151</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></li>
-                        <li><i class="fas fa-clock"></i> Mon-Sat: 8:00 AM - 4:00 PM</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Newsletter</h3>
-                    <p class="newsletter-text">Subscribe to our newsletter to receive updates about school events, announcements, and important information.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email address" required>
-                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Milli Karwaan Public School Balrampur. All Rights Reserved.</p>
-            </div>
+        <div style="display:flex; gap:10px; margin-top:10px">
+          <button class="btn" onclick="doLogin()">Login</button>
+          <button class="btn-ghost" onclick="fillDemo()">Fill demo</button>
         </div>
-    </footer>
+        <p class="muted" style="margin-top:10px">Admin password is <strong>Abutalha</strong> (hardcoded for this demo). Use responsibly.</p>
+      </div>
+    </div>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- ADMIN DASHBOARD -->
+    <div id="adminUI" style="display:none">
+      <div class="grid">
+        <!-- SIDEBAR -->
+        <aside class="card sidebar">
+          <div class="small">Quick Links</div>
+          <div class="menu-item" onclick="showPanel('dashboard')"><i class="fa fa-tachometer-alt"></i> Dashboard</div>
+          <div class="menu-item" onclick="showPanel('homework')"><i class="fa fa-book"></i> Homework</div>
+          <div class="menu-item" onclick="showPanel('teachers')"><i class="fa fa-chalkboard-teacher"></i> Teachers</div>
+          <div class="menu-item" onclick="showPanel('events')"><i class="fa fa-calendar-day"></i> Events</div>
+          <div class="menu-item" onclick="showPanel('notices')"><i class="fa fa-bell"></i> Notices</div>
+          <div class="menu-item" onclick="showPanel('timetable')"><i class="fa fa-table"></i> Timetable</div>
+          <div class="menu-item" onclick="showPanel('gallery')"><i class="fa fa-image"></i> Gallery</div>
+          <div class="menu-item" onclick="showPanel('messages')"><i class="fa fa-envelope"></i> Messages</div>
+          <div class="menu-item" onclick="showPanel('settings')"><i class="fa fa-cogs"></i> Settings</div>
+          <hr style="margin:12px 0;border:none;border-top:1px solid #f0f6ff">
+          <div style="display:flex;gap:8px">
+            <button class="small-btn" onclick="exportData()">Export JSON</button>
+            <label class="small-btn" style="cursor:pointer">
+              Import<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)">
+            </label>
+          </div>
+          <div style="margin-top:12px">
+            <button class="small-btn" onclick="logout()">Logout</button>
+          </div>
+        </aside>
 
-    <script>
-        // Initialize localStorage if empty
-        function initializeStorage() {
-            if (!localStorage.getItem('homework')) {
-                const defaultHomework = {
-                    'Nursery': [
-                        { date: '2023-10-15', subject: 'English', content: 'Practice writing letters A, B, C. Draw pictures of animals starting with these letters.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Count objects from 1 to 10. Practice writing numbers 1-5.' }
-                    ],
-                    'LKG': [
-                        { date: '2023-10-15', subject: 'English', content: 'Read the story "The Little Red Hen". Write 5 sentences about your favorite animal.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Solve addition problems up to 10. Complete the number patterns.' }
-                    ],
-                    'UKG': [
-                        { date: '2023-10-15', subject: 'English', content: 'Write a short paragraph about your family. Practice spelling words from this week\'s list.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Subtraction problems up to 20. Draw shapes and label them.' }
-                    ],
-                    'Class 1': [
-                        { date: '2023-10-15', subject: 'English', content: 'Read Chapter 3 of the textbook. Write 10 sentences using the new vocabulary words.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Complete exercises on addition and subtraction. Solve word problems.' }
-                    ],
-                    'Class 2': [
-                        { date: '2023-10-15', subject: 'English', content: 'Write a story using the words: adventure, forest, treasure, map, and friend. Use at least 150 words.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Practice multiplication tables for 2, 3, and 4. Solve the worksheet on time.' }
-                    ],
-                    'Class 3': [
-                        { date: '2023-10-15', subject: 'Science', content: 'Observe plants in your garden or nearby park. Draw and label the parts of a plant.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Complete the chapter on fractions. Solve problems involving addition of fractions.' }
-                    ],
-                    'Class 4': [
-                        { date: '2023-10-15', subject: 'Social Studies', content: 'Research about the Indian Constitution. Write 10 points about its importance.' },
-                        { date: '2023-10-16', subject: 'English', content: 'Read a chapter from your favorite book. Write a book review including characters, plot, and your opinion.' }
-                    ],
-                    'Class 5': [
-                        { date: '2023-10-15', subject: 'Science', content: 'Create a model of the solar system. Label all planets and write one interesting fact about each.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Solve problems on decimals and percentages. Complete the word problems worksheet.' }
-                    ],
-                    'Class 6': [
-                        { date: '2023-10-15', subject: 'Maths', content: 'Practice algebraic expressions. Solve equations with one variable.' },
-                        { date: '2023-10-16', subject: 'Science', content: 'Write an experiment report on photosynthesis. Include aim, materials, procedure, and conclusion.' }
-                    ],
-                    'Class 7': [
-                        { date: '2023-10-15', subject: 'History', content: 'Research about the Mughal Empire. Prepare a timeline of important events and rulers.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Solve problems on mensuration. Calculate area and perimeter of different shapes.' }
-                    ],
-                    'Class 8': [
-                        { date: '2023-10-15', subject: 'Science', content: 'Prepare a project on renewable energy sources. Include diagrams and explain their importance.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Practice problems on exponents and powers. Simplify expressions using laws of exponents.' }
-                    ],
-                    'Class 9': [
-                        { date: '2023-10-15', subject: 'Physics', content: 'Solve numerical problems on motion. Calculate speed, velocity, and acceleration.' },
-                        { date: '2023-10-16', subject: 'Chemistry', content: 'Write balanced chemical equations for the reactions studied in class.' }
-                    ],
-                    'Class 10': [
-                        { date: '2023-10-15', subject: 'Biology', content: 'Prepare a detailed report on human reproduction. Include diagrams and explain the process.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Practice trigonometry problems. Solve questions from the textbook exercises.' }
-                    ]
-                };
-                localStorage.setItem('homework', JSON.stringify(defaultHomework));
-            }
+        <!-- MAIN PANEL -->
+        <main>
+          <!-- DASHBOARD -->
+          <section id="panel-dashboard" class="card panel" style="display:none">
+            <div class="admin-top">
+              <div>
+                <div class="section-title">Dashboard</div>
+                <div class="muted">Overview of current stored content</div>
+              </div>
+              <div class="tools">
+                <div class="pill" id="countHomework">Homework: 0</div>
+                <div class="pill" id="countTeachers">Teachers: 0</div>
+                <div class="pill" id="countMessages">Messages: 0</div>
+              </div>
+            </div>
 
-            if (!localStorage.getItem('teachers')) {
-                const defaultTeachers = [
-                    { name: 'Dr. Abutalha Sir', subject: 'Principal', image: 'https://placehold.co/300x300/2c5aa0/white?text=Dr.+Abutalha', contact: '9758919151', email: 'abutalha@millikarwaan.edu', social: { facebook: '#', twitter: '#', linkedin: '#' } },
-                    { name: 'Anjali Sharma', subject: 'English', image: 'https://placehold.co/300x300/2c5aa0/white?text=Anjali+Sharma', contact: '9876543210', email: 'anjali@millikarwaan.edu', social: { facebook: '#', twitter: '#', linkedin: '#' } },
-                    { name: 'Rajesh Kumar', subject: 'Mathematics', image: 'https://placehold.co/300x300/2c5aa0/white?text=Rajesh+Kumar', contact: '8765432109', email: 'rajesh@millikarwaan.edu', social: { facebook: '#', twitter: '#', linkedin: '#' } },
-                    { name: 'Sunita Patel', subject: 'Science', image: 'https://placehold.co/300x300/2c5aa0/white?text=Sunita+Patel', contact: '7654321098', email: 'sunita@millikarwaan.edu', social: { facebook: '#', twitter: '#', linkedin: '#' } },
-                    { name: 'Mohammed Ali', subject: 'Social Studies', image: 'https://placehold.co/300x300/2c5aa0/white?text=Mohammed+Ali', contact: '6543210987', email: 'mohammed@millikarwaan.edu', social: { facebook: '#', twitter: '#', linkedin: '#' } },
-                    { name: 'Priya Singh', subject: 'Hindi', image: 'https://placehold.co/300x300/2c5aa0/white?text=Priya+Singh', contact: '5432109876', email: 'priya@millikarwaan.edu', social: { facebook: '#', twitter: '#', linkedin: '#' } },
-                    { name: 'Amit Verma', subject: 'Computer Science', image: 'https://placehold.co/300x300/2c5aa0/white?text=Amit+Verma', contact: '4321098765', email: 'amit@millikarwaan.edu', social: { facebook: '#', twitter: '#', linkedin: '#' } },
-                    { name: 'Neha Gupta', subject: 'Physical Education', image: 'https://placehold.co/300x300/2c5aa0/white?text=Neha+Gupta', contact: '3210987654', email: 'neha@millikarwaan.edu', social: { facebook: '#', twitter: '#', linkedin: '#' } }
-                ];
-                localStorage.setItem('teachers', JSON.stringify(defaultTeachers));
-            }
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px">
+              <div class="card">
+                <div style="font-weight:700; color:var(--brand)">Recent Homework (sample)</div>
+                <div id="dashHomework" style="margin-top:10px"></div>
+              </div>
+              <div class="card">
+                <div style="font-weight:700; color:var(--brand)">Recent Messages</div>
+                <div id="dashMessages" style="margin-top:10px"></div>
+              </div>
+              <div class="card">
+                <div style="font-weight:700; color:var(--brand)">Recent Teachers</div>
+                <div id="dashTeachers" style="margin-top:10px"></div>
+              </div>
+            </div>
+          </section>
 
-            if (!localStorage.getItem('events')) {
-                const defaultEvents = [
-                    { title: 'Annual Sports Day', date: '2023-11-15', time: '10:00 AM - 4:00 PM', location: 'School Grounds', description: 'Join us for our annual sports day with various athletic events and competitions for all classes. Students will participate in track and field events, relay races, and traditional games.' },
-                    { title: 'Science Exhibition', date: '2023-12-05', time: '9:00 AM - 3:00 PM', location: 'Science Lab & Auditorium', description: 'Students will showcase their science projects and experiments. Topics include renewable energy, robotics, environmental science, and chemical reactions. Parents are invited to attend and interact with young scientists.' },
-                    { title: 'Cultural Fest', date: '2024-01-20', time: '11:00 AM - 5:00 PM', location: 'School Auditorium', description: 'A celebration of cultural diversity with music, dance, and food from different regions. Students will perform traditional dances, present cultural exhibits, and share regional cuisines. A wonderful opportunity to celebrate our multicultural community.' },
-                    { title: 'PTM (Parent-Teacher Meeting)', date: '2023-10-30', time: '2:00 PM - 5:00 PM', location: 'Classrooms', description: 'Meet your child\'s teachers to discuss academic progress and development. Individual meetings will be scheduled for 15 minutes each. Please bring any questions or concerns you may have about your child\'s education.' },
-                    { title: 'Annual Day Celebration', date: '2024-02-14', time: '4:00 PM - 8:00 PM', location: 'School Grounds', description: 'Our annual day celebration featuring student performances, award ceremonies, and special guest appearances. Students will showcase their talents in dance, music, drama, and recitation. A memorable evening of achievements and entertainment.' },
-                    { title: 'Maths Olympiad', date: '2023-11-25', time: '10:00 AM - 1:00 PM', location: 'Computer Lab', description: 'Inter-school mathematics competition for students of classes 6-10. The Olympiad will test problem-solving skills, logical reasoning, and mathematical concepts. Top performers will receive certificates and prizes.' }
-                ];
-                localStorage.setItem('events', JSON.stringify(defaultEvents));
-            }
+          <!-- HOMEWORK MANAGEMENT -->
+          <section id="panel-homework" class="card panel" style="display:none">
+            <div class="section-title">Manage Homework</div>
+            <div class="muted" style="margin-bottom:12px">Add, edit or delete homework items for specific classes. Changes are saved to localStorage and will appear on the public index.html.</div>
 
-            if (!localStorage.getItem('notices')) {
-                const defaultNotices = [
-                    { priority: 'high', title: 'School Closed on Diwali', date: '2023-11-12', text: 'The school will remain closed on November 13th and 14th for Diwali celebrations. Classes will resume on November 15th. Wishing everyone a safe and joyful Diwali filled with light, prosperity, and happiness.' },
-                    { priority: 'medium', title: 'New Uniform Policy', date: '2023-10-20', text: 'Starting from November 1st, all students are required to wear the new school uniform. The uniform can be purchased from the school office. The new design incorporates more comfortable materials while maintaining our school\'s professional appearance.' },
-                    { priority: 'high', title: 'Mid-Term Exams Schedule', date: '2023-10-25', text: 'Mid-term exams will be conducted from November 20th to November 25th. The detailed schedule is available on the notice board and school website. Students are advised to prepare accordingly and maintain a healthy study routine.' },
-                    { priority: 'medium', title: 'School Picnic Announcement', date: '2023-11-05', text: 'A school picnic is planned for December 10th to the City Zoo. Permission slips are available at the office. Fee: ₹200 per student. The picnic will include educational sessions about wildlife, guided tours, and recreational activities.' },
-                    { priority: 'low', title: 'Library Timing Change', date: '2023-10-18', text: 'Effective immediately, the school library will be open from 7:30 AM to 4:30 PM on all working days. Students can now access library resources earlier in the morning for those who arrive early for extracurricular activities.' },
-                    { priority: 'high', title: 'Emergency Drill Schedule', date: '2023-11-08', text: 'Fire and earthquake safety drills will be conducted on November 10th and 17th respectively. These drills are mandatory for all students and staff. Please ensure your child understands the evacuation procedures and assembly points.' }
-                ];
-                localStorage.setItem('notices', JSON.stringify(defaultNotices));
-            }
+            <div style="display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap">
+              <div style="min-width:160px">
+                <label>Class</label>
+                <select id="hwClass"></select>
+              </div>
+              <div style="flex:1">
+                <label>Homework Text</label>
+                <input id="hwText" type="text" placeholder="e.g. Maths: Solve exercise 5 (pg.42)">
+              </div>
+              <div style="min-width:120px; display:flex; align-items:end">
+                <button class="btn" onclick="addHomework()">Add Homework</button>
+              </div>
+            </div>
 
-            if (!localStorage.getItem('timetable')) {
-                const defaultTimetable = [
-                    { time: '8:00 - 8:45', monday: 'English', tuesday: 'Maths', wednesday: 'Science', thursday: 'Social Studies', friday: 'Hindi', saturday: 'Sanskrit' },
-                    { time: '8:45 - 9:30', monday: 'Maths', tuesday: 'English', wednesday: 'Hindi', thursday: 'Science', friday: 'Maths', saturday: 'English' },
-                    { time: '9:30 - 10:15', monday: 'Science', tuesday: 'Hindi', wednesday: 'Maths', thursday: 'English', friday: 'Science', saturday: 'Maths' },
-                    { time: '10:15 - 11:00', monday: 'Social Studies', tuesday: 'Science', wednesday: 'English', thursday: 'Maths', friday: 'Social Studies', saturday: 'Science' },
-                    { time: '11:00 - 11:15', monday: 'Break', tuesday: 'Break', wednesday: 'Break', thursday: 'Break', friday: 'Break', saturday: 'Break' },
-                    { time: '11:15 - 12:00', monday: 'Physical Education', tuesday: 'Art & Craft', wednesday: 'Music', thursday: 'Computer', friday: 'Art & Craft', saturday: 'Physical Education' },
-                    { time: '12:00 - 12:45', monday: 'Computer', tuesday: 'Music', wednesday: 'Computer', thursday: 'Art & Craft', friday: 'Music', saturday: 'Computer' },
-                    { time: '12:45 - 1:30', monday: 'Lunch', tuesday: 'Lunch', wednesday: 'Lunch', thursday: 'Lunch', friday: 'Lunch', saturday: 'Lunch' },
-                    { time: '1:30 - 2:15', monday: 'Moral Science', tuesday: 'General Knowledge', wednesday: 'Library', thursday: 'Maths Lab', friday: 'Science Lab', saturday: 'Reading Period' },
-                    { time: '2:15 - 3:00', monday: 'Homeroom', tuesday: 'Debate Club', wednesday: 'Quiz Club', thursday: 'Science Club', friday: 'Art Club', saturday: 'Sports' }
-                ];
-                localStorage.setItem('timetable', JSON.stringify(defaultTimetable));
-            }
+            <div>
+              <ul id="hwList" class="list"></ul>
+            </div>
+          </section>
 
-            if (!localStorage.getItem('gallery')) {
-                const defaultGallery = [
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Sports+Day', caption: 'Annual Sports Day 2023' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Science+Exhibition', caption: 'Science Exhibition' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Cultural+Fest', caption: 'Cultural Fest' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Classroom', caption: 'Modern Classroom' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Library', caption: 'School Library' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Lab', caption: 'Science Lab' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=PTM', caption: 'Parent-Teacher Meeting' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Assembly', caption: 'Morning Assembly' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Art+Class', caption: 'Art & Craft Session' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Music', caption: 'Music Class' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Computer', caption: 'Computer Lab' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Sports', caption: 'Sports Activities' }
-                ];
-                localStorage.setItem('gallery', JSON.stringify(defaultGallery));
-            }
+          <!-- TEACHERS MANAGEMENT -->
+          <section id="panel-teachers" class="card panel" style="display:none">
+            <div class="section-title">Manage Teachers</div>
+            <div class="muted" style="margin-bottom:12px">Add, update or remove teachers. Add photo URL if available.</div>
 
-            if (!localStorage.getItem('testimonials')) {
-                const defaultTestimonials = [
-                    { content: "Milli Karwaan Public School has transformed my child's approach to learning. The teachers are not only knowledgeable but genuinely care about each student's development. My son has gained confidence and a love for learning that I never thought possible.", author: "Sunita Verma", role: "Parent of Class 5 Student", image: "https://placehold.co/100x100/e8c43e/white?text=SV" },
-                    { content: "As a parent, I appreciate the school's holistic approach to education. They don't just focus on academics but also on character building, creativity, and physical well-being. The regular parent-teacher interactions keep us well-informed about our child's progress.", author: "Rajesh Kumar", role: "Parent of Class 8 Student", image: "https://placehold.co/100x100/2c5aa0/white?text=RK" },
-                    { content: "The infrastructure and teaching methodology at Milli Karwaan are exceptional. My daughter has improved tremendously in all subjects, and the extracurricular activities have helped her discover her passion for art and music. I'm grateful for the nurturing environment.", author: "Anjali Patel", role: "Parent of Class 3 Student", image: "https://placehold.co/100x100/1a3a6e/white?text=AP" }
-                ];
-                localStorage.setItem('testimonials', JSON.stringify(defaultTestimonials));
-            }
-        }
+            <div class="panel card" style="margin-bottom:12px">
+              <div class="row">
+                <div class="col">
+                  <label>Name</label>
+                  <input id="tName" type="text" placeholder="e.g. Mr. Ali">
+                </div>
+                <div class="col">
+                  <label>Subject</label>
+                  <input id="tSubject" type="text" placeholder="e.g. Mathematics">
+                </div>
+              </div>
+              <div class="row" style="margin-top:8px">
+                <div class="col">
+                  <label>Phone</label>
+                  <input id="tPhone" type="text" placeholder="e.g. 9758919001">
+                </div>
+                <div class="col">
+                  <label>Photo URL</label>
+                  <input id="tPhoto" type="text" placeholder="Optional image URL">
+                </div>
+              </div>
+              <div style="margin-top:12px">
+                <button class="btn" onclick="addTeacher()">Add Teacher</button>
+              </div>
+            </div>
 
-        // Display Homework
-        function displayHomework(className) {
-            const homeworkContainer = document.getElementById('homeworkContainer');
-            const homeworkList = document.getElementById('homeworkList');
-            const selectedClass = document.getElementById('selectedClass');
-            
-            homeworkList.innerHTML = '';
-            selectedClass.textContent = className;
-            
-            const homeworkData = JSON.parse(localStorage.getItem('homework')) || {};
-            const classHomework = homeworkData[className] || [];
-            
-            if (classHomework.length === 0) {
-                homeworkList.innerHTML = `
-                    <div class="no-homework">
-                        <i class="fas fa-book"></i>
-                        <p>No homework assigned for ${className} yet.</p>
-                    </div>
-                `;
-            } else {
-                classHomework.forEach(item => {
-                    const homeworkItem = document.createElement('div');
-                    homeworkItem.className = 'homework-item';
-                    
-                    const date = new Date(item.date);
-                    const formattedDate = date.toLocaleDateString('en-US', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    });
-                    
-                    homeworkItem.innerHTML = `
-                        <div class="homework-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</div>
-                        <div class="homework-subject"><i class="fas fa-book"></i> ${item.subject}</div>
-                        <div class="homework-content">${item.content}</div>
-                    `;
-                    
-                    homeworkList.appendChild(homeworkItem);
-                });
-            }
-            
-            homeworkContainer.style.display = 'block';
-            
-            // Scroll to homework section
-            homeworkContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+            <ul id="teacherList" class="list"></ul>
+          </section>
 
-        // Populate Teachers
-        function populateTeachers() {
-            const teachersList = document.getElementById('teachersList');
-            const teachersData = JSON.parse(localStorage.getItem('teachers')) || [];
-            
-            teachersList.innerHTML = '';
-            
-            teachersData.forEach(teacher => {
-                const teacherCard = document.createElement('div');
-                teacherCard.className = 'teacher-card';
-                teacherCard.innerHTML = `
-                    <img src="${teacher.image}" alt="${teacher.name}" class="teacher-img">
-                    <div class="teacher-info">
-                        <h3 class="teacher-name">${teacher.name}</h3>
-                        <p class="teacher-subject"><i class="fas fa-chalkboard"></i> ${teacher.subject}</p>
-                        <p class="teacher-contact"><i class="fas fa-phone"></i> ${teacher.contact}</p>
-                        <div class="teacher-social">
-                            <a href="tel:${teacher.contact}" title="Call"><i class="fas fa-phone"></i></a>
-                            <a href="mailto:${teacher.email}" title="Email"><i class="fas fa-envelope"></i></a>
-                            <a href="${teacher.social.facebook}" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="${teacher.social.twitter}" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-                `;
-                teachersList.appendChild(teacherCard);
-            });
-        }
+          <!-- EVENTS MANAGEMENT -->
+          <section id="panel-events" class="card panel" style="display:none">
+            <div class="section-title">Manage Events</div>
+            <div class="muted" style="margin-bottom:12px">Add upcoming events visible on index page.</div>
 
-        // Populate Events
-        function populateEvents() {
-            const eventsList = document.getElementById('eventsList');
-            const eventsData = JSON.parse(localStorage.getItem('events')) || [];
-            
-            eventsList.innerHTML = '';
-            
-            eventsData.forEach(event => {
-                const eventDate = new Date(event.date);
-                const day = eventDate.getDate();
-                const month = eventDate.toLocaleString('default', { month: 'short' });
-                const weekday = eventDate.toLocaleString('default', { weekday: 'short' });
-                
-                const eventItem = document.createElement('li');
-                eventItem.className = 'event-item';
-                eventItem.innerHTML = `
-                    <div class="event-date">
-                        <div class="event-day">${day}</div>
-                        <div class="event-month">${month}</div>
-                    </div>
-                    <div class="event-details">
-                        <h3 class="event-title"><i class="fas fa-star"></i> ${event.title}</h3>
-                        <p class="event-description">${event.description}</p>
-                        <div class="event-meta">
-                            <span class="event-time"><i class="far fa-clock"></i> ${event.time}</span>
-                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
-                        </div>
-                    </div>
-                `;
-                eventsList.appendChild(eventItem);
-            });
-        }
+            <div class="panel card" style="margin-bottom:12px">
+              <div class="row">
+                <div class="col"><label>Title</label><input id="eTitle" type="text"></div>
+                <div class="col"><label>Date</label><input id="eDate" type="date"></div>
+              </div>
+              <div style="margin-top:8px"><label>Description</label><textarea id="eDesc" rows="2"></textarea></div>
+              <div style="margin-top:8px"><button class="btn" onclick="addEvent()">Add Event</button></div>
+            </div>
 
-        // Populate Notices
-        function populateNotices() {
-            const noticesList = document.getElementById('noticesList');
-            const noticesData = JSON.parse(localStorage.getItem('notices')) || [];
-            
-            noticesList.innerHTML = '';
-            
-            noticesData.forEach(notice => {
-                const noticeItem = document.createElement('li');
-                noticeItem.className = 'notice-item';
-                
-                let priorityClass = 'low';
-                let priorityText = 'Normal';
-                if (notice.priority === 'high') {
-                    priorityClass = 'high';
-                    priorityText = 'Urgent';
-                } else if (notice.priority === 'medium') {
-                    priorityClass = 'medium';
-                    priorityText = 'Important';
-                }
-                
-                noticeItem.innerHTML = `
-                    <div class="notice-priority">
-                        <div class="notice-icon ${priorityClass}">
-                            ${notice.priority === 'high' ? '<i class="fas fa-exclamation"></i>' : 
-                              notice.priority === 'medium' ? '<i class="fas fa-exclamation-circle"></i>' : 
-                              '<i class="fas fa-info-circle"></i>'}
-                        </div>
-                        <div class="notice-dot"></div>
-                    </div>
-                    <div class="notice-content">
-                        <div class="notice-header">
-                            <h3 class="notice-title">${notice.title}</h3>
-                            <span class="notice-date"><i class="far fa-calendar-alt"></i> ${notice.date}</span>
-                        </div>
-                        <p class="notice-text">${notice.text}</p>
-                    </div>
-                `;
-                noticesList.appendChild(noticeItem);
-            });
-        }
+            <ul id="eventList" class="list"></ul>
+          </section>
 
-        // Populate Timetable
-        function populateTimetable() {
-            const timetableBody = document.getElementById('timetableBody');
-            const timetableData = JSON.parse(localStorage.getItem('timetable')) || [];
-            
-            timetableBody.innerHTML = '';
-            
-            timetableData.forEach(row => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td class="time"><i class="far fa-clock"></i> ${row.time}</td>
-                    <td class="subject"><i class="fas fa-book"></i> ${row.monday}</td>
-                    <td class="subject"><i class="fas fa-book"></i> ${row.tuesday}</td>
-                    <td class="subject"><i class="fas fa-book"></i> ${row.wednesday}</td>
-                    <td class="subject"><i class="fas fa-book"></i> ${row.thursday}</td>
-                    <td class="subject"><i class="fas fa-book"></i> ${row.friday}</td>
-                    <td class="subject"><i class="fas fa-book"></i> ${row.saturday}</td>
-                `;
-                timetableBody.appendChild(tr);
-            });
-        }
+          <!-- NOTICES MANAGEMENT -->
+          <section id="panel-notices" class="card panel" style="display:none">
+            <div class="section-title">Manage Notices</div>
+            <div class="muted" style="margin-bottom:12px">Publish important notices for parents and students.</div>
 
-        // Populate Gallery
-        function populateGallery() {
-            const galleryList = document.getElementById('galleryList');
-            const galleryData = JSON.parse(localStorage.getItem('gallery')) || [];
-            
-            galleryList.innerHTML = '';
-            
-            galleryData.forEach(item => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.caption}" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                    <div class="gallery-caption">${item.caption}</div>
-                `;
-                galleryList.appendChild(galleryItem);
-            });
-        }
+            <div class="panel card" style="margin-bottom:12px">
+              <div class="row">
+                <div class="col"><label>Title</label><input id="nTitle" type="text"></div>
+                <div class="col"><label>Priority</label>
+                  <select id="nPriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+              </div>
+              <div style="margin-top:8px"><label>Body</label><textarea id="nBody" rows="2"></textarea></div>
+              <div style="margin-top:8px"><button class="btn" onclick="addNotice()">Add Notice</button></div>
+            </div>
 
-        // Populate Testimonials
-        function populateTestimonials() {
-            const testimonialsList = document.getElementById('testimonialsList');
-            const testimonialDots = document.getElementById('testimonialDots');
-            const testimonialsData = JSON.parse(localStorage.getItem('testimonials')) || [];
-            
-            testimonialsList.innerHTML = '';
-            testimonialDots.innerHTML = '';
-            
-            testimonialsData.forEach((testimonial, index) => {
-                const testimonialItem = document.createElement('div');
-                testimonialItem.className = 'testimonial-item';
-                testimonialItem.innerHTML = `
-                    <p class="testimonial-content">${testimonial.content}</p>
-                    <div class="testimonial-author">
-                        <img src="${testimonial.image}" alt="${testimonial.author}" class="author-img">
-                        <div class="author-info">
-                            <h4>${testimonial.author}</h4>
-                            <p>${testimonial.role}</p>
-                        </div>
-                    </div>
-                `;
-                testimonialsList.appendChild(testimonialItem);
-                
-                const dot = document.createElement('div');
-                dot.className = index === 0 ? 'testimonial-dot active' : 'testimonial-dot';
-                dot.setAttribute('data-index', index);
-                testimonialDots.appendChild(dot);
-            });
-            
-            // Add event listeners to dots
-            document.querySelectorAll('.testimonial-dot').forEach(dot => {
-                dot.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    currentTestimonialIndex = index;
-                    updateTestimonials();
-                });
-            });
-        }
+            <ul id="noticeList" class="list"></ul>
+          </section>
 
-        // Testimonial Slider
-        let currentTestimonialIndex = 0;
-        const testimonialsList = document.getElementById('testimonialsList');
-        
-        function updateTestimonials() {
-            if (!testimonialsList) return;
-            
-            const totalTestimonials = document.querySelectorAll('.testimonial-item').length;
-            testimonialsList.style.transform = `translateX(-${currentTestimonialIndex * 100}%)`;
-            
-            // Update active dot
-            document.querySelectorAll('.testimonial-dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentTestimonialIndex);
-            });
-        }
-        
-        // Auto-advance testimonials
-        function startTestimonialSlider() {
-            setInterval(() => {
-                const totalTestimonials = document.querySelectorAll('.testimonial-item').length;
-                currentTestimonialIndex = (currentTestimonialIndex + 1) % totalTestimonials;
-                updateTestimonials();
-            }, 5000);
-        }
+          <!-- TIMETABLE MANAGEMENT -->
+          <section id="panel-timetable" class="card panel" style="display:none">
+            <div class="section-title">Timetable</div>
+            <div class="muted" style="margin-bottom:12px">Edit the sample weekly timetable. Each day stores an array of slots.</div>
 
-        // Update stats
-        function updateStats() {
-            const teachers = JSON.parse(localStorage.getItem('teachers')) || [];
-            const homework = JSON.parse(localStorage.getItem('homework')) || {};
-            
-            let totalStudents = 0;
-            Object.keys(homework).forEach(className => {
-                // Assuming average class size
-                if (className.includes('Class')) {
-                    totalStudents += 40;
-                } else {
-                    totalStudents += 30;
-                }
-            });
-            
-            document.getElementById('studentCount').textContent = totalStudents + '+';
-            document.getElementById('teacherCount').textContent = teachers.length + '+';
-        }
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px">
+              <select id="ttDay"></select>
+              <input id="ttSlot" type="text" placeholder="e.g. Maths">
+              <button class="btn" onclick="addTimetableSlot()">Add Slot</button>
+              <button class="btn-ghost" onclick="clearTimetable()" style="border-color:#fde68a">Clear All</button>
+            </div>
 
-        // Form Submission
-        document.getElementById('homeworkForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const studentName = document.getElementById('studentName').value;
-            const className = document.getElementById('className').value;
-            const parentName = document.getElementById('parentName').value;
-            
-            // In a real application, you might want to save this data
-            console.log('Student:', studentName);
-            console.log('Class:', className);
-            console.log('Parent:', parentName);
-            
-            displayHomework(className);
-        });
+            <div id="ttArea"></div>
+          </section>
 
-        // Contact Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const subject = document.getElementById('contactSubject').value;
-            const message = document.getElementById('contactMessage').value;
-            
-            // In a real application with backend, you would send this data to a server
-            alert(`Thank you for your message, ${name}! We will get back to you soon via ${email}.`);
-            
-            this.reset();
-        });
+          <!-- GALLERY MANAGEMENT -->
+          <section id="panel-gallery" class="card panel" style="display:none">
+            <div class="section-title">Gallery</div>
+            <div class="muted" style="margin-bottom:12px">Manage gallery images (URLs). These will show on index.html gallery.</div>
 
-        // Newsletter Form Submission
-        document.querySelector('.newsletter-form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = this.querySelector('input[type="email"]').value;
-            
-            alert(`Thank you! ${email} has been subscribed to our newsletter.`);
-            
-            this.reset();
-        });
+            <div style="display:flex; gap:8px; margin-bottom:12px">
+              <input id="gUrl" type="text" placeholder="Image URL (png/jpg)">
+              <button class="btn" onclick="addGallery()">Add Image</button>
+            </div>
 
-        // Mobile Menu Toggle
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-        });
+            <ul id="galleryList" class="list"></ul>
+          </section>
 
-        // Close dropdown when clicking outside
-        window.addEventListener('click', function(e) {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            
-            if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.style.display = 'none';
-            }
-        });
+          <!-- MESSAGES -->
+          <section id="panel-messages" class="card panel" style="display:none">
+            <div class="section-title">Parent & Student Messages</div>
+            <div class="muted" style="margin-bottom:12px">Messages saved from the contact form on index.html</div>
 
-        // Back to Top Button
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+            <ul id="messageList" class="list"></ul>
+          </section>
 
-        // Animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
+          <!-- SETTINGS -->
+          <section id="panel-settings" class="card panel" style="display:none">
+            <div class="section-title">Settings & Utilities</div>
+            <div class="muted" style="margin-bottom:12px">Advanced operations: seed sample data, clear storage, and bulk import/export.</div>
 
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+            <div style="display:flex; gap:8px; flex-wrap:wrap">
+              <button class="btn" onclick="seedDemo()">Seed Demo Data</button>
+              <button class="btn-ghost" onclick="clearAllData()">Clear All Data</button>
+              <button class="btn" onclick="exportData()">Export Data (JSON)</button>
+              <label class="small-btn" style="cursor:pointer">Import<input id="fileImport2" type="file" accept=".json" style="display:none" onchange="importData(event)"></label>
+            </div>
 
-        // Initialize the page
-        window.addEventListener('DOMContentLoaded', function() {
-            initializeStorage();
-            populateTeachers();
-            populateEvents();
-            populateNotices();
-            populateTimetable();
-            populateGallery();
-            populateTestimonials();
-            updateStats();
-            animateOnScroll();
-            
-            // Start testimonial slider if testimonials exist
-            if (document.getElementById('testimonialsList')) {
-                startTestimonialSlider();
-            }
-        });
-    </script>
-</body>
-</html>
+            <div style="margin-top:12px">
+              <div class="section-title" style="font-size:1rem">Raw localStorage (preview)</div>
+              <pre id="rawPreview"></pre>
+            </div>
+          </section>
+
+        </main>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal" onclick="if(event.target===this) closeModal()">
+      <div class="modal-card">
+        <div class="modal-head">
+          <div id="modalTitle" style="font-weight:700; color:var(--brand)"></div>
+          <div><button class="small-btn" onclick="closeModal()">Close</button></div>
+        </div>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+/* ========== LocalStorage Keys (must match index.html) ========== */
+const KEY_HOMEWORK = 'mkps_homework';
+const KEY_TEACHERS = 'mkps_teachers';
+const KEY_EVENTS = 'mkps_events';
+const KEY_NOTICES = 'mkps_notices';
+const KEY_TIMETABLE = 'mkps_timetable';
+const KEY_MESSAGES = 'mkps_messages';
+const KEY_GALLERY = 'mkps_gallery';
+
+/* ========== Admin password (hardcoded as requested) ========== */
+const ADMIN_PASS = 'Abutalha';
+
+/* ========== Helpers ========== */
+function save(key, val){ localStorage.setItem(key, JSON.stringify(val)); updateCounts(); }
+function load(key, fallback){ const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+function uid(){ return Math.random().toString(36).slice(2,9) + Date.now().toString(36).slice(-4); }
+function el(id){ return document.getElementById(id); }
+function show(id){ el(id).style.display='block'; }
+function hide(id){ el(id).style.display='none'; }
+
+/* ========== Login Logic ========== */
+function doLogin(){
+  const u = el('adminUser').value.trim() || 'admin';
+  const p = el('adminPass').value;
+  if(p === ADMIN_PASS){
+    // set session flag
+    sessionStorage.setItem('mkps_admin_auth','true');
+    initAdminUI();
+    alert('Login successful — Welcome, ' + u);
+  } else {
+    alert('Incorrect password');
+  }
+}
+function logout(){
+  sessionStorage.removeItem('mkps_admin_auth');
+  location.reload();
+}
+function checkAuth(){
+  return sessionStorage.getItem('mkps_admin_auth') === 'true';
+}
+
+/* ========== Initialization ========== */
+function initAdminUI(){
+  hide('loginView');
+  show('adminUI');
+  showPanel('dashboard');
+  populateClassSelects();
+  renderAllLists();
+  updateCounts();
+  refreshRawPreview();
+}
+
+/* if already logged in from this tab */
+if(checkAuth()){
+  initAdminUI();
+}
+
+/* ========== Populate class selects in forms ========== */
+function populateClassSelects(){
+  const hwClass = el('hwClass'); hwClass.innerHTML='';
+  const ttDay = el('ttDay'); ttDay.innerHTML='';
+  for(let i=1;i<=12;i++){
+    const opt = document.createElement('option'); opt.value = i; opt.textContent = 'Class ' + i;
+    hwClass.appendChild(opt);
+  }
+  const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  days.forEach(d=>{ const o=document.createElement('option'); o.value=d; o.textContent=d; ttDay.appendChild(o); });
+}
+
+/* ========== Panels switching ========== */
+function showPanel(name){
+  const panels = ['dashboard','homework','teachers','events','notices','timetable','gallery','messages','settings'];
+  panels.forEach(p => {
+    const elp = document.getElementById('panel-' + p);
+    if(elp) elp.style.display = (p === name) ? 'block' : 'none';
+  });
+  // refresh data when switching
+  renderAllLists();
+  if(name === 'settings') refreshRawPreview();
+}
+
+/* ========== Seed Demo Data (same seeds as index.html) ========== */
+function seedDemo(){
+  // homework per class
+  const sampleHw = {};
+  for(let i=1;i<=12;i++){
+    sampleHw[i] = [
+      `Maths: Practice chapter ${Math.min(i,10)} — 20 minutes`,
+      `English: Read page ${10+i} and write 5 sentences`,
+      `Science: Short notes on topic ${i <=6 ? 'Plants' : 'Energy'}`
+    ];
+  }
+  save(KEY_HOMEWORK, sampleHw);
+
+  // teachers
+  const sampleTeachers = [
+    {id:uid(), name:"Mr. Ali", subject:"Mathematics", phone:"97589190
