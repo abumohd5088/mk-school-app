@@ -1,1341 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milli Karwaan Public School Balrampur</title>
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, #1a3a6e, #2c5aa0);
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid white;
-        }
-
-        .school-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .school-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .school-address {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            text-align: right;
-        }
-
-        .contact-info p {
-            font-size: 0.9rem;
-            margin: 2px 0;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .contact-info a:hover {
-            opacity: 0.8;
-        }
-
-        /* Navigation Styles */
-        nav {
-            background-color: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 82px;
-            z-index: 99;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #2c5aa0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #2c5aa0;
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            z-index: 100;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: #333;
-            transition: background-color 0.3s;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #f0f0f0;
-        }
-
-        /* Main Content */
-        main {
-            padding: 40px 0;
-        }
-
-        .section {
-            margin-bottom: 60px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-
-        .section-header {
-            background: linear-gradient(135deg, #2c5aa0, #1a3a6e);
-            color: white;
-            padding: 20px 30px;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .section-content {
-            padding: 30px;
-        }
-
-        /* Form Section */
-        .form-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #2c5aa0;
-            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #2c5aa0, #1a3a6e);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-weight: 500;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
-        }
-
-        /* Homework Section */
-        .homework-container {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .homework-item {
-            background-color: #f8f9ff;
-            border-left: 4px solid #2c5aa0;
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .homework-date {
-            font-weight: 600;
-            color: #2c5aa0;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-
-        .homework-subject {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        .homework-content {
-            color: #555;
-            line-height: 1.5;
-        }
-
-        /* Teachers Section */
-        .teachers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .teacher-card {
-            background-color: #f8f9ff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .teacher-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .teacher-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .teacher-info {
-            padding: 20px;
-        }
-
-        .teacher-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .teacher-subject {
-            color: #2c5aa0;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .teacher-contact {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Events Section */
-        .events-list {
-            list-style: none;
-        }
-
-        .event-item {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .event-date {
-            background: linear-gradient(135deg, #2c5aa0, #1a3a6e);
-            color: white;
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .event-day {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .event-month {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        .event-details {
-            flex: 1;
-        }
-
-        .event-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        .event-description {
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .event-time {
-            font-size: 0.9rem;
-            color: #2c5aa0;
-            font-weight: 500;
-        }
-
-        /* Notice Board */
-        .notice-list {
-            list-style: none;
-        }
-
-        .notice-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .notice-icon {
-            background-color: #2c5aa0;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
-
-        .notice-content {
-            flex: 1;
-        }
-
-        .notice-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .notice-date {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .notice-text {
-            color: #555;
-            line-height: 1.5;
-        }
-
-        /* Timetable */
-        .timetable-container {
-            overflow-x: auto;
-        }
-
-        .timetable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .timetable th {
-            background: linear-gradient(135deg, #2c5aa0, #1a3a6e);
-            color: white;
-            padding: 12px 15px;
-            text-align: left;
-        }
-
-        .timetable td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .timetable tr:nth-child(even) {
-            background-color: #f8f9ff;
-        }
-
-        .timetable tr:hover {
-            background-color: #f0f4ff;
-        }
-
-        .subject {
-            font-weight: 500;
-            color: #333;
-        }
-
-        .time {
-            color: #2c5aa0;
-            font-weight: 500;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            height: 200px;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 15px;
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .contact-info-box {
-            background-color: #f8f9ff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .contact-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #2c5aa0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-details {
-            list-style: none;
-        }
-
-        .contact-details li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #555;
-        }
-
-        .contact-form {
-            background-color: #f8f9ff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .contact-form h3 {
-            margin-bottom: 20px;
-            color: #2c5aa0;
-            font-size: 1.3rem;
-        }
-
-        .form-row {
-            margin-bottom: 15px;
-        }
-
-        .form-row label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .form-row input, .form-row textarea {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .form-row textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .submit-contact-btn {
-            background: linear-gradient(135deg, #2c5aa0, #1a3a6e);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-weight: 500;
-        }
-
-        .submit-contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #1a3a6e, #2c5aa0);
-            color: white;
-            padding: 40px 0 20px;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: white;
-            opacity: 0.5;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-contact li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: #ddd;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-
-            .contact-info {
-                align-items: center;
-            }
-
-            .nav-container {
-                justify-content: space-between;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .section-content {
-                padding: 20px;
-            }
-
-            .form-container {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .school-name {
-                font-size: 1.2rem;
-            }
-
-            .section-header {
-                padding: 15px 20px;
-                font-size: 1.3rem;
-            }
-
-            .event-item {
-                flex-direction: column;
-            }
-
-            .event-date {
-                width: 60px;
-                height: 60px;
-                margin-bottom: 15px;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        .section:nth-child(1) { animation-delay: 0.1s; }
-        .section:nth-child(2) { animation-delay: 0.2s; }
-        .section:nth-child(3) { animation-delay: 0.3s; }
-        .section:nth-child(4) { animation-delay: 0.4s; }
-        .section:nth-child(5) { animation-delay: 0.5s; }
-        .section:nth-child(6) { animation-delay: 0.6s; }
-        .section:nth-child(7) { animation-delay: 0.7s; }
-        .section:nth-child(8) { animation-delay: 0.8s; }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milli Karwaan Public School Balrampur</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+    header { background: #004080; color: white; display: flex; align-items: center; padding: 10px; }
+    header img { height: 60px; margin-right: 15px; border-radius: 8px; background: white; padding: 5px; }
+    header h1 { margin: 0; font-size: 1.5rem; }
+    header p { margin: 2px 0 0; font-size: 0.9rem; }
+    nav { background: #003366; color: white; display: flex; justify-content: space-between; padding: 10px 15px; }
+    nav .menu { cursor: pointer; font-size: 1.5rem; }
+    .container { padding: 20px; max-width: 900px; margin: auto; }
+    .form-section, .section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input, select, button { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #004080; color: white; font-weight: bold; border: none; cursor: pointer; }
+    button:hover { background: #003366; }
+    h2 { color: #004080; margin-top: 0; }
+    ul { list-style: none; padding: 0; }
+    ul li { padding: 5px 0; border-bottom: 1px solid #eee; }
+    footer { background: #004080; color: white; text-align: center; padding: 15px; }
+    .more-options { display: none; background: white; position: absolute; right: 10px; top: 60px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); border-radius: 5px; }
+    .more-options a { display: block; padding: 5px 0; text-decoration: none; color: #004080; }
+    .more-options a:hover { text-decoration: underline; }
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo-container">
-                <img src="https://i.ibb.co/7z2QyfM/logo.png" alt="School Logo" class="logo">
-                <div class="school-info">
-                    <h1 class="school-name">Milli Karwaan Public School Balrampur</h1>
-                    <p class="school-address">Boluha Police Chowki Balrampur</p>
-                </div>
-            </div>
-            <div class="contact-info">
-                <p><a href="tel:9758919151">Phone: 9758919151</a></p>
-                <p><a href="mailto:madamsir066@gmail.com">Email: madamsir066@gmail.com</a></p>
-            </div>
-        </div>
-    </header>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <ul class="nav-links">
-                <li><a href="#homework">Homework</a></li>
-                <li><a href="#teachers">Teachers</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#notices">Notice Board</a></li>
-                <li><a href="#timetable">Timetable</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="menu-toggle">⋮</div>
-            <div class="dropdown-menu">
-                <a href="admin.html">Admin Login</a>
-                <a href="#about">About Us</a>
-                <a href="#admissions">Admissions</a>
-                <a href="#facilities">Facilities</a>
-            </div>
-        </div>
-    </nav>
+<header>
+    <img src="https://i.ibb.co/7z2QyfM/logo.png" alt="School Logo">
+    <div>
+        <h1>Milli Karwaan Public School Balrampur</h1>
+        <p>Boluha Police Chowki Balrampur | 📞 9758919151 | ✉ madamsir066@gmail.com</p>
+    </div>
+</header>
 
-    <main class="container">
-        <!-- Homework Form Section -->
-        <section class="section" id="homework">
-            <div class="section-header">
-                Student Homework Portal
-            </div>
-            <div class="section-content">
-                <p>Please fill in your details to access your homework assignments.</p>
-                <form id="homeworkForm" style="margin: 20px 0;">
-                    <div class="form-container">
-                        <div class="form-group">
-                            <label for="studentName">Student Name</label>
-                            <input type="text" id="studentName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="className">Class</label>
-                            <select id="className" required>
-                                <option value="">Select Class</option>
-                                <option value="Nursery">Nursery</option>
-                                <option value="LKG">LKG</option>
-                                <option value="UKG">UKG</option>
-                                <option value="Class 1">Class 1</option>
-                                <option value="Class 2">Class 2</option>
-                                <option value="Class 3">Class 3</option>
-                                <option value="Class 4">Class 4</option>
-                                <option value="Class 5">Class 5</option>
-                                <option value="Class 6">Class 6</option>
-                                <option value="Class 7">Class 7</option>
-                                <option value="Class 8">Class 8</option>
-                                <option value="Class 9">Class 9</option>
-                                <option value="Class 10">Class 10</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="parentName">Parent's Name</label>
-                            <input type="text" id="parentName" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="submit-btn">View Homework</button>
-                </form>
-                <div id="homeworkContainer" class="homework-container">
-                    <h3 id="homeworkTitle">Homework for <span id="selectedClass"></span></h3>
-                    <div id="homeworkList"></div>
-                </div>
-            </div>
-        </section>
+<nav>
+    <div>🏠 Home</div>
+    <div class="menu" onclick="toggleMenu()">⋮</div>
+    <div class="more-options" id="menuBox">
+        <a href="#">Gallery</a>
+        <a href="#">Events</a>
+        <a href="#">Notices</a>
+        <a href="#">Timetable</a>
+        <a href="admin.html">Admin Login</a>
+    </div>
+</nav>
 
-        <!-- Teachers Section -->
-        <section class="section" id="teachers">
-            <div class="section-header">
-                Our Teaching Staff
-            </div>
-            <div class="section-content">
-                <p>Meet our dedicated and experienced teaching staff who are committed to providing quality education.</p>
-                <div class="teachers-grid" id="teachersList">
-                    <!-- Teachers will be populated by JavaScript -->
-                </div>
-            </div>
-        </section>
+<div class="container">
+    <div class="form-section">
+        <h2>Student Access</h2>
+        <label>Student Name</label>
+        <input type="text" id="studentName" placeholder="Enter your name">
+        <label>Class</label>
+        <select id="studentClass">
+            <option value="">Select Class</option>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+        </select>
+        <label>Parent's Name</label>
+        <input type="text" id="parentName" placeholder="Enter parent's name">
+        <button onclick="showHomework()">View Homework</button>
+    </div>
 
-        <!-- Events Section -->
-        <section class="section" id="events">
-            <div class="section-header">
-                Upcoming Events
-            </div>
-            <div class="section-content">
-                <p>Stay updated with our school events and activities.</p>
-                <ul class="events-list" id="eventsList">
-                    <!-- Events will be populated by JavaScript -->
-                </ul>
-            </div>
-        </section>
+    <div class="section" id="homeworkSection" style="display:none;">
+        <h2>Homework</h2>
+        <ul id="homeworkList"></ul>
+    </div>
 
-        <!-- Notice Board Section -->
-        <section class="section" id="notices">
-            <div class="section-header">
-                Notice Board
-            </div>
-            <div class="section-content">
-                <p>Important announcements and notices from the school administration.</p>
-                <ul class="notice-list" id="noticesList">
-                    <!-- Notices will be populated by JavaScript -->
-                </ul>
-            </div>
-        </section>
+    <div class="section">
+        <h2>Our Teachers</h2>
+        <ul id="teacherList"></ul>
+    </div>
 
-        <!-- Timetable Section -->
-        <section class="section" id="timetable">
-            <div class="section-header">
-                Class Timetable
-            </div>
-            <div class="section-content">
-                <p>Weekly schedule for all classes.</p>
-                <div class="timetable-container">
-                    <table class="timetable">
-                        <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Monday</th>
-                                <th>Tuesday</th>
-                                <th>Wednesday</th>
-                                <th>Thursday</th>
-                                <th>Friday</th>
-                                <th>Saturday</th>
-                            </tr>
-                        </thead>
-                        <tbody id="timetableBody">
-                            <!-- Timetable will be populated by JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+    <div class="section">
+        <h2>Notice Board</h2>
+        <ul>
+            <li>School will remain closed on Friday due to holiday.</li>
+            <li>Annual Sports Day on 25th August.</li>
+        </ul>
+    </div>
 
-        <!-- Gallery Section -->
-        <section class="section" id="gallery">
-            <div class="section-header">
-                School Gallery
-            </div>
-            <div class="section-content">
-                <p>Explore moments from our school life and activities.</p>
-                <div class="gallery-grid" id="galleryList">
-                    <!-- Gallery items will be populated by JavaScript -->
-                </div>
-            </div>
-        </section>
+    <div class="section">
+        <h2>Timetable</h2>
+        <p>Contact admin for full class-wise timetable.</p>
+    </div>
+</div>
 
-        <!-- Contact Section -->
-        <section class="section" id="contact">
-            <div class="section-header">
-                Contact Us
-            </div>
-            <div class="section-content">
-                <div class="contact-container">
-                    <div class="contact-info-box">
-                        <h3 class="contact-title">📍 Address</h3>
-                        <ul class="contact-details">
-                            <li>Milli Karwaan Public School Balrampur</li>
-                            <li>Boluha Police Chowki Balrampur</li>
-                        </ul>
-                    </div>
-                    <div class="contact-info-box">
-                        <h3 class="contact-title">📞 Contact Information</h3>
-                        <ul class="contact-details">
-                            <li>Phone: <a href="tel:9758919151" style="color: #2c5aa0;">9758919151</a></li>
-                            <li>Email: <a href="mailto:madamsir066@gmail.com" style="color: #2c5aa0;">madamsir066@gmail.com</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Send us a message</h3>
-                    <form id="contactForm">
-                        <div class="form-row">
-                            <label for="contactName">Name</label>
-                            <input type="text" id="contactName" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="contactEmail">Email</label>
-                            <input type="email" id="contactEmail" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="contactSubject">Subject</label>
-                            <input type="text" id="contactSubject" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="contactMessage">Message</label>
-                            <textarea id="contactMessage" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-contact-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
+<footer>
+    &copy; 2025 Milli Karwaan Public School Balrampur | Designed for Students & Parents
+</footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-section">
-                    <h3>About Us</h3>
-                    <p>Milli Karwaan Public School Balrampur is dedicated to providing quality education with a focus on academic excellence and character development.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#homework">Homework</a></li>
-                        <li><a href="#teachers">Teachers</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#notices">Notice Board</a></li>
-                        <li><a href="admin.html">Admin Login</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-contact">
-                        <li>📞 <a href="tel:9758919151">9758919151</a></li>
-                        <li>✉️ <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></li>
-                        <li>📍 Boluha Police Chowki Balrampur</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; <span id="currentYear"></span> Milli Karwaan Public School Balrampur. All Rights Reserved.
-            </div>
-        </div>
-    </footer>
+<script>
+function toggleMenu() {
+    document.getElementById('menuBox').style.display =
+        document.getElementById('menuBox').style.display === 'block' ? 'none' : 'block';
+}
 
-    <script>
-        // Initialize localStorage if empty
-        function initializeStorage() {
-            if (!localStorage.getItem('homework')) {
-                const defaultHomework = {
-                    'Nursery': [
-                        { date: '2023-10-15', subject: 'English', content: 'Practice writing letters A, B, C. Draw pictures of animals starting with these letters.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Count objects from 1 to 10. Practice writing numbers 1-5.' }
-                    ],
-                    'LKG': [
-                        { date: '2023-10-15', subject: 'English', content: 'Read the story "The Little Red Hen". Write 5 sentences about your favorite animal.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Solve addition problems up to 10. Complete the number patterns.' }
-                    ],
-                    'UKG': [
-                        { date: '2023-10-15', subject: 'English', content: 'Write a short paragraph about your family. Practice spelling words from this week\'s list.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Subtraction problems up to 20. Draw shapes and label them.' }
-                    ],
-                    'Class 1': [
-                        { date: '2023-10-15', subject: 'English', content: 'Read Chapter 3 of the textbook. Write 10 sentences using the new vocabulary words.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Complete exercises on addition and subtraction. Solve word problems.' }
-                    ],
-                    'Class 2': [
-                        { date: '2023-10-15', subject: 'English', content: 'Write a story using the words: adventure, forest, treasure, map, and friend. Use at least 150 words.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Practice multiplication tables for 2, 3, and 4. Solve the worksheet on time.' }
-                    ],
-                    'Class 3': [
-                        { date: '2023-10-15', subject: 'Science', content: 'Observe plants in your garden or nearby park. Draw and label the parts of a plant.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Complete the chapter on fractions. Solve problems involving addition of fractions.' }
-                    ],
-                    'Class 4': [
-                        { date: '2023-10-15', subject: 'Social Studies', content: 'Research about the Indian Constitution. Write 10 points about its importance.' },
-                        { date: '2023-10-16', subject: 'English', content: 'Read a chapter from your favorite book. Write a book review including characters, plot, and your opinion.' }
-                    ],
-                    'Class 5': [
-                        { date: '2023-10-15', subject: 'Science', content: 'Create a model of the solar system. Label all planets and write one interesting fact about each.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Solve problems on decimals and percentages. Complete the word problems worksheet.' }
-                    ],
-                    'Class 6': [
-                        { date: '2023-10-15', subject: 'Maths', content: 'Practice algebraic expressions. Solve equations with one variable.' },
-                        { date: '2023-10-16', subject: 'Science', content: 'Write an experiment report on photosynthesis. Include aim, materials, procedure, and conclusion.' }
-                    ],
-                    'Class 7': [
-                        { date: '2023-10-15', subject: 'History', content: 'Research about the Mughal Empire. Prepare a timeline of important events and rulers.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Solve problems on mensuration. Calculate area and perimeter of different shapes.' }
-                    ],
-                    'Class 8': [
-                        { date: '2023-10-15', subject: 'Science', content: 'Prepare a project on renewable energy sources. Include diagrams and explain their importance.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Practice problems on exponents and powers. Simplify expressions using laws of exponents.' }
-                    ],
-                    'Class 9': [
-                        { date: '2023-10-15', subject: 'Physics', content: 'Solve numerical problems on motion. Calculate speed, velocity, and acceleration.' },
-                        { date: '2023-10-16', subject: 'Chemistry', content: 'Write balanced chemical equations for the reactions studied in class.' }
-                    ],
-                    'Class 10': [
-                        { date: '2023-10-15', subject: 'Biology', content: 'Prepare a detailed report on human reproduction. Include diagrams and explain the process.' },
-                        { date: '2023-10-16', subject: 'Maths', content: 'Practice trigonometry problems. Solve questions from the textbook exercises.' }
-                    ]
-                };
-                localStorage.setItem('homework', JSON.stringify(defaultHomework));
-            }
-
-            if (!localStorage.getItem('teachers')) {
-                const defaultTeachers = [
-                    { name: 'Dr. Abutalha Sir', subject: 'Principal', image: 'https://placehold.co/300x300/2c5aa0/white?text=Dr.+Abutalha', contact: '9758919151' },
-                    { name: 'Anjali Sharma', subject: 'English', image: 'https://placehold.co/300x300/2c5aa0/white?text=Anjali+Sharma', contact: '9876543210' },
-                    { name: 'Rajesh Kumar', subject: 'Mathematics', image: 'https://placehold.co/300x300/2c5aa0/white?text=Rajesh+Kumar', contact: '8765432109' },
-                    { name: 'Sunita Patel', subject: 'Science', image: 'https://placehold.co/300x300/2c5aa0/white?text=Sunita+Patel', contact: '7654321098' },
-                    { name: 'Mohammed Ali', subject: 'Social Studies', image: 'https://placehold.co/300x300/2c5aa0/white?text=Mohammed+Ali', contact: '6543210987' },
-                    { name: 'Priya Singh', subject: 'Hindi', image: 'https://placehold.co/300x300/2c5aa0/white?text=Priya+Singh', contact: '5432109876' }
-                ];
-                localStorage.setItem('teachers', JSON.stringify(defaultTeachers));
-            }
-
-            if (!localStorage.getItem('events')) {
-                const defaultEvents = [
-                    { title: 'Annual Sports Day', date: '2023-11-15', time: '10:00 AM - 4:00 PM', description: 'Join us for our annual sports day with various athletic events and competitions for all classes.' },
-                    { title: 'Science Exhibition', date: '2023-12-05', time: '9:00 AM - 3:00 PM', description: 'Students will showcase their science projects and experiments. Parents are invited to attend.' },
-                    { title: 'Cultural Fest', date: '2024-01-20', time: '11:00 AM - 5:00 PM', description: 'A celebration of cultural diversity with music, dance, and food from different regions.' },
-                    { title: 'PTM (Parent-Teacher Meeting)', date: '2023-10-30', time: '2:00 PM - 5:00 PM', description: 'Meet your child\'s teachers to discuss academic progress and development.' }
-                ];
-                localStorage.setItem('events', JSON.stringify(defaultEvents));
-            }
-
-            if (!localStorage.getItem('notices')) {
-                const defaultNotices = [
-                    { title: 'School Closed on Diwali', date: '2023-11-12', text: 'The school will remain closed on November 13th and 14th for Diwali celebrations. Classes will resume on November 15th.' },
-                    { title: 'New Uniform Policy', date: '2023-10-20', text: 'Starting from November 1st, all students are required to wear the new school uniform. The uniform can be purchased from the school office.' },
-                    { title: 'Mid-Term Exams Schedule', date: '2023-10-25', text: 'Mid-term exams will be conducted from November 20th to November 25th. The detailed schedule is available on the notice board.' },
-                    { title: 'School Picnic Announcement', date: '2023-11-05', text: 'A school picnic is planned for December 10th to the City Zoo. Permission slips are available at the office. Fee: ₹200 per student.' }
-                ];
-                localStorage.setItem('notices', JSON.stringify(defaultNotices));
-            }
-
-            if (!localStorage.getItem('timetable')) {
-                const defaultTimetable = [
-                    { time: '8:00 - 8:45', monday: 'English', tuesday: 'Maths', wednesday: 'Science', thursday: 'Social Studies', friday: 'Hindi', saturday: 'Sanskrit' },
-                    { time: '8:45 - 9:30', monday: 'Maths', tuesday: 'English', wednesday: 'Hindi', thursday: 'Science', friday: 'Maths', saturday: 'English' },
-                    { time: '9:30 - 10:15', monday: 'Science', tuesday: 'Hindi', wednesday: 'Maths', thursday: 'English', friday: 'Science', saturday: 'Maths' },
-                    { time: '10:15 - 11:00', monday: 'Social Studies', tuesday: 'Science', wednesday: 'English', thursday: 'Maths', friday: 'Social Studies', saturday: 'Science' },
-                    { time: '11:00 - 11:15', monday: 'Break', tuesday: 'Break', wednesday: 'Break', thursday: 'Break', friday: 'Break', saturday: 'Break' },
-                    { time: '11:15 - 12:00', monday: 'Physical Education', tuesday: 'Art & Craft', wednesday: 'Music', thursday: 'Computer', friday: 'Art & Craft', saturday: 'Physical Education' },
-                    { time: '12:00 - 12:45', monday: 'Computer', tuesday: 'Music', wednesday: 'Computer', thursday: 'Art & Craft', friday: 'Music', saturday: 'Computer' }
-                ];
-                localStorage.setItem('timetable', JSON.stringify(defaultTimetable));
-            }
-
-            if (!localStorage.getItem('gallery')) {
-                const defaultGallery = [
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Sports+Day', caption: 'Annual Sports Day 2023' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Science+Exhibition', caption: 'Science Exhibition' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Cultural+Fest', caption: 'Cultural Fest' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Classroom', caption: 'Modern Classroom' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Library', caption: 'School Library' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Lab', caption: 'Science Lab' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=PTM', caption: 'Parent-Teacher Meeting' },
-                    { image: 'https://placehold.co/400x300/2c5aa0/white?text=Assembly', caption: 'Morning Assembly' }
-                ];
-                localStorage.setItem('gallery', JSON.stringify(defaultGallery));
-            }
-        }
-
-        // Display Homework
-        function displayHomework(className) {
-            const homeworkContainer = document.getElementById('homeworkContainer');
-            const homeworkList = document.getElementById('homeworkList');
-            const selectedClass = document.getElementById('selectedClass');
-            
-            homeworkList.innerHTML = '';
-            selectedClass.textContent = className;
-            
-            const homeworkData = JSON.parse(localStorage.getItem('homework')) || {};
-            const classHomework = homeworkData[className] || [];
-            
-            if (classHomework.length === 0) {
-                homeworkList.innerHTML = '<p>No homework assigned for this class yet.</p>';
-            } else {
-                classHomework.forEach(item => {
-                    const homeworkItem = document.createElement('div');
-                    homeworkItem.className = 'homework-item';
-                    
-                    const date = new Date(item.date);
-                    const formattedDate = date.toLocaleDateString('en-US', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    });
-                    
-                    homeworkItem.innerHTML = `
-                        <div class="homework-date">${formattedDate}</div>
-                        <div class="homework-subject">${item.subject}</div>
-                        <div class="homework-content">${item.content}</div>
-                    `;
-                    
-                    homeworkList.appendChild(homeworkItem);
-                });
-            }
-            
-            homeworkContainer.style.display = 'block';
-        }
-
-        // Populate Teachers
-        function populateTeachers() {
-            const teachersList = document.getElementById('teachersList');
-            const teachersData = JSON.parse(localStorage.getItem('teachers')) || [];
-            
-            teachersList.innerHTML = '';
-            
-            teachersData.forEach(teacher => {
-                const teacherCard = document.createElement('div');
-                teacherCard.className = 'teacher-card';
-                teacherCard.innerHTML = `
-                    <img src="${teacher.image}" alt="${teacher.name}" class="teacher-img">
-                    <div class="teacher-info">
-                        <h3 class="teacher-name">${teacher.name}</h3>
-                        <p class="teacher-subject">${teacher.subject}</p>
-                        <p class="teacher-contact">Contact: ${teacher.contact}</p>
-                    </div>
-                `;
-                teachersList.appendChild(teacherCard);
-            });
-        }
-
-        // Populate Events
-        function populateEvents() {
-            const eventsList = document.getElementById('eventsList');
-            const eventsData = JSON.parse(localStorage.getItem('events')) || [];
-            
-            eventsList.innerHTML = '';
-            
-            eventsData.forEach(event => {
-                const eventDate = new Date(event.date);
-                const day = eventDate.getDate();
-                const month = eventDate.toLocaleString('default', { month: 'short' });
-                
-                const eventItem = document.createElement('li');
-                eventItem.className = 'event-item';
-                eventItem.innerHTML = `
-                    <div class="event-date">
-                        <div class="event-day">${day}</div>
-                        <div class="event-month">${month}</div>
-                    </div>
-                    <div class="event-details">
-                        <h3 class="event-title">${event.title}</h3>
-                        <p class="event-description">${event.description}</p>
-                        <p class="event-time">${event.time}</p>
-                    </div>
-                `;
-                eventsList.appendChild(eventItem);
-            });
-        }
-
-        // Populate Notices
-        function populateNotices() {
-            const noticesList = document.getElementById('noticesList');
-            const noticesData = JSON.parse(localStorage.getItem('notices')) || [];
-            
-            noticesList.innerHTML = '';
-            
-            noticesData.forEach(notice => {
-                const noticeItem = document.createElement('li');
-                noticeItem.className = 'notice-item';
-                noticeItem.innerHTML = `
-                    <div class="notice-icon">!</div>
-                    <div class="notice-content">
-                        <h3 class="notice-title">${notice.title}</h3>
-                        <p class="notice-date">${notice.date}</p>
-                        <p class="notice-text">${notice.text}</p>
-                    </div>
-                `;
-                noticesList.appendChild(noticeItem);
-            });
-        }
-
-        // Populate Timetable
-        function populateTimetable() {
-            const timetableBody = document.getElementById('timetableBody');
-            const timetableData = JSON.parse(localStorage.getItem('timetable')) || [];
-            
-            timetableBody.innerHTML = '';
-            
-            timetableData.forEach(row => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td class="time">${row.time}</td>
-                    <td class="subject">${row.monday}</td>
-                    <td class="subject">${row.tuesday}</td>
-                    <td class="subject">${row.wednesday}</td>
-                    <td class="subject">${row.thursday}</td>
-                    <td class="subject">${row.friday}</td>
-                    <td class="subject">${row.saturday}</td>
-                `;
-                timetableBody.appendChild(tr);
-            });
-        }
-
-        // Populate Gallery
-        function populateGallery() {
-            const galleryList = document.getElementById('galleryList');
-            const galleryData = JSON.parse(localStorage.getItem('gallery')) || [];
-            
-            galleryList.innerHTML = '';
-            
-            galleryData.forEach(item => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.caption}" class="gallery-img">
-                    <div class="gallery-caption">${item.caption}</div>
-                `;
-                galleryList.appendChild(galleryItem);
-            });
-        }
-
-        // Form Submission
-        document.getElementById('homeworkForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const studentName = document.getElementById('studentName').value;
-            const className = document.getElementById('className').value;
-            const parentName = document.getElementById('parentName').value;
-            
-            // In a real application, you might want to save this data
-            console.log('Student:', studentName);
-            console.log('Class:', className);
-            console.log('Parent:', parentName);
-            
-            displayHomework(className);
-            
-            // Scroll to homework section
-            document.getElementById('homework').scrollIntoView({ behavior: 'smooth' });
+function showHomework() {
+    const classValue = document.getElementById('studentClass').value;
+    if (!classValue) {
+        alert("Please select your class");
+        return;
+    }
+    const homeworkData = JSON.parse(localStorage.getItem('homework')) || {};
+    const list = document.getElementById('homeworkList');
+    list.innerHTML = "";
+    if (homeworkData[classValue]) {
+        homeworkData[classValue].forEach(hw => {
+            let li = document.createElement('li');
+            li.textContent = hw;
+            list.appendChild(li);
         });
+    } else {
+        list.innerHTML = "<li>No homework assigned yet.</li>";
+    }
+    document.getElementById('homeworkSection').style.display = "block";
+}
 
-        // Contact Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const subject = document.getElementById('contactSubject').value;
-            const message = document.getElementById('contactMessage').value;
-            
-            // In a real application with backend, you would send this data to a server
-            alert('Thank you for your message, ' + name + '! We will get back to you soon.');
-            
-            this.reset();
-        });
+function loadTeachers() {
+    const teachers = JSON.parse(localStorage.getItem('teachers')) || ["Mr. Ali", "Mrs. Fatima", "Mr. Khan"];
+    const list = document.getElementById('teacherList');
+    list.innerHTML = "";
+    teachers.forEach(t => {
+        let li = document.createElement('li');
+        li.textContent = t;
+        list.appendChild(li);
+    });
+}
 
-        // Mobile Menu Toggle
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.dropdown-menu').style.display = 
-                document.querySelector('.dropdown-menu').style.display === 'block' ? 'none' : 'block';
-        });
+loadTeachers();
+</script>
 
-        // Close dropdown when clicking outside
-        window.addEventListener('click', function(e) {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            
-            if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.style.display = 'none';
-            }
-        });
-
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Initialize the page
-        window.addEventListener('DOMContentLoaded', function() {
-            initializeStorage();
-            populateTeachers();
-            populateEvents();
-            populateNotices();
-            populateTimetable();
-            populateGallery();
-        });
-    </script>
 </body>
 </html>
-```
