@@ -1,0 +1,3467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Official website of Milli Karwaan Public School Balrampur" />
+  <meta name="keywords" content="school, education, balrampur, milli karwaan, public school" />
+  <title>Milli Karwaan Public School Balrampur</title>
+
+  <!-- Google Fonts (Optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      color: #1a3a5f;
+      margin-bottom: 1rem;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.75rem; }
+    h4 { font-size: 1.5rem; }
+    h5 { font-size: 1.25rem; }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    a {
+      color: #0d6efd;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #0b5ed7;
+      text-decoration: underline;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      background-color: #0d6efd;
+      color: white;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0b5ed7;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5c636a;
+    }
+
+    .btn-success {
+      background-color: #198754;
+    }
+
+    .btn-success:hover {
+      background-color: #146c43;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+      background-color: #bb2d3b;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    .btn-warning:hover {
+      background-color: #e6a700;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #0d6efd;
+      color: #0d6efd;
+    }
+
+    .btn-outline:hover {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    /* Layout */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -0.5rem;
+    }
+
+    .col {
+      flex: 1;
+      padding: 0 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      height: 60px;
+      width: auto;
+    }
+
+    .school-info {
+      flex: 1;
+      margin-left: 1rem;
+    }
+
+    .school-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a3a5f;
+    }
+
+    .school-address {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.25rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .call-button {
+      background-color: #28a745;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .call-button:hover {
+      background-color: #218838;
+    }
+
+    .email-link {
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      background-color: #6f42c1;
+      color: white;
+    }
+
+    .email-link:hover {
+      background-color: #5a32a3;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: #1a3a5f;
+      padding: 0.75rem 0;
+      margin-top: 1rem;
+      position: sticky;
+      top: 70px;
+      z-index: 999;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ffc107;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .more-menu-btn {
+      background: none;
+      color: white;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+    }
+
+    .more-menu-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 140px;
+      right: 20px;
+      width: 320px;
+      max-width: 90vw;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      padding: 1.5rem;
+      z-index: 1001;
+      transform: translateX(calc(100% + 20px));
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      max-height: calc(100vh - 160px);
+      overflow-y: auto;
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sidebar-close {
+      background: none;
+      font-size: 1.5rem;
+      color: #666;
+      cursor: pointer;
+    }
+
+    .sidebar-close:hover {
+      color: #333;
+    }
+
+    .sidebar-section {
+      margin-bottom: 1.75rem;
+    }
+
+    .sidebar-section h4 {
+      margin-bottom: 0.75rem;
+      color: #1a3a5f;
+      font-size: 1.1rem;
+    }
+
+    .quick-search input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .quick-contact a {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #0d6efd;
+      font-size: 0.95rem;
+    }
+
+    .analytics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .analytics-item {
+      background: #f8f9fa;
+      padding: 0.75rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .analytics-item strong {
+      display: block;
+      font-size: 1.25rem;
+      color: #1a3a5f;
+    }
+
+    .export-import {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .export-import button {
+      flex: 1;
+      padding: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Student Access Form */
+    .student-access-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .student-form-container {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      transform: scale(0.9);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .student-access-overlay.show .student-form-container {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 1.75rem;
+      color: #1a3a5f;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+      outline: none;
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .locked-notice {
+      background-color: #d1ecf1;
+      border: 1px solid #bee5eb;
+      color: #0c5460;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Main Content */
+    main {
+      padding: 2rem 0;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #ffc107;
+    }
+
+    /* Homework Section */
+    .homework-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+
+    .search-bar {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .search-bar i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+    }
+
+    .filter-controls {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.85rem;
+      background-color: #e9ecef;
+      color: #495057;
+    }
+
+    .filter-btn.active {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    .sort-dropdown {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .homework-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .homework-card {
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      padding: 1.25rem;
+      background: #fff;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .homework-card:hover {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .homework-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .homework-date {
+      font-size: 0.85rem;
+      color: #666;
+      background: #f8f9fa;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .homework-subject {
+      font-weight: 600;
+      color: #1a3a5f;
+      font-size: 1.1rem;
+    }
+
+    .homework-content {
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .attachment {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      background: #f8f9fa;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #0d6efd;
+    }
+
+    .completion-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: #198754;
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+
+    /* Teachers Section */
+    .teachers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .teacher-card {
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .teacher-card:hover {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .teacher-img {
+      height: 180px;
+      background: #e9ecef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 3rem;
+    }
+
+    .teacher-info {
+      padding: 1.25rem;
+    }
+
+    .teacher-name {
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+      color: #1a3a5f;
+    }
+
+    .teacher-subject {
+      color: #0d6efd;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .teacher-contact {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .teacher-contact a {
+      padding: 0.4rem;
+      background: #f8f9fa;
+      border-radius: 50%;
+      color: #495057;
+      font-size: 0.9rem;
+    }
+
+    .teacher-contact a:hover {
+      background: #0d6efd;
+      color: white;
+    }
+
+    /* Events Section */
+    .events-timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .events-timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e9ecef;
+    }
+
+    .event-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .event-item::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #0d6efd;
+      border: 2px solid white;
+      box-shadow: 0 0 0 2px #0d6efd;
+    }
+
+    .event-date {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #0d6efd;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #1a3a5f;
+    }
+
+    .event-desc {
+      color: #555;
+      margin-bottom: 0.75rem;
+    }
+
+    .event-location {
+      font-size: 0.9rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-months {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .month-btn {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: white;
+      font-size: 0.9rem;
+    }
+
+    .month-btn.active {
+      background-color: #0d6efd;
+      color: white;
+      border-color: #0d6efd;
+    }
+
+    /* Notices Section */
+    .notices-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .notice-item {
+      border-left: 4px solid #ccc;
+      padding: 1rem 1.25rem;
+      background: #f8f9fa;
+      border-radius: 0 8px 8px 0;
+      transition: all 0.3s ease;
+    }
+
+    .notice-item:hover {
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .notice-priority {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .priority-high {
+      background: #f8d7da;
+      color: #842029;
+      border: 1px solid #f5c2c7;
+    }
+
+    .priority-medium {
+      background: #fff3cd;
+      color: #664d03;
+      border: 1px solid #ffeaa7;
+    }
+
+    .priority-low {
+      background: #d1e7dd;
+      color: #0f5132;
+      border: 1px solid #a3cfbb;
+    }
+
+    .notice-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1a3a5f;
+    }
+
+    .notice-date {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* Timetable Section */
+    .timetable-container {
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    .timetable {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    .timetable th,
+    .timetable td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    .timetable th {
+      background-color: #1a3a5f;
+      color: white;
+      font-weight: 600;
+    }
+
+    .timetable tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    .timetable tr:hover {
+      background-color: #e9ecef;
+    }
+
+    .class-selector {
+      margin-bottom: 1.5rem;
+    }
+
+    .class-selector label {
+      margin-right: 0.75rem;
+      font-weight: 500;
+    }
+
+    .class-selector select {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      height: 200px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .gallery-item .view-icon {
+      color: white;
+      font-size: 2rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 90vh;
+      border: 3px solid white;
+      border-radius: 8px;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+
+    /* FAQ Section */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1rem;
+      background: #f8f9fa;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: #666;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: '−';
+    }
+
+    .faq-answer {
+      padding: 0 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 1rem;
+      max-height: 500px;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .contact-info {
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .contact-info h4 {
+      margin-bottom: 1rem;
+      color: #1a3a5f;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-icon {
+      color: #0d6efd;
+      font-size: 1.2rem;
+      margin-top: 0.25rem;
+    }
+
+    .info-text a {
+      color: inherit;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* Messages Modal */
+    .messages-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 90%;
+      max-width: 700px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      z-index: 2500;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .messages-modal.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .messages-header {
+      padding: 1.5rem;
+      background: #1a3a5f;
+      color: white;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .messages-header h3 {
+      color: white;
+      font-size: 1.25rem;
+    }
+
+    .messages-close {
+      background: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .messages-body {
+      max-height: 500px;
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+
+    .message-item {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+    }
+
+    .message-item:last-child {
+      border-bottom: none;
+    }
+
+    .message-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .message-status {
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .status-unread {
+      background: #fff3cd;
+      color: #664d03;
+    }
+
+    .status-read {
+      background: #d1e7dd;
+      color: #0f5132;
+    }
+
+    .message-content {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .message-actions {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .message-actions button {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a3a5f;
+      color: white;
+      padding: 3rem 0 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-column h4 {
+      color: white;
+      margin-bottom: 1.25rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #ffc107;
+    }
+
+    .footer-links a {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #ddd;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .footer-contact p {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+
+      .export-import {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.75rem; }
+
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      .school-info {
+        margin-left: 0;
+      }
+
+      .contact-actions {
+        justify-content: center;
+      }
+
+      nav {
+        top: 140px;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .sidebar {
+        width: 90%;
+        right: 5%;
+        top: 120px;
+      }
+
+      .homework-controls {
+        flex-direction: column;
+      }
+
+      .search-bar {
+        width: 100%;
+      }
+
+      .filter-controls {
+        justify-content: center;
+      }
+
+      .timetable {
+        font-size: 0.9rem;
+      }
+
+      .messages-modal {
+        width: 95%;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, 10%) scale(0.95);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 0.75rem;
+      }
+
+      .student-form-container {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-up {
+      animation: slideUp 0.6s ease forwards;
+    }
+
+    /* Accessibility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    button:focus,
+    a:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 3px solid #0d6efd;
+      outline-offset: 2px;
+    }
+
+    /* Print Styles */
+    @media print {
+      .no-print, .no-print * {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        color: black;
+      }
+
+      header, nav, .sidebar, footer {
+        display: none;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      section {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        margin-bottom: 2rem;
+      }
+
+      .student-access-overlay {
+        display: none;
+      }
+
+      .print-only {
+        display: block !important;
+      }
+    }
+
+    .print-only {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Milli Karwaan Public School Logo" class="logo" />
+        <div class="school-info">
+          <h1 class="school-name">Milli Karwaan Public School Balrampur</h1>
+          <p class="school-address">Boluha Police Chowki Balrampur</p>
+        </div>
+        <div class="contact-actions">
+          <a href="tel:9758919151" class="call-button">
+            <i>📞</i> Call School
+          </a>
+          <a href="mailto:madamsir066@gmail.com" class="email-link">
+            <i>✉️</i> Email Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-container">
+      <ul class="nav-links">
+        <li><a href="#homework" class="nav-link active">Homework</a></li>
+        <li><a href="#teachers" class="nav-link">Teachers</a></li>
+        <li><a href="#events" class="nav-link">Events</a></li>
+        <li><a href="#notices" class="nav-link">Notices</a></li>
+        <li><a href="#timetable" class="nav-link">Timetable</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="more-menu-btn" id="moreMenuBtn">⋮</button>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>Quick Actions</h3>
+      <button class="sidebar-close" id="sidebarClose">×</button>
+    </div>
+
+    <div class="sidebar-section">
+      <h4>Quick Search</h4>
+      <div class="quick-search">
+        <input type="text" id="quickSearchInput" placeholder="Search homework..." />
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h4>Quick Contact</h4>
+      <div class="quick-contact">
+        <a href="tel:9758919151">📞 Call School: 9758919151</a>
+        <a href="mailto:madamsir066@gmail.com">✉️ Email: madamsir066@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h4>Admin Quicklinks</h4>
+      <p><small>Admin functions available at <a href="admin.html" style="color:#0d6efd">admin.html</a> (Password: Abutalha)</small></p>
+      <div class="export-import">
+        <button id="exportDataBtn">Export</button>
+        <button id="importDataBtn">Import</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h4>Analytics</h4>
+      <div class="analytics">
+        <div class="analytics-item">
+          <strong id="homeworkCount">0</strong>
+          <span>Homework</span>
+        </div>
+        <div class="analytics-item">
+          <strong id="messagesCount">0</strong>
+          <span>Messages</span>
+        </div>
+        <div class="analytics-item">
+          <strong id="teachersCount">0</strong>
+          <span>Teachers</span>
+        </div>
+        <div class="analytics-item">
+          <strong id="eventsCount">0</strong>
+          <span>Events</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Student Access Form Overlay -->
+  <div class="student-access-overlay" id="studentAccessOverlay">
+    <div class="student-form-container">
+      <h2 class="form-title">Student Access</h2>
+      <form id="studentAccessForm">
+        <div class="form-group">
+          <label for="studentName">Student Name</label>
+          <input type="text" id="studentName" class="form-control" required />
+          <div class="error-message" id="nameError">Please enter your name</div>
+        </div>
+        <div class="form-group">
+          <label for="studentClass">Class</label>
+          <select id="studentClass" class="form-control" required>
+            <option value="">Select Class</option>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+          </select>
+          <div class="error-message" id="classError">Please select your class</div>
+        </div>
+        <div class="form-group">
+          <label for="parentName">Parent's Name</label>
+          <input type="text" id="parentName" class="form-control" required />
+          <div class="error-message" id="parentError">Please enter parent's name</div>
+        </div>
+        <button type="submit">Continue to Dashboard</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightboxImg" />
+      <div class="lightbox-nav lightbox-prev" id="lightboxPrev">←</div>
+      <div class="lightbox-nav lightbox-next" id="lightboxNext">→</div>
+      <div class="lightbox-close" id="lightboxClose">×</div>
+      <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    </div>
+  </div>
+
+  <!-- Messages Modal -->
+  <div class="messages-modal" id="messagesModal">
+    <div class="messages-header">
+      <h3>Saved Messages</h3>
+      <button class="messages-close" id="messagesClose">×</button>
+    </div>
+    <div class="messages-body" id="messagesBody">
+      <!-- Messages will be inserted here -->
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Locked Notice (shown when student is logged in) -->
+    <div class="locked-notice hidden" id="lockedNotice">
+      <div>🔒</div>
+      <div>
+        <strong>Welcome!</strong><br />
+        <span id="welcomeMessage"></span><br />
+        <small>Your access is secured. To change student details, please contact school administration.</small>
+      </div>
+    </div>
+
+    <!-- Homework Section -->
+    <section id="homework">
+      <h2 class="section-title">Homework</h2>
+      <div class="homework-controls">
+        <div class="search-bar">
+          <i>🔍</i>
+          <input type="text" id="homeworkSearch" placeholder="Search homework by subject or keyword..." />
+        </div>
+        <div class="filter-controls">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="math">Math</button>
+          <button class="filter-btn" data-filter="science">Science</button>
+          <button class="filter-btn" data-filter="english">English</button>
+          <button class="filter-btn" data-filter="hindi">Hindi</button>
+          <button class="filter-btn" data-filter="social">Social Science</button>
+        </div>
+        <select class="sort-dropdown" id="homeworkSort">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="subject">By Subject</option>
+        </select>
+      </div>
+      <div class="homework-grid" id="homeworkGrid">
+        <!-- Homework cards will be inserted here -->
+      </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers">
+      <h2 class="section-title">Our Teachers</h2>
+      <div class="teachers-grid" id="teachersGrid">
+        <!-- Teacher cards will be inserted here -->
+      </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events">
+      <h2 class="section-title">School Events</h2>
+      <div class="filter-months" id="monthFilters">
+        <button class="month-btn active" data-month="all">All</button>
+        <button class="month-btn" data-month="0">January</button>
+        <button class="month-btn" data-month="1">February</button>
+        <button class="month-btn" data-month="2">March</button>
+        <button class="month-btn" data-month="3">April</button>
+        <button class="month-btn" data-month="4">May</button>
+        <button class="month-btn" data-month="5">June</button>
+        <button class="month-btn" data-month="6">July</button>
+        <button class="month-btn" data-month="7">August</button>
+        <button class="month-btn" data-month="8">September</button>
+        <button class="month-btn" data-month="9">October</button>
+        <button class="month-btn" data-month="10">November</button>
+        <button class="month-btn" data-month="11">December</button>
+      </div>
+      <div class="events-timeline" id="eventsTimeline">
+        <!-- Events will be inserted here -->
+      </div>
+    </section>
+
+    <!-- Notices Section -->
+    <section id="notices">
+      <h2 class="section-title">Notice Board</h2>
+      <div class="notices-list" id="noticesList">
+        <!-- Notices will be inserted here -->
+      </div>
+    </section>
+
+    <!-- Timetable Section -->
+    <section id="timetable">
+      <h2 class="section-title">Class Timetable</h2>
+      <div class="class-selector">
+        <label for="timetableClass">Select Class:</label>
+        <select id="timetableClass" class="form-control">
+          <option value="1">Class 1</option>
+          <option value="2">Class 2</option>
+          <option value="3">Class 3</option>
+          <option value="4">Class 4</option>
+          <option value="5">Class 5</option>
+          <option value="6">Class 6</option>
+          <option value="7">Class 7</option>
+          <option value="8">Class 8</option>
+          <option value="9">Class 9</option>
+          <option value="10">Class 10</option>
+          <option value="11">Class 11</option>
+          <option value="12">Class 12</option>
+        </select>
+      </div>
+      <div class="timetable-container">
+        <table class="timetable" id="timetableTable">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Timetable data will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+      <h2 class="section-title">School Gallery</h2>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Gallery items will be inserted here -->
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list" id="faqList">
+        <!-- FAQ items will be inserted here -->
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="contact-grid">
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Name</label>
+                <input type="text" id="contactName" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" class="form-control" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <input type="text" id="contactSubject" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" class="form-control" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+            <button type="button" class="btn-secondary" id="viewMessagesBtn" style="margin-top: 0.75rem;">View Saved Messages</button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <h4>Contact Information</h4>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <strong>Address:</strong><br />
+              Boluha Police Chowki Balrampur
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-text">
+              <strong>Phone:</strong><br />
+              <a href="tel:9758919151">9758919151</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-text">
+              <strong>Email:</strong><br />
+              <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🕒</div>
+            <div class="info-text">
+              <strong>Office Hours:</strong><br />
+              Monday - Friday: 8:00 AM - 4:00 PM<br />
+              Saturday: 8:00 AM - 12:00 PM
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Print Snapshot Section (hidden) -->
+    <div class="print-only">
+      <h1>Milli Karwaan Public School Balrampur</h1>
+      <p><strong>Address:</strong> Boluha Police Chowki Balrampur</p>
+      <p><strong>Phone:</strong> <a href="tel:9758919151">9758919151</a></p>
+      <p><strong>Email:</strong> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+      <hr />
+      <div id="printContent">
+        <!-- Print content will be inserted here -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>About Us</h4>
+          <p>Milli Karwaan Public School Balrampur is dedicated to providing quality education with a focus on moral values, academic excellence, and holistic development of students.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="#homework">Homework</a>
+            <a href="#teachers">Teachers</a>
+            <a href="#events">Events</a>
+            <a href="#notices">Notices</a>
+            <a href="#timetable">Timetable</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Contact Info</h4>
+          <div class="footer-contact">
+            <p>📍 Boluha Police Chowki Balrampur</p>
+            <p>📞 <a href="tel:9758919151">9758919151</a></p>
+            <p>✉️ <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+            <p>🕒 Mon-Fri: 8AM-4PM, Sat: 8AM-12PM</p>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Admin Access</h4>
+          <p>Administrative functions are available at <a href="admin.html" style="color:#ffc107">admin.html</a></p>
+          <p><strong>Password:</strong> Abutalha</p>
+          <p>This site uses localStorage to save your preferences and data.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear">2023</span> Milli Karwaan Public School Balrampur. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ======================
+    // GLOBAL STATE & CONFIG
+    // ======================
+
+    // LocalStorage keys
+    const STORAGE_KEYS = {
+      STUDENT: 'mkps_student',
+      HOMEWORK: 'mkps_homework',
+      TEACHERS: 'mkps_teachers',
+      EVENTS: 'mkps_events',
+      NOTICES: 'mkps_notices',
+      TIMETABLE: 'mkps_timetable',
+      GALLERY: 'mkps_gallery',
+      MESSAGES: 'mkps_messages',
+      FAQ: 'mkps_faq'
+    };
+
+    // Current student object
+    let currentStudent = null;
+
+    // App state
+    const state = {
+      homework: [],
+      teachers: [],
+      events: [],
+      notices: [],
+      timetable: {},
+      gallery: [],
+      messages: [],
+      faq: [],
+      filteredHomework: [],
+      filteredEvents: [],
+      currentLightboxIndex: 0
+    };
+
+    // ======================
+    // UTILITY FUNCTIONS
+    // ======================
+
+    // Get element by ID
+    const $ = (selector) => document.getElementById(selector);
+
+    // Query selector
+    const $$ = (selector) => document.querySelector(selector);
+    const $$$ = (selector) => document.querySelectorAll(selector);
+
+    // Create element with attributes
+    function createElement(tag, attrs = {}, children = []) {
+      const el = document.createElement(tag);
+      Object.keys(attrs).forEach(key => {
+        if (key === 'className') {
+          el.className = attrs[key];
+        } else if (key === 'html') {
+          el.innerHTML = attrs[key];
+        } else {
+          el.setAttribute(key, attrs[key]);
+        }
+      });
+      if (Array.isArray(children)) {
+        children.forEach(child => {
+          if (typeof child === 'string') {
+            el.appendChild(document.createTextNode(child));
+          } else if (child) {
+            el.appendChild(child);
+          }
+        });
+      } else if (children) {
+        el.appendChild(children);
+      }
+      return el;
+    }
+
+    // Show toast notification
+    function showToast(message, type = 'info') {
+      const toast = createElement('div', {
+        className: `toast toast-${type}`,
+        html: message
+      });
+      toast.style.position = 'fixed';
+      toast.style.top = '20px';
+      toast.style.right = '20px';
+      toast.style.padding = '12px 20px';
+      toast.style.borderRadius = '8px';
+      toast.style.color = 'white';
+      toast.style.zIndex = '3000';
+      toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+      toast.style.animation = 'fadeIn 0.3s ease';
+
+      // Style by type
+      const colors = {
+        info: '#0d6efd',
+        success: '#198754',
+        warning: '#ffc107',
+        danger: '#dc3545'
+      };
+      toast.style.backgroundColor = colors[type] || colors.info;
+
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => document.body.removeChild(toast), 500);
+      }, 3000);
+    }
+
+    // Save to localStorage with error handling
+    function saveToStorage(key, data) {
+      try {
+        localStorage.setItem(key, JSON.stringify(data));
+        // Dispatch storage event for cross-tab communication
+        window.dispatchEvent(new Event('storage'));
+      } catch (e) {
+        console.error('Failed to save to localStorage:', e);
+        showToast('Failed to save data. Please try again.', 'danger');
+      }
+    }
+
+    // Load from localStorage with error handling
+    function loadFromStorage(key, defaultValue = null) {
+      try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : defaultValue;
+      } catch (e) {
+        console.error('Failed to load from localStorage:', e);
+        return defaultValue;
+      }
+    }
+
+    // Generate unique ID
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
+
+    // Format date
+    function formatDate(dateStr) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return new Date(dateStr).toLocaleDateString(undefined, options);
+    }
+
+    // Format date for display
+    function formatDateTime(dateStr) {
+      const options = { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      return new Date(dateStr).toLocaleDateString(undefined, options);
+    }
+
+    // Debounce function
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    // ======================
+    // DATA SEEDING
+    // ======================
+
+    function seedData() {
+      console.log('Seeding initial data...');
+
+      // Seed Homework (for classes 1-12)
+      if (!loadFromStorage(STORAGE_KEYS.HOMEWORK)) {
+        const homeworkData = [];
+        const subjects = ['math', 'science', 'english', 'hindi', 'social'];
+        const subjectNames = {
+          'math': 'Mathematics',
+          'science': 'Science',
+          'english': 'English',
+          'hindi': 'Hindi',
+          'social': 'Social Science'
+        };
+
+        for (let classNo = 1; classNo <= 12; classNo++) {
+          // Each class has 3-5 homework items
+          const count = Math.floor(Math.random() * 3) + 3;
+          for (let i = 0; i < count; i++) {
+            const daysBack = Math.floor(Math.random() * 14);
+            const date = new Date();
+            date.setDate(date.getDate() - daysBack);
+            
+            const subjectKey = subjects[Math.floor(Math.random() * subjects.length)];
+            
+            homeworkData.push({
+              id: generateId(),
+              class: classNo,
+              subject: subjectKey,
+              subjectName: subjectNames[subjectKey],
+              title: `Homework for Class ${classNo}`,
+              description: `Complete exercises on ${subjectNames[subjectKey]} from textbook pages ${Math.floor(Math.random() * 20) + 10}-${Math.floor(Math.random() * 20) + 30}.`,
+              dateAssigned: date.toISOString().split('T')[0],
+              dueDate: new Date(date.getTime() + (7 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0],
+              attachments: Math.random() > 0.7 ? [`worksheet_${classNo}_${subjectKey}.pdf`] : [],
+              completed: false
+            });
+          }
+        }
+        saveToStorage(STORAGE_KEYS.HOMEWORK, homeworkData);
+        console.log('Homework data seeded');
+      }
+
+      // Seed Teachers
+      if (!loadFromStorage(STORAGE_KEYS.TEACHERS)) {
+        const teacherData = [
+          {
+            id: generateId(),
+            name: 'Dr. Anjali Sharma',
+            subject: 'Mathematics',
+            class: '9-12',
+            email: 'anjali.sharma@mkps.edu',
+            phone: '9876543210',
+            bio: 'PhD in Mathematics with 15 years of teaching experience.',
+            image: 'https://placehold.co/300x300/3498db/ffffff?text=AS'
+          },
+          {
+            id: generateId(),
+            name: 'Mr. Rajesh Kumar',
+            subject: 'Science',
+            class: '6-8',
+            email: 'rajesh.kumar@mkps.edu',
+            phone: '9876543211',
+            bio: 'Expert in Physics and Chemistry with innovative teaching methods.',
+            image: 'https://placehold.co/300x300/e74c3c/ffffff?text=RK'
+          },
+          {
+            id: generateId(),
+            name: 'Mrs. Priya Singh',
+            subject: 'English',
+            class: '1-5',
+            email: 'priya.singh@mkps.edu',
+            phone: '9876543212',
+            bio: 'Specialist in early childhood language development.',
+            image: 'https://placehold.co/300x300/2ecc71/ffffff?text=PS'
+          },
+          {
+            id: generateId(),
+            name: 'Mr. Arvind Patel',
+            subject: 'Social Science',
+            class: '9-10',
+            email: 'arvind.patel@mkps.edu',
+            phone: '9876543213',
+            bio: 'History enthusiast with focus on Indian culture and heritage.',
+            image: 'https://placehold.co/300x300/f39c12/ffffff?text=AP'
+          },
+          {
+            id: generateId(),
+            name: 'Ms. Neha Gupta',
+            subject: 'Hindi',
+            class: '7-8',
+            email: 'neha.gupta@mkps.edu',
+            phone: '9876543214',
+            bio: 'Literature expert with focus on Hindi poetry and grammar.',
+            image: 'https://placehold.co/300x300/9b59b6/ffffff?text=NG'
+          },
+          {
+            id: generateId(),
+            name: 'Dr. Sanjay Mehta',
+            subject: 'Computer Science',
+            class: '11-12',
+            email: 'sanjay.mehta@mkps.edu',
+            phone: '9876543215',
+            bio: 'Former software engineer turned educator.',
+            image: 'https://placehold.co/300x300/1abc9c/ffffff?text=SM'
+          }
+        ];
+        saveToStorage(STORAGE_KEYS.TEACHERS, teacherData);
+        console.log('Teachers data seeded');
+      }
+
+      // Seed Events
+      if (!loadFromStorage(STORAGE_KEYS.EVENTS)) {
+        const now = new Date();
+        const eventData = [
+          {
+            id: generateId(),
+            title: 'Annual Sports Day',
+            description: 'Inter-school sports competition with various athletic events.',
+            date: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 15).toISOString().split('T')[0],
+            time: '10:00 AM',
+            location: 'School Grounds',
+            category: 'sports'
+          },
+          {
+            id: generateId(),
+            title: 'Science Exhibition',
+            description: 'Students will showcase their science projects and experiments.',
+            date: new Date(now.getFullYear(), now.getMonth() + 1, 5).toISOString().split('T')[0],
+            time: '9:00 AM',
+            location: 'School Auditorium',
+            category: 'academic'
+          },
+          {
+            id: generateId(),
+            title: 'Parent-Teacher Meeting',
+            description: 'Quarterly meeting to discuss student progress and development.',
+            date: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 30).toISOString().split('T')[0],
+            time: '3:00 PM',
+            location: 'Classrooms',
+            category: 'meeting'
+          }
+        ];
+        saveToStorage(STORAGE_KEYS.EVENTS, eventData);
+        console.log('Events data seeded');
+      }
+
+      // Seed Notices
+      if (!loadFromStorage(STORAGE_KEYS.NOTICES)) {
+        const noticeData = [
+          {
+            id: generateId(),
+            title: 'New School Uniform Policy',
+            description: 'Starting next month, all students are required to wear the new uniform design. Details available at the school office.',
+            date: new Date().toISOString().split('T')[0],
+            priority: 'high',
+            read: false
+          },
+          {
+            id: generateId(),
+            title: 'Holiday Announcement',
+            description: 'School will remain closed on Monday for the regional festival celebration.',
+            date: new Date().toISOString().split('T')[0],
+            priority: 'medium',
+            read: false
+          },
+          {
+            id: generateId(),
+            title: 'Library Hours Extended',
+            description: 'Library will be open until 5 PM on weekdays for exam preparation.',
+            date: new Date().toISOString().split('T')[0],
+            priority: 'low',
+            read: false
+          }
+        ];
+        saveToStorage(STORAGE_KEYS.NOTICES, noticeData);
+        console.log('Notices data seeded');
+      }
+
+      // Seed Timetable
+      if (!loadFromStorage(STORAGE_KEYS.TIMETABLE)) {
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const periods = [
+          { time: '8:00-8:45', subjects: {} },
+          { time: '8:45-9:30', subjects: {} },
+          { time: '9:30-10:15', subjects: {} },
+          { time: '10:15-11:00', subjects: {} },
+          { time: '11:00-11:45', subjects: {} },
+          { time: '11:45-12:30', subjects: {} },
+          { time: '12:30-1:15', subjects: {} },
+          { time: '1:15-2:00', subjects: {} }
+        ];
+
+        const subjects = ['Math', 'Science', 'English', 'Hindi', 'Social', 'Computer', 'Physical Education', 'Art', 'Music'];
+
+        // Create timetable for each class
+        const timetableData = {};
+        for (let classNo = 1; classNo <= 12; classNo++) {
+          const classTimetable = JSON.parse(JSON.stringify(periods)); // Deep copy
+          
+          classTimetable.forEach(period => {
+            days.forEach(day => {
+              // Skip Saturday for higher classes
+              if (classNo > 8 && day === 'Saturday') {
+                period.subjects[day] = 'No Class';
+                return;
+              }
+              
+              // Special rules for different classes
+              if (classNo <= 5) {
+                // Primary classes have simpler schedule
+                const primarySubjects = ['Math', 'English', 'Hindi', 'EVS', 'Art', 'PE'];
+                period.subjects[day] = primarySubjects[Math.floor(Math.random() * primarySubjects.length)];
+              } else if (classNo <= 8) {
+                // Middle classes
+                period.subjects[day] = subjects[Math.floor(Math.random() * subjects.length)];
+              } else {
+                // High school - more specialized
+                const highSubjects = ['Math', 'Physics', 'Chemistry', 'Biology', 'English', 'Hindi', 'History', 'Geography', 'Computer'];
+                period.subjects[day] = highSubjects[Math.floor(Math.random() * highSubjects.length)];
+              }
+            });
+          });
+          
+          timetableData[`class${classNo}`] = classTimetable;
+        }
+
+        saveToStorage(STORAGE_KEYS.TIMETABLE, timetableData);
+        console.log('Timetable data seeded');
+      }
+
+      // Seed Gallery
+      if (!loadFromStorage(STORAGE_KEYS.GALLERY)) {
+        const galleryData = [
+          { id: generateId(), url: 'https://placehold.co/600x400/3498db/ffffff?text=School+Building', title: 'Main School Building', date: '2023-01-15' },
+          { id: generateId(), url: 'https://placehold.co/600x400/2ecc71/ffffff?text=Science+Lab', title: 'Science Laboratory', date: '2023-02-20' },
+          { id: generateId(), url: 'https://placehold.co/600x400/e74c3c/ffffff?text=Sports+Day', title: 'Annual Sports Day', date: '2023-03-10' },
+          { id: generateId(), url: 'https://placehold.co/600x400/f39c12/ffffff?text=Classroom', title: 'Modern Classroom', date: '2023-04-05' },
+          { id: generateId(), url: 'https://placehold.co/600x400/9b59b6/ffffff?text=Library', title: 'School Library', date: '2023-05-12' },
+          { id: generateId(), url: 'https://placehold.co/600x400/1abc9c/ffffff?text=Art+Class', title: 'Art and Craft Class', date: '2023-06-18' },
+          { id: generateId(), url: 'https://placehold.co/600x400/34495e/ffffff?text=Music+Room', title: 'Music Room', date: '2023-07-22' },
+          { id: generateId(), url: 'https://placehold.co/600x400/e67e22/ffffff?text=Computer+Lab', title: 'Computer Laboratory', date: '2023-08-30' }
+        ];
+        saveToStorage(STORAGE_KEYS.GALLERY, galleryData);
+        console.log('Gallery data seeded');
+      }
+
+      // Seed Messages
+      if (!loadFromStorage(STORAGE_KEYS.MESSAGES)) {
+        saveToStorage(STORAGE_KEYS.MESSAGES, []);
+        console.log('Messages data seeded');
+      }
+
+      // Seed FAQ
+      if (!loadFromStorage(STORAGE_KEYS.FAQ)) {
+        const faqData = [
+          {
+            id: generateId(),
+            question: 'What are the school hours?',
+            answer: 'School hours are from 8:00 AM to 2:00 PM for classes 1-8, and 8:00 AM to 3:00 PM for classes 9-12. Office hours are 8:00 AM to 4:00 PM.'
+          },
+          {
+            id: generateId(),
+            question: 'How can I pay school fees?',
+            answer: 'School fees can be paid online through our payment portal, or in person at the school office during office hours. We accept cash, check, and digital payments.'
+          },
+          {
+            id: generateId(),
+            question: 'What is the admission process?',
+            answer: 'Admission process begins in April each year. Parents need to visit the school office with required documents including birth certificate, previous school records, and recent photographs.'
+          },
+          {
+            id: generateId(),
+            question: 'Does the school provide transportation?',
+            answer: 'Yes, we provide bus transportation for students living within a 15 km radius of the school. Routes and schedules are available at the school office.'
+          },
+          {
+            id: generateId(),
+            question: 'Are there extracurricular activities?',
+            answer: 'Yes, we offer a wide range of extracurricular activities including sports, music, dance, art, debate, and science club. Students can participate based on their interests.'
+          }
+        ];
+        saveToStorage(STORAGE_KEYS.FAQ, faqData);
+        console.log('FAQ data seeded');
+      }
+    }
+
+    // ======================
+    // STUDENT ACCESS SYSTEM
+    // ======================
+
+    function showStudentAccessForm() {
+      const overlay = $('studentAccessOverlay');
+      overlay.classList.add('show');
+      
+      // Prevent back button
+      history.pushState({ page: 'student-form' }, '', '');
+      
+      // Handle popstate to prevent going back
+      window.onpopstate = function(event) {
+        if (event.state && event.state.page === 'student-form') {
+          history.pushState({ page: 'student-form' }, '', '');
+          showStudentAccessForm();
+        }
+      };
+    }
+
+    function hideStudentAccessForm() {
+      const overlay = $('studentAccessOverlay');
+      overlay.classList.remove('show');
+      
+      // Remove popstate listener
+      window.onpopstate = null;
+    }
+
+    function validateStudentForm() {
+      let isValid = true;
+      
+      const name = $('studentName').value.trim();
+      const className = $('studentClass').value;
+      const parentName = $('parentName').value.trim();
+      
+      // Reset errors
+      $$$('.error-message').forEach(el => el.style.display = 'none');
+      
+      if (!name) {
+        $('nameError').style.display = 'block';
+        isValid = false;
+      }
+      
+      if (!className) {
+        $('classError').style.display = 'block';
+        isValid = false;
+      }
+      
+      if (!parentName) {
+        $('parentError').style.display = 'block';
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+
+    function handleStudentFormSubmit(e) {
+      e.preventDefault();
+      
+      if (!validateStudentForm()) {
+        return;
+      }
+      
+      const studentData = {
+        id: generateId(),
+        name: $('studentName').value.trim(),
+        class: parseInt($('studentClass').value),
+        parentName: $('parentName').value.trim(),
+        joined: new Date().toISOString()
+      };
+      
+      // Save to localStorage
+      saveToStorage(STORAGE_KEYS.STUDENT, studentData);
+      
+      // Update current student
+      currentStudent = studentData;
+      
+      // Hide form
+      hideStudentAccessForm();
+      
+      // Show locked notice
+      const lockedNotice = $('lockedNotice');
+      lockedNotice.classList.remove('hidden');
+      
+      // Update welcome message
+      const welcomeMsg = `Welcome, ${studentData.name}! You are in Class ${studentData.class}. Your access is secured.`;
+      $('welcomeMessage').textContent = welcomeMsg;
+      
+      // Initialize the app
+      initApp();
+      
+      showToast('Student access granted! Welcome to your dashboard.', 'success');
+    }
+
+    // ======================
+    // DATA MANAGEMENT
+    // ======================
+
+    function loadData() {
+      console.log('Loading data from localStorage...');
+      
+      state.homework = loadFromStorage(STORAGE_KEYS.HOMEWORK, []);
+      state.teachers = loadFromStorage(STORAGE_KEYS.TEACHERS, []);
+      state.events = loadFromStorage(STORAGE_KEYS.EVENTS, []);
+      state.notices = loadFromStorage(STORAGE_KEYS.NOTICES, []);
+      state.timetable = loadFromStorage(STORAGE_KEYS.TIMETABLE, {});
+      state.gallery = loadFromStorage(STORAGE_KEYS.GALLERY, []);
+      state.messages = loadFromStorage(STORAGE_KEYS.MESSAGES, []);
+      state.faq = loadFromStorage(STORAGE_KEYS.FAQ, []);
+      
+      console.log('Data loaded:', {
+        homework: state.homework.length,
+        teachers: state.teachers.length,
+        events: state.events.length,
+        notices: state.notices.length,
+        messages: state.messages.length,
+        gallery: state.gallery.length,
+        faq: state.faq.length
+      });
+    }
+
+    function filterHomework() {
+      const searchQuery = $('homeworkSearch').value.toLowerCase();
+      const activeFilter = $$$('.filter-btn.active').dataset.filter;
+      const classFilter = currentStudent ? currentStudent.class : null;
+      
+      state.filteredHomework = state.homework.filter(item => {
+        // Filter by student's class if logged in
+        if (classFilter && item.class !== classFilter) {
+          return false;
+        }
+        
+        // Filter by subject
+        if (activeFilter !== 'all' && item.subject !== activeFilter) {
+          return false;
+        }
+        
+        // Search query
+        if (searchQuery && !item.title.toLowerCase().includes(searchQuery) && 
+            !item.description.toLowerCase().includes(searchQuery) &&
+            !item.subjectName.toLowerCase().includes(searchQuery)) {
+          return false;
+        }
+        
+        return true;
+      });
+      
+      // Sort homework
+      const sortOption = $('homeworkSort').value;
+      state.filteredHomework.sort((a, b) => {
+        switch (sortOption) {
+          case 'newest':
+            return new Date(b.dateAssigned) - new Date(a.dateAssigned);
+          case 'oldest':
+            return new Date(a.dateAssigned) - new Date(b.dateAssigned);
+          case 'subject':
+            return a.subjectName.localeCompare(b.subjectName);
+          default:
+            return 0;
+        }
+      });
+      
+      renderHomework();
+      updateAnalytics();
+    }
+
+    function filterEvents() {
+      const activeMonth = $$$('.month-btn.active').dataset.month;
+      
+      state.filteredEvents = state.events.filter(event => {
+        const eventDate = new Date(event.date);
+        return activeMonth === 'all' || eventDate.getMonth().toString() === activeMonth;
+      });
+      
+      // Sort by date
+      state.filteredEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+      
+      renderEvents();
+    }
+
+    // ======================
+    // RENDERING FUNCTIONS
+    // ======================
+
+    function renderHomework() {
+      const container = $('homeworkGrid');
+      container.innerHTML = '';
+      
+      if (state.filteredHomework.length === 0) {
+        container.innerHTML = '<p>No homework found for your class. Great job!</p>';
+        return;
+      }
+      
+      state.filteredHomework.forEach(item => {
+        const card = createElement('div', { className: 'homework-card' });
+        
+        const header = createElement('div', { className: 'homework-header' });
+        const date = createElement('div', { className: 'homework-date' }, formatDate(item.dateAssigned));
+        const subject = createElement('div', { className: 'homework-subject' }, item.subjectName);
+        
+        header.appendChild(date);
+        header.appendChild(subject);
+        card.appendChild(header);
+        
+        const title = createElement('h3', {}, item.title);
+        card.appendChild(title);
+        
+        const content = createElement('div', { className: 'homework-content' }, item.description);
+        card.appendChild(content);
+        
+        // Attachments
+        if (item.attachments && item.attachments.length > 0) {
+          item.attachments.forEach(attachment => {
+            const attach = createElement('a', { 
+              href: '#', 
+              className: 'attachment',
+              onclick: `downloadAttachment('${attachment}')
+            ` }, `📎 ${attachment}`);
+            card.appendChild(attach);
+          });
+        }
+        
+        // Completion toggle
+        const completion = createElement('div', { className: 'completion-toggle' });
+        const toggleLabel = createElement('span', {}, 'Mark as completed');
+        const toggleContainer = createElement('label', { className: 'toggle-switch' });
+        const toggleInput = createElement('input', { 
+          type: 'checkbox', 
+          checked: item.completed ? 'checked' : '' 
+        });
+        toggleInput.addEventListener('change', () => toggleHomeworkCompletion(item.id));
+        const toggleSlider = createElement('span', { className: 'toggle-slider' });
+        
+        toggleContainer.appendChild(toggleInput);
+        toggleContainer.appendChild(toggleSlider);
+        
+        completion.appendChild(toggleContainer);
+        completion.appendChild(toggleLabel);
+        
+        card.appendChild(completion);
+        
+        container.appendChild(card);
+      });
+    }
+
+    function toggleHomeworkCompletion(homeworkId) {
+      const homework = state.homework.find(h => h.id === homeworkId);
+      if (homework) {
+        homework.completed = !homework.completed;
+        saveToStorage(STORAGE_KEYS.HOMEWORK, state.homework);
+        filterHomework(); // Re-filter to update display
+        showToast(`Homework marked as ${homework.completed ? 'completed' : 'incomplete'}`, 'info');
+      }
+    }
+
+    function downloadAttachment(filename) {
+      // In a real app, this would download from a server
+      // For demo, we'll just show a message
+      showToast(`Downloading ${filename}... (Demo: file would download in real app)`, 'info');
+    }
+
+    function renderTeachers() {
+      const container = $('teachersGrid');
+      container.innerHTML = '';
+      
+      state.teachers.forEach(teacher => {
+        const card = createElement('div', { className: 'teacher-card' });
+        
+        const imgContainer = createElement('div', { className: 'teacher-img' });
+        const img = createElement('img', { 
+          src: teacher.image, 
+          alt: teacher.name,
+          onerror: "this.src='https://placehold.co/300x300/ccc/333?text=Teacher'"
+        });
+        imgContainer.appendChild(img);
+        card.appendChild(imgContainer);
+        
+        const info = createElement('div', { className: 'teacher-info' });
+        
+        const name = createElement('h3', { className: 'teacher-name' }, teacher.name);
+        info.appendChild(name);
+        
+        const subject = createElement('div', { className: 'teacher-subject' }, `${teacher.subject} (${teacher.class})`);
+        info.appendChild(subject);
+        
+        const bio = createElement('p', {}, teacher.bio);
+        info.appendChild(bio);
+        
+        const contact = createElement('div', { className: 'teacher-contact' });
+        const callBtn = createElement('a', { 
+          href: `tel:${teacher.phone}`,
+          'aria-label': `Call ${teacher.name}`
+        }, '📞');
+        const emailBtn = createElement('a', { 
+          href: `mailto:${teacher.email}`,
+          'aria-label': `Email ${teacher.name}`
+        }, '✉️');
+        
+        contact.appendChild(callBtn);
+        contact.appendChild(emailBtn);
+        
+        info.appendChild(contact);
+        card.appendChild(info);
+        
+        container.appendChild(card);
+      });
+      
+      updateAnalytics();
+    }
+
+    function renderEvents() {
+      const container = $('eventsTimeline');
+      container.innerHTML = '';
+      
+      if (state.filteredEvents.length === 0) {
+        container.innerHTML = '<p>No upcoming events. Check back later!</p>';
+        return;
+      }
+      
+      state.filteredEvents.forEach(event => {
+        const item = createElement('div', { className: 'event-item' });
+        
+        const date = createElement('div', { className: 'event-date' }, 
+          `${formatDate(event.date)} at ${event.time}`);
+        item.appendChild(date);
+        
+        const title = createElement('h3', { className: 'event-title' }, event.title);
+        item.appendChild(title);
+        
+        const desc = createElement('p', { className: 'event-desc' }, event.description);
+        item.appendChild(desc);
+        
+        const location = createElement('div', { className: 'event-location' }, 
+          `📍 ${event.location}`);
+        item.appendChild(location);
+        
+        container.appendChild(item);
+      });
+      
+      updateAnalytics();
+    }
+
+    function renderNotices() {
+      const container = $('noticesList');
+      container.innerHTML = '';
+      
+      if (state.notices.length === 0) {
+        container.innerHTML = '<p>No notices at this time.</p>';
+        return;
+      }
+      
+      // Sort by date (newest first)
+      const sortedNotices = [...state.notices].sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+      sortedNotices.forEach(notice => {
+        const item = createElement('div', { className: 'notice-item' });
+        
+        const priorityClass = `priority-${notice.priority}`;
+        const priorityText = notice.priority.charAt(0).toUpperCase() + notice.priority.slice(1);
+        const priority = createElement('span', { 
+          className: `notice-priority ${priorityClass}` 
+        }, priorityText);
+        item.appendChild(priority);
+        
+        const title = createElement('h3', { className: 'notice-title' }, notice.title);
+        item.appendChild(title);
+        
+        const desc = createElement('p', {}, notice.description);
+        item.appendChild(desc);
+        
+        const date = createElement('div', { className: 'notice-date' }, formatDate(notice.date));
+        item.appendChild(date);
+        
+        container.appendChild(item);
+      });
+    }
+
+    function renderTimetable() {
+      const classNo = $('timetableClass').value;
+      const timetable = state.timetable[`class${classNo}`];
+      const tbody = $$$('#timetableTable tbody');
+      tbody.innerHTML = '';
+      
+      if (!timetable) {
+        tbody.innerHTML = '<tr><td colspan="7">Timetable not available for this class.</td></tr>';
+        return;
+      }
+      
+      timetable.forEach(period => {
+        const row = createElement('tr');
+        
+        const timeCell = createElement('td', {}, period.time);
+        row.appendChild(timeCell);
+        
+        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].forEach(day => {
+          const subject = period.subjects[day] || 'Free Period';
+          const cell = createElement('td', {}, subject);
+          row.appendChild(cell);
+        });
+        
+        tbody.appendChild(row);
+      });
+    }
+
+    function renderGallery() {
+      const container = $('galleryGrid');
+      container.innerHTML = '';
+      
+      state.gallery.forEach((item, index) => {
+        const galleryItem = createElement('div', { 
+          className: 'gallery-item',
+          onclick: `openLightbox(${index})`
+        });
+        
+        const img = createElement('img', { 
+          src: item.url, 
+          alt: item.title,
+          onerror: "this.src='https://placehold.co/300x300/ccc/333?text=Image+Not+Available'"
+        });
+        galleryItem.appendChild(img);
+        
+        const overlay = createElement('div', { className: 'overlay' });
+        const viewIcon = createElement('div', { className: 'view-icon' }, '🔍');
+        overlay.appendChild(viewIcon);
+        galleryItem.appendChild(overlay);
+        
+        container.appendChild(galleryItem);
+      });
+    }
+
+    function openLightbox(index) {
+      state.currentLightboxIndex = index;
+      const lightbox = $('lightbox');
+      const img = $('lightboxImg');
+      const counter = $('lightboxCounter');
+      
+      const item = state.gallery[index];
+      img.src = item.url;
+      img.alt = item.title;
+      counter.textContent = `${index + 1} / ${state.gallery.length}`;
+      
+      lightbox.classList.add('open');
+      
+      // Prevent scrolling
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = $('lightbox');
+      lightbox.classList.remove('open');
+      
+      // Restore scrolling
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+      const len = state.gallery.length;
+      state.currentLightboxIndex = (state.currentLightboxIndex + direction + len) % len;
+      
+      const img = $('lightboxImg');
+      const counter = $('lightboxCounter');
+      const item = state.gallery[state.currentLightboxIndex];
+      
+      img.src = item.url;
+      img.alt = item.title;
+      counter.textContent = `${state.currentLightboxIndex + 1} / ${len}`;
+    }
+
+    function renderFAQ() {
+      const container = $('faqList');
+      container.innerHTML = '';
+      
+      state.faq.forEach(item => {
+        const faqItem = createElement('div', { className: 'faq-item' });
+        
+        const question = createElement('div', { 
+          className: 'faq-question',
+          onclick: 'toggleFAQ(this.parentElement)'
+        }, item.question);
+        faqItem.appendChild(question);
+        
+        const answer = createElement('div', { className: 'faq-answer' }, item.answer);
+        faqItem.appendChild(answer);
+        
+        container.appendChild(faqItem);
+      });
+    }
+
+    function toggleFAQ(item) {
+      item.classList.toggle('active');
+    }
+
+    function updateAnalytics() {
+      // Update counts
+      $('homeworkCount').textContent = state.filteredHomework.length;
+      $('messagesCount').textContent = state.messages.filter(m => !m.read).length;
+      $('teachersCount').textContent = state.teachers.length;
+      $('eventsCount').textContent = state.filteredEvents.length;
+    }
+
+    // ======================
+    // EVENT HANDLERS
+    // ======================
+
+    function setupEventListeners() {
+      // Student form
+      const form = $('studentAccessForm');
+      if (form) {
+        form.addEventListener('submit', handleStudentFormSubmit);
+      }
+      
+      // Homework controls
+      const homeworkSearch = $('homeworkSearch');
+      if (homeworkSearch) {
+        homeworkSearch.addEventListener('input', debounce(filterHomework, 300));
+      }
+      
+      $$$('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          $$$('.filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          filterHomework();
+        });
+      });
+      
+      const homeworkSort = $('homeworkSort');
+      if (homeworkSort) {
+        homeworkSort.addEventListener('change', filterHomework);
+      }
+      
+      // Events filters
+      $$$('.month-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          $$$('.month-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          filterEvents();
+        });
+      });
+      
+      // Timetable class selector
+      const timetableClass = $('timetableClass');
+      if (timetableClass) {
+        timetableClass.addEventListener('change', renderTimetable);
+      }
+      
+      // Sidebar
+      const moreMenuBtn = $('moreMenuBtn');
+      const sidebar = $('sidebar');
+      const sidebarClose = $('sidebarClose');
+      const overlay = $('overlay');
+      
+      if (moreMenuBtn) {
+        moreMenuBtn.addEventListener('click', () => {
+          sidebar.classList.add('open');
+          overlay.classList.add('active');
+        });
+      }
+      
+      if (sidebarClose) {
+        sidebarClose.addEventListener('click', () => {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('active');
+        });
+      }
+      
+      if (overlay) {
+        overlay.addEventListener('click', () => {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('active');
+        });
+      }
+      
+      // Lightbox
+      const lightbox = $('lightbox');
+      const lightboxClose = $('lightboxClose');
+      const lightboxPrev = $('lightboxPrev');
+      const lightboxNext = $('lightboxNext');
+      
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+      
+      if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+      }
+      
+      if (lightboxNext) {
+        lightboxNext.addEventListener('click', () => navigateLightbox(1));
+      }
+      
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+      }
+      
+      // Keyboard navigation for lightbox
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox || !lightbox.classList.contains('open')) return;
+        
+        switch (e.key) {
+          case 'Escape':
+            closeLightbox();
+            break;
+          case 'ArrowLeft':
+            navigateLightbox(-1);
+            break;
+          case 'ArrowRight':
+            navigateLightbox(1);
+            break;
+        }
+      });
+      
+      // Contact form
+      const contactForm = $('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', handleContactFormSubmit);
+      }
+      
+      // View messages button
+      const viewMessagesBtn = $('viewMessagesBtn');
+      if (viewMessagesBtn) {
+        viewMessagesBtn.addEventListener('click', openMessagesModal);
+      }
+      
+      // Messages modal close
+      const messagesClose = $('messagesClose');
+      if (messagesClose) {
+        messagesClose.addEventListener('click', closeMessagesModal);
+      }
+      
+      // Export/Import buttons
+      const exportDataBtn = $('exportDataBtn');
+      if (exportDataBtn) {
+        exportDataBtn.addEventListener('click', exportData);
+      }
+      
+      const importDataBtn = $('importDataBtn');
+      if (importDataBtn) {
+        importDataBtn.addEventListener('click', importData);
+      }
+      
+      // Navigation links
+      $$$('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Update active state
+          $$$('.nav-link').forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Scroll to section
+          const target = $(this.getAttribute('href').substring(1));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Storage event listener (for admin.html changes)
+      window.addEventListener('storage', handleStorageChange);
+    }
+
+    function handleContactFormSubmit(e) {
+      e.preventDefault();
+      
+      const name = $('contactName').value.trim();
+      const email = $('contactEmail').value.trim();
+      const subject = $('contactSubject').value.trim();
+      const message = $('contactMessage').value.trim();
+      
+      if (!name || !email || !subject || !message) {
+        showToast('Please fill in all fields', 'danger');
+        return;
+      }
+      
+      const messageData = {
+        id: generateId(),
+        name,
+        email,
+        subject,
+        message,
+        timestamp: new Date().toISOString(),
+        read: false
+      };
+      
+      state.messages.push(messageData);
+      saveToStorage(STORAGE_KEYS.MESSAGES, state.messages);
+      
+      // Reset form
+      $('contactForm').reset();
+      
+      showToast('Message sent successfully! We will respond soon.', 'success');
+      updateAnalytics();
+    }
+
+    function openMessagesModal() {
+      const modal = $('messagesModal');
+      const body = $('messagesBody');
+      body.innerHTML = '';
+      
+      if (state.messages.length === 0) {
+        body.innerHTML = '<p>No messages yet. Send a message using the contact form.</p>';
+      } else {
+        // Sort by newest first
+        const sortedMessages = [...state.messages].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
+        sortedMessages.forEach(msg => {
+          const messageItem = createElement('div', { className: 'message-item' });
+          
+          const meta = createElement('div', { className: 'message-meta' });
+          const name = createElement('strong', {}, msg.name);
+          const date = createElement('span', {}, formatDateTime(msg.timestamp));
+          meta.appendChild(name);
+          meta.appendChild(date);
+          messageItem.appendChild(meta);
+          
+          const statusClass = msg.read ? 'status-read' : 'status-unread';
+          const statusText = msg.read ? 'Read' : 'Unread';
+          const status = createElement('div', { 
+            className: `message-status ${statusClass}` 
+          }, statusText);
+          messageItem.appendChild(status);
+          
+          const content = createElement('div', { className: 'message-content' }, msg.message);
+          messageItem.appendChild(content);
+          
+          const actions = createElement('div', { className: 'message-actions' });
+          const markBtn = createElement('button', { 
+            onclick: `toggleMessageRead('${msg.id}')`
+          }, msg.read ? 'Mark Unread' : 'Mark Read');
+          const deleteBtn = createElement('button', { 
+            className: 'btn-danger',
+            onclick: `deleteMessage('${msg.id}')`
+          }, 'Delete');
+          
+          actions.appendChild(markBtn);
+          actions.appendChild(deleteBtn);
+          messageItem.appendChild(actions);
+          
+          body.appendChild(messageItem);
+        });
+      }
+      
+      modal.classList.add('open');
+    }
+
+    function closeMessagesModal() {
+      const modal = $('messagesModal');
+      modal.classList.remove('open');
+    }
+
+    function toggleMessageRead(id) {
+      const message = state.messages.find(m => m.id === id);
+      if (message) {
+        message.read = !message.read;
+        saveToStorage(STORAGE_KEYS.MESSAGES, state.messages);
+        openMessagesModal(); // Re-render
+        updateAnalytics();
+        showToast(`Message marked as ${message.read ? 'read' : 'unread'}`, 'info');
+      }
+    }
+
+    function deleteMessage(id) {
+      if (confirm('Are you sure you want to delete this message?')) {
+        state.messages = state.messages.filter(m => m.id !== id);
+        saveToStorage(STORAGE_KEYS.MESSAGES, state.messages);
+        openMessagesModal(); // Re-render
+        updateAnalytics();
+        showToast('Message deleted', 'info');
+      }
+    }
+
+    function exportData() {
+      const data = {
+        version: '1.0',
+        exportedAt: new Date().toISOString(),
+        mkps_student: loadFromStorage(STORAGE_KEYS.STUDENT),
+        mkps_homework: loadFromStorage(STORAGE_KEYS.HOMEWORK),
+        mkps_teachers: loadFromStorage(STORAGE_KEYS.TEACHERS),
+        mkps_events: loadFromStorage(STORAGE_KEYS.EVENTS),
+        mkps_notices: loadFromStorage(STORAGE_KEYS.NOTICES),
+        mkps_timetable: loadFromStorage(STORAGE_KEYS.TIMETABLE),
+        mkps_gallery: loadFromStorage(STORAGE_KEYS.GALLERY),
+        mkps_messages: loadFromStorage(STORAGE_KEYS.MESSAGES),
+        mkps_faq: loadFromStorage(STORAGE_KEYS.FAQ)
+      };
+      
+      const dataStr = JSON.stringify(data, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `mkps_data_backup_${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      showToast('Data exported successfully!', 'success');
+    }
+
+    function importData() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      
+      input.onchange = e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          try {
+            const importedData = JSON.parse(event.target.result);
+            
+            // Validate structure
+            const requiredKeys = [
+              'mkps_student', 'mkps_homework', 'mkps_teachers', 
+              'mkps_events', 'mkps_notices', 'mkps_timetable',
+              'mkps_gallery', 'mkps_messages', 'mkps_faq'
+            ];
+            
+            const missingKeys = requiredKeys.filter(key => !(key in importedData));
+            if (missingKeys.length > 0) {
+              throw new Error(`Missing required keys: ${missingKeys.join(', ')}`);
+            }
+            
+            // Save all data
+            Object.keys(importedData).forEach(key => {
+              if (key.startsWith('mkps_')) {
+                saveToStorage(key, importedData[key]);
+              }
+            });
+            
+            // Reload data
+            loadData();
+            initApp();
+            
+            showToast('Data imported successfully! Page will refresh.', 'success');
+            
+            // Refresh to show new data
+            setTimeout(() => {
+              window.location.reload();
+            }, 1500);
+            
+          } catch (e) {
+            console.error('Import error:', e);
+            showToast(`Import failed: ${e.message}`, 'danger');
+          }
+        };
+        reader.readAsText(file);
+      };
+      
+      input.click();
+    }
+
+    function handleStorageChange(e) {
+      // This function will be called when localStorage changes from admin.html
+      // In a real app, you might want to selectively reload only changed data
+      console.log('Storage changed:', e);
+      
+      // For now, we'll just refresh everything
+      // In a production app, you'd want to be more selective
+      if (e.key && e.key.startsWith('mkps_')) {
+        loadData();
+        initApp();
+        showToast('Data updated from admin panel', 'info');
+      }
+    }
+
+    // ======================
+    // PRINT FUNCTIONALITY
+    // ======================
+
+    function downloadSnapshot() {
+      // Create print content
+      const printContent = $('printContent');
+      printContent.innerHTML = '';
+      
+      // Add current student info
+      if (currentStudent) {
+        const studentInfo = createElement('div', { className: 'print-section' });
+        studentInfo.innerHTML = `
+          <h2>Student Information</h2>
+          <p><strong>Name:</strong> ${currentStudent.name}</p>
+          <p><strong>Class:</strong> ${currentStudent.class}</p>
+          <p><strong>Parent:</strong> ${currentStudent.parentName}</p>
+          <p><strong>Access Date:</strong> ${formatDateTime(currentStudent.joined)}</p>
+          <hr />
+        `;
+        printContent.appendChild(studentInfo);
+      }
+      
+      // Add homework
+      const homeworkSection = createElement('div', { className: 'print-section' });
+      homeworkSection.innerHTML = `
+        <h2>Current Homework</h2>
+        ${state.filteredHomework.map(h => `
+          <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
+            <p><strong>Subject:</strong> ${h.subjectName}</p>
+            <p><strong>Title:</strong> ${h.title}</p>
+            <p><strong>Assigned:</strong> ${formatDate(h.dateAssigned)}</p>
+            <p><strong>Due:</strong> ${formatDate(h.dueDate)}</p>
+            <p><strong>Description:</strong> ${h.description}</p>
+            <p><strong>Status:</strong> ${h.completed ? 'Completed' : 'Pending'}</p>
+          </div>
+        `).join('')}
+        <hr />
+      `;
+      printContent.appendChild(homeworkSection);
+      
+      // Add notices
+      const noticesSection = createElement('div', { className: 'print-section' });
+      noticesSection.innerHTML = `
+        <h2>Notices</h2>
+        ${state.notices.map(n => `
+          <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
+            <p><strong>Priority:</strong> ${n.priority.toUpperCase()}</p>
+            <p><strong>Title:</strong> ${n.title}</p>
+            <p><strong>Date:</strong> ${formatDate(n.date)}</p>
+            <p><strong>Description:</strong> ${n.description}</p>
+          </div>
+        `).join('')}
+        <hr />
+      `;
+      printContent.appendChild(noticesSection);
+      
+      // Add events
+      const eventsSection = createElement('div', { className: 'print-section' });
+      eventsSection.innerHTML = `
+        <h2>Upcoming Events</h2>
+        ${state.filteredEvents.map(e => `
+          <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
+            <p><strong>Title:</strong> ${e.title}</p>
+            <p><strong>Date:</strong> ${formatDate(e.date)} at ${e.time}</p>
+            <p><strong>Location:</strong> ${e.location}</p>
+            <p><strong>Description:</strong> ${e.description}</p>
+          </div>
+        `).join('')}
+      `;
+      printContent.appendChild(eventsSection);
+      
+      // Trigger print
+      window.print();
+    }
+
+    // Add download button to sidebar
+    function addPrintButton() {
+      const exportImport = document.querySelector('.export-import');
+      if (exportImport) {
+        const printBtn = createElement('button', { 
+          id: 'printSnapshotBtn'
+        }, 'Print Snapshot');
+        printBtn.addEventListener('click', downloadSnapshot);
+        exportImport.appendChild(printBtn);
+      }
+    }
+
+    // ======================
+    // INITIALIZATION
+    // ======================
+
+    function initApp() {
+      console.log('Initializing app...');
+      
+      // Load data
+      loadData();
+      
+      // Filter data
+      filterHomework();
+      filterEvents();
+      
+      // Render all sections
+      renderTeachers();
+      renderTimetable();
+      renderGallery();
+      renderFAQ();
+      renderNotices();
+      
+      // Update analytics
+      updateAnalytics();
+      
+      // Setup event listeners
+      setupEventListeners();
+      
+      // Add print button
+      addPrintButton();
+      
+      console.log('App initialized successfully');
+    }
+
+    // Check student access on page load
+    function checkStudentAccess() {
+      currentStudent = loadFromStorage(STORAGE_KEYS.STUDENT);
+      
+      if (currentStudent) {
+        // Show locked notice
+        const lockedNotice = $('lockedNotice');
+        if (lockedNotice) {
+          lockedNotice.classList.remove('hidden');
+          $('welcomeMessage').textContent = 
+            `Welcome, ${currentStudent.name}! You are in Class ${currentStudent.class}. Your access is secured.`;
+        }
+        
+        // Initialize app
+        initApp();
+      } else {
+        // Show student access form
+        showStudentAccessForm();
+      }
+    }
+
+    // ======================
+    // GLOBAL FUNCTIONS (for admin.html)
+    // ======================
+
+    // These functions will be available for admin.html to call
+    window.MKPS = {
+      // Render homework for a specific class
+      renderHomeworkFor: function(classNo) {
+        const filtered = state.homework.filter(h => h.class === classNo);
+        state.filteredHomework = filtered;
+        renderHomework();
+      },
+      
+      // Refresh teachers display
+      refreshTeachers: function() {
+        state.teachers = loadFromStorage(STORAGE_KEYS.TEACHERS, []);
+        renderTeachers();
+      },
+      
+      // Refresh events display
+      refreshEvents: function() {
+        state.events = loadFromStorage(STORAGE_KEYS.EVENTS, []);
+        filterEvents();
+      },
+      
+      // Reload all data and reinitialize
+      reloadAll: function() {
+        loadData();
+        initApp();
+      },
+      
+      // Get current student
+      getCurrentStudent: function() {
+        return currentStudent;
+      },
+      
+      // Set current student (for testing)
+      setCurrentStudent: function(student) {
+        currentStudent = student;
+        saveToStorage(STORAGE_KEYS.STUDENT, student);
+      },
+      
+      // Clear all data (for reset)
+      clearAllData: function() {
+        if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
+          Object.values(STORAGE_KEYS).forEach(key => {
+            localStorage.removeItem(key);
+          });
+          alert('All data cleared. Refreshing page...');
+          window.location.reload();
+        }
+      }
+    };
+
+    // ======================
+    // STARTUP
+    // ======================
+
+    // Run on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set current year in footer
+      $('currentYear').textContent = new Date().getFullYear();
+      
+      // Seed data if needed
+      seedData();
+      
+      // Check student access
+      checkStudentAccess();
+    });
+  </script>
+</body>
+</html>
+```
