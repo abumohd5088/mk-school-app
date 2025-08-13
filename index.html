@@ -1,658 +1,1219 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Milli Karwaan Public School, Balrampur - A leading educational institution providing quality Islamic and modern education from Nursery to 12th. Apply now for admission." />
-  <meta name="keywords" content="Milli Karwaan Public School, Balrampur School, Best School in Balrampur, Islamic School, CBSE School, Online Admission" />
-  <meta name="author" content="Milli Karwaan Public School" />
-  <meta name="robots" content="index, follow" />
-  <title>Milli Karwaan Public School | Best School in Balrampur</title>
+import React, { useState, useEffect } from 'react';
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" type="image/png" />
+const App = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [courses, setCourses] = useState([
+    {
+      id: 1,
+      title: 'Web Development Fundamentals',
+      instructor: 'Sarah Johnson',
+      progress: 75,
+      enrolled: true,
+      category: 'Programming',
+      duration: '12 weeks',
+      students: 2345,
+      rating: 4.8,
+      image: 'https://placehold.co/300x200/3b82f6/ffffff?text=Web+Dev'
+    },
+    {
+      id: 2,
+      title: 'Data Science with Python',
+      instructor: 'Michael Chen',
+      progress: 45,
+      enrolled: true,
+      category: 'Data Science',
+      duration: '16 weeks',
+      students: 1890,
+      rating: 4.9,
+      image: 'https://placehold.co/300x200/10b981/ffffff?text=Data+Science'
+    },
+    {
+      id: 3,
+      title: 'Graphic Design Masterclass',
+      instructor: 'Emma Wilson',
+      progress: 0,
+      enrolled: false,
+      category: 'Design',
+      duration: '10 weeks',
+      students: 3200,
+      rating: 4.7,
+      image: 'https://placehold.co/300x200/f59e0b/ffffff?text=Design'
+    }
+  ]);
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  const [assignments, setAssignments] = useState([
+    {
+      id: 1,
+      title: 'HTML & CSS Project',
+      course: 'Web Development Fundamentals',
+      dueDate: '2024-01-15',
+      status: 'submitted',
+      grade: 'A',
+      points: '95/100'
+    },
+    {
+      id: 2,
+      title: 'JavaScript Fundamentals Quiz',
+      course: 'Web Development Fundamentals',
+      dueDate: '2024-01-10',
+      status: 'graded',
+      grade: 'B+',
+      points: '87/100'
+    },
+    {
+      id: 3,
+      title: 'Python Data Analysis',
+      course: 'Data Science with Python',
+      dueDate: '2024-01-20',
+      status: 'pending',
+      grade: null,
+      points: null
+    }
+  ]);
 
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#16a34a',  /* Green */
-            secondary: '#fbbf24', /* Gold */
-            light: '#f8fafc',
-            dark: '#0f172a'
-          },
-          fontFamily: {
-            sans: ['Poppins', 'sans-serif']
-          }
-        }
-      }
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      sender: 'Professor Sarah Johnson',
+      subject: 'Your Web Dev Project Feedback',
+      date: '2024-01-08',
+      read: false,
+      content: 'Great work on your HTML & CSS project! I particularly liked your responsive design implementation. Keep up the excellent work.'
+    },
+    {
+      id: 2,
+      sender: 'System Notification',
+      subject: 'New Course Available: Advanced React',
+      date: '2024-01-07',
+      read: true,
+      content: 'We\'re excited to announce our new Advanced React course. Enroll now to learn about hooks, context, and state management patterns.'
     }
-  </script>
+  ]);
 
-  <!-- Custom Styles -->
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      transition: background-color 0.3s, color 0.3s;
+  const [grades, setGrades] = useState([
+    {
+      course: 'Web Development Fundamentals',
+      midterm: 'A-',
+      final: 'B+',
+      project: 'A',
+      finalGrade: 'A-'
+    },
+    {
+      course: 'Data Science with Python',
+      midterm: 'B',
+      final: null,
+      project: null,
+      finalGrade: 'B'
     }
-    .dark-mode {
-      --tw-bg-opacity: 1;
-      background-color: #0f172a;
-      color: #e2e8f0;
-    }
-    .hero-bg {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-      background-size: cover;
-      background-position: center;
-    }
-    .ticker {
-      animation: scrollText 20s linear infinite;
-    }
-    @keyframes scrollText {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-    }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-    }
-    .chatbot {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-    .dropdown:hover .dropdown-menu {
-      display: block;
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.appear {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-<body class="bg-light text-dark" id="body">
+  ]);
 
-  <!-- Language & Dark Mode Toggle -->
-  <div class="bg-primary text-white py-1 px-4 flex justify-between items-center text-sm">
-    <div class="flex space-x-4">
-      <button id="langToggle" class="hover:text-secondary transition">हिंदी</button>
-      <button id="darkModeToggle" class="hover:text-secondary transition">🌙 Dark Mode</button>
-    </div>
-    <div class="flex space-x-3">
-      <a href="#" class="hover:text-secondary"><i class="fab fa-facebook-f"></i> Facebook</a>
-      <a href="#" class="hover:text-secondary"><i class="fab fa-instagram"></i> Instagram</a>
-      <a href="#" class="hover:text-secondary"><i class="fab fa-youtube"></i> YouTube</a>
-    </div>
-  </div>
+  const [schedule, setSchedule] = useState([
+    { day: 'Monday', time: '9:00-10:30', course: 'Web Development Fundamentals', type: 'Lecture', room: 'Online' },
+    { day: 'Monday', time: '14:00-15:30', course: 'Data Science with Python', type: 'Lab', room: 'Online' },
+    { day: 'Wednesday', time: '10:00-11:30', course: 'Web Development Fundamentals', type: 'Tutorial', room: 'Online' },
+    { day: 'Friday', time: '13:00-14:30', course: 'Graphic Design', type: 'Lecture', room: 'Online' }
+  ]);
 
-  <!-- Live Notice Ticker -->
-  <div class="bg-red-600 text-white text-sm overflow-hidden whitespace-nowrap py-2">
-    <div class="ticker inline-block animate-scroll">
-      🔔 ADMISSION OPEN FOR 2024-25 | 🎓 ANNUAL DAY ON 15 APRIL | 💵 FEE DUE ON 5TH OF EVERY MONTH | 📚 MID-TERM EXAMS FROM 10 APRIL | 🧑‍🏫 TEACHERS REQUIRED – APPLY NOW
-    </div>
-  </div>
+  const [announcements, setAnnouncements] = useState([
+    {
+      id: 1,
+      title: 'Winter Break Schedule',
+      date: '2024-01-05',
+      author: 'Administration',
+      content: 'Please note that the school will be closed from December 20th to January 5th for winter break. All assignments due during this period have been extended.'
+    },
+    {
+      id: 2,
+      title: 'New Library Resources',
+      date: '2024-01-03',
+      author: 'Library Department',
+      content: 'We\'ve added 500+ new digital resources to our online library, including textbooks, research papers, and video tutorials. Access them through the library portal.'
+    }
+  ]);
 
-  <!-- Navigation -->
-  <nav class="bg-white shadow-md sticky top-0 z-50 transition" id="navbar">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-3">
-        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Milli Karwaan Public School Logo" class="h-14" />
+  const [quizzes, setQuizzes] = useState([
+    {
+      id: 1,
+      title: 'JavaScript Basics Quiz',
+      course: 'Web Development Fundamentals',
+      questions: 15,
+      timeLimit: 30,
+      dueDate: '2024-01-12',
+      status: 'available'
+    }
+  ]);
+
+  const [resources, setResources] = useState([
+    {
+      id: 1,
+      title: 'HTML5 Cheat Sheet',
+      course: 'Web Development Fundamentals',
+      type: 'PDF',
+      size: '2.4 MB',
+      downloads: 1234
+    },
+    {
+      id: 2,
+      title: 'Python Data Science Handbook',
+      course: 'Data Science with Python',
+      type: 'PDF',
+      size: '15.7 MB',
+      downloads: 892
+    },
+    {
+      id: 3,
+      title: 'Design Principles Video',
+      course: 'Graphic Design Masterclass',
+      type: 'Video',
+      duration: '45:32',
+      views: 2345
+    }
+  ]);
+
+  const [notifications, setNotifications] = useState([
+    { id: 1, type: 'assignment', message: 'New assignment posted for Web Development Fundamentals', time: '2 hours ago', read: false },
+    { id: 2, type: 'grade', message: 'Your quiz grade has been posted', time: '1 day ago', read: true },
+    { id: 3, type: 'announcement', message: 'Winter break schedule announced', time: '2 days ago', read: true }
+  ]);
+
+  const [forumPosts, setForumPosts] = useState([
+    {
+      id: 1,
+      title: 'Best practices for responsive design?',
+      author: 'John Doe',
+      course: 'Web Development Fundamentals',
+      replies: 12,
+      views: 89,
+      lastActivity: '1 hour ago',
+      tags: ['responsive', 'css', 'best-practices']
+    },
+    {
+      id: 2,
+      title: 'Help with Python data visualization',
+      author: 'Jane Smith',
+      course: 'Data Science with Python',
+      replies: 8,
+      views: 45,
+      lastActivity: '3 hours ago',
+      tags: ['python', 'matplotlib', 'help']
+    }
+  ]);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setCurrentUser({ name: 'Alex Johnson', role: 'Student', email: 'alex.johnson@school.edu' });
+  };
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    setActiveTab('dashboard');
+  };
+
+  const markNotificationAsRead = (id) => {
+    setNotifications(notifications.map(n => n.id === id ? { ...n, read: true } : n));
+  };
+
+  const completeCourse = (courseId) => {
+    setCourses(courses.map(course => 
+      course.id === courseId ? { ...course, progress: 100 } : course
+    ));
+  };
+
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253z" />
+              </svg>
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Web School</h1>
+            <p className="text-gray-600">Access your learning platform</p>
+          </div>
+          
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <input
+                type="email"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <input
+                type="password"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <label className="flex items-center">
+                <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                <span className="ml-2 text-sm text-gray-600">Remember me</span>
+              </label>
+              <a href="#" className="text-sm text-blue-600 hover:text-blue-800 transition-colors">Forgot password?</a>
+            </div>
+            
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all font-medium"
+            >
+              Sign In
+            </button>
+          </form>
+          
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{' '}
+              <a href="#" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                Register now
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const Dashboard = () => (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 class="text-xl font-bold text-primary">Milli Karwaan Public School</h1>
-          <p class="text-xs text-gray-600">Balrampur, Uttar Pradesh</p>
+          <h1 className="text-3xl font-bold text-gray-900">Welcome back, {currentUser.name}!</h1>
+          <p className="text-gray-600 mt-1">Here's your learning dashboard</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            Quick Access
+          </button>
+          <button className="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+            Calendar
+          </button>
         </div>
       </div>
 
-      <!-- Desktop Menu -->
-      <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="#home" class="text-gray-700 hover:text-primary transition">Home</a></li>
-        <li class="dropdown relative">
-          <a href="#" class="text-gray-700 hover:text-primary transition flex items-center">Academics <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
-          <ul class="dropdown-menu absolute hidden bg-white shadow-lg mt-1 w-48 rounded-md py-2 z-50">
-            <li><a href="#curriculum" class="block px-4 py-2 hover:bg-primary hover:text-white">Curriculum</a></li>
-            <li><a href="#timetable" class="block px-4 py-2 hover:bg-primary hover:text-white">Timetable</a></li>
-            <li><a href="#downloads" class="block px-4 py-2 hover:bg-primary hover:text-white">Downloads</a></li>
-          </ul>
-        </li>
-        <li><a href="#about" class="text-gray-700 hover:text-primary transition">About Us</a></li>
-        <li><a href="#admission" class="text-gray-700 hover:text-primary transition">Admission</a></li>
-        <li><a href="#gallery" class="text-gray-700 hover:text-primary transition">Gallery</a></li>
-        <li><a href="#contact" class="text-gray-700 hover:text-primary transition">Contact</a></li>
-        <li><a href="#login" class="text-gray-700 hover:text-primary transition">Login</a></li>
-      </ul>
+      {/* Stats Overview */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600">Active Courses</p>
+              <p className="text-3xl font-bold text-gray-900">{courses.filter(c => c.enrolled).length}</p>
+            </div>
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253z" />
+              </svg>
+            </div>
+          </div>
+        </div>
 
-      <!-- Mobile Menu Button -->
-      <button id="menuButton" class="md:hidden text-gray-700 focus:outline-none">
-        <i class="fas fa-bars text-2xl"></i>
-      </button>
-    </div>
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600">Pending Assignments</p>
+              <p className="text-3xl font-bold text-gray-900">{assignments.filter(a => a.status === 'pending').length}</p>
+            </div>
+            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+              <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+          </div>
+        </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="bg-white hidden md:hidden shadow-lg">
-      <ul class="flex flex-col p-4 space-y-3">
-        <li><a href="#home" class="text-gray-700 hover:text-primary block py-2">Home</a></li>
-        <li><a href="#about" class="text-gray-700 hover:text-primary block py-2">About Us</a></li>
-        <li><a href="#curriculum" class="text-gray-700 hover:text-primary block py-2">Curriculum</a></li>
-        <li><a href="#timetable" class="text-gray-700 hover:text-primary block py-2">Timetable</a></li>
-        <li><a href="#admission" class="text-gray-700 hover:text-primary block py-2">Admission</a></li>
-        <li><a href="#gallery" class="text-gray-700 hover:text-primary block py-2">Gallery</a></li>
-        <li><a href="#contact" class="text-gray-700 hover:text-primary block py-2">Contact</a></li>
-        <li><a href="#login" class="text-gray-700 hover:text-primary block py-2">Login</a></li>
-      </ul>
-    </div>
-  </nav>
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600">Average Grade</p>
+              <p className="text-3xl font-bold text-gray-900">B+</p>
+            </div>
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+          </div>
+        </div>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero-bg text-white text-center py-24 relative fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl md:text-6xl font-bold mb-4 animate-pulse">Milli Karwaan Public School</h2>
-      <p class="text-lg md:text-xl mb-8 opacity-90">Excellence in Education & Islamic Values</p>
-      <div class="space-x-4">
-        <a href="#admission" class="bg-secondary text-primary px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition inline-block">Apply Now</a>
-        <a href="#about" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition inline-block">Learn More</a>
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600">Messages</p>
+              <p className="text-3xl font-bold text-gray-900">{messages.filter(m => !m.read).length}</p>
+            </div>
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Courses</h2>
+          <div className="space-y-4">
+            {courses.filter(c => c.enrolled).map(course => (
+              <div key={course.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                <img src={course.image} alt={course.title} className="w-16 h-16 rounded-lg object-cover" />
+                <div className="flex-1">
+                  <h3 className="font-medium text-gray-900">{course.title}</h3>
+                  <p className="text-sm text-gray-600">by {course.instructor}</p>
+                  <div className="flex items-center mt-2">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                      <div 
+                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${course.progress}%` }}
+                      ></div>
+                    </div>
+                    <span className="ml-3 text-sm text-gray-600">{course.progress}%</span>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setActiveTab('courses')}
+                  className="text-blue-600 hover:text-blue-800 font-medium text-sm"
+                >
+                  Continue
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Upcoming Deadlines</h2>
+          <div className="space-y-4">
+            {assignments.filter(a => a.status === 'pending').map(assignment => (
+              <div key={assignment.id} className="flex items-center justify-between p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg">
+                <div>
+                  <h3 className="font-medium text-gray-900">{assignment.title}</h3>
+                  <p className="text-sm text-gray-600">Due: {assignment.dueDate}</p>
+                  <p className="text-sm text-gray-600">{assignment.course}</p>
+                </div>
+                <button 
+                  onClick={() => setActiveTab('assignments')}
+                  className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition-colors text-sm font-medium"
+                >
+                  Submit
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Announcements */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Latest Announcements</h2>
+        <div className="space-y-4">
+          {announcements.slice(0, 3).map(announcement => (
+            <div key={announcement.id} className="border-b border-gray-200 pb-4 last:border-b-0">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-medium text-gray-900">{announcement.title}</h3>
+                <span className="text-sm text-gray-500">{announcement.date}</span>
+              </div>
+              <p className="text-gray-600 text-sm mb-2">{announcement.content}</p>
+              <div className="flex items-center text-sm text-gray-500">
+                <span>Posted by {announcement.author}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  </section>
+  );
 
-  <!-- Image Slider -->
-  <div class="relative max-w-5xl mx-auto mt-8 h-80 overflow-hidden rounded-lg shadow-lg fade-in">
-    <div id="slider" class="flex transition-transform duration-500 h-full">
-      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="School Event" class="min-w-full h-full object-cover">
-      <img src="https://images.unsplash.com/photo-1543269664-56d93c30dd1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Science Lab" class="min-w-full h-full object-cover">
-      <img src="https://images.unsplash.com/photo-1534802046575-582517339381?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Prayer Hall" class="min-w-full h-full object-cover">
-      <img src="https://images.unsplash.com/photo-1522202176988-66aacc9e255b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Classroom" class="min-w-full h-full object-cover">
-    </div>
-    <button id="prevBtn" class="absolute top-1/2 left-2 bg-black bg-opacity-50 text-white p-2 rounded-full">&lt;</button>
-    <button id="nextBtn" class="absolute top-1/2 right-2 bg-black bg-opacity-50 text-white p-2 rounded-full">&gt;</button>
-    <div id="sliderIndicators" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
-  </div>
-
-  <!-- About Us -->
-  <section id="about" class="py-16 bg-gray-50 fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary">About Us</h2>
-      <div class="grid md:grid-cols-2 gap-10 items-center">
+  const Courses = () => (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h3 class="text-xl font-semibold mb-4">Our Vision</h3>
-          <p class="mb-4">To nurture morally upright, intellectually strong, and socially responsible individuals grounded in Islamic values and modern education.</p>
-          <h3 class="text-xl font-semibold mb-4">Our Mission</h3>
-          <p class="mb-4">To provide quality education that balances religious teachings with academic excellence, fostering holistic development in a safe and inclusive environment.</p>
-          <h3 class="text-xl font-semibold mb-4">Principal's Message</h3>
-          <p>"We believe every child is a gift from Allah, and our duty is to guide them with knowledge, faith, and compassion."</p>
+          <h1 className="text-3xl font-bold text-gray-900">My Courses</h1>
+          <p className="text-gray-600 mt-1">Continue your learning journey</p>
         </div>
-        <div class="space-y-6">
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h4 class="font-bold text-primary">Modern Labs</h4>
-            <p>Well-equipped science and computer labs for hands-on learning.</p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h4 class="font-bold text-primary">Library</h4>
-            <p>Extensive collection of books, journals, and digital resources.</p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h4 class="font-bold text-primary">Prayer Hall</h4>
-            <p>Dedicated space for daily prayers and Islamic studies.</p>
-          </div>
+        <div className="flex gap-3">
+          <select className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option>All Categories</option>
+            <option>Programming</option>
+            <option>Data Science</option>
+            <option>Design</option>
+          </select>
+          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            Browse Courses
+          </button>
         </div>
       </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {courses.map(course => (
+          <div key={course.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+            <img src={course.image} alt={course.title} className="w-full h-48 object-cover" />
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                  {course.category}
+                </span>
+                <div className="flex items-center">
+                  <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <span className="text-sm text-gray-600 ml-1">{course.rating}</span>
+                </div>
+              </div>
+              
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{course.title}</h3>
+              <p className="text-gray-600 text-sm mb-4">by {course.instructor}</p>
+              
+              {course.enrolled && (
+                <div className="mb-4">
+                  <div className="flex justify-between text-sm text-gray-600 mb-1">
+                    <span>Progress</span>
+                    <span>{course.progress}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                      style={{ width: `${course.progress}%` }}
+                    ></div>
+                  </div>
+                </div>
+              )}
+              
+              <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                <span>{course.duration}</span>
+                <span>{course.students.toLocaleString()} students</span>
+              </div>
+              
+              <div className="flex gap-2">
+                {course.enrolled ? (
+                  <button 
+                    onClick={() => setActiveTab('course-content')}
+                    className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  >
+                    Continue Learning
+                  </button>
+                ) : (
+                  <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium">
+                    Enroll Now
+                  </button>
+                )}
+                <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-  </section>
+  );
 
-  <!-- Academics -->
-  <section id="academics" class="py-16 fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Academics</h2>
-      <div class="bg-white p-8 rounded-lg shadow-lg">
-        <table class="w-full border-collapse text-left">
-          <thead>
-            <tr class="bg-primary text-white">
-              <th class="p-3">Class</th>
-              <th class="p-3">Curriculum</th>
-              <th class="p-3">Subjects</th>
-              <th class="p-3">Download</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b">
-              <td class="p-3">Nursery - UKG</td>
-              <td>Playway Method</td>
-              <td>English, Urdu, Math, Islamic Studies</td>
-              <td><a href="#" class="text-secondary hover:underline">Syllabus PDF</a></td>
-            </tr>
-            <tr class="border-b">
-              <td class="p-3">I - V</td>
-              <td>CBC Pattern</td>
-              <td>Science, Social, Hindi, Computer</td>
-              <td><a href="#" class="text-secondary hover:underline">Syllabus PDF</a></td>
-            </tr>
-            <tr class="border-b">
-              <td class="p-3">VI - X</td>
-              <td>CBSE Aligned</td>
-              <td>Math, Science, SST, Languages</td>
-              <td><a href="#" class="text-secondary hover:underline">Syllabus PDF</a></td>
-            </tr>
-            <tr>
-              <td class="p-3">XI - XII</td>
-              <td>CBSE (Science/Commerce)</td>
-              <td>Physics, Chemistry, Biology, Accounts</td>
-              <td><a href="#" class="text-secondary hover:underline">Syllabus PDF</a></td>
-            </tr>
-          </tbody>
-        </table>
+  const Assignments = () => (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Assignments</h1>
+          <p className="text-gray-600 mt-1">Manage your coursework and submissions</p>
+        </div>
+        <div className="flex gap-3">
+          <select className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option>All Courses</option>
+            {courses.filter(c => c.enrolled).map(c => (
+              <option key={c.id}>{c.title}</option>
+            ))}
+          </select>
+          <select className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option>All Status</option>
+            <option>Pending</option>
+            <option>Submitted</option>
+            <option>Graded</option>
+          </select>
+        </div>
+      </div>
 
-        <h3 class="text-2xl font-semibold mt-10 mb-4">Interactive Timetable</h3>
-        <div class="overflow-x-auto">
-          <table class="w-full border-collapse mt-4">
-            <thead>
-              <tr class="bg-gray-100">
-                <th class="p-3">Time</th>
-                <th class="p-3">Mon</th>
-                <th class="p-3">Tue</th>
-                <th class="p-3">Wed</th>
-                <th class="p-3">Thu</th>
-                <th class="p-3">Fri</th>
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assignment</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="border-b">
-                <td class="p-3">8:00-9:00</td>
-                <td class="p-3">Math</td>
-                <td class="p-3">Science</td>
-                <td class="p-3">English</td>
-                <td class="p-3">Math</td>
-                <td class="p-3">Science</td>
-              </tr>
-              <tr class="border-b">
-                <td class="p-3">9:00-10:00</td>
-                <td class="p-3">Urdu</td>
-                <td class="p-3">Math</td>
-                <td class="p-3">Science</td>
-                <td class="p-3">Urdu</td>
-                <td class="p-3">Math</td>
-              </tr>
-              <tr>
-                <td class="p-3">10:00-11:00</td>
-                <td class="p-3">Islamic</td>
-                <td class="p-3">English</td>
-                <td class="p-3">Computer</td>
-                <td class="p-3">Islamic</td>
-                <td class="p-3">English</td>
-              </tr>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {assignments.map(assignment => (
+                <tr key={assignment.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="font-medium text-gray-900">{assignment.title}</div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {assignment.course}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {assignment.dueDate}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      assignment.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                      assignment.status === 'submitted' ? 'bg-blue-100 text-blue-800' :
+                      'bg-green-100 text-green-800'
+                    }`}>
+                      {assignment.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {assignment.points || '-'}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    {assignment.status === 'pending' ? (
+                      <button className="text-blue-600 hover:text-blue-900 mr-4">
+                        Submit
+                      </button>
+                    ) : (
+                      <button className="text-blue-600 hover:text-blue-900 mr-4">
+                        View
+                      </button>
+                    )}
+                    <button className="text-gray-600 hover:text-gray-900">
+                      Download
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
     </div>
-  </section>
+  );
 
-  <!-- Admission Form -->
-  <section id="admission" class="py-16 bg-gray-50 fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Online Admission</h2>
-      <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <form id="admissionForm">
-          <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label class="block mb-2 font-medium">Student Name</label>
-              <input type="text" required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">Class Applying For</label>
-              <select required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
-                <option>Nursery</option>
-                <option>LKG</option>
-                <option>UKG</option>
-                <option>Class I</option>
-                <option>Class II</option>
-                <option>Class III</option>
-                <option>Class IV</option>
-                <option>Class V</option>
-                <option>Class VI</option>
-                <option>Class VII</option>
-                <option>Class VIII</option>
-                <option>Class IX</option>
-                <option>Class X</option>
-                <option>Class XI</option>
-                <option>Class XII</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">Date of Birth</label>
-              <input type="date" required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">Parent/Guardian Name</label>
-              <input type="text" required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">Phone</label>
-              <input type="tel" required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">Email</label>
-              <input type="email" class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
-            </div>
-          </div>
-          <div class="mb-6">
-            <label class="block mb-2 font-medium">Upload Photo</label>
-            <input type="file" accept="image/*" class="w-full border border-gray-300 p-3 rounded">
-          </div>
-          <button type="submit" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition w-full">Submit Application</button>
-        </form>
-        <p class="mt-4 text-center text-green-600 hidden" id="successMsg">Application submitted successfully! Your tracking number: <strong>MPK2024-001</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Login Portal -->
-  <section id="login" class="py-16 fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Student & Parent Login</h2>
-      <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow text-center">
-          <i class="fas fa-user-graduate text-4xl text-primary mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Student Login</h3>
-          <p class="mb-4">View attendance, results, homework</p>
-          <button class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Login</button>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow text-center">
-          <i class="fas fa-chalkboard-teacher text-4xl text-primary mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Teacher Login</h3>
-          <p class="mb-4">Mark attendance, upload notes, enter results</p>
-          <button class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Login</button>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow text-center">
-          <i class="fas fa-wallet text-4xl text-primary mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Parent Portal</h3>
-          <p class="mb-4">View performance, pay fees, chat with teachers</p>
-          <button class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Login</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery" class="py-16 bg-gray-50 fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Photo & Video Gallery</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Event" class="rounded-lg cursor-pointer hover:opacity-80" onclick="openLightbox(this.src)">
-        <img src="https://images.unsplash.com/photo-1543269664-56d93c30dd1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Lab" class="rounded-lg cursor-pointer hover:opacity-80" onclick="openLightbox(this.src)">
-        <img src="https://images.unsplash.com/photo-1534802046575-582517339381?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Prayer" class="rounded-lg cursor-pointer hover:opacity-80" onclick="openLightbox(this.src)">
-        <img src="https://images.unsplash.com/photo-1522202176988-66aacc9e255b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Class" class="rounded-lg cursor-pointer hover:opacity-80" onclick="openLightbox(this.src)">
-      </div>
-      <div class="mt-10">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-16 fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Contact Us</h2>
-      <div class="grid md:grid-cols-2 gap-10">
+  const Grades = () => (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <div class="bg-white p-6 rounded-lg shadow mb-6">
-            <h3 class="text-xl font-semibold mb-4">Address</h3>
-            <p>Boluha Police Chowki, Balrampur, Uttar Pradesh</p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow mb-6">
-            <h3 class="text-xl font-semibold mb-4">Phone</h3>
-            <p>+91 9758919151</p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow mb-6">
-            <h3 class="text-xl font-semibold mb-4">Email</h3>
-            <p>madamsir066@gmail.com</p>
-          </div>
-          <a href="https://wa.me/919758919151" target="_blank" class="bg-green-500 text-white px-6 py-3 rounded-full inline-block hover:bg-green-600 transition">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-          </a>
+          <h1 className="text-3xl font-bold text-gray-900">Grades</h1>
+          <p className="text-gray-600 mt-1">Track your academic performance</p>
         </div>
+        <div className="flex gap-3">
+          <select className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option>All Courses</option>
+            {courses.filter(c => c.enrolled).map(c => (
+              <option key={c.id}>{c.title}</option>
+            ))}
+          </select>
+          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            Export Report
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">Current Grades</h2>
+          <div className="space-y-6">
+            {grades.map(grade => (
+              <div key={grade.course} className="border-b border-gray-200 pb-6 last:border-b-0">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-medium text-gray-900">{grade.course}</h3>
+                  <span className="text-2xl font-bold text-blue-600">{grade.finalGrade}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div>
+                    <p className="text-gray-500">Midterm</p>
+                    <p className="font-medium text-gray-900">{grade.midterm}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">Final</p>
+                    <p className="font-medium text-gray-900">{grade.final || '-'}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">Project</p>
+                    <p className="font-medium text-gray-900">{grade.project || '-'}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">Grade Distribution</h2>
+          <div className="space-y-4">
+            {[
+              { grade: 'A', count: 12, color: 'bg-green-500' },
+              { grade: 'A-', count: 8, color: 'bg-green-400' },
+              { grade: 'B+', count: 15, color: 'bg-blue-500' },
+              { grade: 'B', count: 10, color: 'bg-blue-400' },
+              { grade: 'B-', count: 5, color: 'bg-yellow-500' },
+              { grade: 'C+', count: 3, color: 'bg-yellow-400' }
+            ].map(item => (
+              <div key={item.grade} className="flex items-center">
+                <div className="w-16 text-sm font-medium text-gray-900">{item.grade}</div>
+                <div className="flex-1 mx-4 bg-gray-200 rounded-full h-3">
+                  <div 
+                    className={`${item.color} h-3 rounded-full`}
+                    style={{ width: `${(item.count / 53) * 100}%` }}
+                  ></div>
+                </div>
+                <div className="w-12 text-sm text-gray-600">{item.count}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const Schedule = () => (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.467259676888!2d81.83989931503496!3d27.26845898298848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399fe8c7b8b0f5c5%3A0x5b6c5b5b5b5b5b5b!2sBalrampur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-          <form class="mt-6 bg-white p-6 rounded-lg shadow">
-            <h3 class="text-xl font-semibold mb-4">Send Us a Message</h3>
-            <div class="mb-4">
-              <input type="text" placeholder="Your Name" class="w-full border border-gray-300 p-3 rounded">
-            </div>
-            <div class="mb-4">
-              <input type="email" placeholder="Your Email" class="w-full border border-gray-300 p-3 rounded">
-            </div>
-            <div class="mb-4">
-              <textarea rows="4" placeholder="Your Message" class="w-full border border-gray-300 p-3 rounded"></textarea>
-            </div>
-            <button type="submit" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition">Send Message</button>
-          </form>
+          <h1 className="text-3xl font-bold text-gray-900">Schedule</h1>
+          <p className="text-gray-600 mt-1">Your weekly class schedule</p>
+        </div>
+        <div className="flex gap-3">
+          <select className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option>This Week</option>
+            <option>Last Week</option>
+            <option>Next Week</option>
+          </select>
+          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            Add Event
+          </button>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Day</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Room</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {schedule.map((item, index) => (
+                <tr key={index} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="font-medium text-gray-900">{item.day}</div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {item.time}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="font-medium text-gray-900">{item.course}</div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      item.type === 'Lecture' ? 'bg-blue-100 text-blue-800' :
+                      item.type === 'Lab' ? 'bg-green-100 text-green-800' :
+                      'bg-purple-100 text-purple-800'
+                    }`}>
+                      {item.type}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {item.room}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <button className="text-blue-600 hover:text-blue-900 mr-4">
+                      Join
+                    </button>
+                    <button className="text-gray-600 hover:text-gray-900">
+                      Details
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </section>
+  );
 
-  <!-- AI Chatbot -->
-  <div class="chatbot">
-    <button id="chatbotToggle" class="bg-primary text-white p-3 rounded-full shadow-lg hover:bg-opacity-90 transition">
-      <i class="fas fa-robot text-xl"></i>
-    </button>
-    <div id="chatbot" class="bg-white rounded-lg shadow-lg mt-2 w-80 md:w-96 hidden">
-      <div class="bg-primary text-white p-3 rounded-t-lg flex justify-between items-center">
-        <h4 class="font-semibold">AI Assistant</h4>
-        <button id="closeChatbot" class="text-white">&times;</button>
+  const Messages = () => (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Messages</h1>
+          <p className="text-gray-600 mt-1">Communicate with instructors and peers</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            New Message
+          </button>
+        </div>
       </div>
-      <div id="chatbotMessages" class="p-4 h-64 overflow-y-auto">
-        <p class="bg-gray-100 p-2 rounded mb-2 max-w-xs">Hello! How can I help you today?</p>
-      </div>
-      <div class="p-3 border-t">
-        <input type="text" id="chatbotInput" placeholder="Type your question..." class="w-full border border-gray-300 p-2 rounded outline-none" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-1">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="p-4 border-b border-gray-200">
+              <input
+                type="text"
+                placeholder="Search messages..."
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div className="overflow-y-auto max-h-96">
+              {messages.map(message => (
+                <div 
+                  key={message.id}
+                  className={`p-4 border-b border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors ${
+                    !message.read ? 'bg-blue-50 border-l-4 border-l-blue-500' : ''
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="font-medium text-gray-900 truncate">{message.sender}</p>
+                    <span className="text-xs text-gray-500">{message.date}</span>
+                  </div>
+                  <p className="text-sm text-gray-600 truncate">{message.subject}</p>
+                  {!message.read && (
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            {messages.length > 0 ? (
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-semibold text-gray-900">{messages[0].subject}</h2>
+                  <div className="flex gap-2">
+                    <button className="text-gray-600 hover:text-gray-900">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                      </svg>
+                    </button>
+                    <button className="text-gray-600 hover:text-gray-900">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="border-b border-gray-200 pb-6 mb-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="font-medium text-gray-900">{messages[0].sender}</p>
+                    <p className="text-sm text-gray-500">{messages[0].date}</p>
+                  </div>
+                  <p className="text-gray-600">{messages[0].content}</p>
+                </div>
+                
+                <div className="space-y-4">
+                  <textarea
+                    placeholder="Reply to this message..."
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    rows="4"
+                  ></textarea>
+                  <div className="flex justify-end">
+                    <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                      Send Reply
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No messages</h3>
+                <p className="text-gray-600">You don't have any messages yet.</p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  );
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <img id="lightboxImage" src="" alt="Enlarged image" />
-    <button id="closeLightbox" class="text-white text-4xl absolute top-4 right-4">&times;</button>
-  </div>
+  const Forum = () => (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Discussion Forum</h1>
+          <p className="text-gray-600 mt-1">Connect with classmates and instructors</p>
+        </div>
+        <div className="flex gap-3">
+          <select className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option>All Courses</option>
+            {courses.filter(c => c.enrolled).map(c => (
+              <option key={c.id}>{c.title}</option>
+            ))}
+          </select>
+          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            New Post
+          </button>
+        </div>
+      </div>
 
-  <!-- Footer -->
-  <footer class="bg-primary text-white py-8">
-    <div class="container mx-auto px-4 text-center">
-      <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Logo" class="h-12 mx-auto mb-4" />
-      <p>&copy; 2024 Milli Karwaan Public School, Balrampur. All Rights Reserved.</p>
-      <p class="mt-2">Designed with ❤️ for excellence in education.</p>
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Topic</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Replies</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Views</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Activity</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {forumPosts.map(post => (
+                <tr key={post.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="font-medium text-gray-900 mb-1">{post.title}</div>
+                    <div className="flex flex-wrap gap-1">
+                      {post.tags.map(tag => (
+                        <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {post.course}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {post.author}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {post.replies}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {post.views}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    {post.lastActivity}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </footer>
+  );
 
-  <!-- Font Awesome Icons (via CDN) -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  const Resources = () => (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Learning Resources</h1>
+          <p className="text-gray-600 mt-1">Download course materials and study guides</p>
+        </div>
+        <div className="flex gap-3">
+          <select className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option>All Courses</option>
+            {courses.filter(c => c.enrolled).map(c => (
+              <option key={c.id}>{c.title}</option>
+            ))}
+          </select>
+          <select className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option>All Types</option>
+            <option>PDF</option>
+            <option>Video</option>
+            <option>Code</option>
+          </select>
+        </div>
+      </div>
 
-  <!-- Main JavaScript -->
-  <script>
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.getElementById('body');
-    darkModeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      darkModeToggle.textContent = body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
-    });
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {resources.map(resource => (
+          <div key={resource.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">{resource.title}</h3>
+                <p className="text-sm text-gray-600">{resource.course}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+              <span>{resource.type}</span>
+              <span>{resource.type === 'Video' ? resource.duration : resource.size}</span>
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-500">
+                {resource.type === 'Video' ? `${resource.views} views` : `${resource.downloads} downloads`}
+              </div>
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                Download
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
-    // Language Toggle
-    const langToggle = document.getElementById('langToggle');
-    langToggle.addEventListener('click', () => {
-      alert('Language switching to Hindi is enabled. Full translation would require multilingual content.');
-    });
+  const Profile = () => (
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold text-gray-900">Profile Settings</h1>
+        <p className="text-gray-600 mt-1">Manage your account information and preferences</p>
+      </div>
 
-    // Mobile Menu Toggle
-    const menuButton = document.getElementById('menuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-1">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <div className="text-center">
+              <div className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">{currentUser.name}</h3>
+              <p className="text-gray-600">{currentUser.email}</p>
+              <p className="text-sm text-gray-500">{currentUser.role}</p>
+            </div>
+            
+            <div className="mt-6 space-y-2">
+              <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                Personal Information
+              </button>
+              <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                Account Settings
+              </button>
+              <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                Privacy & Security
+              </button>
+              <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                Notifications
+              </button>
+              <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                Preferences
+              </button>
+            </div>
+          </div>
+        </div>
 
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-          if (mobileMenu.classList.contains('hidden') === false) {
-            mobileMenu.classList.add('hidden');
-          }
-        }
-      });
-    });
+        <div className="lg:col-span-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-6">Personal Information</h2>
+            
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                  <input
+                    type="text"
+                    defaultValue="Alex"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                  <input
+                    type="text"
+                    defaultValue="Johnson"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  defaultValue={currentUser.email}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                <input
+                  type="tel"
+                  placeholder="(555) 123-4567"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+                <textarea
+                  rows={4}
+                  placeholder="Tell us about yourself..."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                ></textarea>
+              </div>
+              
+              <div className="flex justify-end pt-6">
+                <button
+                  type="button"
+                  className="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors font-medium mr-3"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
-    // Scroll Reveal Animation
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('appear');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    fadeElements.forEach(el => observer.observe(el));
-
-    // Image Slider
-    const slider = document.getElementById('slider');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const indicators = document.getElementById('sliderIndicators');
-    let slideIndex = 0;
-    const slides = slider.children;
-
-    // Create indicators
-    for (let i = 0; i < slides.length; i++) {
-      const dot = document.createElement('div');
-      dot.classList.add('w-3', 'h-3', 'bg-gray-300', 'rounded-full', 'cursor-pointer');
-      if (i === 0) dot.classList.add('bg-white');
-      dot.addEventListener('click', () => goToSlide(i));
-      indicators.appendChild(dot);
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'dashboard': return <Dashboard />;
+      case 'courses': return <Courses />;
+      case 'assignments': return <Assignments />;
+      case 'grades': return <Grades />;
+      case 'schedule': return <Schedule />;
+      case 'messages': return <Messages />;
+      case 'forum': return <Forum />;
+      case 'resources': return <Resources />;
+      case 'profile': return <Profile />;
+      default: return <Dashboard />;
     }
+  };
 
-    function updateSlider() {
-      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
-      document.querySelectorAll('#sliderIndicators div').forEach((dot, i) => {
-        dot.classList.toggle('bg-white', i === slideIndex);
-        dot.classList.toggle('bg-gray-300', i !== slideIndex);
-      });
-    }
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-2">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253z" />
+                    </svg>
+                  </div>
+                  <span className="text-xl font-bold text-gray-900">Web School</span>
+                </div>
+              </div>
+            </div>
 
-    function goToSlide(index) {
-      slideIndex = index;
-      updateSlider();
-    }
+            <div className="flex items-center space-x-4">
+              {/* Notifications */}
+              <div className="relative">
+                <button className="p-2 text-gray-600 hover:text-gray-900 relative">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                  {notifications.filter(n => !n.read).length > 0 && (
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                      {notifications.filter(n => !n.read).length}
+                    </span>
+                  )}
+                </button>
+              </div>
 
-    prevBtn.addEventListener('click', () => {
-      slideIndex = (slideIndex > 0) ? slideIndex - 1 : slides.length - 1;
-      updateSlider();
-    });
+              {/* User Menu */}
+              <div className="flex items-center">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-2">
+                    <span className="text-sm font-medium text-white">
+                      {currentUser?.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </div>
+                  <div className="hidden md:block">
+                    <p className="text-sm font-medium text-gray-900">{currentUser?.name}</p>
+                    <p className="text-xs text-gray-500">{currentUser?.role}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="ml-4 text-gray-600 hover:text-gray-900 text-sm font-medium"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
 
-    nextBtn.addEventListener('click', () => {
-      slideIndex = (slideIndex < slides.length - 1) ? slideIndex + 1 : 0;
-      updateSlider();
-    });
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar */}
+          <div className="lg:w-64 flex-shrink-0">
+            <nav className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+              <div className="space-y-2">
+                {[
+                  { id: 'dashboard', label: 'Dashboard', icon: 'M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z' },
+                  { id: 'courses', label: 'Courses', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253z' },
+                  { id: 'assignments', label: 'Assignments', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
+                  { id: 'grades', label: 'Grades', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' },
+                  { id: 'schedule', label: 'Schedule', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
+                  { id: 'messages', label: 'Messages', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+                  { id: 'forum', label: 'Forum', icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z' },
+                  { id: 'resources', label: 'Resources', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+                  { id: 'profile', label: 'Profile', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' }
+                ].map(item => (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                      activeTab === item.id
+                        ? 'bg-blue-100 text-blue-800'
+                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                    }`}
+                  >
+                    <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                    </svg>
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </nav>
+          </div>
 
-    // Auto slide
-    setInterval(() => {
-      slideIndex = (slideIndex < slides.length - 1) ? slideIndex + 1 : 0;
-      updateSlider();
-    }, 5000);
+          {/* Main Content */}
+          <div className="flex-1">
+            {renderContent()}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-    // Admission Form
-    const admissionForm = document.getElementById('admissionForm');
-    const successMsg = document.getElementById('successMsg');
-    admissionForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      successMsg.classList.remove('hidden');
-      admissionForm.reset();
-      setTimeout(() => successMsg.classList.add('hidden'), 5000);
-    });
-
-    // Lightbox
-    function openLightbox(src) {
-      document.getElementById('lightboxImage').src = src;
-      document.getElementById('lightbox').style.display = 'flex';
-    }
-    document.getElementById('closeLightbox').addEventListener('click', () => {
-      document.getElementById('lightbox').style.display = 'none';
-    });
-
-    // Chatbot
-    const chatbotToggle = document.getElementById('chatbotToggle');
-    const chatbot = document.getElementById('chatbot');
-    const closeChatbot = document.getElementById('closeChatbot');
-    const chatbotInput = document.getElementById('chatbotInput');
-    const chatbotMessages = document.getElementById('chatbotMessages');
-
-    chatbotToggle.addEventListener('click', () => {
-      chatbot.classList.toggle('hidden');
-    });
-    closeChatbot.addEventListener('click', () => {
-      chatbot.classList.add('hidden');
-    });
-
-    chatbotInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const question = chatbotInput.value.trim();
-        if (question) {
-          const userMsg = document.createElement('p');
-          userMsg.className = 'bg-secondary text-primary p-2 rounded self-end mb-2 max-w-xs';
-          userMsg.textContent = question;
-          chatbotMessages.appendChild(userMsg);
-
-          let reply = "I'm sorry, I didn't understand. Please ask about admission, fees, or timings.";
-          if (question.toLowerCase().includes('admission')) {
-            reply = "Admission is open for 2024-25. Visit our Admission section or call +91 9758919151.";
-          } else if (question.toLowerCase().includes('fee') || question.toLowerCase().includes('fees')) {
-            reply = "Fee structure varies by class. Please contact the office for details.";
-          } else if (question.toLowerCase().includes('timing') || question.toLowerCase().includes('time')) {
-            reply = "School timings: 8:00 AM to 2:00 PM (Mon-Fri).";
-          }
-
-          setTimeout(() => {
-            const botMsg = document.createElement('p');
-            botMsg.className = 'bg-gray-100 p-2 rounded mb-2 max-w-xs';
-            botMsg.textContent = reply;
-            chatbotMessages.appendChild(botMsg);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-          }, 500);
-
-          chatbotInput.value = '';
-          chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+export default App;
