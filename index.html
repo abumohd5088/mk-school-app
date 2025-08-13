@@ -1,757 +1,1525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - School Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .sidebar {
-            transition: all 0.3s ease;
-        }
-        .sidebar.collapsed {
-            width: 80px;
-        }
-        .sidebar.collapsed .sidebar-text {
-            display: none;
-        }
-        .sidebar.collapsed .logo-text {
-            display: none;
-        }
-        .sidebar.collapsed .menu-item span {
-            width: 30px;
-        }
-        .dark-mode {
-            background-color: #1a1a2e;
-            color: #e1e1e1;
-        }
-        .dark-mode .card {
-            background-color: #16213e;
-            border-color: #0f3460;
-        }
-        .dark-mode .sidebar {
-            background-color: #0f172a;
-        }
-        .dark-mode .header {
-            background-color: #1e293b;
-        }
-        .notification {
-            animation: fadeIn 0.5s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .homework-card {
-            transition: all 0.3s ease;
-        }
-        .homework-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .attendance-chart {
-            height: 300px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Milli Karwaan Public School Balrampur</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --red-primary: #D7382A;
+      --red-light: #E55C4D;
+      --red-hover: #C12F20;
+      --gray-bg: #f8f9fa;
+      --gray-card: #ffffff;
+      --gray-text: #333333;
+      --gray-muted: #6c757d;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --transition-fast: 0.2s ease;
+      --transition-med: 0.3s ease;
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --gray-bg: #121212;
+      --gray-card: #1e1e1e;
+      --gray-text: #e0e0e0;
+      --gray-muted: #aaaaaa;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--gray-bg);
+      color: var(--gray-text);
+      line-height: 1.6;
+      transition: background-color var(--transition-med), color var(--transition-med);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: var(--gray-card);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #eee;
+    }
+
+    .dark & {
+      border-bottom-color: #333;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    .school-info {
+      font-size: 1rem;
+    }
+
+    .school-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--red-primary);
+    }
+
+    .school-address, .school-contact {
+      font-size: 0.875rem;
+      color: var(--gray-muted);
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-call {
+      background-color: var(--red-primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color var(--transition-fast);
+    }
+
+    .btn-call:hover {
+      background-color: var(--red-hover);
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--gray-card);
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 24px;
+    }
+
+    .dark & {
+      border-bottom-color: #333;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray-text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--red-primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray-text);
+    }
+
+    /* Main Layout */
+    .main-layout {
+      display: flex;
+      gap: 24px;
+      min-height: calc(100vh - 180px);
+    }
+
+    .sidebar {
+      width: 280px;
+      background: var(--gray-card);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      height: fit-content;
+      align-self: start;
+      top: 120px;
+    }
+
+    .dark .sidebar {
+      background: #1e1e1e;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: var(--red-primary);
+      font-weight: 600;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background: var(--gray-bg);
+      color: var(--gray-text);
+      transition: border-color var(--transition-fast);
+    }
+
+    .dark .search-input {
+      background: #2d2d2d;
+      border-color: #444;
+      color: var(--gray-text);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--red-primary);
+    }
+
+    .quick-links {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .quick-links li {
+      margin-bottom: 8px;
+    }
+
+    .quick-links a {
+      text-decoration: none;
+      color: var(--gray-muted);
+      font-size: 0.9rem;
+      display: block;
+      padding: 6px 0;
+      transition: color var(--transition-fast);
+    }
+
+    .quick-links a:hover {
+      color: var(--red-primary);
+    }
+
+    .content-area {
+      flex: 1;
+    }
+
+    /* Student Gate Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal {
+      background: var(--gray-card);
+      width: 90%;
+      max-width: 500px;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    .modal h2 {
+      color: var(--red-primary);
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .dark .form-control {
+      background: #2d2d2d;
+      border-color: #444;
+      color: var(--gray-text);
+    }
+
+    .btn-submit {
+      background-color: var(--red-primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 16px;
+      transition: background-color var(--transition-fast);
+    }
+
+    .btn-submit:hover {
+      background-color: var(--red-hover);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--gray-card);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .dark .card {
+      background: #1e1e1e;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--red-primary);
+    }
+
+    /* Homework List */
+    .homework-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .homework-item {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: var(--gray-bg);
+      border-left: 4px solid var(--red-primary);
+    }
+
+    .dark .homework-item {
+      background: #2d2d2d;
+    }
+
+    .hw-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .hw-subject {
+      color: var(--red-primary);
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .hw-due {
+      font-size: 0.875rem;
+      color: var(--gray-muted);
+    }
+
+    .hw-desc {
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    /* Teachers */
+    .teachers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .teacher-card {
+      text-align: center;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: var(--gray-bg);
+    }
+
+    .dark .teacher-card {
+      background: #2d2d2d;
+    }
+
+    .teacher-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 12px;
+      border: 3px solid var(--red-primary);
+    }
+
+    .teacher-name {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .teacher-subject {
+      font-size: 0.875rem;
+      color: var(--gray-muted);
+    }
+
+    /* Events */
+    .events-timeline {
+      position: relative;
+      padding-left: 20px;
+      margin-left: 10px;
+    }
+
+    .events-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--red-primary);
+      border-radius: 2px;
+    }
+
+    .event-item {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .event-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--red-primary);
+      border: 2px solid var(--gray-card);
+    }
+
+    .dark .event-item::before {
+      border-color: #1e1e1e;
+    }
+
+    .event-date {
+      font-size: 0.85rem;
+      color: var(--red-primary);
+      font-weight: 500;
+    }
+
+    .event-title {
+      font-weight: 600;
+      margin: 4px 0;
+    }
+
+    .event-desc {
+      font-size: 0.95rem;
+      color: var(--gray-muted);
+    }
+
+    /* Notices */
+    .notices-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .notice-item {
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: var(--gray-bg);
+      border-left: 4px solid var(--red-primary);
+    }
+
+    .dark .notice-item {
+      background: #2d2d2d;
+    }
+
+    .notice-priority {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+      margin-right: 8px;
+    }
+
+    .priority-high {
+      background: #d32f2f;
+    }
+
+    .priority-medium {
+      background: #f57c00;
+    }
+
+    .priority-low {
+      background: #1976d2;
+    }
+
+    .notice-text {
+      font-size: 0.95rem;
+    }
+
+    /* Timetable */
+    .timetable {
+      overflow-x: auto;
+    }
+
+    .tt-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .tt-table th {
+      background: var(--red-primary);
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .tt-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .dark .tt-table td {
+      border-bottom-color: #333;
+    }
+
+    .tt-period {
+      font-weight: 600;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item img {
+      transition: transform var(--transition-med);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-med);
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 16px;
+    }
+
+    .dark .faq-item {
+      border-bottom-color: #333;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      margin-bottom: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      color: var(--gray-muted);
+      display: none;
+    }
+
+    .faq-answer.active {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .toggle-icon {
+      transition: transform var(--transition-fast);
+    }
+
+    .faq-question.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    textarea.form-control {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn-submit-contact {
+      align-self: flex-start;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--gray-card);
+      padding: 32px 0;
+      border-top: 1px solid #eee;
+      margin-top: 48px;
+    }
+
+    .dark footer {
+      border-top-color: #333;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+    }
+
+    .footer-section h3 {
+      font-size: 1.1rem;
+      color: var(--red-primary);
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      display: block;
+      color: var(--gray-muted);
+      margin-bottom: 8px;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--red-primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+      color: var(--gray-muted);
+      font-size: 0.9rem;
+    }
+
+    .dark .footer-bottom {
+      border-top-color: #333;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--red-primary);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Data Tools Panel */
+    .data-tools {
+      margin-top: 24px;
+      padding: 16px;
+      background: var(--gray-bg);
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--red-primary);
+      font-size: 0.9rem;
+    }
+
+    .dark .data-tools {
+      background: #2d2d2d;
+    }
+
+    .tool-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .btn-tool {
+      padding: 8px 12px;
+      background: var(--red-light);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .btn-tool:hover {
+      background: var(--red-primary);
+    }
+
+    /* Print Snapshot View */
+    @media print {
+      .sidebar, .contact-actions, .menu-toggle, .data-tools, .theme-toggle {
+        display: none !important;
+      }
+      .main-layout {
+        flex-direction: column;
+      }
+      .content-area {
+        margin: 0;
+      }
+      .card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+      body {
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      header, nav {
+        position: static;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-layout {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      .nav-links {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .mobile-menu {
+        display: none;
+        background: var(--gray-card);
+        padding: 16px;
+        border-radius: var(--radius-md);
+        margin: 12px 0;
+      }
+      .mobile-menu.active {
+        display: block;
+      }
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <div id="app">
-        <!-- Login Modal -->
-        <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white rounded-lg p-8 w-96 shadow-xl">
-                <h2 class="text-2xl font-bold text-center mb-6 text-blue-600">Admin Login</h2>
-                <form id="loginForm">
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                            Username
-                        </label>
-                        <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                               id="username" type="text" placeholder="Enter username">
-                    </div>
-                    <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                            Password
-                        </label>
-                        <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                               id="password" type="password" placeholder="Enter password">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300" 
-                                type="submit">
-                            Sign In
-                        </button>
-                        <button type="button" id="guestLogin" class="text-blue-600 hover:text-blue-800 text-sm">Continue as Guest</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Main Layout -->
-        <div id="mainLayout" class="flex h-screen hidden">
-            <!-- Sidebar -->
-            <div class="sidebar w-64 bg-white shadow-lg flex flex-col">
-                <div class="p-6 flex items-center">
-                    <i class="fas fa-graduation-cap text-blue-600 text-3xl"></i>
-                    <span class="ml-3 text-xl font-bold logo-text text-blue-600">EduConnect</span>
-                </div>
-                <nav class="flex-1 px-4 py-4">
-                    <ul class="space-y-2">
-                        <li class="menu-item">
-                            <a href="#" class="flex items-center p-3 rounded-lg bg-blue-100 text-blue-700">
-                                <i class="fas fa-home mr-3 text-blue-600"></i>
-                                <span class="sidebar-text">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
-                                <i class="fas fa-book mr-3"></i>
-                                <span class="sidebar-text">Homework</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
-                                <i class="fas fa-calendar-alt mr-3"></i>
-                                <span class="sidebar-text">Schedule</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
-                                <i class="fas fa-users mr-3"></i>
-                                <span class="sidebar-text">Students</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
-                                <i class="fas fa-chalkboard-teacher mr-3"></i>
-                                <span class="sidebar-text">Teachers</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
-                                <i class="fas fa-chart-line mr-3"></i>
-                                <span class="sidebar-text">Analytics</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
-                                <i class="fas fa-cog mr-3"></i>
-                                <span class="sidebar-text">Settings</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="p-4 border-t">
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/40x40/4f46e5/ffffff?text=AD" alt="Admin" class="w-10 h-10 rounded-full">
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-700">Admin User</p>
-                            <p class="text-xs text-gray-500">Administrator</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="flex-1 flex flex-col overflow-hidden">
-                <!-- Header -->
-                <header class="header bg-white shadow-sm px-6 py-4 flex items-center justify-between">
-                    <div class="flex items-center">
-                        <button id="toggleSidebar" class="text-gray-600 hover:text-gray-800 mr-4">
-                            <i class="fas fa-bars text-xl"></i>
-                        </button>
-                        <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button id="darkModeToggle" class="text-gray-600 hover:text-gray-800">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                        <div class="relative">
-                            <button id="notificationBtn" class="text-gray-600 hover:text-gray-800 relative">
-                                <i class="fas fa-bell text-xl"></i>
-                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
-                            </button>
-                            <div id="notificationDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-10">
-                                <div class="p-4 border-b">
-                                    <h3 class="font-semibold">Notifications</h3>
-                                </div>
-                                <div class="p-4 space-y-3">
-                                    <div class="flex items-start">
-                                        <div class="bg-blue-100 p-2 rounded-full mr-3">
-                                            <i class="fas fa-book text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm">New homework assigned in Math 101</p>
-                                            <p class="text-xs text-gray-500">2 hours ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="bg-green-100 p-2 rounded-full mr-3">
-                                            <i class="fas fa-calendar-check text-green-600"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm">Parent-teacher meeting scheduled</p>
-                                            <p class="text-xs text-gray-500">5 hours ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="bg-purple-100 p-2 rounded-full mr-3">
-                                            <i class="fas fa-award text-purple-600"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm">Student achievement: Science Fair Winner</p>
-                                            <p class="text-xs text-gray-500">1 day ago</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <button id="profileBtn" class="flex items-center text-gray-600 hover:text-gray-800">
-                                <img src="https://placehold.co/32x32/4f46e5/ffffff?text=AD" alt="Profile" class="w-8 h-8 rounded-full">
-                                <span class="ml-2 text-sm font-medium">Admin</span>
-                                <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                            </button>
-                            <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
-                                <div class="p-4 border-b">
-                                    <p class="font-medium">Admin User</p>
-                                    <p class="text-sm text-gray-500">admin@educonnect.com</p>
-                                </div>
-                                <div class="py-2">
-                                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
-                                        <i class="fas fa-user mr-3"></i>
-                                        Profile
-                                    </a>
-                                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
-                                        <i class="fas fa-cog mr-3"></i>
-                                        Settings
-                                    </a>
-                                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
-                                        <i class="fas fa-sign-out-alt mr-3"></i>
-                                        Logout
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-
-                <!-- Dashboard Content -->
-                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
-                    <!-- Stats Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                        <div class="card bg-white rounded-lg shadow-md p-6">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-blue-100">
-                                    <i class="fas fa-users text-blue-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-gray-500 text-sm">Total Students</p>
-                                    <p class="text-2xl font-semibold text-gray-800">1,247</p>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <span class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 12%</span>
-                                <span class="text-gray-500 text-sm ml-1">from last month</span>
-                            </div>
-                        </div>
-
-                        <div class="card bg-white rounded-lg shadow-md p-6">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-green-100">
-                                    <i class="fas fa-chalkboard-teacher text-green-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-gray-500 text-sm">Teachers</p>
-                                    <p class="text-2xl font-semibold text-gray-800">48</p>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <span class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 5%</span>
-                                <span class="text-gray-500 text-sm ml-1">from last month</span>
-                            </div>
-                        </div>
-
-                        <div class="card bg-white rounded-lg shadow-md p-6">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-purple-100">
-                                    <i class="fas fa-book text-purple-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-gray-500 text-sm">Homework</p>
-                                    <p class="text-2xl font-semibold text-gray-800">23</p>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <span class="text-red-500 text-sm"><i class="fas fa-arrow-down"></i> 8%</span>
-                                <span class="text-gray-500 text-sm ml-1">from last week</span>
-                            </div>
-                        </div>
-
-                        <div class="card bg-white rounded-lg shadow-md p-6">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-yellow-100">
-                                    <i class="fas fa-calendar-alt text-yellow-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-gray-500 text-sm">Events</p>
-                                    <p class="text-2xl font-semibold text-gray-800">7</p>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <span class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 15%</span>
-                                <span class="text-gray-500 text-sm ml-1">from last month</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Main Content Grid -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <!-- Homework Section -->
-                        <div class="lg:col-span-2">
-                            <div class="card bg-white rounded-lg shadow-md p-6">
-                                <div class="flex items-center justify-between mb-4">
-                                    <h2 class="text-xl font-semibold text-gray-800">Recent Homework</h2>
-                                    <button id="addHomeworkBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm flex items-center transition duration-300">
-                                        <i class="fas fa-plus mr-1"></i>
-                                        Add Homework
-                                    </button>
-                                </div>
-                                
-                                <!-- Homework List -->
-                                <div id="homeworkList" class="space-y-4">
-                                    <div class="homework-card bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <h3 class="font-semibold text-gray-800">Mathematics: Algebra Problems</h3>
-                                                <p class="text-gray-600 text-sm">Complete exercises 1-20 on page 45</p>
-                                                <div class="flex items-center mt-2 text-sm text-gray-500">
-                                                    <i class="fas fa-calendar-alt mr-1"></i>
-                                                    <span>Due: Oct 15, 2023</span>
-                                                </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Grade 9</span>
-                                                <div class="mt-1">
-                                                    <button class="text-blue-600 hover:text-blue-800 text-sm"><i class="fas fa-edit"></i></button>
-                                                    <button class="text-red-600 hover:text-red-800 text-sm ml-2"><i class="fas fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="homework-card bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <h3 class="font-semibold text-gray-800">English: Essay on Shakespeare</h3>
-                                                <p class="text-gray-600 text-sm">Write a 500-word analysis of Hamlet</p>
-                                                <div class="flex items-center mt-2 text-sm text-gray-500">
-                                                    <i class="fas fa-calendar-alt mr-1"></i>
-                                                    <span>Due: Oct 18, 2023</span>
-                                                </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Grade 10</span>
-                                                <div class="mt-1">
-                                                    <button class="text-blue-600 hover:text-blue-800 text-sm"><i class="fas fa-edit"></i></button>
-                                                    <button class="text-red-600 hover:text-red-800 text-sm ml-2"><i class="fas fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="homework-card bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <h3 class="font-semibold text-gray-800">Science: Lab Report</h3>
-                                                <p class="text-gray-600 text-sm">Document findings from the chemistry experiment</p>
-                                                <div class="flex items-center mt-2 text-sm text-gray-500">
-                                                    <i class="fas fa-calendar-alt mr-1"></i>
-                                                    <span>Due: Oct 20, 2023</span>
-                                                </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Grade 11</span>
-                                                <div class="mt-1">
-                                                    <button class="text-blue-600 hover:text-blue-800 text-sm"><i class="fas fa-edit"></i></button>
-                                                    <button class="text-red-600 hover:text-red-800 text-sm ml-2"><i class="fas fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sidebar Widgets -->
-                        <div class="space-y-6">
-                            <!-- Upcoming Events -->
-                            <div class="card bg-white rounded-lg shadow-md p-6">
-                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Upcoming Events</h2>
-                                <div class="space-y-3">
-                                    <div class="flex items-center p-3 bg-blue-50 rounded-lg">
-                                        <div class="bg-blue-600 text-white p-2 rounded-full mr-3">
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-gray-800">Parent-Teacher Meeting</p>
-                                            <p class="text-sm text-gray-600">Oct 15, 2:00 PM</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center p-3 bg-green-50 rounded-lg">
-                                        <div class="bg-green-600 text-white p-2 rounded-full mr-3">
-                                            <i class="fas fa-football-ball"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-gray-800">Football Game</p>
-                                            <p class="text-sm text-gray-600">Oct 18, 6:00 PM</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center p-3 bg-purple-50 rounded-lg">
-                                        <div class="bg-purple-600 text-white p-2 rounded-full mr-3">
-                                            <i class="fas fa-music"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-gray-800">Choir Performance</p>
-                                            <p class="text-sm text-gray-600">Oct 22, 7:00 PM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg transition duration-300">
-                                    View All Events
-                                </button>
-                            </div>
-
-                            <!-- Attendance Chart -->
-                            <div class="card bg-white rounded-lg shadow-md p-6">
-                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Attendance</h2>
-                                <canvas id="attendanceChart" class="attendance-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-
-            <!-- Add Homework Modal -->
-            <div id="addHomeworkModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-                <div class="bg-white rounded-lg p-8 w-96 shadow-xl">
-                    <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Add New Homework</h2>
-                    <form id="homeworkForm">
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="homeworkTitle">
-                                Title
-                            </label>
-                            <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                                   id="homeworkTitle" type="text" placeholder="Enter homework title" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="homeworkDescription">
-                                Description
-                            </label>
-                            <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                                      id="homeworkDescription" rows="3" placeholder="Enter homework description" required></textarea>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="homeworkGrade">
-                                Grade Level
-                            </label>
-                            <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                                    id="homeworkGrade" required>
-                                <option value="">Select grade level</option>
-                                <option value="9">Grade 9</option>
-                                <option value="10">Grade 10</option>
-                                <option value="11">Grade 11</option>
-                                <option value="12">Grade 12</option>
-                            </select>
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="homeworkDueDate">
-                                Due Date
-                            </label>
-                            <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                                   id="homeworkDueDate" type="date" required>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <button type="button" id="cancelHomework" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
-                                Cancel
-                            </button>
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
-                                Add Homework
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Success Notification -->
-        <div id="successNotification" class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hidden notification">
-            <div class="flex items-center">
-                <i class="fas fa-check-circle mr-2"></i>
-                <span>Homework added successfully!</span>
-            </div>
-        </div>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="MKPS Logo" />
+      <div class="school-info">
+        <div class="school-name">Milli Karwaan Public School Balrampur</div>
+        <div class="school-address">Boluha Police Chowki Balrampur</div>
+        <div class="school-contact">madamsir066@gmail.com</div>
+      </div>
     </div>
+    <div class="contact-actions">
+      <a href="tel:9758919151" class="btn-call">Call Us</a>
+    </div>
+  </header>
 
-    <script>
-        // Mock data
-        const homeworkData = [
-            { id: 1, title: 'Mathematics: Algebra Problems', description: 'Complete exercises 1-20 on page 45', grade: '9', dueDate: 'Oct 15, 2023', color: 'blue' },
-            { id: 2, title: 'English: Essay on Shakespeare', description: 'Write a 500-word analysis of Hamlet', grade: '10', dueDate: 'Oct 18, 2023', color: 'green' },
-            { id: 3, title: 'Science: Lab Report', description: 'Document findings from the chemistry experiment', grade: '11', dueDate: 'Oct 20, 2023', color: 'purple' }
-        ];
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-container">
+      <ul class="nav-links">
+        <li><a href="#homework">Homework</a></li>
+        <li><a href="#teachers">Teachers</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#notices">Notices</a></li>
+        <li><a href="#timetable">Timetable</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+      <button class="menu-toggle">⋮</button>
+    </div>
+    <div class="container mobile-menu">
+      <ul class="nav-links">
+        <li><a href="#homework">Homework</a></li>
+        <li><a href="#teachers">Teachers</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#notices">Notices</a></li>
+        <li><a href="#timetable">Timetable</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        // DOM Elements
-        const loginModal = document.getElementById('loginModal');
-        const mainLayout = document.getElementById('mainLayout');
-        const loginForm = document.getElementById('loginForm');
-        const guestLogin = document.getElementById('guestLogin');
-        const toggleSidebar = document.getElementById('toggleSidebar');
-        const sidebar = document.querySelector('.sidebar');
-        const notificationBtn = document.getElementById('notificationBtn');
-        const notificationDropdown = document.getElementById('notificationDropdown');
-        const profileBtn = document.getElementById('profileBtn');
-        const profileDropdown = document.getElementById('profileDropdown');
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const addHomeworkBtn = document.getElementById('addHomeworkBtn');
-        const addHomeworkModal = document.getElementById('addHomeworkModal');
-        const cancelHomework = document.getElementById('cancelHomework');
-        const homeworkForm = document.getElementById('homeworkForm');
-        const successNotification = document.getElementById('successNotification');
-        const homeworkList = document.getElementById('homeworkList');
-        const attendanceChart = document.getElementById('attendanceChart');
+  <!-- Student Gate Modal -->
+  <div id="studentGate" class="modal-overlay">
+    <div class="modal">
+      <h2>Welcome to MKPS Portal</h2>
+      <p>Please enter your details to access class content.</p>
+      <form id="studentForm">
+        <div class="form-group">
+          <label for="studentName">Student Name</label>
+          <input type="text" id="studentName" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="studentClass">Class (1–12)</label>
+          <select id="studentClass" class="form-control" required>
+            <option value="">Select Class</option>
+            <script>
+              for (let i = 1; i <= 12; i++) {
+                document.write(`<option value="${i}">Class ${i}</option>`);
+              }
+            </script>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="parentName">Parent's Name</label>
+          <input type="text" id="parentName" class="form-control" required />
+        </div>
+        <button type="submit" class="btn-submit">Enter Portal</button>
+      </form>
+    </div>
+  </div>
 
-        // Login functionality
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple authentication (in real app, this would be server-side)
-            if ((username === 'admin' && password === 'password') || (username === 'teacher' && password === 'teacher123')) {
-                loginModal.classList.add('hidden');
-                mainLayout.classList.remove('hidden');
-            } else {
-                alert('Invalid credentials. Try admin/password or teacher/teacher123');
-            }
-        });
+  <div class="container">
+    <div class="main-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3 class="section-title">Quick Access</h3>
+        <input type="text" class="search-input" placeholder="Search homework..." id="homeworkSearch" />
 
-        // Guest login
-        guestLogin.addEventListener('click', function() {
-            loginModal.classList.add('hidden');
-            mainLayout.classList.remove('hidden');
-        });
+        <h3 class="section-title">Admin Tools</h3>
+        <ul class="quick-links">
+          <li><a href="#" id="exportData">Export All Data</a></li>
+          <li><a href="#" id="importData">Import Data</a></li>
+          <li><a href="#" id="downloadSnapshot">Download Snapshot</a></li>
+          <li><a href="#" id="seedData">Seed Demo Data</a></li>
+        </ul>
 
-        // Toggle sidebar
-        toggleSidebar.addEventListener('click', function() {
-            sidebar.classList.toggle('collapsed');
-        });
+        <h3 class="section-title">Analytics</h3>
+        <div id="analyticsStats">
+          <div>Students: <span id="statStudents">0</span></div>
+          <div>Homework: <span id="statHomework">0</span></div>
+          <div>Teachers: <span id="statTeachers">0</span></div>
+        </div>
+      </aside>
 
-        // Notification dropdown
-        notificationBtn.addEventListener('click', function() {
-            notificationDropdown.classList.toggle('hidden');
-        });
+      <!-- Content Area -->
+      <main class="content-area">
+        <!-- Homework Section -->
+        <section id="homework" class="card">
+          <div class="card-header">
+            <h2 class="card-title">Homework</h2>
+            <button id="printView" class="btn-tool">Print View</button>
+          </div>
+          <div class="homework-list" id="homeworkList"></div>
+        </section>
 
-        // Profile dropdown
-        profileBtn.addEventListener('click', function() {
-            profileDropdown.classList.toggle('hidden');
-        });
+        <!-- Teachers Section -->
+        <section id="teachers" class="card">
+          <div class="card-header">
+            <h2 class="card-title">Our Teachers</h2>
+          </div>
+          <div class="teachers-grid" id="teachersList"></div>
+        </section>
 
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!notificationBtn.contains(e.target) && !notificationDropdown.contains(e.target)) {
-                notificationDropdown.classList.add('hidden');
-            }
-            if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
-                profileDropdown.classList.add('hidden');
-            }
-        });
+        <!-- Events Section -->
+        <section id="events" class="card">
+          <div class="card-header">
+            <h2 class="card-title">Upcoming Events</h2>
+          </div>
+          <div class="events-timeline" id="eventsList"></div>
+        </section>
 
-        // Dark mode toggle
-        darkModeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            const icon = darkModeToggle.querySelector('i');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.className = 'fas fa-sun';
-            } else {
-                icon.className = 'fas fa-moon';
-            }
-        });
+        <!-- Notices Section -->
+        <section id="notices" class="card">
+          <div class="card-header">
+            <h2 class="card-title">Important Notices</h2>
+          </div>
+          <div class="notices-list" id="noticesList"></div>
+        </section>
 
-        // Add homework modal
-        addHomeworkBtn.addEventListener('click', function() {
-            addHomeworkModal.classList.remove('hidden');
-        });
+        <!-- Timetable Section -->
+        <section id="timetable" class="card">
+          <div class="card-header">
+            <h2 class="card-title">Class Timetable</h2>
+          </div>
+          <div class="timetable">
+            <table class="tt-table" id="timetableBody">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
 
-        cancelHomework.addEventListener('click', function() {
-            addHomeworkModal.classList.add('hidden');
-            homeworkForm.reset();
-        });
+        <!-- Gallery Section -->
+        <section id="gallery" class="card">
+          <div class="card-header">
+            <h2 class="card-title">School Gallery</h2>
+          </div>
+          <div class="gallery-grid" id="galleryList"></div>
+        </section>
 
-        // Close modal when clicking outside
-        addHomeworkModal.addEventListener('click', function(e) {
-            if (e.target === addHomeworkModal) {
-                addHomeworkModal.classList.add('hidden');
-                homeworkForm.reset();
-            }
-        });
+        <!-- FAQ Section -->
+        <section id="faq" class="card">
+          <div class="card-header">
+            <h2 class="card-title">Frequently Asked Questions</h2>
+          </div>
+          <div id="faqList"></div>
+        </section>
 
-        // Add homework form submission
-        homeworkForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const title = document.getElementById('homeworkTitle').value;
-            const description = document.getElementById('homeworkDescription').value;
-            const grade = document.getElementById('homeworkGrade').value;
-            const dueDate = document.getElementById('homeworkDueDate').value;
-            
-            // Create new homework item
-            const newHomework = {
-                id: homeworkData.length + 1,
-                title: title,
-                description: description,
-                grade: grade,
-                dueDate: new Date(dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-                color: ['blue', 'green', 'purple', 'yellow', 'red'][Math.floor(Math.random() * 5)]
-            };
-            
-            homeworkData.unshift(newHomework);
-            renderHomeworkList();
-            
-            // Show success notification
-            successNotification.classList.remove('hidden');
-            setTimeout(() => {
-                successNotification.classList.add('hidden');
-            }, 3000);
-            
-            // Close modal and reset form
-            addHomeworkModal.classList.add('hidden');
-            homeworkForm.reset();
-        });
+        <!-- Contact Section -->
+        <section id="contact" class="card">
+          <div class="card-header">
+            <h2 class="card-title">Contact Us</h2>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Name</label>
+                <input type="text" id="contactName" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" class="form-control" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit btn-submit-contact">Send Message</button>
+          </form>
+        </section>
 
-        // Render homework list
-        function renderHomeworkList() {
-            homeworkList.innerHTML = '';
-            homeworkData.forEach(hw => {
-                const homeworkCard = document.createElement('div');
-                homeworkCard.className = `homework-card bg-gray-50 p-4 rounded-lg border-l-4 border-${hw.color}-500`;
-                homeworkCard.innerHTML = `
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="font-semibold text-gray-800">${hw.title}</h3>
-                            <p class="text-gray-600 text-sm">${hw.description}</p>
-                            <div class="flex items-center mt-2 text-sm text-gray-500">
-                                <i class="fas fa-calendar-alt mr-1"></i>
-                                <span>Due: ${hw.dueDate}</span>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <span class="bg-${hw.color}-100 text-${hw.color}-800 text-xs px-2 py-1 rounded-full">Grade ${hw.grade}</span>
-                            <div class="mt-1">
-                                <button class="text-blue-600 hover:text-blue-800 text-sm edit-homework" data-id="${hw.id}"><i class="fas fa-edit"></i></button>
-                                <button class="text-red-600 hover:text-red-800 text-sm ml-2 delete-homework" data-id="${hw.id}"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                homeworkList.appendChild(homeworkCard);
-            });
+        <!-- Data Tools Panel -->
+        <section class="data-tools">
+          <strong>Data Management</strong>
+          <div class="tool-buttons">
+            <button id="btnExport">Export JSON</button>
+            <button id="btnImport">Import JSON</button>
+            <button id="btnClear">Clear All Data</button>
+            <button id="btnSeed">Seed Demo Data</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
 
-            // Add event listeners to delete buttons
-            document.querySelectorAll('.delete-homework').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    const index = homeworkData.findIndex(hw => hw.id === id);
-                    if (index > -1) {
-                        homeworkData.splice(index, 1);
-                        renderHomeworkList();
-                    }
-                });
-            });
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Gallery Image" />
+    </div>
+  </div>
 
-            // Add event listeners to edit buttons
-            document.querySelectorAll('.edit-homework').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    const homework = homeworkData.find(hw => hw.id === id);
-                    
-                    document.getElementById('homeworkTitle').value = homework.title;
-                    document.getElementById('homeworkDescription').value = homework.description;
-                    document.getElementById('homeworkGrade').value = homework.grade;
-                    document.getElementById('homeworkDueDate').value = new Date(homework.dueDate).toISOString().split('T')[0];
-                    
-                    addHomeworkModal.classList.remove('hidden');
-                    
-                    // Update form to edit mode
-                    const submitBtn = homeworkForm.querySelector('button[type="submit"]');
-                    submitBtn.textContent = 'Update Homework';
-                    
-                    // Remove the old submit listener and add a new one for editing
-                    homeworkForm.removeEventListener('submit', editHomeworkHandler);
-                    homeworkForm.addEventListener('submit', editHomeworkHandler);
-                    
-                    function editHomeworkHandler(e) {
-                        e.preventDefault();
-                        homework.title = document.getElementById('homeworkTitle').value;
-                        homework.description = document.getElementById('homeworkDescription').value;
-                        homework.grade = document.getElementById('homeworkGrade').value;
-                        homework.dueDate = new Date(document.getElementById('homeworkDueDate').value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                        
-                        renderHomeworkList();
-                        
-                        successNotification.querySelector('span').textContent = 'Homework updated successfully!';
-                        successNotification.classList.remove('hidden');
-                        setTimeout(() => {
-                            successNotification.classList.add('hidden');
-                        }, 3000);
-                        
-                        addHomeworkModal.classList.add('hidden');
-                        homeworkForm.reset();
-                        submitBtn.textContent = 'Add Homework';
-                        homeworkForm.removeEventListener('submit', editHomeworkHandler);
-                    }
-                });
-            });
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle">🌓</button>
+
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-section">
+        <h3>School Info</h3>
+        <p><strong>Milli Karwaan Public School Balrampur</strong></p>
+        <p>Boluha Police Chowki Balrampur</p>
+        <p>Phone: <a href="tel:9758919151">9758919151</a></p>
+        <p>Email: <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          <a href="#homework">Homework</a>
+          <a href="#teachers">Teachers</a>
+          <a href="#events">Events</a>
+          <a href="#notices">Notices</a>
+          <a href="admin.html">Admin Login</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>We welcome your inquiries and feedback.</p>
+        <p>Office hours: 9:00 AM – 4:00 PM</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2025 Milli Karwaan Public School Balrampur. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // =============== STORAGE KEYS ===============
+    const STORAGE_KEYS = {
+      STUDENT: 'mkps_student',
+      HOMEWORK: 'mkps_homework',
+      TEACHERS: 'mkps_teachers',
+      EVENTS: 'mkps_events',
+      NOTICES: 'mkps_notices',
+      TIMETABLE: 'mkps_timetable',
+      GALLERY: 'mkps_gallery',
+      MESSAGES: 'mkps_messages',
+      UPDATE: 'mkps_update'
+    };
+
+    // =============== STATE MANAGEMENT ===============
+    let state = {
+      student: null,
+      homework: [],
+      teachers: [],
+      events: [],
+      notices: [],
+      timetable: [],
+      gallery: [],
+      messages: []
+    };
+
+    // =============== HELPER FUNCTIONS ===============
+    function saveToStorage(key, data) {
+      try {
+        localStorage.setItem(key, JSON.stringify(data));
+        localStorage.setItem(STORAGE_KEYS.UPDATE, Date.now().toString());
+      } catch (e) {
+        console.error('Failed to save to localStorage', e);
+      }
+    }
+
+    function loadFromStorage(key, defaultValue = null) {
+      try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : defaultValue;
+      } catch (e) {
+        console.error('Failed to read from localStorage', e);
+        return defaultValue;
+      }
+    }
+
+    function updateAnalytics() {
+      document.getElementById('statStudents').textContent = state.student ? 1 : 0;
+      document.getElementById('statHomework').textContent = state.homework.length;
+      document.getElementById('statTeachers').textContent = state.teachers.length;
+    }
+
+    function notifyTabs() {
+      saveToStorage(STORAGE_KEYS.UPDATE, Date.now());
+    }
+
+    // =============== STUDENT GATE ===============
+    function showStudentGate() {
+      document.getElementById('studentGate').style.display = 'flex';
+      history.pushState({ modal: 'studentGate' }, '');
+    }
+
+    function hideStudentGate() {
+      document.getElementById('studentGate').style.display = 'none';
+      history.replaceState({}, document.title);
+    }
+
+    function initStudentGate() {
+      const savedStudent = loadFromStorage(STORAGE_KEYS.STUDENT);
+      if (!savedStudent) {
+        showStudentGate();
+      } else {
+        state.student = savedStudent;
+        hideStudentGate();
+        renderHomeworkFor(state.student.class);
+      }
+
+      window.addEventListener('popstate', (e) => {
+        if (document.getElementById('studentGate').style.display === 'flex') {
+          history.pushState({ modal: 'studentGate' }, '');
         }
+      });
 
-        // Initialize attendance chart
-        const ctx = attendanceChart.getContext('2d');
-        const attendanceChartInstance = new Chart(ctx, {
-            type: 'bar',
-             {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                datasets: [{
-                    label: 'Attendance Rate',
-                     [95, 92, 88, 94, 90],
-                    backgroundColor: '#3B82F6',
-                    borderColor: '#2563EB',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
+      document.getElementById('studentForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const student = {
+          name: document.getElementById('studentName').value,
+          class: document.getElementById('studentClass').value,
+          parent: document.getElementById('parentName').value
+        };
+        state.student = student;
+        saveToStorage(STORAGE_KEYS.STUDENT, student);
+        hideStudentGate();
+        renderHomeworkFor(student.class);
+      });
+    }
+
+    // =============== RENDERING FUNCTIONS ===============
+    function renderHomeworkFor(classNum) {
+      const list = document.getElementById('homeworkList');
+      list.innerHTML = '';
+      const filtered = state.homework.filter(hw => hw.class === classNum);
+      if (filtered.length === 0) {
+        list.innerHTML = '<p>No homework assigned for your class yet.</p>';
+        return;
+      }
+      filtered.forEach(hw => {
+        const item = document.createElement('div');
+        item.className = 'homework-item';
+        item.innerHTML = `
+          <div class="hw-title">${hw.title}</div>
+          <div class="hw-subject">${hw.subject}</div>
+          <div class="hw-due">Due: ${new Date(hw.dueDate).toLocaleDateString()}</div>
+          <div class="hw-desc">${hw.description}</div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function renderTeachers() {
+      const list = document.getElementById('teachersList');
+      list.innerHTML = '';
+      state.teachers.forEach(teacher => {
+        const card = document.createElement('div');
+        card.className = 'teacher-card';
+        card.innerHTML = `
+          <img src="${teacher.photo || 'https://placehold.co/80x80/eee/999?text=Teacher'}" alt="${teacher.name}" class="teacher-img" />
+          <div class="teacher-name">${teacher.name}</div>
+          <div class="teacher-subject">${teacher.subject}</div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function renderEvents() {
+      const list = document.getElementById('eventsList');
+      list.innerHTML = '';
+      state.events.sort((a, b) => new Date(a.date) - new Date(b.date));
+      state.events.forEach(event => {
+        const item = document.createElement('div');
+        item.className = 'event-item';
+        item.innerHTML = `
+          <div class="event-date">${new Date(event.date).toLocaleDateString()}</div>
+          <div class="event-title">${event.title}</div>
+          <div class="event-desc">${event.description}</div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function renderNotices() {
+      const list = document.getElementById('noticesList');
+      list.innerHTML = '';
+      state.notices.forEach(notice => {
+        const item = document.createElement('div');
+        item.className = 'notice-item';
+        const priorityClass = `priority-${notice.priority}`;
+        item.innerHTML = `
+          <span class="notice-priority ${priorityClass}">${notice.priority.toUpperCase()}</span>
+          <span class="notice-text">${notice.text}</span>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function renderTimetable() {
+      const tbody = document.querySelector('#timetableBody tbody');
+      tbody.innerHTML = '';
+      state.timetable.forEach(period => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="tt-period">${period.time}</td>
+          <td>${period.monday || '-'}</td>
+          <td>${period.tuesday || '-'}</td>
+          <td>${period.wednesday || '-'}</td>
+          <td>${period.thursday || '-'}</td>
+          <td>${period.friday || '-'}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function renderGallery() {
+      const list = document.getElementById('galleryList');
+      list.innerHTML = '';
+      state.gallery.forEach(img => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="${img.url}" alt="${img.caption}" />`;
+        item.addEventListener('click', () => {
+          document.getElementById('lightboxImg').src = img.url;
+          document.getElementById('lightbox').classList.add('active');
         });
+        list.appendChild(item);
+      });
+    }
 
-        // Initial render
-        renderHomeworkList();
-    </script>
+    function renderFAQ() {
+      const list = document.getElementById('faqList');
+      list.innerHTML = '';
+      const faqs = [
+        { q: "What time does school start?", a: "School starts at 8:00 AM sharp." },
+        { q: "How can I contact my child's teacher?", a: "You can email them or use the contact form on this portal." },
+        { q: "Are there school buses available?", a: "Yes, buses cover major areas of Balrampur. Contact office for routes." },
+        { q: "What is the uniform policy?", a: "Full uniform must be worn every day, including shoes and tie." }
+      ];
+      faqs.forEach(faq => {
+        const item = document.createElement('div');
+        item.className = 'faq-item';
+        item.innerHTML = `
+          <div class="faq-question">
+            ${faq.q}
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">${faq.a}</div>
+        `;
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+          question.classList.toggle('active');
+          const answer = item.querySelector('.faq-answer');
+          answer.classList.toggle('active');
+          question.querySelector('.toggle-icon').textContent = 
+            answer.classList.contains('active') ? '▲' : '▼';
+        });
+        list.appendChild(item);
+      });
+    }
+
+    // =============== EVENT LISTENERS ===============
+    function initEventListeners() {
+      // Theme Toggle
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('mkps_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      });
+
+      // Restore theme
+      if (localStorage.getItem('mkps_theme') === 'dark') {
+        document.body.classList.add('dark');
+      }
+
+      // Mobile menu
+      document.querySelector('.menu-toggle').addEventListener('click', () => {
+        document.querySelector('.mobile-menu').classList.toggle('active');
+      });
+
+      // Lightbox
+      document.getElementById('lightboxClose').addEventListener('click', () => {
+        document.getElementById('lightbox').classList.remove('active');
+      });
+
+      // Print view
+      document.getElementById('printView').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Contact form
+      document.getElementById('contactForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const msg = {
+          name: document.getElementById('contactName').value,
+          email: document.getElementById('contactEmail').value,
+          message: document.getElementById('contactMessage').value,
+          timestamp: new Date().toISOString()
+        };
+        state.messages.push(msg);
+        saveToStorage(STORAGE_KEYS.MESSAGES, state.messages);
+        alert('Message sent successfully!');
+        document.getElementById('contactForm').reset();
+      });
+
+      // Data Tools
+      document.getElementById('btnExport').addEventListener('click', () => {
+        const data = {};
+        Object.values(STORAGE_KEYS).forEach(key => {
+          data[key] = loadFromStorage(key);
+        });
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `mkps-data-backup-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+      });
+
+      document.getElementById('btnImport').addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+        input.onchange = (e) => {
+          const file = e.target.files[0];
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            try {
+              const data = JSON.parse(event.target.result);
+              Object.entries(data).forEach(([key, value]) => {
+                if (STORAGE_KEYS[key.toUpperCase()]) {
+                  saveToStorage(STORAGE_KEYS[key.toUpperCase()], value);
+                }
+              });
+              alert('Data imported successfully. Refreshing...');
+              location.reload();
+            } catch (e) {
+              alert('Invalid JSON file.');
+            }
+          };
+          reader.readAsText(file);
+        };
+        input.click();
+      });
+
+      document.getElementById('btnClear').addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
+          Object.values(STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
+          alert('All data cleared. Refreshing...');
+          location.reload();
+        }
+      });
+
+      document.getElementById('btnSeed').addEventListener('click', seedDemoData);
+
+      // Homework search
+      document.getElementById('homeworkSearch').addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('.homework-item');
+        items.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          item.style.display = text.includes(query) ? 'block' : 'none';
+        });
+      });
+    }
+
+    // =============== SEED DATA ===============
+    function seedDemoData() {
+      if (!confirm('This will overwrite existing data. Continue?')) return;
+
+      state.homework = [
+        { class: 5, subject: 'Mathematics', title: 'Fractions Practice', description: 'Complete exercises 1-15 on page 45.', dueDate: Date.now() + 86400000 },
+        { class: 5, subject: 'Science', title: 'Plant Life Cycle', description: 'Draw and label the stages of a plant.', dueDate: Date.now() + 172800000 },
+        { class: 8, subject: 'English', title: 'Essay Writing', description: 'Write a 300-word essay on "My School".', dueDate: Date.now() + 259200000 },
+        { class: 10, subject: 'Math', title: 'Algebra Problems', description: 'Solve quadratic equations from chapter 4.', dueDate: Date.now() + 345600000 }
+      ];
+
+      state.teachers = [
+        { name: 'Mr. Ahmad', subject: 'Mathematics', photo: 'https://placehold.co/80x80/333/fff?text=Ahmad' },
+        { name: 'Ms. Fatima', subject: 'Science', photo: 'https://placehold.co/80x80/c33/fff?text=Fatima' },
+        { name: 'Mr. Khan', subject: 'English', photo: 'https://placehold.co/80x80/555/fff?text=Khan' },
+        { name: 'Ms. Rehman', subject: 'Urdu', photo: 'https://placehold.co/80x80/777/fff?text=Rehman' }
+      ];
+
+      state.events = [
+        { title: 'Annual Day Celebration', description: 'Cultural program and prize distribution.', date: Date.now() + 1209600000 },
+        { title: 'Parent-Teacher Meeting', description: 'Discussion on student progress.', date: Date.now() + 604800000 }
+      ];
+
+      state.notices = [
+        { text: 'School will remain closed on Friday for Eid holiday.', priority: 'high' },
+        { text: 'New library books have arrived. Visit during break time.', priority: 'medium' }
+      ];
+
+      state.timetable = [
+        { time: '8:00-9:00', monday: 'Math', tuesday: 'Science', wednesday: 'Math', thursday: 'Science', friday: 'Math' },
+        { time: '9:00-10:00', monday: 'English', tuesday: 'English', wednesday: 'Urdu', thursday: 'English', friday: 'Urdu' },
+        { time: '10:00-11:00', monday: 'Science', tuesday: 'Math', wednesday: 'Science', thursday: 'Math', friday: 'Science' },
+        { time: '11:00-12:00', monday: 'Urdu', tuesday: 'Urdu', wednesday: 'English', thursday: 'Urdu', friday: 'English' }
+      ];
+
+      state.gallery = [
+        { url: 'https://placehold.co/300x200/eee/999?text=School+Event', caption: 'Annual Function' },
+        { url: 'https://placehold.co/300x200/ddd/777?text=Science+Lab', caption: 'Science Lab' },
+        { url: 'https://placehold.co/300x200/ccc/555?text=Library', caption: 'Library' }
+      ];
+
+      state.messages = [];
+
+      // Save all
+      Object.entries(state).forEach(([key, value]) => {
+        if (STORAGE_KEYS[key.toUpperCase()]) {
+          saveToStorage(STORAGE_KEYS[key.toUpperCase()], value);
+        }
+      });
+
+      alert('Demo data seeded!');
+      location.reload();
+    }
+
+    // =============== INITIALIZATION ===============
+    function init() {
+      // Load all data
+      state.student = loadFromStorage(STORAGE_KEYS.STUDENT);
+      state.homework = loadFromStorage(STORAGE_KEYS.HOMEWORK, []);
+      state.teachers = loadFromStorage(STORAGE_KEYS.TEACHERS, []);
+      state.events = loadFromStorage(STORAGE_KEYS.EVENTS, []);
+      state.notices = loadFromStorage(STORAGE_KEYS.NOTICES, []);
+      state.timetable = loadFromStorage(STORAGE_KEYS.TIMETABLE, []);
+      state.gallery = loadFromStorage(STORAGE_KEYS.GALLERY, []);
+      state.messages = loadFromStorage(STORAGE_KEYS.MESSAGES, []);
+
+      // Seed if empty
+      if (state.homework.length === 0) {
+        seedDemoData();
+        return;
+      }
+
+      // Render all
+      if (state.student) {
+        renderHomeworkFor(state.student.class);
+      }
+      renderTeachers();
+      renderEvents();
+      renderNotices();
+      renderTimetable();
+      renderGallery();
+      renderFAQ();
+      updateAnalytics();
+
+      // Init UI
+      initStudentGate();
+      initEventListeners();
+    }
+
+    // =============== GLOBAL FUNCTIONS (for admin.html) ===============
+    window.renderHomeworkFor = renderHomeworkFor;
+    window.refreshTeachers = renderTeachers;
+    window.refreshEvents = renderEvents;
+    window.refreshNotices = renderNotices;
+    window.refreshTimetable = renderTimetable;
+    window.refreshGallery = renderGallery;
+    window.seedDemoData = seedDemoData;
+    window.notifyTabs = notifyTabs;
+
+    // Start app
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
 </html>
