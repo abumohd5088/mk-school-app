@@ -3,713 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMM Panel: #1 Main IG Services Provider | EasySMMPanel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>SMM Panel</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .btn-primary {
-            background: linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%);
+        header {
+            background: #4CAF50;
             color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            padding: 15px;
+            text-align: center;
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        .container {
+            max-width: 500px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .service-card {
-            transition: all 0.3s ease;
-            border: 1px solid #e5e7eb;
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
         }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-color: #8B5CF6;
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
-            border-radius: 50%;
-        }
-        .faq-item {
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        .faq-question {
+        button {
+            background: #4CAF50;
+            color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 16px;
         }
-        .faq-question:hover {
-            color: #8B5CF6;
+        button:hover {
+            background: #45a049;
         }
-    </tailwindcss.com></head>
-<body class="bg-white">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center mr-3">
-                        <i class="fas fa-star text-white"></i>
-                    </div>
-                    <h1 class="text-2xl font-bold text-gray-900">EasySMMPanel</h1>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-purple-600 font-medium">Home</a>
-                    <a href="#services" class="text-gray-700 hover:text-purple-600 font-medium">Services</a>
-                    <a href="#pricing" class="text-gray-700 hover:text-purple-600 font-medium">Pricing</a>
-                    <a href="#faq" class="text-gray-700 hover:text-purple-600 font-medium">FAQ</a>
-                </nav>
-                <div class="flex items-center space-x-4">
-                    <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">Login</a>
-                    <a href="#" class="btn-primary">Sign Up</a>
-                </div>
-            </div>
-        </div>
+        .confirmation {
+            display: none;
+            padding: 15px;
+            background: #dff0d8;
+            border: 1px solid #b2d8b6;
+            color: #3c763d;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Easy SMM Panel</h1>
     </header>
+    <div class="container">
+        <h2>Place Your Order</h2>
+        <form id="orderForm">
+            <label for="service">Select Service</label>
+            <select id="service" required>
+                <option value="">-- Select --</option>
+                <option value="Instagram Followers">Instagram Followers</option>
+                <option value="YouTube Views">YouTube Views</option>
+                <option value="Twitter Likes">Twitter Likes</option>
+            </select>
 
-    <!-- Hero Section -->
-    <section id="home" class="py-20 bg-gradient-to-br from-purple-50 via-white to-pink-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-                        SMM Panel: <span class="gradient-text">#1 Main IG Services Provider</span>
-                    </h1>
-                    <p class="text-xl text-gray-600 mb-8">
-                        (Starting ₹5) PURE Original (Genuine Profile Quality)
-                    </p>
-                    <p class="text-lg text-gray-700 mb-8">
-                        Easy smm panel is the main Instagram services provider in the SMM Market. Our follower's and likes services starting price at <strong>₹5</strong> it means there are no brokers here involved; we offer direct services to the customers. Easy SMM Panel offers reliable and affordable SMM services.
-                    </p>
-                    <p class="text-lg text-gray-700 mb-8">
-                        Also, compare our services with all SMM providers. As a result, we are in the <strong>1st position</strong>. Want to sell our services and want to <strong>earn massive profit</strong>? If yes, just <strong>Sign Up</strong> and start generating huge profit.
-                    </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#" class="btn-primary text-center">
-                            Get Started Now
-                        </a>
-                        <a href="#services" class="px-8 py-3 border border-purple-600 text-purple-600 rounded-lg font-medium hover:bg-purple-50 transition text-center">
-                            View Services
-                        </a>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img src="https://placehold.co/600x500/8B5CF6/FFFFFF?text=SMM+Panel" alt="SMM Panel Dashboard" class="rounded-2xl shadow-2xl">
-                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-lg">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-check text-white"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-900">24/7 Support</p>
-                                <p class="text-sm text-gray-600">Always here to help</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <label for="link">Post/Profile Link</label>
+            <input type="url" id="link" placeholder="https://example.com" required>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Features of Easy SMM Panel</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Having the best <strong>SMM panel services</strong> is a great way to manage your social media marketing campaigns.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="service-card p-8 rounded-2xl bg-white">
-                    <div class="feature-icon flex items-center justify-center mb-6">
-                        <i class="fas fa-bolt text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Fast Delivery</h3>
-                    <p class="text-gray-600">
-                        We provide fastest services. Once you ordered, sit back and relax within the given time order will be completed.
-                    </p>
-                </div>
-                
-                <div class="service-card p-8 rounded-2xl bg-white">
-                    <div class="feature-icon flex items-center justify-center mb-6">
-                        <i class="fas fa-shield-alt text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Safe & Secure</h3>
-                    <p class="text-gray-600">
-                        Yes, it is totally safe, it won't get your accounts banned. We use genuine methods to deliver services.
-                    </p>
-                </div>
-                
-                <div class="service-card p-8 rounded-2xl bg-white">
-                    <div class="feature-icon flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">High Quality</h3>
-                    <p class="text-gray-600">
-                        Our priority is quality we always provide high quality service at affordable prices.
-                    </p>
-                </div>
-                
-                <div class="service-card p-8 rounded-2xl bg-white">
-                    <div class="feature-icon flex items-center justify-center mb-6">
-                        <i class="fas fa-rupee-sign text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Low Prices</h3>
-                    <p class="text-gray-600">
-                        All services offered on our easy smm panel are super affordable, starting at <strong>₹0.01</strong>.
-                    </p>
-                </div>
-                
-                <div class="service-card p-8 rounded-2xl bg-white">
-                    <div class="feature-icon flex items-center justify-center mb-6">
-                        <i class="fas fa-credit-card text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Multiple Payment Options</h3>
-                    <p class="text-gray-600">
-                        We offer multiple payment options to add funds to your account including UPI, Paytm, and Bank Transfer.
-                    </p>
-                </div>
-                
-                <div class="service-card p-8 rounded-2xl bg-white">
-                   <div class="feature-icon flex items-center justify-center mb-6">
-                        <i class="fas fa-headset text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">24/7 Customer Support</h3>
-                    <p class="text-gray-600">
-                        We provide 24/7 customer support and a money-back guarantee if you're not satisfied with our services.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" min="10" required>
 
-    <!-- Why Choose Us Section -->
-    <section id="why-choose" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=Why+Choose+Us" alt="Why Choose Us" class="rounded-2xl shadow-xl">
-                </div>
-                <div>
-                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Why Choose Us?</h2>
-                    <p class="text-lg text-gray-700 mb-6">
-                        If you're looking for an efficient way to manage your social media marketing, an Easy Smm panel can be a great solution.
-                    </p>
-                    <p class="text-lg text-gray-700 mb-6">
-                        We provide a platform for you to conveniently monitor and manage all of your social media marketing activities from one single dashboard. It offers a range of features that make managing your campaigns easier than ever before.
-                    </p>
-                    <p class="text-lg text-gray-700 mb-8">
-                        We provide our clients with a powerful and user-friendly SMM panel that makes their social media marketing tasks simpler and more effective. Our SMM panel allows you to automate a variety of tasks and allows you to take control of your social media presence.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <span class="text-gray-700">Highest Quality Services at Affordable Prices</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <span class="text-gray-700">Multiple Payment Options for Convenience</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <span class="text-gray-700">Fastest Delivery Guaranteed</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <span class="text-gray-700">24/7 Customer Support Available</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            <button type="submit">Place Order</button>
+        </form>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our SMM Services</h2>
-                <p class="text-xl text-gray-600">
-                    We provide SMM services for various platforms, such as likes, followers, views, and so on.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="service-card p-6 rounded-2xl bg-white">
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-instagram text-pink-600 text-3xl mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">Instagram</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Followers</span>
-                            <span class="font-semibold text-purple-600">₹5</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Likes</span>
-                            <span class="font-semibold text-purple-600">₹4</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Views</span>
-                            <span class="font-semibold text-purple-600">₹3</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Saves</span>
-                            <span class="font-semibold text-purple-600">₹6</span>
-                        </li>
-                    </ul>
-                    <a href="#" class="mt-6 btn-primary w-full text-center inline-block">Order Now</a>
-                </div>
-                
-                <div class="service-card p-6 rounded-2xl bg-white">
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-youtube text-red-600 text-3xl mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">YouTube</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Views</span>
-                            <span class="font-semibold text-purple-600">₹8</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Subscribers</span>
-                            <span class="font-semibold text-purple-600">₹15</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Likes</span>
-                            <span class="font-semibold text-purple-600">₹12</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Comments</span>
-                            <span class="font-semibold text-purple-600">₹20</span>
-                        </li>
-                    </ul>
-                    <a href="#" class="mt-6 btn-primary w-full text-center inline-block">Order Now</a>
-                </div>
-                
-                <div class="service-card p-6 rounded-2xl bg-white">
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-facebook text-blue-600 text-3xl mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">Facebook</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Page Likes</span>
-                            <span class="font-semibold text-purple-600">₹7</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Post Likes</span>
-                            <span class="font-semibold text-purple-600">₹5</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Group Members</span>
-                            <span class="font-semibold text-purple-600">₹10</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Video Views</span>
-                            <span class="font-semibold text-purple-600">₹4</span>
-                        </li>
-                    </ul>
-                    <a href="#" class="mt-6 btn-primary w-full text-center inline-block">Order Now</a>
-                </div>
-                
-                <div class="service-card p-6 rounded-2xl bg-white">
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-twitter text-blue-400 text-3xl mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">Twitter</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Followers</span>
-                            <span class="font-semibold text-purple-600">₹6</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Retweets</span>
-                            <span class="font-semibold text-purple-600">₹8</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Likes</span>
-                            <span class="font-semibold text-purple-600">₹7</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Comments</span>
-                            <span class="font-semibold text-purple-600">₹15</span>
-                        </li>
-                    </ul>
-                    <a href="#" class="mt-6 btn-primary w-full text-center inline-block">Order Now</a>
-                </div>
-                
-                <div class="service-card p-6 rounded-2xl bg-white">
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-tiktok text-black text-3xl mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">TikTok</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Followers</span>
-                            <span class="font-semibold text-purple-600">₹9</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Likes</span>
-                            <span class="font-semibold text-purple-600">₹5</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Views</span>
-                            <span class="font-semibold text-purple-600">₹3</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Shares</span>
-                            <span class="font-semibold text-purple-600">₹12</span>
-                        </li>
-                    </ul>
-                    <a href="#" class="mt-6 btn-primary w-full text-center inline-block">Order Now</a>
-                </div>
-                
-                <div class="service-card p-6 rounded-2xl bg-white">
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-snapchat text-yellow-500 text-3xl mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">Snapchat</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Followers</span>
-                            <span class="font-semibold text-purple-600">₹10</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Views</span>
-                            <span class="font-semibold text-purple-600">₹6</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Story Views</span>
-                            <span class="font-semibold text-purple-600">₹8</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-700">Add Friends</span>
-                            <span class="font-semibold text-purple-600">₹15</span>
-                        </li>
-                    </ul>
-                    <a href="#" class="mt-6 btn-primary w-full text-center inline-block">Order Now</a>
-                </div>
-            </div>
+        <div class="confirmation" id="confirmationBox">
+            ✅ Order placed successfully!  
+            <br>Your order ID is: <span id="orderId"></span>
+            <br><a href="admin.html">Go to Admin Panel</a>
         </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Work Process</h2>
-                <p class="text-xl text-gray-600">
-                    Simple 4-step process to get started with our SMM services
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto">
-                        1
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Sign up and log in</h3>
-                    <p class="text-gray-600">
-                        The first thing you need to do is to sign up and then log in to your account.
-                    </p>
-                </div>
-                
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto">
-                        2
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Make a deposit</h3>
-                    <p class="text-gray-600">
-                        Add funds via a payment method you find the most convenient.
-                    </p>
-                </div>
-                
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto">
-                        3
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Place an order</h3>
-                    <p class="text-gray-600">
-                        Pick out the SMM services you need and place your orders.
-                    </p>
-                </div>
-                
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto">
-                        4
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Quick results</h3>
-                    <p class="text-gray-600">
-                        You will be satisfied with our SMM services when your order is ready.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-                <p class="text-xl text-gray-600">
-                    Check out answers to some of the most frequently asked questions on our panel.
-                </p>
-            </div>
-            
-            <div class="space-y-6">
-                <div class="faq-item">
-                    <div class="faq-question p-6 bg-gray-50 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 flex justify-between items-center">
-                            What is an SMM Panel and Why Do You Need One?
-                            <i class="fas fa-chevron-down text-purple-600"></i>
-                        </h3>
-                    </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg mt-2">
-                        <p class="text-gray-700">
-                            An SMM panel might be one of the most powerful tools in your social media marketing toolbox. But what exactly is an SMM panel, and why do you need to use it? Read on to find out more about this handy tool and how it can help you create stunning visuals, schedule posts, and engage with your followers even when you're not able to be active on social media yourself!
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question p-6 bg-gray-50 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 flex justify-between items-center">
-                            What is an SMM panel?
-                            <i class="fas fa-chevron-down text-purple-600"></i>
-                        </h3>
-                    </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg mt-2">
-                        <p class="text-gray-700">
-                            An SMM panel is a web-based service used to provide social media marketing services, such as likes, followers, views, and other forms of engagement. It provides businesses with a one-stop shop for their social media marketing needs. The SMM panel allows customers to buy services in bulk and at a much lower cost than they would pay when buying services from individual sellers. This makes it easier for businesses to increase their online presence quickly and cheaply.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question p-6 bg-gray-50 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 flex justify-between items-center">
-                            What are Cheapest SMM panels?
-                            <i class="fas fa-chevron-down text-purple-600"></i>
-                        </h3>
-                    </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg mt-2">
-                        <p class="text-gray-700">
-                            An SMM panel is an online store that sells various SMM services at cheapest rate. Suppose you want to become a celebrity on social media, then you will need followers and likes. Then you can buy these service from us at low price, and fulfill your dream.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question p-6 bg-gray-50 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 flex justify-between items-center">
-                            What is an SMM Service?
-                            <i class="fas fa-chevron-down text-purple-600"></i>
-                        </h3>
-                    </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg mt-2">
-                        <p class="text-gray-700">
-                            SMM services are a great way to increase the engagement of your social media accounts, as well as help you build a strong following. The use of SMM services can also improve your SEO rankings, as more engagement means more search engine traffic. With our panel, you can set up campaigns to target specific demographics, locations, and interests, which allows you to be more precise in your marketing efforts.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question p-6 bg-gray-50 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 flex justify-between items-center">
-                            What SMM services can I find on your panel?
-                            <i class="fas fa-chevron-down text-purple-600"></i>
-                        </h3>
-                    </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg mt-2">
-                        <p class="text-gray-700">
-                            We provide SMM services for various platforms, such as likes, followers, views, and so on.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question p-6 bg-gray-50 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 flex justify-between items-center">
-                            Is it really safe to order SMM services on your panel?
-                            <i class="fas fa-chevron-down text-purple-600"></i>
-                        </h3>
-                    </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg mt-2">
-                        <p class="text-gray-700">
-                            Yes, it is totally safe, it won't get your accounts banned. We use genuine methods to deliver services that comply with platform guidelines.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question p-6 bg-gray-50 rounded-lg">
-                        <h3 class="text-lg font-semibold text-gray-900 flex justify-between items-center">
-                            What does "Drip-feed" mean?
-                            <i class="fas fa-chevron-down text-purple-600"></i>
-                        </h3>
-                    </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg mt-2">
-                        <p class="text-gray-700">
-                            If you want to build the engagement on your account at slower pace to make it look more natural, the Drip-feed feature will help you with that. Let's imagine you want to order 2000 likes on your post. You can get all 2000 of them right away or make it happen seamlessly, for example, 200 likes/day for 10 days.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
-        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
-                Ready to Boost Your Social Media Presence?
-            </h2>
-            <p class="text-xl text-purple-100 mb-8">
-                Join thousands of satisfied customers who are growing their social media accounts with our affordable and high-quality SMM services.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition text-center">
-                    Sign Up Now
-                </a>
-                <a href="#services" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-purple-600 transition text-center">
-                    View All Services
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center mb-6">
-                        <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center mr-3">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">EasySMMPanel</h3>
-                    </div>
-                    <p class="text-gray-400 mb-6">
-                        The #1 SMM Panel for Instagram and other social media platforms. Quality services at the lowest prices.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
-                    <ul class="space-y-4">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
-                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a></li>
-                        <li><a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Services</h4>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Instagram Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">YouTube Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Facebook Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Twitter Services</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-center text-gray-400">
-                            <i class="fas fa-envelope mr-3"></i>
-                            support@easysmmpanel.com
-                        </li>
-                        <li class="flex items-center text-gray-400">
-                            <i class="fas fa-phone mr-3"></i>
-                            +91 XXXXX XXXXX
-                        </li>
-                        <li class="flex items-center text-gray-400">
-                            <i class="fas fa-clock mr-3"></i>
-                            24/7 Support
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-                <p class="text-gray-400">
-                    &copy; 2024 EasySMMPanel. All rights reserved. | Designed with ❤️ for social media growth
-                </p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        document.getElementById("orderForm").addEventListener("submit", function(e) {
+            e.preventDefault();
 
-        // FAQ accordion functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('i');
-                
-                if (answer.style.display === 'block') {
-                    answer.style.display = 'none';
-                    icon.classList.remove('fa-chevron-up');
-                    icon.classList.add('fa-chevron-down');
-                } else {
-                    answer.style.display = 'block';
-                    icon.classList.remove('fa-chevron-down');
-                    icon.classList.add('fa-chevron-up');
-                }
-            });
+            let service = document.getElementById("service").value;
+            let link = document.getElementById("link").value;
+            let quantity = document.getElementById("quantity").value;
+
+            // Generate random order ID
+            let orderId = "ORD" + Math.floor(Math.random() * 100000);
+
+            // Save order in localStorage
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.push({ id: orderId, service, link, quantity, status: "Pending" });
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            // Show confirmation
+            document.getElementById("orderId").textContent = orderId;
+            document.getElementById("confirmationBox").style.display = "block";
+
+            // Reset form
+            document.getElementById("orderForm").reset();
         });
     </script>
 </body>
