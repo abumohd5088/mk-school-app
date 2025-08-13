@@ -3,1139 +3,755 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milli Karwaan Public School Balrampur</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>EduConnect - School Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .sidebar {
+            transition: all 0.3s ease;
         }
-
-        :root {
-            --primary: #1a5fb4;
-            --primary-dark: #0d47a1;
-            --secondary: #ff6b35;
-            --accent: #4ecdc4;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
-            --border-radius: 12px;
-            --shadow: 0 4px 20px rgba(0,0,0,0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        body {
-            background-color: #f0f2f5;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        body.dark-mode {
-            background-color: #121212;
-            color: var(--light);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        .header {
-            background: white;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        body.dark-mode .header {
-            background: #1e1e1e;
-        }
-
-        .top-bar {
-            background: var(--primary);
-            color: white;
-            padding: 8px 0;
-            font-size: 14px;
-        }
-
-        .header-main {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
+        .sidebar.collapsed {
             width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
         }
-
-        .school-info h1 {
-            font-size: 1.8rem;
-            color: var(--primary-dark);
-            margin-bottom: 5px;
+        .sidebar.collapsed .sidebar-text {
+            display: none;
         }
-
-        body.dark-mode .school-info h1 {
-            color: var(--accent);
+        .sidebar.collapsed .logo-text {
+            display: none;
         }
-
-        .school-address {
-            color: var(--gray);
-            font-size: 14px;
+        .sidebar.collapsed .menu-item span {
+            width: 30px;
         }
-
-        body.dark-mode .school-address {
-            color: #adb5bd;
+        .dark-mode {
+            background-color: #1a1a2e;
+            color: #e1e1e1;
         }
-
-        .contact-actions {
-            display: flex;
-            gap: 10px;
+        .dark-mode .card {
+            background-color: #16213e;
+            border-color: #0f3460;
         }
-
-        .contact-btn {
-            background: var(--primary);
-            color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
+        .dark-mode .sidebar {
+            background-color: #0f172a;
         }
-
-        .contact-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+        .dark-mode .header {
+            background-color: #1e293b;
         }
-
-        /* Navigation */
-        .nav-container {
-            background: var(--primary-dark);
-            padding: 0;
+        .notification {
+            animation: fadeIn 0.5s;
         }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            justify-content: center;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .nav-menu li {
-            position: relative;
+        .homework-card {
+            transition: all 0.3s ease;
         }
-
-        .nav-menu a {
-            color: white;
-            padding: 15px 20px;
-            display: block;
-            font-weight: 500;
-            transition: var(--transition);
+        .homework-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-
-        .nav-menu a:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .hero-btn {
-            background: var(--secondary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-block;
-            transition: var(--transition);
-        }
-
-        .hero-btn:hover {
-            background: #e55a2a;
-            transform: translateY(-3px);
-        }
-
-        /* Sections */
-        .section {
-            margin-bottom: 80px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-        }
-
-        body.dark-mode .section-header h2 {
-            color: var(--accent);
-        }
-
-        .section-header p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        body.dark-mode .section-header p {
-            color: #adb5bd;
-        }
-
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        body.dark-mode .card {
-            background: #2d2d2d;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 25px;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary-dark);
-        }
-
-        body.dark-mode .card h3 {
-            color: var(--accent);
-        }
-
-        .card p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        body.dark-mode .card p {
-            color: #adb5bd;
-        }
-
-        /* Teachers Section */
-        .teacher-card {
-            text-align: center;
-        }
-
-        .teacher-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: -60px auto 20px;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        body.dark-mode .teacher-img {
-            border-color: #2d2d2d;
-        }
-
-        .teacher-name {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .teacher-subject {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        /* Events Timeline */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--primary);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 50px;
-            width: 100%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            padding-right: calc(50% + 30px);
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            padding-left: calc(50% + 30px);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--primary);
-            top: 20px;
-            box-shadow: 0 0 0 4px white;
-        }
-
-        body.dark-mode .timeline-dot {
-            box-shadow: 0 0 0 4px #2d2d2d;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: calc(50% - 10px);
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: calc(50% - 10px);
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        body.dark-mode .timeline-content {
-            background: #2d2d2d;
-        }
-
-        .timeline-date {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .timeline-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--primary-dark);
-        }
-
-        body.dark-mode .timeline-title {
-            color: var(--accent);
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            height: 250px;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 95, 180, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-overlay i {
-            color: white;
-            font-size: 2rem;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        body.dark-mode .contact-form {
-            background: #2d2d2d;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        body.dark-mode .form-group label {
-            color: var(--light);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: var(--transition);
-        }
-
-        body.dark-mode .form-control {
-            background: #3d3d3d;
-            border-color: #444;
-            color: var(--light);
-        }
-
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: var(--primary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--primary-dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .contact-info {
-            list-style: none;
-        }
-
-        .contact-info li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                padding-left: 60px;
-                padding-right: 0;
-                text-align: left;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-dot,
-            .timeline-item:nth-child(even) .timeline-dot {
-                left: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-main {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-
-            .contact-actions {
-                justify-content: center;
-            }
-
-            .nav-menu {
-                flex-wrap: wrap;
-            }
-
-            .nav-menu a {
-                padding: 12px 15px;
-                font-size: 14px;
-            }
-
-            .hero h2 {
-                font-size: 2.2rem;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero {
-                padding: 50px 0;
-            }
-
-            .hero h2 {
-                font-size: 1.8rem;
-            }
-
-            .section {
-                margin-bottom: 50px;
-            }
-
-            .contact-form {
-                padding: 25px;
-            }
+        .attendance-chart {
+            height: 300px;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="top-bar">
-            <div class="container text-center">
-                <span>Admissions Open for 2024-25 | CBSE Affiliated School</span>
-            </div>
-        </div>
-        <div class="container">
-            <div class="header-main">
-                <div class="logo-container">
-                    <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo" class="logo">
-                    <div class="school-info">
-                        <h1>Milli Karwaan Public School</h1>
-                        <p class="school-address">Boluha Police Chowki Balrampur</p>
+<body class="bg-gray-100 font-sans">
+    <div id="app">
+        <!-- Login Modal -->
+        <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-8 w-96 shadow-xl">
+                <h2 class="text-2xl font-bold text-center mb-6 text-blue-600">Admin Login</h2>
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                            Username
+                        </label>
+                        <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                               id="username" type="text" placeholder="Enter username">
                     </div>
-                </div>
-                <div class="contact-actions">
-                    <a href="tel:9758919151" class="contact-btn">
-                        <i class="fas fa-phone"></i> Call School
-                    </a>
-                    <a href="mailto:madamsir066@gmail.com" class="contact-btn">
-                        <i class="fas fa-envelope"></i> Email Us
-                    </a>
-                </div>
-            </div>
-        </div>
-        <nav class="nav-container">
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#academics">Academics</a></li>
-                <li><a href="#admissions">Admissions</a></li>
-                <li><a href="#teachers">Faculty</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h2>Excellence in Education</h2>
-            <p>Milli Karwaan Public School Balrampur is committed to providing quality education that nurtures the intellectual, emotional, and social development of every student.</p>
-            <a href="#admissions" class="hero-btn">Apply Now</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>About Our School</h2>
-                <p>Learn more about our history, mission, and values</p>
-            </div>
-            <div class="cards-grid">
-                <div class="card">
-                    <img src="https://placehold.co/600x300/1a5fb4/white?text=Our+History" alt="School History" class="card-img">
-                    <div class="card-content">
-                        <h3>Our History</h3>
-                        <p>Founded in 2005, Milli Karwaan Public School has been a beacon of educational excellence in Balrampur for nearly two decades. Our journey began with a vision to provide world-class education to students in the region.</p>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                            Password
+                        </label>
+                        <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                               id="password" type="password" placeholder="Enter password">
                     </div>
-                </div>
-                <div class="card">
-                    <img src="https://placehold.co/600x300/ff6b35/white?text=Our+Mission" alt="School Mission" class="card-img">
-                    <div class="card-content">
-                        <h3>Our Mission</h3>
-                        <p>We are dedicated to fostering an environment where students can discover their potential, develop critical thinking skills, and become responsible global citizens who contribute positively to society.</p>
+                    <div class="flex items-center justify-between">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300" 
+                                type="submit">
+                            Sign In
+                        </button>
+                        <button type="button" id="guestLogin" class="text-blue-600 hover:text-blue-800 text-sm">Continue as Guest</button>
                     </div>
-                </div>
-                <div class="card">
-                    <img src="https://placehold.co/600x300/4ecdc4/white?text=Our+Values" alt="School Values" class="card-img">
-                    <div class="card-content">
-                        <h3>Core Values</h3>
-                        <p>Integrity, Excellence, Innovation, and Community are the pillars that guide our educational philosophy. We believe in nurturing the whole child through a balanced approach to learning.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Academics Section -->
-    <section class="section" id="academics">
-        <div class="container">
-            <div class="section-header">
-                <h2>Academic Programs</h2>
-                <p>Comprehensive curriculum designed for holistic development</p>
-            </div>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-content">
-                        <h3>Primary Education (Classes 1-5)</h3>
-                        <p>Our primary program focuses on building strong foundational skills in literacy, numeracy, and scientific thinking through interactive and engaging learning experiences.</p>
-                        <ul>
-                            <li>Language Arts & Literature</li>
-                            <li>Mathematics & Problem Solving</li>
-                            <li>Environmental Studies</li>
-                            <li>Art & Creative Expression</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <h3>Secondary Education (Classes 6-10)</h3>
-                        <p>Students explore a broader range of subjects while developing critical thinking and analytical skills essential for higher education.</p>
-                        <ul>
-                            <li>Science (Physics, Chemistry, Biology)</li>
-                            <li>Mathematics</li>
-                            <li>Social Studies</li>
-                            <li>Computer Science</li>
-                            <li>Foreign Languages</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <h3>Senior Secondary (Classes 11-12)</h3>
-                        <p>Our senior secondary program offers specialized streams to prepare students for competitive examinations and university admissions.</p>
-                        <ul>
-                            <li>Science Stream (PCM/PCB)</li>
-                            <li>Commerce Stream</li>
-                            <li>Humanities Stream</li>
-                            <li>Career Counseling</li>
-                            <li>Competitive Exam Prep</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Admissions Section -->
-    <section class="section" id="admissions">
-        <div class="container">
-            <div class="section-header">
-                <h2>Admissions</h2>
-                <p>Join our learning community and embark on a journey of excellence</p>
-            </div>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-content">
-                        <h3>Admission Process</h3>
-                        <p>Our admission process is designed to be simple and transparent:</p>
-                        <ol>
-                            <li>Fill out the application form</li>
-                            <li>Submit required documents</li>
-                            <li>Interaction with parents and child</li>
-                            <li>Admission confirmation</li>
-                        </ol>
-                        <p>Applications are accepted throughout the year for most classes.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <h3>Required Documents</h3>
-                        <ul>
-                            <li>Birth Certificate</li>
-                            <li>Previous School Records</li>
-                            <li>Transfer Certificate (if applicable)</li>
-                            <li>Four Passport-sized Photographs</li>
-                            <li>Address Proof</li>
-                            <li>Medical Certificate</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <h3>Fee Structure</h3>
-                        <p>Our fee structure is competitive and transparent:</p>
-                        <ul>
-                            <li>Primary Classes: ₹12,000/year</li>
-                            <li>Secondary Classes: ₹18,000/year</li>
-                            <li>Senior Secondary: ₹25,000/year</li>
-                        </ul>
-                        <p>Special discounts available for siblings and early payments.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Teachers Section -->
-    <section class="section" id="teachers">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Faculty</h2>
-                <p>Dedicated educators shaping the future of our students</p>
-            </div>
-            <div class="cards-grid">
-                <div class="card teacher-card">
-                    <img src="https://placehold.co/200x200/1a5fb4/white?text=Teacher" alt="Dr. Aisha Khan" class="teacher-img">
-                    <div class="card-content">
-                        <h3 class="teacher-name">Dr. Aisha Khan</h3>
-                        <p class="teacher-subject">Mathematics Head</p>
-                        <p>Ph.D. in Mathematics with 15 years of teaching experience. Specializes in advanced calculus and algebra.</p>
-                    </div>
-                </div>
-                <div class="card teacher-card">
-                    <img src="https://placehold.co/200x200/ff6b35/white?text=Teacher" alt="Mr. Rajesh Patel" class="teacher-img">
-                    <div class="card-content">
-                        <h3 class="teacher-name">Mr. Rajesh Patel</h3>
-                        <p class="teacher-subject">Science Coordinator</p>
-                        <p>M.Sc. in Physics with expertise in quantum mechanics and modern physics. 12 years of teaching experience.</p>
-                    </div>
-                </div>
-                <div class="card teacher-card">
-                    <img src="https://placehold.co/200x200/4ecdc4/white?text=Teacher" alt="Mrs. Sunita Sharma" class="teacher-img">
-                    <div class="card-content">
-                        <h3 class="teacher-name">Mrs. Sunita Sharma</h3>
-                        <p class="teacher-subject">English Literature</p>
-                        <p>M.A. in English Literature with focus on Shakespearean studies and modern fiction. 10 years of experience.</p>
-                    </div>
-                </div>
-                <div class="card teacher-card">
-                    <img src="https://placehold.co/200x200/1a5fb4/white?text=Teacher" alt="Mr. Vikram Singh" class="teacher-img">
-                    <div class="card-content">
-                        <h3 class="teacher-name">Mr. Vikram Singh</h3>
-                        <p class="teacher-subject">Social Science</p>
-                        <p>M.A. in History with specialization in Indian freedom movement and world history. 8 years of teaching.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="section" id="events">
-        <div class="container">
-            <div class="section-header">
-                <h2>Upcoming Events</h2>
-                <p>Stay updated with our school activities and celebrations</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">March 15, 2024</div>
-                        <h3 class="timeline-title">Annual Day Celebration</h3>
-                        <p>Our annual cultural extravaganza featuring performances by students from all classes. Join us for an evening of music, dance, and drama.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">February 20, 2024</div>
-                        <h3 class="timeline-title">Science Fair</h3>
-                        <p>Students will present their science projects and experiments to judges and visitors. Awards for the most innovative projects.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">January 30, 2024</div>
-                        <h3 class="timeline-title">Sports Day</h3>
-                        <p>Annual sports competition with track and field events for all classes. Fun activities for younger students and competitive events for seniors.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">February 10, 2024</div>
-                        <h3 class="timeline-title">Parent-Teacher Meeting</h3>
-                        <p>Scheduled meeting for parents to discuss their child's progress with teachers. Individual consultations available upon request.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="section" id="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2>School Gallery</h2>
-                <p>Moments from our school life and activities</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://placehold.co/400x300/1a5fb4/white?text=Annual+Day" alt="Annual Day" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/400x300/ff6b35/white?text=Science+Fair" alt="Science Fair" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/400x300/4ecdc4/white?text=Sports+Day" alt="Sports Day" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/400x300/1a5fb4/white?text=Classroom" alt="Classroom" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/400x300/ff6b35/white?text=Library" alt="Library" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/400x300/4ecdc4/white?text=Laboratory" alt="Laboratory" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contact Us</h2>
-                <p>Get in touch with our school administration</p>
-            </div>
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
                 </form>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Milli Karwaan Public School</h3>
-                    <p>Providing quality education since 2005. Our school is committed to nurturing the intellectual, emotional, and social development of every student.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+        <!-- Main Layout -->
+        <div id="mainLayout" class="flex h-screen hidden">
+            <!-- Sidebar -->
+            <div class="sidebar w-64 bg-white shadow-lg flex flex-col">
+                <div class="p-6 flex items-center">
+                    <i class="fas fa-graduation-cap text-blue-600 text-3xl"></i>
+                    <span class="ml-3 text-xl font-bold logo-text text-blue-600">EduConnect</span>
+                </div>
+                <nav class="flex-1 px-4 py-4">
+                    <ul class="space-y-2">
+                        <li class="menu-item">
+                            <a href="#" class="flex items-center p-3 rounded-lg bg-blue-100 text-blue-700">
+                                <i class="fas fa-home mr-3 text-blue-600"></i>
+                                <span class="sidebar-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-book mr-3"></i>
+                                <span class="sidebar-text">Homework</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-calendar-alt mr-3"></i>
+                                <span class="sidebar-text">Schedule</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-users mr-3"></i>
+                                <span class="sidebar-text">Students</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-chalkboard-teacher mr-3"></i>
+                                <span class="sidebar-text">Teachers</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-chart-line mr-3"></i>
+                                <span class="sidebar-text">Analytics</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-cog mr-3"></i>
+                                <span class="sidebar-text">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="p-4 border-t">
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/40x40/4f46e5/ffffff?text=AD" alt="Admin" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-700">Admin User</p>
+                            <p class="text-xs text-gray-500">Administrator</p>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#academics">Academics</a></li>
-                        <li><a href="#admissions">Admissions</a></li>
-                        <li><a href="#teachers">Faculty</a></li>
-                        <li><a href="#events">Events</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Academics</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Primary Education</a></li>
-                        <li><a href="#">Secondary Education</a></li>
-                        <li><a href="#">Senior Secondary</a></li>
-                        <li><a href="#">Examination Results</a></li>
-                        <li><a href="#">Syllabus</a></li>
-                        <li><a href="#">Holiday Calendar</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Information</h3>
-                    <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Boluha Police Chowki Balrampur</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+91 9758919151</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>madamsir066@gmail.com</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span>Monday - Saturday: 9:00 AM - 2:30 PM</span>
-                        </li>
-                    </ul>
-                </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2024 Milli Karwaan Public School Balrampur. All Rights Reserved.</p>
+
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col overflow-hidden">
+                <!-- Header -->
+                <header class="header bg-white shadow-sm px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <button id="toggleSidebar" class="text-gray-600 hover:text-gray-800 mr-4">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                        <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button id="darkModeToggle" class="text-gray-600 hover:text-gray-800">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <div class="relative">
+                            <button id="notificationBtn" class="text-gray-600 hover:text-gray-800 relative">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                            </button>
+                            <div id="notificationDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-10">
+                                <div class="p-4 border-b">
+                                    <h3 class="font-semibold">Notifications</h3>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <div class="flex items-start">
+                                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                            <i class="fas fa-book text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm">New homework assigned in Math 101</p>
+                                            <p class="text-xs text-gray-500">2 hours ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                                            <i class="fas fa-calendar-check text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm">Parent-teacher meeting scheduled</p>
+                                            <p class="text-xs text-gray-500">5 hours ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                            <i class="fas fa-award text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm">Student achievement: Science Fair Winner</p>
+                                            <p class="text-xs text-gray-500">1 day ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <button id="profileBtn" class="flex items-center text-gray-600 hover:text-gray-800">
+                                <img src="https://placehold.co/32x32/4f46e5/ffffff?text=AD" alt="Profile" class="w-8 h-8 rounded-full">
+                                <span class="ml-2 text-sm font-medium">Admin</span>
+                                <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
+                                <div class="p-4 border-b">
+                                    <p class="font-medium">Admin User</p>
+                                    <p class="text-sm text-gray-500">admin@educonnect.com</p>
+                                </div>
+                                <div class="py-2">
+                                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                                        <i class="fas fa-user mr-3"></i>
+                                        Profile
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                                        <i class="fas fa-cog mr-3"></i>
+                                        Settings
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                                        <i class="fas fa-sign-out-alt mr-3"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Dashboard Content -->
+                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div class="card bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-blue-100">
+                                    <i class="fas fa-users text-blue-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-500 text-sm">Total Students</p>
+                                    <p class="text-2xl font-semibold text-gray-800">1,247</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 12%</span>
+                                <span class="text-gray-500 text-sm ml-1">from last month</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100">
+                                    <i class="fas fa-chalkboard-teacher text-green-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-500 text-sm">Teachers</p>
+                                    <p class="text-2xl font-semibold text-gray-800">48</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 5%</span>
+                                <span class="text-gray-500 text-sm ml-1">from last month</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-purple-100">
+                                    <i class="fas fa-book text-purple-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-500 text-sm">Homework</p>
+                                    <p class="text-2xl font-semibold text-gray-800">23</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-red-500 text-sm"><i class="fas fa-arrow-down"></i> 8%</span>
+                                <span class="text-gray-500 text-sm ml-1">from last week</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-yellow-100">
+                                    <i class="fas fa-calendar-alt text-yellow-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-500 text-sm">Events</p>
+                                    <p class="text-2xl font-semibold text-gray-800">7</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 15%</span>
+                                <span class="text-gray-500 text-sm ml-1">from last month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Content Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Homework Section -->
+                        <div class="lg:col-span-2">
+                            <div class="card bg-white rounded-lg shadow-md p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h2 class="text-xl font-semibold text-gray-800">Recent Homework</h2>
+                                    <button id="addHomeworkBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm flex items-center transition duration-300">
+                                        <i class="fas fa-plus mr-1"></i>
+                                        Add Homework
+                                    </button>
+                                </div>
+                                
+                                <!-- Homework List -->
+                                <div id="homeworkList" class="space-y-4">
+                                    <div class="homework-card bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-gray-800">Mathematics: Algebra Problems</h3>
+                                                <p class="text-gray-600 text-sm">Complete exercises 1-20 on page 45</p>
+                                                <div class="flex items-center mt-2 text-sm text-gray-500">
+                                                    <i class="fas fa-calendar-alt mr-1"></i>
+                                                    <span>Due: Oct 15, 2023</span>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Grade 9</span>
+                                                <div class="mt-1">
+                                                    <button class="text-blue-600 hover:text-blue-800 text-sm"><i class="fas fa-edit"></i></button>
+                                                    <button class="text-red-600 hover:text-red-800 text-sm ml-2"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-card bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-gray-800">English: Essay on Shakespeare</h3>
+                                                <p class="text-gray-600 text-sm">Write a 500-word analysis of Hamlet</p>
+                                                <div class="flex items-center mt-2 text-sm text-gray-500">
+                                                    <i class="fas fa-calendar-alt mr-1"></i>
+                                                    <span>Due: Oct 18, 2023</span>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Grade 10</span>
+                                                <div class="mt-1">
+                                                    <button class="text-blue-600 hover:text-blue-800 text-sm"><i class="fas fa-edit"></i></button>
+                                                    <button class="text-red-600 hover:text-red-800 text-sm ml-2"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-card bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-gray-800">Science: Lab Report</h3>
+                                                <p class="text-gray-600 text-sm">Document findings from the chemistry experiment</p>
+                                                <div class="flex items-center mt-2 text-sm text-gray-500">
+                                                    <i class="fas fa-calendar-alt mr-1"></i>
+                                                    <span>Due: Oct 20, 2023</span>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Grade 11</span>
+                                                <div class="mt-1">
+                                                    <button class="text-blue-600 hover:text-blue-800 text-sm"><i class="fas fa-edit"></i></button>
+                                                    <button class="text-red-600 hover:text-red-800 text-sm ml-2"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Widgets -->
+                        <div class="space-y-6">
+                            <!-- Upcoming Events -->
+                            <div class="card bg-white rounded-lg shadow-md p-6">
+                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Upcoming Events</h2>
+                                <div class="space-y-3">
+                                    <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                                        <div class="bg-blue-600 text-white p-2 rounded-full mr-3">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">Parent-Teacher Meeting</p>
+                                            <p class="text-sm text-gray-600">Oct 15, 2:00 PM</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                                        <div class="bg-green-600 text-white p-2 rounded-full mr-3">
+                                            <i class="fas fa-football-ball"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">Football Game</p>
+                                            <p class="text-sm text-gray-600">Oct 18, 6:00 PM</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                        <div class="bg-purple-600 text-white p-2 rounded-full mr-3">
+                                            <i class="fas fa-music"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">Choir Performance</p>
+                                            <p class="text-sm text-gray-600">Oct 22, 7:00 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg transition duration-300">
+                                    View All Events
+                                </button>
+                            </div>
+
+                            <!-- Attendance Chart -->
+                            <div class="card bg-white rounded-lg shadow-md p-6">
+                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Attendance</h2>
+                                <canvas id="attendanceChart" class="attendance-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Add Homework Modal -->
+            <div id="addHomeworkModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                <div class="bg-white rounded-lg p-8 w-96 shadow-xl">
+                    <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Add New Homework</h2>
+                    <form id="homeworkForm">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="homeworkTitle">
+                                Title
+                            </label>
+                            <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                   id="homeworkTitle" type="text" placeholder="Enter homework title" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="homeworkDescription">
+                                Description
+                            </label>
+                            <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                      id="homeworkDescription" rows="3" placeholder="Enter homework description" required></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="homeworkGrade">
+                                Grade Level
+                            </label>
+                            <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                    id="homeworkGrade" required>
+                                <option value="">Select grade level</option>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option>
+                                <option value="12">Grade 12</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="homeworkDueDate">
+                                Due Date
+                            </label>
+                            <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                   id="homeworkDueDate" type="date" required>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button type="button" id="cancelHomework" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                                Cancel
+                            </button>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                                Add Homework
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </footer>
+
+        <!-- Success Notification -->
+        <div id="successNotification" class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hidden notification">
+            <div class="flex items-center">
+                <i class="fas fa-check-circle mr-2"></i>
+                <span>Homework added successfully!</span>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Mock data
+        const homeworkData = [
+            { id: 1, title: 'Mathematics: Algebra Problems', description: 'Complete exercises 1-20 on page 45', grade: '9', dueDate: 'Oct 15, 2023', color: 'blue' },
+            { id: 2, title: 'English: Essay on Shakespeare', description: 'Write a 500-word analysis of Hamlet', grade: '10', dueDate: 'Oct 18, 2023', color: 'green' },
+            { id: 3, title: 'Science: Lab Report', description: 'Document findings from the chemistry experiment', grade: '11', dueDate: 'Oct 20, 2023', color: 'purple' }
+        ];
+
+        // DOM Elements
+        const loginModal = document.getElementById('loginModal');
+        const mainLayout = document.getElementById('mainLayout');
+        const loginForm = document.getElementById('loginForm');
+        const guestLogin = document.getElementById('guestLogin');
+        const toggleSidebar = document.getElementById('toggleSidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const addHomeworkBtn = document.getElementById('addHomeworkBtn');
+        const addHomeworkModal = document.getElementById('addHomeworkModal');
+        const cancelHomework = document.getElementById('cancelHomework');
+        const homeworkForm = document.getElementById('homeworkForm');
+        const successNotification = document.getElementById('successNotification');
+        const homeworkList = document.getElementById('homeworkList');
+        const attendanceChart = document.getElementById('attendanceChart');
+
+        // Login functionality
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple authentication (in real app, this would be server-side)
+            if ((username === 'admin' && password === 'password') || (username === 'teacher' && password === 'teacher123')) {
+                loginModal.classList.add('hidden');
+                mainLayout.classList.remove('hidden');
+            } else {
+                alert('Invalid credentials. Try admin/password or teacher/teacher123');
+            }
+        });
+
+        // Guest login
+        guestLogin.addEventListener('click', function() {
+            loginModal.classList.add('hidden');
+            mainLayout.classList.remove('hidden');
+        });
+
+        // Toggle sidebar
+        toggleSidebar.addEventListener('click', function() {
+            sidebar.classList.toggle('collapsed');
+        });
+
+        // Notification dropdown
+        notificationBtn.addEventListener('click', function() {
+            notificationDropdown.classList.toggle('hidden');
+        });
+
+        // Profile dropdown
+        profileBtn.addEventListener('click', function() {
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!notificationBtn.contains(e.target) && !notificationDropdown.contains(e.target)) {
+                notificationDropdown.classList.add('hidden');
+            }
+            if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                profileDropdown.classList.add('hidden');
+            }
+        });
+
+        // Dark mode toggle
+        darkModeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        });
+
+        // Add homework modal
+        addHomeworkBtn.addEventListener('click', function() {
+            addHomeworkModal.classList.remove('hidden');
+        });
+
+        cancelHomework.addEventListener('click', function() {
+            addHomeworkModal.classList.add('hidden');
+            homeworkForm.reset();
+        });
+
+        // Close modal when clicking outside
+        addHomeworkModal.addEventListener('click', function(e) {
+            if (e.target === addHomeworkModal) {
+                addHomeworkModal.classList.add('hidden');
+                homeworkForm.reset();
+            }
+        });
+
+        // Add homework form submission
+        homeworkForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('homeworkTitle').value;
+            const description = document.getElementById('homeworkDescription').value;
+            const grade = document.getElementById('homeworkGrade').value;
+            const dueDate = document.getElementById('homeworkDueDate').value;
+            
+            // Create new homework item
+            const newHomework = {
+                id: homeworkData.length + 1,
+                title: title,
+                description: description,
+                grade: grade,
+                dueDate: new Date(dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                color: ['blue', 'green', 'purple', 'yellow', 'red'][Math.floor(Math.random() * 5)]
+            };
+            
+            homeworkData.unshift(newHomework);
+            renderHomeworkList();
+            
+            // Show success notification
+            successNotification.classList.remove('hidden');
+            setTimeout(() => {
+                successNotification.classList.add('hidden');
+            }, 3000);
+            
+            // Close modal and reset form
+            addHomeworkModal.classList.add('hidden');
+            homeworkForm.reset();
+        });
+
+        // Render homework list
+        function renderHomeworkList() {
+            homeworkList.innerHTML = '';
+            homeworkData.forEach(hw => {
+                const homeworkCard = document.createElement('div');
+                homeworkCard.className = `homework-card bg-gray-50 p-4 rounded-lg border-l-4 border-${hw.color}-500`;
+                homeworkCard.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">${hw.title}</h3>
+                            <p class="text-gray-600 text-sm">${hw.description}</p>
+                            <div class="flex items-center mt-2 text-sm text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i>
+                                <span>Due: ${hw.dueDate}</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="bg-${hw.color}-100 text-${hw.color}-800 text-xs px-2 py-1 rounded-full">Grade ${hw.grade}</span>
+                            <div class="mt-1">
+                                <button class="text-blue-600 hover:text-blue-800 text-sm edit-homework" data-id="${hw.id}"><i class="fas fa-edit"></i></button>
+                                <button class="text-red-600 hover:text-red-800 text-sm ml-2 delete-homework" data-id="${hw.id}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                homeworkList.appendChild(homeworkCard);
+            });
+
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-homework').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const index = homeworkData.findIndex(hw => hw.id === id);
+                    if (index > -1) {
+                        homeworkData.splice(index, 1);
+                        renderHomeworkList();
+                    }
                 });
             });
-        });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
+            // Add event listeners to edit buttons
+            document.querySelectorAll('.edit-homework').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const homework = homeworkData.find(hw => hw.id === id);
+                    
+                    document.getElementById('homeworkTitle').value = homework.title;
+                    document.getElementById('homeworkDescription').value = homework.description;
+                    document.getElementById('homeworkGrade').value = homework.grade;
+                    document.getElementById('homeworkDueDate').value = new Date(homework.dueDate).toISOString().split('T')[0];
+                    
+                    addHomeworkModal.classList.remove('hidden');
+                    
+                    // Update form to edit mode
+                    const submitBtn = homeworkForm.querySelector('button[type="submit"]');
+                    submitBtn.textContent = 'Update Homework';
+                    
+                    // Remove the old submit listener and add a new one for editing
+                    homeworkForm.removeEventListener('submit', editHomeworkHandler);
+                    homeworkForm.addEventListener('submit', editHomeworkHandler);
+                    
+                    function editHomeworkHandler(e) {
+                        e.preventDefault();
+                        homework.title = document.getElementById('homeworkTitle').value;
+                        homework.description = document.getElementById('homeworkDescription').value;
+                        homework.grade = document.getElementById('homeworkGrade').value;
+                        homework.dueDate = new Date(document.getElementById('homeworkDueDate').value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                        
+                        renderHomeworkList();
+                        
+                        successNotification.querySelector('span').textContent = 'Homework updated successfully!';
+                        successNotification.classList.remove('hidden');
+                        setTimeout(() => {
+                            successNotification.classList.add('hidden');
+                        }, 3000);
+                        
+                        addHomeworkModal.classList.add('hidden');
+                        homeworkForm.reset();
+                        submitBtn.textContent = 'Add Homework';
+                        homeworkForm.removeEventListener('submit', editHomeworkHandler);
+                    }
+                });
+            });
+        }
 
-        // Add animation to cards when they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
+        // Initialize attendance chart
+        const ctx = attendanceChart.getContext('2d');
+        const attendanceChartInstance = new Chart(ctx, {
+            type: 'bar',
+             {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                datasets: [{
+                    label: 'Attendance Rate',
+                     [95, 92, 88, 94, 90],
+                    backgroundColor: '#3B82F6',
+                    borderColor: '#2563EB',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
                 }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.card').forEach(card => {
-            card.style.opacity = 0;
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+            }
         });
 
-        // Gallery hover effect enhancement
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.03)';
-            });
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
+        // Initial render
+        renderHomeworkList();
     </script>
 </body>
 </html>
