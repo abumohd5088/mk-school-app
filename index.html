@@ -1,1243 +1,2831 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduSphere - Complete School Management System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        .sidebar-transition {
-            transition: all 0.3s ease;
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .progress-ring {
-            width: 80px;
-            height: 80px;
-        }
-        .progress-ring__circle {
-            transition: stroke-dashoffset 0.35s;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Milli Karwaan Public School Balrampur</title>
+  <meta name="description" content="Official website of Milli Karwaan Public School Balrampur - Providing quality education for classes 1 to 12." />
+  <meta name="theme-color" content="#1e3a8a" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8f9fa;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    button, input, textarea {
+      font-family: inherit;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      cursor: pointer;
+      background: none;
+    }
+
+    button:focus, input:focus, textarea:focus {
+      outline: 2px solid #3b82f6;
+    }
+
+    /* Layout */
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .main-content {
+      flex: 1;
+      margin-left: 0;
+      transition: margin-left 0.3s ease;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: -300px;
+      top: 0;
+      width: 300px;
+      height: 100vh;
+      background: #1e3a8a;
+      color: white;
+      padding: 2rem;
+      z-index: 1000;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      transition: left 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      height: 60px;
+      width: auto;
+    }
+
+    .school-info h1 {
+      font-size: 1.4rem;
+      color: #1e3a8a;
+      font-weight: 600;
+    }
+
+    .school-info p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .contact-info i {
+      color: #1e3a8a;
+      margin-right: 0.3rem;
+    }
+
+    .call-button {
+      background: #1e3a8a;
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.3s;
+    }
+
+    .call-button:hover {
+      background: #1e40af;
+    }
+
+    /* Navigation */
+    nav {
+      background: white;
+      padding: 0.8rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 72px;
+      z-index: 99;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #1e3a8a;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #1e3a8a;
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      font-size: 1.5rem;
+      color: #1e3a8a;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .menu-toggle:hover {
+      background: #f1f5f9;
+    }
+
+    /* Dropdown Menu */
+    .dropdown-menu {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      min-width: 250px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      transition: background 0.3s;
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+      background: #f1f5f9;
+    }
+
+    .dropdown-item i {
+      color: #1e3a8a;
+      width: 20px;
+    }
+
+    /* Student Access Form */
+    .access-form-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .access-form-container {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      position: relative;
+      animation: slideUp 0.5s ease;
+    }
+
+    .access-form-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .access-form-header h2 {
+      color: #1e3a8a;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .access-form-header p {
+      color: #666;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .error {
+      border-color: #ef4444 !important;
+    }
+
+    .error-message {
+      color: #ef4444;
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+      display: none;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #1e3a8a;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1e40af;
+      transform: translateY(-1px);
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
+
+    /* Welcome Message */
+    .welcome-banner {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(30, 58, 138, 0.2);
+    }
+
+    .welcome-banner h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-banner p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      color: #1e3a8a;
+      display: inline-block;
+      background: white;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #ddd;
+      z-index: 1;
+    }
+
+    /* Homework */
+    .homework-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .search-box {
+      padding: 0.6rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: 250px;
+    }
+
+    .refresh-btn {
+      background: #1e3a8a;
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .refresh-btn:hover {
+      background: #1e40af;
+    }
+
+    .homework-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .homework-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .homework-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+      background: #1e3a8a;
+      color: white;
+      padding: 1rem;
+      font-weight: 500;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card-content {
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Teachers */
+    .teachers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .teacher-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .teacher-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .teacher-avatar {
+      width: 100%;
+      height: 180px;
+      background: #1e3a8a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 4rem;
+      font-weight: 300;
+    }
+
+    .teacher-info {
+      padding: 1.5rem;
+    }
+
+    .teacher-info h3 {
+      color: #1e3a8a;
+      margin-bottom: 0.5rem;
+    }
+
+    .teacher-info p {
+      color: #666;
+      margin-bottom: 0.8rem;
+    }
+
+    .teacher-contact {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .teacher-contact a {
+      color: #1e3a8a;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .teacher-contact a:hover {
+      color: #1e40af;
+    }
+
+    /* Events */
+    .events-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .events-timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #1e3a8a;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 50px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 13px;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #1e3a8a;
+      box-shadow: 0 0 0 4px white;
+    }
+
+    .event-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .event-date {
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .event-title {
+      font-size: 1.2rem;
+      color: #1e3a8a;
+      margin-bottom: 0.8rem;
+    }
+
+    .event-desc {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Notices */
+    .notices-board {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .notice-item {
+      padding: 1.5rem;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+
+    .notice-item:last-child {
+      border-bottom: none;
+    }
+
+    .notice-item.unread::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border-radius: 50%;
+    }
+
+    .notice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+    }
+
+    .notice-title {
+      font-size: 1.1rem;
+      color: #1e3a8a;
+      font-weight: 500;
+    }
+
+    .priority-badge {
+      padding: 0.3rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .priority-high {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .priority-medium {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .priority-low {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .notice-body {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Timetable */
+    .timetable {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-top: 1rem;
+    }
+
+    .timetable table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .timetable th {
+      background: #1e3a8a;
+      color: white;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    .timetable td {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .timetable tr:last-child td {
+      border-bottom: none;
+    }
+
+    .subject {
+      font-weight: 500;
+      color: #1e3a8a;
+    }
+
+    .teacher-name {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: 8px;
+      overflow: hidden;
+      height: 200px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 90vh;
+      border: 3px solid white;
+      border-radius: 8px;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .lightbox-nav.prev {
+      left: 20px;
+    }
+
+    .lightbox-nav.next {
+      right: 20px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.5);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    /* FAQ */
+    .faq-container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #eee;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      padding: 1.2rem;
+      background: #f8fafc;
+      font-weight: 500;
+      color: #1e3a8a;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    .faq-question:hover {
+      background: #f1f5f9;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: #1e3a8a;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: '−';
+    }
+
+    .faq-answer {
+      padding: 0 1.2rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 1.2rem 1.2rem 1.2rem;
+      max-height: 200px;
+    }
+
+    .faq-answer p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Contact */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .contact-info-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .info-item i {
+      color: #1e3a8a;
+      font-size: 1.2rem;
+      margin-top: 0.3rem;
+    }
+
+    .info-text h4 {
+      color: #1e3a8a;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-text p, .info-text a {
+      color: #555;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group-contact {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group-contact label {
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .form-control-contact {
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .form-control-contact:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    textarea.form-control-contact {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: #1e3a8a;
+      color: white;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      align-self: flex-start;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #1e40af;
+    }
+
+    /* Messages Modal */
+    .messages-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      display: none;
+    }
+
+    .messages-container {
+      background: white;
+      width: 90%;
+      max-width: 800px;
+      max-height: 80vh;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .messages-header {
+      background: #1e3a8a;
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .messages-header h3 {
+      font-size: 1.2rem;
+    }
+
+    .close-messages {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .messages-body {
+      padding: 1.5rem;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    .message-item {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+    }
+
+    .message-item:last-child {
+      border-bottom: none;
+    }
+
+    .message-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .message-content {
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e3a8a;
+      color: white;
+      padding: 3rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: #3b82f6;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #e2e8f0;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      background: rgba(255,255,255,0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    .social-links a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+
+    /* Admin Banner */
+    .admin-banner {
+      background: #fbbf24;
+      color: #7c2d12;
+      padding: 0.8rem 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .admin-banner a {
+      color: #7c2d12;
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .slide-in {
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Error Alert */
+    .error-alert {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      max-width: 400px;
+    }
+
+    .error-alert button {
+      background: none;
+      color: #dc2626;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .homework-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .section-title h2 {
+        font-size: 1.6rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+
+    @media (max-width: 576px) {
+      header, nav {
+        padding: 1rem;
+      }
+
+      .header-left, .header-right {
+        gap: 0.5rem;
+      }
+
+      .school-info h1 {
+        font-size: 1.2rem;
+      }
+
+      .contact-info {
+        font-size: 0.8rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
+
+      .welcome-banner {
+        padding: 1.2rem;
+      }
+
+      .gallery-item {
+        height: 150px;
+      }
+
+      .lightbox-img {
+        max-height: 80vh;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <!-- Main Container -->
-    <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
-        <div id="sidebar" class="sidebar-transition bg-gradient-to-b from-blue-800 to-blue-900 w-64 flex-shrink-0 z-10 shadow-xl">
-            <div class="flex flex-col h-full">
-                <!-- Logo & Brand -->
-                <div class="flex items-center justify-center h-20 bg-blue-900 border-b border-blue-700">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                            <i data-feather="book-open" class="text-blue-900"></i>
-                        </div>
-                        <span class="text-white text-xl font-bold">EduSphere</span>
-                    </div>
-                </div>
+<body>
+  <!-- Admin Update Listener -->
+  <div id="admin-banner" class="admin-banner" style="display: none;">
+    Admin available at <a href="admin.html">admin.html</a> — password will be 'Abutalha' (client-side demo).
+  </div>
 
-                <!-- Navigation -->
-                <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-white rounded-lg bg-blue-700 font-medium" data-page="dashboard">
-                        <i data-feather="home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="students">
-                        <i data-feather="users"></i>
-                        <span>Students</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="teachers">
-                        <i data-feather="user-check"></i>
-                        <span>Teachers</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="courses">
-                        <i data-feather="book"></i>
-                        <span>Courses</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="grades">
-                        <i data-feather="award"></i>
-                        <span>Grades</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="attendance">
-                        <i data-feather="check-circle"></i>
-                        <span>Attendance</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="schedule">
-                        <i data-feather="calendar"></i>
-                        <span>Schedule</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="library">
-                        <i data-feather="archive"></i>
-                        <span>Library</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="events">
-                        <i data-feather="calendar"></i>
-                        <span>Events</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="communications">
-                        <i data-feather="message-circle"></i>
-                        <span>Communications</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="finance">
-                        <i data-feather="dollar-sign"></i>
-                        <span>Finance</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="settings">
-                        <i data-feather="settings"></i>
-                        <span>Settings</span>
-                    </a>
-                </nav>
-
-                <!-- User Profile -->
-                <div class="p-4 border-t border-blue-700">
-                    <div class="flex items-center space-x-3">
-                        <img src="https://placehold.co/40/3b82f6/ffffff?text=AD" alt="Admin" class="w-10 h-10 rounded-full">
-                        <div class="flex-1 min-w-0">
-                            <p class="text-white text-sm font-medium">Alex Johnson</p>
-                            <p class="text-blue-200 text-xs">Administrator</p>
-                        </div>
-                        <button id="logoutBtn" class="text-blue-200 hover:text-white">
-                            <i data-feather="log-out" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <!-- Student Access Form Overlay -->
+  <div id="access-form-overlay" class="access-form-overlay">
+    <div class="access-form-container">
+      <div class="access-form-header">
+        <h2>Welcome to Milli Karwaan Public School</h2>
+        <p>Please enter your details to access your personalized dashboard</p>
+      </div>
+      <form id="student-access-form">
+        <div class="form-group">
+          <label for="student-name">Student Name</label>
+          <input type="text" id="student-name" class="form-control" required />
+          <div class="error-message">Please enter your name</div>
         </div>
-
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Top Navbar -->
-            <header class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                        <button id="sidebarToggle" class="text-gray-600 hover:text-gray-800 focus:outline-none">
-                            <i data-feather="menu" class="w-5 h-5"></i>
-                        </button>
-                        <div class="relative">
-                            <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 w-80 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <i data-feather="search" class="w-4 h-4 text-gray-400 absolute left-3 top-3"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
-                        <button class="relative text-gray-600 hover:text-gray-800">
-                            <i data-feather="bell" class="w-5 h-5"></i>
-                            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
-                        </button>
-                        <button class="text-gray-600 hover:text-gray-800">
-                            <i data-feather="message-circle" class="w-5 h-5"></i>
-                        </button>
-                        <div class="flex items-center space-x-2">
-                            <img src="https://placehold.co/32/3b82f6/ffffff?text=AD" alt="User" class="w-8 h-8 rounded-full">
-                            <span class="text-sm font-medium text-gray-700">Alex Johnson</span>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main id="content" class="flex-1 overflow-y-auto p-6">
-                <!-- Dashboard Page -->
-                <div id="dashboard" class="fade-in">
-                    <!-- Header -->
-                    <div class="mb-8">
-                        <h1 class="text-3xl font-bold text-gray-900 mb-2">Welcome back, Alex!</h1>
-                        <p class="text-gray-600">Here's what's happening at Lincoln High School today.</p>
-                    </div>
-
-                    <!-- Stats Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        <!-- Total Students -->
-                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 card-hover">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-blue-100">
-                                    <i data-feather="users" class="w-6 h-6 text-blue-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Total Students</p>
-                                    <p class="text-2xl font-bold text-gray-900">1,247</p>
-                                    <p class="text-xs text-green-600 flex items-center">
-                                        <i data-feather="trending-up" class="w-3 h-3 mr-1"></i>
-                                        12% from last month
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Total Teachers -->
-                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 card-hover">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-green-100">
-                                    <i data-feather="user-check" class="w-6 h-6 text-green-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Total Teachers</p>
-                                    <p class="text-2xl font-bold text-gray-900">89</p>
-                                    <p class="text-xs text-green-600 flex items-center">
-                                        <i data-feather="trending-up" class="w-3 h-3 mr-1"></i>
-                                        5% from last month
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Attendance Rate -->
-                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 card-hover">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-yellow-100">
-                                    <i data-feather="check-circle" class="w-6 h-6 text-yellow-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Attendance Rate</p>
-                                    <p class="text-2xl font-bold text-gray-900">96.7%</p>
-                                    <p class="text-xs text-green-600 flex items-center">
-                                        <i data-feather="trending-up" class="w-3 h-3 mr-1"></i>
-                                        2.3% from yesterday
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Average GPA -->
-                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 card-hover">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-purple-100">
-                                    <i data-feather="award" class="w-6 h-6 text-purple-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Average GPA</p>
-                                    <p class="text-2xl font-bold text-gray-900">3.42</p>
-                                    <p class="text-xs text-blue-600 flex items-center">
-                                        <i data-feather="trending-up" class="w-3 h-3 mr-1"></i>
-                                        Steady
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Charts and Analytics -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                        <!-- Performance Chart -->
-                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                            <div class="flex items-center justify-between mb-6">
-                                <h3 class="text-lg font-semibold text-gray-900">Student Performance</h3>
-                                <div class="flex space-x-2">
-                                    <button class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Monthly</button>
-                                    <button class="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg">Yearly</button>
-                                </div>
-                            </div>
-                            <div class="h-64">
-                                <canvas id="performanceChart"></canvas>
-                            </div>
-                        </div>
-
-                        <!-- Attendance Chart -->
-                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                            <div class="flex items-center justify-between mb-6">
-                                <h3 class="text-lg font-semibold text-gray-900">Attendance Trends</h3>
-                                <div class="flex space-x-2">
-                                    <button class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">This Week</button>
-                                    <button class="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg">This Month</button>
-                                </div>
-                            </div>
-                            <div class="h-64">
-                                <canvas id="attendanceChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Activity and Quick Actions -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <!-- Recent Activity -->
-                        <div class="lg:col-span-2 bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Recent Activity</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <i data-feather="user-plus" class="w-5 h-5 text-blue-600"></i>
-                                    </div>
-                                    <div class="ml-4 flex-1">
-                                        <p class="text-sm font-medium text-gray-900">New student enrollment</p>
-                                        <p class="text-sm text-gray-500">Emma Thompson enrolled in 10th Grade - Math</p>
-                                    </div>
-                                    <span class="text-xs text-gray-400">2 min ago</span>
-                                </div>
-                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                        <i data-feather="award" class="w-5 h-5 text-green-600"></i>
-                                    </div>
-                                    <div class="ml-4 flex-1">
-                                        <p class="text-sm font-medium text-gray-900">Grade update</p>
-                                        <p class="text-sm text-gray-500">Algebra II grades updated for 11th Grade</p>
-                                    </div>
-                                    <span class="text-xs text-gray-400">15 min ago</span>
-                                </div>
-                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                                        <i data-feather="calendar" class="w-5 h-5 text-yellow-600"></i>
-                                    </div>
-                                    <div class="ml-4 flex-1">
-                                        <p class="text-sm font-medium text-gray-900">New event scheduled</p>
-                                        <p class="text-sm text-gray-500">Science Fair - April 15, 2024</p>
-                                    </div>
-                                    <span class="text-xs text-gray-400">1 hour ago</span>
-                                </div>
-                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
-                                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                                        <i data-feather="message-circle" class="w-5 h-5 text-purple-600"></i>
-                                    </div>
-                                    <div class="ml-4 flex-1">
-                                        <p class="text-sm font-medium text-gray-900">Parent message</p>
-                                        <p class="text-sm text-gray-500">Mr. Johnson inquired about his child's progress</p>
-                                    </div>
-                                    <span class="text-xs text-gray-400">3 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Quick Actions -->
-                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Quick Actions</h3>
-                            <div class="space-y-3">
-                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors">
-                                    <i data-feather="plus" class="w-5 h-5"></i>
-                                    <span>Add Student</span>
-                                </button>
-                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors">
-                                    <i data-feather="plus" class="w-5 h-5"></i>
-                                    <span>Add Teacher</span>
-                                </button>
-                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors">
-                                    <i data-feather="plus" class="w-5 h-5"></i>
-                                    <span>Create Course</span>
-                                </button>
-                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-yellow-50 text-yellow-700 rounded-lg hover:bg-yellow-100 transition-colors">
-                                    <i data-feather="calendar" class="w-5 h-5"></i>
-                                    <span>Schedule Event</span>
-                                </button>
-                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors">
-                                    <i data-feather="message-circle" class="w-5 h-5"></i>
-                                    <span>Send Announcement</span>
-                                </button>
-                            </div>
-
-                            <!-- System Status -->
-                            <div class="mt-8 pt-6 border-t border-gray-200">
-                                <h4 class="text-sm font-medium text-gray-900 mb-3">System Status</h4>
-                                <div class="space-y-2">
-                                    <div class="flex items-center justify-between text-sm">
-                                        <span class="text-gray-600">Database</span>
-                                        <span class="flex items-center text-green-600">
-                                            <i data-feather="circle" class="w-3 h-3 mr-1"></i>
-                                            Operational
-                                        </span>
-                                    </div>
-                                    <div class="flex items-center justify-between text-sm">
-                                        <span class="text-gray-600">Backup</span>
-                                        <span class="flex items-center text-green-600">
-                                            <i data-feather="circle" class="w-3 h-3 mr-1"></i>
-                                            Complete
-                                        </span>
-                                    </div>
-                                    <div class="flex items-center justify-between text-sm">
-                                        <span class="text-gray-600">Security</span>
-                                        <span class="flex items-center text-green-600">
-                                            <i data-feather="circle" class="w-3 h-3 mr-1"></i>
-                                            Active
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Students Page (Hidden by default) -->
-                <div id="students" class="fade-in hidden">
-                    <div class="flex items-center justify-between mb-8">
-                        <div>
-                            <h1 class="text-3xl font-bold text-gray-900">Students Management</h1>
-                            <p class="text-gray-600">Manage student records, enrollment, and academic progress</p>
-                        </div>
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors">
-                            <i data-feather="plus"></i>
-                            <span>Add Student</span>
-                        </button>
-                    </div>
-
-                    <!-- Students Stats -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-blue-100">
-                                    <i data-feather="users" class="w-6 h-6 text-blue-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm text-gray-600">Total Students</p>
-                                    <p class="text-2xl font-bold text-gray-900">1,247</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-green-100">
-                                    <i data-feather="graduation-cap" class="w-6 h-6 text-green-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm text-gray-600">Graduates</p>
-                                    <p class="text-2xl font-bold text-gray-900">289</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-purple-100">
-                                    <i data-feather="book" class="w-6 h-6 text-purple-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm text-gray-600">Active Courses</p>
-                                    <p class="text-2xl font-bold text-gray-900">42</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-yellow-100">
-                                    <i data-feather="alert-circle" class="w-6 h-6 text-yellow-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm text-gray-600">Needs Attention</p>
-                                    <p class="text-2xl font-bold text-gray-900">12</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Students Table -->
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div class="px-6 py-4 border-b border-gray-200">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-4">
-                                    <h3 class="text-lg font-semibold text-gray-900">All Students</h3>
-                                    <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">1,247 students</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
-                                        <option>All Grades</option>
-                                        <option>9th Grade</option>
-                                        <option>10th Grade</option>
-                                        <option>11th Grade</option>
-                                        <option>12th Grade</option>
-                                    </select>
-                                    <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
-                                        <option>All Courses</option>
-                                        <option>Mathematics</option>
-                                        <option>Science</option>
-                                        <option>English</option>
-                                        <option>History</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">GPA</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Attendance</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Courses</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                                    <span class="text-blue-600 font-medium">EJ</span>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Emma Johnson</div>
-                                                    <div class="text-sm text-gray-500">emj@school.edu</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                10th Grade
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3.8</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-16 bg-gray-200 rounded-full h-2">
-                                                    <div class="bg-green-500 h-2 rounded-full" style="width: 98%"></div>
-                                                </div>
-                                                <span class="ml-2 text-sm text-gray-500">98%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
-                                            <button class="text-red-600 hover:text-red-900">Remove</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                                    <span class="text-green-600 font-medium">LW</span>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Liam Wilson</div>
-                                                    <div class="text-sm text-gray-500">liamw@school.edu</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                11th Grade
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3.5</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-16 bg-gray-200 rounded-full h-2">
-                                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 92%"></div>
-                                                </div>
-                                                <span class="ml-2 text-sm text-gray-500">92%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
-                                            <button class="text-red-600 hover:text-red-900">Remove</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                                                    <span class="text-purple-600 font-medium">NS</span>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Noah Smith</div>
-                                                    <div class="text-sm text-gray-500">noahs@school.edu</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                12th Grade
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3.2</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-16 bg-gray-200 rounded-full h-2">
-                                                    <div class="bg-red-500 h-2 rounded-full" style="width: 85%"></div>
-                                                </div>
-                                                <span class="ml-2 text-sm text-gray-500">85%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">6</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
-                                            <button class="text-red-600 hover:text-red-900">Remove</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                                                    <span class="text-yellow-600 font-medium">OL</span>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Olivia Lee</div>
-                                                    <div class="text-sm text-gray-500">olivia@school.edu</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                9th Grade
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4.0</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-16 bg-gray-200 rounded-full h-2">
-                                                    <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
-                                                </div>
-                                                <span class="ml-2 text-sm text-gray-500">100%</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
-                                            <button class="text-red-600 hover:text-red-900">Remove</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
-                            <div class="flex items-center justify-between">
-                                <div class="text-sm text-gray-700">
-                                    Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">1,247</span> students
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                        Previous
-                                    </button>
-                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                        1
-                                    </button>
-                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                        2
-                                    </button>
-                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                        3
-                                    </button>
-                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                        Next
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Teachers Page (Hidden by default) -->
-                <div id="teachers" class="fade-in hidden">
-                    <div class="flex items-center justify-between mb-8">
-                        <div>
-                            <h1 class="text-3xl font-bold text-gray-900">Teachers Management</h1>
-                            <p class="text-gray-600">Manage teacher profiles, schedules, and performance</p>
-                        </div>
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors">
-                            <i data-feather="plus"></i>
-                            <span>Add Teacher</span>
-                        </button>
-                    </div>
-
-                    <!-- Teachers Stats -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-blue-100">
-                                    <i data-feather="user-check" class="w-6 h-6 text-blue-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm text-gray-600">Total Teachers</p>
-                                    <p class="text-2xl font-bold text-gray-900">89</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-green-100">
-                                    <i data-feather="star" class="w-6 h-6 text-green-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm text-gray-600">Certified</p>
-                                    <p class="text-2xl font-bold text-gray-900">85</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-purple-100">
-                                    <i data-feather="book" class="w-6 h-6 text-purple-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm text-gray-600">Departments</p>
-                                    <p class="text-2xl font-bold text-gray-900">8</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-yellow-100">
-                                    <i data-feather="clock" class="w-6 h-6 text-yellow-600"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm text-gray-600">Avg. Experience</p>
-                                    <p class="text-2xl font-bold text-gray-900">8.5 yrs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Teachers Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover">
-                            <div class="h-4 bg-blue-600"></div>
-                            <div class="p-6">
-                                <div class="flex items-center space-x-4 mb-4">
-                                    <img src="https://placehold.co/80/3b82f6/ffffff?text=DR" alt="Dr. Roberts" class="w-16 h-16 rounded-full">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-900">Dr. Sarah Roberts</h3>
-                                        <p class="text-gray-600">Mathematics Department</p>
-                                    </div>
-                                </div>
-                                <div class="space-y-2 text-sm">
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Experience</span>
-                                        <span class="font-medium">12 years</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Courses</span>
-                                        <span class="font-medium">4</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Students</span>
-                                        <span class="font-medium">128</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Rating</span>
-                                        <div class="flex">
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-gray-300"></i>
-                                            <span class="ml-1 text-gray-600">(4.2)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-6 flex space-x-2">
-                                    <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
-                                        View Profile
-                                    </button>
-                                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg text-sm font-medium transition-colors">
-                                        <i data-feather="edit" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover">
-                            <div class="h-4 bg-green-600"></div>
-                            <div class="p-6">
-                                <div class="flex items-center space-x-4 mb-4">
-                                    <img src="https://placehold.co/80/10b981/ffffff?text=JM" alt="Ms. Miller" class="w-16 h-16 rounded-full">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-900">Jennifer Miller</h3>
-                                        <p class="text-gray-600">English Department</p>
-                                    </div>
-                                </div>
-                                <div class="space-y-2 text-sm">
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Experience</span>
-                                        <span class="font-medium">8 years</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Courses</span>
-                                        <span class="font-medium">3</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Students</span>
-                                        <span class="font-medium">96</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Rating</span>
-                                        <div class="flex">
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star-half" class="w-4 h-4 text-yellow-400"></i>
-                                            <span class="ml-1 text-gray-600">(4.7)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-6 flex space-x-2">
-                                    <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
-                                        View Profile
-                                    </button>
-                                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg text-sm font-medium transition-colors">
-                                        <i data-feather="edit" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover">
-                            <div class="h-4 bg-purple-600"></div>
-                            <div class="p-6">
-                                <div class="flex items-center space-x-4 mb-4">
-                                    <img src="https://placehold.co/80/8b5cf6/ffffff?text=DR" alt="Dr. Ramirez" class="w-16 h-16 rounded-full">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-900">Dr. Carlos Ramirez</h3>
-                                        <p class="text-gray-600">Science Department</p>
-                                    </div>
-                                </div>
-                                <div class="space-y-2 text-sm">
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Experience</span>
-                                        <span class="font-medium">15 years</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Courses</span>
-                                        <span class="font-medium">5</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Students</span>
-                                        <span class="font-medium">142</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-600">Rating</span>
-                                        <div class="flex">
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
-                                            <span class="ml-1 text-gray-600">(5.0)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-6 flex space-x-2">
-                                    <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
-                                        View Profile
-                                    </button>
-                                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg text-sm font-medium transition-colors">
-                                        <i data-feather="edit" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Grades Page (Hidden by default) -->
-                <div id="grades" class="fade-in hidden">
-                    <div class="flex items-center justify-between mb-8">
-                        <div>
-                            <h1 class="text-3xl font-bold text-gray-900">Grades Management</h1>
-                            <p class="text-gray-600">Track and manage student academic performance</p>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors">
-                                <i data-feather="download"></i>
-                                <span>Export</span>
-                            </button>
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors">
-                                <i data-feather="plus"></i>
-                                <span>Add Grades</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Grades Filters -->
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-                                <option>All Grades</option>
-                                <option>9th Grade</option>
-                                <option>10th Grade</option>
-                                <option>11th Grade</option>
-                                <option>12th Grade</option>
-                            </select>
-                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-                                <option>All Subjects</option>
-                                <option>Mathematics</option>
-                                <option>Science</option>
-                                <option>English</option>
-                                <option>History</option>
-                                <option>Art</option>
-                            </select>
-                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-                                <option>All Teachers</option>
-                                <option>Dr. Sarah Roberts</option>
-                                <option>Jennifer Miller</option>
-                                <option>Dr. Carlos Ramirez</option>
-                            </select>
-                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-                                <option>All Terms</option>
-                                <option>Fall Semester</option>
-                                <option>Spring Semester</option>
-                                <option>Final Exams</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Grades Overview -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                        <!-- Grade Distribution -->
-                        <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Grade Distribution</h3>
-                            <div class="h-80">
-                                <canvas id="gradeDistributionChart"></canvas>
-                            </div>
-                        </div>
-
-                        <!-- Grade Summary -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Grade Summary</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
-                                    <div class="flex items-center">
-                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-                                        <span class="text-sm font-medium text-gray-900">A (90-100)</span>
-                                    </div>
-                                    <span class="text-sm font-bold text-gray-900">28%</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
-                                    <div class="flex items-center">
-                                        <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
-                                        <span class="text-sm font-medium text-gray-900">B (80-89)</span>
-                                    </div>
-                                    <span class="text-sm font-bold text-gray-900">35%</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
-                                    <div class="flex items-center">
-                                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
-                                        <span class="text-sm font-medium text-gray-900">C (70-79)</span>
-                                    </div>
-                                    <span class="text-sm font-bold text-gray-900">22%</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
-                                    <div class="flex items-center">
-                                        <div class="w-3 h-3 bg-orange-500 rounded-full mr-3"></div>
-                                        <span class="text-sm font-medium text-gray-900">D (60-69)</span>
-                                    </div>
-                                    <span class="text-sm font-bold text-gray-900">10%</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
-                                    <div class="flex items-center">
-                                        <div class="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
-                                        <span class="text-sm font-medium text-gray-900">F (Below 60)</span>
-                                    </div>
-                                    <span class="text-sm font-bold text-gray-900">5%</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-8 pt-6 border-t border-gray-200">
-                                <h4 class="text-sm font-medium text-gray-900 mb-3">Top Performing Students</h4>
-                                <div class="space-y-3">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center">
-                                            <img src="https://placehold.co/24/10b981/ffffff?text=OL" alt="Olivia" class="w-6 h-6 rounded-full mr-2">
-                                            <span class="text-sm text-gray-900">Olivia Lee</span>
-                                        </div>
-                                        <span class="text-sm font-bold text-green-600">4.0 GPA</span>
-                                    </div>
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center">
-                                            <img src="https://placehold.co/24/3b82f6/ffffff?text=EJ" alt="Emma" class="w-6 h-6 rounded-full mr-2">
-                                            <span class="text-sm text-gray-900">Emma Johnson</span>
-                                        </div>
-                                        <span class="text-sm font-bold text-green-600">3.8 GPA</span>
-                                    </div>
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center">
-                                            <img src="https://placehold.co/24/f59e0b/ffffff?text=LW" alt="Liam" class="w-6 h-6 rounded-full mr-2">
-                                            <span class="text-sm text-gray-900">Liam Wilson</span>
-                                        </div>
-                                        <span class="text-sm font-bold text-blue-600">3.5 GPA</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Grades -->
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
-                        <div class="px-6 py-4 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold text-gray-900">Recent Grade Updates</h3>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teacher</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                                    <span class="text-blue-600 text-xs">EJ</span>
-                                                </div>
-                                                <div class="ml-3">
-                                                    <div class="text-sm font-medium text-gray-900">Emma Johnson</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Algebra II</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dr. Sarah Roberts</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                A (94)
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 15, 2024</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                Final
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                                    <span class="text-green-600 text-xs">LW</span>
-                                                </div>
-                                                <div class="ml-3">
-                                                    <div class="text-sm font-medium text-gray-900">Liam Wilson</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Chemistry</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dr. Carlos Ramirez</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                B (87)
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 14, 2024</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                Midterm
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                                                    <span class="text-purple-600 text-xs">NS</span>
-                                                </div>
-                                                <div class="ml-3">
-                                                    <div class="text-sm font-medium text-gray-900">Noah Smith</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">English Literature</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jennifer Miller</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                                C (76)
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 12, 2024</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Final
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                                                    <span class="text-yellow-600 text-xs">OL</span>
-                                                </div>
-                                                <div class="ml-3">
-                                                    <div class="text-sm font-medium text-gray-900">Olivia Lee</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">World History</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mr. Thompson</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                A (98)
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 10, 2024</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                Midterm
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </main>
+        <div class="form-group">
+          <label for="student-class">Class</label>
+          <select id="student-class" class="form-control" required>
+            <option value="">Select Class</option>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+          </select>
+          <div class="error-message">Please select your class</div>
         </div>
+        <div class="form-group">
+          <label for="parent-name">Parent's Name</label>
+          <input type="text" id="parent-name" class="form-control" required />
+          <div class="error-message">Please enter parent's name</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Access Dashboard</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <h3>Sidebar</h3>
+    <p>Quick access to important features</p>
+    
+    <hr style="border-color: rgba(255,255,255,0.2); margin: 1.5rem 0;">
+    
+    <h4>Homework Search</h4>
+    <input type="text" id="sidebar-search" class="search-box" placeholder="Search homework..." style="width: 100%; margin: 0.5rem 0 1.5rem;">
+    
+    <h4>Quick Contact</h4>
+    <p><i class="fas fa-phone"></i> <a href="tel:9758919151">9758919151</a></p>
+    <p><i class="fas fa-envelope"></i> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+    
+    <h4>Analytics</h4>
+    <div id="analytics" style="margin: 1rem 0; line-height: 2;">
+      <p><i class="fas fa-chalkboard-teacher"></i> <span id="teacher-count">0</span> Teachers</p>
+      <p><i class="fas fa-calendar-alt"></i> <span id="event-count">0</span> Events</p>
+      <p><i class="fas fa-bullhorn"></i> <span id="notice-count">0</span> Notices</p>
+      <p><i class="fas fa-images"></i> <span id="photo-count">0</span> Photos</p>
+    </div>
+    
+    <h4>Admin Tools</h4>
+    <div style="display: flex; flex-direction: column; gap: 0.8rem; margin: 1rem 0;">
+      <button id="export-data-btn" class="btn btn-primary" style="padding: 0.6rem; font-size: 0.9rem;">
+        <i class="fas fa-file-export"></i> Export Data (JSON)
+      </button>
+      <button id="import-data-btn" class="btn" style="padding: 0.6rem; font-size: 0.9rem; background: #374151;">
+        <i class="fas fa-file-import"></i> Import Data (JSON)
+      </button>
+      <button id="download-snapshot-btn" class="btn" style="padding: 0.6rem; font-size: 0.9rem; background: #059669;">
+        <i class="fas fa-download"></i> Download Snapshot
+      </button>
+      <button id="clear-demo-btn" class="btn" style="padding: 0.6rem; font-size: 0.9rem; background: #dc2626;">
+        <i class="fas fa-trash"></i> Clear Demo Data
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay for Sidebar -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <img id="lightbox-img" class="lightbox-img" src="" alt="">
+      <div class="lightbox-nav prev" id="lightbox-prev"><i class="fas fa-chevron-left"></i></div>
+      <div class="lightbox-nav next" id="lightbox-next"><i class="fas fa-chevron-right"></i></div>
+      <div class="lightbox-close" id="lightbox-close"><i class="fas fa-times"></i></div>
+      <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+    </div>
+  </div>
+
+  <!-- Messages Modal -->
+  <div id="messages-modal" class="messages-modal">
+    <div class="messages-container">
+      <div class="messages-header">
+        <h3>Messages Received</h3>
+        <button class="close-messages" id="close-messages">&times;</button>
+      </div>
+      <div class="messages-body" id="messages-body">
+        <!-- Messages will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Alert -->
+  <div id="error-alert" class="error-alert" style="display: none;">
+    <i class="fas fa-exclamation-triangle"></i>
+    <span id="error-message-text">An error occurred</span>
+    <button id="close-error">&times;</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="main-content">
+    <!-- Header -->
+    <header>
+      <div class="header-left">
+        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo" class="logo">
+        <div class="school-info">
+          <h1>Milli Karwaan Public School Balrampur</h1>
+          <p>Boluha Police Chowki Balrampur</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> Boluha Police Chowki Balrampur</p>
+          <p><i class="fas fa-envelope"></i> madamsir066@gmail.com</p>
+        </div>
+        <a href="tel:9758919151" class="call-button">
+          <i class="fas fa-phone"></i> Call School
+        </a>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#homework">Homework</a></li>
+        <li><a href="#teachers">Teachers</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#notices">Notices</a></li>
+        <li><a href="#timetable">Timetable</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menu-toggle">⋮</div>
+    </nav>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdown-menu">
+      <a href="#gallery" class="dropdown-item"><i class="fas fa-images"></i> Gallery</a>
+      <a href="#events" class="dropdown-item"><i class="fas fa-calendar-alt"></i> Events</a>
+      <a href="#notices" class="dropdown-item"><i class="fas fa-bullhorn"></i> Notices</a>
+      <a href="#timetable" class="dropdown-item"><i class="fas fa-table"></i> Timetable</a>
+      <a href="admin.html" class="dropdown-item"><i class="fas fa-user-shield"></i> Admin Login</a>
+      <a href="#" id="download-snapshot-link" class="dropdown-item"><i class="fas fa-download"></i> Download Snapshot</a>
+      <a href="#" id="export-data-link" class="dropdown-item"><i class="fas fa-file-export"></i> Export Data (JSON)</a>
+      <a href="#" id="import-data-link" class="dropdown-item"><i class="fas fa-file-import"></i> Import Data (JSON)</a>
     </div>
 
-    <script>
-        // Initialize Feather Icons
-        feather.replace();
+    <!-- Welcome Banner (hidden initially) -->
+    <div id="welcome-banner" class="welcome-banner" style="display: none;">
+      <h2>Welcome, <span id="student-display-name"></span>!</h2>
+      <p>You are in Class <span id="student-display-class"></span>. Here's your personalized dashboard.</p>
+    </div>
 
-        // Sidebar Toggle
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const sidebar = document.getElementById('sidebar');
-        const content = document.getElementById('content');
+    <!-- Main Sections -->
+    <section id="homework">
+      <div class="section-title">
+        <h2>Homework Assignments</h2>
+      </div>
+      <div class="homework-controls">
+        <input type="text" id="homework-search" class="search-box" placeholder="Search homework...">
+        <button id="refresh-homework" class="refresh-btn">
+          <i class="fas fa-sync"></i> Refresh
+        </button>
+      </div>
+      <div class="homework-grid" id="homework-grid">
+        <!-- Homework cards will be inserted here -->
+      </div>
+    </section>
 
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('w-64');
-            sidebar.classList.toggle('w-16');
-            content.classList.toggle('ml-64');
-            content.classList.toggle('ml-16');
+    <section id="teachers">
+      <div class="section-title">
+        <h2>Our Teachers</h2>
+      </div>
+      <div class="teachers-grid" id="teachers-grid">
+        <!-- Teacher cards will be inserted here -->
+      </div>
+    </section>
+
+    <section id="events">
+      <div class="section-title">
+        <h2>Upcoming Events</h2>
+      </div>
+      <div class="events-timeline" id="events-timeline">
+        <!-- Events will be inserted here -->
+      </div>
+    </section>
+
+    <section id="notices">
+      <div class="section-title">
+        <h2>Notices & Announcements</h2>
+      </div>
+      <div class="notices-board" id="notices-board">
+        <!-- Notices will be inserted here -->
+      </div>
+    </section>
+
+    <section id="timetable">
+      <div class="section-title">
+        <h2>Class Timetable</h2>
+      </div>
+      <div class="timetable" id="timetable-content">
+        <!-- Timetable will be inserted here -->
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="section-title">
+        <h2>School Gallery</h2>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Gallery items will be inserted here -->
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-container" id="faq-container">
+        <!-- FAQ items will be inserted here -->
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info-box">
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="info-text">
+              <h4>Address</h4>
+              <p>Boluha Police Chowki Balrampur</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div class="info-text">
+              <h4>Phone</h4>
+              <p><a href="tel:9758919151">9758919151</a></p>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div class="info-text">
+              <h4>Email</h4>
+              <p><a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <div class="info-text">
+              <h4>Office Hours</h4>
+              <p>Monday - Friday: 8:00 AM - 4:00 PM</p>
+            </div>
+          </div>
+          <button id="view-messages" class="btn" style="background: #1e3a8a; color: white; padding: 0.8rem; border-radius: 6px; align-self: flex-start;">
+            <i class="fas fa-eye"></i> View Messages (local)
+          </button>
+        </div>
+        <form id="contact-form" class="contact-form">
+          <div class="form-group-contact">
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" class="form-control-contact" required>
+          </div>
+          <div class="form-group-contact">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" class="form-control-contact" required>
+          </div>
+          <div class="form-group-contact">
+            <label for="contact-phone">Phone</label>
+            <input type="tel" id="contact-phone" class="form-control-contact" required>
+          </div>
+          <div class="form-group-contact">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" class="form-control-contact" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Milli Karwaan Public School</h3>
+          <p>Dedicated to providing quality education for students from Class 1 to 12 in Balrampur and surrounding areas.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#homework">Homework</a></li>
+            <li><a href="#teachers">Teachers</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#notices">Notices</a></li>
+            <li><a href="#timetable">Timetable</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Info</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-map-marker-alt"></i> Boluha Police Chowki Balrampur</li>
+            <li><i class="fas fa-phone"></i> <a href="tel:9758919151">9758919151</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></li>
+            <li><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 4:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; <span id="current-year">2023</span> Milli Karwaan Public School Balrampur. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // DOM Elements
+    const accessFormOverlay = document.getElementById('access-form-overlay');
+    const studentAccessForm = document.getElementById('student-access-form');
+    const welcomeBanner = document.getElementById('welcome-banner');
+    const studentDisplayName = document.getElementById('student-display-name');
+    const studentDisplayClass = document.getElementById('student-display-class');
+    const menuToggle = document.getElementById('menu-toggle');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const mainContent = document.getElementById('main-content');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const homeworkGrid = document.getElementById('homework-grid');
+    const teachersGrid = document.getElementById('teachers-grid');
+    const eventsTimeline = document.getElementById('events-timeline');
+    const noticesBoard = document.getElementById('notices-board');
+    const timetableContent = document.getElementById('timetable-content');
+    const galleryGrid = document.getElementById('gallery-grid');
+    const faqContainer = document.getElementById('faq-container');
+    const contactForm = document.getElementById('contact-form');
+    const messagesModal = document.getElementById('messages-modal');
+    const messagesBody = document.getElementById('messages-body');
+    const closeMessages = document.getElementById('close-messages');
+    const viewMessages = document.getElementById('view-messages');
+    const homeworkSearch = document.getElementById('homework-search');
+    const refreshHomeworkBtn = document.getElementById('refresh-homework');
+    const sidebarSearch = document.getElementById('sidebar-search');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const errorAlert = document.getElementById('error-alert');
+    const errorMessageText = document.getElementById('error-message-text');
+    const closeError = document.getElementById('close-error');
+    const adminBanner = document.getElementById('admin-banner');
+    const exportDataLink = document.getElementById('export-data-link');
+    const importDataLink = document.getElementById('import-data-link');
+    const downloadSnapshotLink = document.getElementById('download-snapshot-link');
+    const exportDataBtn = document.getElementById('export-data-btn');
+    const importDataBtn = document.getElementById('import-data-btn');
+    const downloadSnapshotBtn = document.getElementById('download-snapshot-btn');
+    const clearDemoBtn = document.getElementById('clear-demo-btn');
+    const teacherCount = document.getElementById('teacher-count');
+    const eventCount = document.getElementById('event-count');
+    const noticeCount = document.getElementById('notice-count');
+    const photoCount = document.getElementById('photo-count');
+    const currentYear = document.getElementById('current-year');
+
+    // Set current year
+    currentYear.textContent = new Date().getFullYear();
+
+    // Student Data
+    let studentData = null;
+
+    // Gallery Images
+    const galleryImages = [
+      'https://placehold.co/600x400/1e3a8a/white?text=School+Building',
+      'https://placehold.co/600x400/1e3a8a/white?text=Classroom',
+      'https://placehold.co/600x400/1e3a8a/white?text=Students+Learning',
+      'https://placehold.co/600x400/1e3a8a/white?text=Science+Lab',
+      'https://placehold.co/600x400/1e3a8a/white?text=Library',
+      'https://placehold.co/600x400/1e3a8a/white?text=Sports+Day',
+      'https://placehold.co/600x400/1e3a8a/white?text=Cultural+Event',
+      'https://placehold.co/600x400/1e3a8a/white?text=Teacher+Meeting',
+      'https://placehold.co/600x400/1e3a8a/white?text=Annual+Function',
+      'https://placehold.co/600x400/1e3a8a/white?text=School+Assembly',
+      'https://placehold.co/600x400/1e3a8a/white?text=Computer+Lab',
+      'https://placehold.co/600x400/1e3a8a/white?text=Art+Class'
+    ];
+
+    // FAQ Data
+    const faqData = [
+      {
+        question: "What are the school hours?",
+        answer: "School hours are from 8:00 AM to 2:30 PM for all classes. Office hours are from 8:00 AM to 4:00 PM."
+      },
+      {
+        question: "What is the admission process?",
+        answer: "Admission process begins in April each year. Parents need to visit the school office with required documents including birth certificate, previous school records, and address proof."
+      },
+      {
+        question: "Are there transportation facilities?",
+        answer: "Yes, we provide bus transportation for students living within a 15 km radius of the school. Routes are optimized for safety and efficiency."
+      },
+      {
+        question: "What extracurricular activities are offered?",
+        answer: "We offer a wide range of extracurricular activities including sports (cricket, football, basketball), music, dance, art, debate club, and science club."
+      },
+      {
+        question: "Is there a cafeteria on campus?",
+        answer: "Yes, we have a clean and hygienic cafeteria that serves healthy meals, snacks, and beverages at affordable prices throughout the day."
+      },
+      {
+        question: "How are parents kept informed about student progress?",
+        answer: "We use a combination of report cards, parent-teacher meetings, our school portal, and regular communication through our messaging system to keep parents informed about student progress."
+      }
+    ];
+
+    // Initialize the application
+    function init() {
+      // Check if student data exists
+      const storedStudent = localStorage.getItem('mkps_student');
+      if (storedStudent) {
+        try {
+          studentData = JSON.parse(storedStudent);
+          showWelcomeMessage();
+          loadAllData();
+        } catch (e) {
+          showError('Failed to parse student data. Please try again.');
+          localStorage.removeItem('mkps_student');
+          showAccessForm();
+        }
+      } else {
+        showAccessForm();
+      }
+
+      // Seed data if needed
+      seedData();
+
+      // Setup event listeners
+      setupEventListeners();
+
+      // Show admin banner
+      setTimeout(() => {
+        adminBanner.style.display = 'block';
+      }, 2000);
+
+      // Initialize analytics
+      updateAnalytics();
+    }
+
+    // Show access form
+    function showAccessForm() {
+      accessFormOverlay.style.display = 'flex';
+      history.pushState({ page: 'access' }, '', '#access');
+    }
+
+    // Hide access form and show welcome message
+    function showWelcomeMessage() {
+      accessFormOverlay.style.display = 'none';
+      welcomeBanner.style.display = 'block';
+      studentDisplayName.textContent = studentData.name;
+      studentDisplayClass.textContent = studentData.class;
+      mainContent.classList.add('fade-in');
+    }
+
+    // Setup all event listeners
+    function setupEventListeners() {
+      // Student access form submission
+      studentAccessForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('student-name').value.trim();
+        const studentClass = document.getElementById('student-class').value;
+        const parentName = document.getElementById('parent-name').value.trim();
+        
+        // Validate form
+        let isValid = true;
+        
+        if (!name) {
+          document.getElementById('student-name').classList.add('error');
+          document.querySelector('#student-name + .error-message').style.display = 'block';
+          isValid = false;
+        } else {
+          document.getElementById('student-name').classList.remove('error');
+          document.querySelector('#student-name + .error-message').style.display = 'none';
+        }
+        
+        if (!studentClass) {
+          document.getElementById('student-class').classList.add('error');
+          document.querySelector('#student-class + .error-message').style.display = 'block';
+          isValid = false;
+        } else {
+          document.getElementById('student-class').classList.remove('error');
+          document.querySelector('#student-class + .error-message').style.display = 'none';
+        }
+        
+        if (!parentName) {
+          document.getElementById('parent-name').classList.add('error');
+          document.querySelector('#parent-name + .error-message').style.display = 'block';
+          isValid = false;
+        } else {
+          document.getElementById('parent-name').classList.remove('error');
+          document.querySelector('#parent-name + .error-message').style.display = 'none';
+        }
+        
+        if (!isValid) return;
+        
+        // Save student data
+        studentData = {
+          name: name,
+          class: studentClass,
+          parentName: parentName,
+          timestamp: new Date().toISOString()
+        };
+        
+        try {
+          localStorage.setItem('mkps_student', JSON.stringify(studentData));
+          showWelcomeMessage();
+          loadAllData();
+          
+          // Prevent going back to form
+          history.replaceState(null, '', window.location.href.split('#')[0]);
+        } catch (e) {
+          showError('Failed to save student data. Please try again.');
+        }
+      });
+      
+      // Navigation menu toggle
+      menuToggle.addEventListener('click', function() {
+        dropdownMenu.classList.toggle('active');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.remove('active');
+        }
+      });
+      
+      // Sidebar toggle
+      document.querySelector('.header-left').insertAdjacentHTML('beforeend', 
+        '<button id="sidebar-toggle" style="background: none; border: none; font-size: 1.5rem; color: #1e3a8a; cursor: pointer; padding: 0.5rem;">☰</button>'
+      );
+      
+      document.getElementById('sidebar-toggle').addEventListener('click', function() {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+      });
+      
+      overlay.addEventListener('click', function() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      });
+      
+      // Close sidebar with escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('active');
+          lightbox.classList.remove('open');
+          messagesModal.style.display = 'none';
+          errorAlert.style.display = 'none';
+        }
+      });
+      
+      // Homework search
+      homeworkSearch.addEventListener('input', function() {
+        filterHomework();
+      });
+      
+      sidebarSearch.addEventListener('input', function() {
+        filterHomework();
+      });
+      
+      // Refresh homework
+      refreshHomeworkBtn.addEventListener('click', function() {
+        if (studentData) {
+          renderHomeworkFor(studentData.class);
+        }
+      });
+      
+      // Contact form submission
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const phone = document.getElementById('contact-phone').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+        
+        if (!name || !email || !phone || !message) {
+          showError('Please fill in all fields');
+          return;
+        }
+        
+        // Save message
+        const messages = JSON.parse(localStorage.getItem('mkps_messages') || '[]');
+        messages.push({
+          id: Date.now(),
+          name,
+          email,
+          phone,
+          message,
+          timestamp: new Date().toISOString()
+        });
+        
+        try {
+          localStorage.setItem('mkps_messages', JSON.stringify(messages));
+          localStorage.setItem('mkps_update', Date.now().toString());
+          
+          // Reset form
+          contactForm.reset();
+          showError('Message sent successfully!', 'success');
+        } catch (e) {
+          showError('Failed to send message. Please try again.');
+        }
+      });
+      
+      // View messages
+      viewMessages.addEventListener('click', function() {
+        displayMessages();
+        messagesModal.style.display = 'flex';
+      });
+      
+      // Close messages modal
+      closeMessages.addEventListener('click', function() {
+        messagesModal.style.display = 'none';
+      });
+      
+      // Lightbox functionality
+      lightboxClose.addEventListener('click', function() {
+        lightbox.classList.remove('open');
+      });
+      
+      // Close lightbox when clicking outside image
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('open');
+        }
+      });
+      
+      // Lightbox navigation
+      lightboxPrev.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showPreviousImage();
+      });
+      
+      lightboxNext.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showNextImage();
+      });
+      
+      // Keyboard navigation for lightbox
+      document.addEventListener('keydown', function(e) {
+        if (lightbox.classList.contains('open')) {
+          if (e.key === 'ArrowLeft') {
+            showPreviousImage();
+          } else if (e.key === 'ArrowRight') {
+            showNextImage();
+          }
+        }
+      });
+      
+      // Close error alert
+      closeError.addEventListener('click', function() {
+        errorAlert.style.display = 'none';
+      });
+      
+      // Export data
+      exportDataLink.addEventListener('click', exportData);
+      exportDataBtn.addEventListener('click', exportData);
+      
+      // Import data
+      importDataLink.addEventListener('click', triggerImport);
+      importDataBtn.addEventListener('click', triggerImport);
+      
+      // Download snapshot
+      downloadSnapshotLink.addEventListener('click', downloadSnapshot);
+      downloadSnapshotBtn.addEventListener('click', downloadSnapshot);
+      
+      // Clear demo data
+      clearDemoBtn.addEventListener('click', clearDemoData);
+      
+      // Storage event listener
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'mkps_update') {
+          const newValue = e.newValue;
+          if (newValue) {
+            // Refresh all sections
+            loadAllData();
+            updateAnalytics();
+            showError('Data updated from another tab!', 'info');
+          }
+        }
+      });
+    }
+    
+    // Filter homework based on search term
+    function filterHomework() {
+      const searchTerm = homeworkSearch.value.toLowerCase();
+      const sidebarTerm = sidebarSearch.value.toLowerCase();
+      const combinedTerm = (searchTerm + ' ' + sidebarTerm).trim();
+      
+      const homeworkCards = homeworkGrid.querySelectorAll('.homework-card');
+      let visibleCount = 0;
+      
+      homeworkCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (combinedTerm === '' || text.includes(combinedTerm)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    // Show error message
+    function showError(message, type = 'error') {
+      errorMessageText.textContent = message;
+      errorAlert.style.display = 'flex';
+      
+      if (type === 'success') {
+        errorAlert.style.background = '#dcfce7';
+        errorAlert.style.color = '#166534';
+        errorAlert.querySelector('i').className = 'fas fa-check-circle';
+      } else if (type === 'info') {
+        errorAlert.style.background = '#e0f2fe';
+        errorAlert.style.color = '#0369a1';
+        errorAlert.querySelector('i').className = 'fas fa-info-circle';
+      } else {
+        errorAlert.style.background = '#fee2e2';
+        errorAlert.style.color = '#dc2626';
+        errorAlert.querySelector('i').className = 'fas fa-exclamation-triangle';
+      }
+      
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        errorAlert.style.display = 'none';
+      }, 5000);
+    }
+    
+    // Seed data if keys don't exist
+    function seedData() {
+      // Check if data already exists
+      if (localStorage.getItem('mkps_homework')) return;
+      
+      // Seed homework data
+      const homeworkData = {};
+      for (let i = 1; i <= 12; i++) {
+        homeworkData[i] = [
+          {
+            id: Date.now() + i,
+            date: new Date(Date.now() - 86400000).toISOString().split('T')[0],
+            subject: 'Mathematics',
+            teacher: 'Mrs. Sharma',
+            instructions: `Complete exercises on page ${45 + i} of your textbook. Focus on problems 1-15.`
+          },
+          {
+            id: Date.now() + i + 100,
+            date: new Date(Date.now() - 86400000).toISOString().split('T')[0],
+            subject: 'Science',
+            teacher: 'Mr. Patel',
+            instructions: `Write a short report on the water cycle. Include diagrams and at least 3 real-world examples.`
+          },
+          {
+            id: Date.now() + i + 200,
+            date: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+            subject: 'English',
+            teacher: 'Ms. Gupta',
+            instructions: `Read Chapter 7 of "The Adventures of Tom Sawyer" and write a summary in your own words.`
+          },
+          {
+            id: Date.now() + i + 300,
+            date: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
+            subject: 'Social Studies',
+            teacher: 'Mr. Singh',
+            instructions: `Research the history of the Indian Constitution and prepare a 5-minute presentation.`
+          }
+        ];
+      }
+      
+      // Seed teachers data
+      const teachersData = [
+        { id: 1, name: 'Mrs. Anjali Sharma', subject: 'Mathematics', phone: '9876543210', email: 'sharma.mkps@gmail.com', avatar: 'AS' },
+        { id: 2, name: 'Mr. Rajesh Patel', subject: 'Science', phone: '9876543211', email: 'patel.mkps@gmail.com', avatar: 'RP' },
+        { id: 3, name: 'Ms. Priya Gupta', subject: 'English', phone: '9876543212', email: 'gupta.mkps@gmail.com', avatar: 'PG' },
+        { id: 4, name: 'Mr. Arvind Singh', subject: 'Social Studies', phone: '9876543213', email: 'singh.mkps@gmail.com', avatar: 'AS' },
+        { id: 5, name: 'Mrs. Sunita Verma', subject: 'Hindi', phone: '9876543214', email: 'verma.mkps@gmail.com', avatar: 'SV' },
+        { id: 6, name: 'Mr. Sanjay Kumar', subject: 'Computer Science', phone: '9876543215', email: 'kumar.mkps@gmail.com', avatar: 'SK' },
+        { id: 7, name: 'Mrs. Meena Reddy', subject: 'Art', phone: '9876543216', email: 'reddy.mkps@gmail.com', avatar: 'MR' },
+        { id: 8, name: 'Mr. Vikram Joshi', subject: 'Physical Education', phone: '9876543217', email: 'joshi.mkps@gmail.com', avatar: 'VJ' },
+        { id: 9, name: 'Mrs. Nandini Iyer', subject: 'Music', phone: '9876543218', email: 'iyer.mkps@gmail.com', avatar: 'NI' },
+        { id: 10, name: 'Mr. Deepak Malhotra', subject: 'Sanskrit', phone: '9876543219', email: 'malhotra.mkps@gmail.com', avatar: 'DM' }
+      ];
+      
+      // Seed events data
+      const eventsData = [
+        {
+          id: 1,
+          title: 'Annual Sports Day',
+          date: new Date(Date.now() + 86400000 * 7).toISOString().split('T')[0],
+          description: 'Join us for our annual sports day featuring various athletic events, races, and competitions for all classes.'
+        },
+        {
+          id: 2,
+          title: 'Parent-Teacher Meeting',
+          date: new Date(Date.now() + 86400000 * 14).toISOString().split('T')[0],
+          description: 'Scheduled meeting between parents and teachers to discuss student progress and academic performance.'
+        },
+        {
+          id: 3,
+          title: 'Science Exhibition',
+          date: new Date(Date.now() + 86400000 * 21).toISOString().split('T')[0],
+          description: 'Students will showcase their science projects and experiments to the school community.'
+        },
+        {
+          id: 4,
+          title: 'Cultural Festival',
+          date: new Date(Date.now() + 86400000 * 28).toISOString().split('T')[0],
+          description: 'A celebration of diverse cultures through music, dance, food, and traditional attire.'
+        },
+        {
+          id: 5,
+          title: 'Mid-Term Exams',
+          date: new Date(Date.now() + 86400000 * 35).toISOString().split('T')[0],
+          description: 'Mid-term examinations for all classes. Please check the timetable for subject-wise schedule.'
+        }
+      ];
+      
+      // Seed notices data
+      const noticesData = [
+        {
+          id: 1,
+          title: 'School Closed for Diwali Holidays',
+          priority: 'high',
+          body: 'The school will remain closed from November 12th to November 16th for Diwali celebrations. Classes will resume on November 17th.',
+          timestamp: new Date().toISOString()
+        },
+        {
+          id: 2,
+          title: 'New Library Books Arrived',
+          priority: 'medium',
+          body: 'We are pleased to announce the arrival of new books in our school library. Students are encouraged to visit and explore the new collection.',
+          timestamp: new Date().toISOString()
+        },
+        {
+          id: 3,
+          title: 'PTA Meeting Reminder',
+          priority: 'medium',
+          body: 'The next Parent-Teacher Association meeting is scheduled for this Friday at 4:00 PM in the school auditorium. All parents are invited to attend.',
+          timestamp: new Date().toISOString()
+        },
+        {
+          id: 4,
+          title: 'Uniform Change Notice',
+          priority: 'low',
+          body: 'Starting next month, the school uniform will include a new design for the summer season. Details will be shared with parents soon.',
+          timestamp: new Date().toISOString()
+        },
+        {
+          id: 5,
+          title: 'Computer Lab Maintenance',
+          priority: 'high',
+          body: 'The computer lab will be closed for maintenance on Wednesday from 10:00 AM to 2:00 PM. Classes scheduled in the lab will be relocated.',
+          timestamp: new Date().toISOString()
+        }
+      ];
+      
+      // Seed timetable data
+      const timetableData = {
+        'Monday': [
+          { time: '8:00 - 9:00', subject: 'Mathematics', teacher: 'Mrs. Sharma' },
+          { time: '9:00 - 10:00', subject: 'Science', teacher: 'Mr. Patel' },
+          { time: '10:30 - 11:30', subject: 'English', teacher: 'Ms. Gupta' },
+          { time: '11:30 - 12:30', subject: 'Social Studies', teacher: 'Mr. Singh' }
+        ],
+        'Tuesday': [
+          { time: '8:00 - 9:00', subject: 'Hindi', teacher: 'Mrs. Verma' },
+          { time: '9:00 - 10:00', subject: 'Mathematics', teacher: 'Mrs. Sharma' },
+          { time: '10:30 - 11:30', subject: 'Computer Science', teacher: 'Mr. Kumar' },
+          { time: '11:30 - 12:30', subject: 'Art', teacher: 'Mrs. Reddy' }
+        ],
+        'Wednesday': [
+          { time: '8:00 - 9:00', subject: 'Science', teacher: 'Mr. Patel' },
+          { time: '9:00 - 10:00', subject: 'English', teacher: 'Ms. Gupta' },
+          { time: '10:30 - 11:30', subject: 'Sanskrit', teacher: 'Mr. Malhotra' },
+          { time: '11:30 - 12:30', subject: 'Music', teacher: 'Mrs. Iyer' }
+        ],
+        'Thursday': [
+          { time: '8:00 - 9:00', subject: 'Mathematics', teacher: 'Mrs. Sharma' },
+          { time: '9:00 - 10:00', subject: 'Social Studies', teacher: 'Mr. Singh' },
+          { time: '10:30 - 11:30', subject: 'Hindi', teacher: 'Mrs. Verma' },
+          { time: '11:30 - 12:30', subject: 'Computer Science', teacher: 'Mr. Kumar' }
+        ],
+        'Friday': [
+          { time: '8:00 - 9:00', subject: 'English', teacher: 'Ms. Gupta' },
+          { time: '9:00 - 10:00', subject: 'Science', teacher: 'Mr. Patel' },
+          { time: '10:30 - 11:30', subject: 'Physical Education', teacher: 'Mr. Joshi' },
+          { time: '11:30 - 12:30', subject: 'Art', teacher: 'Mrs. Reddy' }
+        ]
+      };
+      
+      // Seed gallery data (just the image URLs)
+      const galleryData = galleryImages;
+      
+      // Seed messages data (empty array)
+      const messagesData = [];
+      
+      // Save all data to localStorage
+      try {
+        localStorage.setItem('mkps_homework', JSON.stringify(homeworkData));
+        localStorage.setItem('mkps_teachers', JSON.stringify(teachersData));
+        localStorage.setItem('mkps_events', JSON.stringify(eventsData));
+        localStorage.setItem('mkps_notices', JSON.stringify(noticesData));
+        localStorage.setItem('mkps_timetable', JSON.stringify(timetableData));
+        localStorage.setItem('mkps_gallery', JSON.stringify(galleryData));
+        localStorage.setItem('mkps_messages', JSON.stringify(messagesData));
+        localStorage.setItem('mkps_update', Date.now().toString());
+        
+        showError('Demo data loaded successfully!', 'info');
+      } catch (e) {
+        showError('Failed to save demo data. Please try again.');
+      }
+    }
+    
+    // Load all data from localStorage
+    function loadAllData() {
+      renderHomeworkFor(studentData.class);
+      renderTeachers();
+      renderEvents();
+      renderNotices();
+      renderTimetable();
+      renderGallery();
+      renderFAQ();
+    }
+    
+    // Render homework for specific class
+    function renderHomeworkFor(cls) {
+      homeworkGrid.innerHTML = '';
+      
+      try {
+        const homeworkData = JSON.parse(localStorage.getItem('mkps_homework') || '{}');
+        const classHomework = homeworkData[cls] || [];
+        
+        if (classHomework.length === 0) {
+          homeworkGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #666;">No homework assignments for your class at the moment.</p>';
+          return;
+        }
+        
+        classHomework.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'homework-card';
+          card.innerHTML = `
+            <div class="card-header">
+              ${item.subject}
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span><i class="fas fa-calendar"></i> ${formatDate(item.date)}</span>
+                <span><i class="fas fa-chalkboard-teacher"></i> ${item.teacher}</span>
+              </div>
+              <div class="card-content">
+                ${item.instructions}
+              </div>
+            </div>
+          `;
+          homeworkGrid.appendChild(card);
+        });
+        
+        // Apply filter
+        filterHomework();
+      } catch (e) {
+        showError('Failed to load homework data.');
+        homeworkGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #666;">Error loading homework data.</p>';
+      }
+    }
+    
+    // Render teachers
+    function renderTeachers() {
+      teachersGrid.innerHTML = '';
+      
+      try {
+        const teachersData = JSON.parse(localStorage.getItem('mkps_teachers') || '[]');
+        
+        if (teachersData.length === 0) {
+          teachersGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #666;">No teachers data available.</p>';
+          return;
+        }
+        
+        teachersData.forEach(teacher => {
+          const card = document.createElement('div');
+          card.className = 'teacher-card';
+          card.innerHTML = `
+            <div class="teacher-avatar">
+              ${teacher.avatar}
+            </div>
+            <div class="teacher-info">
+              <h3>${teacher.name}</h3>
+              <p>${teacher.subject}</p>
+              <div class="teacher-contact">
+                <a href="tel:${teacher.phone}"><i class="fas fa-phone"></i></a>
+                <a href="mailto:${teacher.email}"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          `;
+          teachersGrid.appendChild(card);
+        });
+      } catch (e) {
+        showError('Failed to load teachers data.');
+        teachersGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #666;">Error loading teachers data.</p>';
+      }
+    }
+    
+    // Render events
+    function renderEvents() {
+      eventsTimeline.innerHTML = '';
+      
+      try {
+        const eventsData = JSON.parse(localStorage.getItem('mkps_events') || '[]');
+        
+        if (eventsData.length === 0) {
+          eventsTimeline.innerHTML = '<p style="text-align: center; color: #666;">No upcoming events.</p>';
+          return;
+        }
+        
+        // Sort events by date
+        const sortedEvents = [...eventsData].sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        sortedEvents.forEach(event => {
+          const item = document.createElement('div');
+          item.className = 'timeline-item';
+          item.innerHTML = `
+            <div class="event-card">
+              <div class="event-date">
+                <i class="fas fa-calendar-alt"></i> ${formatDate(event.date)}
+              </div>
+              <h3 class="event-title">${event.title}</h3>
+              <p class="event-desc">${event.description}</p>
+            </div>
+          `;
+          eventsTimeline.appendChild(item);
+        });
+      } catch (e) {
+        showError('Failed to load events data.');
+        eventsTimeline.innerHTML = '<p style="text-align: center; color: #666;">Error loading events data.</p>';
+      }
+    }
+    
+    // Render notices
+    function renderNotices() {
+      noticesBoard.innerHTML = '';
+      
+      try {
+        const noticesData = JSON.parse(localStorage.getItem('mkps_notices') || '[]');
+        
+        if (noticesData.length === 0) {
+          noticesBoard.innerHTML = '<div class="notice-item"><p>No notices at the moment.</p></div>';
+          return;
+        }
+        
+        // Sort by timestamp (newest first)
+        const sortedNotices = [...noticesData].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
+        sortedNotices.forEach((notice, index) => {
+          const item = document.createElement('div');
+          item.className = `notice-item ${index === 0 ? 'unread' : ''}`;
+          item.innerHTML = `
+            <div class="notice-header">
+              <h3 class="notice-title">${notice.title}</h3>
+              <span class="priority-badge priority-${notice.priority}">${notice.priority.toUpperCase()}</span>
+            </div>
+            <div class="notice-body">
+              ${notice.body}
+            </div>
+          `;
+          noticesBoard.appendChild(item);
+        });
+      } catch (e) {
+        showError('Failed to load notices data.');
+        noticesBoard.innerHTML = '<div class="notice-item"><p>Error loading notices data.</p></div>';
+      }
+    }
+    
+    // Render timetable
+    function renderTimetable() {
+      timetableContent.innerHTML = '';
+      
+      try {
+        const timetableData = JSON.parse(localStorage.getItem('mkps_timetable') || '{}');
+        
+        if (Object.keys(timetableData).length === 0) {
+          timetableContent.innerHTML = '<p style="text-align: center; color: #666;">Timetable not available.</p>';
+          return;
+        }
+        
+        const table = document.createElement('table');
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Day / Time</th>
+              <th>Subject</th>
+              <th>Teacher</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${Object.entries(timetableData).map(([day, slots]) => 
+              slots.map((slot, index) => 
+                `<tr>
+                  ${index === 0 ? `<td rowspan="${slots.length}">${day}</td>` : ''}
+                  <td><span class="subject">${slot.subject}</span><br><span class="teacher-name">${slot.teacher}</span></td>
+                  <td>${slot.time}</td>
+                </tr>`
+              ).join('')
+            ).join('')}
+          </tbody>
+        `;
+        
+        timetableContent.appendChild(table);
+      } catch (e) {
+        showError('Failed to load timetable data.');
+        timetableContent.innerHTML = '<p style="text-align: center; color: #666;">Error loading timetable data.</p>';
+      }
+    }
+    
+    // Render gallery
+    function renderGallery() {
+      galleryGrid.innerHTML = '';
+      
+      try {
+        const galleryData = JSON.parse(localStorage.getItem('mkps_gallery') || '[]');
+        
+        if (galleryData.length === 0) {
+          galleryGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #666;">No photos in gallery.</p>';
+          return;
+        }
+        
+        galleryData.forEach((imgUrl, index) => {
+          const item = document.createElement('div');
+          item.className = 'gallery-item';
+          item.innerHTML = `<img src="${imgUrl}" alt="School photo">`;
+          item.addEventListener('click', () => openLightbox(index));
+          galleryGrid.appendChild(item);
+        });
+      } catch (e) {
+        showError('Failed to load gallery data.');
+        galleryGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #666;">Error loading gallery data.</p>';
+      }
+    }
+    
+    // Open lightbox with specific image
+    let currentImageIndex = 0;
+    
+    function openLightbox(index) {
+      currentImageIndex = index;
+      const galleryData = JSON.parse(localStorage.getItem('mkps_gallery') || '[]');
+      if (galleryData.length === 0) return;
+      
+      lightboxImg.src = galleryData[currentImageIndex];
+      lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryData.length}`;
+      lightbox.classList.add('open');
+    }
+    
+    // Show previous image in lightbox
+    function showPreviousImage() {
+      const galleryData = JSON.parse(localStorage.getItem('mkps_gallery') || '[]');
+      if (galleryData.length === 0) return;
+      
+      currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+      lightboxImg.src = galleryData[currentImageIndex];
+      lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryData.length}`;
+    }
+    
+    // Show next image in lightbox
+    function showNextImage() {
+      const galleryData = JSON.parse(localStorage.getItem('mkps_gallery') || '[]');
+      if (galleryData.length === 0) return;
+      
+      currentImageIndex = (currentImageIndex + 1) % galleryData.length;
+      lightboxImg.src = galleryData[currentImageIndex];
+      lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryData.length}`;
+    }
+    
+    // Render FAQ
+    function renderFAQ() {
+      faqContainer.innerHTML = '';
+      
+      faqData.forEach(item => {
+        const faqItem = document.createElement('div');
+        faqItem.className = 'faq-item';
+        faqItem.innerHTML = `
+          <div class="faq-question">${item.question}</div>
+          <div class="faq-answer">
+            <p>${item.answer}</p>
+          </div>
+        `;
+        
+        // Add click event for accordion
+        const question = faqItem.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+          faqItem.classList.toggle('active');
+        });
+        
+        faqContainer.appendChild(faqItem);
+      });
+    }
+    
+    // Display messages in modal
+    function displayMessages() {
+      messagesBody.innerHTML = '';
+      
+      try {
+        const messages = JSON.parse(localStorage.getItem('mkps_messages') || '[]');
+        
+        if (messages.length === 0) {
+          messagesBody.innerHTML = '<p style="text-align: center; color: #666;">No messages received yet.</p>';
+          return;
+        }
+        
+        // Sort by timestamp (newest first)
+        const sortedMessages = [...messages].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
+        sortedMessages.forEach(message => {
+          const messageItem = document.createElement('div');
+          messageItem.className = 'message-item';
+          messageItem.innerHTML = `
+            <div class="message-meta">
+              <span>${message.name}</span>
+              <span>${formatDateTime(message.timestamp)}</span>
+            </div>
+            <div class="message-content">
+              <p><strong>Email:</strong> ${message.email}</p>
+              <p><strong>Phone:</strong> ${message.phone}</p>
+              <p><strong>Message:</strong> ${message.message}</p>
+            </div>
+          `;
+          messagesBody.appendChild(messageItem);
+        });
+      } catch (e) {
+        messagesBody.innerHTML = '<p style="text-align: center; color: #666;">Error loading messages.</p>';
+      }
+    }
+    
+    // Export all data as JSON
+    function exportData() {
+      try {
+        const data = {
+          mkps_student: localStorage.getItem('mkps_student'),
+          mkps_homework: localStorage.getItem('mkps_homework'),
+          mkps_teachers: localStorage.getItem('mkps_teachers'),
+          mkps_events: localStorage.getItem('mkps_events'),
+          mkps_notices: localStorage.getItem('mkps_notices'),
+          mkps_timetable: localStorage.getItem('mkps_timetable'),
+          mkps_gallery: localStorage.getItem('mkps_gallery'),
+          mkps_messages: localStorage.getItem('mkps_messages')
+        };
+        
+        const dataStr = JSON.stringify(data, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `mkps_data_backup_${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+        
+        URL.revokeObjectURL(url);
+        showError('Data exported successfully!', 'success');
+      } catch (e) {
+        showError('Failed to export data.');
+      }
+    }
+    
+    // Trigger import data file input
+    function triggerImport() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      
+      input.onchange = e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          try {
+            const importedData = JSON.parse(event.target.result);
             
-            // Update icons when collapsed
-            const icons = document.querySelectorAll('.sidebar-transition a i');
-            icons.forEach(icon => {
-                icon.classList.toggle('mx-auto');
-            });
-        });
+            // Validate and import data
+            const keys = [
+              'mkps_student', 'mkps_homework', 'mkps_teachers', 
+              'mkps_events', 'mkps_notices', 'mkps_timetable', 
+              'mkps_gallery', 'mkps_messages'
+            ];
+            
+            let importedCount = 0;
+            for (const key of keys) {
+              if (importedData.hasOwnProperty(key)) {
+                localStorage.setItem(key, importedData[key]);
+                importedCount++;
+              }
+            }
+            
+            // Update timestamp
+            localStorage.setItem('mkps_update', Date.now().toString());
+            
+            showError(`Successfully imported ${importedCount} data items!`, 'success');
+            
+            // Reload data
+            if (studentData) {
+              loadAllData();
+              updateAnalytics();
+            }
+          } catch (e) {
+            showError('Invalid JSON file or corrupted data.');
+          }
+        };
+        
+        reader.readAsText(file);
+      };
+      
+      input.click();
+    }
+    
+    // Download HTML snapshot
+    function downloadSnapshot() {
+      try {
+        // Get current data
+        const homeworkData = JSON.parse(localStorage.getItem('mkps_homework') || '{}');
+        const eventsData = JSON.parse(localStorage.getItem('mkps_events') || '[]');
+        const noticesData = JSON.parse(localStorage.getItem('mkps_notices') || '[]');
+        
+        // Sort events and notices by date
+        const sortedEvents = [...eventsData].sort((a, b) => new Date(a.date) - new Date(b.date));
+        const sortedNotices = [...noticesData].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
+        // Create snapshot HTML
+        const snapshotHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milli Karwaan Public School - Snapshot</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 2rem; background: #f8f9fa; }
+    h1 { color: #1e3a8a; text-align: center; margin-bottom: 0.5rem; }
+    .subtitle { text-align: center; color: #666; margin-bottom: 2rem; }
+    .section { background: white; padding: 1.5rem; margin-bottom: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    h2 { color: #1e3a8a; margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+    .event-item, .notice-item { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+    .event-item:last-child, .notice-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .date { font-weight: 500; color: #1e3a8a; margin-bottom: 0.3rem; }
+    .priority { padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; margin-left: 0.5rem; }
+    .priority-high { background: #fee2e2; color: #dc2626; }
+    .priority-medium { background: #fef3c7; color: #d97706; }
+    .priority-low { background: #dbeafe; color: #1e40af; }
+    footer { text-align: center; margin-top: 3rem; color: #666; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Milli Karwaan Public School Balrampur</h1>
+  <p class="subtitle">Boluha Police Chowki Balrampur | Generated on ${new Date().toLocaleString()}</p>
+  
+  <div class="section">
+    <h2>Homework for Class ${studentData ? studentData.class : 'All'}</h2>
+    ${studentData ? 
+      (homeworkData[studentData.class] ? 
+        homeworkData[studentData.class].map(hw => 
+          `<div class="homework-item">
+            <div class="date"><i class="fas fa-calendar"></i> ${formatDate(hw.date)} | ${hw.subject} | ${hw.teacher}</div>
+            <p>${hw.instructions}</p>
+          </div>`
+        ).join('') : 
+        '<p>No homework assignments at the moment.</p>'
+      ) : 
+      '<p>Homework data not available.</p>'
+    }
+  </div>
+  
+  <div class="section">
+    <h2>Upcoming Events</h2>
+    ${sortedEvents.length > 0 ? 
+      sortedEvents.map(event => 
+        `<div class="event-item">
+          <div class="date"><i class="fas fa-calendar-alt"></i> ${formatDate(event.date)}</div>
+          <h3>${event.title}</h3>
+          <p>${event.description}</p>
+        </div>`
+      ).join('') : 
+      '<p>No upcoming events.</p>'
+    }
+  </div>
+  
+  <div class="section">
+    <h2>Notices & Announcements</h2>
+    ${sortedNotices.length > 0 ? 
+      sortedNotices.map(notice => 
+        `<div class="notice-item">
+          <div style="display: flex; align-items: center;">
+            <h3 style="margin: 0; flex: 1;">${notice.title}</h3>
+            <span class="priority priority-${notice.priority}">${notice.priority.toUpperCase()}</span>
+          </div>
+          <p>${notice.body}</p>
+        </div>`
+      ).join('') : 
+      '<p>No notices at the moment.</p>'
+    }
+  </div>
+  
+  <footer>
+    &copy; ${new Date().getFullYear()} Milli Karwaan Public School Balrampur. All rights reserved.
+  </footer>
+</body>
+</html>`;
 
-        // Navigation
-        const navLinks = document.querySelectorAll('nav a');
-        const pages = document.querySelectorAll('[id$="page"], #dashboard');
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Update active state
-                navLinks.forEach(l => l.classList.remove('bg-blue-700'));
-                navLinks.forEach(l => l.classList.add('hover:bg-blue-700'));
-                link.classList.remove('hover:bg-blue-700');
-                link.classList.add('bg-blue-700');
-                
-                // Show selected page
-                const pageId = link.getAttribute('data-page');
-                pages.forEach(page => {
-                    page.classList.add('hidden');
-                });
-                document.getElementById(pageId).classList.remove('hidden');
-            });
-        });
-
-        // Charts
-        document.addEventListener('DOMContentLoaded', function() {
-            // Performance Chart
-            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
-            new Chart(performanceCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Average GPA',
-                        data: [3.1, 3.15, 3.2, 3.25, 3.3, 3.35, 3.38, 3.4, 3.41, 3.42, 3.43, 3.45],
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            min: 3.0,
-                            max: 4.0
-                        }
-                    }
-                }
-            });
-
-            // Attendance Chart
-            const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
-            new Chart(attendanceCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                    datasets: [{
-                        label: 'Attendance Rate',
-                        data: [95.2, 96.1, 94.8, 97.3, 96.7],
-                        backgroundColor: '#10b981',
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Grade Distribution Chart
-            const gradeCtx = document.getElementById('gradeDistributionChart').getContext('2d');
-            new Chart(gradeCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['A (90-100)', 'B (80-89)', 'C (70-79)', 'D (60-69)', 'F (Below 60)'],
-                    datasets: [{
-                        data: [28, 35, 22, 10, 5],
-                        backgroundColor: [
-                            '#10b981',
-                            '#3b82f6',
-                            '#f59e0b',
-                            '#f97316',
-                            '#ef4444'
-                        ],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                        }
-                    }
-                }
-            });
-        });
-    </script>
+        const blob = new Blob([snapshotHTML], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `mkps_snapshot_${new Date().toISOString().split('T')[0]}.html`;
+        link.click();
+        
+        URL.revokeObjectURL(url);
+        showError('Snapshot downloaded successfully!', 'success');
+      } catch (e) {
+        showError('Failed to generate snapshot.');
+      }
+    }
+    
+    // Clear demo data
+    function clearDemoData() {
+      if (confirm('Are you sure you want to clear all demo data? This cannot be undone.')) {
+        try {
+          // Remove all mkps_* keys except mkps_student
+          Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('mkps_') && key !== 'mkps_student') {
+              localStorage.removeItem(key);
+            }
+          });
+          
+          // Reset update timestamp
+          localStorage.setItem('mkps_update', Date.now().toString());
+          
+          showError('Demo data cleared successfully!', 'success');
+          
+          // Reload page to show access form
+          location.reload();
+        } catch (e) {
+          showError('Failed to clear demo data.');
+        }
+      }
+    }
+    
+    // Update analytics counts
+    function updateAnalytics() {
+      try {
+        teacherCount.textContent = JSON.parse(localStorage.getItem('mkps_teachers') || '[]').length;
+        eventCount.textContent = JSON.parse(localStorage.getItem('mkps_events') || '[]').length;
+        noticeCount.textContent = JSON.parse(localStorage.getItem('mkps_notices') || '[]').length;
+        photoCount.textContent = JSON.parse(localStorage.getItem('mkps_gallery') || '[]').length;
+      } catch (e) {
+        // If parsing fails, keep current counts
+      }
+    }
+    
+    // Format date as DD/MM/YYYY
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-IN');
+    }
+    
+    // Format date and time
+    function formatDateTime(dateTimeString) {
+      const date = new Date(dateTimeString);
+      return date.toLocaleString('en-IN');
+    }
+    
+    // Expose functions to window for admin.html
+    window.renderHomeworkFor = renderHomeworkFor;
+    window.refreshTeachers = renderTeachers;
+    window.refreshEvents = renderEvents;
+    window.refreshNotices = renderNotices;
+    window.refreshTimetable = renderTimetable;
+    window.refreshGallery = renderGallery;
+    window.refreshMessages = displayMessages;
+    
+    // Initialize the app
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
 </html>
