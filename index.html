@@ -3,36 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Milli Karwaan Public School Balrampur</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
+  <title>Milli Karwaan Public School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
+    /* === GLOBAL STYLES === */
     :root {
-      --red-primary: #D7382A;
-      --red-light: #E55C4D;
-      --red-hover: #C12F20;
-      --gray-bg: #f8f9fa;
-      --gray-card: #ffffff;
-      --gray-text: #333333;
-      --gray-muted: #6c757d;
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
-      --radius-lg: 16px;
-      --radius-md: 12px;
-      --transition-fast: 0.2s ease;
-      --transition-med: 0.3s ease;
-      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --primary: #e53e3e;
+      --primary-light: #fbb6b6;
+      --primary-dark: #c53030;
+      --text: #1a202c;
+      --text-light: #4a5568;
+      --bg: #ffffff;
+      --bg-alt: #f7fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --success: #38a169;
+      --warning: #dd6b20;
+      --danger: #e53e3e;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    [data-theme="dark"] {
-      --gray-bg: #121212;
-      --gray-card: #1e1e1e;
-      --gray-text: #e0e0e0;
-      --gray-muted: #aaaaaa;
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+    .dark-mode {
+      --text: #f7fafc;
+      --text-light: #cbd5e0;
+      --bg: #1a202c;
+      --bg-alt: #2d3748;
+      --card-bg: #2d3748;
+      --border: #4a5568;
+      --shadow: rgba(0, 0, 0, 0.3);
     }
 
     * {
@@ -42,551 +41,348 @@
     }
 
     body {
-      font-family: var(--font-main);
-      background-color: var(--gray-bg);
-      color: var(--gray-text);
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.6;
-      transition: background-color var(--transition-med), color var(--transition-med);
+      transition: var(--transition);
+      min-height: 100vh;
     }
 
     img {
       max-width: 100%;
-      height: auto;
       border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-dark);
     }
 
     .container {
+      width: 90%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 20px;
     }
 
-    /* Header */
-    header {
-      display: flex;
+    .btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 16px 24px;
-      background: var(--gray-card);
-      box-shadow: var(--shadow-sm);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid #eee;
-    }
-
-    .dark & {
-      border-bottom-color: #333;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo img {
-      height: 50px;
+      gap: 8px;
+      padding: 10px 20px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
       border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 6px var(--shadow);
     }
 
-    .school-info {
-      font-size: 1rem;
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
     }
 
-    .school-name {
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--red-primary);
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
     }
 
-    .school-address, .school-contact {
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
       font-size: 0.875rem;
-      color: var(--gray-muted);
     }
 
-    .contact-actions {
-      display: flex;
-      gap: 12px;
+    .btn-danger {
+      background-color: var(--danger);
     }
 
-    .btn-call {
-      background-color: var(--red-primary);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background-color var(--transition-fast);
+    .btn-danger:hover {
+      background-color: #c53030;
     }
 
-    .btn-call:hover {
-      background-color: var(--red-hover);
-    }
-
-    /* Navigation */
-    nav {
-      background: var(--gray-card);
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 24px;
-    }
-
-    .dark & {
-      border-bottom-color: #333;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--gray-text);
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color var(--transition-fast);
-    }
-
-    .nav-links a:hover {
-      color: var(--red-primary);
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--gray-text);
-    }
-
-    /* Main Layout */
-    .main-layout {
-      display: flex;
-      gap: 24px;
-      min-height: calc(100vh - 180px);
-    }
-
-    .sidebar {
-      width: 280px;
-      background: var(--gray-card);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      box-shadow: var(--shadow-md);
-      height: fit-content;
-      align-self: start;
-      top: 120px;
-    }
-
-    .dark .sidebar {
-      background: #1e1e1e;
-    }
-
-    .section-title {
-      font-size: 1.1rem;
-      margin-bottom: 16px;
-      color: var(--red-primary);
-      font-weight: 600;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      background: var(--gray-bg);
-      color: var(--gray-text);
-      transition: border-color var(--transition-fast);
-    }
-
-    .dark .search-input {
-      background: #2d2d2d;
-      border-color: #444;
-      color: var(--gray-text);
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: var(--red-primary);
-    }
-
-    .quick-links {
-      list-style: none;
-      margin-top: 16px;
-    }
-
-    .quick-links li {
-      margin-bottom: 8px;
-    }
-
-    .quick-links a {
-      text-decoration: none;
-      color: var(--gray-muted);
-      font-size: 0.9rem;
-      display: block;
-      padding: 6px 0;
-      transition: color var(--transition-fast);
-    }
-
-    .quick-links a:hover {
-      color: var(--red-primary);
-    }
-
-    .content-area {
-      flex: 1;
-    }
-
-    /* Student Gate Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-    }
-
-    .modal {
-      background: var(--gray-card);
-      width: 90%;
-      max-width: 500px;
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      box-shadow: var(--shadow-md);
-      text-align: center;
-    }
-
-    .modal h2 {
-      color: var(--red-primary);
-      margin-bottom: 16px;
-    }
-
-    .form-group {
-      text-align: left;
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    .dark .form-control {
-      background: #2d2d2d;
-      border-color: #444;
-      color: var(--gray-text);
-    }
-
-    .btn-submit {
-      background-color: var(--red-primary);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      margin-top: 16px;
-      transition: background-color var(--transition-fast);
-    }
-
-    .btn-submit:hover {
-      background-color: var(--red-hover);
-    }
-
-    /* Cards */
     .card {
-      background: var(--gray-card);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 24px;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      overflow: hidden;
     }
 
     .card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px var(--shadow);
     }
 
-    .dark .card {
-      background: #1e1e1e;
+    .section-title {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
     }
 
-    .card-header {
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* === HEADER === */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .school-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 4px 8px var(--shadow);
+    }
+
+    .school-info h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .school-info p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* === LOGIN GATE === */
+    .login-gate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--bg-alt), var(--bg));
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .form-group {
       margin-bottom: 16px;
     }
 
-    .card-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--red-primary);
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: var(--text-light);
     }
 
-    /* Homework List */
-    .homework-list {
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+    }
+
+    /* === NAVIGATION === */
+    nav {
+      margin: 20px 0;
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+      scrollbar-width: none;
     }
 
-    .homework-item {
-      padding: 16px;
-      border-radius: var(--radius-md);
-      background: var(--gray-bg);
-      border-left: 4px solid var(--red-primary);
+    nav::-webkit-scrollbar {
+      display: none;
     }
 
-    .dark .homework-item {
-      background: #2d2d2d;
+    .nav-link {
+      padding: 10px 16px;
+      background-color: var(--bg-alt);
+      border-radius: 8px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: var(--transition);
+      border: 1px solid var(--border);
     }
 
-    .hw-title {
-      font-weight: 600;
-      margin-bottom: 6px;
+    .nav-link.active {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
     }
 
-    .hw-subject {
-      color: var(--red-primary);
-      font-size: 0.9rem;
-      margin-bottom: 6px;
+    .nav-link:hover:not(.active) {
+      background-color: var(--primary-light);
+      color: var(--primary-dark);
     }
 
-    .hw-due {
-      font-size: 0.875rem;
-      color: var(--gray-muted);
+    /* === CONTENT === */
+    .content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    .hw-desc {
-      margin-top: 8px;
-      font-size: 0.95rem;
+    .content.active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Teachers */
-    .teachers-grid {
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
     }
 
     .teacher-card {
       text-align: center;
-      padding: 16px;
-      border-radius: var(--radius-md);
-      background: var(--gray-bg);
-    }
-
-    .dark .teacher-card {
-      background: #2d2d2d;
     }
 
     .teacher-img {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
       margin: 0 auto 12px;
-      border: 3px solid var(--red-primary);
+      border: 3px solid var(--primary-light);
     }
 
-    .teacher-name {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .teacher-subject {
-      font-size: 0.875rem;
-      color: var(--gray-muted);
-    }
-
-    /* Events */
-    .events-timeline {
+    .event-card, .notice-card {
       position: relative;
-      padding-left: 20px;
-      margin-left: 10px;
     }
 
-    .events-timeline::before {
-      content: '';
+    .event-date, .notice-date {
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--red-primary);
-      border-radius: 2px;
-    }
-
-    .event-item {
-      position: relative;
-      margin-bottom: 24px;
-    }
-
-    .event-item::before {
-      content: '';
-      position: absolute;
-      left: -30px;
-      top: 8px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--red-primary);
-      border: 2px solid var(--gray-card);
-    }
-
-    .dark .event-item::before {
-      border-color: #1e1e1e;
-    }
-
-    .event-date {
-      font-size: 0.85rem;
-      color: var(--red-primary);
-      font-weight: 500;
-    }
-
-    .event-title {
-      font-weight: 600;
-      margin: 4px 0;
-    }
-
-    .event-desc {
-      font-size: 0.95rem;
-      color: var(--gray-muted);
-    }
-
-    /* Notices */
-    .notices-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .notice-item {
-      padding: 14px;
-      border-radius: var(--radius-md);
-      background: var(--gray-bg);
-      border-left: 4px solid var(--red-primary);
-    }
-
-    .dark .notice-item {
-      background: #2d2d2d;
-    }
-
-    .notice-priority {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      top: 16px;
+      right: 16px;
+      background-color: var(--primary);
       color: white;
-      margin-right: 8px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
     }
 
-    .priority-high {
-      background: #d32f2f;
-    }
-
-    .priority-medium {
-      background: #f57c00;
-    }
-
-    .priority-low {
-      background: #1976d2;
-    }
-
-    .notice-text {
-      font-size: 0.95rem;
-    }
-
-    /* Timetable */
     .timetable {
-      overflow-x: auto;
-    }
-
-    .tt-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
+      margin-top: 16px;
     }
 
-    .tt-table th {
-      background: var(--red-primary);
-      color: white;
+    .timetable th, .timetable td {
       padding: 12px;
-      text-align: left;
+      text-align: center;
+      border: 1px solid var(--border);
     }
 
-    .tt-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .dark .tt-table td {
-      border-bottom-color: #333;
-    }
-
-    .tt-period {
+    .timetable th {
+      background-color: var(--primary-light);
+      color: var(--text);
       font-weight: 600;
     }
 
-    /* Gallery */
-    .gallery-grid {
+    .timetable tr:nth-child(even) {
+      background-color: var(--bg-alt);
+    }
+
+    /* === GALLERY === */
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 12px;
+      margin-top: 16px;
     }
 
     .gallery-item {
-      border-radius: 12px;
-      overflow: hidden;
+      height: 180px;
       cursor: pointer;
+      border-radius: 8px;
+      overflow: hidden;
       position: relative;
     }
 
     .gallery-item img {
-      transition: transform var(--transition-med);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
-    /* Lightbox */
+    /* === LIGHTBOX === */
     .lightbox {
       position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 3000;
+      z-index: 1000;
       opacity: 0;
       pointer-events: none;
-      transition: opacity var(--transition-med);
+      transition: opacity 0.3s ease;
     }
 
     .lightbox.active {
@@ -597,929 +393,927 @@
     .lightbox-content {
       max-width: 90%;
       max-height: 90%;
+      position: relative;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      border: 3px solid white;
+      border-radius: 8px;
     }
 
     .lightbox-close {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: -40px;
+      right: 0;
       color: white;
-      font-size: 2rem;
+      font-size: 30px;
       cursor: pointer;
       background: none;
       border: none;
     }
 
-    /* FAQ */
-    .faq-item {
-      margin-bottom: 16px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 16px;
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .dark .faq-item {
-      border-bottom-color: #333;
+    .lightbox-prev {
+      left: 10px;
+    }
+
+    .lightbox-next {
+      right: 10px;
+    }
+
+    /* === FAQ === */
+    .faq-item {
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .faq-question {
+      padding: 16px;
+      background-color: var(--bg-alt);
       font-weight: 600;
-      margin-bottom: 8px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .faq-question.active::after {
+      content: '−';
+    }
+
     .faq-answer {
-      color: var(--gray-muted);
-      display: none;
+      padding: 0 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
     }
 
     .faq-answer.active {
-      display: block;
-      margin-top: 8px;
+      padding: 16px;
+      max-height: 500px;
     }
 
-    .toggle-icon {
-      transition: transform var(--transition-fast);
-    }
-
-    .faq-question.active .toggle-icon {
-      transform: rotate(180deg);
-    }
-
-    /* Contact Form */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 16px;
-    }
-
-    .form-row .form-group {
-      flex: 1;
-    }
-
-    textarea.form-control {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .btn-submit-contact {
-      align-self: flex-start;
-    }
-
-    /* Footer */
+    /* === FOOTER === */
     footer {
-      background: var(--gray-card);
-      padding: 32px 0;
-      border-top: 1px solid #eee;
-      margin-top: 48px;
+      background-color: var(--bg-alt);
+      padding: 30px 0;
+      margin-top: 40px;
+      border-top: 1px solid var(--border);
     }
 
-    .dark footer {
-      border-top-color: #333;
-    }
-
-    .footer-container {
+    .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 32px;
+      gap: 30px;
     }
 
     .footer-section h3 {
-      font-size: 1.1rem;
-      color: var(--red-primary);
+      color: var(--primary);
       margin-bottom: 16px;
-    }
-
-    .footer-links a {
-      display: block;
-      color: var(--gray-muted);
-      margin-bottom: 8px;
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    .footer-links a:hover {
-      color: var(--red-primary);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 32px;
-      padding-top: 16px;
-      border-top: 1px solid #eee;
-      color: var(--gray-muted);
-      font-size: 0.9rem;
-    }
-
-    .dark .footer-bottom {
-      border-top-color: #333;
-    }
-
-    /* Theme Toggle */
-    .theme-toggle {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--red-primary);
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
       font-size: 1.2rem;
-      cursor: pointer;
-      box-shadow: var(--shadow-md);
-      z-index: 1000;
+    }
+
+    .footer-section p, .footer-section a {
+      margin-bottom: 8px;
+      display: block;
+      color: var(--text-light);
+    }
+
+    .tools {
       display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Data Tools Panel */
-    .data-tools {
-      margin-top: 24px;
-      padding: 16px;
-      background: var(--gray-bg);
-      border-radius: var(--radius-md);
-      border: 1px dashed var(--red-primary);
-      font-size: 0.9rem;
-    }
-
-    .dark .data-tools {
-      background: #2d2d2d;
-    }
-
-    .tool-buttons {
-      display: flex;
+      gap: 10px;
+      margin-top: 16px;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 12px;
     }
 
-    .btn-tool {
-      padding: 8px 12px;
-      background: var(--red-light);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.85rem;
+    /* === ANIMATIONS === */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .btn-tool:hover {
-      background: var(--red-primary);
+    .fade-in {
+      animation: fadeIn 0.6s ease forwards;
     }
 
-    /* Print Snapshot View */
-    @media print {
-      .sidebar, .contact-actions, .menu-toggle, .data-tools, .theme-toggle {
-        display: none !important;
-      }
-      .main-layout {
-        flex-direction: column;
-      }
-      .content-area {
-        margin: 0;
-      }
-      .card {
-        page-break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #ccc;
-      }
-      body {
-        background: white !important;
-        -webkit-print-color-adjust: exact;
-      }
-      header, nav {
-        position: static;
-      }
-    }
-
-    /* Responsive */
+    /* === RESPONSIVE === */
     @media (max-width: 768px) {
-      .main-layout {
+      .school-header {
         flex-direction: column;
+        text-align: center;
       }
-      .sidebar {
-        width: 100%;
+
+      .logo {
+        height: 60px;
       }
-      .nav-links {
-        display: none;
+
+      .school-info h1 {
+        font-size: 1.5rem;
       }
-      .menu-toggle {
-        display: block;
+
+      .container {
+        padding: 15px;
       }
-      .mobile-menu {
-        display: none;
-        background: var(--gray-card);
-        padding: 16px;
-        border-radius: var(--radius-md);
-        margin: 12px 0;
+
+      .card {
+        padding: 18px;
       }
-      .mobile-menu.active {
-        display: block;
-      }
-      .form-row {
-        flex-direction: column;
+
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- HEADER -->
   <header>
-    <div class="logo">
-      <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="MKPS Logo" />
+    <div class="container school-header">
+      <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="MKPS Logo" class="logo" />
       <div class="school-info">
-        <div class="school-name">Milli Karwaan Public School Balrampur</div>
-        <div class="school-address">Boluha Police Chowki Balrampur</div>
-        <div class="school-contact">madamsir066@gmail.com</div>
+        <h1>Milli Karwaan Public School</h1>
+        <p>Boluha Police Chowki, Balrampur | Est. 2005</p>
       </div>
-    </div>
-    <div class="contact-actions">
-      <a href="tel:9758919151" class="btn-call">Call Us</a>
     </div>
   </header>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="container nav-container">
-      <ul class="nav-links">
-        <li><a href="#homework">Homework</a></li>
-        <li><a href="#teachers">Teachers</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="#notices">Notices</a></li>
-        <li><a href="#timetable">Timetable</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="admin.html">Admin</a></li>
-      </ul>
-      <button class="menu-toggle">⋮</button>
-    </div>
-    <div class="container mobile-menu">
-      <ul class="nav-links">
-        <li><a href="#homework">Homework</a></li>
-        <li><a href="#teachers">Teachers</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="#notices">Notices</a></li>
-        <li><a href="#timetable">Timetable</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="admin.html">Admin</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Student Gate Modal -->
-  <div id="studentGate" class="modal-overlay">
-    <div class="modal">
-      <h2>Welcome to MKPS Portal</h2>
-      <p>Please enter your details to access class content.</p>
-      <form id="studentForm">
+  <!-- LOGIN GATE -->
+  <div id="loginGate" class="login-gate">
+    <div class="card login-card">
+      <h2 class="section-title">Student Login</h2>
+      <p>Welcome to Milli Karwaan Public School Portal. Please enter your details to continue.</p>
+      <form id="loginForm" style="margin-top: 20px;">
         <div class="form-group">
           <label for="studentName">Student Name</label>
-          <input type="text" id="studentName" class="form-control" required />
+          <input type="text" id="studentName" required />
         </div>
         <div class="form-group">
-          <label for="studentClass">Class (1–12)</label>
-          <select id="studentClass" class="form-control" required>
+          <label for="studentClass">Class</label>
+          <select id="studentClass" required>
             <option value="">Select Class</option>
-            <script>
-              for (let i = 1; i <= 12; i++) {
-                document.write(`<option value="${i}">Class ${i}</option>`);
-              }
-            </script>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
           </select>
         </div>
         <div class="form-group">
           <label for="parentName">Parent's Name</label>
-          <input type="text" id="parentName" class="form-control" required />
+          <input type="text" id="parentName" required />
         </div>
-        <button type="submit" class="btn-submit">Enter Portal</button>
+        <button type="submit" class="btn">Enter Portal</button>
       </form>
+      <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-light);">
+        Admin? <a href="admin.html" style="color: var(--primary);">Access Admin Panel</a>
+      </p>
     </div>
   </div>
 
-  <div class="container">
-    <div class="main-layout">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <h3 class="section-title">Quick Access</h3>
-        <input type="text" class="search-input" placeholder="Search homework..." id="homeworkSearch" />
+  <!-- MAIN CONTENT -->
+  <div id="mainContent" style="display: none;">
+    <div class="container">
+      <!-- NAVIGATION -->
+      <nav id="mainNav">
+        <div class="nav-link active" data-tab="dashboard">Dashboard</div>
+        <div class="nav-link" data-tab="homework">Homework</div>
+        <div class="nav-link" data-tab="teachers">Teachers</div>
+        <div class="nav-link" data-tab="events">Events</div>
+        <div class="nav-link" data-tab="notices">Notices</div>
+        <div class="nav-link" data-tab="timetable">Timetable</div>
+        <div class="nav-link" data-tab="gallery">Gallery</div>
+        <div class="nav-link" data-tab="faq">FAQ</div>
+        <div class="nav-link" data-tab="contact">Contact</div>
+      </nav>
 
-        <h3 class="section-title">Admin Tools</h3>
-        <ul class="quick-links">
-          <li><a href="#" id="exportData">Export All Data</a></li>
-          <li><a href="#" id="importData">Import Data</a></li>
-          <li><a href="#" id="downloadSnapshot">Download Snapshot</a></li>
-          <li><a href="#" id="seedData">Seed Demo Data</a></li>
-        </ul>
-
-        <h3 class="section-title">Analytics</h3>
-        <div id="analyticsStats">
-          <div>Students: <span id="statStudents">0</span></div>
-          <div>Homework: <span id="statHomework">0</span></div>
-          <div>Teachers: <span id="statTeachers">0</span></div>
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="content active">
+        <h2 class="section-title">Welcome, <span id="welcomeName"></span>!</h2>
+        <p>You're logged in as Class <span id="welcomeClass"></span> student.</p>
+        
+        <div class="grid-2">
+          <div class="card">
+            <h3>📅 Today's Schedule</h3>
+            <p id="todaysSchedule">Loading timetable...</p>
+          </div>
+          <div class="card">
+            <h3>📚 Current Homework</h3>
+            <p id="currentHomework">No homework assigned for your class.</p>
+          </div>
         </div>
-      </aside>
 
-      <!-- Content Area -->
-      <main class="content-area">
-        <!-- Homework Section -->
-        <section id="homework" class="card">
-          <div class="card-header">
-            <h2 class="card-title">Homework</h2>
-            <button id="printView" class="btn-tool">Print View</button>
-          </div>
-          <div class="homework-list" id="homeworkList"></div>
-        </section>
+        <div class="card" style="margin-top: 20px;">
+          <h3>🏫 School Information</h3>
+          <p><strong>Address:</strong> Boluha Police Chowki, Balrampur</p>
+          <p><strong>Phone:</strong> <a href="tel:9758919151" class="btn btn-sm">📞 CALL 9758919151</a></p>
+          <p><strong>Email:</strong> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+        </div>
+      </section>
 
-        <!-- Teachers Section -->
-        <section id="teachers" class="card">
-          <div class="card-header">
-            <h2 class="card-title">Our Teachers</h2>
-          </div>
-          <div class="teachers-grid" id="teachersList"></div>
-        </section>
+      <!-- HOMEWORK -->
+      <section id="homework" class="content">
+        <h2 class="section-title">Homework for Class <span id="homeworkClass"></span></h2>
+        <div id="homeworkList">
+          <!-- Homework items will be inserted here -->
+        </div>
+        <p id="noHomework" style="display: none; color: var(--text-light);">No homework assigned for your class.</p>
+      </section>
 
-        <!-- Events Section -->
-        <section id="events" class="card">
-          <div class="card-header">
-            <h2 class="card-title">Upcoming Events</h2>
-          </div>
-          <div class="events-timeline" id="eventsList"></div>
-        </section>
+      <!-- TEACHERS -->
+      <section id="teachers" class="content">
+        <h2 class="section-title">Our Teachers</h2>
+        <div id="teachersList" class="grid-3">
+          <!-- Teachers will be inserted here -->
+        </div>
+      </section>
 
-        <!-- Notices Section -->
-        <section id="notices" class="card">
-          <div class="card-header">
-            <h2 class="card-title">Important Notices</h2>
-          </div>
-          <div class="notices-list" id="noticesList"></div>
-        </section>
+      <!-- EVENTS -->
+      <section id="events" class="content">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div id="eventsList" class="grid-2">
+          <!-- Events will be inserted here -->
+        </div>
+      </section>
 
-        <!-- Timetable Section -->
-        <section id="timetable" class="card">
-          <div class="card-header">
-            <h2 class="card-title">Class Timetable</h2>
-          </div>
-          <div class="timetable">
-            <table class="tt-table" id="timetableBody">
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Monday</th>
-                  <th>Tuesday</th>
-                  <th>Wednesday</th>
-                  <th>Thursday</th>
-                  <th>Friday</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </section>
+      <!-- NOTICES -->
+      <section id="notices" class="content">
+        <h2 class="section-title">Important Notices</h2>
+        <div id="noticesList" class="grid-2">
+          <!-- Notices will be inserted here -->
+        </div>
+      </section>
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="card">
-          <div class="card-header">
-            <h2 class="card-title">School Gallery</h2>
-          </div>
-          <div class="gallery-grid" id="galleryList"></div>
-        </section>
+      <!-- TIMETABLE -->
+      <section id="timetable" class="content">
+        <h2 class="section-title">Class Timetable</h2>
+        <div class="card">
+          <table class="timetable" id="classTimetable">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Timetable data will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-        <!-- FAQ Section -->
-        <section id="faq" class="card">
-          <div class="card-header">
-            <h2 class="card-title">Frequently Asked Questions</h2>
-          </div>
-          <div id="faqList"></div>
-        </section>
+      <!-- GALLERY -->
+      <section id="gallery" class="content">
+        <h2 class="section-title">School Gallery</h2>
+        <div id="galleryContainer" class="gallery">
+          <!-- Gallery items will be inserted here -->
+        </div>
+      </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="card">
-          <div class="card-header">
-            <h2 class="card-title">Contact Us</h2>
-          </div>
-          <form class="contact-form" id="contactForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="contactName">Name</label>
-                <input type="text" id="contactName" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="contactEmail">Email</label>
-                <input type="email" id="contactEmail" class="form-control" required />
-              </div>
+      <!-- FAQ -->
+      <section id="faq" class="content">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div id="faqList">
+          <!-- FAQ items will be inserted here -->
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="content">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="card">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Your Name</label>
+              <input type="text" id="contactName" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address</label>
+              <input type="email" id="contactEmail" required />
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <input type="text" id="contactSubject" required />
             </div>
             <div class="form-group">
               <label for="contactMessage">Message</label>
-              <textarea id="contactMessage" class="form-control" required></textarea>
+              <textarea id="contactMessage" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn-submit btn-submit-contact">Send Message</button>
+            <button type="submit" class="btn">Send Message</button>
           </form>
-        </section>
+        </div>
+      </section>
 
-        <!-- Data Tools Panel -->
-        <section class="data-tools">
-          <strong>Data Management</strong>
-          <div class="tool-buttons">
-            <button id="btnExport">Export JSON</button>
-            <button id="btnImport">Import JSON</button>
-            <button id="btnClear">Clear All Data</button>
-            <button id="btnSeed">Seed Demo Data</button>
-          </div>
-        </section>
-      </main>
+      <!-- TOOLS -->
+      <div class="tools">
+        <button id="darkModeToggle" class="btn btn-outline btn-sm">🌙 Dark Mode</button>
+        <button id="exportData" class="btn btn-outline btn-sm">📤 Export Data</button>
+        <button id="importData" class="btn btn-outline btn-sm">📥 Import Data</button>
+        <button id="printPage" class="btn btn-outline btn-sm">🖨️ Print</button>
+        <a href="admin.html" class="btn btn-outline btn-sm">⚙️ Admin Panel</a>
+      </div>
     </div>
   </div>
 
-  <!-- Lightbox -->
+  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
     <div class="lightbox-content">
-      <img id="lightboxImg" src="" alt="Gallery Image" />
+      <img id="lightboxImg" src="" alt="Enlarged view" />
     </div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
   </div>
 
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="themeToggle">🌓</button>
-
   <footer>
-    <div class="container footer-container">
-      <div class="footer-section">
-        <h3>School Info</h3>
-        <p><strong>Milli Karwaan Public School Balrampur</strong></p>
-        <p>Boluha Police Chowki Balrampur</p>
-        <p>Phone: <a href="tel:9758919151">9758919151</a></p>
-        <p>Email: <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <div class="footer-links">
-          <a href="#homework">Homework</a>
-          <a href="#teachers">Teachers</a>
-          <a href="#events">Events</a>
-          <a href="#notices">Notices</a>
-          <a href="admin.html">Admin Login</a>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>🏫 About Us</h3>
+          <p>Milli Karwaan Public School is committed to providing quality education with Islamic values to the children of Balrampur since 2005.</p>
+        </div>
+        <div class="footer-section">
+          <h3>📞 Contact Info</h3>
+          <p>📞 <a href="tel:9758919151">9758919151</a></p>
+          <p>✉️ <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+          <p>📍 Boluha Police Chowki, Balrampur</p>
+        </div>
+        <div class="footer-section">
+          <h3>🔗 Quick Links</h3>
+          <a href="#" class="nav-link-footer" data-tab="homework">Homework</a>
+          <a href="#" class="nav-link-footer" data-tab="events">Events</a>
+          <a href="#" class="nav-link-footer" data-tab="gallery">Gallery</a>
+          <a href="admin.html">Admin Panel</a>
         </div>
       </div>
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <p>We welcome your inquiries and feedback.</p>
-        <p>Office hours: 9:00 AM – 4:00 PM</p>
-      </div>
-    </div>
-    <div class="container">
-      <div class="footer-bottom">
-        &copy; 2025 Milli Karwaan Public School Balrampur. All rights reserved.
-      </div>
+      <p style="text-align: center; margin-top: 30px; color: var(--text-light); font-size: 0.9rem;">
+        &copy; 2023 Milli Karwaan Public School Balrampur. All rights reserved.
+      </p>
     </div>
   </footer>
 
   <script>
-    // =============== STORAGE KEYS ===============
-    const STORAGE_KEYS = {
-      STUDENT: 'mkps_student',
-      HOMEWORK: 'mkps_homework',
-      TEACHERS: 'mkps_teachers',
-      EVENTS: 'mkps_events',
-      NOTICES: 'mkps_notices',
-      TIMETABLE: 'mkps_timetable',
-      GALLERY: 'mkps_gallery',
-      MESSAGES: 'mkps_messages',
-      UPDATE: 'mkps_update'
-    };
-
-    // =============== STATE MANAGEMENT ===============
-    let state = {
-      student: null,
-      homework: [],
-      teachers: [],
-      events: [],
-      notices: [],
-      timetable: [],
-      gallery: [],
-      messages: []
-    };
-
-    // =============== HELPER FUNCTIONS ===============
-    function saveToStorage(key, data) {
-      try {
-        localStorage.setItem(key, JSON.stringify(data));
-        localStorage.setItem(STORAGE_KEYS.UPDATE, Date.now().toString());
-      } catch (e) {
-        console.error('Failed to save to localStorage', e);
-      }
-    }
-
-    function loadFromStorage(key, defaultValue = null) {
-      try {
-        const item = localStorage.getItem(key);
-        return item ? JSON.parse(item) : defaultValue;
-      } catch (e) {
-        console.error('Failed to read from localStorage', e);
-        return defaultValue;
-      }
-    }
-
-    function updateAnalytics() {
-      document.getElementById('statStudents').textContent = state.student ? 1 : 0;
-      document.getElementById('statHomework').textContent = state.homework.length;
-      document.getElementById('statTeachers').textContent = state.teachers.length;
-    }
-
-    function notifyTabs() {
-      saveToStorage(STORAGE_KEYS.UPDATE, Date.now());
-    }
-
-    // =============== STUDENT GATE ===============
-    function showStudentGate() {
-      document.getElementById('studentGate').style.display = 'flex';
-      history.pushState({ modal: 'studentGate' }, '');
-    }
-
-    function hideStudentGate() {
-      document.getElementById('studentGate').style.display = 'none';
-      history.replaceState({}, document.title);
-    }
-
-    function initStudentGate() {
-      const savedStudent = loadFromStorage(STORAGE_KEYS.STUDENT);
-      if (!savedStudent) {
-        showStudentGate();
-      } else {
-        state.student = savedStudent;
-        hideStudentGate();
-        renderHomeworkFor(state.student.class);
-      }
-
-      window.addEventListener('popstate', (e) => {
-        if (document.getElementById('studentGate').style.display === 'flex') {
-          history.pushState({ modal: 'studentGate' }, '');
+    // === DATA MANAGEMENT ===
+    const STORAGE_PREFIX = 'mkps_';
+    
+    // Initialize localStorage with demo data if empty
+    function initializeData() {
+      const keys = ['homework', 'teachers', 'events', 'notices', 'timetable', 'gallery', 'faq', 'messages'];
+      let hasData = false;
+      
+      keys.forEach(key => {
+        if (localStorage.getItem(STORAGE_PREFIX + key)) {
+          hasData = true;
         }
       });
-
-      document.getElementById('studentForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const student = {
-          name: document.getElementById('studentName').value,
-          class: document.getElementById('studentClass').value,
-          parent: document.getElementById('parentName').value
+      
+      if (!hasData) {
+        // Seed data
+        const demoData = {
+          homework: [
+            { class: 1, subject: 'Mathematics', assignment: 'Complete page 25-27 in workbook', date: '2023-10-15' },
+            { class: 2, subject: 'English', assignment: 'Write 10 sentences using new vocabulary words', date: '2023-10-15' },
+            { class: 3, subject: 'Science', assignment: 'Draw and label parts of a plant', date: '2023-10-16' },
+            { class: 4, subject: 'Mathematics', assignment: 'Solve multiplication problems 1-20', date: '2023-10-16' },
+            { class: 5, subject: 'Social Studies', assignment: 'Research project on Indian rivers', date: '2023-10-18' },
+            { class: 6, subject: 'Science', assignment: 'Prepare for chapter 5 test', date: '2023-10-19' },
+            { class: 7, subject: 'Mathematics', assignment: 'Algebra worksheet problems 1-15', date: '2023-10-19' },
+            { class: 8, subject: 'English', assignment: 'Essay on "Importance of Education"', date: '2023-10-20' }
+          ],
+          teachers: [
+            { name: 'Mrs. Fatima Khan', subject: 'Mathematics', class: '1-3', img: 'https://i.postimg.cc/28j0M3rN/woman.png' },
+            { name: 'Mr. Ahmed Siddiqui', subject: 'English', class: '4-6', img: 'https://i.postimg.cc/44cD9sGh/man.png' },
+            { name: 'Mrs. Ayesha Malik', subject: 'Science', class: '7-8', img: 'https://i.postimg.cc/28j0M3rN/woman.png' },
+            { name: 'Mr. Usman Farooq', subject: 'Social Studies', class: '1-8', img: 'https://i.postimg.cc/44cD9sGh/man.png' },
+            { name: 'Mrs. Zainab Hussain', subject: 'Urdu', class: '1-5', img: 'https://i.postimg.cc/28j0M3rN/woman.png' },
+            { name: 'Mr. Iqbal Ahmed', subject: 'Islamic Studies', class: '1-8', img: 'https://i.postimg.cc/44cD9sGh/man.png' }
+          ],
+          events: [
+            { title: 'Annual Sports Day', date: '2023-11-15', description: 'Annual sports competition for all classes. Parents are invited to attend.', img: 'https://i.postimg.cc/3xH6Lz8L/sports.jpg' },
+            { title: 'Eid Festival', date: '2023-10-25', description: 'Celebration of Eid with cultural programs and food.', img: 'https://i.postimg.cc/65v9f1nG/eid.jpg' },
+            { title: 'Parent-Teacher Meeting', date: '2023-11-05', description: 'Scheduled meeting to discuss student progress.', img: 'https://i.postimg.cc/XY3LrLhN/meeting.jpg' },
+            { title: 'Science Exhibition', date: '2023-12-10', description: 'Students will present science projects.', img: 'https://i.postimg.cc/XY3LrLhN/meeting.jpg' }
+          ],
+          notices: [
+            { title: 'School Closed', date: '2023-10-18', content: 'School will remain closed on October 18th for Dussehra holiday.' },
+            { title: 'New Uniform Policy', date: '2023-10-10', content: 'All students are required to wear complete uniform starting November 1st.' },
+            { title: 'Book Distribution', date: '2023-10-20', content: 'Textbooks for the new session will be distributed on October 20th.' },
+            { title: 'PTA Meeting Reminder', date: '2023-11-04', content: 'Reminder: Parent-Teacher meeting is scheduled for November 5th at 10 AM.' }
+          ],
+          timetable: [
+            { time: '8:00-8:45', mon: 'Math', tue: 'English', wed: 'Science', thu: 'Math', fri: 'English' },
+            { time: '8:45-9:30', mon: 'English', tue: 'Math', wed: 'English', thu: 'Science', fri: 'Math' },
+            { time: '9:30-10:15', mon: 'Science', tue: 'Science', wed: 'Math', thu: 'English', fri: 'Science' },
+            { time: '10:15-11:00', mon: 'Urdu', tue: 'Urdu', wed: 'Urdu', thu: 'Urdu', fri: 'Urdu' },
+            { time: '11:00-11:45', mon: 'Islamic', tue: 'Islamic', wed: 'Islamic', thu: 'Islamic', fri: 'Islamic' },
+            { time: '11:45-12:30', mon: 'Social', tue: 'Social', wed: 'Social', thu: 'Social', fri: 'Social' },
+            { time: '12:30-1:15', mon: 'Lunch', tue: 'Lunch', wed: 'Lunch', thu: 'Lunch', fri: 'Lunch' },
+            { time: '1:15-2:00', mon: 'Arts', tue: 'Sports', wed: 'Arts', thu: 'Sports', fri: 'Arts' }
+          ],
+          gallery: [
+            { img: 'https://i.postimg.cc/3xH6Lz8L/sports.jpg', title: 'Sports Day 2023' },
+            { img: 'https://i.postimg.cc/65v9f1nG/eid.jpg', title: 'Eid Celebration' },
+            { img: 'https://i.postimg.cc/XY3LrLhN/meeting.jpg', title: 'PTA Meeting' },
+            { img: 'https://i.postimg.cc/28j0M3rN/woman.png', title: 'Classroom Activity' },
+            { img: 'https://i.postimg.cc/44cD9sGh/man.png', title: 'Teacher Training' },
+            { img: 'https://i.postimg.cc/3xH6Lz8L/sports.jpg', title: 'Annual Function' }
+          ],
+          faq: [
+            { question: 'What are the school hours?', answer: 'School operates from 8:00 AM to 2:00 PM, Monday through Friday.' },
+            { question: 'What is the admission process?', answer: 'Parents need to visit the school office with required documents to complete the admission process.' },
+            { question: 'Are uniforms mandatory?', answer: 'Yes, all students are required to wear the complete school uniform during school days.' },
+            { question: 'How can I contact my child\'s teacher?', answer: 'You can email the teacher directly or schedule a meeting through the school office.' },
+            { question: 'What extracurricular activities are offered?', answer: 'We offer sports, arts, Quran recitation, and science club activities.' }
+          ],
+          messages: []
         };
-        state.student = student;
-        saveToStorage(STORAGE_KEYS.STUDENT, student);
-        hideStudentGate();
-        renderHomeworkFor(student.class);
-      });
-    }
-
-    // =============== RENDERING FUNCTIONS ===============
-    function renderHomeworkFor(classNum) {
-      const list = document.getElementById('homeworkList');
-      list.innerHTML = '';
-      const filtered = state.homework.filter(hw => hw.class === classNum);
-      if (filtered.length === 0) {
-        list.innerHTML = '<p>No homework assigned for your class yet.</p>';
-        return;
-      }
-      filtered.forEach(hw => {
-        const item = document.createElement('div');
-        item.className = 'homework-item';
-        item.innerHTML = `
-          <div class="hw-title">${hw.title}</div>
-          <div class="hw-subject">${hw.subject}</div>
-          <div class="hw-due">Due: ${new Date(hw.dueDate).toLocaleDateString()}</div>
-          <div class="hw-desc">${hw.description}</div>
-        `;
-        list.appendChild(item);
-      });
-    }
-
-    function renderTeachers() {
-      const list = document.getElementById('teachersList');
-      list.innerHTML = '';
-      state.teachers.forEach(teacher => {
-        const card = document.createElement('div');
-        card.className = 'teacher-card';
-        card.innerHTML = `
-          <img src="${teacher.photo || 'https://placehold.co/80x80/eee/999?text=Teacher'}" alt="${teacher.name}" class="teacher-img" />
-          <div class="teacher-name">${teacher.name}</div>
-          <div class="teacher-subject">${teacher.subject}</div>
-        `;
-        list.appendChild(card);
-      });
-    }
-
-    function renderEvents() {
-      const list = document.getElementById('eventsList');
-      list.innerHTML = '';
-      state.events.sort((a, b) => new Date(a.date) - new Date(b.date));
-      state.events.forEach(event => {
-        const item = document.createElement('div');
-        item.className = 'event-item';
-        item.innerHTML = `
-          <div class="event-date">${new Date(event.date).toLocaleDateString()}</div>
-          <div class="event-title">${event.title}</div>
-          <div class="event-desc">${event.description}</div>
-        `;
-        list.appendChild(item);
-      });
-    }
-
-    function renderNotices() {
-      const list = document.getElementById('noticesList');
-      list.innerHTML = '';
-      state.notices.forEach(notice => {
-        const item = document.createElement('div');
-        item.className = 'notice-item';
-        const priorityClass = `priority-${notice.priority}`;
-        item.innerHTML = `
-          <span class="notice-priority ${priorityClass}">${notice.priority.toUpperCase()}</span>
-          <span class="notice-text">${notice.text}</span>
-        `;
-        list.appendChild(item);
-      });
-    }
-
-    function renderTimetable() {
-      const tbody = document.querySelector('#timetableBody tbody');
-      tbody.innerHTML = '';
-      state.timetable.forEach(period => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td class="tt-period">${period.time}</td>
-          <td>${period.monday || '-'}</td>
-          <td>${period.tuesday || '-'}</td>
-          <td>${period.wednesday || '-'}</td>
-          <td>${period.thursday || '-'}</td>
-          <td>${period.friday || '-'}</td>
-        `;
-        tbody.appendChild(row);
-      });
-    }
-
-    function renderGallery() {
-      const list = document.getElementById('galleryList');
-      list.innerHTML = '';
-      state.gallery.forEach(img => {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        item.innerHTML = `<img src="${img.url}" alt="${img.caption}" />`;
-        item.addEventListener('click', () => {
-          document.getElementById('lightboxImg').src = img.url;
-          document.getElementById('lightbox').classList.add('active');
+        
+        // Save all demo data
+        Object.keys(demoData).forEach(key => {
+          localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(demoData[key]));
         });
-        list.appendChild(item);
-      });
-    }
-
-    function renderFAQ() {
-      const list = document.getElementById('faqList');
-      list.innerHTML = '';
-      const faqs = [
-        { q: "What time does school start?", a: "School starts at 8:00 AM sharp." },
-        { q: "How can I contact my child's teacher?", a: "You can email them or use the contact form on this portal." },
-        { q: "Are there school buses available?", a: "Yes, buses cover major areas of Balrampur. Contact office for routes." },
-        { q: "What is the uniform policy?", a: "Full uniform must be worn every day, including shoes and tie." }
-      ];
-      faqs.forEach(faq => {
-        const item = document.createElement('div');
-        item.className = 'faq-item';
-        item.innerHTML = `
-          <div class="faq-question">
-            ${faq.q}
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="faq-answer">${faq.a}</div>
-        `;
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-          question.classList.toggle('active');
-          const answer = item.querySelector('.faq-answer');
-          answer.classList.toggle('active');
-          question.querySelector('.toggle-icon').textContent = 
-            answer.classList.contains('active') ? '▲' : '▼';
-        });
-        list.appendChild(item);
-      });
-    }
-
-    // =============== EVENT LISTENERS ===============
-    function initEventListeners() {
-      // Theme Toggle
-      const themeToggle = document.getElementById('themeToggle');
-      themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        localStorage.setItem('mkps_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-      });
-
-      // Restore theme
-      if (localStorage.getItem('mkps_theme') === 'dark') {
-        document.body.classList.add('dark');
+        
+        console.log('Demo data initialized');
       }
-
-      // Mobile menu
-      document.querySelector('.menu-toggle').addEventListener('click', () => {
-        document.querySelector('.mobile-menu').classList.toggle('active');
-      });
-
-      // Lightbox
-      document.getElementById('lightboxClose').addEventListener('click', () => {
-        document.getElementById('lightbox').classList.remove('active');
-      });
-
-      // Print view
-      document.getElementById('printView').addEventListener('click', () => {
-        window.print();
-      });
-
-      // Contact form
-      document.getElementById('contactForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const msg = {
-          name: document.getElementById('contactName').value,
-          email: document.getElementById('contactEmail').value,
-          message: document.getElementById('contactMessage').value,
-          timestamp: new Date().toISOString()
-        };
-        state.messages.push(msg);
-        saveToStorage(STORAGE_KEYS.MESSAGES, state.messages);
-        alert('Message sent successfully!');
-        document.getElementById('contactForm').reset();
-      });
-
-      // Data Tools
-      document.getElementById('btnExport').addEventListener('click', () => {
-        const data = {};
-        Object.values(STORAGE_KEYS).forEach(key => {
-          data[key] = loadFromStorage(key);
-        });
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `mkps-data-backup-${new Date().toISOString().split('T')[0]}.json`;
-        a.click();
-      });
-
-      document.getElementById('btnImport').addEventListener('click', () => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = '.json';
-        input.onchange = (e) => {
-          const file = e.target.files[0];
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            try {
-              const data = JSON.parse(event.target.result);
-              Object.entries(data).forEach(([key, value]) => {
-                if (STORAGE_KEYS[key.toUpperCase()]) {
-                  saveToStorage(STORAGE_KEYS[key.toUpperCase()], value);
-                }
-              });
-              alert('Data imported successfully. Refreshing...');
-              location.reload();
-            } catch (e) {
-              alert('Invalid JSON file.');
-            }
-          };
-          reader.readAsText(file);
-        };
-        input.click();
-      });
-
-      document.getElementById('btnClear').addEventListener('click', () => {
-        if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
-          Object.values(STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
-          alert('All data cleared. Refreshing...');
-          location.reload();
-        }
-      });
-
-      document.getElementById('btnSeed').addEventListener('click', seedDemoData);
-
-      // Homework search
-      document.getElementById('homeworkSearch').addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        const items = document.querySelectorAll('.homework-item');
-        items.forEach(item => {
-          const text = item.textContent.toLowerCase();
-          item.style.display = text.includes(query) ? 'block' : 'none';
-        });
-      });
     }
 
-    // =============== SEED DATA ===============
-    function seedDemoData() {
-      if (!confirm('This will overwrite existing data. Continue?')) return;
-
-      state.homework = [
-        { class: 5, subject: 'Mathematics', title: 'Fractions Practice', description: 'Complete exercises 1-15 on page 45.', dueDate: Date.now() + 86400000 },
-        { class: 5, subject: 'Science', title: 'Plant Life Cycle', description: 'Draw and label the stages of a plant.', dueDate: Date.now() + 172800000 },
-        { class: 8, subject: 'English', title: 'Essay Writing', description: 'Write a 300-word essay on "My School".', dueDate: Date.now() + 259200000 },
-        { class: 10, subject: 'Math', title: 'Algebra Problems', description: 'Solve quadratic equations from chapter 4.', dueDate: Date.now() + 345600000 }
-      ];
-
-      state.teachers = [
-        { name: 'Mr. Ahmad', subject: 'Mathematics', photo: 'https://placehold.co/80x80/333/fff?text=Ahmad' },
-        { name: 'Ms. Fatima', subject: 'Science', photo: 'https://placehold.co/80x80/c33/fff?text=Fatima' },
-        { name: 'Mr. Khan', subject: 'English', photo: 'https://placehold.co/80x80/555/fff?text=Khan' },
-        { name: 'Ms. Rehman', subject: 'Urdu', photo: 'https://placehold.co/80x80/777/fff?text=Rehman' }
-      ];
-
-      state.events = [
-        { title: 'Annual Day Celebration', description: 'Cultural program and prize distribution.', date: Date.now() + 1209600000 },
-        { title: 'Parent-Teacher Meeting', description: 'Discussion on student progress.', date: Date.now() + 604800000 }
-      ];
-
-      state.notices = [
-        { text: 'School will remain closed on Friday for Eid holiday.', priority: 'high' },
-        { text: 'New library books have arrived. Visit during break time.', priority: 'medium' }
-      ];
-
-      state.timetable = [
-        { time: '8:00-9:00', monday: 'Math', tuesday: 'Science', wednesday: 'Math', thursday: 'Science', friday: 'Math' },
-        { time: '9:00-10:00', monday: 'English', tuesday: 'English', wednesday: 'Urdu', thursday: 'English', friday: 'Urdu' },
-        { time: '10:00-11:00', monday: 'Science', tuesday: 'Math', wednesday: 'Science', thursday: 'Math', friday: 'Science' },
-        { time: '11:00-12:00', monday: 'Urdu', tuesday: 'Urdu', wednesday: 'English', thursday: 'Urdu', friday: 'English' }
-      ];
-
-      state.gallery = [
-        { url: 'https://placehold.co/300x200/eee/999?text=School+Event', caption: 'Annual Function' },
-        { url: 'https://placehold.co/300x200/ddd/777?text=Science+Lab', caption: 'Science Lab' },
-        { url: 'https://placehold.co/300x200/ccc/555?text=Library', caption: 'Library' }
-      ];
-
-      state.messages = [];
-
-      // Save all
-      Object.entries(state).forEach(([key, value]) => {
-        if (STORAGE_KEYS[key.toUpperCase()]) {
-          saveToStorage(STORAGE_KEYS[key.toUpperCase()], value);
-        }
-      });
-
-      alert('Demo data seeded!');
-      location.reload();
+    // Get data from localStorage
+    function getData(key) {
+      const data = localStorage.getItem(STORAGE_PREFIX + key);
+      return data ? JSON.parse(data) : [];
     }
 
-    // =============== INITIALIZATION ===============
-    function init() {
-      // Load all data
-      state.student = loadFromStorage(STORAGE_KEYS.STUDENT);
-      state.homework = loadFromStorage(STORAGE_KEYS.HOMEWORK, []);
-      state.teachers = loadFromStorage(STORAGE_KEYS.TEACHERS, []);
-      state.events = loadFromStorage(STORAGE_KEYS.EVENTS, []);
-      state.notices = loadFromStorage(STORAGE_KEYS.NOTICES, []);
-      state.timetable = loadFromStorage(STORAGE_KEYS.TIMETABLE, []);
-      state.gallery = loadFromStorage(STORAGE_KEYS.GALLERY, []);
-      state.messages = loadFromStorage(STORAGE_KEYS.MESSAGES, []);
+    // Save data to localStorage
+    function setData(key, data) {
+      localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(data));
+    }
 
-      // Seed if empty
-      if (state.homework.length === 0) {
-        seedDemoData();
-        return;
-      }
+    // === LOGIN SYSTEM ===
+    const loginForm = document.getElementById('loginForm');
+    const loginGate = document.getElementById('loginGate');
+    const mainContent = document.getElementById('mainContent');
+    
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const studentName = document.getElementById('studentName').value;
+      const studentClass = document.getElementById('studentClass').value;
+      const parentName = document.getElementById('parentName').value;
+      
+      // Save to localStorage
+      const studentData = { studentName, studentClass, parentName, loginTime: new Date().toISOString() };
+      localStorage.setItem('mkps_student', JSON.stringify(studentData));
+      
+      // Show main content
+      loginGate.style.display = 'none';
+      mainContent.style.display = 'block';
+      
+      // Initialize app
+      initApp();
+    });
 
-      // Render all
-      if (state.student) {
-        renderHomeworkFor(state.student.class);
+    // Check if already logged in
+    function checkLogin() {
+      const studentData = localStorage.getItem('mkps_student');
+      if (studentData) {
+        loginGate.style.display = 'none';
+        mainContent.style.display = 'block';
+        initApp();
       }
+    }
+
+    // === MAIN APPLICATION ===
+    function initApp() {
+      // Initialize data if needed
+      initializeData();
+      
+      // Load student data
+      const studentData = JSON.parse(localStorage.getItem('mkps_student'));
+      document.getElementById('welcomeName').textContent = studentData.studentName;
+      document.getElementById('welcomeClass').textContent = studentData.studentClass;
+      document.getElementById('homeworkClass').textContent = studentData.studentClass;
+      
+      // Render all sections
+      renderHomework();
       renderTeachers();
       renderEvents();
       renderNotices();
       renderTimetable();
       renderGallery();
       renderFAQ();
-      updateAnalytics();
-
-      // Init UI
-      initStudentGate();
-      initEventListeners();
+      updateDashboard();
+      
+      // Setup event listeners
+      setupNavigation();
+      setupDarkMode();
+      setupTools();
+      setupContactForm();
+      setupLightbox();
+      
+      // Add fade-in animation
+      setTimeout(() => {
+        document.querySelectorAll('.content').forEach(content => {
+          content.classList.add('active');
+        });
+      }, 100);
     }
 
-    // =============== GLOBAL FUNCTIONS (for admin.html) ===============
-    window.renderHomeworkFor = renderHomeworkFor;
-    window.refreshTeachers = renderTeachers;
-    window.refreshEvents = renderEvents;
-    window.refreshNotices = renderNotices;
-    window.refreshTimetable = renderTimetable;
-    window.refreshGallery = renderGallery;
-    window.seedDemoData = seedDemoData;
-    window.notifyTabs = notifyTabs;
+    // === SECTION RENDERERS ===
+    function renderHomework() {
+      const homeworkList = document.getElementById('homeworkList');
+      const noHomework = document.getElementById('noHomework');
+      const studentData = JSON.parse(localStorage.getItem('mkps_student'));
+      const homework = getData('homework');
+      
+      const classHomework = homework.filter(item => item.class == studentData.studentClass);
+      
+      if (classHomework.length === 0) {
+        homeworkList.style.display = 'none';
+        noHomework.style.display = 'block';
+        return;
+      }
+      
+      homeworkList.style.display = 'block';
+      noHomework.style.display = 'none';
+      
+      homeworkList.innerHTML = classHomework.map(item => `
+        <div class="card">
+          <h3>${item.subject}</h3>
+          <p><strong>Assignment:</strong> ${item.assignment}</p>
+          <p><strong>Due Date:</strong> ${formatDate(item.date)}</p>
+        </div>
+      `).join('');
+    }
 
-    // Start app
-    document.addEventListener('DOMContentLoaded', init);
+    function renderTeachers() {
+      const teachersList = document.getElementById('teachersList');
+      const teachers = getData('teachers');
+      
+      teachersList.innerHTML = teachers.map(teacher => `
+        <div class="card teacher-card">
+          <img src="${teacher.img}" alt="${teacher.name}" class="teacher-img" />
+          <h3>${teacher.name}</h3>
+          <p><strong>Subject:</strong> ${teacher.subject}</p>
+          <p><strong>Classes:</strong> ${teacher.class}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderEvents() {
+      const eventsList = document.getElementById('eventsList');
+      const events = getData('events');
+      
+      eventsList.innerHTML = events.map(event => `
+        <div class="card event-card">
+          <div class="event-date">${formatDate(event.date)}</div>
+          <img src="${event.img}" alt="${event.title}" />
+          <h3>${event.title}</h3>
+          <p>${event.description}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderNotices() {
+      const noticesList = document.getElementById('noticesList');
+      const notices = getData('notices');
+      
+      noticesList.innerHTML = notices.map(notice => `
+        <div class="card notice-card">
+          <div class="notice-date">${formatDate(notice.date)}</div>
+          <h3>${notice.title}</h3>
+          <p>${notice.content}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderTimetable() {
+      const timetableBody = document.querySelector('#classTimetable tbody');
+      const timetable = getData('timetable');
+      
+      timetableBody.innerHTML = timetable.map(row => `
+        <tr>
+          <td>${row.time}</td>
+          <td>${row.mon}</td>
+          <td>${row.tue}</td>
+          <td>${row.wed}</td>
+          <td>${row.thu}</td>
+          <td>${row.fri}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderGallery() {
+      const galleryContainer = document.getElementById('galleryContainer');
+      const gallery = getData('gallery');
+      
+      galleryContainer.innerHTML = gallery.map(item => `
+        <div class="gallery-item" data-img="${item.img}" data-title="${item.title}">
+          <img src="${item.img}" alt="${item.title}" />
+        </div>
+      `).join('');
+    }
+
+    function renderFAQ() {
+      const faqList = document.getElementById('faqList');
+      const faq = getData('faq');
+      
+      faqList.innerHTML = faq.map(item => `
+        <div class="faq-item">
+          <div class="faq-question">${item.question}</div>
+          <div class="faq-answer">
+            <p>${item.answer}</p>
+          </div>
+        </div>
+      `).join('');
+      
+      // Setup FAQ toggles
+      document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', function() {
+          this.classList.toggle('active');
+          const answer = this.nextElementSibling;
+          answer.classList.toggle('active');
+        });
+      });
+    }
+
+    function updateDashboard() {
+      // Update today's schedule
+      const timetable = getData('timetable');
+      const today = new Date().getDay(); // 1-5 for Mon-Fri
+      const dayNames = ['', 'mon', 'tue', 'wed', 'thu', 'fri'];
+      const currentDay = dayNames[today];
+      
+      if (currentDay) {
+        const schedule = timetable.map(t => `<strong>${t.time}:</strong> ${t[currentDay]}`).join('<br>');
+        document.getElementById('todaysSchedule').innerHTML = schedule;
+      } else {
+        document.getElementById('todaysSchedule').textContent = "School is closed today.";
+      }
+      
+      // Update current homework
+      const studentData = JSON.parse(localStorage.getItem('mkps_student'));
+      const homework = getData('homework');
+      const classHomework = homework.filter(item => item.class == studentData.studentClass);
+      
+      if (classHomework.length > 0) {
+        const homeworkText = classHomework.map(h => `${h.subject}: ${h.assignment}`).join('<br>');
+        document.getElementById('currentHomework').innerHTML = homeworkText;
+      }
+    }
+
+    // === NAVIGATION ===
+    function setupNavigation() {
+      document.querySelectorAll('[data-tab]').forEach(tab => {
+        tab.addEventListener('click', function() {
+          // Update active nav link
+          document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show active content
+          document.querySelectorAll('.content').forEach(content => {
+            content.classList.remove('active');
+          });
+          
+          const tabId = this.getAttribute('data-tab');
+          document.getElementById(tabId).classList.add('active');
+          
+          // Smooth scroll to top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+      
+      // Footer nav links
+      document.querySelectorAll('.nav-link-footer').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const tabId = this.getAttribute('data-tab');
+          document.querySelector(`[data-tab="${tabId}"]`).click();
+        });
+      });
+    }
+
+    // === DARK MODE ===
+    function setupDarkMode() {
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      const isDark = localStorage.getItem('mkps_darkMode') === 'true';
+      
+      if (isDark) {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.textContent = '☀️ Light Mode';
+      }
+      
+      darkModeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('mkps_darkMode', isDarkMode);
+        this.textContent = isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode';
+      });
+    }
+
+    // === TOOLS ===
+    function setupTools() {
+      // Export data
+      document.getElementById('exportData').addEventListener('click', function() {
+        const data = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key.startsWith(STORAGE_PREFIX)) {
+            data[key] = localStorage.getItem(key);
+          }
+        }
+        
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "mkps_backup_" + new Date().toISOString().split('T')[0] + ".json");
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+      });
+      
+      // Import data
+      document.getElementById('importData').addEventListener('click', function() {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = '.json';
+        
+        fileInput.onchange = e => {
+          const file = e.target.files[0];
+          const reader = new FileReader();
+          
+          reader.onload = function(event) {
+            try {
+              const importedData = JSON.parse(event.target.result);
+              
+              // Confirm overwrite
+              if (confirm(`Import ${Object.keys(importedData).length} items? This will overwrite existing data.`)) {
+                Object.keys(importedData).forEach(key => {
+                  if (key.startsWith(STORAGE_PREFIX)) {
+                    localStorage.setItem(key, importedData[key]);
+                  }
+                });
+                
+                alert('Data imported successfully! Refreshing...');
+                setTimeout(() => location.reload(), 1000);
+              }
+            } catch (e) {
+              alert('Invalid JSON file!');
+            }
+          };
+          
+          reader.readAsText(file);
+        };
+        
+        fileInput.click();
+      });
+      
+      // Print
+      document.getElementById('printPage').addEventListener('click', function() {
+        window.print();
+      });
+    }
+
+    // === CONTACT FORM ===
+    function setupContactForm() {
+      const contactForm = document.getElementById('contactForm');
+      
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('contactName').value;
+        const email = document.getElementById('contactEmail').value;
+        const subject = document.getElementById('contactSubject').value;
+        const message = document.getElementById('contactMessage').value;
+        
+        const newMessage = {
+          name,
+          email,
+          subject,
+          message,
+          timestamp: new Date().toISOString()
+        };
+        
+        const messages = getData('messages');
+        messages.push(newMessage);
+        setData('messages', messages);
+        
+        alert('Thank you for your message! We will get back to you soon.');
+        contactForm.reset();
+      });
+    }
+
+    // === LIGHTBOX ===
+    function setupLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const lightboxPrev = document.getElementById('lightboxPrev');
+      const lightboxNext = document.getElementById('lightboxNext');
+      
+      let currentIndex = 0;
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const galleryImages = Array.from(galleryItems).map(item => ({
+        img: item.getAttribute('data-img'),
+        title: item.getAttribute('data-title')
+      }));
+      
+      // Open lightbox
+      galleryItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+          currentIndex = index;
+          lightboxImg.src = this.getAttribute('data-img');
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      
+      // Close lightbox
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+      
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Navigation
+      lightboxPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+        lightboxImg.src = galleryImages[currentIndex].img;
+      });
+      
+      lightboxNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        lightboxImg.src = galleryImages[currentIndex].img;
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        } else if (e.key === 'ArrowLeft') {
+          currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+          lightboxImg.src = galleryImages[currentIndex].img;
+        } else if (e.key === 'ArrowRight') {
+          currentIndex = (currentIndex + 1) % galleryImages.length;
+          lightboxImg.src = galleryImages[currentIndex].img;
+        }
+      });
+    }
+
+    // === HELPERS ===
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
+    // === INITIALIZATION ===
+    document.addEventListener('DOMContentLoaded', function() {
+      checkLogin();
+    });
   </script>
 </body>
 </html>
