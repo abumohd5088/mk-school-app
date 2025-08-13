@@ -1,0 +1,3392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milli Karwaan Public School Balrampur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a3a6c;
+            --secondary-color: #2c5aa0;
+            --accent-color: #f9c80e;
+            --text-dark: #333;
+            --text-light: #f8f9fa;
+            --bg-light: #f8f9fa;
+            --bg-dark: #121212;
+            --card-bg: #ffffff;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+            --header-height: 80px;
+        }
+
+        .dark-mode {
+            --primary-color: #1e40af;
+            --secondary-color: #1e3a8a;
+            --accent-color: #fbbf24;
+            --text-dark: #e2e8f0;
+            --text-light: #f1f5f9;
+            --bg-light: #1a1a2e;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: var(--transition);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: var(--transition);
+        }
+
+        .logo-animation {
+            width: 150px;
+            height: 150px;
+            animation: pulse 2s infinite;
+        }
+
+        .logo-animation img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Login Modal */
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9998;
+            opacity: 1;
+            visibility: visible;
+            transition: var(--transition);
+        }
+
+        .login-modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .login-container {
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transform: translateY(0);
+            opacity: 1;
+            transition: var(--transition);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .login-header h2 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--bg-light);
+            color: var(--text-dark);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 90, 160, 0.3);
+        }
+
+        .btn-full {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            height: var(--header-height);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .logo h1 span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 10px 0;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--text-dark);
+            cursor: pointer;
+            margin-right: 20px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: var(--header-height);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        /* Teacher List */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .teacher-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            transform: translateY(0);
+            opacity: 0;
+        }
+
+        .teacher-card.animate {
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .teacher-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .teacher-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .teacher-card:hover .teacher-img img {
+            transform: scale(1.1);
+        }
+
+        .teacher-info {
+            padding: 25px;
+        }
+
+        .teacher-info h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .teacher-info .subject {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .teacher-info p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Events */
+        .events-container {
+            margin-top: 40px;
+        }
+
+        .event-item {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .event-item.animate {
+            animation: slideRight 0.6s ease forwards;
+        }
+
+        @keyframes slideRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .event-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-date {
+            flex: 0 0 120px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .event-date .day {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .event-date .month {
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .event-date .year {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .event-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .event-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .event-content .event-meta {
+            display: flex;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .event-content .event-meta span {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-content .event-meta i {
+            margin-right: 8px;
+        }
+
+        .event-content p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        /* Notice Board */
+        .notice-board {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .notice-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notice-header h3 {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .notice-header .date {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .notice-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .notice-item {
+            padding: 25px 30px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+
+        .notice-item:hover {
+            background: rgba(44, 90, 160, 0.03);
+        }
+
+        .notice-item.unread {
+            background: rgba(249, 200, 14, 0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .notice-item.unread .notice-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .notice-item .notice-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .notice-item .notice-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .notice-item .notice-content {
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .mark-read {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .notice-item:hover .mark-read {
+            opacity: 1;
+        }
+
+        /* Timetable */
+        .timetable-container {
+            margin-top: 40px;
+            overflow-x: auto;
+        }
+
+        .timetable {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .timetable th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .timetable td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            color: var(--text-dark);
+        }
+
+        .timetable tr:last-child td {
+            border-bottom: none;
+        }
+
+        .timetable tr:hover {
+            background: rgba(44, 90, 160, 0.05);
+        }
+
+        .subject {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .teacher {
+            font-size: 14px;
+            color: var(--accent-color);
+        }
+
+        /* Gallery */
+        .gallery-container {
+            margin-top: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .gallery-item.animate {
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 58, 108, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: var(--primary-color);
+            border-radius: 50%;
+            font-size: 24px;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay a:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* FAQ */
+        .faq-container {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            background: var(--card-bg);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .faq-item.animate {
+            animation: slideUpFaq 0.6s ease forwards;
+        }
+
+        @keyframes slideUpFaq {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--secondary-color);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-answer p {
+            padding: 20px 0;
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .contact-info {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .contact-info.animate {
+            animation: slideRightContact 0.8s ease forwards;
+        }
+
+        @keyframes slideRightContact {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .contact-detail {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            flex: 0 0 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+
+        .contact-text h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--text-dark);
+            opacity: 0.8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-text a:hover {
+            color: var(--secondary-color);
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .contact-form.animate {
+            animation: slideLeftForm 0.8s ease forwards;
+        }
+
+        @keyframes slideLeftForm {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-form h3 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-form h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .form-group-contact {
+            margin-bottom: 20px;
+        }
+
+        .form-group-contact label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group-contact input, 
+        .form-group-contact textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .form-group-contact textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .form-group-contact input:focus, 
+        .form-group-contact textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+
+        /* About Us */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .about-image.animate {
+            animation: slideRightAbout 0.8s ease forwards;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .about-content.animate {
+            animation: slideLeftAbout 0.8s ease forwards;
+        }
+
+        @keyframes slideRightAbout {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideLeftAbout {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-content h3 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .about-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .about-content p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(44, 90, 160, 0.1);
+            border-radius: var(--border-radius);
+        }
+
+        .stat-item h4 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: var(--text-dark);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Call Button */
+        .call-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+            animation: pulseButton 2s infinite;
+        }
+
+        @keyframes pulseButton {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .call-button:hover {
+            transform: scale(1.1);
+            background: #f59e0b;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: var(--transition);
+            overflow-y: auto;
+            padding: 80px 20px 30px;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            color: var(--text-dark);
+            font-size: 18px;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu ul li a:hover {
+            background: rgba(44, 90, 160, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* More Menu */
+        .more-menu {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .more-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .more-menu-item {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid #eee;
+        }
+
+        .more-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .more-menu-item:hover {
+            background: rgba(44, 90, 160, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .more-menu-item i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .more-menu-toggle {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 998;
+            transition: var(--transition);
+        }
+
+        .more-menu-toggle:hover {
+            transform: rotate(90deg);
+            background: var(--secondary-color);
+        }
+
+        /* Homework Section */
+        .homework-section {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .homework-container {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .homework-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .homework-header h3 {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .homework-header .student-info {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .homework-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .homework-item {
+            padding: 25px 30px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .homework-item:last-child {
+            border-bottom: none;
+        }
+
+        .homework-item:hover {
+            background: rgba(44, 90, 160, 0.03);
+        }
+
+        .homework-item .homework-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .homework-item .homework-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .homework-item .homework-content {
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .homework-item .homework-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .homework-item .homework-status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .homework-item .homework-status.completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-color);
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        .footer-col p, .footer-col li, .footer-col a {
+            color: var(--text-light);
+            opacity: 0.8;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-color);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-color);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .admin-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .admin-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            :root {
+                --header-height: 70px;
+            }
+
+            nav ul li {
+                margin-left: 20px;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+            }
+
+            .hero h2 {
+                font-size: 40px;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-image {
+                order: 2;
+            }
+
+            .about-content {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .header-actions {
+                margin-left: 15px;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .teachers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+
+            .event-item {
+                flex-direction: column;
+            }
+
+            .event-date {
+                flex-direction: row;
+                padding: 15px;
+                height: 60px;
+            }
+
+            .event-date .day {
+                font-size: 24px;
+                margin-right: 15px;
+            }
+
+            .event-date .month, .event-date .year {
+                font-size: 14px;
+            }
+
+            .contact-info, .contact-form {
+                padding: 30px;
+            }
+
+            .call-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .more-menu-toggle {
+                width: 45px;
+                height: 45px;
+                bottom: 80px;
+                right: 20px;
+            }
+
+            .more-menu {
+                right: 20px;
+                bottom: 140px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .login-container {
+                width: 95%;
+                padding: 30px 20px;
+            }
+
+            .login-header h2 {
+                font-size: 24px;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            .section-header h2 {
+                font-size: 24px;
+            }
+
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timetable th, .timetable td {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            .faq-question {
+                font-size: 16px;
+                padding: 18px 20px;
+            }
+
+            .contact-info, .contact-form {
+                padding: 25px;
+            }
+
+            footer {
+                padding: 50px 0 20px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header, .mobile-menu-btn, .call-button, .more-menu-toggle, .more-menu, .login-modal, .preloader {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .card-bg, .card {
+                background: white !important;
+                box-shadow: none !important;
+            }
+
+            a {
+                color: black !important;
+                text-decoration: underline !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="logo-animation">
+            <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo">
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-container">
+            <div class="login-header">
+                <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo">
+                <h2>Milli Karwaan Public School</h2>
+                <p>Please enter your details to access the portal</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentClass">Class</label>
+                    <select id="studentClass" required>
+                        <option value="">Select Class</option>
+                        <option value="Nursery">Nursery</option>
+                        <option value="LKG">LKG</option>
+                        <option value="UKG">UKG</option>
+                        <option value="Class 1">Class 1</option>
+                        <option value="Class 2">Class 2</option>
+                        <option value="Class 3">Class 3</option>
+                        <option value="Class 4">Class 4</option>
+                        <option value="Class 5">Class 5</option>
+                        <option value="Class 6">Class 6</option>
+                        <option value="Class 7">Class 7</option>
+                        <option value="Class 8">Class 8</option>
+                        <option value="Class 9">Class 9</option>
+                        <option value="Class 10">Class 10</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="parentName">Parent's Name</label>
+                    <input type="text" id="parentName" required>
+                </div>
+                <button type="submit" class="btn btn-full">Access Portal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo">
+                <h1>Milli Karwaan<br><span>Public School</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#teachers">Teachers</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#notice">Notice Board</a></li>
+                    <li><a href="#homework">Homework</a></li>
+                    <li><a href="#timetable">Timetable</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#teachers">Teachers</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#notice">Notice Board</a></li>
+                <li><a href="#homework">Homework</a></li>
+                <li><a href="#timetable">Timetable</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- More Menu -->
+    <div class="more-menu" id="moreMenu">
+        <div class="more-menu-item" id="printOption">
+            <i class="fas fa-print"></i> Print Page
+        </div>
+        <div class="more-menu-item" id="shareOption">
+            <i class="fas fa-share-alt"></i> Share
+        </div>
+        <div class="more-menu-item" id="feedbackOption">
+            <i class="fas fa-comment-dots"></i> Feedback
+        </div>
+        <div class="more-menu-item" id="logoutOption">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </div>
+    </div>
+
+    <button class="more-menu-toggle" id="moreMenuToggle">
+        <i class="fas fa-ellipsis-v"></i>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Welcome to Milli Karwaan Public School</h2>
+                <p>Excellence in Education, Character in Students. We are committed to providing quality education in a nurturing environment that fosters academic excellence, character development, and lifelong learning.</p>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Dedicated Teachers</h2>
+                <p>Meet our team of passionate educators who are committed to nurturing young minds and shaping the future leaders of tomorrow.</p>
+            </div>
+            <div class="teachers-grid" id="teachersGrid">
+                <!-- Teachers will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>School Events</h2>
+                <p>Stay updated with our upcoming events, celebrations, and important dates in the school calendar.</p>
+            </div>
+            <div class="events-container" id="eventsContainer">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Board Section -->
+    <section id="notice">
+        <div class="container">
+            <div class="section-header">
+                <h2>Notice Board</h2>
+                <p>Important announcements, updates, and information for students and parents.</p>
+            </div>
+            <div class="notice-board">
+                <div class="notice-header">
+                    <h3>Latest Notices</h3>
+                    <div class="date" id="currentDate"></div>
+                </div>
+                <div class="notice-list" id="noticeList">
+                    <!-- Notices will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Homework Section -->
+    <section class="homework-section" id="homework">
+        <div class="container">
+            <div class="section-header">
+                <h2>Homework Portal</h2>
+                <p>Access your class assignments, deadlines, and learning resources.</p>
+            </div>
+            <div class="homework-container">
+                <div class="homework-header">
+                    <h3>Homework Assignments</h3>
+                    <div class="student-info" id="studentInfo">Class: <span id="studentClassDisplay"></span></div>
+                </div>
+                <div class="homework-list" id="homeworkList">
+                    <!-- Homework will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timetable Section -->
+    <section id="timetable" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Class Timetable</h2>
+                <p>Weekly schedule of classes, periods, and activities for your class.</p>
+            </div>
+            <div class="timetable-container">
+                <table class="timetable" id="timetableTable">
+                    <!-- Timetable will be populated by JavaScript -->
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>School Gallery</h2>
+                <p>Explore moments from our school events, activities, and daily life.</p>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our school, policies, and procedures.</p>
+            </div>
+            <div class="faq-container" id="faqContainer">
+                <!-- FAQ items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Have questions or need assistance? Reach out to us using the form below or through our contact information.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info" id="contactInfo">
+                    <!-- Contact info will be populated by JavaScript -->
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group-contact">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group-contact">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group-contact">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group-contact">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        <div class="form-group-contact">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Milli Karwaan Public School</h2>
+                <p>Learn about our mission, vision, and commitment to excellence in education.</p>
+            </div>
+            <div class="about-container">
+                <div class="about-image" id="aboutImage">
+                    <!-- About image will be populated by JavaScript -->
+                </div>
+                <div class="about-content" id="aboutContent">
+                    <!-- About content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call Button -->
+    <a href="tel:9758919151" class="call-button" id="callButton">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>Milli Karwaan Public School</h4>
+                    <p>Excellence in Education, Character in Students. We are committed to providing quality education in a nurturing environment that fosters academic excellence, character development, and lifelong learning.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#teachers">Our Teachers</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#notice">Notice Board</a></li>
+                        <li><a href="#homework">Homework</a></li>
+                        <li><a href="#timetable">Timetable</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Boluha Police Chowki Balrampur</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:9758919151">9758919151</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></li>
+                        <li><i class="fas fa-clock"></i> Mon - Sat: 8:00 AM - 4:00 PM</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Important Links</h4>
+                    <ul>
+                        <li><a href="#" id="admissionLink">Admission Process</a></li>
+                        <li><a href="#" id="feesLink">Fee Structure</a></li>
+                        <li><a href="#" id="syllabusLink">Syllabus</a></li>
+                        <li><a href="#" id="transportLink">Transport Services</a></li>
+                        <li><a href="#" id="canteenLink">Canteen Menu</a></li>
+                        <li><a href="#" id="sportsLink">Sports Activities</a></li>
+                        <li><a href="#" id="libraryLink">Library Resources</a></li>
+                        <li><a href="admin.html" class="admin-link">Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Milli Karwaan Public School Balrampur. All Rights Reserved.</p>
+                <p>Designed with <i class="fas fa-heart" style="color: #f9c80e;"></i> for excellence in education</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mock data for the school
+        const schoolData = {
+            teachers: [
+                {
+                    name: "Dr. Ayesha Khan",
+                    subject: "Mathematics",
+                    image: "https://images.unsplash.com/photo-1573496359148-b7d088794c36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
+                    description: "Ph.D. in Mathematics with 15 years of teaching experience. Specializes in advanced calculus and algebra.",
+                    email: "ayesha.khan@mkps.edu",
+                    phone: "9876543210"
+                },
+                {
+                    name: "Mr. Rajesh Kumar",
+                    subject: "Science",
+                    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
+                    description: "Expert in Physics and Chemistry with a focus on practical applications and experiments.",
+                    email: "rajesh.kumar@mkps.edu",
+                    phone: "9876543211"
+                },
+                {
+                    name: "Mrs. Sunita Devi",
+                    subject: "English",
+                    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
+                    description: "Passionate about literature and language development. Focuses on creative writing and communication skills.",
+                    email: "sunita.devi@mkps.edu",
+                    phone: "9876543212"
+                },
+                {
+                    name: "Mr. Arif Ali",
+                    subject: "Social Studies",
+                    image: "https://images.unsplash.com/photo-1559190396-ffed882572b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
+                    description: "History and Geography specialist with expertise in Indian culture and world civilizations.",
+                    email: "arif.ali@mkps.edu",
+                    phone: "9876543213"
+                },
+                {
+                    name: "Ms. Priya Sharma",
+                    subject: "Computer Science",
+                    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
+                    description: "IT professional turned educator. Teaches programming, web development, and digital literacy.",
+                    email: "priya.sharma@mkps.edu",
+                    phone: "9876543214"
+                },
+                {
+                    name: "Mrs. Fatima Begum",
+                    subject: "Urdu",
+                    image: "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80",
+                    description: "Expert in Urdu literature and language. Focuses on poetry, prose, and cultural heritage.",
+                    email: "fatima.begum@mkps.edu",
+                    phone: "9876543215"
+                }
+            ],
+            events: [
+                {
+                    title: "Annual Day Celebration",
+                    date: "2023-12-15",
+                    time: "10:00 AM - 4:00 PM",
+                    venue: "School Auditorium",
+                    description: "Our annual celebration of student achievements with performances, awards, and cultural programs."
+                },
+                {
+                    title: "Science Exhibition",
+                    date: "2023-11-20",
+                    time: "9:00 AM - 3:00 PM",
+                    venue: "Science Block",
+                    description: "Students will showcase their science projects and experiments to the school community."
+                },
+                {
+                    title: "Parent-Teacher Meeting",
+                    date: "2023-11-10",
+                    time: "2:00 PM - 5:00 PM",
+                    venue: "Classrooms",
+                    description: "Scheduled meeting for parents to discuss their child's progress with teachers."
+                },
+                {
+                    title: "Sports Day",
+                    date: "2023-12-05",
+                    time: "8:00 AM - 2:00 PM",
+                    venue: "School Grounds",
+                    description: "Annual sports competition with various athletic events for all classes."
+                },
+                {
+                    title: "Diwali Festival",
+                    date: "2023-11-12",
+                    time: "11:00 AM - 2:00 PM",
+                    venue: "School Premises",
+                    description: "Celebration of Diwali with cultural programs, food, and traditional activities."
+                }
+            ],
+            notices: [
+                {
+                    title: "School Closed for Diwali Holidays",
+                    date: "2023-11-11",
+                    content: "The school will remain closed from November 12th to November 14th for Diwali celebrations. Classes will resume on November 15th.",
+                    important: true
+                },
+                {
+                    title: "New Uniform Policy Effective",
+                    date: "2023-11-01",
+                    content: "Starting from December 1st, all students are required to wear the new school uniform. The uniform can be purchased from the school store.",
+                    important: true
+                },
+                {
+                    title: "PTA Meeting Scheduled",
+                    date: "2023-10-25",
+                    content: "The next Parent-Teacher Association meeting will be held on November 5th at 3:00 PM in the school auditorium. All parents are requested to attend.",
+                    important: false
+                },
+                {
+                    title: "Mid-Term Exams Schedule",
+                    date: "2023-10-20",
+                    content: "Mid-term examinations will be conducted from November 20th to November 24th. The detailed schedule is available on the notice board.",
+                    important: true
+                },
+                {
+                    title: "School Picnic for Primary Classes",
+                    date: "2023-10-15",
+                    content: "A picnic has been organized for Nursery to Class 3 on October 30th at City Park. Permission slips are available at the office.",
+                    important: false
+                }
+            ],
+            homework: {
+                "Nursery": [
+                    {
+                        subject: "English",
+                        title: "Alphabet Recognition",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-12",
+                        content: "Practice identifying and writing letters A-E. Use the workbook pages 12-15.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Counting 1-5",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Count objects at home and tell your parents how many you see. Draw 5 circles in your notebook.",
+                        status: "completed"
+                    }
+                ],
+                "LKG": [
+                    {
+                        subject: "English",
+                        title: "Letter Sounds",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-12",
+                        content: "Practice the sounds of letters A-G. Read the storybook provided and identify words starting with these letters.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Numbers 1-10",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Write numbers 1-10 in your notebook. Count items in your house and write how many you find.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "EVS",
+                        title: "My Family",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Draw a picture of your family and write their names below. Bring it to class on Monday.",
+                        status: "pending"
+                    }
+                ],
+                "UKG": [
+                    {
+                        subject: "English",
+                        title: "Three-Letter Words",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-12",
+                        content: "Practice reading and writing CVC words (consonant-vowel-consonant). Complete workbook pages 25-28.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Addition 1-10",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Solve the addition problems on page 30 of your math workbook. Use counters or drawings to help you.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "EVS",
+                        title: "Plants Around Us",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Observe plants in your neighborhood. Draw one plant and write 3 sentences about it.",
+                        status: "pending"
+                    }
+                ],
+                "Class 1": [
+                    {
+                        subject: "English",
+                        title: "Reading Comprehension",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-13",
+                        content: "Read the story 'The Clever Fox' on page 45 and answer questions 1-5 in your notebook.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Subtraction",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Complete subtraction problems on page 38. Show your work using number lines or drawings.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "EVS",
+                        title: "Our Body",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Label the parts of the body on the worksheet. Write one function for each body part.",
+                        status: "pending"
+                    }
+                ],
+                "Class 2": [
+                    {
+                        subject: "English",
+                        title: "Creative Writing",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-13",
+                        content: "Write a short story (10-15 sentences) about 'My Best Day at School'. Use descriptive words.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Word Problems",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Solve word problems on page 52. Show your calculations and write complete answers.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "EVS",
+                        title: "Weather and Seasons",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Keep a weather diary for one week. Note temperature, rain, and what clothes you wear each day.",
+                        status: "pending"
+                    }
+                ],
+                "Class 3": [
+                    {
+                        subject: "English",
+                        title: "Grammar - Nouns",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-13",
+                        content: "Identify and list 20 nouns from your surroundings. Classify them as proper, common, or collective nouns.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Multiplication",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Practice multiplication tables 2-5. Complete exercises on page 67.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "EVS",
+                        title: "Plants and Animals",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Research one plant and one animal native to our region. Create a poster with information and drawings.",
+                        status: "pending"
+                    }
+                ],
+                "Class 4": [
+                    {
+                        subject: "English",
+                        title: "Reading Comprehension",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-13",
+                        content: "Read the passage about 'The Water Cycle' and answer the questions. Write a summary in your own words.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Fractions",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Complete the fraction exercises on page 89. Use fraction circles or drawings to help visualize.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "Science",
+                        title: "States of Matter",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Conduct a home experiment to observe changes in states of matter. Record observations and conclusions.",
+                        status: "pending"
+                    }
+                ],
+                "Class 5": [
+                    {
+                        subject: "English",
+                        title: "Essay Writing",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-14",
+                        content: "Write an essay (200-250 words) on 'The Importance of Trees'. Include an introduction, body, and conclusion.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Geometry",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Draw and label different types of angles and triangles. Calculate perimeter and area of given shapes.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "Science",
+                        title: "Human Body Systems",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Create a diagram of the digestive system and write a paragraph explaining how it works.",
+                        status: "pending"
+                    }
+                ],
+                "Class 6": [
+                    {
+                        subject: "English",
+                        title: "Literature - Poem Analysis",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-14",
+                        content: "Analyze the poem 'The Road Not Taken' by Robert Frost. Identify literary devices and theme.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Algebra",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Solve linear equations and word problems on page 125. Show all steps of your solution.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "Science",
+                        title: "Electricity",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Build a simple circuit at home and explain how it works. Draw a diagram of your circuit.",
+                        status: "pending"
+                    }
+                ],
+                "Class 7": [
+                    {
+                        subject: "English",
+                        title: "Grammar - Tenses",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-14",
+                        content: "Rewrite sentences using different tenses. Create your own sentences for each tense (past, present, future).",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Mensuration",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Calculate area and volume of various shapes. Solve real-life problems involving measurement.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "Science",
+                        title: "Acids, Bases and Salts",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Conduct experiments with household items to test for acidity or basicity. Record observations in a table.",
+                        status: "pending"
+                    }
+                ],
+                "Class 8": [
+                    {
+                        subject: "English",
+                        title: "Creative Writing",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-15",
+                        content: "Write a short story (300-400 words) based on the prompt: 'The Mysterious Door'. Use descriptive language and dialogue.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Mathematics",
+                        title: "Exponents and Powers",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Simplify expressions with exponents. Convert numbers to standard form and vice versa.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "Science",
+                        title: "Pollution",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Research different types of pollution in your area. Create a presentation with solutions to reduce pollution.",
+                        status: "pending"
+                    }
+                ],
+                "Class 9": [
+                    {
+                        subject: "Mathematics",
+                        title: "Polynomials",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-15",
+                        content: "Factorize polynomials and solve polynomial equations. Apply factor theorem to verify factors.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Science",
+                        title: "Motion",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Solve numerical problems on motion. Create graphs for different types of motion and interpret them.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "Social Science",
+                        title: "French Revolution",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Prepare a timeline of the French Revolution. Write an essay on its causes and effects.",
+                        status: "pending"
+                    }
+                ],
+                "Class 10": [
+                    {
+                        subject: "Mathematics",
+                        title: "Quadratic Equations",
+                        date: "2023-11-10",
+                        dueDate: "2023-11-15",
+                        content: "Solve quadratic equations by different methods. Apply quadratic equations to real-life problems.",
+                        status: "pending"
+                    },
+                    {
+                        subject: "Science",
+                        title: "Electricity",
+                        date: "2023-11-09",
+                        dueDate: "2023-11-10",
+                        content: "Solve numerical problems on Ohm's law and electrical power. Design a simple electrical circuit.",
+                        status: "completed"
+                    },
+                    {
+                        subject: "English",
+                        title: "Letter Writing",
+                        date: "2023-11-08",
+                        dueDate: "2023-11-10",
+                        content: "Write a formal letter to the principal requesting permission for a school event. Follow proper format and language.",
+                        status: "pending"
+                    }
+                ]
+            },
+            timetable: {
+                "Nursery": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "English", "Mathematics", "English"],
+                    ["10:15-11:00", "EVS", "EVS", "Art & Craft", "EVS", "Music"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Play Time", "Story Time", "Play Time", "Story Time", "Play Time"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Music", "Art & Craft", "Music", "Art & Craft", "Dance"]
+                ],
+                "LKG": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "English", "Mathematics", "English"],
+                    ["10:15-11:00", "EVS", "EVS", "Art & Craft", "EVS", "Music"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Handwriting", "Story Time", "Games", "Rhymes", "Dance"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Computer", "Art & Craft", "Music", "Library", "Games"]
+                ],
+                "UKG": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "English", "Mathematics", "English"],
+                    ["10:15-11:00", "EVS", "EVS", "Art & Craft", "EVS", "Music"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Handwriting", "Story Time", "Games", "Rhymes", "Dance"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Computer", "Art & Craft", "Music", "Library", "Games"]
+                ],
+                "Class 1": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "English", "Mathematics", "English"],
+                    ["10:15-11:00", "EVS", "EVS", "Art & Craft", "EVS", "Music"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Handwriting", "Story Time", "Games", "Rhymes", "Dance"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Computer", "Art & Craft", "Music", "Library", "Games"]
+                ],
+                "Class 2": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "English", "Mathematics", "English"],
+                    ["10:15-11:00", "EVS", "EVS", "Art & Craft", "EVS", "Music"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Handwriting", "Story Time", "Games", "Rhymes", "Dance"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Computer", "Art & Craft", "Music", "Library", "Games"]
+                ],
+                "Class 3": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "English", "Mathematics", "English"],
+                    ["10:15-11:00", "EVS", "EVS", "Art & Craft", "EVS", "Music"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Handwriting", "Story Time", "Games", "Rhymes", "Dance"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Computer", "Art & Craft", "Music", "Library", "Games"]
+                ],
+                "Class 4": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "English", "Mathematics", "English"],
+                    ["10:15-11:00", "EVS", "EVS", "Art & Craft", "EVS", "Music"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Handwriting", "Story Time", "Games", "Rhymes", "Dance"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Computer", "Art & Craft", "Music", "Library", "Games"]
+                ],
+                "Class 5": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "English", "Mathematics", "English"],
+                    ["10:15-11:00", "EVS", "EVS", "Art & Craft", "EVS", "Music"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Handwriting", "Story Time", "Games", "Rhymes", "Dance"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Computer", "Art & Craft", "Music", "Library", "Games"]
+                ],
+                "Class 6": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "Science", "Social Science", "Hindi"],
+                    ["10:15-11:00", "Science", "Social Science", "English", "Mathematics", "Computer"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Hindi", "Computer", "Mathematics", "Science", "Social Science"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Games", "Art & Craft", "Music", "Library", "Dance"]
+                ],
+                "Class 7": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "Science", "Social Science", "Hindi"],
+                    ["10:15-11:00", "Science", "Social Science", "English", "Mathematics", "Computer"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Hindi", "Computer", "Mathematics", "Science", "Social Science"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Games", "Art & Craft", "Music", "Library", "Dance"]
+                ],
+                "Class 8": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:15", "English", "Mathematics", "Science", "Social Science", "Hindi"],
+                    ["10:15-11:00", "Science", "Social Science", "English", "Mathematics", "Computer"],
+                    ["11:00-11:30", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:30-12:15", "Hindi", "Computer", "Mathematics", "Science", "Social Science"],
+                    ["12:15-1:00", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:00-1:45", "Games", "Art & Craft", "Music", "Library", "Dance"]
+                ],
+                "Class 9": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:30", "Mathematics", "Science", "Social Science", "English", "Hindi"],
+                    ["10:30-11:30", "Science", "Mathematics", "Hindi", "Social Science", "Computer"],
+                    ["11:30-11:45", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:45-12:45", "English", "Hindi", "Mathematics", "Science", "Social Science"],
+                    ["12:45-1:45", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:45-2:45", "Computer", "Games", "Art & Craft", "Music", "Library"]
+                ],
+                "Class 10": [
+                    ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    ["9:00-9:30", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer", "Morning Prayer"],
+                    ["9:30-10:30", "Mathematics", "Science", "Social Science", "English", "Hindi"],
+                    ["10:30-11:30", "Science", "Mathematics", "Hindi", "Social Science", "Computer"],
+                    ["11:30-11:45", "Break", "Break", "Break", "Break", "Break"],
+                    ["11:45-12:45", "English", "Hindi", "Mathematics", "Science", "Social Science"],
+                    ["12:45-1:45", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+                    ["1:45-2:45", "Computer", "Games", "Art & Craft", "Music", "Library"]
+                ]
+            },
+            gallery: [
+                {
+                    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    title: "Annual Day Celebration"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1543339074-9d6be69659a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    title: "Science Exhibition"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    title: "Sports Day"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    title: "Cultural Fest"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1581595219318-840f55edaa22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    title: "Art & Craft Exhibition"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1541332283-379d4190461f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    title: "Field Trip"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    title: "Teacher Training"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1540569496956-8861fc763d7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    title: "Parent-Teacher Meeting"
+                }
+            ],
+            faq: [
+                {
+                    question: "What are the school hours?",
+                    answer: "The school operates from 9:00 AM to 3:00 PM for all classes. Nursery and LKG classes end at 1:00 PM. The school is closed on Saturdays, Sundays, and public holidays."
+                },
+                {
+                    question: "What is the admission process?",
+                    answer: "Admission process begins in January each year. Parents need to visit the school office with the child's birth certificate, previous school records (if applicable), and four passport-sized photographs. An admission test is conducted for classes 1 and above."
+                },
+                {
+                    question: "What are the school fees?",
+                    answer: "The annual fee structure varies by class. Nursery to UKG: ₹12,000 per year. Class 1 to 5: ₹15,000 per year. Class 6 to 8: ₹18,000 per year. Class 9 to 10: ₹20,000 per year. Fees are payable in two installments."
+                },
+                {
+                    question: "Does the school provide transportation?",
+                    answer: "Yes, we provide bus transportation for students living within a 10 km radius of the school. The transportation fee is ₹3,000 per year and covers both morning and evening trips. Routes are optimized based on student locations."
+                },
+                {
+                    question: "What curriculum does the school follow?",
+                    answer: "We follow the CBSE (Central Board of Secondary Education) curriculum for all classes. Our teaching methodology combines traditional education with modern techniques, focusing on holistic development of students."
+                },
+                {
+                    question: "Are there extracurricular activities?",
+                    answer: "Yes, we offer a wide range of extracurricular activities including sports (cricket, football, basketball, athletics), arts (music, dance, painting), and clubs (science, debate, literary). These activities are scheduled after regular classes."
+                },
+                {
+                    question: "What safety measures are in place?",
+                    answer: "The school has comprehensive safety measures including CCTV surveillance, trained security personnel, fire safety equipment, and first aid facilities. All staff undergo regular safety training, and we conduct emergency drills quarterly."
+                },
+                {
+                    question: "How are parents kept informed about student progress?",
+                    answer: "We maintain regular communication through parent-teacher meetings (twice a year), progress reports (issued quarterly), and a school mobile app. Teachers are also available for individual consultations by appointment."
+                }
+            ],
+            about: {
+                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                content: "Milli Karwaan Public School was established in 2005 with a vision to provide quality education to children in Balrampur and surrounding areas. Our school is built on the principles of academic excellence, moral values, and holistic development. We believe that every child is unique and has the potential to excel in their own way.",
+                mission: "Our mission is to create a nurturing environment that fosters academic excellence, character development, and lifelong learning. We aim to prepare students not just for examinations, but for life, by developing critical thinking, creativity, and social responsibility.",
+                vision: "To be a center of excellence in education, recognized for innovative teaching methods, outstanding student achievements, and contribution to the community. We envision our students becoming responsible citizens who contribute positively to society.",
+                values: "Integrity, Excellence, Respect, Responsibility, and Compassion form the foundation of our educational philosophy. These values are integrated into our curriculum and daily practices to shape the character of our students."
+            }
+        };
+
+        // Utility functions
+        function formatDate(dateString) {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        function formatTime(dateString) {
+            return new Date(dateString).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in, .teacher-card, .event-item, .gallery-item, .faq-item, .contact-info, .contact-form, .about-image, .about-content');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.classList.contains('teacher-card')) {
+                            entry.target.classList.add('animate');
+                        } else if (entry.target.classList.contains('event-item')) {
+                            entry.target.classList.add('animate');
+                        } else if (entry.target.classList.contains('gallery-item')) {
+                            entry.target.classList.add('animate');
+                        } else if (entry.target.classList.contains('faq-item')) {
+                            entry.target.classList.add('animate');
+                        } else if (entry.target.classList.contains('contact-info')) {
+                            entry.target.classList.add('animate');
+                        } else if (entry.target.classList.contains('contact-form')) {
+                            entry.target.classList.add('animate');
+                        } else if (entry.target.classList.contains('about-image')) {
+                            entry.target.classList.add('animate');
+                        } else if (entry.target.classList.contains('about-content')) {
+                            entry.target.classList.add('animate');
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elements.forEach(element => {
+                if (!element.classList.contains('fade-in')) {
+                    element.classList.add('fade-in');
+                }
+                observer.observe(element);
+            });
+        }
+
+        // Login functionality
+        function initLogin() {
+            const loginModal = document.getElementById('loginModal');
+            const loginForm = document.getElementById('loginForm');
+            const studentNameInput = document.getElementById('studentName');
+            const studentClassInput = document.getElementById('studentClass');
+            const parentNameInput = document.getElementById('parentName');
+
+            // Check if user data exists in localStorage
+            const userData = localStorage.getItem('mkpsUserData');
+            if (userData) {
+                // User data exists, hide login modal
+                loginModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                const user = JSON.parse(userData);
+                populateUserData(user);
+            } else {
+                // User data doesn't exist, show login modal
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Handle form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const studentName = studentNameInput.value.trim();
+                const studentClass = studentClassInput.value;
+                const parentName = parentNameInput.value.trim();
+
+                if (studentName && studentClass && parentName) {
+                    const userData = {
+                        studentName,
+                        studentClass,
+                        parentName,
+                        loginTime: new Date().toISOString()
+                    };
+
+                    // Save to localStorage
+                    localStorage.setItem('mkpsUserData', JSON.stringify(userData));
+                    
+                    // Hide login modal
+                    loginModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                    
+                    // Populate user data on the page
+                    populateUserData(userData);
+                }
+            });
+        }
+
+        function populateUserData(userData) {
+            // Display student info in homework section
+            document.getElementById('studentClassDisplay').textContent = userData.studentClass;
+            
+            // You can also update other parts of the UI with user data if needed
+            console.log('User data loaded:', userData);
+        }
+
+        // Header and navigation
+        function initHeader() {
+            const header = document.getElementById('header');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMenuBtn = document.getElementById('closeMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const moreMenuToggle = document.getElementById('moreMenuToggle');
+            const moreMenu = document.getElementById('moreMenu');
+
+            // Change header style on scroll
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.style.backgroundColor = 'var(--card-bg)';
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.backgroundColor = 'transparent';
+                    header.style.boxShadow = 'none';
+                }
+            });
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close mobile menu when clicking on a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // More menu toggle
+            moreMenuToggle.addEventListener('click', function() {
+                moreMenu.classList.toggle('active');
+            });
+
+            // Close more menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!moreMenuToggle.contains(e.target) && !moreMenu.contains(e.target)) {
+                    moreMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Theme toggle
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('mkpsTheme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+
+            // Toggle theme
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('mkpsTheme', 'dark');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('mkpsTheme', 'light');
+                }
+            });
+        }
+
+        // Teachers section
+        function initTeachers() {
+            const teachersGrid = document.getElementById('teachersGrid');
+            
+            schoolData.teachers.forEach((teacher, index) => {
+                const teacherCard = document.createElement('div');
+                teacherCard.className = 'teacher-card fade-in';
+                teacherCard.style.transitionDelay = `${index * 0.1}s`;
+                
+                teacherCard.innerHTML = `
+                    <div class="teacher-img">
+                        <img src="${teacher.image}" alt="${teacher.name}">
+                    </div>
+                    <div class="teacher-info">
+                        <h3>${teacher.name}</h3>
+                        <span class="subject">${teacher.subject}</span>
+                        <p>${teacher.description}</p>
+                        <div class="social-links">
+                            <a href="mailto:${teacher.email}"><i class="fas fa-envelope"></i></a>
+                            <a href="tel:${teacher.phone}"><i class="fas fa-phone"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                `;
+                
+                teachersGrid.appendChild(teacherCard);
+            });
+        }
+
+        // Events section
+        function initEvents() {
+            const eventsContainer = document.getElementById('eventsContainer');
+            
+            schoolData.events.forEach((event, index) => {
+                const eventDate = new Date(event.date);
+                const eventItem = document.createElement('div');
+                eventItem.className = 'event-item fade-in';
+                eventItem.style.transitionDelay = `${index * 0.1}s`;
+                
+                eventItem.innerHTML = `
+                    <div class="event-date">
+                        <div class="day">${eventDate.getDate()}</div>
+                        <div class="month">${eventDate.toLocaleString('default', { month: 'short' })}</div>
+                        <div class="year">${eventDate.getFullYear()}</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>${event.title}</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> ${event.time}</span>
+                            <span><i class="fas fa-map-marker-alt"></i> ${event.venue}</span>
+                        </div>
+                        <p>${event.description}</p>
+                    </div>
+                `;
+                
+                eventsContainer.appendChild(eventItem);
+            });
+        }
+
+        // Notice board
+        function initNoticeBoard() {
+            const noticeList = document.getElementById('noticeList');
+            const currentDateElement = document.getElementById('currentDate');
+            
+            // Set current date
+            const today = new Date();
+            currentDateElement.textContent = formatDate(today.toISOString());
+            
+            // Sort notices by date (newest first)
+            const sortedNotices = [...schoolData.notices].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            sortedNotices.forEach((notice, index) => {
+                const noticeDate = new Date(notice.date);
+                const noticeItem = document.createElement('div');
+                noticeItem.className = `notice-item ${!notice.read ? 'unread' : ''} fade-in`;
+                noticeItem.style.transitionDelay = `${index * 0.1}s`;
+                
+                noticeItem.innerHTML = `
+                    <div class="notice-title">${notice.title}</div>
+                    <div class="notice-meta">
+                        <span><i class="far fa-calendar"></i> ${formatDate(notice.date)}</span>
+                        <span><i class="far fa-clock"></i> ${formatTime(notice.date)}</span>
+                    </div>
+                    <div class="notice-content">${notice.content}</div>
+                    <button class="mark-read" title="Mark as read">
+                        <i class="fas fa-check"></i>
+                    </button>
+                `;
+                
+                // Add event listener to mark as read
+                const markReadBtn = noticeItem.querySelector('.mark-read');
+                markReadBtn.addEventListener('click', function() {
+                    noticeItem.classList.remove('unread');
+                    this.style.opacity = '0';
+                    
+                    // Here you would typically update the read status in localStorage
+                    // For now, we'll just update the UI
+                });
+                
+                noticeList.appendChild(noticeItem);
+            });
+        }
+
+        // Homework section
+        function initHomework() {
+            const homeworkList = document.getElementById('homeworkList');
+            const userData = JSON.parse(localStorage.getItem('mkpsUserData'));
+            
+            if (userData && userData.studentClass) {
+                const classHomework = schoolData.homework[userData.studentClass] || [];
+                
+                classHomework.forEach((hw, index) => {
+                    const homeworkItem = document.createElement('div');
+                    homeworkItem.className = `homework-item fade-in`;
+                    homeworkItem.style.transitionDelay = `${index * 0.1}s`;
+                    
+                    homeworkItem.innerHTML = `
+                        <div class="homework-status ${hw.status}">${capitalizeFirstLetter(hw.status)}</div>
+                        <div class="homework-title">${hw.title}</div>
+                        <div class="homework-meta">
+                            <span><i class="fas fa-book"></i> ${hw.subject}</span>
+                            <span><i class="far fa-calendar"></i> Assigned: ${formatDate(hw.date)}</span>
+                            <span><i class="far fa-clock"></i> Due: ${formatDate(hw.dueDate)}</span>
+                        </div>
+                        <div class="homework-content">${hw.content}</div>
+                    `;
+                    
+                    homeworkList.appendChild(homeworkItem);
+                });
+                
+                if (classHomework.length === 0) {
+                    homeworkList.innerHTML = '<p style="text-align: center; padding: 30px; color: var(--text-dark); opacity: 0.7;">No homework assigned for your class at the moment.</p>';
+                }
+            } else {
+                homeworkList.innerHTML = '<p style="text-align: center; padding: 30px; color: var(--text-dark); opacity: 0.7;">Please log in to view your homework assignments.</p>';
+            }
+        }
+
+        // Timetable
+        function initTimetable() {
+            const timetableTable = document.getElementById('timetableTable');
+            const userData = JSON.parse(localStorage.getItem('mkpsUserData'));
+            
+            if (userData && userData.studentClass) {
+                const classTimetable = schoolData.timetable[userData.studentClass] || [];
+                
+                // Clear existing content
+                timetableTable.innerHTML = '';
+                
+                // Create table rows
+                classTimetable.forEach((row, rowIndex) => {
+                    const tableRow = document.createElement('tr');
+                    
+                    row.forEach((cell, cellIndex) => {
+                        const tableCell = document.createElement(rowIndex === 0 ? 'th' : 'td');
+                        
+                        if (rowIndex > 0 && cellIndex > 0) {
+                            // Split subject and teacher if they are combined
+                            const parts = cell.split(' - ');
+                            if (parts.length > 1) {
+                                tableCell.innerHTML = `<div class="subject">${parts[0]}</div><div class="teacher">${parts[1]}</div>`;
+                            } else {
+                                tableCell.textContent = cell;
+                            }
+                        } else {
+                            tableCell.textContent = cell;
+                        }
+                        
+                        tableRow.appendChild(tableCell);
+                    });
+                    
+                    timetableTable.appendChild(tableRow);
+                });
+            } else {
+                timetableTable.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 30px; color: var(--text-dark); opacity: 0.7;">Please log in to view your timetable.</td></tr>';
+            }
+        }
+
+        // Gallery
+        function initGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            
+            schoolData.gallery.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item fade-in';
+                galleryItem.style.transitionDelay = `${index * 0.1}s`;
+                
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="gallery-overlay">
+                        <a href="${item.image}" target="_blank"><i class="fas fa-search-plus"></i></a>
+                    </div>
+                `;
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // FAQ
+        function initFAQ() {
+            const faqContainer = document.getElementById('faqContainer');
+            
+            schoolData.faq.forEach((item, index) => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item fade-in';
+                faqItem.style.transitionDelay = `${index * 0.1}s`;
+                
+                faqItem.innerHTML = `
+                    <div class="faq-question">
+                        ${item.question}
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>${item.answer}</p>
+                    </div>
+                `;
+                
+                // Add event listener for accordion
+                const question = faqItem.querySelector('.faq-question');
+                question.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const answer = this.nextElementSibling;
+                    
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+                
+                faqContainer.appendChild(faqItem);
+            });
+        }
+
+        // Contact
+        function initContact() {
+            const contactInfo = document.getElementById('contactInfo');
+            const contactForm = document.getElementById('contactForm');
+            
+            // Populate contact info
+            contactInfo.innerHTML = `
+                <h3>Contact Information</h3>
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Address</h4>
+                        <p>Boluha Police Chowki Balrampur</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Phone</h4>
+                        <a href="tel:9758919151">9758919151</a>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Working Hours</h4>
+                        <p>Monday - Saturday: 8:00 AM - 4:00 PM</p>
+                    </div>
+                </div>
+            `;
+            
+            // Handle form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // In a real application, you would send this data to a server
+                // For now, we'll just show a success message
+                alert('Thank you for your message! We will get back to you soon.');
+                
+                // Reset form
+                contactForm.reset();
+            });
+        }
+
+        // About Us
+        function initAbout() {
+            const aboutImage = document.getElementById('aboutImage');
+            const aboutContent = document.getElementById('aboutContent');
+            
+            // Populate about content
+            aboutImage.innerHTML = `<img src="${schoolData.about.image}" alt="School">`;
+            
+            aboutContent.innerHTML = `
+                <h3>Our Story</h3>
+                <p>${schoolData.about.content}</p>
+                
+                <h3>Our Mission</h3>
+                <p>${schoolData.about.mission}</p>
+                
+                <h3>Our Vision</h3>
+                <p>${schoolData.about.vision}</p>
+                
+                <h3>Our Core Values</h3>
+                <p>${schoolData.about.values}</p>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h4>500+</h4>
+                        <p>Students</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>30+</h4>
+                        <p>Teachers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>15+</h4>
+                        <p>Years of Excellence</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>10+</h4>
+                        <p>Awards</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // More menu functionality
+        function initMoreMenu() {
+            const printOption = document.getElementById('printOption');
+            const shareOption = document.getElementById('shareOption');
+            const feedbackOption = document.getElementById('feedbackOption');
+            const logoutOption = document.getElementById('logoutOption');
+            
+            printOption.addEventListener('click', function() {
+                window.print();
+            });
+            
+            shareOption.addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Milli Karwaan Public School',
+                        text: 'Check out Milli Karwaan Public School Balrampur!',
+                        url: window.location.href
+                    })
+                    .catch(error => console.log('Error sharing:', error));
+                } else {
+                    alert('Web Share API is not supported in your browser. Please manually share the link.');
+                }
+            });
+            
+            feedbackOption.addEventListener('click', function() {
+                const feedback = prompt('We value your feedback! Please share your suggestions:');
+                if (feedback) {
+                    alert('Thank you for your feedback! We will review it and work on improvements.');
+                }
+            });
+            
+            logoutOption.addEventListener('click', function() {
+                if (confirm('Are you sure you want to log out?')) {
+                    localStorage.removeItem('mkpsUserData');
+                    location.reload();
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize all components
+        function init() {
+            // Wait for DOM to load
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize components in order
+                initLogin();
+                initHeader();
+                initThemeToggle();
+                initTeachers();
+                initEvents();
+                initNoticeBoard();
+                initHomework();
+                initTimetable();
+                initGallery();
+                initFAQ();
+                initContact();
+                initAbout();
+                initMoreMenu();
+                initSmoothScroll();
+                animateOnScroll();
+                
+                // Hide preloader after everything is loaded
+                setTimeout(() => {
+                    const preloader = document.querySelector('.preloader');
+                    if (preloader) {
+                        preloader.style.opacity = '0';
+                        setTimeout(() => {
+                            preloader.style.display = 'none';
+                        }, 600);
+                    }
+                }, 1000);
+            });
+        }
+
+        // Start the application
+        init();
+    </script>
+</body>
+</html>
