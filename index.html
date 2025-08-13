@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Milli Karwaan Public School Balrampur</title>
+  <meta name="description" content="Official website of Milli Karwaan Public School Balrampur - Education, Homework, Events, Teachers, Notices & More." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* === RESET & BASE === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul, ol {
+      list-style: none;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    button, input, textarea, select {
+      font-family: inherit;
+      border: none;
+      outline: none;
+    }
+    button {
+      cursor: pointer;
+      background: none;
+    }
+    input, textarea, select {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      background-color: #0d6efd;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #0b5ed7;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: #5c636a;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+    }
+    .btn-danger:hover {
+      background-color: #bb2d3b;
+    }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.875rem;
+    }
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    /* === LAYOUT === */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    .main-content {
+      flex: 1;
+      margin-left: 0;
+      transition: margin-left 0.3s ease;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100vh;
+      background: white;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .overlay.active {
+      display: block;
+    }
+    .close-sidebar {
+      align-self: flex-end;
+      background: #f1f1f1;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* === HEADER === */
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 0;
+    }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo img {
+      height: 60px;
+      border-radius: 8px;
+    }
+    .school-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .contact-info a {
+      color: #555;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .call-btn {
+      background-color: #28a745;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .call-btn:hover {
+      background-color: #218838;
+    }
+
+    /* === NAVIGATION === */
+    nav {
+      background: white;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 82px;
+      z-index: 99;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    .nav-links a {
+      font-weight: 500;
+      color: #555;
+      position: relative;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #0d6efd;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #0d6efd;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    .menu-btn {
+      font-size: 1.5rem;
+      color: #555;
+      cursor: pointer;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      min-width: 220px;
+      padding: 10px 0;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+    .dropdown-menu.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-item {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #333;
+      transition: background 0.3s ease;
+    }
+    .dropdown-item:hover {
+      background: #f8f9fa;
+    }
+    .dropdown-divider {
+      height: 1px;
+      background: #eee;
+      margin: 8px 0;
+    }
+
+    /* === ACCESS FORM === */
+    .access-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      transition: opacity 0.3s ease;
+    }
+    .access-form {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      transform: scale(0.9);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .access-overlay.show .access-form {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .access-title {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #0d6efd;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #333;
+    }
+    .error {
+      color: #dc3545;
+      font-size: 0.875rem;
+      margin-top: 5px;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.1rem;
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #0b5ed7;
+    }
+    .welcome-message {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+      color: white;
+      border-radius: 16px;
+      margin: 20px 0;
+    }
+    .welcome-message h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .welcome-message p {
+      opacity: 0.9;
+    }
+
+    /* === SECTIONS === */
+    section {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      color: #0d6efd;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: #0d6efd;
+      border-radius: 3px;
+    }
+
+    /* === HOMEWORK === */
+    .homework-filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-input {
+      flex: 1;
+      min-width: 150px;
+    }
+    .homework-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    .homework-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      border-top: 4px solid #0d6efd;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .homework-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    .homework-date {
+      font-size: 0.875rem;
+      color: #6c757d;
+      margin-bottom: 8px;
+    }
+    .homework-subject {
+      font-weight: 600;
+      color: #0d6efd;
+      margin-bottom: 8px;
+    }
+    .homework-teacher {
+      font-size: 0.875rem;
+      color: #555;
+      margin-bottom: 12px;
+    }
+    .homework-instructions {
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* === TEACHERS === */
+    .teachers-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    .teacher-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .teacher-card:hover {
+      transform: translateY(-5px);
+    }
+    .teacher-avatar {
+      width: 100%;
+      height: 180px;
+      background: #0d6efd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+      font-weight: 600;
+    }
+    .teacher-info {
+      padding: 20px;
+    }
+    .teacher-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .teacher-subject {
+      color: #0d6efd;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .teacher-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.875rem;
+      color: #555;
+    }
+
+    /* === EVENTS === */
+    .events-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .events-timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #0d6efd;
+    }
+    .event-item {
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 30px;
+    }
+    .event-date {
+      position: absolute;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      background: #0d6efd;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .event-content {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .event-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .event-desc {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* === NOTICES === */
+    .notices-board {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .notice-item {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+      border-left: 4px solid #0d6efd;
+      transition: transform 0.3s ease;
+    }
+    .notice-item:hover {
+      transform: translateX(5px);
+    }
+    .notice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .notice-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .priority-badge {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+    }
+    .priority-high {
+      background-color: #dc3545;
+    }
+    .priority-medium {
+      background-color: #fd7e14;
+    }
+    .priority-low {
+      background-color: #198754;
+    }
+    .notice-body {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* === TIMETABLE === */
+    .timetable {
+      overflow-x: auto;
+      margin: 0 auto;
+      max-width: 1000px;
+    }
+    .timetable table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .timetable th {
+      background-color: #0d6efd;
+      color: white;
+      padding: 15px;
+      text-align: left;
+    }
+    .timetable td {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .timetable tr:last-child td {
+      border-bottom: none;
+    }
+    .subject-cell {
+      font-weight: 500;
+      color: #0d6efd;
+    }
+
+    /* === GALLERY === */
+    .gallery-grid {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      height: 180px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* === LIGHTBOX === */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    .lightbox-nav.prev {
+      left: 20px;
+    }
+    .lightbox-nav.next {
+      right: 20px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* === FAQ === */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      margin-bottom: 15px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .faq-question {
+      padding: 20px;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+    .faq-question:hover {
+      background: #f8f9fa;
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: #0d6efd;
+    }
+    .faq-item.active .faq-question::after {
+      content: '−';
+    }
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.active .faq-answer {
+      padding: 20px;
+      max-height: 500px;
+    }
+    .faq-answer p {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* === CONTACT === */
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .contact-form {
+      display: grid;
+      gap: 20px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .messages-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .messages-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .messages-content {
+      background: white;
+      width: 90%;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+    }
+    .messages-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #f1f1f1;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .message-item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .message-item:last-child {
+      border-bottom: none;
+    }
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .message-name {
+      font-weight: 600;
+      color: #333;
+    }
+    .message-time {
+      color: #6c757d;
+      font-size: 0.875rem;
+    }
+    .message-body {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* === SIDEBAR CONTENT === */
+    .sidebar-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .quick-search {
+      margin-bottom: 20px;
+    }
+    .quick-contact {
+      margin-bottom: 20px;
+    }
+    .quick-contact a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+    .quick-contact a:hover {
+      background: #e9ecef;
+    }
+    .analytics {
+      margin-bottom: 20px;
+      display: grid;
+      gap: 10px;
+    }
+    .analytics-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    .import-export {
+      margin-bottom: 20px;
+    }
+    .import-export button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .clear-data {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: #0d6efd;
+      color: white;
+      padding: 60px 0 30px;
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+    .footer-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: rgba(255,255,255,0.5);
+    }
+    .footer-links a {
+      display: block;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.8);
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    .social-links a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* === ADMIN BANNER === */
+    .admin-banner {
+      background: #fff3cd;
+      color: #856404;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #ffeaa7;
+    }
+
+    /* === MESSAGES === */
+    .alert {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+    .alert-danger {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .alert-success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      .contact-info {
+        justify-content: center;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nav-links a {
+        padding: 10px 15px;
+      }
+      .homework-filters {
+        flex-direction: column;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .event-item {
+        padding-left: 50px;
+      }
+      .event-date {
+        width: 36px;
+        height: 36px;
+        font-size: 0.7rem;
+      }
+      .events-timeline::before {
+        left: 16px;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .social-links {
+        justify-content: center;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .main-content {
+        margin-left: 300px;
+      }
+      .sidebar {
+        transform: translateX(0);
+        left: 0;
+      }
+      .sidebar.open {
+        transform: translateX(-100%);
+        left: 0;
+      }
+      .overlay.active {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Admin Update Banner -->
+  <div class="admin-banner">
+    Admin available at <a href="admin.html" style="font-weight: 600;">admin.html</a> — password will be 'Abutalha' (client-side demo).
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="close-sidebar" id="closeSidebar">×</div>
+    
+    <h3 class="sidebar-title">Quick Actions</h3>
+    
+    <div class="quick-search">
+      <label for="sidebarSearch" style="display:block; margin-bottom:8px; font-weight:500;">Search Homework</label>
+      <input type="text" id="sidebarSearch" placeholder="Search assignments..." style="width:100%;">
+    </div>
+
+    <div class="quick-contact">
+      <h3 class="sidebar-title">Contact</h3>
+      <a href="tel:9758919151">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.48 1.454.252 2.87 1.432 3.516.37.194.727.384 1.027.583l.059.036c.857.52 1.632 1.103 2.31 1.746a8.23 8.23 0 0 1 1.898 2.27c.39.532.74.984 1.057 1.302.317.318.77.667 1.302 1.057.74.548 1.557 1.023 2.27 1.898.644.678 1.226 1.453 1.746 2.31l.036.059c.199.3.389.656.583 1.027.646 1.18 2.062 1.912 3.516 1.432l1.035-1.035a.678.678 0 0 0-.063-1.015l-1.3-1.3a.678.678 0 0 0-.818-.131l-1.4.65a.678.678 0 0 0-.465.7v1.292c0 .29.087.57.242.807A8.001 8.001 0 0 1 16 8c0-4.418-3.582-8-8-8a8.001 8.001 0 0 0-5.416 2.076.678.678 0 0 0-.465.7l.65 1.4a.678.678 0 0 0 .7.465l1.4-.65a.678.678 0 0 0 .242-.807A8.001 8.001 0 0 0 8 0z"/>
+        </svg>
+        Call School
+      </a>
+      <a href="mailto:madamsir066@gmail.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+        </svg>
+        Email Us
+      </a>
+    </div>
+
+    <div class="analytics">
+      <h3 class="sidebar-title">Analytics</h3>
+      <div class="analytics-item">
+        <span>Teachers</span>
+        <span id="countTeachers">0</span>
+      </div>
+      <div class="analytics-item">
+        <span>Events</span>
+        <span id="countEvents">0</span>
+      </div>
+      <div class="analytics-item">
+        <span>Notices</span>
+        <span id="countNotices">0</span>
+      </div>
+      <div class="analytics-item">
+        <span>Photos</span>
+        <span id="countGallery">0</span>
+      </div>
+    </div>
+
+    <div class="import-export">
+      <h3 class="sidebar-title">Data Tools</h3>
+      <button class="btn btn-secondary btn-sm" id="exportData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+        </svg>
+        Export Data (JSON)
+      </button>
+      <button class="btn btn-secondary btn-sm" id="importData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+          <path d="M7.646 1.854a.5.5 0 0 0 .708 0l3 3a.5.5 0 0 0-.708.708L8.5 3.707V10.5a.5.5 0 0 0 1 0V3.707l-2.146 1.853a.5.5 0 0 0-.708-.708l-3-3z"/>
+        </svg>
+        Import Data (JSON)
+      </button>
+      <button class="btn btn-secondary btn-sm" id="downloadSnapshot">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-.5.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 1 .5.5v1A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 0 14.5 1h-13zM1 4v-1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1H1zm13 0H2v-1a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5v1zm0 3v1a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-1H14zm0 3v1a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-1H14zm0 3v1a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-1H14z"/>
+        </svg>
+        Download Snapshot
+      </button>
+    </div>
+
+    <div class="clear-data">
+      <button class="btn btn-danger btn-sm" id="clearDemoData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+        </svg>
+        Clear Demo Data
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Main Layout -->
+  <div class="layout">
+    <div class="main-content" id="mainContent">
+      <!-- Header -->
+      <header>
+        <div class="container header-container">
+          <div class="logo">
+            <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="MKPS Logo" />
+            <div>
+              <h1>Milli Karwaan Public School Balrampur</h1>
+              <p>Boluha Police Chowki Balrampur</p>
+            </div>
+          </div>
+          <div class="contact-info">
+            <a href="tel:9758919151">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.48 1.454.252 2.87 1.432 3.516.37.194.727.384 1.027.583l.059.036c.857.52 1.632 1.103 2.31 1.746a8.23 8.23 0 0 1 1.898 2.27c.39.532.74.984 1.057 1.302.317.318.77.667 1.302 1.057.74.548 1.557 1.023 2.27 1.898.644.678 1.226 1.453 1.746 2.31l.036.059c.199.3.389.656.583 1.027.646 1.18 2.062 1.912 3.516 1.432l1.035-1.035a.678.678 0 0 0-.063-1.015l-1.3-1.3a.678.678 0 0 0-.818-.131l-1.4.65a.678.678 0 0 0-.465.7v1.292c0 .29.087.57.242.807A8.001 8.001 0 0 1 16 8c0-4.418-3.582-8-8-8a8.001 8.001 0 0 0-5.416 2.076.678.678 0 0 0-.465.7l.65 1.4a.678.678 0 0 0 .7.465l1.4-.65a.678.678 0 0 0 .242-.807A8.001 8.001 0 0 0 8 0z"/>
+              </svg>
+              9758919151
+            </a>
+            <a href="mailto:madamsir066@gmail.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+              </svg>
+              madamsir066@gmail.com
+            </a>
+            <a href="tel:9758919151" class="call-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.48 1.454.252 2.87 1.432 3.516.37.194.727.384 1.027.583l.059.036c.857.52 1.632 1.103 2.31 1.746a8.23 8.23 0 0 1 1.898 2.27c.39.532.74.984 1.057 1.302.317.318.77.667 1.302 1.057.74.548 1.557 1.023 2.27 1.898.644.678 1.226 1.453 1.746 2.31l.036.059c.199.3.389.656.583 1.027.646 1.18 2.062 1.912 3.516 1.432l1.035-1.035a.678.678 0 0 0-.063-1.015l-1.3-1.3a.678.678 0 0 0-.818-.131l-1.4.65a.678.678 0 0 0-.465.7v1.292c0 .29.087.57.242.807A8.001 8.001 0 0 1 16 8c0-4.418-3.582-8-8-8a8.001 8.001 0 0 0-5.416 2.076.678.678 0 0 0-.465.7l.65 1.4a.678.678 0 0 0 .7.465l1.4-.65a.678.678 0 0 0 .242-.807A8.001 8.001 0 0 0 8 0z"/>
+              </svg>
+              Call School
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Navigation -->
+      <nav>
+        <div class="container nav-container">
+          <ul class="nav-links">
+            <li><a href="#homework" class="active">Homework</a></li>
+            <li><a href="#teachers">Teachers</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#notices">Notices</a></li>
+            <li><a href="#timetable">Timetable</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="menu-btn" id="menuBtn">⋮</div>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="#gallery" class="dropdown-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+              </svg>
+              Gallery
+            </a>
+            <a href="#events" class="dropdown-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+              </svg>
+              Events
+            </a>
+            <a href="#notices" class="dropdown-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+              </svg>
+              Notices
+            </a>
+            <a href="#timetable" class="dropdown-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+              </svg>
+              Timetable
+            </a>
+            <a href="admin.html" class="dropdown-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M12 1a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2V2a1 1 0 0 1 1-1h12zM11 5 8 7.293V15h1v-7.707l3-1.8V5z"/>
+              </svg>
+              Admin Login
+            </a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" id="downloadSnapshotBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-.5.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 1 .5.5v1A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 0 14.5 1h-13zM1 4v-1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1H1zm13 0H2v-1a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5v1zm0 3v1a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-1H14zm0 3v1a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-1H14zm0 3v1a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-1H14z"/>
+              </svg>
+              Download Snapshot
+            </button>
+            <button class="dropdown-item" id="exportDataBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+              </svg>
+              Export Data (JSON)
+            </button>
+            <button class="dropdown-item" id="importDataBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 1.854a.5.5 0 0 0 .708 0l3 3a.5.5 0 0 0-.708.708L8.5 3.707V10.5a.5.5 0 0 0 1 0V3.707l-2.146 1.853a.5.5 0 0 0-.708-.708l-3-3z"/>
+              </svg>
+              Import Data (JSON)
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Student Access Form -->
+      <div class="access-overlay" id="accessOverlay">
+        <div class="access-form">
+          <h2 class="access-title">Student Access</h2>
+          <p style="text-align: center; margin-bottom: 20px; color: #555;">Please enter your details to access your class content.</p>
+          <form id="accessForm">
+            <div class="form-group">
+              <label for="studentName">Student Name</label>
+              <input type="text" id="studentName" placeholder="Enter your full name" required />
+              <div class="error" id="nameError"></div>
+            </div>
+            <div class="form-group">
+              <label for="studentClass">Class</label>
+              <select id="studentClass" required>
+                <option value="">Select Class</option>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+              </select>
+              <div class="error" id="classError"></div>
+            </div>
+            <div class="form-group">
+              <label for="parentName">Parent's Name</label>
+              <input type="text" id="parentName" placeholder="Enter parent/guardian name" required />
+              <div class="error" id="parentError"></div>
+            </div>
+            <button type="submit" class="submit-btn">Access My Class</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Welcome Message -->
+        <div class="welcome-message" id="welcomeMessage" style="display: none;">
+          <h2>Welcome, <span id="welcomeName"></span>!</h2>
+          <p>You are now viewing content for Class <span id="welcomeClass"></span>. Your access is secured.</p>
+        </div>
+
+        <!-- Alert Container -->
+        <div id="alertContainer"></div>
+
+        <!-- Homework Section -->
+        <section id="homework">
+          <h2 class="section-title">Homework Assignments</h2>
+          <div class="homework-filters">
+            <input type="text" id="searchHomework" class="filter-input" placeholder="Search homework..." />
+            <select id="filterClass" class="filter-input">
+              <option value="">All Classes</option>
+              <option value="1">Class 1</option>
+              <option value="2">Class 2</option>
+              <option value="3">Class 3</option>
+              <option value="4">Class 4</option>
+              <option value="5">Class 5</option>
+              <option value="6">Class 6</option>
+              <option value="7">Class 7</option>
+              <option value="8">Class 8</option>
+              <option value="9">Class 9</option>
+              <option value="10">Class 10</option>
+              <option value="11">Class 11</option>
+              <option value="12">Class 12</option>
+            </select>
+          </div>
+          <div class="homework-grid" id="homeworkGrid"></div>
+        </section>
+
+        <!-- Teachers Section -->
+        <section id="teachers">
+          <h2 class="section-title">Our Teachers</h2>
+          <div class="teachers-grid" id="teachersGrid"></div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events">
+          <h2 class="section-title">Upcoming Events</h2>
+          <div class="events-timeline" id="eventsTimeline"></div>
+        </section>
+
+        <!-- Notices Section -->
+        <section id="notices">
+          <h2 class="section-title">School Notices</h2>
+          <div class="notices-board" id="noticesBoard"></div>
+        </section>
+
+        <!-- Timetable Section -->
+        <section id="timetable">
+          <h2 class="section-title">Class Timetable</h2>
+          <div class="timetable">
+            <table id="timetableTable">
+              <thead>
+                <tr>
+                  <th>Period</th>
+                  <th>Subject</th>
+                  <th>Time</th>
+                  <th>Teacher</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery">
+          <h2 class="section-title">School Gallery</h2>
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <div class="faq-container" id="faqContainer"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+          <h2 class="section-title">Contact Us</h2>
+          <div class="contact-container">
+            <form id="contactForm" class="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactName">Your Name</label>
+                  <input type="text" id="contactName" required />
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail">Email Address</label>
+                  <input type="email" id="contactEmail" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactPhone">Phone Number</label>
+                  <input type="tel" id="contactPhone" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px;">
+              <button id="viewMessages" class="btn btn-secondary btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                </svg>
+                View Messages (local)
+              </button>
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightboxImg" />
+      <div class="lightbox-nav prev" id="lightboxPrev">‹</div>
+      <div class="lightbox-nav next" id="lightboxNext">›</div>
+      <div class="lightbox-close" id="lightboxClose">×</div>
+    </div>
+  </div>
+
+  <!-- Messages Modal -->
+  <div class="messages-modal" id="messagesModal">
+    <div class="messages-content">
+      <div class="messages-close" id="messagesClose">×</div>
+      <h2 style="margin-bottom:20px;">Your Messages</h2>
+      <div id="messagesList">
+        <p>No messages yet. Your submissions are stored locally.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === GLOBAL STATE ===
+    let studentData = null;
+    let homeworkData = {};
+    let teachersData = [];
+    let eventsData = [];
+    let noticesData = [];
+    let timetableData = {};
+    let galleryData = [];
+    let messagesData = [];
+    let currentLightboxIndex = 0;
+
+    // === DOM ELEMENTS ===
+    const accessOverlay = document.getElementById('accessOverlay');
+    const accessForm = document.getElementById('accessForm');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const welcomeName = document.getElementById('welcomeName');
+    const welcomeClass = document.getElementById('welcomeClass');
+    const alertContainer = document.getElementById('alertContainer');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const closeSidebar = document.getElementById('closeSidebar');
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const mainContent = document.getElementById('mainContent');
+    const sidebarSearch = document.getElementById('sidebarSearch');
+
+    // === STORAGE KEYS ===
+    const STORAGE_KEYS = {
+      STUDENT: 'mkps_student',
+      HOMEWORK: 'mkps_homework',
+      TEACHERS: 'mkps_teachers',
+      EVENTS: 'mkps_events',
+      NOTICES: 'mkps_notices',
+      TIMETABLE: 'mkps_timetable',
+      GALLERY: 'mkps_gallery',
+      MESSAGES: 'mkps_messages',
+      UPDATE: 'mkps_update'
+    };
+
+    // === UTILITY FUNCTIONS ===
+    function showAlert(message, type = 'danger') {
+      const alert = document.createElement('div');
+      alert.className = `alert alert-${type}`;
+      alert.textContent = message;
+      alertContainer.appendChild(alert);
+      setTimeout(() => {
+        alert.remove();
+      }, 5000);
+    }
+
+    function saveToStorage(key, data) {
+      try {
+        localStorage.setItem(key, JSON.stringify(data));
+        // Trigger storage event manually for same tab
+        window.dispatchEvent(new StorageEvent('storage', {
+          key: key,
+          newValue: JSON.stringify(data)
+        }));
+      } catch (e) {
+        showAlert('Failed to save data. Storage might be full.', 'danger');
+      }
+    }
+
+    function loadFromStorage(key, defaultValue = null) {
+      try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : defaultValue;
+      } catch (e) {
+        showAlert(`Error loading ${key}. Data may be corrupted.`, 'danger');
+        return defaultValue;
+      }
+    }
+
+    function seedData() {
+      // Only seed if keys don't exist
+      if (!loadFromStorage(STORAGE_KEYS.HOMEWORK)) {
+        const sampleHomework = {};
+        for (let cls = 1; cls <= 12; cls++) {
+          sampleHomework[cls] = [
+            { date: '2023-10-15', subject: 'Mathematics', teacher: 'Mr. Sharma', instructions: `Complete exercises 3.1 to 3.5 on algebraic expressions. Submit by ${cls >= 9 ? 'Friday' : 'Monday'}.` },
+            { date: '2023-10-16', subject: 'Science', teacher: 'Mrs. Patel', instructions: 'Prepare a project on the solar system. Include at least 5 planets with their characteristics.' },
+            { date: '2023-10-17', subject: 'English', teacher: 'Ms. Gupta', instructions: 'Write a 300-word essay on "My Favorite Book". Focus on character analysis and plot summary.' },
+            { date: '2023-10-18', subject: 'Social Studies', teacher: 'Mr. Singh', instructions: 'Research the history of the Indian Constitution and prepare a presentation.' }
+          ];
+          if (cls >= 6) {
+            sampleHomework[cls].push({ date: '2023-10-19', subject: 'Computer', teacher: 'Mr. Verma', instructions: 'Create a simple HTML page with headings, paragraphs, and an image.' });
+          }
+        }
+        saveToStorage(STORAGE_KEYS.HOMEWORK, sampleHomework);
+      }
+
+      if (!loadFromStorage(STORAGE_KEYS.TEACHERS)) {
+        saveToStorage(STORAGE_KEYS.TEACHERS, [
+          { name: 'Mr. Rajesh Sharma', subject: 'Mathematics', phone: '9876543210', email: 'sharma.math@mkps.edu.in', avatar: 'RS' },
+          { name: 'Mrs. Anjali Patel', subject: 'Science', phone: '9876543211', email: 'patel.science@mkps.edu.in', avatar: 'AP' },
+          { name: 'Ms. Priya Gupta', subject: 'English', phone: '9876543212', email: 'gupta.english@mkps.edu.in', avatar: 'PG' },
+          { name: 'Mr. Vikram Singh', subject: 'Social Studies', phone: '9876543213', email: 'singh.sst@mkps.edu.in', avatar: 'VS' },
+          { name: 'Mrs. Sunita Verma', subject: 'Computer', phone: '9876543214', email: 'verma.comp@mkps.edu.in', avatar: 'SV' },
+          { name: 'Mr. Arjun Mehta', subject: 'Hindi', phone: '9876543215', email: 'mehta.hindi@mkps.edu.in', avatar: 'AM' },
+          { name: 'Mrs. Neha Reddy', subject: 'Physical Education', phone: '9876543216', email: 'reddy.pe@mkps.edu.in', avatar: 'NR' },
+          { name: 'Ms. Fatima Khan', subject: 'Urdu', phone: '9876543217', email: 'khan.urdu@mkps.edu.in', avatar: 'FK' }
+        ]);
+      }
+
+      if (!loadFromStorage(STORAGE_KEYS.EVENTS)) {
+        saveToStorage(STORAGE_KEYS.EVENTS, [
+          { title: 'Annual Sports Day', date: '2023-11-15', description: 'A day full of athletic competitions, races, and fun activities for all classes.' },
+          { title: 'Science Exhibition', date: '2023-12-05', description: 'Students will showcase their science projects and experiments to parents and guests.' },
+          { title: 'Diwali Celebration', date: '2023-11-12', description: 'Cultural program featuring dances, songs, and traditional Diwali rituals.' },
+          { title: 'Parent-Teacher Meeting', date: '2023-11-20', description: 'One-on-one meetings with teachers to discuss student progress and development.' },
+          { title: 'Annual Day Celebration', date: '2024-03-10', description: 'Grand cultural event with performances by students from all classes.' }
+        ]);
+      }
+
+      if (!loadFromStorage(STORAGE_KEYS.NOTICES)) {
+        saveToStorage(STORAGE_KEYS.NOTICES, [
+          { title: 'School Closed on Monday', body: 'Due to regional holiday, school will remain closed on 23rd October 2023.', priority: 'high' },
+          { title: 'New Uniform Policy', body: 'Starting November 1st, all students must wear the new winter uniform. Available at school store.', priority: 'medium' },
+          { title: 'PTA Meeting Scheduled', body: 'Next Parent-Teacher Association meeting will be held on 25th October at 4 PM in the auditorium.', priority: 'medium' },
+          { title: 'Library Renovation', body: 'The school library will be under renovation from 20th to 25th October. Books can be accessed from the temporary reading area.', priority: 'low' },
+          { title: 'Math Olympiad Registration', body: 'Interested students from classes 6-12 can register for the National Math Olympiad by 30th October.', priority: 'high' }
+        ]);
+      }
+
+      if (!loadFromStorage(STORAGE_KEYS.TIMETABLE)) {
+        saveToStorage(STORAGE_KEYS.TIMETABLE, {
+          'Monday': [
+            { period: '1', subject: 'Mathematics', time: '9:00-9:45', teacher: 'Mr. Sharma' },
+            { period: '2', subject: 'Science', time: '9:45-10:30', teacher: 'Mrs. Patel' },
+            { period: '3', subject: 'English', time: '10:45-11:30', teacher: 'Ms. Gupta' },
+            { period: '4', subject: 'Social Studies', time: '11:30-12:15', teacher: 'Mr. Singh' }
+          ],
+          'Tuesday': [
+            { period: '1', subject: 'Hindi', time: '9:00-9:45', teacher: 'Mr. Mehta' },
+            { period: '2', subject: 'Computer', time: '9:45-10:30', teacher: 'Mrs. Verma' },
+            { period: '3', subject: 'Mathematics', time: '10:45-11:30', teacher: 'Mr. Sharma' },
+            { period: '4', subject: 'Science', time: '11:30-12:15', teacher: 'Mrs. Patel' }
+          ],
+          'Wednesday': [
+            { period: '1', subject: 'English', time: '9:00-9:45', teacher: 'Ms. Gupta' },
+            { period: '2', subject: 'Social Studies', time: '9:45-10:30', teacher: 'Mr. Singh' },
+            { period: '3', subject: 'Hindi', time: '10:45-11:30', teacher: 'Mr. Mehta' },
+            { period: '4', subject: 'Computer', time: '11:30-12:15', teacher: 'Mrs. Verma' }
+          ],
+          'Thursday': [
+            { period: '1', subject: 'Science', time: '9:00-9:45', teacher: 'Mrs. Patel' },
+            { period: '2', subject: 'Mathematics', time: '9:45-10:30', teacher: 'Mr. Sharma' },
+            { period: '3', subject: 'English', time: '10:45-11:30', teacher: 'Ms. Gupta' },
+            { period: '4', subject: 'Social Studies', time: '11:30-12:15', teacher: 'Mr. Singh' }
+          ],
+          'Friday': [
+            { period: '1', subject: 'Computer', time: '9:00-9:45', teacher: 'Mrs. Verma' },
+            { period: '2', subject: 'Hindi', time: '9:45-10:30', teacher: 'Mr. Mehta' },
+            { period: '3', subject: 'Science', time: '10:45-11:30', teacher: 'Mrs. Patel' },
+            { period: '4', subject: 'Mathematics', time: '11:30-12:15', teacher: 'Mr. Sharma' }
+          ]
+        });
+      }
+
+      if (!loadFromStorage(STORAGE_KEYS.GALLERY)) {
+        saveToStorage(STORAGE_KEYS.GALLERY, [
+          'https://placehold.co/600x400/0d6efd/white?text=School+Building',
+          'https://placehold.co/600x400/0d6efd/white?text=Classroom',
+          'https://placehold.co/600x400/0d6efd/white?text=Science+Lab',
+          'https://placehold.co/600x400/0d6efd/white?text=Library',
+          'https://placehold.co/600x400/0d6efd/white?text=Sports+Day',
+          'https://placehold.co/600x400/0d6efd/white?text=Science+Fair',
+          'https://placehold.co/600x400/0d6efd/white?text=Annual+Day',
+          'https://placehold.co/600x400/0d6efd/white?text=Students+Learning',
+          'https://placehold.co/600x400/0d6efd/white?text=Teachers+Meeting',
+          'https://placehold.co/600x400/0d6efd/white?text=School+Event',
+          'https://placehold.co/600x400/0d6efd/white?text=Computer+Lab',
+          'https://placehold.co/600x400/0d6efd/white?text=Art+Class'
+        ]);
+      }
+
+      if (!loadFromStorage(STORAGE_KEYS.MESSAGES)) {
+        saveToStorage(STORAGE_KEYS.MESSAGES, []);
+      }
+    }
+
+    // === RENDERING FUNCTIONS ===
+    function renderHomeworkFor(cls = null) {
+      const grid = document.getElementById('homeworkGrid');
+      grid.innerHTML = '';
+
+      const searchQuery = document.getElementById('searchHomework').value.toLowerCase();
+      const filterClass = document.getElementById('filterClass').value;
+      const classToRender = cls || (studentData ? studentData.class : null);
+
+      const filtered = Object.keys(homeworkData)
+        .filter(c => {
+          if (filterClass && c !== filterClass) return false;
+          if (classToRender && !filterClass && c !== classToRender) return false;
+          return true;
+        })
+        .flatMap(c => 
+          homeworkData[c].map(hw => ({ ...hw, class: c }))
+        )
+        .filter(hw => 
+          hw.subject.toLowerCase().includes(searchQuery) ||
+          hw.instructions.toLowerCase().includes(searchQuery) ||
+          hw.teacher.toLowerCase().includes(searchQuery)
+        );
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #6c757d;">No homework found matching your criteria.</p>';
+        return;
+      }
+
+      filtered.forEach(hw => {
+        const card = document.createElement('div');
+        card.className = 'homework-card';
+        card.innerHTML = `
+          <div class="homework-date">${hw.date}</div>
+          <div class="homework-subject">Class ${hw.class} - ${hw.subject}</div>
+          <div class="homework-teacher">By ${hw.teacher}</div>
+          <div class="homework-instructions">${hw.instructions}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function refreshTeachers() {
+      const grid = document.getElementById('teachersGrid');
+      grid.innerHTML = '';
+
+      teachersData.forEach(teacher => {
+        const card = document.createElement('div');
+        card.className = 'teacher-card';
+        card.innerHTML = `
+          <div class="teacher-avatar">${teacher.avatar}</div>
+          <div class="teacher-info">
+            <div class="teacher-name">${teacher.name}</div>
+            <div class="teacher-subject">${teacher.subject}</div>
+            <div class="teacher-contact">
+              <a href="tel:${teacher.phone}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.48 1.454.252 2.87 1.432 3.516.37.194.727.384 1.027.583l.059.036c.857.52 1.632 1.103 2.31 1.746a8.23 8.23 0 0 1 1.898 2.27c.39.532.74.984 1.057 1.302.317.318.77.667 1.302 1.057.74.548 1.557 1.023 2.27 1.898.644.678 1.226 1.453 1.746 2.31l.036.059c.199.3.389.656.583 1.027.646 1.18 2.062 1.912 3.516 1.432l1.035-1.035a.678.678 0 0 0-.063-1.015l-1.3-1.3a.678.678 0 0 0-.818-.131l-1.4.65a.678.678 0 0 0-.465.7v1.292c0 .29.087.57.242.807A8.001 8.001 0 0 1 16 8c0-4.418-3.582-8-8-8a8.001 8.001 0 0 0-5.416 2.076.678.678 0 0 0-.465.7l.65 1.4a.678.678 0 0 0 .7.465l1.4-.65a.678.678 0 0 0 .242-.807A8.001 8.001 0 0 0 8 0z"/>
+                </svg>
+                ${teacher.phone}
+              </a>
+              <a href="mailto:${teacher.email}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                </svg>
+                ${teacher.email}
+              </a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function refreshEvents() {
+      const timeline = document.getElementById('eventsTimeline');
+      timeline.innerHTML = '';
+
+      eventsData.forEach(event => {
+        const item = document.createElement('div');
+        item.className = 'event-item';
+        const date = new Date(event.date);
+        item.innerHTML = `
+          <div class="event-date">
+            ${date.getDate()}<br/>
+            <small>${date.toLocaleString('default', { month: 'short' })}</small>
+          </div>
+          <div class="event-content">
+            <div class="event-title">${event.title}</div>
+            <div class="event-desc">${event.description}</div>
+          </div>
+        `;
+        timeline.appendChild(item);
+      });
+    }
+
+    function refreshNotices() {
+      const board = document.getElementById('noticesBoard');
+      board.innerHTML = '';
+
+      noticesData.forEach(notice => {
+        const item = document.createElement('div');
+        item.className = 'notice-item';
+        item.innerHTML = `
+          <div class="notice-header">
+            <div class="notice-title">${notice.title}</div>
+            <span class="priority-badge priority-${notice.priority}">${notice.priority.toUpperCase()}</span>
+          </div>
+          <div class="notice-body">${notice.body}</div>
+        `;
+        board.appendChild(item);
+      });
+    }
+
+    function refreshTimetable() {
+      const tbody = document.getElementById('timetableTable').querySelector('tbody');
+      tbody.innerHTML = '';
+
+      Object.keys(timetableData).forEach(day => {
+        const dayRow = document.createElement('tr');
+        dayRow.innerHTML = `<td colspan="4"><strong>${day}</strong></td>`;
+        tbody.appendChild(dayRow);
+
+        timetableData[day].forEach(slot => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${slot.period}</td>
+            <td class="subject-cell">${slot.subject}</td>
+            <td>${slot.time}</td>
+            <td>${slot.teacher}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      });
+    }
+
+    function refreshGallery() {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+
+      galleryData.forEach((img, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="${img}" alt="Gallery image ${index + 1}" />`;
+        item.addEventListener('click', () => openLightbox(index));
+        grid.appendChild(item);
+      });
+    }
+
+    function refreshMessages() {
+      const list = document.getElementById('messagesList');
+      if (messagesData.length === 0) {
+        list.innerHTML = '<p>No messages yet. Your submissions are stored locally.</p>';
+        return;
+      }
+
+      list.innerHTML = '';
+      messagesData.slice().reverse().forEach(msg => {
+        const item = document.createElement('div');
+        item.className = 'message-item';
+        const date = new Date(msg.timestamp);
+        item.innerHTML = `
+          <div class="message-header">
+            <span class="message-name">${msg.name}</span>
+            <span class="message-time">${date.toLocaleString()}</span>
+          </div>
+          <div class="message-body">
+            <strong>Email:</strong> ${msg.email}<br/>
+            <strong>Phone:</strong> ${msg.phone || 'Not provided'}<br/>
+            <strong>Message:</strong> ${msg.message}
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function updateAnalytics() {
+      document.getElementById('countTeachers').textContent = teachersData.length;
+      document.getElementById('countEvents').textContent = eventsData.length;
+      document.getElementById('countNotices').textContent = noticesData.length;
+      document.getElementById('countGallery').textContent = galleryData.length;
+    }
+
+    // === LIGHTBOX FUNCTIONS ===
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      const img = document.getElementById('lightboxImg');
+      img.src = galleryData[currentLightboxIndex];
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+      if (direction === 'next') {
+        currentLightboxIndex = (currentLightboxIndex + 1) % galleryData.length;
+      } else {
+        currentLightboxIndex = (currentLightboxIndex - 1 + galleryData.length) % galleryData.length;
+      }
+      document.getElementById('lightboxImg').src = galleryData[currentLightboxIndex];
+    }
+
+    // === DATA EXPORT/IMPORT ===
+    function exportData() {
+      const data = {};
+      Object.values(STORAGE_KEYS).forEach(key => {
+        if (key !== STORAGE_KEYS.UPDATE) {
+          data[key] = loadFromStorage(key);
+        }
+      });
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `mkps-data-backup-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function importData() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      input.onchange = e => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = event => {
+          try {
+            const imported = JSON.parse(event.target.result);
+            
+            // Validate and import each key
+            Object.values(STORAGE_KEYS).forEach(key => {
+              if (key !== STORAGE_KEYS.UPDATE && imported[key] !== undefined) {
+                saveToStorage(key, imported[key]);
+              }
+            });
+
+            // Update all data in memory
+            loadData();
+            
+            showAlert('Data imported successfully!', 'success');
+          } catch (e) {
+            showAlert('Invalid JSON file. Please check the format.', 'danger');
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    function downloadSnapshot() {
+      const studentClass = studentData ? studentData.class : 'All';
+      const date = new Date().toLocaleDateString();
+      
+      let content = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>MKPS Snapshot - ${date}</title>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; }
+            h1 { color: #0d6efd; border-bottom: 2px solid #0d6efd; padding-bottom: 10px; }
+            h2 { color: #0d6efd; margin-top: 30px; border-left: 4px solid #0d6efd; padding-left: 10px; }
+            .homework-item, .event-item, .notice-item { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 8px; }
+            .date { color: #6c757d; font-size: 0.9em; }
+            footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #6c757d; font-size: 0.9em; }
+          </style>
+        </head>
+        <body>
+          <h1>Milli Karwaan Public School Balrampur</h1>
+          <p><strong>Generated on:</strong> ${date}</p>
+          <p><strong>For Class:</strong> ${studentClass}</p>
+      `;
+
+      // Add Homework
+      content += `<h2>Homework Assignments</h2>`;
+      const hwForClass = studentData ? homeworkData[studentData.class] || [] : Object.values(homeworkData).flat();
+      const recentHomework = hwForClass.slice(-5).reverse();
+      if (recentHomework.length > 0) {
+        recentHomework.forEach(hw => {
+          content += `
+            <div class="homework-item">
+              <div class="date">${hw.date}</div>
+              <strong>${hw.subject}</strong> by ${hw.teacher}<br>
+              ${hw.instructions}
+            </div>
+          `;
+        });
+      } else {
+        content += `<p>No homework assignments found.</p>`;
+      }
+
+      // Add Events
+      content += `<h2>Upcoming Events</h2>`;
+      const upcomingEvents = eventsData.filter(e => new Date(e.date) >= new Date()).slice(0, 5);
+      if (upcomingEvents.length > 0) {
+        upcomingEvents.forEach(event => {
+          content += `
+            <div class="event-item">
+              <div class="date">${event.date}</div>
+              <strong>${event.title}</strong><br>
+              ${event.description}
+            </div>
+          `;
+        });
+      } else {
+        content += `<p>No upcoming events found.</p>`;
+      }
+
+      // Add Notices
+      content += `<h2>School Notices</h2>`;
+      const recentNotices = noticesData.slice(-5).reverse();
+      if (recentNotices.length > 0) {
+        recentNotices.forEach(notice => {
+          content += `
+            <div class="notice-item">
+              <strong>${notice.title}</strong> <span style="background: ${notice.priority === 'high' ? '#dc3545' : notice.priority === 'medium' ? '#fd7e14' : '#198754'}; color: white; padding: 2px 6px; border-radius: 3px; font-size: 0.8em;">${notice.priority.toUpperCase()}</span><br>
+              ${notice.body}
+            </div>
+          `;
+        });
+      } else {
+        content += `<p>No notices found.</p>`;
+      }
+
+      content += `
+        <footer>
+          <p>This is a snapshot of Milli Karwaan Public School Balrampur data as of ${date}.</p>
+          <p>Contact: 9758919151 | madamsir066@gmail.com | Boluha Police Chowki Balrampur</p>
+        </footer>
+      </body>
+      </html>
+      `;
+
+      const blob = new Blob([content], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `mkps-snapshot-${date}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // === EVENT HANDLERS ===
+    function handleAccessForm(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('studentName').value.trim();
+      const cls = document.getElementById('studentClass').value;
+      const parent = document.getElementById('parentName').value.trim();
+      
+      // Reset errors
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('classError').textContent = '';
+      document.getElementById('parentError').textContent = '';
+      
+      let valid = true;
+      
+      if (!name) {
+        document.getElementById('nameError').textContent = 'Student name is required.';
+        valid = false;
+      }
+      
+      if (!cls) {
+        document.getElementById('classError').textContent = 'Please select a class.';
+        valid = false;
+      }
+      
+      if (!parent) {
+        document.getElementById('parentError').textContent = 'Parent name is required.';
+        valid = false;
+      }
+      
+      if (!valid) return;
+      
+      // Save student data
+      studentData = { name, class: cls, parent };
+      saveToStorage(STORAGE_KEYS.STUDENT, studentData);
+      
+      // Update UI
+      welcomeName.textContent = name;
+      welcomeClass.textContent = cls;
+      welcomeMessage.style.display = 'block';
+      accessOverlay.style.display = 'none';
+      
+      // Update homework for this class
+      renderHomeworkFor(cls);
+      
+      // Prevent going back to form
+      history.pushState({ accessGranted: true }, '');
+    }
+
+    function handleContactForm(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const phone = document.getElementById('contactPhone').value.trim();
+      const message = document.getElementById('contactMessage').value.trim();
+      
+      if (!name || !email || !message) {
+        showAlert('Please fill in all required fields.', 'danger');
+        return;
+      }
+      
+      const newMessage = {
+        name,
+        email,
+        phone,
+        message,
+        timestamp: new Date().toISOString()
+      };
+      
+      messagesData.push(newMessage);
+      saveToStorage(STORAGE_KEYS.MESSAGES, messagesData);
+      
+      // Reset form
+      document.getElementById('contactForm').reset();
+      showAlert('Message sent successfully! It has been saved locally.', 'success');
+    }
+
+    function handleStorageChange(e) {
+      if (e.key === STORAGE_KEYS.UPDATE && e.newValue !== e.oldValue) {
+        // Data has been updated, refresh everything
+        loadData();
+        showAlert('Content updated from another tab!', 'success');
+      }
+    }
+
+    // === INITIALIZATION ===
+    function loadData() {
+      studentData = loadFromStorage(STORAGE_KEYS.STUDENT);
+      homeworkData = loadFromStorage(STORAGE_KEYS.HOMEWORK, {});
+      teachersData = loadFromStorage(STORAGE_KEYS.TEACHERS, []);
+      eventsData = loadFromStorage(STORAGE_KEYS.EVENTS, []);
+      noticesData = loadFromStorage(STORAGE_KEYS.NOTICES, []);
+      timetableData = loadFromStorage(STORAGE_KEYS.TIMETABLE, {});
+      galleryData = loadFromStorage(STORAGE_KEYS.GALLERY, []);
+      messagesData = loadFromStorage(STORAGE_KEYS.MESSAGES, []);
+    }
+
+    function init() {
+      // Seed data if needed
+      seedData();
+      
+      // Load all data
+      loadData();
+      
+      // Check if student has access
+      if (studentData) {
+        welcomeName.textContent = studentData.name;
+        welcomeClass.textContent = studentData.class;
+        welcomeMessage.style.display = 'block';
+        accessOverlay.style.display = 'none';
+        renderHomeworkFor(studentData.class);
+        
+        // Prevent going back to form
+        history.pushState({ accessGranted: true }, '');
+      } else {
+        accessOverlay.style.display = 'flex';
+      }
+      
+      // Render all sections
+      refreshTeachers();
+      refreshEvents();
+      refreshNotices();
+      refreshTimetable();
+      refreshGallery();
+      refreshMessages();
+      updateAnalytics();
+      
+      // Set up event listeners
+      accessForm.addEventListener('submit', handleAccessForm);
+      document.getElementById('contactForm').addEventListener('submit', handleContactForm);
+      window.addEventListener('storage', handleStorageChange);
+      
+      // Sidebar and menu
+      menuBtn.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('open');
+      });
+      
+      closeSidebar.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      });
+      
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      });
+      
+      // Show sidebar on larger screens
+      if (window.innerWidth >= 992) {
+        sidebar.classList.add('open');
+      } else {
+        document.getElementById('menuBtn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          sidebar.classList.add('open');
+          overlay.classList.add('active');
+        });
+      }
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!dropdownMenu.contains(e.target) && e.target !== menuBtn) {
+          dropdownMenu.classList.remove('open');
+        }
+      });
+      
+      // Homework filters
+      document.getElementById('searchHomework').addEventListener('input', renderHomeworkFor);
+      document.getElementById('filterClass').addEventListener('change', renderHomeworkFor);
+      sidebarSearch.addEventListener('input', () => {
+        document.getElementById('searchHomework').value = sidebarSearch.value;
+        renderHomeworkFor();
+      });
+      
+      // Lightbox
+      document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+      document.getElementById('lightboxPrev').addEventListener('click', () => navigateLightbox('prev'));
+      document.getElementById('lightboxNext').addEventListener('click', () => navigateLightbox('next'));
+      document.addEventListener('keydown', (e) => {
+        if (document.getElementById('lightbox').classList.contains('open')) {
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowLeft') navigateLightbox('prev');
+          if (e.key === 'ArrowRight') navigateLightbox('next');
+        }
+      });
+      
+      // FAQ
+      document.getElementById('faqContainer').addEventListener('click', (e) => {
+        const faqItem = e.target.closest('.faq-item');
+        if (!faqItem) return;
+        faqItem.classList.toggle('active');
+      });
+      
+      // Messages modal
+      document.getElementById('viewMessages').addEventListener('click', () => {
+        document.getElementById('messagesModal').classList.add('open');
+      });
+      document.getElementById('messagesClose').addEventListener('click', () => {
+        document.getElementById('messagesModal').classList.remove('open');
+      });
+      
+      // Data tools
+      document.getElementById('exportData').addEventListener('click', exportData);
+      document.getElementById('importData').addEventListener('click', importData);
+      document.getElementById('downloadSnapshot').addEventListener('click', downloadSnapshot);
+      document.getElementById('downloadSnapshotBtn').addEventListener('click', downloadSnapshot);
+      document.getElementById('exportDataBtn').addEventListener('click', exportData);
+      document.getElementById('importDataBtn').addEventListener('click', importData);
+      
+      document.getElementById('clearDemoData').addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear all demo data? This cannot be undone.')) {
+          Object.values(STORAGE_KEYS).forEach(key => {
+            if (key !== STORAGE_KEYS.STUDENT && key !== STORAGE_KEYS.UPDATE) {
+              localStorage.removeItem(key);
+            }
+          });
+          showAlert('Demo data cleared. Page will refresh.', 'success');
+          setTimeout(() => location.reload(), 1000);
+        }
+      });
+      
+      // Prevent back to form
+      window.addEventListener('popstate', (e) => {
+        if (!studentData) {
+          history.pushState(null, '');
+          accessOverlay.style.display = 'flex';
+        }
+      });
+      
+      // Set up admin hooks
+      window.renderHomeworkFor = renderHomeworkFor;
+      window.refreshTeachers = refreshTeachers;
+      window.refreshEvents = refreshEvents;
+      window.refreshNotices = refreshNotices;
+      window.refreshTimetable = refreshTimetable;
+      window.refreshGallery = refreshGallery;
+      window.refreshMessages = refreshMessages;
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', init);
+
+    // Create FAQ data if not exists
+    if (!loadFromStorage('mkps_faq')) {
+      saveToStorage('mkps_faq', [
+        { q: 'What are the school hours?', a: 'School operates from 8:00 AM to 2:00 PM, Monday through Friday.' },
+        { q: 'How can I pay school fees?', a: 'Fees can be paid online through our portal or in person at the school office.' },
+        { q: 'What is the student-teacher ratio?', a: 'We maintain a healthy ratio of 25:1 to ensure personalized attention.' },
+        { q: 'Are textbooks provided?', a: 'Core textbooks are provided by the school. Supplementary materials may need to be purchased.' },
+        { q: 'Is transportation available?', a: 'Yes, we offer bus services to various locations in and around Balrampur.' }
+      ]);
+    }
+
+    // Render FAQ
+    const faqContainer = document.getElementById('faqContainer');
+    const faqData = loadFromStorage('mkps_faq', []);
+    faqData.forEach(item => {
+      const faqItem = document.createElement('div');
+      faqItem.className = 'faq-item';
+      faqItem.innerHTML = `
+        <div class="faq-question">${item.q}</div>
+        <div class="faq-answer"><p>${item.a}</p></div>
+      `;
+      faqContainer.appendChild(faqItem);
+    });
+  </script>
+</body>
+</html>
