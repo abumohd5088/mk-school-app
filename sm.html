@@ -1,0 +1,2959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Milli Karwaan Public School Balrampur - Gyaan, Anushaasan aur Samarpan — Bhavishya ki Raah" />
+  <title>Milli Karwaan Public School Balrampur</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+  <style>
+    :root {
+      --primary: #e53935;
+      --primary-light: #ef5350;
+      --primary-dark: #c62828;
+      --accent: #1e88e5;
+      --text: #212121;
+      --text-light: #757575;
+      --bg: #f8f9fa;
+      --bg-alt: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(0, 0, 0, 0.1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+      --radius: 16px;
+      --radius-md: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --gap: 1rem;
+      --gap-lg: 2rem;
+      --header-height: 72px;
+    }
+
+    .dark-mode {
+      --primary: #f44336;
+      --primary-light: #ff7961;
+      --primary-dark: #d32f2f;
+      --text: #e0e0e0;
+      --text-light: #aaaaaa;
+      --bg: #121212;
+      --bg-alt: #1e1e1e;
+      --card-bg: rgba(30, 30, 30, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: var(--transition);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--gap);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-danger {
+      background: #d32f2f;
+    }
+
+    .btn-danger:hover {
+      background: #b71c1c;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-alt);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--card-border);
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--gap);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .school-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .school-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .school-tagline {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-info {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .call-btn {
+      background: var(--primary);
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .call-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Nav */
+    nav {
+      background: var(--bg-alt);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .main-nav {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    .main-nav a {
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .main-nav a:hover, .main-nav a.active {
+      color: var(--primary);
+    }
+
+    .main-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .main-nav a:hover::after, .main-nav a.active::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 60px 0;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .counters {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .counter {
+      text-align: center;
+    }
+
+    .counter-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .counter-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-light);
+      color: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    /* Homework */
+    .homework-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 16px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      background: var(--bg-alt);
+      font-size: 1rem;
+    }
+
+    .filter-select {
+      padding: 10px 16px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      background: var(--bg-alt);
+    }
+
+    .homework-item {
+      border-left: 4px solid var(--primary);
+      padding: 16px;
+      margin-bottom: 16px;
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .homework-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .homework-date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .homework-subject {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .homework-teacher {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .homework-instructions {
+      margin: 12px 0;
+      line-height: 1.5;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      background: var(--primary-light);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Teachers */
+    .teacher-card {
+      text-align: center;
+    }
+
+    .teacher-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 16px;
+      border: 3px solid var(--primary-light);
+    }
+
+    .teacher-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .teacher-subject {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .teacher-contact {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .contact-icon {
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .contact-icon:hover {
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Events */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      margin-left: 20px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary-light);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--bg-alt);
+    }
+
+    .event-date {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .event-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-left: 10px;
+    }
+
+    .badge-today {
+      background: #4caf50;
+      color: white;
+    }
+
+    .badge-upcoming {
+      background: #2196f3;
+      color: white;
+    }
+
+    /* Notices */
+    .notice {
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: var(--radius-md);
+      border-left: 4px solid #ccc;
+      background: var(--card-bg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .notice.priority-high {
+      border-left-color: #f44336;
+    }
+
+    .notice.priority-medium {
+      border-left-color: #ff9800;
+    }
+
+    .notice.priority-low {
+      border-left-color: #4caf50;
+    }
+
+    .notice-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .notice-title {
+      font-weight: 600;
+    }
+
+    .priority-badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .priority-high .priority-badge {
+      background: #f44336;
+      color: white;
+    }
+
+    .priority-medium .priority-badge {
+      background: #ff9800;
+      color: white;
+    }
+
+    .priority-low .priority-badge {
+      background: #4caf50;
+      color: white;
+    }
+
+    /* Timetable */
+    .timetable {
+      overflow-x: auto;
+    }
+
+    .timetable-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    .timetable-table th, .timetable-table td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid var(--card-border);
+    }
+
+    .timetable-table th {
+      background: var(--primary);
+      color: white;
+    }
+
+    .timetable-table tr:nth-child(even) {
+      background: var(--bg-alt);
+    }
+
+    .class-switcher {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .class-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      background: var(--bg-alt);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .class-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Labs & Clubs */
+    .lab-card {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .lab-img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+      transition: var(--transition);
+    }
+
+    .lab-card:hover .lab-img {
+      transform: scale(1.05);
+    }
+
+    .lab-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 16px;
+      text-align: left;
+    }
+
+    .lab-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .lab-desc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .view-work-btn {
+      margin-top: 12px;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      flex-direction: column;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 8px;
+    }
+
+    .lightbox-caption {
+      color: white;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 1.1rem;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* Achievements */
+    .achievement-card {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .trophy-icon {
+      font-size: 3rem;
+      color: gold;
+      margin-bottom: 16px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .achievement-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .achievement-desc {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 16px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 16px;
+      background: var(--bg-alt);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-weight: bold;
+    }
+
+    .faq-question[aria-expanded="true"]::after {
+      content: '−';
+    }
+
+    .faq-answer {
+      padding: 0 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease;
+    }
+
+    .faq-answer.open {
+      max-height: 200px;
+      padding: 16px;
+    }
+
+    /* Contact */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      background: var(--bg-alt);
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      background: var(--primary);
+      color: white;
+      border-radius: var(--radius) var(--radius) 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .message-item {
+      padding: 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .message-name {
+      font-weight: 600;
+    }
+
+    .message-date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .message-subject {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .message-text {
+      line-height: 1.6;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: var(--header-height);
+      left: -300px;
+      width: 300px;
+      height: calc(100vh - var(--header-height));
+      background: var(--bg-alt);
+      border-right: 1px solid var(--card-border);
+      padding: 24px;
+      z-index: 900;
+      transition: var(--transition);
+      overflow-y: auto;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .sidebar-close {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    .sidebar-menu {
+      list-style: none;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      color: var(--text);
+      border-radius: var(--radius-md);
+      margin-bottom: 8px;
+      transition: var(--transition);
+    }
+
+    .sidebar-menu a:hover {
+      background: var(--primary-light);
+      color: white;
+    }
+
+    .sidebar-menu a.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0;
+      padding: 10px;
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 24px;
+      background: #ccc;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+
+    .toggle-switch::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .dark-mode .toggle-switch {
+      background: var(--primary);
+    }
+
+    .dark-mode .toggle-switch::before {
+      left: 28px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .counters {
+        gap: 20px;
+      }
+
+      .counter-number {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .main-nav {
+        position: fixed;
+        top: var(--header-height);
+        left: -100%;
+        width: 100%;
+        background: var(--bg-alt);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .main-nav.open {
+        left: 0;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .counters {
+        gap: 16px;
+      }
+
+      .counter {
+        flex: 1;
+        min-width: 120px;
+      }
+
+      .contact-actions {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .contact-info {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        padding: 40px 0;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .homework-controls {
+        flex-direction: column;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .slide-up {
+      animation: slideUp 0.6s ease-out forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #f44336;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* Gate */
+    .gate-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+      transition: opacity 0.5s;
+    }
+
+    .gate-content {
+      background: white;
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .gate-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .form-group-gate {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-label-gate {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control-gate {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+    }
+
+    .error-message {
+      color: #d32f2f;
+      font-size: 0.9rem;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Print Styles */
+    @media print {
+      header, nav, .sidebar, .modal, .lightbox, .btn, .homework-controls, .contact-form {
+        display: none !important;
+      }
+
+      body {
+        background: white !important;
+        color: black !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      .homework-item, .notice, .timeline-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Student Access Gate -->
+  <div id="gateOverlay" class="gate-overlay">
+    <div class="gate-content">
+      <h2 class="gate-title">Student Access</h2>
+      <p>Welcome to Milli Karwaan Public School Balrampur. Please enter your details to access your portal.</p>
+      <form id="gateForm">
+        <div class="form-group-gate">
+          <label class="form-label-gate" for="studentName">Student Name</label>
+          <input type="text" id="studentName" class="form-control-gate" required />
+          <div class="error-message" id="nameError">Please enter your full name</div>
+        </div>
+        <div class="form-group-gate">
+          <label class="form-label-gate" for="studentClass">Class (1-12)</label>
+          <input type="number" id="studentClass" class="form-control-gate" min="1" max="12" required />
+          <div class="error-message" id="classError">Class must be between 1 and 12</div>
+        </div>
+        <div class="form-group-gate">
+          <label class="form-label-gate" for="parentName">Parent's Name</label>
+          <input type="text" id="parentName" class="form-control-gate" required />
+          <div class="error-message" id="parentError">Please enter parent's full name</div>
+        </div>
+        <button type="submit" class="btn" style="width:100%">Enter Portal</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="MKPS Logo" class="logo" />
+      <div class="school-info">
+        <div class="school-name">Milli Karwaan Public School Balrampur</div>
+        <div class="school-tagline">Gyaan, Anushaasan aur Samarpan — Bhavishya ki Raah</div>
+      </div>
+    </div>
+    <div class="contact-actions">
+      <div class="contact-info">
+        <div><i class="fas fa-map-marker-alt"></i> Boluha Police Chowki Balrampur, UP</div>
+        <div><i class="fas fa-envelope"></i> madamsir066@gmail.com</div>
+      </div>
+      <a href="tel:9758919151" class="call-btn"><i class="fas fa-phone"></i> CALL</a>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-container">
+      <ul class="main-nav" id="mainNav">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#homework">Homework</a></li>
+        <li><a href="#teachers">Teachers</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#notices">Notices</a></li>
+        <li><a href="#timetable">Timetable</a></li>
+        <li><a href="#fees">Fees</a></li>
+        <li><a href="#labs">Labs & Clubs</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle"><i class="fas fa-ellipsis-v"></i></button>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Quick Access</div>
+      <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="#homework"><i class="fas fa-book"></i> Homework Search</a></li>
+      <li><a href="#notices"><i class="fas fa-bullhorn"></i> Notices</a></li>
+      <li><a href="#events"><i class="fas fa-calendar"></i> Events</a></li>
+      <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+      <li><a href="admin.html" target="_blank"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+      <li><a href="#" id="exportData"><i class="fas fa-file-export"></i> Export Data</a></li>
+      <li><a href="#" id="importData"><i class="fas fa-file-import"></i> Import Data</a></li>
+      <li><a href="#" id="downloadSnapshot"><i class="fas fa-download"></i> Download Snapshot</a></li>
+      <li><a href="#" id="resetDemo"><i class="fas fa-undo"></i> Reset Demo</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <span>Light</span>
+      <div class="toggle-switch" id="themeToggle"></div>
+      <span>Dark</span>
+    </div>
+    <div class="card" style="margin-top:20px;">
+      <div class="card-header">
+        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="card-title">Analytics</div>
+      </div>
+      <div id="analyticsStats">
+        <p>Homework: <span id="homeworkCount">0</span></p>
+        <p>Notices: <span id="noticesCount">0</span></p>
+        <p>Events: <span id="eventsCount">0</span></p>
+        <p>Messages: <span id="messagesCount">0</span></p>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <h1>Milli Karwaan Public School Balrampur</h1>
+        <p>Empowering students with knowledge, discipline, and dedication for a brighter future.</p>
+        <div class="counters">
+          <div class="counter">
+            <div class="counter-number" id="studentCounter">1,247</div>
+            <div class="counter-label">Students</div>
+          </div>
+          <div class="counter">
+            <div class="counter-number" id="teacherCounter">48</div>
+            <div class="counter-label">Teachers</div>
+          </div>
+          <div class="counter">
+            <div class="counter-number" id="noticeCounter">17</div>
+            <div class="counter-label">Notices</div>
+          </div>
+          <div class="counter">
+            <div class="counter-number" id="photoCounter">243</div>
+            <div class="counter-label">Photos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Welcome Message -->
+    <section class="container">
+      <div class="card" id="welcomeCard" style="display:none; margin:20px 0;">
+        <h3>Welcome, <span id="welcomeName"></span>!</h3>
+        <p>You are in Class <span id="welcomeClass"></span>. This portal contains all your academic resources, homework, events, and school information.</p>
+        <p><small>Student details managed via admin panel. Contact school for updates.</small></p>
+      </div>
+    </section>
+
+    <!-- Homework Section -->
+    <section id="homework">
+      <div class="container">
+        <h2 class="section-title">Homework & Assignments</h2>
+        <div class="homework-controls">
+          <input type="text" class="search-box" id="homeworkSearch" placeholder="Search homework..." />
+          <select class="filter-select" id="subjectFilter">
+            <option value="">All Subjects</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Science">Science</option>
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Social Studies">Social Studies</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Arts & Craft">Arts & Craft</option>
+            <option value="Physical Education">Physical Education</option>
+          </select>
+          <button class="btn btn-sm" id="printHomework"><i class="fas fa-print"></i> Print</button>
+          <button class="btn btn-sm" id="downloadHomework"><i class="fas fa-download"></i> Download</button>
+        </div>
+        <div id="homeworkList">
+          <!-- Homework items will be inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers" style="background: var(--bg);">
+      <div class="container">
+        <h2 class="section-title">Our Teachers</h2>
+        <div class="cards" id="teachersList">
+          <!-- Teacher cards will be inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events">
+      <div class="container">
+        <h2 class="section-title">School Events</h2>
+        <div class="timeline" id="eventsTimeline">
+          <!-- Events will be inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Notices Section -->
+    <section id="notices" style="background: var(--bg);">
+      <div class="container">
+        <h2 class="section-title">Notice Board</h2>
+        <div id="noticesList">
+          <!-- Notices will be inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Timetable Section -->
+    <section id="timetable">
+      <div class="container">
+        <h2 class="section-title">Class Timetable</h2>
+        <div class="class-switcher" id="classSwitcher">
+          <button class="class-btn active" data-class="1">Class 1</button>
+          <button class="class-btn" data-class="2">Class 2</button>
+          <button class="class-btn" data-class="3">Class 3</button>
+          <button class="class-btn" data-class="4">Class 4</button>
+          <button class="class-btn" data-class="5">Class 5</button>
+          <button class="class-btn" data-class="6">Class 6</button>
+          <button class="class-btn" data-class="7">Class 7</button>
+          <button class="class-btn" data-class="8">Class 8</button>
+          <button class="class-btn" data-class="9">Class 9</button>
+          <button class="class-btn" data-class="10">Class 10</button>
+          <button class="class-btn" data-class="11">Class 11</button>
+          <button class="class-btn" data-class="12">Class 12</button>
+        </div>
+        <div class="timetable">
+          <div class="timetable-container" id="timetableContainer">
+            <!-- Timetable will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fees Section -->
+    <section id="fees" style="background: var(--bg);">
+      <div class="container">
+        <h2 class="section-title">Fee Structure</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div class="card-title">Class 1-5</div>
+            </div>
+            <p><strong>₹6,000</strong> per year</p>
+            <p>Includes all academic materials and activities.</p>
+            <button class="btn btn-sm" style="margin-top:10px;">Pay Now</button>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon"><i class="fas fa-book-open"></i></div>
+              <div class="card-title">Class 6-8</div>
+            </div>
+            <p><strong>₹8,000</strong> per year</p>
+            <p>Includes science lab access and digital resources.</p>
+            <button class="btn btn-sm" style="margin-top:10px;">Pay Now</button>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon"><i class="fas fa-laptop"></i></div>
+              <div class="card-title">Class 9-10</div>
+            </div>
+            <p><strong>₹10,000</strong> per year</p>
+            <p>Includes board exam preparation and career counseling.</p>
+            <button class="btn btn-sm" style="margin-top:10px;">Pay Now</button>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon"><i class="fas fa-flask"></i></div>
+              <div class="card-title">Class 11-12</div>
+            </div>
+            <p><strong>₹12,000</strong> per year</p>
+            <p>Includes competitive exam coaching and university guidance.</p>
+            <button class="btn btn-sm" style="margin-top:10px;">Pay Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Labs & Clubs Section -->
+    <section id="labs">
+      <div class="container">
+        <h2 class="section-title">Creative & Tech Labs</h2>
+        <p style="text-align:center; max-width:800px; margin:0 auto 40px;">Our state-of-the-art creative labs empower students to explore digital arts, animation, and technology through hands-on learning and industry-standard tools.</p>
+        <div class="cards">
+          <div class="card lab-card">
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="2D Animation Lab" class="lab-img" />
+            <div class="lab-overlay">
+              <div class="lab-title">2D Animation Lab</div>
+              <div class="lab-desc">Traditional and digital animation techniques</div>
+            </div>
+            <button class="btn view-work-btn" data-lab="2d">View Student Work</button>
+          </div>
+          <div class="card lab-card">
+            <img src="https://images.unsplash.com/photo-1624375147929-340ebda41691?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="3D Animation Lab" class="lab-img" />
+            <div class="lab-overlay">
+              <div class="lab-title">3D Animation Lab</div>
+              <div class="lab-desc">Modeling, rigging, and rendering in 3D</div>
+            </div>
+            <button class="btn view-work-btn" data-lab="3d">View Student Work</button>
+          </div>
+          <div class="card lab-card">
+            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="VFX Studio" class="lab-img" />
+            <div class="lab-overlay">
+              <div class="lab-title">VFX Studio</div>
+              <div class="lab-desc">Visual effects and compositing</div>
+            </div>
+            <button class="btn view-work-btn" data-lab="vfx">View Student Work</button>
+          </div>
+          <div class="card lab-card">
+            <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Motion Graphics" class="lab-img" />
+            <div class="lab-overlay">
+              <div class="lab-title">Motion Graphics</div>
+              <div class="lab-desc">Animated typography and graphic design</div>
+            </div>
+            <button class="btn view-work-btn" data-lab="motion">View Student Work</button>
+          </div>
+          <div class="card lab-card">
+            <img src="https://images.unsplash.com/photo-1556156653-e5a7656e1227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Game Art" class="lab-img" />
+            <div class="lab-overlay">
+              <div class="lab-title">Game Art</div>
+              <div class="lab-desc">Character design and environment art</div>
+            </div>
+            <button class="btn view-work-btn" data-lab="game">View Student Work</button>
+          </div>
+          <div class="card lab-card">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Robotics Club" class="lab-img" />
+            <div class="lab-overlay">
+              <div class="lab-title">Robotics Club</div>
+              <div class="lab-desc">Building and programming robots</div>
+            </div>
+            <button class="btn view-work-btn" data-lab="robotics">View Student Work</button>
+          </div>
+          <div class="card lab-card">
+            <img src="https://images.unsplash.com/photo-1489389944381-3471b5b30f47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coding Club" class="lab-img" />
+            <div class="lab-overlay">
+              <div class="lab-title">Coding Club</div>
+              <div class="lab-desc">Web, app, and game development</div>
+            </div>
+            <button class="btn view-work-btn" data-lab="coding">View Student Work</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" style="background: var(--bg);">
+      <div class="container">
+        <h2 class="section-title">Photo Gallery</h2>
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Gallery items will be inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+      <div class="container">
+        <h2 class="section-title">School Achievements</h2>
+        <div class="cards">
+          <div class="card achievement-card">
+            <div class="trophy-icon"><i class="fas fa-trophy"></i></div>
+            <h3 class="achievement-title">National Science Olympiad</h3>
+            <p class="achievement-desc">Gold medal in Regional Science Competition 2023</p>
+          </div>
+          <div class="card achievement-card">
+            <div class="trophy-icon"><i class="fas fa-medal"></i></div>
+            <h3 class="achievement-title">State Math Championship</h3>
+            <p class="achievement-desc">Top 3 finishers from our school in 2023</p>
+          </div>
+          <div class="card achievement-card">
+            <div class="trophy-icon"><i class="fas fa-award"></i></div>
+            <h3 class="achievement-title">Digital Arts Festival</h3>
+            <p class="achievement-desc">Best Animation Award for student project</p>
+          </div>
+          <div class="card achievement-card">
+            <div class="trophy-icon"><i class="fas fa-certificate"></i></div>
+            <h3 class="achievement-title">Robotics Challenge</h3>
+            <p class="achievement-desc">Won 1st place in inter-school robotics event</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background: var(--bg);">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">What are the school hours?</button>
+              <div class="faq-answer">
+                <p>Classes run from 8:00 AM to 2:30 PM, Monday through Saturday. Pre-primary section ends at 1:00 PM.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">What curriculum do you follow?</button>
+              <div class="faq-answer">
+                <p>We follow the CBSE curriculum from Class 1 to 12, with emphasis on holistic development and 21st century skills.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">Do you provide transportation?</button>
+              <div class="faq-answer">
+                <p>Yes, we have school buses covering major areas of Balrampur and surrounding regions with GPS tracking for safety.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">What extracurricular activities are available?</button>
+              <div class="faq-answer">
+                <p>We offer sports, music, dance, debate, coding, robotics, and our specialized creative labs in animation and VFX.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">How can parents stay updated?</button>
+              <div class="faq-answer">
+                <p>Through this portal, our mobile app, regular newsletters, parent-teacher meetings, and WhatsApp communication groups.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Mission</h3>
+            <p>To provide quality education that combines academic excellence with moral values, preparing students to become responsible citizens and leaders of tomorrow.</p>
+          </div>
+          <div class="card">
+            <h3>Vision</h3>
+            <p>To be a premier educational institution that nurtures creativity, critical thinking, and character development in every student.</p>
+          </div>
+          <div class="card">
+            <h3>Values</h3>
+            <p><strong>Knowledge:</strong> Pursuit of academic excellence<br>
+            <strong>Discipline:</strong> Building character and responsibility<br>
+            <strong>Dedication:</strong> Commitment to student success<br>
+            <strong>Innovation:</strong> Embracing technology and creative teaching methods</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: var(--bg);">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-form">
+          <div class="form-group">
+            <label class="form-label" for="contactName">Name</label>
+            <input type="text" id="contactName" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactEmail">Email</label>
+            <input type="email" id="contactEmail" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactSubject">Subject</label>
+            <input type="text" id="contactSubject" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactMessage">Message</label>
+            <textarea id="contactMessage" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn" id="sendContact">Send Message</button>
+          <button type="button" class="btn btn-outline" id="viewMessages" style="margin-left:10px;">View Saved Messages</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightboxImg" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <!-- Messages Modal -->
+  <div class="modal" id="messagesModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Saved Messages</h3>
+        <button class="modal-close" id="closeMessages"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" id="messagesList">
+        <!-- Messages will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Modal -->
+  <div class="modal" id="importModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Import Data</h3>
+        <button class="modal-close" id="closeImport"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>Upload a JSON file to import school data. This will overwrite existing data.</p>
+        <input type="file" id="importFile" accept=".json" style="margin:20px 0;" />
+        <div id="importStatus"></div>
+        <button class="btn" id="confirmImport">Import Data</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Confirmation Modal -->
+  <div class="modal" id="resetModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Reset Demo Data</h3>
+        <button class="modal-close" id="closeReset"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to reset all data to default? This cannot be undone.</p>
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;">
+          <button class="btn btn-outline" id="cancelReset">Cancel</button>
+          <button class="btn btn-danger" id="confirmReset">Reset Data</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ======================
+    // GLOBAL STATE & CONFIG
+    // ======================
+
+    // Current student
+    let currentStudent = null;
+
+    // Lab work images
+    const labWork = {
+      '2d': [
+        { src: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Traditional Animation Frame' },
+        { src: 'https://images.unsplash.com/photo-1617791160505-6f00504e3519?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Digital Character Design' },
+        { src: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Storyboard Sequence' }
+      ],
+      '3d': [
+        { src: 'https://images.unsplash.com/photo-1624375147929-340ebda41691?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: '3D Character Model' },
+        { src: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Environment Rendering' },
+        { src: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Animation Rig' }
+      ],
+      'vfx': [
+        { src: 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Green Screen Compositing' },
+        { src: 'https://images.unsplash.com/photo-1557838923-297fc26d13ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Particle Effects' },
+        { src: 'https://images.unsplash.com/photo-1555421689-70042d79b6d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Motion Tracking' }
+      ],
+      'motion': [
+        { src: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Animated Logo' },
+        { src: 'https://images.unsplash.com/photo-1524060308832-28fc4685320a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Title Sequence' },
+        { src: 'https://images.unsplash.com/photo-1507842282343-9274874d68b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Infographic Animation' }
+      ],
+      'game': [
+        { src: 'https://images.unsplash.com/photo-1556156653-e5a7656e1227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Character Concept Art' },
+        { src: 'https://images.unsplash.com/photo-1542831371-29b0f74f6b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Game Environment' },
+        { src: 'https://images.unsplash.com/photo-1540270776932-7c0c7f18a6b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'UI Design' }
+      ],
+      'robotics': [
+        { src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Robot Assembly' },
+        { src: 'https://images.unsplash.com/photo-1558346490-7572a0a5c27a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Programming Session' },
+        { src: 'https://images.unsplash.com/photo-1533090368676-1fd25485db88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Competition Robot' }
+      ],
+      'coding': [
+        { src: 'https://images.unsplash.com/photo-1489389944381-3471b5b30f47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'App Development' },
+        { src: 'https://images.unsplash.com/photo-1551601651-09492b5468b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Web Design' },
+        { src: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Game Code' }
+      ]
+    };
+
+    // Gallery images
+    const galleryImages = [
+      { src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'School Building' },
+      { src: 'https://images.unsplash.com/photo-1498243691581-2f8a26748e27?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Science Lab' },
+      { src: 'https://images.unsplash.com/photo-1530026186672-2cd00ffc58c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Library' },
+      { src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Sports Day' },
+      { src: 'https://images.unsplash.com/photo-1543286386-2e6593d72f40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Art Class' },
+      { src: 'https://images.unsplash.com/photo-1523580494863-cbf52d252344?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Music Room' },
+      { src: 'https://images.unsplash.com/photo-1581092921461-6484fdca1052?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Annual Function' },
+      { src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Science Fair' }
+    ];
+
+    // Timetable data
+    const timetableData = {
+      '1': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 1'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 1'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 1'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'EVS', 'Riya Thomas', 'Room 1'],
+        ['11:00-11:40', 'Arts & Craft', 'Neeraj Gupta', 'Art Room'],
+        ['11:40-12:20', 'Physical Education', 'Coach', 'Playground']
+      ],
+      '2': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 2'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 2'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 2'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'EVS', 'Riya Thomas', 'Room 2'],
+        ['11:00-11:40', 'Arts & Craft', 'Neeraj Gupta', 'Art Room'],
+        ['11:40-12:20', 'Physical Education', 'Coach', 'Playground']
+      ],
+      '3': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 3'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 3'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 3'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'Science', 'Shruti Verma', 'Room 3'],
+        ['11:00-11:40', 'Social Studies', 'Neeraj Gupta', 'Room 3'],
+        ['11:40-12:20', 'Computer Science', 'Riya Thomas', 'Lab']
+      ],
+      '4': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 4'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 4'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 4'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'Science', 'Shruti Verma', 'Room 4'],
+        ['11:00-11:40', 'Social Studies', 'Neeraj Gupta', 'Room 4'],
+        ['11:40-12:20', 'Computer Science', 'Riya Thomas', 'Lab']
+      ],
+      '5': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 5'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 5'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 5'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'Science', 'Shruti Verma', 'Room 5'],
+        ['11:00-11:40', 'Social Studies', 'Neeraj Gupta', 'Room 5'],
+        ['11:40-12:20', 'Computer Science', 'Riya Thomas', 'Lab']
+      ],
+      '6': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 6'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 6'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 6'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'Science', 'Shruti Verma', 'Lab'],
+        ['11:00-11:40', 'Social Studies', 'Neeraj Gupta', 'Room 6'],
+        ['11:40-12:20', 'Computer Science', 'Riya Thomas', 'Lab']
+      ],
+      '7': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 7'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 7'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 7'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'Science', 'Shruti Verma', 'Lab'],
+        ['11:00-11:40', 'Social Studies', 'Neeraj Gupta', 'Room 7'],
+        ['11:40-12:20', 'Computer Science', 'Riya Thomas', 'Lab']
+      ],
+      '8': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 8'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 8'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 8'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'Science', 'Shruti Verma', 'Lab'],
+        ['11:00-11:40', 'Social Studies', 'Neeraj Gupta', 'Room 8'],
+        ['11:40-12:20', 'Computer Science', 'Riya Thomas', 'Lab']
+      ],
+      '9': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 9'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 9'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 9'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'Science', 'Shruti Verma', 'Lab'],
+        ['11:00-11:40', 'Social Studies', 'Neeraj Gupta', 'Room 9'],
+        ['11:40-12:20', 'Computer Science', 'Riya Thomas', 'Lab']
+      ],
+      '10': [
+        ['8:00-8:40', 'Hindi', 'Alka Sharma', 'Room 10'],
+        ['8:40-9:20', 'Mathematics', 'Arif Khan', 'Room 10'],
+        ['9:20-10:00', 'English', 'Prakash Singh', 'Room 10'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'Science', 'Shruti Verma', 'Lab'],
+        ['11:00-11:40', 'Social Studies', 'Neeraj Gupta', 'Room 10'],
+        ['11:40-12:20', 'Computer Science', 'Riya Thomas', 'Lab']
+      ],
+      '11': [
+        ['8:00-8:40', 'Physics', 'Shruti Verma', 'Lab'],
+        ['8:40-9:20', 'Chemistry', 'Shruti Verma', 'Lab'],
+        ['9:20-10:00', 'Mathematics', 'Arif Khan', 'Room 11'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'English', 'Prakash Singh', 'Room 11'],
+        ['11:00-11:40', 'Computer Science', 'Riya Thomas', 'Lab'],
+        ['11:40-12:20', 'Physical Education', 'Coach', 'Playground']
+      ],
+      '12': [
+        ['8:00-8:40', 'Physics', 'Shruti Verma', 'Lab'],
+        ['8:40-9:20', 'Chemistry', 'Shruti Verma', 'Lab'],
+        ['9:20-10:00', 'Mathematics', 'Arif Khan', 'Room 12'],
+        ['10:00-10:20', 'Break', '', ''],
+        ['10:20-11:00', 'English', 'Prakash Singh', 'Room 12'],
+        ['11:00-11:40', 'Computer Science', 'Riya Thomas', 'Lab'],
+        ['11:40-12:20', 'Physical Education', 'Coach', 'Playground']
+      ]
+    };
+
+    // Seed data for first-time users
+    function seedDemoData() {
+      console.log('Seeding demo data...');
+      
+      // Only seed if no data exists
+      if (!localStorage.getItem('mkps_homework')) {
+        const homework = {
+          '1': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Complete exercises 1-10 on page 45 of textbook.', tags: ['algebra', 'practice'] },
+            { date: '2023-10-11', subject: 'English', teacher: 'Prakash Singh', instructions: 'Write a paragraph about your favorite animal.', tags: ['writing', 'creative'] },
+            { date: '2023-10-12', subject: 'Hindi', teacher: 'Alka Sharma', instructions: 'Learn the new vocabulary words and use them in sentences.', tags: ['vocabulary', 'grammar'] }
+          ],
+          '2': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Solve the addition and subtraction problems on worksheet.', tags: ['arithmetic', 'worksheet'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Draw and label the parts of a plant.', tags: ['biology', 'diagram'] },
+            { date: '2023-10-12', subject: 'English', teacher: 'Prakash Singh', instructions: 'Read chapter 3 and answer the comprehension questions.', tags: ['reading', 'comprehension'] }
+          ],
+          '3': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Complete the multiplication table up to 12.', tags: ['multiplication', 'tables'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Prepare a short presentation on the water cycle.', tags: ['project', 'presentation'] },
+            { date: '2023-10-12', subject: 'Social Studies', teacher: 'Neeraj Gupta', instructions: 'Color the map of India and label the states.', tags: ['geography', 'map'] }
+          ],
+          '4': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Solve the word problems on fractions.', tags: ['fractions', 'word problems'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Conduct a simple experiment at home with your parents and write a report.', tags: ['experiment', 'report'] },
+            { date: '2023-10-12', subject: 'Computer Science', teacher: 'Riya Thomas', instructions: 'Practice typing for 15 minutes using the typing software.', tags: ['typing', 'practice'] }
+          ],
+          '5': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Review for the upcoming test on geometry.', tags: ['review', 'test'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Research a famous scientist and prepare a short biography.', tags: ['research', 'biography'] },
+            { date: '2023-10-12', subject: 'English', teacher: 'Prakash Singh', instructions: 'Write a story using the given set of words.', tags: ['creative', 'story'] }
+          ],
+          '6': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Complete the algebra worksheet on solving equations.', tags: ['algebra', 'equations'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Prepare a model of the solar system.', tags: ['project', 'model'] },
+            { date: '2023-10-12', subject: 'Social Studies', teacher: 'Neeraj Gupta', instructions: 'Write an essay on the importance of voting.', tags: ['essay', 'civics'] }
+          ],
+          '7': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Solve the problems on percentages and ratios.', tags: ['percentages', 'ratios'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Conduct an experiment on plant growth and record observations.', tags: ['experiment', 'observation'] },
+            { date: '2023-10-12', subject: 'Computer Science', teacher: 'Riya Thomas', instructions: 'Create a simple website using HTML.', tags: ['web', 'html'] }
+          ],
+          '8': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Review for the mid-term exam covering all chapters.', tags: ['review', 'exam'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Prepare a presentation on renewable energy sources.', tags: ['presentation', 'energy'] },
+            { date: '2023-10-12', subject: 'English', teacher: 'Prakash Singh', instructions: 'Analyze the poem and write about its themes.', tags: ['poetry', 'analysis'] }
+          ],
+          '9': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Solve the trigonometry problems from the textbook.', tags: ['trigonometry', 'problems'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Write a lab report on the chemistry experiment conducted in class.', tags: ['lab', 'report'] },
+            { date: '2023-10-12', subject: 'Social Studies', teacher: 'Neeraj Gupta', instructions: 'Research and present on the Indian Constitution.', tags: ['research', 'constitution'] }
+          ],
+          '10': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Practice for the board exam with sample papers.', tags: ['practice', 'board'] },
+            { date: '2023-10-11', subject: 'Science', teacher: 'Shruti Verma', instructions: 'Prepare for the practical exam on biology experiments.', tags: ['practical', 'exam'] },
+            { date: '2023-10-12', subject: 'English', teacher: 'Prakash Singh', instructions: 'Write a letter to the editor on a current social issue.', tags: ['letter', 'social'] }
+          ],
+          '11': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Solve the calculus problems on differentiation.', tags: ['calculus', 'differentiation'] },
+            { date: '2023-10-11', subject: 'Physics', teacher: 'Shruti Verma', instructions: 'Complete the physics assignment on electromagnetism.', tags: ['physics', 'assignment'] },
+            { date: '2023-10-12', subject: 'Computer Science', teacher: 'Riya Thomas', instructions: 'Develop a simple app using Python.', tags: ['app', 'python'] }
+          ],
+          '12': [
+            { date: '2023-10-10', subject: 'Mathematics', teacher: 'Arif Khan', instructions: 'Review integration techniques for the upcoming test.', tags: ['calculus', 'integration'] },
+            { date: '2023-10-11', subject: 'Chemistry', teacher: 'Shruti Verma', instructions: 'Prepare for the practical exam on organic chemistry.', tags: ['practical', 'organic'] },
+            { date: '2023-10-12', subject: 'English', teacher: 'Prakash Singh', instructions: 'Analyze the novel and write a critical essay.', tags: ['novel', 'essay'] }
+          ]
+        };
+        localStorage.setItem('mkps_homework', JSON.stringify(homework));
+      }
+
+      if (!localStorage.getItem('mkps_teachers')) {
+        const teachers = [
+          { name: 'Arif Khan', subject: 'Mathematics', contact: 'arif.khan@mkps.edu.in', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
+          { name: 'Shruti Verma', subject: 'Science', contact: 'shruti.verma@mkps.edu.in', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
+          { name: 'Prakash Singh', subject: 'English', contact: 'prakash.singh@mkps.edu.in', image: 'https://randomuser.me/api/portraits/men/67.jpg' },
+          { name: 'Riya Thomas', subject: 'Computer Science', contact: 'riya.thomas@mkps.edu.in', image: 'https://randomuser.me/api/portraits/women/23.jpg' },
+          { name: 'Neeraj Gupta', subject: 'Social Studies', contact: 'neeraj.gupta@mkps.edu.in', image: 'https://randomuser.me/api/portraits/men/82.jpg' },
+          { name: 'Alka Sharma', subject: 'Hindi', contact: 'alka.sharma@mkps.edu.in', image: 'https://randomuser.me/api/portraits/women/55.jpg' }
+        ];
+        localStorage.setItem('mkps_teachers', JSON.stringify(teachers));
+      }
+
+      if (!localStorage.getItem('mkps_events')) {
+        const events = [
+          { date: '2023-10-15', title: 'Diwali Celebration', description: 'Annual Diwali festival with cultural programs and sweets.', type: 'cultural' },
+          { date: '2023-10-20', title: 'Science Fair', description: 'Students will present their science projects to judges and parents.', type: 'academic' },
+          { date: '2023-10-25', title: 'Sports Day', description: 'Inter-house sports competition with various athletic events.', type: 'sports' },
+          { date: '2023-11-05', title: 'Parent-Teacher Meeting', description: 'Schedule individual meetings with teachers to discuss student progress.', type: 'meeting' },
+          { date: '2023-11-15', title: 'Annual Function', description: 'Grand annual day celebration with performances by students.', type: 'cultural' }
+        ];
+        localStorage.setItem('mkps_events', JSON.stringify(events));
+      }
+
+      if (!localStorage.getItem('mkps_notices')) {
+        const notices = [
+          { date: '2023-10-10', title: 'Holiday on October 12', description: 'There will be a holiday on Thursday, October 12 for Dussehra. Regular classes resume on Friday.', priority: 'high' },
+          { date: '2023-10-09', title: 'Library Timings Changed', description: 'The school library will now be open from 7:30 AM to 4:00 PM on weekdays.', priority: 'medium' },
+          { date: '2023-10-08', title: 'New Bus Route Added', description: 'A new bus route has been added for students living in the eastern part of Balrampur.', priority: 'medium' },
+          { date: '2023-10-07', title: 'Computer Lab Maintenance', description: 'The computer lab will be closed on Monday for scheduled maintenance.', priority: 'low' },
+          { date: '2023-10-06', title: 'Art Competition Announcement', description: 'An inter-class art competition will be held next month. Details to follow.', priority: 'medium' }
+        ];
+        localStorage.setItem('mkps_notices', JSON.stringify(notices));
+      }
+
+      if (!localStorage.getItem('mkps_timetable')) {
+        localStorage.setItem('mkps_timetable', JSON.stringify(timetableData));
+      }
+
+      if (!localStorage.getItem('mkps_gallery')) {
+        localStorage.setItem('mkps_gallery', JSON.stringify(galleryImages));
+      }
+
+      if (!localStorage.getItem('mkps_messages')) {
+        localStorage.setItem('mkps_messages', JSON.stringify([]));
+      }
+
+      // Set update timestamp
+      localStorage.setItem('mkps_update', new Date().toISOString());
+      
+      console.log('Demo data seeded successfully');
+    }
+
+    // Initialize the app
+    function initApp() {
+      // Check for existing student
+      const studentData = localStorage.getItem('mkps_student');
+      if (studentData) {
+        currentStudent = JSON.parse(studentData);
+        showPortal();
+      } else {
+        showGate();
+      }
+
+      // Seed data if needed
+      if (!localStorage.getItem('mkps_homework') ||
+          !localStorage.getItem('mkps_teachers') ||
+          !localStorage.getItem('mkps_events') ||
+          !localStorage.getItem('mkps_notices') ||
+          !localStorage.getItem('mkps_timetable') ||
+          !localStorage.getItem('mkps_gallery') ||
+          !localStorage.getItem('mkps_messages')) {
+        seedDemoData();
+      }
+
+      // Load theme preference
+      const savedTheme = localStorage.getItem('mkps_theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+
+      // Update analytics
+      updateAnalytics();
+
+      // Add event listeners
+      setupEventListeners();
+    }
+
+    // Show the access gate
+    function showGate() {
+      document.getElementById('gateOverlay').style.display = 'flex';
+      
+      // Prevent back navigation
+      history.pushState(null, null, location.href);
+      window.addEventListener('popstate', function(e) {
+        history.pushState(null, null, location.href);
+      });
+    }
+
+    // Hide the gate and show the portal
+    function showPortal() {
+      document.getElementById('gateOverlay').style.display = 'none';
+      document.getElementById('welcomeCard').style.display = 'block';
+      document.getElementById('welcomeName').textContent = currentStudent.name;
+      document.getElementById('welcomeClass').textContent = currentStudent.class;
+      
+      // Render all sections
+      renderHomeworkFor(currentStudent.class);
+      renderTeachers();
+      renderEvents();
+      renderNotices();
+      renderTimetable(currentStudent.class);
+      renderGallery();
+      renderMessages();
+    }
+
+    // Setup all event listeners
+    function setupEventListeners() {
+      // Gate form submission
+      document.getElementById('gateForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('studentName').value.trim();
+        const studentClass = parseInt(document.getElementById('studentClass').value);
+        const parentName = document.getElementById('parentName').value.trim();
+        
+        // Validate
+        let valid = true;
+        
+        if (!name) {
+          document.getElementById('nameError').style.display = 'block';
+          valid = false;
+        } else {
+          document.getElementById('nameError').style.display = 'none';
+        }
+        
+        if (!studentClass || studentClass < 1 || studentClass > 12) {
+          document.getElementById('classError').style.display = 'block';
+          valid = false;
+        } else {
+          document.getElementById('classError').style.display = 'none';
+        }
+        
+        if (!parentName) {
+          document.getElementById('parentError').style.display = 'block';
+          valid = false;
+        } else {
+          document.getElementById('parentError').style.display = 'none';
+        }
+        
+        if (!valid) return;
+        
+        // Save to localStorage
+        currentStudent = { name, class: studentClass, parent: parentName };
+        localStorage.setItem('mkps_student', JSON.stringify(currentStudent));
+        
+        // Show portal
+        showPortal();
+      });
+
+      // Menu toggle for mobile
+      document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('mainNav').classList.toggle('open');
+      });
+
+      // Sidebar
+      document.getElementById('sidebarClose').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.remove('open');
+      });
+
+      // Theme toggle
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('mkps_theme', isDark ? 'dark' : 'light');
+      });
+
+      // Nav links
+      document.querySelectorAll('.main-nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          document.querySelectorAll('.main-nav a').forEach(a => a.classList.remove('active'));
+          this.classList.add('active');
+          document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // Homework search and filters
+      document.getElementById('homeworkSearch').addEventListener('input', function() {
+        filterHomework();
+      });
+
+      document.getElementById('subjectFilter').addEventListener('change', function() {
+        filterHomework();
+      });
+
+      // Print homework
+      document.getElementById('printHomework').addEventListener('click', function() {
+        window.print();
+      });
+
+      // Download homework snapshot
+      document.getElementById('downloadHomework').addEventListener('click', function() {
+        downloadSnapshot();
+      });
+
+      // Export data
+      document.getElementById('exportData').addEventListener('click', function() {
+        exportMkpsData();
+      });
+
+      // Import data
+      document.getElementById('importData').addEventListener('click', function() {
+        document.getElementById('importModal').classList.add('active');
+      });
+
+      document.getElementById('closeImport').addEventListener('click', function() {
+        document.getElementById('importModal').classList.remove('active');
+      });
+
+      document.getElementById('confirmImport').addEventListener('click', function() {
+        importData();
+      });
+
+      // Reset demo
+      document.getElementById('resetDemo').addEventListener('click', function() {
+        document.getElementById('resetModal').classList.add('active');
+      });
+
+      document.getElementById('closeReset').addEventListener('click', function() {
+        document.getElementById('resetModal').classList.remove('active');
+      });
+
+      document.getElementById('cancelReset').addEventListener('click', function() {
+        document.getElementById('resetModal').classList.remove('active');
+      });
+
+      document.getElementById('confirmReset').addEventListener('click', function() {
+        resetMkpsDemo();
+        document.getElementById('resetModal').classList.remove('active');
+      });
+
+      // View messages
+      document.getElementById('viewMessages').addEventListener('click', function() {
+        document.getElementById('messagesModal').classList.add('active');
+      });
+
+      document.getElementById('closeMessages').addEventListener('click', function() {
+        document.getElementById('messagesModal').classList.remove('active');
+      });
+
+      // Contact form
+      document.getElementById('sendContact').addEventListener('click', function() {
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const subject = document.getElementById('contactSubject').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+        
+        if (!name || !email || !subject || !message) {
+          alert('Please fill in all fields');
+          return;
+        }
+        
+        const messages = JSON.parse(localStorage.getItem('mkps_messages') || '[]');
+        messages.push({
+          id: Date.now(),
+          name,
+          email,
+          subject,
+          message,
+          date: new Date().toISOString()
+        });
+        
+        localStorage.setItem('mkps_messages', JSON.stringify(messages));
+        localStorage.setItem('mkps_update', new Date().toISOString());
+        
+        alert('Message sent successfully!');
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactEmail').value = '';
+        document.getElementById('contactSubject').value = '';
+        document.getElementById('contactMessage').value = '';
+        
+        renderMessages();
+      });
+
+      // Lab work buttons
+      document.querySelectorAll('.view-work-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lab = this.getAttribute('data-lab');
+          openLightbox(labWork[lab], 0);
+        });
+      });
+
+      // Gallery
+      document.getElementById('galleryGrid').addEventListener('click', function(e) {
+        if (e.target.closest('.gallery-item')) {
+          const index = Array.from(e.target.closest('.gallery-grid').children).indexOf(e.target.closest('.gallery-item'));
+          openLightbox(galleryImages, index);
+        }
+      });
+
+      // Lightbox
+      document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+      document.getElementById('lightboxPrev').addEventListener('click', prevLightbox);
+      document.getElementById('lightboxNext').addEventListener('click', nextLightbox);
+
+      // Keyboard navigation for lightbox
+      document.addEventListener('keydown', function(e) {
+        const lightbox = document.getElementById('lightbox');
+        if (!lightbox.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') prevLightbox();
+        if (e.key === 'ArrowRight') nextLightbox();
+      });
+
+      // Timetable class switcher
+      document.querySelectorAll('.class-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.class-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const classNum = this.getAttribute('data-class');
+          renderTimetable(classNum);
+        });
+      });
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+          document.querySelectorAll('.faq-question').forEach(b => {
+            b.setAttribute('aria-expanded', 'false');
+            b.nextElementSibling.classList.remove('open');
+          });
+          
+          if (!expanded) {
+            this.setAttribute('aria-expanded', 'true');
+            this.nextElementSibling.classList.add('open');
+          }
+        });
+      });
+
+      // Listen for storage events (from admin)
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'mkps_update') {
+          console.log('Data updated, refreshing...');
+          if (currentStudent) {
+            renderHomeworkFor(currentStudent.class);
+            renderTeachers();
+            renderEvents();
+            renderNotices();
+            renderTimetable(currentStudent.class);
+            renderGallery();
+            renderMessages();
+            updateAnalytics();
+          }
+        }
+      });
+    }
+
+    // Render homework for a specific class
+    window.renderHomeworkFor = function(classNum) {
+      const homeworkData = JSON.parse(localStorage.getItem('mkps_homework') || '{}');
+      const homework = homeworkData[classNum] || [];
+      
+      let html = '';
+      if (homework.length === 0) {
+        html = '<p>No homework assigned for your class at the moment.</p>';
+      } else {
+        homework.forEach(item => {
+          const date = new Date(item.date);
+          const formattedDate = date.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+          
+          let tagsHtml = '';
+          if (item.tags && item.tags.length > 0) {
+            tagsHtml = '<div class="tags">';
+            item.tags.forEach(tag => {
+              tagsHtml += `<span class="tag">${tag}</span>`;
+            });
+            tagsHtml += '</div>';
+          }
+          
+          html += `
+            <div class="homework-item">
+              <div class="homework-header">
+                <span class="homework-subject">${item.subject}</span>
+                <span class="homework-date">${formattedDate}</span>
+              </div>
+              <div class="homework-teacher">By ${item.teacher}</div>
+              <div class="homework-instructions">${item.instructions}</div>
+              ${tagsHtml}
+            </div>
+          `;
+        });
+      }
+      
+      document.getElementById('homeworkList').innerHTML = html;
+    };
+
+    // Filter homework based on search and subject
+    function filterHomework() {
+      const search = document.getElementById('homeworkSearch').value.toLowerCase();
+      const subject = document.getElementById('subjectFilter').value;
+      
+      const homeworkItems = document.querySelectorAll('.homework-item');
+      homeworkItems.forEach(item => {
+        const subjectText = item.querySelector('.homework-subject').textContent.toLowerCase();
+        const instructionsText = item.querySelector('.homework-instructions').textContent.toLowerCase();
+        
+        const matchesSearch = !search || instructionsText.includes(search) || subjectText.includes(search);
+        const matchesSubject = !subject || subjectText.includes(subject);
+        
+        if (matchesSearch && matchesSubject) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Render teachers
+    window.renderTeachers = function() {
+      const teachersData = JSON.parse(localStorage.getItem('mkps_teachers') || '[]');
+      
+      let html = '';
+      teachersData.forEach(teacher => {
+        html += `
+          <div class="card teacher-card">
+            <img src="${teacher.image}" alt="${teacher.name}" class="teacher-img" />
+            <div class="teacher-name">${teacher.name}</div>
+            <div class="teacher-subject">${teacher.subject}</div>
+            <div class="teacher-contact">
+              <a href="mailto:${teacher.contact}" class="contact-icon"><i class="fas fa-envelope"></i></a>
+              <a href="tel:9758919151" class="contact-icon"><i class="fas fa-phone"></i></a>
+            </div>
+          </div>
+        `;
+      });
+      
+      document.getElementById('teachersList').innerHTML = html;
+    };
+
+    // Render events
+    window.renderEvents = function() {
+      const eventsData = JSON.parse(localStorage.getItem('mkps_events') || '[]');
+      const now = new Date();
+      
+      let html = '';
+      eventsData.forEach(event => {
+        const eventDate = new Date(event.date);
+        const isToday = eventDate.toDateString() === now.toDateString();
+        const isUpcoming = eventDate > now;
+        
+        let badge = '';
+        if (isToday) {
+          badge = '<span class="event-badge badge-today">Today</span>';
+        } else if (isUpcoming) {
+          badge = '<span class="event-badge badge-upcoming">Upcoming</span>';
+        }
+        
+        const formattedDate = eventDate.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        html += `
+          <div class="timeline-item">
+            <div class="event-date">${formattedDate}</div>
+            <h4>${event.title} ${badge}</h4>
+            <p>${event.description}</p>
+          </div>
+        `;
+      });
+      
+      document.getElementById('eventsTimeline').innerHTML = html;
+    };
+
+    // Render notices
+    window.renderNotices = function() {
+      const noticesData = JSON.parse(localStorage.getItem('mkps_notices') || '[]');
+      
+      let html = '';
+      noticesData.forEach(notice => {
+        const date = new Date(notice.date);
+        const formattedDate = date.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        let badge = '';
+        if (notice.priority === 'high') {
+          badge = '<span class="priority-badge">High Priority</span>';
+        } else if (notice.priority === 'medium') {
+          badge = '<span class="priority-badge">Medium Priority</span>';
+        } else {
+          badge = '<span class="priority-badge">Low Priority</span>';
+        }
+        
+        html += `
+          <div class="notice priority-${notice.priority}">
+            <div class="notice-header">
+              <div class="notice-title">${notice.title}</div>
+              <div class="priority-badge">${badge}</div>
+            </div>
+            <div class="notice-date">${formattedDate}</div>
+            <div class="notice-text">${notice.description}</div>
+          </div>
+        `;
+      });
+      
+      document.getElementById('noticesList').innerHTML = html;
+    };
+
+    // Render timetable
+    window.renderTimetable = function(classNum) {
+      const timetableData = JSON.parse(localStorage.getItem('mkps_timetable') || '{}');
+      const timetable = timetableData[classNum] || [];
+      
+      let html = `
+        <table class="timetable-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Subject</th>
+              <th>Teacher</th>
+              <th>Room</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+      
+      timetable.forEach(row => {
+        html += `
+          <tr>
+            <td>${row[0]}</td>
+            <td>${row[1]}</td>
+            <td>${row[2]}</td>
+            <td>${row[3]}</td>
+          </tr>
+        `;
+      });
+      
+      html += `
+          </tbody>
+        </table>
+      `;
+      
+      document.getElementById('timetableContainer').innerHTML = html;
+    };
+
+    // Render gallery
+    window.renderGallery = function() {
+      const galleryData = JSON.parse(localStorage.getItem('mkps_gallery') || '[]');
+      
+      let html = '';
+      galleryData.forEach(img => {
+        html += `
+          <div class="gallery-item">
+            <img src="${img.src}" alt="${img.caption}" />
+          </div>
+        `;
+      });
+      
+      document.getElementById('galleryGrid').innerHTML = html;
+    };
+
+    // Render messages
+    window.renderMessages = function() {
+      const messagesData = JSON.parse(localStorage.getItem('mkps_messages') || '[]');
+      
+      if (messagesData.length === 0) {
+        document.getElementById('messagesList').innerHTML = '<p>No messages saved.</p>';
+        return;
+      }
+      
+      let html = '';
+      messagesData.slice().reverse().forEach(msg => {
+        const date = new Date(msg.date);
+        const formattedDate = date.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        
+        html += `
+          <div class="message-item">
+            <div class="message-header">
+              <div class="message-name">${msg.name}</div>
+              <div class="message-date">${formattedDate}</div>
+            </div>
+            <div class="message-subject">${msg.subject}</div>
+            <div class="message-text">${msg.message}</div>
+            <div><strong>Email:</strong> ${msg.email}</div>
+          </div>
+        `;
+      });
+      
+      document.getElementById('messagesList').innerHTML = html;
+    };
+
+    // Update analytics counters
+    function updateAnalytics() {
+      const homeworkData = JSON.parse(localStorage.getItem('mkps_homework') || '{}');
+      let homeworkCount = 0;
+      Object.values(homeworkData).forEach(h => homeworkCount += h.length);
+      
+      const noticesData = JSON.parse(localStorage.getItem('mkps_notices') || '[]');
+      const eventsData = JSON.parse(localStorage.getItem('mkps_events') || '[]');
+      const messagesData = JSON.parse(localStorage.getItem('mkps_messages') || '[]');
+      
+      document.getElementById('homeworkCount').textContent = homeworkCount;
+      document.getElementById('noticesCount').textContent = noticesData.length;
+      document.getElementById('eventsCount').textContent = eventsData.length;
+      document.getElementById('messagesCount').textContent = messagesData.length;
+      
+      // Update counters in hero
+      document.getElementById('studentCounter').textContent = '1,247';
+      document.getElementById('teacherCounter').textContent = '48';
+      document.getElementById('noticeCounter').textContent = noticesData.length;
+      document.getElementById('photoCounter').textContent = galleryImages.length;
+    }
+
+    // Lightbox functionality
+    let currentLightboxItems = [];
+    let currentLightboxIndex = 0;
+
+    function openLightbox(items, index) {
+      currentLightboxItems = items;
+      currentLightboxIndex = index;
+      
+      const img = document.getElementById('lightboxImg');
+      const caption = document.getElementById('lightboxCaption');
+      
+      img.src = items[index].src;
+      caption.textContent = items[index].caption;
+      
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    function prevLightbox() {
+      currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
+      updateLightboxImage();
+    }
+
+    function nextLightbox() {
+      currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxItems.length;
+      updateLightboxImage();
+    }
+
+    function updateLightboxImage() {
+      const img = document.getElementById('lightboxImg');
+      const caption = document.getElementById('lightboxCaption');
+      
+      img.src = currentLightboxItems[currentLightboxIndex].src;
+      caption.textContent = currentLightboxItems[currentLightboxIndex].caption;
+    }
+
+    // Export all MKPS data
+    window.exportMkpsData = function() {
+      const data = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('mkps_')) {
+          data[key] = JSON.parse(localStorage.getItem(key));
+        }
+      }
+      
+      const dataStr = JSON.stringify(data, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `mkps_data_backup_${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    };
+
+    // Import data from JSON file
+    function importData() {
+      const fileInput = document.getElementById('importFile');
+      const file = fileInput.files[0];
+      
+      if (!file) {
+        document.getElementById('importStatus').innerHTML = '<p style="color:red;">Please select a file</p>';
+        return;
+      }
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const importedData = JSON.parse(e.target.result);
+          
+          // Confirm with user
+          const confirm = window.confirm(`Import ${Object.keys(importedData).length} data items? This will overwrite existing data.`);
+          if (!confirm) return;
+          
+          // Import each item
+          Object.keys(importedData).forEach(key => {
+            if (key.startsWith('mkps_')) {
+              localStorage.setItem(key, JSON.stringify(importedData[key]));
+            }
+          });
+          
+          // Update timestamp
+          localStorage.setItem('mkps_update', new Date().toISOString());
+          
+          document.getElementById('importStatus').innerHTML = '<p style="color:green;">Data imported successfully!</p>';
+          
+          // Refresh all views
+          if (currentStudent) {
+            renderHomeworkFor(currentStudent.class);
+            renderTeachers();
+            renderEvents();
+            renderNotices();
+            renderTimetable(currentStudent.class);
+            renderGallery();
+            renderMessages();
+            updateAnalytics();
+          }
+          
+          // Close modal after 2 seconds
+          setTimeout(() => {
+            document.getElementById('importModal').classList.remove('active');
+            document.getElementById('importStatus').innerHTML = '';
+            fileInput.value = '';
+          }, 2000);
+          
+        } catch (error) {
+          document.getElementById('importStatus').innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+        }
+      };
+      
+      reader.readAsText(file);
+    }
+
+    // Reset demo data
+    window.resetMkpsDemo = function() {
+      // Clear all mkps_ keys
+      const keysToRemove = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('mkps_')) {
+          keysToRemove.push(key);
+        }
+      }
+      
+      keysToRemove.forEach(key => localStorage.removeItem(key));
+      
+      // Reseed
+      seedDemoData();
+      
+      // Refresh views
+      if (currentStudent) {
+        renderHomeworkFor(currentStudent.class);
+        renderTeachers();
+        renderEvents();
+        renderNotices();
+        renderTimetable(currentStudent.class);
+        renderGallery();
+        renderMessages();
+        updateAnalytics();
+      }
+      
+      alert('Demo data has been reset to default.');
+    };
+
+    // Download printable snapshot
+    function downloadSnapshot() {
+      const homeworkHtml = document.getElementById('homeworkList').innerHTML;
+      const noticesHtml = document.getElementById('noticesList').innerHTML;
+      const eventsHtml = document.getElementById('eventsTimeline').innerHTML;
+      
+      const snapshot = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>MKPS Snapshot - ${currentStudent ? `Class ${currentStudent.class}` : 'All Classes'}</title>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+            h1, h2, h3 { color: #e53935; }
+            .section { margin-bottom: 30px; }
+            .section h2 { border-bottom: 2px solid #e53935; padding-bottom: 5px; margin-bottom: 15px; }
+            .homework-item { border-left: 4px solid #e53935; padding: 10px; margin-bottom: 10px; background: #f9f9f9; }
+            .notice { border-left: 4px solid #ccc; padding: 10px; margin-bottom: 10px; background: #f9f9f9; }
+            .notice.priority-high { border-left-color: #f44336; }
+            .notice.priority-medium { border-left-color: #ff9800; }
+            .notice.priority-low { border-left-color: #4caf50; }
+            .timeline-item { margin-bottom: 20px; padding-left: 20px; border-left: 2px solid #e53935; }
+            .event-date { font-weight: bold; color: #e53935; }
+            .priority-badge { padding: 3px 8px; border-radius: 12px; font-size: 0.8em; color: white; }
+            .priority-high { background: #f44336; }
+            .priority-medium { background: #ff9800; }
+            .priority-low { background: #4caf50; }
+            .footer { margin-top: 40px; text-align: center; color: #777; font-size: 0.9em; }
+          </style>
+        </head>
+        <body>
+          <h1>Milli Karwaan Public School Balrampur</h1>
+          <p><strong>Snapshot generated on: ${new Date().toLocaleString()}</strong></p>
+          ${currentStudent ? `<p><strong>Student:</strong> ${currentStudent.name} | <strong>Class:</strong> ${currentStudent.class}</p>` : ''}
+          
+          <div class="section">
+            <h2>Homework & Assignments</h2>
+            ${homeworkHtml}
+          </div>
+          
+          <div class="section">
+            <h2>Notice Board</h2>
+            ${noticesHtml}
+          </div>
+          
+          <div class="section">
+            <h2>School Events</h2>
+            <div class="timeline">
+              ${eventsHtml}
+            </div>
+          </div>
+          
+          <div class="footer">
+            <p>Milli Karwaan Public School Balrampur | Boluha Police Chowki Balrampur, Uttar Pradesh | Phone: 9758919151 | Email: madamsir066@gmail.com</p>
+          </div>
+        </body>
+        </html>
+      `;
+      
+      const blob = new Blob([snapshot], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `mkps_snapshot_${new Date().toISOString().split('T')[0]}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Initialize the app when the page loads
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
