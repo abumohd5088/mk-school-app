@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milli Karwaan Public School Balrampur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #e63946;
+            --primary-dark: #c1121f;
+            --secondary: #f1faee;
+            --dark: #1d3557;
+            --light: #f8f9fa;
+            --gray: #8d99ae;
+            --success: #2a9d8f;
+            --warning: #e9c46a;
+            --danger: #e76f51;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dark-mode {
+            --primary: #e63946;
+            --primary-dark: #c1121f;
+            --secondary: #1a1a2e;
+            --dark: #f1faee;
+            --light: #1d3557;
+            --gray: #457b9d;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--secondary);
+            color: var(--dark);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .school-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .school-details h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .school-details p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .nav {
+            background-color: var(--light);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 90px;
+            z-index: 99;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            margin: 0;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--dark);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1), rgba(28, 53, 87, 0.1));
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+        }
+
+        .login-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .welcome-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .welcome-header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+        }
+
+        .welcome-text h2 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .welcome-text p {
+            color: var(--gray);
+            margin: 5px 0 0;
+            font-size: 1rem;
+        }
+
+        .homework-item {
+            background-color: #fff8f8;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+            transition: var(--transition);
+        }
+
+        .homework-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .homework-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .homework-subject {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .teacher-card {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .teacher-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+
+        .teacher-info h4 {
+            color: var(--primary-dark);
+            margin: 0 0 5px;
+        }
+
+        .teacher-info p {
+            margin: 3px 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .event-card {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--success);
+            transition: var(--transition);
+        }
+
+        .event-card:hover {
+            transform: translateX(5px);
+        }
+
+        .event-date {
+            background-color: var(--success);
+            color: white;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .event-date .day {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .event-date .month {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .event-info h4 {
+            color: var(--dark);
+            margin: 0 0 5px;
+        }
+
+        .notice-item {
+            padding: 15px;
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--warning);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .notice-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .notice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .notice-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .notice-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .timetable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .timetable th {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .timetable td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .timetable tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .timetable tr:hover {
+            background-color: #fff8f8;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 180px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px;
+            background-color: #f8f9fa;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-answer.show {
+            padding: 15px;
+            max-height: 200px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tools-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .tool-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            padding: 8px 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .tool-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary);
+        }
+
+        .admin-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .admin-link:hover {
+            transform: translateY(-5px) rotate(90deg);
+            background-color: var(--primary-dark);
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(230, 57, 70, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .contact-actions {
+                justify-content: center;
+            }
+
+            .nav-menu {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card {
+                flex-direction: column;
+            }
+
+            .event-date {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            .tools-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .welcome-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="school-info">
+                    <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="MKPS Logo" class="logo">
+                    <div class="school-details">
+                        <h1>Milli Karwaan Public School</h1>
+                        <p>Baluha Police Chowki, Balrampur</p>
+                    </div>
+                </div>
+                <div class="contact-actions">
+                    <a href="tel:9758919151" class="btn btn-primary pulse">
+                        <i class="fas fa-phone"></i> Call Us
+                    </a>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#homework" class="nav-link active">Homework</a></li>
+                <li class="nav-item"><a href="#teachers" class="nav-link">Teachers</a></li>
+                <li class="nav-item"><a href="#events" class="nav-link">Events</a></li>
+                <li class="nav-item"><a href="#notices" class="nav-link">Notices</a></li>
+                <li class="nav-item"><a href="#timetable" class="nav-link">Timetable</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container" id="mainContent">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="card">
+            <h2 style="text-align: center; color: var(--primary);">Welcome to MKPS Portal</h2>
+            <p style="text-align: center; margin: 20px 0;">Please enter your details to access your personalized dashboard</p>
+            
+            <div class="login-container">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="studentName">Student Name *</label>
+                        <input type="text" id="studentName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="className">Class *</label>
+                        <select id="className" class="form-control" required>
+                            <option value="">Select Class</option>
+                            <option value="1">Class 1</option>
+                            <option value="2">Class 2</option>
+                            <option value="3">Class 3</option>
+                            <option value="4">Class 4</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentName">Parent's Name *</label>
+                        <input type="text" id="parentName" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1.1rem;">
+                        Enter Portal
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Portal (Initially Hidden) -->
+        <div id="portalContent" class="hidden">
+            <!-- Welcome Header -->
+            <div class="welcome-header">
+                <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="MKPS Logo">
+                <div class="welcome-text">
+                    <h2>Welcome, <span id="welcomeName"></span>!</h2>
+                    <p>Class <span id="welcomeClass"></span> | Parent: <span id="welcomeParent"></span></p>
+                </div>
+            </div>
+
+            <!-- Tools Bar -->
+            <div class="tools-bar">
+                <div class="tool-buttons">
+                    <button id="printBtn" class="tool-btn">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                    <button id="exportBtn" class="tool-btn">
+                        <i class="fas fa-file-export"></i> Export Data
+                    </button>
+                    <button id="importBtn" class="tool-btn">
+                        <i class="fas fa-file-import"></i> Import Data
+                    </button>
+                </div>
+                <div class="current-date">
+                    <i class="fas fa-calendar"></i> 
+                    <span id="currentDate"></span>
+                </div>
+            </div>
+
+            <!-- Homework Section -->
+            <section id="homework" class="card">
+                <h3><i class="fas fa-book"></i> Homework</h3>
+                <div id="homeworkContent">
+                    <p>No homework assigned for your class yet.</p>
+                </div>
+                <button id="addHomeworkBtn" class="btn btn-outline" style="margin-top: 15px; display: none;">
+                    <i class="fas fa-plus"></i> Add Homework (Admin)
+                </button>
+            </section>
+
+            <!-- Teachers Section -->
+            <section id="teachers" class="card">
+                <h3><i class="fas fa-chalkboard-teacher"></i> Our Teachers</h3>
+                <div id="teachersContent">
+                    <!-- Teachers will be populated here -->
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section id="events" class="card">
+                <h3><i class="fas fa-calendar-alt"></i> Upcoming Events</h3>
+                <div id="eventsContent">
+                    <!-- Events will be populated here -->
+                </div>
+            </section>
+
+            <!-- Notices Section -->
+            <section id="notices" class="card">
+                <h3><i class="fas fa-bullhorn"></i> Important Notices</h3>
+                <div id="noticesContent">
+                    <!-- Notices will be populated here -->
+                </div>
+            </section>
+
+            <!-- Timetable Section -->
+            <section id="timetable" class="card">
+                <h3><i class="fas fa-clock"></i> Weekly Timetable</h3>
+                <div id="timetableContent">
+                    <!-- Timetable will be populated here -->
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery" class="card">
+                <h3><i class="fas fa-images"></i> School Gallery</h3>
+                <div id="galleryContent" class="gallery">
+                    <!-- Gallery images will be populated here -->
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="card">
+                <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+                <div id="faqContent">
+                    <!-- FAQ items will be populated here -->
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="card">
+                <h3><i class="fas fa-envelope"></i> Contact Us</h3>
+                <p>Have any questions or concerns? Fill out the form below and we'll get back to you as soon as possible.</p>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="contactName">Your Name *</label>
+                        <input type="text" id="contactName" class="form-control" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address *</label>
+                            <input type="email" id="contactEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Phone Number</label>
+                            <input type="tel" id="contactPhone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject">Subject *</label>
+                        <input type="text" id="contactSubject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message *</label>
+                        <textarea id="contactMessage" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Lightbox for Gallery -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img id="lightboxImage" src="" alt="Gallery Image">
+        </div>
+    </div>
+
+    <!-- Admin Link -->
+    <a href="admin.html" class="admin-link" title="Admin Panel">
+        <i class="fas fa-cog"></i>
+    </a>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Action completed successfully!</span>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginScreen = document.getElementById('loginScreen');
+        const portalContent = document.getElementById('portalContent');
+        const loginForm = document.getElementById('loginForm');
+        const welcomeName = document.getElementById('welcomeName');
+        const welcomeClass = document.getElementById('welcomeClass');
+        const welcomeParent = document.getElementById('welcomeParent');
+        const themeToggle = document.getElementById('themeToggle');
+        const currentDateElement = document.getElementById('currentDate');
+        const printBtn = document.getElementById('printBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const importBtn = document.getElementById('importBtn');
+        const addHomeworkBtn = document.getElementById('addHomeworkBtn');
+        const contactForm = document.getElementById('contactForm');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Initialize current date
+        function updateCurrentDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            currentDateElement.textContent = now.toLocaleDateString('en-US', options);
+        }
+        updateCurrentDate();
+
+        // Check if user is already logged in
+        function checkLoginStatus() {
+            const studentData = localStorage.getItem('mkps_student');
+            if (studentData) {
+                const student = JSON.parse(studentData);
+                showPortal(student);
+            }
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Theme toggle
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('mkps_theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('mkps_theme', 'light');
+            }
+        });
+
+        // Check saved theme preference
+        function checkThemePreference() {
+            const savedTheme = localStorage.getItem('mkps_theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.querySelector('i').classList.remove('fa-moon');
+                themeToggle.querySelector('i').classList.add('fa-sun');
+            }
+        }
+
+        // Login form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const studentName = document.getElementById('studentName').value.trim();
+            const className = document.getElementById('className').value;
+            const parentName = document.getElementById('parentName').value.trim();
+
+            if (studentName && className && parentName) {
+                const studentData = {
+                    name: studentName,
+                    class: className,
+                    parent: parentName,
+                    loginTime: new Date().toISOString()
+                };
+
+                localStorage.setItem('mkps_student', JSON.stringify(studentData));
+                showPortal(studentData);
+                showToast(`Welcome to MKPS Portal, ${studentName}!`);
+            }
+        });
+
+        // Show the main portal
+        function showPortal(student) {
+            loginScreen.classList.add('hidden');
+            portalContent.classList.remove('hidden');
+            
+            welcomeName.textContent = student.name;
+            welcomeClass.textContent = student.class;
+            welcomeParent.textContent = student.parent;
+
+            // Load all content
+            loadHomework(student.class);
+            loadTeachers();
+            loadEvents();
+            loadNotices();
+            loadTimetable();
+            loadGallery();
+            loadFAQ();
+            
+            // Animate cards
+            setTimeout(() => {
+                document.querySelectorAll('.card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('animate');
+                    }, 100 * index);
+                });
+            }, 100);
+
+            // Check if user is admin (for demo purposes, anyone can be admin)
+            if (student.name.toLowerCase().includes('admin') || student.parent.toLowerCase().includes('admin')) {
+                addHomeworkBtn.style.display = 'inline-block';
+                addHomeworkBtn.addEventListener('click', addHomework);
+            }
+        }
+
+        // Load homework for the student's class
+        function loadHomework(classLevel) {
+            let homeworkData = localStorage.getItem('mkps_homework');
+            const homeworkContent = document.getElementById('homeworkContent');
+            
+            if (!homeworkData) {
+                // Seed demo data
+                const demoHomework = [
+                    { class: '1', subject: 'Mathematics', assignment: 'Complete page 25-27 in workbook', date: '2023-10-15' },
+                    { class: '2', subject: 'English', assignment: 'Write 5 sentences using new vocabulary words', date: '2023-10-16' },
+                    { class: '3', subject: 'Science', assignment: 'Draw and label parts of a plant', date: '2023-10-17' },
+                    { class: '4', subject: 'Mathematics', assignment: 'Solve multiplication problems 1-20', date: '2023-10-18' },
+                    { class: '5', subject: 'Social Studies', assignment: 'Research and write about local historical sites', date: '2023-10-19' },
+                    { class: '6', subject: 'Science', assignment: 'Prepare for chapter 3 quiz on ecosystems', date: '2023-10-20' },
+                    { class: '7', subject: 'Mathematics', assignment: 'Complete algebra worksheet problems 1-15', date: '2023-10-21' },
+                    { class: '8', subject: 'English', assignment: 'Read chapter 5 and write summary', date: '2023-10-22' },
+                    { class: '9', subject: 'Physics', assignment: 'Solve problems on motion and acceleration', date: '2023-10-23' },
+                    { class: '10', subject: 'Chemistry', assignment: 'Complete lab report on chemical reactions', date: '2023-10-24' },
+                    { class: '11', subject: 'Biology', assignment: 'Prepare presentation on human anatomy', date: '2023-10-25' },
+                    { class: '12', subject: 'Mathematics', assignment: 'Practice calculus problems for upcoming test', date: '2023-10-26' }
+                ];
+                localStorage.setItem('mkps_homework', JSON.stringify(demoHomework));
+                homeworkData = JSON.stringify(demoHomework);
+            }
+
+            const allHomework = JSON.parse(homeworkData);
+            const studentHomework = allHomework.filter(item => item.class === classLevel);
+            
+            if (studentHomework.length > 0) {
+                homeworkContent.innerHTML = '';
+                studentHomework.forEach(hw => {
+                    const hwDate = new Date(hw.date);
+                    const formattedDate = hwDate.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric' 
+                    });
+                    
+                    const hwElement = document.createElement('div');
+                    hwElement.className = 'homework-item';
+                    hwElement.innerHTML = `
+                        <div class="homework-date"><i class="far fa-calendar"></i> ${formattedDate}</div>
+                        <div class="homework-subject">${hw.subject}</div>
+                        <div class="homework-assignment">${hw.assignment}</div>
+                    `;
+                    homeworkContent.appendChild(hwElement);
+                });
+            } else {
+                homeworkContent.innerHTML = '<p>No homework assigned for your class yet.</p>';
+            }
+        }
+
+        // Add homework (admin feature)
+        function addHomework() {
+            const subject = prompt('Enter subject:');
+            if (!subject) return;
+            
+            const assignment = prompt('Enter homework assignment:');
+            if (!assignment) return;
+            
+            const date = prompt('Enter date (YYYY-MM-DD):');
+            if (!date) return;
+            
+            const classLevel = prompt('Enter class level (1-12):');
+            if (!classLevel || classLevel < 1 || classLevel > 12) return;
+            
+            let homeworkData = localStorage.getItem('mkps_homework');
+            const allHomework = homeworkData ? JSON.parse(homeworkData) : [];
+            
+            allHomework.push({
+                class: classLevel,
+                subject: subject,
+                assignment: assignment,
+                date: date
+            });
+            
+            localStorage.setItem('mkps_homework', JSON.stringify(allHomework));
+            const studentData = JSON.parse(localStorage.getItem('mkps_student'));
+            loadHomework(studentData.class);
+            showToast('Homework added successfully!');
+        }
+
+        // Load teachers data
+        function loadTeachers() {
+            let teachersData = localStorage.getItem('mkps_teachers');
+            const teachersContent = document.getElementById('teachersContent');
+            
+            if (!teachersData) {
+                // Seed demo data
+                const demoTeachers = [
+                    { name: 'Dr. Amina Khan', subject: 'Principal', email: 'principal@mkps.edu', phone: '9758919151', image: 'https://randomuser.me/api/portraits/women/45.jpg' },
+                    { name: 'Mr. Rajesh Kumar', subject: 'Mathematics (6-8)', email: 'rajesh.math@mkps.edu', phone: '9876543210', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
+                    { name: 'Ms. Priya Sharma', subject: 'English (9-10)', email: 'priya.english@mkps.edu', phone: '8765432109', image: 'https://randomuser.me/api/portraits/women/65.jpg' },
+                    { name: 'Dr. Sanjay Patel', subject: 'Science (11-12)', email: 'sanjay.science@mkps.edu', phone: '7654321098', image: 'https://randomuser.me/api/portraits/men/44.jpg' },
+                    { name: 'Mrs. Sunita Devi', subject: 'Hindi (1-5)', email: 'sunita.hindi@mkps.edu', phone: '6543210987', image: 'https://randomuser.me/api/portraits/women/22.jpg' },
+                    { name: 'Mr. Arvind Singh', subject: 'Social Studies (6-8)', email: 'arvind.sst@mkps.edu', phone: '5432109876', image: 'https://randomuser.me/api/portraits/men/55.jpg' },
+                    { name: 'Ms. Neha Gupta', subject: 'Computer Science (9-12)', email: 'neha.cs@mkps.edu', phone: '4321098765', image: 'https://randomuser.me/api/portraits/women/33.jpg' },
+                    { name: 'Mr. Vikram Joshi', subject: 'Physical Education', email: 'vikram.pe@mkps.edu', phone: '3210987654', image: 'https://randomuser.me/api/portraits/men/21.jpg' }
+                ];
+                localStorage.setItem('mkps_teachers', JSON.stringify(demoTeachers));
+                teachersData = JSON.stringify(demoTeachers);
+            }
+
+            const teachers = JSON.parse(teachersData);
+            teachersContent.innerHTML = '';
+            
+            teachers.forEach(teacher => {
+                const teacherCard = document.createElement('div');
+                teacherCard.className = 'teacher-card';
+                teacherCard.innerHTML = `
+                    <img src="${teacher.image}" alt="${teacher.name}" class="teacher-img">
+                    <div class="teacher-info">
+                        <h4>${teacher.name}</h4>
+                        <p><i class="fas fa-book"></i> ${teacher.subject}</p>
+                        <p><i class="fas fa-envelope"></i> ${teacher.email}</p>
+                        <p><i class="fas fa-phone"></i> ${teacher.phone}</p>
+                    </div>
+                `;
+                teachersContent.appendChild(teacherCard);
+            });
+        }
+
+        // Load events data
+        function loadEvents() {
+            let eventsData = localStorage.getItem('mkps_events');
+            const eventsContent = document.getElementById('eventsContent');
+            
+            if (!eventsData) {
+                // Seed demo data
+                const demoEvents = [
+                    { title: 'Annual Sports Day', date: '2023-11-15', description: 'Join us for our annual sports day with various athletic events and competitions.', image: 'https://picsum.photos/seed/sports/800/600' },
+                    { title: 'Science Exhibition', date: '2023-12-05', description: 'Students will showcase their science projects and experiments.', image: 'https://picsum.photos/seed/science/800/600' },
+                    { title: 'Parent-Teacher Meeting', date: '2023-11-20', description: 'Schedule your appointment to discuss your child\'s progress with teachers.', image: 'https://picsum.photos/seed/meeting/800/600' },
+                    { title: 'Cultural Fest', date: '2023-12-22', description: 'Celebrate diversity with music, dance, and food from various cultures.', image: 'https://picsum.photos/seed/cultural/800/600' },
+                    { title: 'Math Olympiad', date: '2024-01-10', description: 'Top math students will compete in problem-solving challenges.', image: 'https://picsum.photos/seed/math/800/600' }
+                ];
+                localStorage.setItem('mkps_events', JSON.stringify(demoEvents));
+                eventsData = JSON.stringify(demoEvents);
+            }
+
+            const events = JSON.parse(eventsData);
+            eventsContent.innerHTML = '';
+            
+            events.forEach(event => {
+                const eventDate = new Date(event.date);
+                const eventCard = document.createElement('div');
+                eventCard.className = 'event-card';
+                eventCard.innerHTML = `
+                    <div class="event-date">
+                        <div class="day">${eventDate.getDate()}</div>
+                        <div class="month">${eventDate.toLocaleString('default', { month: 'short' })}</div>
+                    </div>
+                    <div class="event-info">
+                        <h4>${event.title}</h4>
+                        <p>${event.description}</p>
+                    </div>
+                `;
+                eventsContent.appendChild(eventCard);
+            });
+        }
+
+        // Load notices data
+        function loadNotices() {
+            let noticesData = localStorage.getItem('mkps_notices');
+            const noticesContent = document.getElementById('noticesContent');
+            
+            if (!noticesData) {
+                // Seed demo data
+                const demoNotices = [
+                    { title: 'School Closed on Diwali', date: '2023-11-12', content: 'The school will remain closed on November 13th for Diwali celebrations. Classes will resume on November 14th.', priority: 'high' },
+                    { title: 'New Uniform Policy', date: '2023-11-05', content: 'Starting next term, all students are required to wear the new school uniform. Details have been sent to parents via email.', priority: 'medium' },
+                    { title: 'Mid-Term Exams Schedule', date: '2023-10-28', content: 'Mid-term exams will be conducted from November 20th to November 24th. Please check the timetable for your class.', priority: 'high' },
+                    { title: 'Library Hours Extended', date: '2023-10-20', content: 'The school library will now remain open until 5:00 PM on weekdays to accommodate students\' study needs.', priority: 'low' },
+                    { title: 'PTA Meeting Reminder', date: '2023-10-15', content: 'The next Parent-Teacher Association meeting will be held on October 25th at 4:00 PM in the school auditorium.', priority: 'medium' }
+                ];
+                localStorage.setItem('mkps_notices', JSON.stringify(demoNotices));
+                noticesData = JSON.stringify(demoNotices);
+            }
+
+            const notices = JSON.parse(noticesData);
+            noticesContent.innerHTML = '';
+            
+            notices.forEach(notice => {
+                const noticeDate = new Date(notice.date);
+                const formattedDate = noticeDate.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                });
+                
+                const noticeItem = document.createElement('div');
+                noticeItem.className = 'notice-item';
+                noticeItem.innerHTML = `
+                    <div class="notice-header">
+                        <span class="notice-title">${notice.title}</span>
+                        <span class="notice-date">${formattedDate}</span>
+                    </div>
+                    <div class="notice-content">
+                        <p>${notice.content}</p>
+                    </div>
+                `;
+                noticesContent.appendChild(noticeItem);
+            });
+        }
+
+        // Load timetable data
+        function loadTimetable() {
+            let timetableData = localStorage.getItem('mkps_timetable');
+            const timetableContent = document.getElementById('timetableContent');
+            
+            if (!timetableData) {
+                // Seed demo data
+                const demoTimetable = {
+                    '1': [
+                        { day: 'Monday', period1: 'Hindi', period2: 'Math', period3: 'English', period4: 'Drawing', period5: 'PT' },
+                        { day: 'Tuesday', period1: 'Math', period2: 'Hindi', period3: 'EVS', period4: 'Music', period5: 'Story' },
+                        { day: 'Wednesday', period1: 'English', period2: 'Math', period3: 'Hindi', period4: 'Craft', period5: 'PT' },
+                        { day: 'Thursday', period1: 'Hindi', period2: 'EVS', period3: 'Math', period4: 'Drawing', period5: 'Music' },
+                        { day: 'Friday', period1: 'Math', period2: 'English', period3: 'Hindi', period4: 'Story', period5: 'PT' }
+                    ],
+                    '5': [
+                        { day: 'Monday', period1: 'Hindi', period2: 'Math', period3: 'English', period4: 'Science', period5: 'PT' },
+                        { day: 'Tuesday', period1: 'Math', period2: 'Hindi', period3: 'EVS', period4: 'Computer', period5: 'Music' },
+                        { day: 'Wednesday', period1: 'English', period2: 'Math', period3: 'Hindi', period4: 'Science', period5: 'PT' },
+                        { day: 'Thursday', period1: 'Hindi', period2: 'EVS', period3: 'Math', period4: 'Computer', period5: 'Art' },
+                        { day: 'Friday', period1: 'Math', period2: 'English', period3: 'Hindi', period4: 'Science', period5: 'PT' }
+                    ],
+                    '8': [
+                        { day: 'Monday', period1: 'Math', period2: 'Science', period3: 'English', period4: 'Hindi', period5: 'PT' },
+                        { day: 'Tuesday', period1: 'Hindi', period2: 'Social Studies', period3: 'Math', period4: 'Computer', period5: 'Music' },
+                        { day: 'Wednesday', period1: 'English', period2: 'Science', period3: 'Hindi', period4: 'Social Studies', period5: 'PT' },
+                        { day: 'Thursday', period1: 'Math', period2: 'Computer', period3: 'English', period4: 'Science', period5: 'Art' },
+                        { day: 'Friday', period1: 'Hindi', period2: 'Social Studies', period3: 'Math', period4: 'Science', period5: 'PT' }
+                    ],
+                    '12': [
+                        { day: 'Monday', period1: 'Physics', period2: 'Math', period3: 'English', period4: 'Chemistry', period5: 'PT' },
+                        { day: 'Tuesday', period1: 'Chemistry', period2: 'Biology', period3: 'Math', period4: 'Computer', period5: 'Music' },
+                        { day: 'Wednesday', period1: 'English', period2: 'Physics', period3: 'Biology', period4: 'Math', period5: 'PT' },
+                        { day: 'Thursday', period1: 'Math', period2: 'Computer', period3: 'Chemistry', period4: 'Physics', period5: 'Art' },
+                        { day: 'Friday', period1: 'Biology', period2: 'Math', period3: 'English', period4: 'Chemistry', period5: 'PT' }
+                    ]
+                };
+                localStorage.setItem('mkps_timetable', JSON.stringify(demoTimetable));
+                timetableData = JSON.stringify(demoTimetable);
+            }
+
+            const timetable = JSON.parse(timetableData);
+            const studentData = JSON.parse(localStorage.getItem('mkps_student'));
+            const classTimetable = timetable[studentData.class] || timetable['1'];
+            
+            let tableHtml = `
+                <table class="timetable">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Period 1</th>
+                            <th>Period 2</th>
+                            <th>Period 3</th>
+                            <th>Period 4</th>
+                            <th>Period 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            classTimetable.forEach(row => {
+                tableHtml += `
+                    <tr>
+                        <td>${row.day}</td>
+                        <td>${row.period1}</td>
+                        <td>${row.period2}</td>
+                        <td>${row.period3}</td>
+                        <td>${row.period4}</td>
+                        <td>${row.period5}</td>
+                    </tr>
+                `;
+            });
+            
+            tableHtml += `
+                    </tbody>
+                </table>
+            `;
+            
+            timetableContent.innerHTML = tableHtml;
+        }
+
+        // Load gallery data
+        function loadGallery() {
+            let galleryData = localStorage.getItem('mkps_gallery');
+            const galleryContent = document.getElementById('galleryContent');
+            
+            if (!galleryData) {
+                // Seed demo data
+                const demoGallery = [
+                    { url: 'https://picsum.photos/seed/school1/800/600', title: 'School Building' },
+                    { url: 'https://picsum.photos/seed/classroom/800/600', title: 'Classroom' },
+                    { url: 'https://picsum.photos/seed/lab/800/600', title: 'Science Lab' },
+                    { url: 'https://picsum.photos/seed/library/800/600', title: 'Library' },
+                    { url: 'https://picsum.photos/seed/sports/800/600', title: 'Sports Day' },
+                    { url: 'https://picsum.photos/seed/cultural/800/600', title: 'Cultural Event' },
+                    { url: 'https://picsum.photos/seed/exam/800/600', title: 'Exam Hall' },
+                    { url: 'https://picsum.photos/seed/assembly/800/600', title: 'Morning Assembly' }
+                ];
+                localStorage.setItem('mkps_gallery', JSON.stringify(demoGallery));
+                galleryData = JSON.stringify(demoGallery);
+            }
+
+            const images = JSON.parse(galleryData);
+            galleryContent.innerHTML = '';
+            
+            images.forEach(img => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `<img src="${img.url}" alt="${img.title}" data-title="${img.title}">`;
+                galleryItem.addEventListener('click', () => openLightbox(img.url, img.title));
+                galleryContent.appendChild(galleryItem);
+            });
+        }
+
+        // Open lightbox
+        function openLightbox(imageUrl, imageTitle) {
+            lightboxImage.src = imageUrl;
+            lightboxImage.alt = imageTitle;
+            lightbox.classList.add('active');
+        }
+
+        // Close lightbox
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Handle keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Load FAQ data
+        function loadFAQ() {
+            let faqData = localStorage.getItem('mkps_faq');
+            const faqContent = document.getElementById('faqContent');
+            
+            if (!faqData) {
+                // Seed demo data
+                const demoFAQ = [
+                    { 
+                        question: 'What are the school hours?', 
+                        answer: 'School hours are from 8:00 AM to 2:30 PM, Monday through Friday. Pre-primary section (Nursery to KG) dismisses at 1:30 PM.' 
+                    },
+                    { 
+                        question: 'How can I pay school fees?', 
+                        answer: 'Fees can be paid online through our payment portal, by bank transfer, or in cash at the school office. We also accept checks and demand drafts.' 
+                    },
+                    { 
+                        question: 'What is the school\'s uniform policy?', 
+                        answer: 'Students are required to wear the official school uniform every day. The uniform consists of a white shirt, navy blue pants/skirt, and the school tie. Details are available in the student handbook.' 
+                    },
+                    { 
+                        question: 'Are there transportation facilities?', 
+                        answer: 'Yes, we provide bus transportation for students living within a 15 km radius of the school. Routes and schedules are available from the administration office.' 
+                    },
+                    { 
+                        question: 'How are parents informed about student progress?', 
+                        answer: 'We conduct parent-teacher meetings every quarter. Additionally, we send progress reports via email and maintain an online portal where parents can track their child\'s academic performance.' 
+                    },
+                    { 
+                        question: 'What extracurricular activities are offered?', 
+                        answer: 'We offer a wide range of extracurricular activities including sports (cricket, football, basketball), arts (music, dance, painting), and clubs (debate, science, robotics). Students can join based on their interests.' 
+                    }
+                ];
+                localStorage.setItem('mkps_faq', JSON.stringify(demoFAQ));
+                faqData = JSON.stringify(demoFAQ);
+            }
+
+            const faqItems = JSON.parse(faqData);
+            faqContent.innerHTML = '';
+            
+            faqItems.forEach(item => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item';
+                
+                const faqQuestion = document.createElement('div');
+                faqQuestion.className = 'faq-question';
+                faqQuestion.innerHTML = `${item.question} <i class="fas fa-chevron-down"></i>`;
+                
+                const faqAnswer = document.createElement('div');
+                faqAnswer.className = 'faq-answer';
+                faqAnswer.textContent = item.answer;
+                
+                faqQuestion.addEventListener('click', () => {
+                    faqAnswer.classList.toggle('show');
+                    const icon = faqQuestion.querySelector('i');
+                    icon.classList.toggle('fa-chevron-down');
+                    icon.classList.toggle('fa-chevron-up');
+                });
+                
+                faqItem.appendChild(faqQuestion);
+                faqItem.appendChild(faqAnswer);
+                faqContent.appendChild(faqItem);
+            });
+        }
+
+        // Contact form submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const contactName = document.getElementById('contactName').value;
+            const contactEmail = document.getElementById('contactEmail').value;
+            const contactPhone = document.getElementById('contactPhone').value;
+            const contactSubject = document.getElementById('contactSubject').value;
+            const contactMessage = document.getElementById('contactMessage').value;
+            
+            const messageData = {
+                name: contactName,
+                email: contactEmail,
+                phone: contactPhone,
+                subject: contactSubject,
+                message: contactMessage,
+                timestamp: new Date().toISOString()
+            };
+            
+            let messages = localStorage.getItem('mkps_messages');
+            const messagesList = messages ? JSON.parse(messages) : [];
+            messagesList.push(messageData);
+            localStorage.setItem('mkps_messages', JSON.stringify(messagesList));
+            
+            contactForm.reset();
+            showToast('Your message has been sent successfully! We will get back to you soon.');
+        });
+
+        // Print functionality
+        printBtn.addEventListener('click', () => {
+            window.print();
+        });
+
+        // Export data functionality
+        exportBtn.addEventListener('click', () => {
+            const data = {
+                student: localStorage.getItem('mkps_student'),
+                homework: localStorage.getItem('mkps_homework'),
+                teachers: localStorage.getItem('mkps_teachers'),
+                events: localStorage.getItem('mkps_events'),
+                notices: localStorage.getItem('mkps_notices'),
+                timetable: localStorage.getItem('mkps_timetable'),
+                gallery: localStorage.getItem('mkps_gallery'),
+                faq: localStorage.getItem('mkps_faq'),
+                messages: localStorage.getItem('mkps_messages'),
+                theme: localStorage.getItem('mkps_theme'),
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'mkps_data_export.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showToast('Data exported successfully!');
+        });
+
+        // Import data functionality
+        importBtn.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = e => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsText(file);
+                reader.onload = readerEvent => {
+                    try {
+                        const content = readerEvent.target.result;
+                        const data = JSON.parse(content);
+                        
+                        // Import all data
+                        Object.keys(data).forEach(key => {
+                            if (key !== 'exportDate') {
+                                localStorage.setItem(key, data[key]);
+                            }
+                        });
+                        
+                        // Refresh the page to show imported data
+                        location.reload();
+                        showToast('Data imported successfully!');
+                    } catch (error) {
+                        showToast('Error importing data. Please check the file format.', 'error');
+                    }
+                };
+            };
+            
+            input.click();
+        });
+
+        // Smooth scrolling for navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active state
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize the app
+        function init() {
+            checkThemePreference();
+            checkLoginStatus();
+        }
+
+        // Run initialization
+        init();
+    </script>
+</body>
+</html>
