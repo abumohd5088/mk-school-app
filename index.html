@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSphere - Complete School Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar-transition {
+            transition: all 0.3s ease;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .progress-ring {
+            width: 80px;
+            height: 80px;
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Main Container -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-transition bg-gradient-to-b from-blue-800 to-blue-900 w-64 flex-shrink-0 z-10 shadow-xl">
+            <div class="flex flex-col h-full">
+                <!-- Logo & Brand -->
+                <div class="flex items-center justify-center h-20 bg-blue-900 border-b border-blue-700">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <i data-feather="book-open" class="text-blue-900"></i>
+                        </div>
+                        <span class="text-white text-xl font-bold">EduSphere</span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-white rounded-lg bg-blue-700 font-medium" data-page="dashboard">
+                        <i data-feather="home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="students">
+                        <i data-feather="users"></i>
+                        <span>Students</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="teachers">
+                        <i data-feather="user-check"></i>
+                        <span>Teachers</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="courses">
+                        <i data-feather="book"></i>
+                        <span>Courses</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="grades">
+                        <i data-feather="award"></i>
+                        <span>Grades</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="attendance">
+                        <i data-feather="check-circle"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="schedule">
+                        <i data-feather="calendar"></i>
+                        <span>Schedule</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="library">
+                        <i data-feather="archive"></i>
+                        <span>Library</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="events">
+                        <i data-feather="calendar"></i>
+                        <span>Events</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="communications">
+                        <i data-feather="message-circle"></i>
+                        <span>Communications</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="finance">
+                        <i data-feather="dollar-sign"></i>
+                        <span>Finance</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-700 hover:text-white rounded-lg transition-colors" data-page="settings">
+                        <i data-feather="settings"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+
+                <!-- User Profile -->
+                <div class="p-4 border-t border-blue-700">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://placehold.co/40/3b82f6/ffffff?text=AD" alt="Admin" class="w-10 h-10 rounded-full">
+                        <div class="flex-1 min-w-0">
+                            <p class="text-white text-sm font-medium">Alex Johnson</p>
+                            <p class="text-blue-200 text-xs">Administrator</p>
+                        </div>
+                        <button id="logoutBtn" class="text-blue-200 hover:text-white">
+                            <i data-feather="log-out" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Navbar -->
+            <header class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button id="sidebarToggle" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                            <i data-feather="menu" class="w-5 h-5"></i>
+                        </button>
+                        <div class="relative">
+                            <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 w-80 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <i data-feather="search" class="w-4 h-4 text-gray-400 absolute left-3 top-3"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <button class="relative text-gray-600 hover:text-gray-800">
+                            <i data-feather="bell" class="w-5 h-5"></i>
+                            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                        </button>
+                        <button class="text-gray-600 hover:text-gray-800">
+                            <i data-feather="message-circle" class="w-5 h-5"></i>
+                        </button>
+                        <div class="flex items-center space-x-2">
+                            <img src="https://placehold.co/32/3b82f6/ffffff?text=AD" alt="User" class="w-8 h-8 rounded-full">
+                            <span class="text-sm font-medium text-gray-700">Alex Johnson</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main id="content" class="flex-1 overflow-y-auto p-6">
+                <!-- Dashboard Page -->
+                <div id="dashboard" class="fade-in">
+                    <!-- Header -->
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">Welcome back, Alex!</h1>
+                        <p class="text-gray-600">Here's what's happening at Lincoln High School today.</p>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <!-- Total Students -->
+                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 card-hover">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-blue-100">
+                                    <i data-feather="users" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Students</p>
+                                    <p class="text-2xl font-bold text-gray-900">1,247</p>
+                                    <p class="text-xs text-green-600 flex items-center">
+                                        <i data-feather="trending-up" class="w-3 h-3 mr-1"></i>
+                                        12% from last month
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Teachers -->
+                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 card-hover">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100">
+                                    <i data-feather="user-check" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Teachers</p>
+                                    <p class="text-2xl font-bold text-gray-900">89</p>
+                                    <p class="text-xs text-green-600 flex items-center">
+                                        <i data-feather="trending-up" class="w-3 h-3 mr-1"></i>
+                                        5% from last month
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Attendance Rate -->
+                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 card-hover">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-yellow-100">
+                                    <i data-feather="check-circle" class="w-6 h-6 text-yellow-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Attendance Rate</p>
+                                    <p class="text-2xl font-bold text-gray-900">96.7%</p>
+                                    <p class="text-xs text-green-600 flex items-center">
+                                        <i data-feather="trending-up" class="w-3 h-3 mr-1"></i>
+                                        2.3% from yesterday
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Average GPA -->
+                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 card-hover">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-purple-100">
+                                    <i data-feather="award" class="w-6 h-6 text-purple-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Average GPA</p>
+                                    <p class="text-2xl font-bold text-gray-900">3.42</p>
+                                    <p class="text-xs text-blue-600 flex items-center">
+                                        <i data-feather="trending-up" class="w-3 h-3 mr-1"></i>
+                                        Steady
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts and Analytics -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <!-- Performance Chart -->
+                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-semibold text-gray-900">Student Performance</h3>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Monthly</button>
+                                    <button class="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg">Yearly</button>
+                                </div>
+                            </div>
+                            <div class="h-64">
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Attendance Chart -->
+                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-semibold text-gray-900">Attendance Trends</h3>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">This Week</button>
+                                    <button class="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg">This Month</button>
+                                </div>
+                            </div>
+                            <div class="h-64">
+                                <canvas id="attendanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity and Quick Actions -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Recent Activity -->
+                        <div class="lg:col-span-2 bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Recent Activity</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i data-feather="user-plus" class="w-5 h-5 text-blue-600"></i>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">New student enrollment</p>
+                                        <p class="text-sm text-gray-500">Emma Thompson enrolled in 10th Grade - Math</p>
+                                    </div>
+                                    <span class="text-xs text-gray-400">2 min ago</span>
+                                </div>
+                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                        <i data-feather="award" class="w-5 h-5 text-green-600"></i>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Grade update</p>
+                                        <p class="text-sm text-gray-500">Algebra II grades updated for 11th Grade</p>
+                                    </div>
+                                    <span class="text-xs text-gray-400">15 min ago</span>
+                                </div>
+                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                                        <i data-feather="calendar" class="w-5 h-5 text-yellow-600"></i>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">New event scheduled</p>
+                                        <p class="text-sm text-gray-500">Science Fair - April 15, 2024</p>
+                                    </div>
+                                    <span class="text-xs text-gray-400">1 hour ago</span>
+                                </div>
+                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                        <i data-feather="message-circle" class="w-5 h-5 text-purple-600"></i>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Parent message</p>
+                                        <p class="text-sm text-gray-500">Mr. Johnson inquired about his child's progress</p>
+                                    </div>
+                                    <span class="text-xs text-gray-400">3 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Quick Actions</h3>
+                            <div class="space-y-3">
+                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors">
+                                    <i data-feather="plus" class="w-5 h-5"></i>
+                                    <span>Add Student</span>
+                                </button>
+                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors">
+                                    <i data-feather="plus" class="w-5 h-5"></i>
+                                    <span>Add Teacher</span>
+                                </button>
+                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors">
+                                    <i data-feather="plus" class="w-5 h-5"></i>
+                                    <span>Create Course</span>
+                                </button>
+                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-yellow-50 text-yellow-700 rounded-lg hover:bg-yellow-100 transition-colors">
+                                    <i data-feather="calendar" class="w-5 h-5"></i>
+                                    <span>Schedule Event</span>
+                                </button>
+                                <button class="w-full flex items-center space-x-3 px-4 py-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors">
+                                    <i data-feather="message-circle" class="w-5 h-5"></i>
+                                    <span>Send Announcement</span>
+                                </button>
+                            </div>
+
+                            <!-- System Status -->
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <h4 class="text-sm font-medium text-gray-900 mb-3">System Status</h4>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="text-gray-600">Database</span>
+                                        <span class="flex items-center text-green-600">
+                                            <i data-feather="circle" class="w-3 h-3 mr-1"></i>
+                                            Operational
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="text-gray-600">Backup</span>
+                                        <span class="flex items-center text-green-600">
+                                            <i data-feather="circle" class="w-3 h-3 mr-1"></i>
+                                            Complete
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="text-gray-600">Security</span>
+                                        <span class="flex items-center text-green-600">
+                                            <i data-feather="circle" class="w-3 h-3 mr-1"></i>
+                                            Active
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students Page (Hidden by default) -->
+                <div id="students" class="fade-in hidden">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">Students Management</h1>
+                            <p class="text-gray-600">Manage student records, enrollment, and academic progress</p>
+                        </div>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors">
+                            <i data-feather="plus"></i>
+                            <span>Add Student</span>
+                        </button>
+                    </div>
+
+                    <!-- Students Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-blue-100">
+                                    <i data-feather="users" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-600">Total Students</p>
+                                    <p class="text-2xl font-bold text-gray-900">1,247</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100">
+                                    <i data-feather="graduation-cap" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-600">Graduates</p>
+                                    <p class="text-2xl font-bold text-gray-900">289</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-purple-100">
+                                    <i data-feather="book" class="w-6 h-6 text-purple-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-600">Active Courses</p>
+                                    <p class="text-2xl font-bold text-gray-900">42</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-yellow-100">
+                                    <i data-feather="alert-circle" class="w-6 h-6 text-yellow-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-600">Needs Attention</p>
+                                    <p class="text-2xl font-bold text-gray-900">12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Students Table -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <h3 class="text-lg font-semibold text-gray-900">All Students</h3>
+                                    <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">1,247 students</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+                                        <option>All Grades</option>
+                                        <option>9th Grade</option>
+                                        <option>10th Grade</option>
+                                        <option>11th Grade</option>
+                                        <option>12th Grade</option>
+                                    </select>
+                                    <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+                                        <option>All Courses</option>
+                                        <option>Mathematics</option>
+                                        <option>Science</option>
+                                        <option>English</option>
+                                        <option>History</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">GPA</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Attendance</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Courses</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-blue-600 font-medium">EJ</span>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Emma Johnson</div>
+                                                    <div class="text-sm text-gray-500">emj@school.edu</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                10th Grade
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3.8</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-green-500 h-2 rounded-full" style="width: 98%"></div>
+                                                </div>
+                                                <span class="ml-2 text-sm text-gray-500">98%</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
+                                            <button class="text-red-600 hover:text-red-900">Remove</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-green-600 font-medium">LW</span>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Liam Wilson</div>
+                                                    <div class="text-sm text-gray-500">liamw@school.edu</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                11th Grade
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3.5</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 92%"></div>
+                                                </div>
+                                                <span class="ml-2 text-sm text-gray-500">92%</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
+                                            <button class="text-red-600 hover:text-red-900">Remove</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-purple-600 font-medium">NS</span>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Noah Smith</div>
+                                                    <div class="text-sm text-gray-500">noahs@school.edu</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                12th Grade
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3.2</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-red-500 h-2 rounded-full" style="width: 85%"></div>
+                                                </div>
+                                                <span class="ml-2 text-sm text-gray-500">85%</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">6</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
+                                            <button class="text-red-600 hover:text-red-900">Remove</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-yellow-600 font-medium">OL</span>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Olivia Lee</div>
+                                                    <div class="text-sm text-gray-500">olivia@school.edu</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                9th Grade
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4.0</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                                </div>
+                                                <span class="ml-2 text-sm text-gray-500">100%</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">3</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
+                                            <button class="text-red-600 hover:text-red-900">Remove</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm text-gray-700">
+                                    Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">1,247</span> students
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                        Previous
+                                    </button>
+                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                        1
+                                    </button>
+                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                        2
+                                    </button>
+                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                        3
+                                    </button>
+                                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teachers Page (Hidden by default) -->
+                <div id="teachers" class="fade-in hidden">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">Teachers Management</h1>
+                            <p class="text-gray-600">Manage teacher profiles, schedules, and performance</p>
+                        </div>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors">
+                            <i data-feather="plus"></i>
+                            <span>Add Teacher</span>
+                        </button>
+                    </div>
+
+                    <!-- Teachers Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-blue-100">
+                                    <i data-feather="user-check" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-600">Total Teachers</p>
+                                    <p class="text-2xl font-bold text-gray-900">89</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100">
+                                    <i data-feather="star" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-600">Certified</p>
+                                    <p class="text-2xl font-bold text-gray-900">85</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-purple-100">
+                                    <i data-feather="book" class="w-6 h-6 text-purple-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-600">Departments</p>
+                                    <p class="text-2xl font-bold text-gray-900">8</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-yellow-100">
+                                    <i data-feather="clock" class="w-6 h-6 text-yellow-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-600">Avg. Experience</p>
+                                    <p class="text-2xl font-bold text-gray-900">8.5 yrs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teachers Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover">
+                            <div class="h-4 bg-blue-600"></div>
+                            <div class="p-6">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <img src="https://placehold.co/80/3b82f6/ffffff?text=DR" alt="Dr. Roberts" class="w-16 h-16 rounded-full">
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900">Dr. Sarah Roberts</h3>
+                                        <p class="text-gray-600">Mathematics Department</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Experience</span>
+                                        <span class="font-medium">12 years</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Courses</span>
+                                        <span class="font-medium">4</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Students</span>
+                                        <span class="font-medium">128</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Rating</span>
+                                        <div class="flex">
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-gray-300"></i>
+                                            <span class="ml-1 text-gray-600">(4.2)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 flex space-x-2">
+                                    <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
+                                        View Profile
+                                    </button>
+                                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg text-sm font-medium transition-colors">
+                                        <i data-feather="edit" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover">
+                            <div class="h-4 bg-green-600"></div>
+                            <div class="p-6">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <img src="https://placehold.co/80/10b981/ffffff?text=JM" alt="Ms. Miller" class="w-16 h-16 rounded-full">
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900">Jennifer Miller</h3>
+                                        <p class="text-gray-600">English Department</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Experience</span>
+                                        <span class="font-medium">8 years</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Courses</span>
+                                        <span class="font-medium">3</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Students</span>
+                                        <span class="font-medium">96</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Rating</span>
+                                        <div class="flex">
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star-half" class="w-4 h-4 text-yellow-400"></i>
+                                            <span class="ml-1 text-gray-600">(4.7)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 flex space-x-2">
+                                    <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
+                                        View Profile
+                                    </button>
+                                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg text-sm font-medium transition-colors">
+                                        <i data-feather="edit" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden card-hover">
+                            <div class="h-4 bg-purple-600"></div>
+                            <div class="p-6">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <img src="https://placehold.co/80/8b5cf6/ffffff?text=DR" alt="Dr. Ramirez" class="w-16 h-16 rounded-full">
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900">Dr. Carlos Ramirez</h3>
+                                        <p class="text-gray-600">Science Department</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Experience</span>
+                                        <span class="font-medium">15 years</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Courses</span>
+                                        <span class="font-medium">5</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Students</span>
+                                        <span class="font-medium">142</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Rating</span>
+                                        <div class="flex">
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <i data-feather="star" class="w-4 h-4 text-yellow-400"></i>
+                                            <span class="ml-1 text-gray-600">(5.0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 flex space-x-2">
+                                    <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
+                                        View Profile
+                                    </button>
+                                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg text-sm font-medium transition-colors">
+                                        <i data-feather="edit" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grades Page (Hidden by default) -->
+                <div id="grades" class="fade-in hidden">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">Grades Management</h1>
+                            <p class="text-gray-600">Track and manage student academic performance</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors">
+                                <i data-feather="download"></i>
+                                <span>Export</span>
+                            </button>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors">
+                                <i data-feather="plus"></i>
+                                <span>Add Grades</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Grades Filters -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+                                <option>All Grades</option>
+                                <option>9th Grade</option>
+                                <option>10th Grade</option>
+                                <option>11th Grade</option>
+                                <option>12th Grade</option>
+                            </select>
+                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+                                <option>All Subjects</option>
+                                <option>Mathematics</option>
+                                <option>Science</option>
+                                <option>English</option>
+                                <option>History</option>
+                                <option>Art</option>
+                            </select>
+                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+                                <option>All Teachers</option>
+                                <option>Dr. Sarah Roberts</option>
+                                <option>Jennifer Miller</option>
+                                <option>Dr. Carlos Ramirez</option>
+                            </select>
+                            <select class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
+                                <option>All Terms</option>
+                                <option>Fall Semester</option>
+                                <option>Spring Semester</option>
+                                <option>Final Exams</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Grades Overview -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                        <!-- Grade Distribution -->
+                        <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Grade Distribution</h3>
+                            <div class="h-80">
+                                <canvas id="gradeDistributionChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Grade Summary -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Grade Summary</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                        <span class="text-sm font-medium text-gray-900">A (90-100)</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-gray-900">28%</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                        <span class="text-sm font-medium text-gray-900">B (80-89)</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-gray-900">35%</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
+                                        <span class="text-sm font-medium text-gray-900">C (70-79)</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-gray-900">22%</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-orange-500 rounded-full mr-3"></div>
+                                        <span class="text-sm font-medium text-gray-900">D (60-69)</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-gray-900">10%</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
+                                        <span class="text-sm font-medium text-gray-900">F (Below 60)</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-gray-900">5%</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <h4 class="text-sm font-medium text-gray-900 mb-3">Top Performing Students</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/24/10b981/ffffff?text=OL" alt="Olivia" class="w-6 h-6 rounded-full mr-2">
+                                            <span class="text-sm text-gray-900">Olivia Lee</span>
+                                        </div>
+                                        <span class="text-sm font-bold text-green-600">4.0 GPA</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/24/3b82f6/ffffff?text=EJ" alt="Emma" class="w-6 h-6 rounded-full mr-2">
+                                            <span class="text-sm text-gray-900">Emma Johnson</span>
+                                        </div>
+                                        <span class="text-sm font-bold text-green-600">3.8 GPA</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://placehold.co/24/f59e0b/ffffff?text=LW" alt="Liam" class="w-6 h-6 rounded-full mr-2">
+                                            <span class="text-sm text-gray-900">Liam Wilson</span>
+                                        </div>
+                                        <span class="text-sm font-bold text-blue-600">3.5 GPA</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Grades -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Recent Grade Updates</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teacher</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-blue-600 text-xs">EJ</span>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <div class="text-sm font-medium text-gray-900">Emma Johnson</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Algebra II</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dr. Sarah Roberts</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                A (94)
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 15, 2024</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                Final
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-green-600 text-xs">LW</span>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <div class="text-sm font-medium text-gray-900">Liam Wilson</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Chemistry</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dr. Carlos Ramirez</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                B (87)
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 14, 2024</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                Midterm
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-purple-600 text-xs">NS</span>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <div class="text-sm font-medium text-gray-900">Noah Smith</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">English Literature</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jennifer Miller</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                                C (76)
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 12, 2024</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Final
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-yellow-600 text-xs">OL</span>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <div class="text-sm font-medium text-gray-900">Olivia Lee</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">World History</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mr. Thompson</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                A (98)
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mar 10, 2024</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                Midterm
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Sidebar Toggle
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('w-64');
+            sidebar.classList.toggle('w-16');
+            content.classList.toggle('ml-64');
+            content.classList.toggle('ml-16');
+            
+            // Update icons when collapsed
+            const icons = document.querySelectorAll('.sidebar-transition a i');
+            icons.forEach(icon => {
+                icon.classList.toggle('mx-auto');
+            });
+        });
+
+        // Navigation
+        const navLinks = document.querySelectorAll('nav a');
+        const pages = document.querySelectorAll('[id$="page"], #dashboard');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Update active state
+                navLinks.forEach(l => l.classList.remove('bg-blue-700'));
+                navLinks.forEach(l => l.classList.add('hover:bg-blue-700'));
+                link.classList.remove('hover:bg-blue-700');
+                link.classList.add('bg-blue-700');
+                
+                // Show selected page
+                const pageId = link.getAttribute('data-page');
+                pages.forEach(page => {
+                    page.classList.add('hidden');
+                });
+                document.getElementById(pageId).classList.remove('hidden');
+            });
+        });
+
+        // Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Performance Chart
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            new Chart(performanceCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Average GPA',
+                        data: [3.1, 3.15, 3.2, 3.25, 3.3, 3.35, 3.38, 3.4, 3.41, 3.42, 3.43, 3.45],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 3.0,
+                            max: 4.0
+                        }
+                    }
+                }
+            });
+
+            // Attendance Chart
+            const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+            new Chart(attendanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                    datasets: [{
+                        label: 'Attendance Rate',
+                        data: [95.2, 96.1, 94.8, 97.3, 96.7],
+                        backgroundColor: '#10b981',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Grade Distribution Chart
+            const gradeCtx = document.getElementById('gradeDistributionChart').getContext('2d');
+            new Chart(gradeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['A (90-100)', 'B (80-89)', 'C (70-79)', 'D (60-69)', 'F (Below 60)'],
+                    datasets: [{
+                        data: [28, 35, 22, 10, 5],
+                        backgroundColor: [
+                            '#10b981',
+                            '#3b82f6',
+                            '#f59e0b',
+                            '#f97316',
+                            '#ef4444'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
