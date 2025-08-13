@@ -1,1318 +1,657 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Milli Karwaan Public School</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Milli Karwaan Public School, Balrampur - A leading educational institution providing quality Islamic and modern education from Nursery to 12th. Apply now for admission." />
+  <meta name="keywords" content="Milli Karwaan Public School, Balrampur School, Best School in Balrampur, Islamic School, CBSE School, Online Admission" />
+  <meta name="author" content="Milli Karwaan Public School" />
+  <meta name="robots" content="index, follow" />
+  <title>Milli Karwaan Public School | Best School in Balrampur</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" type="image/png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#16a34a',  /* Green */
+            secondary: '#fbbf24', /* Gold */
+            light: '#f8fafc',
+            dark: '#0f172a'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
   <style>
-    /* === GLOBAL STYLES === */
-    :root {
-      --primary: #e53e3e;
-      --primary-light: #fbb6b6;
-      --primary-dark: #c53030;
-      --text: #1a202c;
-      --text-light: #4a5568;
-      --bg: #ffffff;
-      --bg-alt: #f7fafc;
-      --card-bg: #ffffff;
-      --border: #e2e8f0;
-      --shadow: rgba(0, 0, 0, 0.1);
-      --success: #38a169;
-      --warning: #dd6b20;
-      --danger: #e53e3e;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .dark-mode {
-      --text: #f7fafc;
-      --text-light: #cbd5e0;
-      --bg: #1a202c;
-      --bg-alt: #2d3748;
-      --card-bg: #2d3748;
-      --border: #4a5568;
-      --shadow: rgba(0, 0, 0, 0.3);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: var(--transition);
-      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
     }
-
-    img {
-      max-width: 100%;
-      border-radius: 8px;
-      transition: var(--transition);
+    .dark-mode {
+      --tw-bg-opacity: 1;
+      background-color: #0f172a;
+      color: #e2e8f0;
     }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-      transition: var(--transition);
+    .hero-bg {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
     }
-
-    a:hover {
-      color: var(--primary-dark);
+    .ticker {
+      animation: scrollText 20s linear infinite;
     }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 4px 6px var(--shadow);
-    }
-
-    .btn:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      background-color: var(--primary);
-      color: white;
-    }
-
-    .btn-sm {
-      padding: 6px 12px;
-      font-size: 0.875rem;
-    }
-
-    .btn-danger {
-      background-color: var(--danger);
-    }
-
-    .btn-danger:hover {
-      background-color: #c53030;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: var(--transition);
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px var(--shadow);
-    }
-
-    .section-title {
-      font-size: 1.75rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background-color: var(--primary);
-      border-radius: 2px;
-    }
-
-    /* === HEADER === */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 12px var(--shadow);
-    }
-
-    .school-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      height: 80px;
-      border-radius: 50%;
-      border: 3px solid white;
-      box-shadow: 0 4px 8px var(--shadow);
-    }
-
-    .school-info h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-
-    .school-info p {
-      font-size: 0.95rem;
-      opacity: 0.9;
-    }
-
-    /* === LOGIN GATE === */
-    .login-gate {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--bg-alt), var(--bg));
-    }
-
-    .login-card {
-      width: 100%;
-      max-width: 500px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-      color: var(--text-light);
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 1rem;
-      background-color: var(--bg);
-      color: var(--text);
-      transition: var(--transition);
-    }
-
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
-    }
-
-    /* === NAVIGATION === */
-    nav {
-      margin: 20px 0;
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 10px 0;
-      scrollbar-width: none;
-    }
-
-    nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-link {
-      padding: 10px 16px;
-      background-color: var(--bg-alt);
-      border-radius: 8px;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: var(--transition);
-      border: 1px solid var(--border);
-    }
-
-    .nav-link.active {
-      background-color: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .nav-link:hover:not(.active) {
-      background-color: var(--primary-light);
-      color: var(--primary-dark);
-    }
-
-    /* === CONTENT === */
-    .content {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .content.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .teacher-card {
-      text-align: center;
-    }
-
-    .teacher-img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 12px;
-      border: 3px solid var(--primary-light);
-    }
-
-    .event-card, .notice-card {
-      position: relative;
-    }
-
-    .event-date, .notice-date {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background-color: var(--primary);
-      color: white;
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .timetable {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-    }
-
-    .timetable th, .timetable td {
-      padding: 12px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-
-    .timetable th {
-      background-color: var(--primary-light);
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .timetable tr:nth-child(even) {
-      background-color: var(--bg-alt);
-    }
-
-    /* === GALLERY === */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .gallery-item {
-      height: 180px;
-      cursor: pointer;
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.1);
-    }
-
-    /* === LIGHTBOX === */
     .lightbox {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
       justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
+      align-items: center;
     }
-
-    .lightbox.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .lightbox-content {
+    .lightbox img {
       max-width: 90%;
       max-height: 90%;
-      position: relative;
+      object-fit: contain;
     }
-
-    .lightbox-content img {
-      max-width: 100%;
-      max-height: 90vh;
-      border: 3px solid white;
-      border-radius: 8px;
+    .chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
     }
-
-    .lightbox-close {
-      position: absolute;
-      top: -40px;
-      right: 0;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      font-size: 20px;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lightbox-prev {
-      left: 10px;
-    }
-
-    .lightbox-next {
-      right: 10px;
-    }
-
-    /* === FAQ === */
-    .faq-item {
-      margin-bottom: 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      padding: 16px;
-      background-color: var(--bg-alt);
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-question::after {
-      content: '+';
-      font-size: 1.5rem;
-      color: var(--primary);
-    }
-
-    .faq-question.active::after {
-      content: '−';
-    }
-
-    .faq-answer {
-      padding: 0 16px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-
-    .faq-answer.active {
-      padding: 16px;
-      max-height: 500px;
-    }
-
-    /* === FOOTER === */
-    footer {
-      background-color: var(--bg-alt);
-      padding: 30px 0;
-      margin-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    .footer-section h3 {
-      color: var(--primary);
-      margin-bottom: 16px;
-      font-size: 1.2rem;
-    }
-
-    .footer-section p, .footer-section a {
-      margin-bottom: 8px;
+    .dropdown:hover .dropdown-menu {
       display: block;
-      color: var(--text-light);
     }
-
-    .tools {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    /* === ANIMATIONS === */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .fade-in {
-      animation: fadeIn 0.6s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
-    /* === RESPONSIVE === */
-    @media (max-width: 768px) {
-      .school-header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .logo {
-        height: 60px;
-      }
-
-      .school-info h1 {
-        font-size: 1.5rem;
-      }
-
-      .container {
-        padding: 15px;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      .grid-2, .grid-3 {
-        grid-template-columns: 1fr;
-      }
+    .fade-in.appear {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
-<body>
-  <!-- HEADER -->
-  <header>
-    <div class="container school-header">
-      <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="MKPS Logo" class="logo" />
-      <div class="school-info">
-        <h1>Milli Karwaan Public School</h1>
-        <p>Boluha Police Chowki, Balrampur | Est. 2005</p>
-      </div>
-    </div>
-  </header>
+<body class="bg-light text-dark" id="body">
 
-  <!-- LOGIN GATE -->
-  <div id="loginGate" class="login-gate">
-    <div class="card login-card">
-      <h2 class="section-title">Student Login</h2>
-      <p>Welcome to Milli Karwaan Public School Portal. Please enter your details to continue.</p>
-      <form id="loginForm" style="margin-top: 20px;">
-        <div class="form-group">
-          <label for="studentName">Student Name</label>
-          <input type="text" id="studentName" required />
-        </div>
-        <div class="form-group">
-          <label for="studentClass">Class</label>
-          <select id="studentClass" required>
-            <option value="">Select Class</option>
-            <option value="1">Class 1</option>
-            <option value="2">Class 2</option>
-            <option value="3">Class 3</option>
-            <option value="4">Class 4</option>
-            <option value="5">Class 5</option>
-            <option value="6">Class 6</option>
-            <option value="7">Class 7</option>
-            <option value="8">Class 8</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="parentName">Parent's Name</label>
-          <input type="text" id="parentName" required />
-        </div>
-        <button type="submit" class="btn">Enter Portal</button>
-      </form>
-      <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-light);">
-        Admin? <a href="admin.html" style="color: var(--primary);">Access Admin Panel</a>
-      </p>
+  <!-- Language & Dark Mode Toggle -->
+  <div class="bg-primary text-white py-1 px-4 flex justify-between items-center text-sm">
+    <div class="flex space-x-4">
+      <button id="langToggle" class="hover:text-secondary transition">हिंदी</button>
+      <button id="darkModeToggle" class="hover:text-secondary transition">🌙 Dark Mode</button>
+    </div>
+    <div class="flex space-x-3">
+      <a href="#" class="hover:text-secondary"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a href="#" class="hover:text-secondary"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="#" class="hover:text-secondary"><i class="fab fa-youtube"></i> YouTube</a>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div id="mainContent" style="display: none;">
-    <div class="container">
-      <!-- NAVIGATION -->
-      <nav id="mainNav">
-        <div class="nav-link active" data-tab="dashboard">Dashboard</div>
-        <div class="nav-link" data-tab="homework">Homework</div>
-        <div class="nav-link" data-tab="teachers">Teachers</div>
-        <div class="nav-link" data-tab="events">Events</div>
-        <div class="nav-link" data-tab="notices">Notices</div>
-        <div class="nav-link" data-tab="timetable">Timetable</div>
-        <div class="nav-link" data-tab="gallery">Gallery</div>
-        <div class="nav-link" data-tab="faq">FAQ</div>
-        <div class="nav-link" data-tab="contact">Contact</div>
-      </nav>
+  <!-- Live Notice Ticker -->
+  <div class="bg-red-600 text-white text-sm overflow-hidden whitespace-nowrap py-2">
+    <div class="ticker inline-block animate-scroll">
+      🔔 ADMISSION OPEN FOR 2024-25 | 🎓 ANNUAL DAY ON 15 APRIL | 💵 FEE DUE ON 5TH OF EVERY MONTH | 📚 MID-TERM EXAMS FROM 10 APRIL | 🧑‍🏫 TEACHERS REQUIRED – APPLY NOW
+    </div>
+  </div>
 
-      <!-- DASHBOARD -->
-      <section id="dashboard" class="content active">
-        <h2 class="section-title">Welcome, <span id="welcomeName"></span>!</h2>
-        <p>You're logged in as Class <span id="welcomeClass"></span> student.</p>
-        
-        <div class="grid-2">
-          <div class="card">
-            <h3>📅 Today's Schedule</h3>
-            <p id="todaysSchedule">Loading timetable...</p>
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50 transition" id="navbar">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Milli Karwaan Public School Logo" class="h-14" />
+        <div>
+          <h1 class="text-xl font-bold text-primary">Milli Karwaan Public School</h1>
+          <p class="text-xs text-gray-600">Balrampur, Uttar Pradesh</p>
+        </div>
+      </div>
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-6 font-medium">
+        <li><a href="#home" class="text-gray-700 hover:text-primary transition">Home</a></li>
+        <li class="dropdown relative">
+          <a href="#" class="text-gray-700 hover:text-primary transition flex items-center">Academics <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
+          <ul class="dropdown-menu absolute hidden bg-white shadow-lg mt-1 w-48 rounded-md py-2 z-50">
+            <li><a href="#curriculum" class="block px-4 py-2 hover:bg-primary hover:text-white">Curriculum</a></li>
+            <li><a href="#timetable" class="block px-4 py-2 hover:bg-primary hover:text-white">Timetable</a></li>
+            <li><a href="#downloads" class="block px-4 py-2 hover:bg-primary hover:text-white">Downloads</a></li>
+          </ul>
+        </li>
+        <li><a href="#about" class="text-gray-700 hover:text-primary transition">About Us</a></li>
+        <li><a href="#admission" class="text-gray-700 hover:text-primary transition">Admission</a></li>
+        <li><a href="#gallery" class="text-gray-700 hover:text-primary transition">Gallery</a></li>
+        <li><a href="#contact" class="text-gray-700 hover:text-primary transition">Contact</a></li>
+        <li><a href="#login" class="text-gray-700 hover:text-primary transition">Login</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button id="menuButton" class="md:hidden text-gray-700 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="bg-white hidden md:hidden shadow-lg">
+      <ul class="flex flex-col p-4 space-y-3">
+        <li><a href="#home" class="text-gray-700 hover:text-primary block py-2">Home</a></li>
+        <li><a href="#about" class="text-gray-700 hover:text-primary block py-2">About Us</a></li>
+        <li><a href="#curriculum" class="text-gray-700 hover:text-primary block py-2">Curriculum</a></li>
+        <li><a href="#timetable" class="text-gray-700 hover:text-primary block py-2">Timetable</a></li>
+        <li><a href="#admission" class="text-gray-700 hover:text-primary block py-2">Admission</a></li>
+        <li><a href="#gallery" class="text-gray-700 hover:text-primary block py-2">Gallery</a></li>
+        <li><a href="#contact" class="text-gray-700 hover:text-primary block py-2">Contact</a></li>
+        <li><a href="#login" class="text-gray-700 hover:text-primary block py-2">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg text-white text-center py-24 relative fade-in">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl md:text-6xl font-bold mb-4 animate-pulse">Milli Karwaan Public School</h2>
+      <p class="text-lg md:text-xl mb-8 opacity-90">Excellence in Education & Islamic Values</p>
+      <div class="space-x-4">
+        <a href="#admission" class="bg-secondary text-primary px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition inline-block">Apply Now</a>
+        <a href="#about" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition inline-block">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Slider -->
+  <div class="relative max-w-5xl mx-auto mt-8 h-80 overflow-hidden rounded-lg shadow-lg fade-in">
+    <div id="slider" class="flex transition-transform duration-500 h-full">
+      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="School Event" class="min-w-full h-full object-cover">
+      <img src="https://images.unsplash.com/photo-1543269664-56d93c30dd1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Science Lab" class="min-w-full h-full object-cover">
+      <img src="https://images.unsplash.com/photo-1534802046575-582517339381?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Prayer Hall" class="min-w-full h-full object-cover">
+      <img src="https://images.unsplash.com/photo-1522202176988-66aacc9e255b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Classroom" class="min-w-full h-full object-cover">
+    </div>
+    <button id="prevBtn" class="absolute top-1/2 left-2 bg-black bg-opacity-50 text-white p-2 rounded-full">&lt;</button>
+    <button id="nextBtn" class="absolute top-1/2 right-2 bg-black bg-opacity-50 text-white p-2 rounded-full">&gt;</button>
+    <div id="sliderIndicators" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
+  </div>
+
+  <!-- About Us -->
+  <section id="about" class="py-16 bg-gray-50 fade-in">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary">About Us</h2>
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Our Vision</h3>
+          <p class="mb-4">To nurture morally upright, intellectually strong, and socially responsible individuals grounded in Islamic values and modern education.</p>
+          <h3 class="text-xl font-semibold mb-4">Our Mission</h3>
+          <p class="mb-4">To provide quality education that balances religious teachings with academic excellence, fostering holistic development in a safe and inclusive environment.</p>
+          <h3 class="text-xl font-semibold mb-4">Principal's Message</h3>
+          <p>"We believe every child is a gift from Allah, and our duty is to guide them with knowledge, faith, and compassion."</p>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h4 class="font-bold text-primary">Modern Labs</h4>
+            <p>Well-equipped science and computer labs for hands-on learning.</p>
           </div>
-          <div class="card">
-            <h3>📚 Current Homework</h3>
-            <p id="currentHomework">No homework assigned for your class.</p>
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h4 class="font-bold text-primary">Library</h4>
+            <p>Extensive collection of books, journals, and digital resources.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h4 class="font-bold text-primary">Prayer Hall</h4>
+            <p>Dedicated space for daily prayers and Islamic studies.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="card" style="margin-top: 20px;">
-          <h3>🏫 School Information</h3>
-          <p><strong>Address:</strong> Boluha Police Chowki, Balrampur</p>
-          <p><strong>Phone:</strong> <a href="tel:9758919151" class="btn btn-sm">📞 CALL 9758919151</a></p>
-          <p><strong>Email:</strong> <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
-        </div>
-      </section>
+  <!-- Academics -->
+  <section id="academics" class="py-16 fade-in">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Academics</h2>
+      <div class="bg-white p-8 rounded-lg shadow-lg">
+        <table class="w-full border-collapse text-left">
+          <thead>
+            <tr class="bg-primary text-white">
+              <th class="p-3">Class</th>
+              <th class="p-3">Curriculum</th>
+              <th class="p-3">Subjects</th>
+              <th class="p-3">Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="p-3">Nursery - UKG</td>
+              <td>Playway Method</td>
+              <td>English, Urdu, Math, Islamic Studies</td>
+              <td><a href="#" class="text-secondary hover:underline">Syllabus PDF</a></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-3">I - V</td>
+              <td>CBC Pattern</td>
+              <td>Science, Social, Hindi, Computer</td>
+              <td><a href="#" class="text-secondary hover:underline">Syllabus PDF</a></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-3">VI - X</td>
+              <td>CBSE Aligned</td>
+              <td>Math, Science, SST, Languages</td>
+              <td><a href="#" class="text-secondary hover:underline">Syllabus PDF</a></td>
+            </tr>
+            <tr>
+              <td class="p-3">XI - XII</td>
+              <td>CBSE (Science/Commerce)</td>
+              <td>Physics, Chemistry, Biology, Accounts</td>
+              <td><a href="#" class="text-secondary hover:underline">Syllabus PDF</a></td>
+            </tr>
+          </tbody>
+        </table>
 
-      <!-- HOMEWORK -->
-      <section id="homework" class="content">
-        <h2 class="section-title">Homework for Class <span id="homeworkClass"></span></h2>
-        <div id="homeworkList">
-          <!-- Homework items will be inserted here -->
-        </div>
-        <p id="noHomework" style="display: none; color: var(--text-light);">No homework assigned for your class.</p>
-      </section>
-
-      <!-- TEACHERS -->
-      <section id="teachers" class="content">
-        <h2 class="section-title">Our Teachers</h2>
-        <div id="teachersList" class="grid-3">
-          <!-- Teachers will be inserted here -->
-        </div>
-      </section>
-
-      <!-- EVENTS -->
-      <section id="events" class="content">
-        <h2 class="section-title">Upcoming Events</h2>
-        <div id="eventsList" class="grid-2">
-          <!-- Events will be inserted here -->
-        </div>
-      </section>
-
-      <!-- NOTICES -->
-      <section id="notices" class="content">
-        <h2 class="section-title">Important Notices</h2>
-        <div id="noticesList" class="grid-2">
-          <!-- Notices will be inserted here -->
-        </div>
-      </section>
-
-      <!-- TIMETABLE -->
-      <section id="timetable" class="content">
-        <h2 class="section-title">Class Timetable</h2>
-        <div class="card">
-          <table class="timetable" id="classTimetable">
+        <h3 class="text-2xl font-semibold mt-10 mb-4">Interactive Timetable</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse mt-4">
             <thead>
-              <tr>
-                <th>Time</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
+              <tr class="bg-gray-100">
+                <th class="p-3">Time</th>
+                <th class="p-3">Mon</th>
+                <th class="p-3">Tue</th>
+                <th class="p-3">Wed</th>
+                <th class="p-3">Thu</th>
+                <th class="p-3">Fri</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Timetable data will be inserted here -->
+              <tr class="border-b">
+                <td class="p-3">8:00-9:00</td>
+                <td class="p-3">Math</td>
+                <td class="p-3">Science</td>
+                <td class="p-3">English</td>
+                <td class="p-3">Math</td>
+                <td class="p-3">Science</td>
+              </tr>
+              <tr class="border-b">
+                <td class="p-3">9:00-10:00</td>
+                <td class="p-3">Urdu</td>
+                <td class="p-3">Math</td>
+                <td class="p-3">Science</td>
+                <td class="p-3">Urdu</td>
+                <td class="p-3">Math</td>
+              </tr>
+              <tr>
+                <td class="p-3">10:00-11:00</td>
+                <td class="p-3">Islamic</td>
+                <td class="p-3">English</td>
+                <td class="p-3">Computer</td>
+                <td class="p-3">Islamic</td>
+                <td class="p-3">English</td>
+              </tr>
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- GALLERY -->
-      <section id="gallery" class="content">
-        <h2 class="section-title">School Gallery</h2>
-        <div id="galleryContainer" class="gallery">
-          <!-- Gallery items will be inserted here -->
+  <!-- Admission Form -->
+  <section id="admission" class="py-16 bg-gray-50 fade-in">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Online Admission</h2>
+      <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <form id="admissionForm">
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block mb-2 font-medium">Student Name</label>
+              <input type="text" required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Class Applying For</label>
+              <select required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
+                <option>Nursery</option>
+                <option>LKG</option>
+                <option>UKG</option>
+                <option>Class I</option>
+                <option>Class II</option>
+                <option>Class III</option>
+                <option>Class IV</option>
+                <option>Class V</option>
+                <option>Class VI</option>
+                <option>Class VII</option>
+                <option>Class VIII</option>
+                <option>Class IX</option>
+                <option>Class X</option>
+                <option>Class XI</option>
+                <option>Class XII</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Date of Birth</label>
+              <input type="date" required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Parent/Guardian Name</label>
+              <input type="text" required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Phone</label>
+              <input type="tel" required class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Email</label>
+              <input type="email" class="w-full border border-gray-300 p-3 rounded focus:ring focus:ring-primary focus:outline-none">
+            </div>
+          </div>
+          <div class="mb-6">
+            <label class="block mb-2 font-medium">Upload Photo</label>
+            <input type="file" accept="image/*" class="w-full border border-gray-300 p-3 rounded">
+          </div>
+          <button type="submit" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition w-full">Submit Application</button>
+        </form>
+        <p class="mt-4 text-center text-green-600 hidden" id="successMsg">Application submitted successfully! Your tracking number: <strong>MPK2024-001</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login Portal -->
+  <section id="login" class="py-16 fade-in">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Student & Parent Login</h2>
+      <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <i class="fas fa-user-graduate text-4xl text-primary mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Student Login</h3>
+          <p class="mb-4">View attendance, results, homework</p>
+          <button class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Login</button>
         </div>
-      </section>
-
-      <!-- FAQ -->
-      <section id="faq" class="content">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div id="faqList">
-          <!-- FAQ items will be inserted here -->
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <i class="fas fa-chalkboard-teacher text-4xl text-primary mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Teacher Login</h3>
+          <p class="mb-4">Mark attendance, upload notes, enter results</p>
+          <button class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Login</button>
         </div>
-      </section>
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <i class="fas fa-wallet text-4xl text-primary mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Parent Portal</h3>
+          <p class="mb-4">View performance, pay fees, chat with teachers</p>
+          <button class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Login</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="content">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="card">
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="contactName">Your Name</label>
-              <input type="text" id="contactName" required />
+  <!-- Gallery -->
+  <section id="gallery" class="py-16 bg-gray-50 fade-in">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Photo & Video Gallery</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Event" class="rounded-lg cursor-pointer hover:opacity-80" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1543269664-56d93c30dd1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Lab" class="rounded-lg cursor-pointer hover:opacity-80" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1534802046575-582517339381?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Prayer" class="rounded-lg cursor-pointer hover:opacity-80" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1522202176988-66aacc9e255b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Class" class="rounded-lg cursor-pointer hover:opacity-80" onclick="openLightbox(this.src)">
+      </div>
+      <div class="mt-10">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 fade-in">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary">Contact Us</h2>
+      <div class="grid md:grid-cols-2 gap-10">
+        <div>
+          <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h3 class="text-xl font-semibold mb-4">Address</h3>
+            <p>Boluha Police Chowki, Balrampur, Uttar Pradesh</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h3 class="text-xl font-semibold mb-4">Phone</h3>
+            <p>+91 9758919151</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h3 class="text-xl font-semibold mb-4">Email</h3>
+            <p>madamsir066@gmail.com</p>
+          </div>
+          <a href="https://wa.me/919758919151" target="_blank" class="bg-green-500 text-white px-6 py-3 rounded-full inline-block hover:bg-green-600 transition">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+        <div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.467259676888!2d81.83989931503496!3d27.26845898298848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399fe8c7b8b0f5c5%3A0x5b6c5b5b5b5b5b5b!2sBalrampur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <form class="mt-6 bg-white p-6 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-4">Send Us a Message</h3>
+            <div class="mb-4">
+              <input type="text" placeholder="Your Name" class="w-full border border-gray-300 p-3 rounded">
             </div>
-            <div class="form-group">
-              <label for="contactEmail">Email Address</label>
-              <input type="email" id="contactEmail" required />
+            <div class="mb-4">
+              <input type="email" placeholder="Your Email" class="w-full border border-gray-300 p-3 rounded">
             </div>
-            <div class="form-group">
-              <label for="contactSubject">Subject</label>
-              <input type="text" id="contactSubject" required />
+            <div class="mb-4">
+              <textarea rows="4" placeholder="Your Message" class="w-full border border-gray-300 p-3 rounded"></textarea>
             </div>
-            <div class="form-group">
-              <label for="contactMessage">Message</label>
-              <textarea id="contactMessage" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn">Send Message</button>
+            <button type="submit" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition">Send Message</button>
           </form>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- TOOLS -->
-      <div class="tools">
-        <button id="darkModeToggle" class="btn btn-outline btn-sm">🌙 Dark Mode</button>
-        <button id="exportData" class="btn btn-outline btn-sm">📤 Export Data</button>
-        <button id="importData" class="btn btn-outline btn-sm">📥 Import Data</button>
-        <button id="printPage" class="btn btn-outline btn-sm">🖨️ Print</button>
-        <a href="admin.html" class="btn btn-outline btn-sm">⚙️ Admin Panel</a>
+  <!-- AI Chatbot -->
+  <div class="chatbot">
+    <button id="chatbotToggle" class="bg-primary text-white p-3 rounded-full shadow-lg hover:bg-opacity-90 transition">
+      <i class="fas fa-robot text-xl"></i>
+    </button>
+    <div id="chatbot" class="bg-white rounded-lg shadow-lg mt-2 w-80 md:w-96 hidden">
+      <div class="bg-primary text-white p-3 rounded-t-lg flex justify-between items-center">
+        <h4 class="font-semibold">AI Assistant</h4>
+        <button id="closeChatbot" class="text-white">&times;</button>
+      </div>
+      <div id="chatbotMessages" class="p-4 h-64 overflow-y-auto">
+        <p class="bg-gray-100 p-2 rounded mb-2 max-w-xs">Hello! How can I help you today?</p>
+      </div>
+      <div class="p-3 border-t">
+        <input type="text" id="chatbotInput" placeholder="Type your question..." class="w-full border border-gray-300 p-2 rounded outline-none" />
       </div>
     </div>
   </div>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose">×</button>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
-    <div class="lightbox-content">
-      <img id="lightboxImg" src="" alt="Enlarged view" />
-    </div>
-    <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <img id="lightboxImage" src="" alt="Enlarged image" />
+    <button id="closeLightbox" class="text-white text-4xl absolute top-4 right-4">&times;</button>
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>🏫 About Us</h3>
-          <p>Milli Karwaan Public School is committed to providing quality education with Islamic values to the children of Balrampur since 2005.</p>
-        </div>
-        <div class="footer-section">
-          <h3>📞 Contact Info</h3>
-          <p>📞 <a href="tel:9758919151">9758919151</a></p>
-          <p>✉️ <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
-          <p>📍 Boluha Police Chowki, Balrampur</p>
-        </div>
-        <div class="footer-section">
-          <h3>🔗 Quick Links</h3>
-          <a href="#" class="nav-link-footer" data-tab="homework">Homework</a>
-          <a href="#" class="nav-link-footer" data-tab="events">Events</a>
-          <a href="#" class="nav-link-footer" data-tab="gallery">Gallery</a>
-          <a href="admin.html">Admin Panel</a>
-        </div>
-      </div>
-      <p style="text-align: center; margin-top: 30px; color: var(--text-light); font-size: 0.9rem;">
-        &copy; 2023 Milli Karwaan Public School Balrampur. All rights reserved.
-      </p>
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Logo" class="h-12 mx-auto mb-4" />
+      <p>&copy; 2024 Milli Karwaan Public School, Balrampur. All Rights Reserved.</p>
+      <p class="mt-2">Designed with ❤️ for excellence in education.</p>
     </div>
   </footer>
 
+  <!-- Font Awesome Icons (via CDN) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Main JavaScript -->
   <script>
-    // === DATA MANAGEMENT ===
-    const STORAGE_PREFIX = 'mkps_';
-    
-    // Initialize localStorage with demo data if empty
-    function initializeData() {
-      const keys = ['homework', 'teachers', 'events', 'notices', 'timetable', 'gallery', 'faq', 'messages'];
-      let hasData = false;
-      
-      keys.forEach(key => {
-        if (localStorage.getItem(STORAGE_PREFIX + key)) {
-          hasData = true;
-        }
-      });
-      
-      if (!hasData) {
-        // Seed data
-        const demoData = {
-          homework: [
-            { class: 1, subject: 'Mathematics', assignment: 'Complete page 25-27 in workbook', date: '2023-10-15' },
-            { class: 2, subject: 'English', assignment: 'Write 10 sentences using new vocabulary words', date: '2023-10-15' },
-            { class: 3, subject: 'Science', assignment: 'Draw and label parts of a plant', date: '2023-10-16' },
-            { class: 4, subject: 'Mathematics', assignment: 'Solve multiplication problems 1-20', date: '2023-10-16' },
-            { class: 5, subject: 'Social Studies', assignment: 'Research project on Indian rivers', date: '2023-10-18' },
-            { class: 6, subject: 'Science', assignment: 'Prepare for chapter 5 test', date: '2023-10-19' },
-            { class: 7, subject: 'Mathematics', assignment: 'Algebra worksheet problems 1-15', date: '2023-10-19' },
-            { class: 8, subject: 'English', assignment: 'Essay on "Importance of Education"', date: '2023-10-20' }
-          ],
-          teachers: [
-            { name: 'Mrs. Fatima Khan', subject: 'Mathematics', class: '1-3', img: 'https://i.postimg.cc/28j0M3rN/woman.png' },
-            { name: 'Mr. Ahmed Siddiqui', subject: 'English', class: '4-6', img: 'https://i.postimg.cc/44cD9sGh/man.png' },
-            { name: 'Mrs. Ayesha Malik', subject: 'Science', class: '7-8', img: 'https://i.postimg.cc/28j0M3rN/woman.png' },
-            { name: 'Mr. Usman Farooq', subject: 'Social Studies', class: '1-8', img: 'https://i.postimg.cc/44cD9sGh/man.png' },
-            { name: 'Mrs. Zainab Hussain', subject: 'Urdu', class: '1-5', img: 'https://i.postimg.cc/28j0M3rN/woman.png' },
-            { name: 'Mr. Iqbal Ahmed', subject: 'Islamic Studies', class: '1-8', img: 'https://i.postimg.cc/44cD9sGh/man.png' }
-          ],
-          events: [
-            { title: 'Annual Sports Day', date: '2023-11-15', description: 'Annual sports competition for all classes. Parents are invited to attend.', img: 'https://i.postimg.cc/3xH6Lz8L/sports.jpg' },
-            { title: 'Eid Festival', date: '2023-10-25', description: 'Celebration of Eid with cultural programs and food.', img: 'https://i.postimg.cc/65v9f1nG/eid.jpg' },
-            { title: 'Parent-Teacher Meeting', date: '2023-11-05', description: 'Scheduled meeting to discuss student progress.', img: 'https://i.postimg.cc/XY3LrLhN/meeting.jpg' },
-            { title: 'Science Exhibition', date: '2023-12-10', description: 'Students will present science projects.', img: 'https://i.postimg.cc/XY3LrLhN/meeting.jpg' }
-          ],
-          notices: [
-            { title: 'School Closed', date: '2023-10-18', content: 'School will remain closed on October 18th for Dussehra holiday.' },
-            { title: 'New Uniform Policy', date: '2023-10-10', content: 'All students are required to wear complete uniform starting November 1st.' },
-            { title: 'Book Distribution', date: '2023-10-20', content: 'Textbooks for the new session will be distributed on October 20th.' },
-            { title: 'PTA Meeting Reminder', date: '2023-11-04', content: 'Reminder: Parent-Teacher meeting is scheduled for November 5th at 10 AM.' }
-          ],
-          timetable: [
-            { time: '8:00-8:45', mon: 'Math', tue: 'English', wed: 'Science', thu: 'Math', fri: 'English' },
-            { time: '8:45-9:30', mon: 'English', tue: 'Math', wed: 'English', thu: 'Science', fri: 'Math' },
-            { time: '9:30-10:15', mon: 'Science', tue: 'Science', wed: 'Math', thu: 'English', fri: 'Science' },
-            { time: '10:15-11:00', mon: 'Urdu', tue: 'Urdu', wed: 'Urdu', thu: 'Urdu', fri: 'Urdu' },
-            { time: '11:00-11:45', mon: 'Islamic', tue: 'Islamic', wed: 'Islamic', thu: 'Islamic', fri: 'Islamic' },
-            { time: '11:45-12:30', mon: 'Social', tue: 'Social', wed: 'Social', thu: 'Social', fri: 'Social' },
-            { time: '12:30-1:15', mon: 'Lunch', tue: 'Lunch', wed: 'Lunch', thu: 'Lunch', fri: 'Lunch' },
-            { time: '1:15-2:00', mon: 'Arts', tue: 'Sports', wed: 'Arts', thu: 'Sports', fri: 'Arts' }
-          ],
-          gallery: [
-            { img: 'https://i.postimg.cc/3xH6Lz8L/sports.jpg', title: 'Sports Day 2023' },
-            { img: 'https://i.postimg.cc/65v9f1nG/eid.jpg', title: 'Eid Celebration' },
-            { img: 'https://i.postimg.cc/XY3LrLhN/meeting.jpg', title: 'PTA Meeting' },
-            { img: 'https://i.postimg.cc/28j0M3rN/woman.png', title: 'Classroom Activity' },
-            { img: 'https://i.postimg.cc/44cD9sGh/man.png', title: 'Teacher Training' },
-            { img: 'https://i.postimg.cc/3xH6Lz8L/sports.jpg', title: 'Annual Function' }
-          ],
-          faq: [
-            { question: 'What are the school hours?', answer: 'School operates from 8:00 AM to 2:00 PM, Monday through Friday.' },
-            { question: 'What is the admission process?', answer: 'Parents need to visit the school office with required documents to complete the admission process.' },
-            { question: 'Are uniforms mandatory?', answer: 'Yes, all students are required to wear the complete school uniform during school days.' },
-            { question: 'How can I contact my child\'s teacher?', answer: 'You can email the teacher directly or schedule a meeting through the school office.' },
-            { question: 'What extracurricular activities are offered?', answer: 'We offer sports, arts, Quran recitation, and science club activities.' }
-          ],
-          messages: []
-        };
-        
-        // Save all demo data
-        Object.keys(demoData).forEach(key => {
-          localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(demoData[key]));
-        });
-        
-        console.log('Demo data initialized');
-      }
-    }
-
-    // Get data from localStorage
-    function getData(key) {
-      const data = localStorage.getItem(STORAGE_PREFIX + key);
-      return data ? JSON.parse(data) : [];
-    }
-
-    // Save data to localStorage
-    function setData(key, data) {
-      localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(data));
-    }
-
-    // === LOGIN SYSTEM ===
-    const loginForm = document.getElementById('loginForm');
-    const loginGate = document.getElementById('loginGate');
-    const mainContent = document.getElementById('mainContent');
-    
-    loginForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const studentName = document.getElementById('studentName').value;
-      const studentClass = document.getElementById('studentClass').value;
-      const parentName = document.getElementById('parentName').value;
-      
-      // Save to localStorage
-      const studentData = { studentName, studentClass, parentName, loginTime: new Date().toISOString() };
-      localStorage.setItem('mkps_student', JSON.stringify(studentData));
-      
-      // Show main content
-      loginGate.style.display = 'none';
-      mainContent.style.display = 'block';
-      
-      // Initialize app
-      initApp();
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.getElementById('body');
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      darkModeToggle.textContent = body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
     });
 
-    // Check if already logged in
-    function checkLogin() {
-      const studentData = localStorage.getItem('mkps_student');
-      if (studentData) {
-        loginGate.style.display = 'none';
-        mainContent.style.display = 'block';
-        initApp();
-      }
-    }
+    // Language Toggle
+    const langToggle = document.getElementById('langToggle');
+    langToggle.addEventListener('click', () => {
+      alert('Language switching to Hindi is enabled. Full translation would require multilingual content.');
+    });
 
-    // === MAIN APPLICATION ===
-    function initApp() {
-      // Initialize data if needed
-      initializeData();
-      
-      // Load student data
-      const studentData = JSON.parse(localStorage.getItem('mkps_student'));
-      document.getElementById('welcomeName').textContent = studentData.studentName;
-      document.getElementById('welcomeClass').textContent = studentData.studentClass;
-      document.getElementById('homeworkClass').textContent = studentData.studentClass;
-      
-      // Render all sections
-      renderHomework();
-      renderTeachers();
-      renderEvents();
-      renderNotices();
-      renderTimetable();
-      renderGallery();
-      renderFAQ();
-      updateDashboard();
-      
-      // Setup event listeners
-      setupNavigation();
-      setupDarkMode();
-      setupTools();
-      setupContactForm();
-      setupLightbox();
-      
-      // Add fade-in animation
-      setTimeout(() => {
-        document.querySelectorAll('.content').forEach(content => {
-          content.classList.add('active');
-        });
-      }, 100);
-    }
+    // Mobile Menu Toggle
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-    // === SECTION RENDERERS ===
-    function renderHomework() {
-      const homeworkList = document.getElementById('homeworkList');
-      const noHomework = document.getElementById('noHomework');
-      const studentData = JSON.parse(localStorage.getItem('mkps_student'));
-      const homework = getData('homework');
-      
-      const classHomework = homework.filter(item => item.class == studentData.studentClass);
-      
-      if (classHomework.length === 0) {
-        homeworkList.style.display = 'none';
-        noHomework.style.display = 'block';
-        return;
-      }
-      
-      homeworkList.style.display = 'block';
-      noHomework.style.display = 'none';
-      
-      homeworkList.innerHTML = classHomework.map(item => `
-        <div class="card">
-          <h3>${item.subject}</h3>
-          <p><strong>Assignment:</strong> ${item.assignment}</p>
-          <p><strong>Due Date:</strong> ${formatDate(item.date)}</p>
-        </div>
-      `).join('');
-    }
-
-    function renderTeachers() {
-      const teachersList = document.getElementById('teachersList');
-      const teachers = getData('teachers');
-      
-      teachersList.innerHTML = teachers.map(teacher => `
-        <div class="card teacher-card">
-          <img src="${teacher.img}" alt="${teacher.name}" class="teacher-img" />
-          <h3>${teacher.name}</h3>
-          <p><strong>Subject:</strong> ${teacher.subject}</p>
-          <p><strong>Classes:</strong> ${teacher.class}</p>
-        </div>
-      `).join('');
-    }
-
-    function renderEvents() {
-      const eventsList = document.getElementById('eventsList');
-      const events = getData('events');
-      
-      eventsList.innerHTML = events.map(event => `
-        <div class="card event-card">
-          <div class="event-date">${formatDate(event.date)}</div>
-          <img src="${event.img}" alt="${event.title}" />
-          <h3>${event.title}</h3>
-          <p>${event.description}</p>
-        </div>
-      `).join('');
-    }
-
-    function renderNotices() {
-      const noticesList = document.getElementById('noticesList');
-      const notices = getData('notices');
-      
-      noticesList.innerHTML = notices.map(notice => `
-        <div class="card notice-card">
-          <div class="notice-date">${formatDate(notice.date)}</div>
-          <h3>${notice.title}</h3>
-          <p>${notice.content}</p>
-        </div>
-      `).join('');
-    }
-
-    function renderTimetable() {
-      const timetableBody = document.querySelector('#classTimetable tbody');
-      const timetable = getData('timetable');
-      
-      timetableBody.innerHTML = timetable.map(row => `
-        <tr>
-          <td>${row.time}</td>
-          <td>${row.mon}</td>
-          <td>${row.tue}</td>
-          <td>${row.wed}</td>
-          <td>${row.thu}</td>
-          <td>${row.fri}</td>
-        </tr>
-      `).join('');
-    }
-
-    function renderGallery() {
-      const galleryContainer = document.getElementById('galleryContainer');
-      const gallery = getData('gallery');
-      
-      galleryContainer.innerHTML = gallery.map(item => `
-        <div class="gallery-item" data-img="${item.img}" data-title="${item.title}">
-          <img src="${item.img}" alt="${item.title}" />
-        </div>
-      `).join('');
-    }
-
-    function renderFAQ() {
-      const faqList = document.getElementById('faqList');
-      const faq = getData('faq');
-      
-      faqList.innerHTML = faq.map(item => `
-        <div class="faq-item">
-          <div class="faq-question">${item.question}</div>
-          <div class="faq-answer">
-            <p>${item.answer}</p>
-          </div>
-        </div>
-      `).join('');
-      
-      // Setup FAQ toggles
-      document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', function() {
-          this.classList.toggle('active');
-          const answer = this.nextElementSibling;
-          answer.classList.toggle('active');
-        });
-      });
-    }
-
-    function updateDashboard() {
-      // Update today's schedule
-      const timetable = getData('timetable');
-      const today = new Date().getDay(); // 1-5 for Mon-Fri
-      const dayNames = ['', 'mon', 'tue', 'wed', 'thu', 'fri'];
-      const currentDay = dayNames[today];
-      
-      if (currentDay) {
-        const schedule = timetable.map(t => `<strong>${t.time}:</strong> ${t[currentDay]}`).join('<br>');
-        document.getElementById('todaysSchedule').innerHTML = schedule;
-      } else {
-        document.getElementById('todaysSchedule').textContent = "School is closed today.";
-      }
-      
-      // Update current homework
-      const studentData = JSON.parse(localStorage.getItem('mkps_student'));
-      const homework = getData('homework');
-      const classHomework = homework.filter(item => item.class == studentData.studentClass);
-      
-      if (classHomework.length > 0) {
-        const homeworkText = classHomework.map(h => `${h.subject}: ${h.assignment}`).join('<br>');
-        document.getElementById('currentHomework').innerHTML = homeworkText;
-      }
-    }
-
-    // === NAVIGATION ===
-    function setupNavigation() {
-      document.querySelectorAll('[data-tab]').forEach(tab => {
-        tab.addEventListener('click', function() {
-          // Update active nav link
-          document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-          
-          // Show active content
-          document.querySelectorAll('.content').forEach(content => {
-            content.classList.remove('active');
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
           });
-          
-          const tabId = this.getAttribute('data-tab');
-          document.getElementById(tabId).classList.add('active');
-          
-          // Smooth scroll to top
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      });
-      
-      // Footer nav links
-      document.querySelectorAll('.nav-link-footer').forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const tabId = this.getAttribute('data-tab');
-          document.querySelector(`[data-tab="${tabId}"]`).click();
-        });
-      });
-    }
-
-    // === DARK MODE ===
-    function setupDarkMode() {
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      const isDark = localStorage.getItem('mkps_darkMode') === 'true';
-      
-      if (isDark) {
-        document.body.classList.add('dark-mode');
-        darkModeToggle.textContent = '☀️ Light Mode';
-      }
-      
-      darkModeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-        
-        const isDarkMode = document.body.classList.contains('dark-mode');
-        localStorage.setItem('mkps_darkMode', isDarkMode);
-        this.textContent = isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode';
-      });
-    }
-
-    // === TOOLS ===
-    function setupTools() {
-      // Export data
-      document.getElementById('exportData').addEventListener('click', function() {
-        const data = {};
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          if (key.startsWith(STORAGE_PREFIX)) {
-            data[key] = localStorage.getItem(key);
+          if (mobileMenu.classList.contains('hidden') === false) {
+            mobileMenu.classList.add('hidden');
           }
         }
-        
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
-        const downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", "mkps_backup_" + new Date().toISOString().split('T')[0] + ".json");
-        document.body.appendChild(downloadAnchorNode);
-        downloadAnchorNode.click();
-        downloadAnchorNode.remove();
       });
-      
-      // Import data
-      document.getElementById('importData').addEventListener('click', function() {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = '.json';
-        
-        fileInput.onchange = e => {
-          const file = e.target.files[0];
-          const reader = new FileReader();
-          
-          reader.onload = function(event) {
-            try {
-              const importedData = JSON.parse(event.target.result);
-              
-              // Confirm overwrite
-              if (confirm(`Import ${Object.keys(importedData).length} items? This will overwrite existing data.`)) {
-                Object.keys(importedData).forEach(key => {
-                  if (key.startsWith(STORAGE_PREFIX)) {
-                    localStorage.setItem(key, importedData[key]);
-                  }
-                });
-                
-                alert('Data imported successfully! Refreshing...');
-                setTimeout(() => location.reload(), 1000);
-              }
-            } catch (e) {
-              alert('Invalid JSON file!');
-            }
-          };
-          
-          reader.readAsText(file);
-        };
-        
-        fileInput.click();
-      });
-      
-      // Print
-      document.getElementById('printPage').addEventListener('click', function() {
-        window.print();
-      });
-    }
+    });
 
-    // === CONTACT FORM ===
-    function setupContactForm() {
-      const contactForm = document.getElementById('contactForm');
-      
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('contactName').value;
-        const email = document.getElementById('contactEmail').value;
-        const subject = document.getElementById('contactSubject').value;
-        const message = document.getElementById('contactMessage').value;
-        
-        const newMessage = {
-          name,
-          email,
-          subject,
-          message,
-          timestamp: new Date().toISOString()
-        };
-        
-        const messages = getData('messages');
-        messages.push(newMessage);
-        setData('messages', messages);
-        
-        alert('Thank you for your message! We will get back to you soon.');
-        contactForm.reset();
-      });
-    }
-
-    // === LIGHTBOX ===
-    function setupLightbox() {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightboxImg');
-      const lightboxClose = document.getElementById('lightboxClose');
-      const lightboxPrev = document.getElementById('lightboxPrev');
-      const lightboxNext = document.getElementById('lightboxNext');
-      
-      let currentIndex = 0;
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      const galleryImages = Array.from(galleryItems).map(item => ({
-        img: item.getAttribute('data-img'),
-        title: item.getAttribute('data-title')
-      }));
-      
-      // Open lightbox
-      galleryItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
-          currentIndex = index;
-          lightboxImg.src = this.getAttribute('data-img');
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-      
-      // Close lightbox
-      lightboxClose.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-      
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-          lightbox.classList.remove('active');
-          document.body.style.overflow = '';
+    // Scroll Reveal Animation
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
         }
       });
-      
-      // Navigation
-      lightboxPrev.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-        lightboxImg.src = galleryImages[currentIndex].img;
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    // Image Slider
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.getElementById('sliderIndicators');
+    let slideIndex = 0;
+    const slides = slider.children;
+
+    // Create indicators
+    for (let i = 0; i < slides.length; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('w-3', 'h-3', 'bg-gray-300', 'rounded-full', 'cursor-pointer');
+      if (i === 0) dot.classList.add('bg-white');
+      dot.addEventListener('click', () => goToSlide(i));
+      indicators.appendChild(dot);
+    }
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+      document.querySelectorAll('#sliderIndicators div').forEach((dot, i) => {
+        dot.classList.toggle('bg-white', i === slideIndex);
+        dot.classList.toggle('bg-gray-300', i !== slideIndex);
       });
-      
-      lightboxNext.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex + 1) % galleryImages.length;
-        lightboxImg.src = galleryImages[currentIndex].img;
-      });
-      
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        
-        if (e.key === 'Escape') {
-          lightbox.classList.remove('active');
-          document.body.style.overflow = '';
-        } else if (e.key === 'ArrowLeft') {
-          currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-          lightboxImg.src = galleryImages[currentIndex].img;
-        } else if (e.key === 'ArrowRight') {
-          currentIndex = (currentIndex + 1) % galleryImages.length;
-          lightboxImg.src = galleryImages[currentIndex].img;
+    }
+
+    function goToSlide(index) {
+      slideIndex = index;
+      updateSlider();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      slideIndex = (slideIndex > 0) ? slideIndex - 1 : slides.length - 1;
+      updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      slideIndex = (slideIndex < slides.length - 1) ? slideIndex + 1 : 0;
+      updateSlider();
+    });
+
+    // Auto slide
+    setInterval(() => {
+      slideIndex = (slideIndex < slides.length - 1) ? slideIndex + 1 : 0;
+      updateSlider();
+    }, 5000);
+
+    // Admission Form
+    const admissionForm = document.getElementById('admissionForm');
+    const successMsg = document.getElementById('successMsg');
+    admissionForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      successMsg.classList.remove('hidden');
+      admissionForm.reset();
+      setTimeout(() => successMsg.classList.add('hidden'), 5000);
+    });
+
+    // Lightbox
+    function openLightbox(src) {
+      document.getElementById('lightboxImage').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+    document.getElementById('closeLightbox').addEventListener('click', () => {
+      document.getElementById('lightbox').style.display = 'none';
+    });
+
+    // Chatbot
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbot = document.getElementById('chatbot');
+    const closeChatbot = document.getElementById('closeChatbot');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+
+    chatbotToggle.addEventListener('click', () => {
+      chatbot.classList.toggle('hidden');
+    });
+    closeChatbot.addEventListener('click', () => {
+      chatbot.classList.add('hidden');
+    });
+
+    chatbotInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const question = chatbotInput.value.trim();
+        if (question) {
+          const userMsg = document.createElement('p');
+          userMsg.className = 'bg-secondary text-primary p-2 rounded self-end mb-2 max-w-xs';
+          userMsg.textContent = question;
+          chatbotMessages.appendChild(userMsg);
+
+          let reply = "I'm sorry, I didn't understand. Please ask about admission, fees, or timings.";
+          if (question.toLowerCase().includes('admission')) {
+            reply = "Admission is open for 2024-25. Visit our Admission section or call +91 9758919151.";
+          } else if (question.toLowerCase().includes('fee') || question.toLowerCase().includes('fees')) {
+            reply = "Fee structure varies by class. Please contact the office for details.";
+          } else if (question.toLowerCase().includes('timing') || question.toLowerCase().includes('time')) {
+            reply = "School timings: 8:00 AM to 2:00 PM (Mon-Fri).";
+          }
+
+          setTimeout(() => {
+            const botMsg = document.createElement('p');
+            botMsg.className = 'bg-gray-100 p-2 rounded mb-2 max-w-xs';
+            botMsg.textContent = reply;
+            chatbotMessages.appendChild(botMsg);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+          }, 500);
+
+          chatbotInput.value = '';
+          chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
-      });
-    }
-
-    // === HELPERS ===
-    function formatDate(dateString) {
-      const options = { year: 'numeric', month: 'short', day: 'numeric' };
-      return new Date(dateString).toLocaleDateString(undefined, options);
-    }
-
-    // === INITIALIZATION ===
-    document.addEventListener('DOMContentLoaded', function() {
-      checkLogin();
+      }
     });
   </script>
 </body>
