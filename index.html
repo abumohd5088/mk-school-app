@@ -1,0 +1,3390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milli Karwaan Public School Balrampur</title>
+    <meta name="description" content="Official website of Milli Karwaan Public School Balrampur - Excellence in Education">
+    <meta name="keywords" content="school, education, balrampur, milli karwaan, public school">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1a3a6e;
+            --primary-light: #2c5aa0;
+            --primary-dark: #0d2444;
+            --secondary: #f8c400;
+            --secondary-light: #ffda3d;
+            --secondary-dark: #c69500;
+            --text-dark: #333;
+            --text-light: #f8f9fa;
+            --bg-light: #f8f9fa;
+            --bg-dark: #121212;
+            --card-light: #ffffff;
+            --card-dark: #1e1e1e;
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 12px;
+            --header-height: 80px;
+        }
+
+        .dark-mode {
+            --text-dark: #f8f9fa;
+            --text-light: #333;
+            --bg-light: #121212;
+            --bg-dark: #f8f9fa;
+            --card-light: #1e1e1e;
+            --card-dark: #ffffff;
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(26, 58, 110, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-light);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        .dark-mode header {
+            background-color: rgba(18, 18, 18, 0.95);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            border-radius: 0;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            padding: 10px 0;
+            opacity: 0.8;
+        }
+
+        .dark-mode nav a {
+            color: var(--text-light);
+        }
+
+        nav a:hover, nav a.active {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .dark-mode .theme-toggle {
+            color: var(--text-light);
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            padding: 8px;
+        }
+
+        .dark-mode .mobile-menu-btn {
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            background: linear-gradient(135deg, rgba(26, 58, 110, 0.9) 0%, rgba(44, 90, 160, 0.8) 100%), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--header-height);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .btn {
+            margin: 0 10px;
+        }
+
+        .hero .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .hero .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* Welcome Modal */
+        .welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .welcome-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .welcome-content {
+            background-color: var(--card-light);
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-dark);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .welcome-modal.active .welcome-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .welcome-content h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .welcome-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select {
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .form-group input, .dark-mode .form-group select {
+            background-color: #2d2d2d;
+            border-color: #444;
+            color: var(--text-light);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 58, 110, 0.1);
+        }
+
+        .welcome-btn {
+            margin-top: 20px;
+            align-self: center;
+        }
+
+        /* Main Content */
+        main {
+            min-height: calc(100vh - var(--header-height));
+            padding-top: var(--header-height);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        main.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            background-color: var(--bg-light);
+            padding: 0 20px;
+        }
+
+        .dark-mode .section-title h2 {
+            background-color: var(--bg-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ddd;
+            z-index: 0;
+        }
+
+        .dark-mode .section-title::after {
+            background-color: #444;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--bg-light);
+        }
+
+        .dark-mode .about {
+            background-color: var(--bg-dark);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        .dark-mode .stat-item {
+            background-color: var(--card-dark);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .dark-mode .stat-label {
+            color: var(--text-light);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #f0f4f8;
+        }
+
+        .dark-mode .features {
+            background-color: #1a1a1a;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            position: relative;
+            height: 100%;
+        }
+
+        .dark-mode .feature-card {
+            background-color: var(--card-dark);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .feature-icon {
+            height: 80px;
+            width: 80px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -40px auto 20px;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(26, 58, 110, 0.3);
+        }
+
+        .feature-card h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .dark-mode .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* Homework Section */
+        .homework {
+            background-color: var(--bg-light);
+        }
+
+        .dark-mode .homework {
+            background-color: var(--bg-dark);
+        }
+
+        .homework-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .homework-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .homework-title {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .current-class {
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .homework-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .homework-item {
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            border-left: 5px solid var(--secondary);
+        }
+
+        .dark-mode .homework-item {
+            background-color: var(--card-dark);
+        }
+
+        .homework-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .homework-date {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .homework-subject {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .dark-mode .homework-subject {
+            color: var(--secondary-light);
+        }
+
+        .homework-description {
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .dark-mode .homework-description {
+            color: var(--text-light);
+        }
+
+        .no-homework {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        .dark-mode .no-homework {
+            background-color: var(--card-dark);
+        }
+
+        /* Teachers Section */
+        .teachers {
+            background-color: #f0f4f8;
+        }
+
+        .dark-mode .teachers {
+            background-color: #1a1a1a;
+        }
+
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .teacher-card {
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .dark-mode .teacher-card {
+            background-color: var(--card-dark);
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .teacher-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .teacher-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .teacher-card:hover .teacher-img img {
+            transform: scale(1.1);
+        }
+
+        .teacher-info {
+            padding: 25px;
+        }
+
+        .teacher-name {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .dark-mode .teacher-name {
+            color: var(--secondary-light);
+        }
+
+        .teacher-subject {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .teacher-bio {
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .dark-mode .teacher-bio {
+            color: var(--text-light);
+        }
+
+        .teacher-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        /* Events Section */
+        .events {
+            background-color: var(--bg-light);
+        }
+
+        .dark-mode .events {
+            background-color: var(--bg-dark);
+        }
+
+        .events-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .events-timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .events-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--primary);
+            transform: translateX(-50%);
+        }
+
+        .dark-mode .events-timeline::before {
+            background-color: var(--secondary);
+        }
+
+        .event-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            margin-bottom: 50px;
+        }
+
+        .event-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .event-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .event-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            top: 30px;
+            transform: translateX(-50%);
+        }
+
+        .event-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .event-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .event-date {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .event-card {
+            background-color: var(--card-light);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        .dark-mode .event-card {
+            background-color: var(--card-dark);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .dark-mode .event-title {
+            color: var(--secondary-light);
+        }
+
+        .event-description {
+            color: var(--text-dark);
+        }
+
+        .dark-mode .event-description {
+            color: var(--text-light);
+        }
+
+        /* Notice Board */
+        .notice-board {
+            background-color: #f0f4f8;
+        }
+
+        .dark-mode .notice-board {
+            background-color: #1a1a1a;
+        }
+
+        .notice-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .notice-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .notice-header i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .notice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .notice-item {
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow-light);
+            border-left: 5px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .dark-mode .notice-item {
+            background-color: var(--card-dark);
+        }
+
+        .notice-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .notice-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .notice-date {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .notice-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .dark-mode .notice-title {
+            color: var(--secondary-light);
+        }
+
+        .notice-content {
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .dark-mode .notice-content {
+            color: var(--text-light);
+        }
+
+        /* Timetable Section */
+        .timetable {
+            background-color: var(--bg-light);
+        }
+
+        .dark-mode .timetable {
+            background-color: var(--bg-dark);
+        }
+
+        .timetable-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        .timetable-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .dark-mode .timetable-table {
+            background-color: var(--card-dark);
+        }
+
+        .timetable-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .timetable-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dark-mode .timetable-table td {
+            border-bottom: 1px solid #333;
+        }
+
+        .timetable-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .timetable-table tr:nth-child(even) {
+            background-color: rgba(26, 58, 110, 0.03);
+        }
+
+        .dark-mode .timetable-table tr:nth-child(even) {
+            background-color: rgba(26, 58, 110, 0.1);
+        }
+
+        .subject {
+            font-weight: 600;
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .dark-mode .subject {
+            color: var(--secondary-light);
+        }
+
+        .english { background-color: rgba(26, 58, 110, 0.1); }
+        .math { background-color: rgba(248, 196, 0, 0.1); }
+        .science { background-color: rgba(46, 204, 113, 0.1); }
+        .hindi { background-color: rgba(155, 89, 182, 0.1); }
+        .social { background-color: rgba(52, 152, 219, 0.1); }
+        .computer { background-color: rgba(230, 126, 34, 0.1); }
+        .physical { background-color: rgba(231, 76, 60, 0.1); }
+        .art { background-color: rgba(26, 188, 156, 0.1); }
+
+        .dark-mode .english { background-color: rgba(26, 58, 110, 0.3); }
+        .dark-mode .math { background-color: rgba(248, 196, 0, 0.3); }
+        .dark-mode .science { background-color: rgba(46, 204, 113, 0.3); }
+        .dark-mode .hindi { background-color: rgba(155, 89, 182, 0.3); }
+        .dark-mode .social { background-color: rgba(52, 152, 219, 0.3); }
+        .dark-mode .computer { background-color: rgba(230, 126, 34, 0.3); }
+        .dark-mode .physical { background-color: rgba(231, 76, 60, 0.3); }
+        .dark-mode .art { background-color: rgba(26, 188, 156, 0.3); }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: #f0f4f8;
+        }
+
+        .dark-mode .gallery {
+            background-color: #1a1a1a;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 300px;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-category {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Achievements Section */
+        .achievements {
+            background-color: var(--bg-light);
+        }
+
+        .dark-mode .achievements {
+            background-color: var(--bg-dark);
+        }
+
+        .achievements-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .achievement-card {
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .achievement-card {
+            background-color: var(--card-dark);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .achievement-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .achievement-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .dark-mode .achievement-title {
+            color: var(--secondary-light);
+        }
+
+        .achievement-description {
+            color: var(--text-dark);
+        }
+
+        .dark-mode .achievement-description {
+            color: var(--text-light);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: #f0f4f8;
+        }
+
+        .dark-mode .faq {
+            background-color: #1a1a1a;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .dark-mode .faq-item {
+            background-color: var(--card-dark);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: var(--primary-light);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            color: var(--text-dark);
+        }
+
+        .dark-mode .faq-answer {
+            color: var(--text-light);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 25px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--bg-light);
+        }
+
+        .dark-mode .contact {
+            background-color: var(--bg-dark);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .dark-mode .contact-text h4 {
+            color: var(--text-light);
+        }
+
+        .contact-text p {
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .dark-mode .contact-text p {
+            color: var(--text-light);
+        }
+
+        .contact-form {
+            background-color: var(--card-light);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        .dark-mode .contact-form {
+            background-color: var(--card-dark);
+        }
+
+        .contact-form h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .dark-mode .form-group label {
+            color: var(--text-light);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .form-group input, .dark-mode .form-group textarea {
+            background-color: #2d2d2d;
+            border-color: #444;
+            color: var(--text-light);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 58, 110, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Call Button */
+        .call-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(248, 196, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .call-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(248, 196, 0, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--card-light);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            transition: right 0.3s ease;
+            padding: 80px 20px 30px;
+            overflow-y: auto;
+        }
+
+        .dark-mode .mobile-menu {
+            background-color: var(--card-dark);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .dark-mode .mobile-menu-close {
+            color: var(--text-light);
+        }
+
+        .mobile-nav {
+            list-style: none;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav a {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .dark-mode .mobile-nav a {
+            color: var(--text-light);
+            border-bottom: 1px solid #333;
+        }
+
+        .mobile-nav a:hover, .mobile-nav a.active {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-col p, .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact i {
+            color: var(--secondary);
+            min-width: 20px;
+            margin-top: 5px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background-color: var(--secondary);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(248, 196, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(248, 196, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(248, 196, 0, 0);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .events-timeline::before {
+                left: 30px;
+            }
+            
+            .event-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 20px;
+                margin-bottom: 40px;
+            }
+            
+            .event-item:nth-child(odd),
+            .event-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .event-item::before {
+                left: 20px;
+                right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+            }
+            
+            header {
+                padding: 0 20px;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .theme-toggle {
+                font-size: 1.2rem;
+            }
+            
+            .hero {
+                min-height: 700px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .welcome-content {
+                width: 95%;
+                padding: 30px;
+            }
+            
+            .call-button {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                margin-bottom: 40px;
+            }
+            
+            .section-title::after {
+                display: none;
+            }
+            
+            .section-title h2 {
+                background-color: transparent;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .features-grid, .teachers-grid, .achievements-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timetable-container {
+                overflow-x: auto;
+            }
+        }
+
+        /* Additional Effects */
+        .glow {
+            position: relative;
+        }
+
+        .glow::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
+            background-size: 400%;
+            z-index: -1;
+            border-radius: calc(var(--border-radius) + 5px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glow:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Hidden Menu */
+        .hidden-menu {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 998;
+        }
+
+        .dots-menu {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 2px 0;
+            transition: var(--transition);
+        }
+
+        .hidden-menu-items {
+            position: absolute;
+            right: 0;
+            bottom: 60px;
+            background-color: var(--card-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-dark);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            width: 200px;
+        }
+
+        .dark-mode .hidden-menu-items {
+            background-color: var(--card-dark);
+        }
+
+        .hidden-menu.active .hidden-menu-items {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hidden-menu-item {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .dark-mode .hidden-menu-item {
+            color: var(--text-light);
+        }
+
+        .hidden-menu-item:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .hidden-menu-item i {
+            color: var(--secondary);
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            transition: opacity 0.5s ease;
+        }
+
+        .dark-mode .loading {
+            background-color: var(--bg-dark);
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 8px solid var(--primary-light);
+            border-top: 8px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .dark-mode .loading-text {
+            color: var(--text-light);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-dark);
+            z-index: 1500;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast i {
+            margin-right: 5px;
+        }
+
+        /* Print Styles */
+        @media print {
+            header, .call-button, .hidden-menu, .mobile-menu-btn, .theme-toggle, .welcome-modal {
+                display: none !important;
+            }
+            
+            body, main {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .dark-mode * {
+                background: white !important;
+                color: black !important;
+            }
+            
+            a {
+                color: #1a3a6e !important;
+                text-decoration: underline !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="loading-content">
+            <div class="loader"></div>
+            <p class="loading-text">Loading Milli Karwaan Public School Website...</p>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="welcome-content">
+            <h2>Welcome to Milli Karwaan Public School</h2>
+            <p>Please enter your details to continue</p>
+            <form id="welcomeForm" class="welcome-form">
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentClass">Class</label>
+                    <select id="studentClass" required>
+                        <option value="">Select Class</option>
+                        <option value="Nursery">Nursery</option>
+                        <option value="LKG">LKG</option>
+                        <option value="UKG">UKG</option>
+                        <option value="Class 1">Class 1</option>
+                        <option value="Class 2">Class 2</option>
+                        <option value="Class 3">Class 3</option>
+                        <option value="Class 4">Class 4</option>
+                        <option value="Class 5">Class 5</option>
+                        <option value="Class 6">Class 6</option>
+                        <option value="Class 7">Class 7</option>
+                        <option value="Class 8">Class 8</option>
+                        <option value="Class 9">Class 9</option>
+                        <option value="Class 10">Class 10</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="parentName">Parent's Name</label>
+                    <input type="text" id="parentName" required>
+                </div>
+                <button type="submit" class="btn welcome-btn">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Milli Karwaan Public School Logo">
+                <div>
+                    <h1>Milli Karwaan <span>Public School</span></h1>
+                    <p>Balrampur</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#homework">Homework</a></li>
+                    <li><a href="#teachers">Teachers</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#notice">Notice</a></li>
+                    <li><a href="#timetable">Timetable</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-nav">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#homework">Homework</a></li>
+            <li><a href="#teachers">Teachers</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#notice">Notice</a></li>
+            <li><a href="#timetable">Timetable</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Excellence in Education</h1>
+                <p>Milli Karwaan Public School Balrampur is committed to providing quality education and holistic development for every student. Join us in shaping bright futures.</p>
+                <div>
+                    <a href="#about" class="btn">Learn More</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About Our School</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Empowering Young Minds for a Brighter Future</h3>
+                        <p>Milli Karwaan Public School Balrampur, located at Boluha Police Chowki Balrampur, has been a beacon of quality education in the region since its inception. Our mission is to provide a nurturing environment where students can develop academically, socially, and emotionally.</p>
+                        <p>We believe in holistic education that goes beyond textbooks. Our curriculum is designed to foster critical thinking, creativity, and character development. With a team of dedicated educators and state-of-the-art facilities, we strive to create lifelong learners who are prepared to face the challenges of the 21st century.</p>
+                        <p>At Milli Karwaan, we celebrate diversity and promote values of respect, integrity, and excellence. Our students are encouraged to explore their passions, develop their talents, and become responsible citizens of tomorrow.</p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number" id="studentCount">1200+</div>
+                                <div class="stat-label">Students</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="teacherCount">50+</div>
+                                <div class="stat-label">Teachers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">25+</div>
+                                <div class="stat-label">Years of Excellence</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">15+</div>
+                                <div class="stat-label">Facilities</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="School Building">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Features</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card animate-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Quality Education</h3>
+                        <p>Our curriculum is designed to meet national standards while incorporating innovative teaching methods that cater to different learning styles.</p>
+                    </div>
+                    <div class="feature-card animate-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Experienced Faculty</h3>
+                        <p>Our team of dedicated educators are highly qualified and passionate about nurturing young minds and helping students reach their full potential.</p>
+                    </div>
+                    <div class="feature-card animate-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>Science Labs</h3>
+                        <p>State-of-the-art laboratories provide hands-on learning experiences in physics, chemistry, and biology, fostering scientific curiosity.</p>
+                    </div>
+                    <div class="feature-card animate-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Computer Labs</h3>
+                        <p>Modern computer labs with high-speed internet access ensure students are proficient in digital literacy and programming skills.</p>
+                    </div>
+                    <div class="feature-card animate-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3>Sports Facilities</h3>
+                        <p>Our school offers various sports facilities including a playground, basketball court, and indoor games to promote physical fitness.</p>
+                    </div>
+                    <div class="feature-card animate-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Arts & Music</h3>
+                        <p>We encourage artistic expression through music, dance, and visual arts programs that nurture creativity and cultural appreciation.</p>
+                    </div>
+                    <div class="feature-card animate-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Library</h3>
+                        <p>Our well-stocked library with thousands of books, journals, and digital resources supports academic research and recreational reading.</p>
+                    </div>
+                    <div class="feature-card animate-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Safety First</h3>
+                        <p>We prioritize student safety with secure campus facilities, trained staff, and comprehensive emergency protocols.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Homework Section -->
+        <section class="homework" id="homework">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Homework</h2>
+                </div>
+                <div class="homework-container">
+                    <div class="homework-header">
+                        <h3 class="homework-title">Today's Homework</h3>
+                        <span class="current-class" id="currentClass">Class 5</span>
+                    </div>
+                    <div class="homework-list" id="homeworkList">
+                        <!-- Homework items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teachers Section -->
+        <section class="teachers" id="teachers">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Teachers</h2>
+                </div>
+                <div class="teachers-grid">
+                    <div class="teacher-card animate-in">
+                        <div class="teacher-img">
+                            <img src="https://images.unsplash.com/photo-1573496359143-749b8fa2af71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Teacher">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Dr. Anjali Sharma</h3>
+                            <p class="teacher-subject">Principal</p>
+                            <p class="teacher-bio">Ph.D in Education with 20+ years of experience in school administration and curriculum development.</p>
+                            <div class="teacher-social">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-card animate-in">
+                        <div class="teacher-img">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Teacher">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Rajesh Kumar</h3>
+                            <p class="teacher-subject">Mathematics</p>
+                            <p class="teacher-bio">B.Sc, M.Sc in Mathematics with 15 years of teaching experience, specializing in competitive exam preparation.</p>
+                            <div class="teacher-social">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-card animate-in">
+                        <div class="teacher-img">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Teacher">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Priya Singh</h3>
+                            <p class="teacher-subject">English</p>
+                            <p class="teacher-bio">M.A in English Literature with expertise in language acquisition and creative writing instruction.</p>
+                            <div class="teacher-social">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-card animate-in">
+                        <div class="teacher-img">
+                            <img src="https://images.unsplash.com/photo-1551836022-d5d888ed9f4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Teacher">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Vikram Patel</h3>
+                            <p class="teacher-subject">Science</p>
+                            <p class="teacher-bio">B.Sc, M.Sc in Physics with specialization in experimental methods and scientific inquiry.</p>
+                            <div class="teacher-social">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-card animate-in">
+                        <div class="teacher-img">
+                            <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0e17804?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Teacher">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Sunita Devi</h3>
+                            <p class="teacher-subject">Hindi</p>
+                            <p class="teacher-bio">M.A in Hindi Literature with focus on Indian classical literature and language pedagogy.</p>
+                            <div class="teacher-social">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-card animate-in">
+                        <div class="teacher-img">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1061&q=80" alt="Teacher">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Amit Verma</h3>
+                            <p class="teacher-subject">Computer Science</p>
+                            <p class="teacher-bio">B.Tech, M.Tech in Computer Science with industry experience in software development and cybersecurity.</p>
+                            <div class="teacher-social">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="events" id="events">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Upcoming Events</h2>
+                </div>
+                <div class="events-container">
+                    <div class="events-timeline">
+                        <div class="event-item animate-in">
+                            <div class="event-date">15 Mar 2024</div>
+                            <div class="event-card">
+                                <h3 class="event-title">Annual Sports Day</h3>
+                                <p class="event-description">Join us for our annual sports day celebration featuring various athletic events, competitions, and award ceremonies. Students from all classes will participate in track and field events, relay races, and traditional games.</p>
+                            </div>
+                        </div>
+                        <div class="event-item animate-in">
+                            <div class="event-date">22 Mar 2024</div>
+                            <div class="event-card">
+                                <h3 class="event-title">Science Exhibition</h3>
+                                <p class="event-description">Our annual science exhibition will showcase innovative projects and experiments created by students across different grades. Visitors will have the opportunity to interact with young scientists and learn about their discoveries.</p>
+                            </div>
+                        </div>
+                        <div class="event-item animate-in">
+                            <div class="event-date">5 Apr 2024</div>
+                            <div class="event-card">
+                                <h3 class="event-title">Cultural Fest</h3>
+                                <p class="event-description">Celebrate diversity and creativity at our cultural fest featuring performances in music, dance, drama, and art from students representing various cultural backgrounds. The event will include food stalls and craft exhibitions.</p>
+                            </div>
+                        </div>
+                        <div class="event-item animate-in">
+                            <div class="event-date">18 Apr 2024</div>
+                            <div class="event-card">
+                                <h3 class="event-title">Parent-Teacher Meeting</h3>
+                                <p class="event-description">Scheduled parent-teacher meetings for all classes to discuss student progress, address concerns, and plan for academic success. Individual appointments will be available for personalized discussions.</p>
+                            </div>
+                        </div>
+                        <div class="event-item animate-in">
+                            <div class="event-date">3 May 2024</div>
+                            <div class="event-card">
+                                <h3 class="event-title">Mathematics Olympiad</h3>
+                                <p class="event-description">Our annual mathematics competition for students from Class 5 to Class 10. The event will test problem-solving skills, logical reasoning, and mathematical creativity through challenging puzzles and problems.</p>
+                            </div>
+                        </div>
+                        <div class="event-item animate-in">
+                            <div class="event-date">10 May 2024</div>
+                            <div class="event-card">
+                                <h3 class="event-title">Annual Day Celebration</h3>
+                                <p class="event-description">The highlight of our academic year featuring performances by students, award ceremonies for academic and extracurricular achievements, and special recognition for outstanding contributions to school life.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notice Board -->
+        <section class="notice-board" id="notice">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Notice Board</h2>
+                </div>
+                <div class="notice-container">
+                    <div class="notice-header">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Important Announcements</h3>
+                    </div>
+                    <div class="notice-list" id="noticeList">
+                        <!-- Notice items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timetable Section -->
+        <section class="timetable" id="timetable">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Class Timetable</h2>
+                </div>
+                <div class="timetable-container">
+                    <table class="timetable-table">
+                        <thead>
+                            <tr>
+                                <th>Time/Day</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>8:00 - 8:45</strong></td>
+                                <td><span class="subject english">English</span></td>
+                                <td><span class="subject math">Mathematics</span></td>
+                                <td><span class="subject science">Science</span></td>
+                                <td><span class="subject english">English</span></td>
+                                <td><span class="subject math">Mathematics</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>8:45 - 9:30</strong></td>
+                                <td><span class="subject math">Mathematics</span></td>
+                                <td><span class="subject science">Science</span></td>
+                                <td><span class="subject english">English</span></td>
+                                <td><span class="subject math">Mathematics</span></td>
+                                <td><span class="subject science">Science</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>9:30 - 10:15</strong></td>
+                                <td><span class="subject hindi">Hindi</span></td>
+                                <td><span class="subject social">Social Studies</span></td>
+                                <td><span class="subject computer">Computer</span></td>
+                                <td><span class="subject hindi">Hindi</span></td>
+                                <td><span class="subject social">Social Studies</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>10:15 - 11:00</strong></td>
+                                <td><span class="subject social">Social Studies</span></td>
+                                <td><span class="subject english">English</span></td>
+                                <td><span class="subject math">Mathematics</span></td>
+                                <td><span class="subject social">Social Studies</span></td>
+                                <td><span class="subject english">English</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>11:00 - 11:45</strong></td>
+                                <td><span class="subject science">Science</span></td>
+                                <td><span class="subject hindi">Hindi</span></td>
+                                <td><span class="subject art">Art & Craft</span></td>
+                                <td><span class="subject science">Science</span></td>
+                                <td><span class="subject hindi">Hindi</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>11:45 - 12:30</strong></td>
+                                <td><span class="subject computer">Computer</span></td>
+                                <td><span class="subject art">Art & Craft</span></td>
+                                <td><span class="subject music">Music</span></td>
+                                <td><span class="subject computer">Computer</span></td>
+                                <td><span class="subject art">Art & Craft</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>12:30 - 1:30</strong></td>
+                                <td colspan="5" style="text-align: center; background-color: #f8f9fa; font-weight: 600;">LUNCH BREAK</td>
+                            </tr>
+                            <tr>
+                                <td><strong>1:30 - 2:15</strong></td>
+                                <td><span class="subject physical">Physical Education</span></td>
+                                <td><span class="subject math">Mathematics</span></td>
+                                <td><span class="subject english">English</span></td>
+                                <td><span class="subject physical">Physical Education</span></td>
+                                <td><span class="subject math">Mathematics</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>2:15 - 3:00</strong></td>
+                                <td><span class="subject club">Club Activities</span></td>
+                                <td><span class="subject science">Science</span></td>
+                                <td><span class="subject hindi">Hindi</span></td>
+                                <td><span class="subject club">Club Activities</span></td>
+                                <td><span class="subject science">Science</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery" id="gallery">
+            <div class="container">
+                <div class="section-title">
+                    <h2>School Gallery</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item animate-in">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="School Building">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">School Building</h3>
+                            <p class="gallery-category">Architecture</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <img src="https://images.unsplash.com/photo-1543232515-673749767615?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Classroom">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Modern Classrooms</h3>
+                            <p class="gallery-category">Learning Environment</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d888ed9f4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Science Lab">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Science Laboratory</h3>
+                            <p class="gallery-category">STEM Education</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Library">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">School Library</h3>
+                            <p class="gallery-category">Reading & Research</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <img src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sports">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Sports Activities</h3>
+                            <p class="gallery-category">Physical Education</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <img src="https://images.unsplash.com/photo-1534802046575-531e9c27442f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cultural Event">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Cultural Programs</h3>
+                            <p class="gallery-category">Arts & Culture</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d888ed9f4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Computer Lab">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Computer Lab</h3>
+                            <p class="gallery-category">Digital Learning</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item animate-in">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c83fa3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Assembly">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Morning Assembly</h3>
+                            <p class="gallery-category">School Activities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="achievements" id="achievements">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Achievements</h2>
+                </div>
+                <div class="achievements-container">
+                    <div class="achievements-grid">
+                        <div class="achievement-card animate-in">
+                            <i class="fas fa-trophy achievement-icon"></i>
+                            <div class="achievement-number">150+</div>
+                            <h3 class="achievement-title">Academic Awards</h3>
+                            <p class="achievement-description">Our students have won over 150 academic awards in district, state, and national level competitions in the past five years.</p>
+                        </div>
+                        <div class="achievement-card animate-in">
+                            <i class="fas fa-medal achievement-icon"></i>
+                            <div class="achievement-number">85+</div>
+                            <h3 class="achievement-title">Sports Championships</h3>
+                            <p class="achievement-description">Our sports teams have secured 85+ championships in various athletic events at inter-school competitions.</p>
+                        </div>
+                        <div class="achievement-card animate-in">
+                            <i class="fas fa-award achievement-icon"></i>
+                            <div class="achievement-number">50+</div>
+                            <h3 class="achievement-title">Teacher Awards</h3>
+                            <p class="achievement-description">Our dedicated faculty members have received 50+ teaching excellence awards for innovative pedagogy.</p>
+                        </div>
+                        <div class="achievement-card animate-in">
+                            <i class="fas fa-lightbulb achievement-icon"></i>
+                            <div class="achievement-number">30+</div>
+                            <h3 class="achievement-title">Innovation Projects</h3>
+                            <p class="achievement-description">Students have developed 30+ innovative science and technology projects that have been recognized nationally.</p>
+                        </div>
+                        <div class="achievement-card animate-in">
+                            <i class="fas fa-globe-asia achievement-icon"></i>
+                            <div class="achievement-number">12</div>
+                            <h3 class="achievement-title">International Competitions</h3>
+                            <p class="achievement-description">Our students have represented India in 12 international academic and cultural competitions.</p>
+                        </div>
+                        <div class="achievement-card animate-in">
+                            <i class="fas fa-hand-holding-heart achievement-icon"></i>
+                            <div class="achievement-number">2000+</div>
+                            <h3 class="achievement-title">Community Hours</h3>
+                            <p class="achievement-description">Students have contributed over 2000 hours to community service and social welfare initiatives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item animate-in">
+                        <div class="faq-question">
+                            <span>What are the school hours?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our school operates from 8:00 AM to 3:00 PM, Monday through Friday. The morning assembly begins at 8:00 AM, and classes start at 8:15 AM. We have a 60-minute lunch break from 12:30 PM to 1:30 PM.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-in">
+                        <div class="faq-question">
+                            <span>What is the admission process?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The admission process begins with submitting an application form available on our website or at the school office. Required documents include birth certificate, previous school records (if applicable), address proof, and passport-sized photographs. After document verification, there may be a brief interaction with the child and parents, followed by issuance of the admission confirmation.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-in">
+                        <div class="faq-question">
+                            <span>What extracurricular activities are offered?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer a wide range of extracurricular activities including sports (cricket, football, basketball, athletics), arts (music, dance, painting, drama), academic clubs (science, mathematics, debate), and hobby classes (chess, robotics, gardening). Students can participate in multiple activities based on their interests and schedules.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-in">
+                        <div class="faq-question">
+                            <span>Is transportation provided?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we provide transportation services with well-maintained buses covering various routes in Balrampur and nearby areas. The buses are equipped with GPS tracking, and each is accompanied by a trained attendant. Parents can enroll their children in the transportation service by paying the applicable fees.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-in">
+                        <div class="faq-question">
+                            <span>What safety measures are in place?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Student safety is our top priority. We have 24/7 security personnel, CCTV surveillance throughout the campus, fire safety equipment, and regular safety drills. All staff undergo background checks, and we have strict visitor protocols. Our buses have GPS tracking, and we maintain a low student-to-teacher ratio for better supervision.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-in">
+                        <div class="faq-question">
+                            <span>How are parents kept informed about their child's progress?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We maintain regular communication with parents through multiple channels: monthly progress reports, parent-teacher meetings (scheduled twice a year with optional additional meetings), a school mobile app for real-time updates, email communications, and our website portal. We also send notifications about upcoming events, homework, and important announcements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Address</h4>
+                                    <p>Boluha Police Chowki Balrampur, Uttar Pradesh, India</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Phone</h4>
+                                    <p><a href="tel:9758919151">9758919151</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p><a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Office Hours</h4>
+                                    <p>Monday - Friday: 8:00 AM - 4:00 PM<br>Saturday: 8:00 AM - 12:00 PM<br>Sunday: Closed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3588.672851505267!2d82.05464351507835!3d27.17281988303846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399fe570715c15d5%3A0x89968123456789ab!2sBalrampur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1623456789012!5m2!1sen!2sin" width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Call Button -->
+    <a href="tel:9758919151" class="call-button glow" id="callButton">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+
+    <!-- Hidden Menu -->
+    <div class="hidden-menu" id="hiddenMenu">
+        <div class="dots-menu">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="hidden-menu-items">
+            <a href="#homework" class="hidden-menu-item">
+                <i class="fas fa-book"></i>
+                <span>Homework</span>
+            </a>
+            <a href="#teachers" class="hidden-menu-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Teachers</span>
+            </a>
+            <a href="#events" class="hidden-menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Events</span>
+            </a>
+            <a href="#notice" class="hidden-menu-item">
+                <i class="fas fa-bullhorn"></i>
+                <span>Notice</span>
+            </a>
+            <a href="#timetable" class="hidden-menu-item">
+                <i class="fas fa-table"></i>
+                <span>Timetable</span>
+            </a>
+            <a href="#gallery" class="hidden-menu-item">
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+            </a>
+            <a href="admin.html" class="hidden-menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Admin Panel</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>About School</h4>
+                    <p>Milli Karwaan Public School Balrampur is committed to providing quality education and holistic development for every student. We believe in nurturing young minds to become responsible citizens.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#homework">Homework</a></li>
+                        <li><a href="#teachers">Teachers</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p>Boluha Police Chowki Balrampur, Uttar Pradesh, India</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <p><a href="tel:9758919151">9758919151</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p><a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter to receive updates about school events and news.</p>
+                    <form id="newsletterForm">
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-sm">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear">2024</span> Milli Karwaan Public School Balrampur. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #f8c400;"></i> for excellence in education</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const welcomeModal = document.getElementById('welcomeModal');
+        const welcomeForm = document.getElementById('welcomeForm');
+        const studentNameInput = document.getElementById('studentName');
+        const studentClassInput = document.getElementById('studentClass');
+        const parentNameInput = document.getElementById('parentName');
+        const mainContent = document.getElementById('mainContent');
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const hiddenMenu = document.getElementById('hiddenMenu');
+        const currentClass = document.getElementById('currentClass');
+        const homeworkList = document.getElementById('homeworkList');
+        const noticeList = document.getElementById('noticeList');
+        const callButton = document.getElementById('callButton');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const loadingScreen = document.querySelector('.loading');
+        const studentCount = document.getElementById('studentCount');
+        const teacherCount = document.getElementById('teacherCount');
+        const currentYear = document.getElementById('currentYear');
+
+        // Initialize data
+        const homeworkData = {
+            "Nursery": [
+                { date: "2024-03-10", subject: "English", description: "Practice writing letters A to E. Draw pictures of animals starting with these letters." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Count objects from 1 to 10. Practice writing numbers 1-5." },
+                { date: "2024-03-10", subject: "Art & Craft", description: "Color the picture of a sun and paste cotton balls for clouds." }
+            ],
+            "LKG": [
+                { date: "2024-03-10", subject: "English", description: "Read the story 'The Little Red Hen'. Write 5 sentences about your favorite character." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Solve addition problems up to 20. Complete the number pattern worksheet." },
+                { date: "2024-03-10", subject: "Hindi", description: "Write 10 words starting with 'अ' and draw corresponding pictures." }
+            ],
+            "UKG": [
+                { date: "2024-03-10", subject: "English", description: "Write a short paragraph about your weekend. Use at least 10 sentences with proper punctuation." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Complete the multiplication table for 2, 3, and 4. Solve word problems on addition and subtraction." },
+                { date: "2024-03-10", subject: "Science", description: "Observe plants in your garden and draw 3 different types of leaves. Label the parts." }
+            ],
+            "Class 1": [
+                { date: "2024-03-10", subject: "English", description: "Read Chapter 5 of 'The Enchanted Forest'. Write a summary of the chapter in 8-10 sentences." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Practice subtraction with borrowing. Complete exercise 3.2 from the textbook." },
+                { date: "2024-03-10", subject: "Hindi", description: "Write a story using the words: नदी, पेड़, पक्षी, बच्चा. Use proper grammar and punctuation." }
+            ],
+            "Class 2": [
+                { date: "2024-03-10", subject: "English", description: "Write a letter to your friend describing your school. Use descriptive language and proper letter format." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Learn multiplication tables 6-9. Solve word problems involving multiplication." },
+                { date: "2024-03-10", subject: "Science", description: "Create a chart of the water cycle. Explain each stage in your own words." }
+            ],
+            "Class 3": [
+                { date: "2024-03-10", subject: "English", description: "Write a poem about nature with 12 lines. Use rhyming words and descriptive adjectives." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Practice division with remainders. Complete the division worksheet and check your answers." },
+                { date: "2024-03-10", subject: "Social Studies", description: "Draw a map of India and label 10 major cities and 5 rivers." }
+            ],
+            "Class 4": [
+                { date: "2024-03-10", subject: "English", description: "Read 'The Secret Garden' chapters 7-9. Write a character analysis of Mary Lennox." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Learn about fractions. Add and subtract fractions with like denominators. Complete exercise 5.3." },
+                { date: "2024-03-10", subject: "Science", description: "Conduct a simple experiment on plant growth. Record observations for 5 days and present findings." }
+            ],
+            "Class 5": [
+                { date: "2024-03-10", subject: "English", description: "Write a persuasive essay on 'Why School Uniforms Should Be Mandatory'. Use at least 5 arguments with examples." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Learn about decimals. Convert fractions to decimals and vice versa. Solve word problems involving decimals." },
+                { date: "2024-03-10", subject: "Science", description: "Research renewable energy sources. Create a presentation on solar energy and its benefits." }
+            ],
+            "Class 6": [
+                { date: "2024-03-10", subject: "English", description: "Analyze the poem 'The Road Not Taken' by Robert Frost. Write about the theme and literary devices used." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Study algebraic expressions. Simplify expressions and solve simple equations. Complete exercise 8.2." },
+                { date: "2024-03-10", subject: "Social Studies", description: "Research the Indus Valley Civilization. Create a timeline of important events and discoveries." }
+            ],
+            "Class 7": [
+                { date: "2024-03-10", subject: "English", description: "Write a short story using the prompt: 'The mysterious door in the old library'. Include a plot, characters, and setting." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Learn about exponents and powers. Simplify expressions with exponents and solve related problems." },
+                { date: "2024-03-10", subject: "Science", description: "Study the human digestive system. Create a detailed diagram and explain the function of each organ." }
+            ],
+            "Class 8": [
+                { date: "2024-03-10", subject: "English", description: "Read 'The Diary of Anne Frank'. Write a reflective journal entry from Anne's perspective about hope during difficult times." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Study linear equations in one variable. Solve equations and word problems. Verify your solutions." },
+                { date: "2024-03-10", subject: "Science", description: "Research climate change and its effects. Prepare a report with statistics, causes, and possible solutions." }
+            ],
+            "Class 9": [
+                { date: "2024-03-10", subject: "English", description: "Analyze Shakespeare's 'Romeo and Juliet' Act 2. Discuss the theme of love and its consequences in the play." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Study coordinate geometry. Plot points, find distances between points, and solve related problems." },
+                { date: "2024-03-10", subject: "Science", description: "Conduct an experiment on Newton's laws of motion. Record observations and explain the principles demonstrated." }
+            ],
+            "Class 10": [
+                { date: "2024-03-10", subject: "English", description: "Prepare for board exams. Practice writing essays on current topics. Focus on grammar and comprehension skills." },
+                { date: "2024-03-10", subject: "Mathematics", description: "Revise trigonometry. Solve problems on heights and distances. Practice previous year board questions." },
+                { date: "2024-03-10", subject: "Science", description: "Prepare a project on sustainable development. Include case studies, data analysis, and recommendations." }
+            ]
+        };
+
+        const noticeData = [
+            { date: "2024-03-08", title: "Summer Vacation Announcement", content: "Summer vacation will commence from May 15, 2024, and will end on July 10, 2024. The new academic session will begin on July 11, 2024. All students are required to submit their homework assignments before the vacation begins." },
+            { date: "2024-03-05", title: "Parent-Teacher Meeting", content: "A parent-teacher meeting has been scheduled for March 18, 2024, from 10:00 AM to 2:00 PM. Parents are requested to book their time slots in advance at the school office. Individual meetings will be 15 minutes long." },
+            { date: "2024-03-02", title: "New Computer Lab Opening", content: "We are pleased to announce the opening of our new state-of-the-art computer lab on March 20, 2024. The lab is equipped with 30 latest computers, high-speed internet, and specialized software for programming and multimedia creation." },
+            { date: "2024-02-28", title: "Health Checkup Camp", content: "A free health checkup camp will be organized on March 10, 2024, for all students. The camp will include general health examination, vision and hearing tests, and dental checkup. Parents are requested to provide consent forms by March 8." },
+            { date: "2024-02-25", title: "Cultural Fest Participation", content: "Students interested in participating in the upcoming Cultural Fest on April 5, 2024, should register by March 15, 2024. Categories include singing, dancing, drama, and instrumental music. Practice sessions will be held after school hours." }
+        ];
+
+        // Utility Functions
+        function showLoading() {
+            loadingScreen.style.opacity = '1';
+            loadingScreen.style.visibility = 'visible';
+        }
+
+        function hideLoading() {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+        }
+
+        function showToast(message, type = 'success') {
+            toastMessage.textContent = message;
+            if (type === 'error') {
+                toast.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+                toast.style.backgroundColor = '#dc3545';
+            } else {
+                toast.innerHTML = `<i class="fas fa-check"></i> ${message}`;
+                toast.style.backgroundColor = 'var(--primary)';
+            }
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        // Welcome Modal Functionality
+        function checkWelcomeStatus() {
+            const userData = localStorage.getItem('mkpsUserData');
+            if (userData) {
+                const user = JSON.parse(userData);
+                populateUserData(user);
+                hideWelcomeModal();
+                showMainContent();
+            } else {
+                showWelcomeModal();
+            }
+        }
+
+        function showWelcomeModal() {
+            welcomeModal.classList.add('active');
+            setTimeout(() => {
+                const welcomeContent = welcomeModal.querySelector('.welcome-content');
+                welcomeContent.style.opacity = '1';
+                welcomeContent.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        function hideWelcomeModal() {
+            const welcomeContent = welcomeModal.querySelector('.welcome-content');
+            welcomeContent.style.opacity = '0';
+            welcomeContent.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                welcomeModal.classList.remove('active');
+            }, 300);
+        }
+
+        function populateUserData(user) {
+            currentClass.textContent = user.class;
+            // Update any other elements that display user-specific information
+        }
+
+        function saveUserData(user) {
+            localStorage.setItem('mkpsUserData', JSON.stringify(user));
+        }
+
+        // Main Content Functionality
+        function showMainContent() {
+            setTimeout(() => {
+                mainContent.classList.add('visible');
+                animateOnScroll();
+                initializeCounters();
+            }, 100);
+        }
+
+        function animateOnScroll() {
+            const animateElements = document.querySelectorAll('.animate-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        function initializeCounters() {
+            let start1 = 0;
+            let start2 = 0;
+            const end1 = 1200;
+            const end2 = 50;
+            const duration = 2000;
+            const stepTime = Math.abs(Math.floor(duration / (end1 - start1)));
+
+            const timer1 = setInterval(() => {
+                start1++;
+                studentCount.textContent = start1 + '+';
+                if (start1 === end1) {
+                    clearInterval(timer1);
+                }
+            }, stepTime);
+
+            const timer2 = setInterval(() => {
+                start2++;
+                teacherCount.textContent = start2 + '+';
+                if (start2 === end2) {
+                    clearInterval(timer2);
+                }
+            }, stepTime / 10);
+        }
+
+        // Homework Functionality
+        function displayHomework(studentClass) {
+            const homework = homeworkData[studentClass] || [];
+            homeworkList.innerHTML = '';
+
+            if (homework.length === 0) {
+                homeworkList.innerHTML = `
+                    <div class="no-homework">
+                        <i class="fas fa-book-open" style="font-size: 3rem; color: #ddd; margin-bottom: 15px;"></i>
+                        <h3>No Homework Assigned</h3>
+                        <p>There are no homework assignments for ${studentClass} at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            homework.forEach(item => {
+                const homeworkItem = document.createElement('div');
+                homeworkItem.className = 'homework-item animate-in';
+                homeworkItem.innerHTML = `
+                    <span class="homework-date">${formatDate(item.date)}</span>
+                    <h3 class="homework-subject">${item.subject}</h3>
+                    <p class="homework-description">${item.description}</p>
+                `;
+                homeworkList.appendChild(homeworkItem);
+            });
+
+            // Trigger animation for homework items
+            setTimeout(() => {
+                const homeworkItems = homeworkList.querySelectorAll('.homework-item');
+                homeworkItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, 100 * index);
+                });
+            }, 100);
+        }
+
+        // Notice Board Functionality
+        function displayNotices() {
+            noticeList.innerHTML = '';
+
+            noticeData.forEach(item => {
+                const noticeItem = document.createElement('div');
+                noticeItem.className = 'notice-item animate-in';
+                noticeItem.innerHTML = `
+                    <span class="notice-date">${formatDate(item.date)}</span>
+                    <h3 class="notice-title">${item.title}</h3>
+                    <p class="notice-content">${item.content}</p>
+                `;
+                noticeList.appendChild(noticeItem);
+            });
+
+            // Trigger animation for notice items
+            setTimeout(() => {
+                const noticeItems = noticeList.querySelectorAll('.notice-item');
+                noticeItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, 100 * index);
+                });
+            }, 100);
+        }
+
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            if (isDarkMode) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('mkpsTheme', 'dark');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('mkpsTheme', 'light');
+            }
+        }
+
+        function checkThemePreference() {
+            const savedTheme = localStorage.getItem('mkpsTheme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // Mobile Menu Functionality
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Hidden Menu Functionality
+        function toggleHiddenMenu() {
+            hiddenMenu.classList.toggle('active');
+        }
+
+        // Form Submissions
+        function handleWelcomeForm(e) {
+            e.preventDefault();
+            
+            const userData = {
+                name: studentNameInput.value.trim(),
+                class: studentClassInput.value,
+                parent: parentNameInput.value.trim()
+            };
+
+            if (!userData.name || !userData.class || !userData.parent) {
+                showToast('Please fill in all fields', 'error');
+                return;
+            }
+
+            saveUserData(userData);
+            populateUserData(userData);
+            hideWelcomeModal();
+            showMainContent();
+            displayHomework(userData.class);
+            showToast('Welcome! You can now access all school information.');
+        }
+
+        function handleContactForm(e) {
+            e.preventDefault();
+            
+            // In a real application, this would send data to a server
+            // For this frontend-only version, we'll just show a success message
+            showToast('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        }
+
+        function handleNewsletterForm(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            if (email) {
+                showToast('Thank you for subscribing to our newsletter!');
+                e.target.reset();
+            }
+        }
+
+        // Smooth Scrolling
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - document.querySelector('header').offsetHeight,
+                            behavior: 'smooth'
+                        });
+
+                        // Update active navigation link
+                        document.querySelectorAll('nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('active')) {
+                            toggleMobileMenu();
+                        }
+                    }
+                });
+            });
+        }
+
+        // FAQ Functionality
+        function setupFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other open items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        }
+
+        // Initialize the application
+        function init() {
+            // Set current year
+            currentYear.textContent = new Date().getFullYear();
+
+            // Check theme preference
+            checkThemePreference();
+
+            // Check welcome status
+            checkWelcomeStatus();
+
+            // Display notices
+            displayNotices();
+
+            // Setup event listeners
+            welcomeForm.addEventListener('submit', handleWelcomeForm);
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            mobileMenuClose.addEventListener('click', toggleMobileMenu);
+            hiddenMenu.addEventListener('click', toggleHiddenMenu);
+            document.getElementById('contactForm').addEventListener('submit', handleContactForm);
+            document.getElementById('newsletterForm').addEventListener('submit', handleNewsletterForm);
+            
+            // Setup smooth scrolling
+            setupSmoothScrolling();
+            
+            // Setup FAQ
+            setupFAQ();
+
+            // Hide loading screen
+            setTimeout(() => {
+                hideLoading();
+            }, 1500);
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
