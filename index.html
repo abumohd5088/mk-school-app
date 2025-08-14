@@ -3,713 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milli Karwaan Public School Balrampur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>A to Z Web School - Your Journey to Web Mastery</title>
+    <!-- Font Awesome for social media icons (optional, but adds professional touch) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* General Body & Typography */
+        /* Basic Reset & Global Styles */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-
-        /* Header */
-        header {
-            background-color: #ffffff;
-            padding: 15px 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        header .logo {
-            height: 50px;
-            margin-right: 15px;
-        }
-        header .school-info {
-            display: flex;
-            align-items: center;
-        }
-        header .school-name {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: #0056b3; /* School primary color */
-            margin: 0;
-        }
-        header .contact-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        header .contact-buttons a {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        header .contact-buttons a:hover {
-            background-color: #0056b3;
-        }
-
-        /* Main Content Area */
-        main {
-            flex-grow: 1;
-            padding: 30px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-        .dashboard-section {
-            margin-bottom: 40px;
-            padding: 25px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            border-left: 5px solid #007bff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-        }
-        .dashboard-section h2 {
-            color: #0056b3;
-            margin-top: 0;
-            font-size: 1.8em;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .dashboard-section p {
-            color: #555;
-        }
-        .dashboard-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .dashboard-section ul li {
-            background-color: #eef7ff;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-        .dashboard-section ul li strong {
-            color: #007bff;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: auto;
-            font-size: 0.9em;
-        }
-        footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Student Gate Modal */
-        .student-gate-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .student-gate-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .student-gate-content {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-        .student-gate-modal.active .student-gate-content {
-            transform: translateY(0);
-        }
-        .student-gate-content h2 {
-            color: #0056b3;
-            margin-bottom: 25px;
-            font-size: 2em;
-        }
-        .student-gate-content p {
-            margin-bottom: 25px;
-            color: #666;
-        }
-        .student-gate-content label {
-            display: block;
-            text-align: left;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #444;
-        }
-        .student-gate-content input,
-        .student-gate-content select {
-            width: calc(100% - 20px);
-            padding: 12px 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1em;
             box-sizing: border-box;
-        }
-        .student-gate-content button {
-            background-color: #28a745; /* Green for submit */
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: 600;
-        }
-        .student-gate-content button:hover {
-            background-color: #218838;
-        }
-        .student-gate-content .error-message {
-            color: #dc3545;
-            margin-top: -10px;
-            margin-bottom: 15px;
-            font-size: 0.9em;
-            text-align: left;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4; /* Light background */
         }
 
-        /* Toast Notification */
-        .toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: #333;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background: #2c3e50; /* Dark blue/grey */
+            color: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ecf0f1; /* Light grey */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #3498db; /* Blue */
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/1500x600/34495e/ecf0f1?text=Learn+Web+Development') no-repeat center center/cover;
             color: #fff;
             text-align: center;
-            border-radius: 5px;
-            padding: 16px;
-            position: fixed;
-            z-index: 2001;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 30px;
-            font-size: 17px;
-            opacity: 0;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-        .toast.show {
-            visibility: visible;
-            opacity: 1;
+            padding: 100px 20px;
+            margin-bottom: 40px;
         }
 
-        /* Responsive Design */
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button {
+            display: inline-block;
+            background: #3498db; /* Blue */
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+
+        .button:hover {
+            background: #2980b9; /* Darker blue */
+        }
+
+        /* Section General Styling */
+        section {
+            padding: 60px 0;
+            margin-bottom: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        /* Course & Testimonial Grids */
+        .courses .course-grid, .testimonials .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .course-card, .testimonial-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover, .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .course-card-content {
+            padding: 20px;
+        }
+
+        .course-card h3 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            color: #34495e;
+        }
+
+        .course-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .course-card .button {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about p {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Testimonial Cards */
+        .testimonial-card {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .testimonial-card .author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Call to Action (CTA) Section */
+        .cta {
+            text-align: center;
+            background: #3498db; /* Blue */
+            color: #fff;
+            padding: 80px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .cta h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta .button {
+            background: #2c3e50; /* Dark blue/grey */
+        }
+
+        .cta .button:hover {
+            background: #34495e; /* Slightly lighter dark blue */
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        footer ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #3498db;
+        }
+
+        .social-links a {
+            color: #ecf0f1;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            header {
+            header .container {
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 15px 20px;
-            }
-            header .school-info {
-                margin-bottom: 15px;
-            }
-            header .school-name {
-                font-size: 1.5em;
-            }
-            header .contact-buttons {
-                width: 100%;
-                justify-content: space-around;
-            }
-            header .contact-buttons a {
-                flex: 1;
                 text-align: center;
-                padding: 8px 15px;
             }
-            main {
-                padding: 20px;
-                margin: 15px auto;
+
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
-            .dashboard-section {
-                padding: 15px;
+
+            nav ul li {
+                margin: 0 10px 10px 10px;
             }
-            .dashboard-section h2 {
-                font-size: 1.5em;
+
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            .student-gate-content {
-                padding: 30px 20px;
+
+            .hero p {
+                font-size: 1rem;
             }
-            .student-gate-content h2 {
-                font-size: 1.8em;
+
+            .courses .course-grid, .testimonials .testimonial-grid {
+                grid-template-columns: 1fr; /* Stack columns on small screens */
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .cta {
+                padding: 60px 20px;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- Student Gate Modal -->
-    <div id="studentGateModal" class="student-gate-modal">
-        <div class="student-gate-content">
-            <h2>Welcome to Milli Karwaan Public School!</h2>
-            <p>Please provide your details to access the student dashboard.</p>
-            <form id="studentGateForm">
-                <label for="studentName">Student Name:</label>
-                <input type="text" id="studentName" placeholder="Your Full Name" required>
-
-                <label for="studentClass">Class (1-12):</label>
-                <select id="studentClass" required>
-                    <option value="">Select Class</option>
-                    <script>
-                        for (let i = 1; i <= 12; i++) {
-                            document.write(`<option value="${i}">${i}</option>`);
-                        }
-                    </script>
-                </select>
-
-                <label for="parentName">Parent's Name:</label>
-                <input type="text" id="parentName" placeholder="Parent's Full Name" required>
-
-                <div id="gateErrorMessage" class="error-message" style="display: none;"></div>
-                <button type="submit">Enter Dashboard</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
-
-    <!-- Main Dashboard Content -->
     <header>
-        <div class="school-info">
-            <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Milli Karwaan Public School Logo" class="logo">
-            <h1 class="school-name">Milli Karwaan Public School Balrampur</h1>
-        </div>
-        <div class="contact-buttons">
-            <a href="tel:9758919151"><i class="fas fa-phone-alt"></i> CALL US</a>
-            <a href="mailto:madamsir066@gmail.com"><i class="fas fa-envelope"></i> EMAIL US</a>
+        <div class="container">
+            <div class="logo">A to Z Web School</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#login">Login / Register</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <main id="dashboardContent" style="display: none;">
-        <div class="dashboard-section">
-            <h2>👋 Welcome, <span id="displayStudentName"></span>!</h2>
-            <p>You are currently viewing the dashboard for Class <strong id="displayStudentClass"></strong>.</p>
-            <p>Your parent's name is <strong id="displayParentName"></strong>.</p>
-            <p>This data was recorded on: <strong id="displayRecordedAt"></strong>.</p>
-        </div>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Unlock Your Potential: Master Web Development</h1>
+                <p>From absolute beginner to a professional web developer, A to Z Web School provides comprehensive, hands-on courses designed to get you job-ready.</p>
+                <a href="#courses" class="button">Explore Our Courses</a>
+            </div>
+        </section>
 
-        <div class="dashboard-section" id="homeworkSection">
-            <h2>📚 Homework</h2>
-            <p>No homework assigned for your class yet. Check back soon!</p>
-            <!-- Homework will be dynamically loaded here -->
-        </div>
+        <section id="courses" class="courses container">
+            <h2>Our Popular Courses</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/400x200/3498db/ffffff?text=HTML+CSS+JS" alt="HTML, CSS, JavaScript Course">
+                    <div class="course-card-content">
+                        <h3>Foundations of Web Development</h3>
+                        <p>Start your journey with the core languages of the web: HTML for structure, CSS for styling, and JavaScript for interactivity. Perfect for beginners!</p>
+                        <a href="#" class="button">Learn More</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/400x200/2ecc71/ffffff?text=React+NodeJS" alt="React and NodeJS Course">
+                    <div class="course-card-content">
+                        <h3>Full-Stack JavaScript with MERN</h3>
+                        <p>Dive deep into modern web development using MongoDB, Express.js, React, and Node.js. Build powerful, scalable web applications from scratch.</p>
+                        <a href="#" class="button">Learn More</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/400x200/e74c3c/ffffff?text=Python+Django" alt="Python and Django Course">
+                    <div class="course-card-content">
+                        <h3>Backend Development with Python & Django</h3>
+                        <p>Master server-side programming with Python and the robust Django framework. Learn to build APIs, manage databases, and deploy web services.</p>
+                        <a href="#" class="button">Learn More</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/400x200/f39c12/ffffff?text=UI+UX+Design" alt="UI/UX Design Course">
+                    <div class="course-card-content">
+                        <h3>UI/UX Design for Web Developers</h3>
+                        <p>Enhance your web projects with stunning user interfaces and intuitive user experiences. Learn design principles, tools, and best practices.</p>
+                        <a href="#" class="button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="dashboard-section" id="teachersSection">
-            <h2>👨‍🏫 Our Teachers</h2>
-            <p>Meet our dedicated faculty. (Data will load here)</p>
-            <ul>
-                <li><strong>Placeholder Teacher 1:</strong> Subject</li>
-                <li><strong>Placeholder Teacher 2:</strong> Subject</li>
-            </ul>
-        </div>
+        <section id="about" class="about container">
+            <h2>About A to Z Web School</h2>
+            <p>A to Z Web School is dedicated to providing high-quality, accessible web development education. Our mission is to empower individuals with the skills needed to thrive in the digital economy. We believe in hands-on learning, expert instructors, and a supportive community. Our curriculum is constantly updated to reflect the latest industry trends and technologies, ensuring our students are always at the forefront of innovation. Join us and transform your career!</p>
+        </section>
 
-        <div class="dashboard-section" id="eventsSection">
-            <h2>🗓️ Upcoming Events</h2>
-            <p>Stay updated with school events. (Data will load here)</p>
-            <ul>
-                <li><strong>Event Name:</strong> Date, Time, Location</li>
-                <li><strong>Event Name:</strong> Date, Time, Location</li>
-            </ul>
-        </div>
+        <section id="testimonials" class="testimonials container">
+            <h2>What Our Students Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"A to Z Web School transformed my career! The Full-Stack JavaScript course was incredibly comprehensive, and the instructors were always there to help. I landed a great job shortly after graduating."</p>
+                    <div class="author">- Jane Doe, Full-Stack Developer</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I had no prior coding experience, but the Foundations of Web Development course made everything easy to understand. The practical projects were key to my learning. Highly recommend!"</p>
+                    <div class="author">- John Smith, Frontend Enthusiast</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The UI/UX design course opened my eyes to the importance of user experience. It perfectly complemented my coding skills, making me a more well-rounded developer. Fantastic content!"</p>
+                    <div class="author">- Emily White, Product Designer</div>
+                </div>
+            </div>
+        </section>
 
-        <div class="dashboard-section" id="noticesSection">
-            <h2>📢 School Notices</h2>
-            <p>Important announcements from the school. (Data will load here)</p>
-            <ul>
-                <li><strong>Notice Title:</strong> Date</li>
-                <li><strong>Notice Title:</strong> Date</li>
-            </ul>
-        </div>
-
-        <div class="dashboard-section" id="timetableSection">
-            <h2>⏰ Timetable</h2>
-            <p>Your daily class schedule. (Data will load here)</p>
-            <p><em>Example: Monday - 9:00 AM Math, 10:00 AM Science...</em></p>
-        </div>
-
-        <div class="dashboard-section" id="gallerySection">
-            <h2>📸 Gallery</h2>
-            <p>Glimpses of school life and activities. (Images/videos will load here)</p>
-            <p><em>Example: Annual Day photos, Sports Meet highlights...</em></p>
-        </div>
-
-        <div class="dashboard-section" id="messagesSection">
-            <h2>✉️ Messages</h2>
-            <p>Important messages from school administration. (Data will load here)</p>
-            <ul>
-                <li><strong>Message Subject:</strong> Date</li>
-                <li><strong>Message Subject:</strong> Date</li>
-            </ul>
-        </div>
-
-        <!-- Add more sections as needed -->
+        <section id="contact" class="cta container">
+            <h2>Ready to Start Your Web Development Journey?</h2>
+            <p>Enroll in our courses today and take the first step towards a rewarding career in web development. Our team is here to support you every step of the way.</p>
+            <a href="#" class="button">Enroll Now</a>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; <span id="currentYear"></span> Milli Karwaan Public School Balrampur. All rights reserved.</p>
-        <p>Address: Boluha Police Chowki Balrampur (Balrampur, Uttar Pradesh)</p>
-        <p>Contact: <a href="tel:9758919151">9758919151</a> | <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a></p>
+        <div class="container">
+            <p>&copy; 2025 A to Z Web School. All rights reserved.</p>
+            <ul>
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#terms">Terms of Service</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="social-links">
+                <!-- These icons require the Font Awesome CDN link in the head section -->
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>Contact us: info@atozwebschool.com | (123) 456-7890</p>
+        </div>
     </footer>
-
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-    <script>
-        // --- STORAGE KEYS (MUST USE these exact keys) ---
-        const STORAGE_KEYS = {
-            STUDENT: 'mkps_student',
-            HOMEWORK: 'mkps_homework',
-            TEACHERS: 'mkps_teachers',
-            EVENTS: 'mkps_events',
-            NOTICES: 'mkps_notices',
-            TIMETABLE: 'mkps_timetable',
-            GALLERY: 'mkps_gallery',
-            MESSAGES: 'mkps_messages',
-            UPDATE: 'mkps_update'
-        };
-
-        // --- Utility Functions ---
-        function showToast(message, duration = 3000) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, duration);
-        }
-
-        function getStudentData() {
-            try {
-                const data = localStorage.getItem(STORAGE_KEYS.STUDENT);
-                if (data) {
-                    const student = JSON.parse(data);
-                    // Basic validation for required fields and class range
-                    if (student.name && student.class && student.parent && student.at &&
-                        typeof student.name === 'string' && typeof student.parent === 'string' &&
-                        typeof student.class === 'number' && student.class >= 1 && student.class <= 12) {
-                        return student;
-                    }
-                }
-            } catch (e) {
-                console.error("Error parsing student data from localStorage:", e);
-                localStorage.removeItem(STORAGE_KEYS.STUDENT); // Clear invalid data
-            }
-            return null;
-        }
-
-        function renderDashboard(student) {
-            document.getElementById('displayStudentName').textContent = student.name;
-            document.getElementById('displayStudentClass').textContent = student.class;
-            document.getElementById('displayParentName').textContent = student.parent;
-            document.getElementById('displayRecordedAt').textContent = new Date(student.at).toLocaleString();
-
-            document.getElementById('dashboardContent').style.display = 'block';
-            document.getElementById('studentGateModal').classList.remove('active');
-
-            // Initial render of sections (placeholders for now)
-            renderHomeworkFor(student.class);
-            refreshTeachers();
-            refreshEvents();
-            refreshNotices();
-            refreshTimetable();
-            refreshGallery();
-            refreshMessages();
-        }
-
-        // --- FIRST-VISIT FULLSCREEN STUDENT GATE Logic ---
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-            const studentGateModal = document.getElementById('studentGateModal');
-            const studentGateForm = document.getElementById('studentGateForm');
-            const gateErrorMessage = document.getElementById('gateErrorMessage');
-
-            const studentData = getStudentData();
-
-            if (studentData) {
-                // Skip gate, render dashboard immediately
-                renderDashboard(studentData);
-                // Replace current history state to prevent back button from showing the gate
-                history.replaceState({ gateLocked: true }, '', location.href);
-            } else {
-                // Show gate
-                studentGateModal.classList.add('active');
-                // Push a state to detect back button attempts later
-                history.pushState({ gateLocked: true }, '', location.href);
-            }
-
-            studentGateForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-
-                const studentName = document.getElementById('studentName').value.trim();
-                const studentClass = parseInt(document.getElementById('studentClass').value);
-                const parentName = document.getElementById('parentName').value.trim();
-
-                gateErrorMessage.style.display = 'none';
-                gateErrorMessage.textContent = '';
-
-                if (!studentName || !parentName || isNaN(studentClass) || studentClass < 1 || studentClass > 12) {
-                    gateErrorMessage.textContent = 'Please fill in all fields correctly. Class must be between 1 and 12.';
-                    gateErrorMessage.style.display = 'block';
-                    return;
-                }
-
-                const studentInfo = {
-                    name: studentName,
-                    class: studentClass,
-                    parent: parentName,
-                    at: new Date().toISOString() // ISO string for consistent timestamp
-                };
-
-                localStorage.setItem(STORAGE_KEYS.STUDENT, JSON.stringify(studentInfo));
-                renderDashboard(studentInfo);
-
-                // After successful submission, replace the current history state
-                // to ensure the gate is not accessible via back button.
-                history.replaceState({ gateLocked: true }, '', location.href);
-            });
-
-            // History API / popstate to prevent BACK returning to gate
-            window.addEventListener('popstate', (event) => {
-                // If the gate is active and user tries to go back, prevent it
-                if (studentGateModal.classList.contains('active') && event.state && event.state.gateLocked) {
-                    history.pushState({ gateLocked: true }, '', location.href); // Push the state back
-                    showToast("Student data is locked. Clear browser data or use admin tools to change.", 5000);
-                } else if (getStudentData() && (!event.state || !event.state.gateLocked)) {
-                    // If student data exists and user tries to go back to a state without gateLocked,
-                    // it means they are trying to go back past the initial dashboard load.
-                    // We can re-push the state to keep them on the dashboard.
-                    history.pushState({ gateLocked: true }, '', location.href);
-                }
-            });
-        });
-
-        // --- ADMIN HOOKS (Exposed Global Methods) ---
-        // These functions will be called by admin.html or other parts of the app
-        // to refresh specific sections of the UI.
-
-        window.renderHomeworkFor = function(cls) {
-            const homeworkSection = document.getElementById('homeworkSection');
-            const homeworkData = JSON.parse(localStorage.getItem(STORAGE_KEYS.HOMEWORK) || '[]');
-            const classHomework = homeworkData.filter(hw => hw.class === cls);
-
-            let html = `<h2>📚 Homework for Class ${cls}</h2>`;
-            if (classHomework.length > 0) {
-                html += '<ul>';
-                classHomework.forEach(hw => {
-                    html += `<li><strong>${hw.subject}:</strong> ${hw.description} (Due: ${new Date(hw.dueDate).toLocaleDateString()})</li>`;
-                });
-                html += '</ul>';
-            } else {
-                html += `<p>No homework assigned for Class ${cls} yet. Check back soon!</p>`;
-            }
-            homeworkSection.innerHTML = html;
-        };
-
-        window.refreshTeachers = function() {
-            const teachersSection = document.getElementById('teachersSection');
-            const teachersData = JSON.parse(localStorage.getItem(STORAGE_KEYS.TEACHERS) || '[]');
-
-            let html = `<h2>👨‍🏫 Our Teachers</h2>`;
-            if (teachersData.length > 0) {
-                html += '<ul>';
-                teachersData.forEach(teacher => {
-                    html += `<li><strong>${teacher.name}:</strong> ${teacher.subject}</li>`;
-                });
-                html += '</ul>';
-            } else {
-                html += `<p>Meet our dedicated faculty. (No teacher data available yet)</p>`;
-            }
-            teachersSection.innerHTML = html;
-        };
-
-        window.refreshEvents = function() {
-            const eventsSection = document.getElementById('eventsSection');
-            const eventsData = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS) || '[]');
-
-            let html = `<h2>🗓️ Upcoming Events</h2>`;
-            if (eventsData.length > 0) {
-                html += '<ul>';
-                eventsData.forEach(event => {
-                    html += `<li><strong>${event.title}:</strong> ${new Date(event.date).toLocaleDateString()} at ${event.time} (${event.location})</li>`;
-                });
-                html += '</ul>';
-            } else {
-                html += `<p>Stay updated with school events. (No event data available yet)</p>`;
-            }
-            eventsSection.innerHTML = html;
-        };
-
-        window.refreshNotices = function() {
-            const noticesSection = document.getElementById('noticesSection');
-            const noticesData = JSON.parse(localStorage.getItem(STORAGE_KEYS.NOTICES) || '[]');
-
-            let html = `<h2>📢 School Notices</h2>`;
-            if (noticesData.length > 0) {
-                html += '<ul>';
-                noticesData.forEach(notice => {
-                    html += `<li><strong>${notice.title}:</strong> ${new Date(notice.date).toLocaleDateString()} - ${notice.content.substring(0, 100)}...</li>`;
-                });
-                html += '</ul>';
-            } else {
-                html += `<p>Important announcements from the school. (No notice data available yet)</p>`;
-            }
-            noticesSection.innerHTML = html;
-        };
-
-        window.refreshTimetable = function() {
-            const timetableSection = document.getElementById('timetableSection');
-            const timetableData = JSON.parse(localStorage.getItem(STORAGE_KEYS.TIMETABLE) || '[]');
-            const student = getStudentData();
-
-            let html = `<h2>⏰ Timetable</h2>`;
-            if (student && timetableData.length > 0) {
-                const classTimetable = timetableData.find(tt => tt.class === student.class);
-                if (classTimetable && classTimetable.schedule) {
-                    html += `<p>Your daily class schedule for Class ${student.class}:</p>`;
-                    html += '<ul>';
-                    for (const day in classTimetable.schedule) {
-                        html += `<li><strong>${day}:</strong> ${classTimetable.schedule[day].map(slot => `${slot.time} ${slot.subject}`).join(', ')}</li>`;
-                    }
-                    html += '</ul>';
-                } else {
-                    html += `<p>Timetable for Class ${student.class} not available yet.</p>`;
-                }
-            } else {
-                html += `<p>Your daily class schedule. (No timetable data available yet)</p>`;
-            }
-            timetableSection.innerHTML = html;
-        };
-
-        window.refreshGallery = function() {
-            const gallerySection = document.getElementById('gallerySection');
-            const galleryData = JSON.parse(localStorage.getItem(STORAGE_KEYS.GALLERY) || '[]');
-
-            let html = `<h2>📸 Gallery</h2>`;
-            if (galleryData.length > 0) {
-                html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">';
-                galleryData.forEach(item => {
-                    html += `<div style="border: 1px solid #eee; padding: 5px; border-radius: 5px; text-align: center;">
-                                <img src="${item.url}" alt="${item.caption}" style="width: 100%; height: 100px; object-fit: cover; border-radius: 3px;">
-                                <p style="font-size: 0.8em; margin-top: 5px;">${item.caption}</p>
-                             </div>`;
-                });
-                html += '</div>';
-            } else {
-                html += `<p>Glimpses of school life and activities. (No gallery items available yet)</p>`;
-            }
-            gallerySection.innerHTML = html;
-        };
-
-        window.refreshMessages = function() {
-            const messagesSection = document.getElementById('messagesSection');
-            const messagesData = JSON.parse(localStorage.getItem(STORAGE_KEYS.MESSAGES) || '[]');
-            const student = getStudentData();
-
-            let html = `<h2>✉️ Messages</h2>`;
-            if (student && messagesData.length > 0) {
-                // Filter messages relevant to the student's class or general messages
-                const relevantMessages = messagesData.filter(msg =>
-                    msg.targetClass === 'all' || msg.targetClass === student.class
-                );
-
-                if (relevantMessages.length > 0) {
-                    html += '<ul>';
-                    relevantMessages.forEach(msg => {
-                        html += `<li><strong>${msg.subject}:</strong> ${new Date(msg.date).toLocaleDateString()} - ${msg.content.substring(0, 100)}...</li>`;
-                    });
-                    html += '</ul>';
-                } else {
-                    html += `<p>No new messages for Class ${student.class} yet.</p>`;
-                }
-            } else {
-                html += `<p>Important messages from school administration. (No message data available yet)</p>`;
-            }
-            messagesSection.innerHTML = html;
-        };
-
-        window.exportMkpsData = function() {
-            const data = {};
-            for (const key in STORAGE_KEYS) {
-                data[STORAGE_KEYS[key]] = localStorage.getItem(STORAGE_KEYS[key]);
-            }
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
-            const downloadAnchorNode = document.createElement('a');
-            downloadAnchorNode.setAttribute("href", dataStr);
-            downloadAnchorNode.setAttribute("download", "mkps_data_backup.json");
-            document.body.appendChild(downloadAnchorNode);
-            downloadAnchorNode.click();
-            downloadAnchorNode.remove();
-            showToast("All MKPS data exported!", 3000);
-        };
-
-        // --- Listen for `storage` events from admin.html ---
-        window.addEventListener('storage', (event) => {
-            if (event.key === STORAGE_KEYS.UPDATE) {
-                const updatedTimestamp = event.newValue;
-                console.log(`Admin updated data at: ${updatedTimestamp}. Refreshing UI sections.`);
-                showToast("School data updated! Refreshing sections...", 3000);
-
-                // Re-render all sections that might have changed
-                const student = getStudentData();
-                if (student) {
-                    window.renderHomeworkFor(student.class);
-                }
-                window.refreshTeachers();
-                window.refreshEvents();
-                window.refreshNotices();
-                window.refreshTimetable();
-                window.refreshGallery();
-                window.refreshMessages();
-            }
-        });
-
-        // Initial render of dashboard sections if student data exists
-        const initialStudentData = getStudentData();
-        if (initialStudentData) {
-            renderDashboard(initialStudentData);
-        }
-    </script>
 </body>
 </html>
