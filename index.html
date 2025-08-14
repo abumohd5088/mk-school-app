@@ -6,41 +6,44 @@
     <title>Milli Karwaan Public School Balrampur</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background: #f0f4f8; overflow: hidden; }
+        body { background: #f0f4f8; overflow-x: hidden; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        header { display: flex; align-items: center; padding: 10px 20px; background: #2c3e50; color: white; }
+        header { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background: #2c3e50; color: white; position: sticky; top: 0; z-index: 10; }
         header img { height: 60px; margin-right: 20px; }
-        nav { flex: 1; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; transition: color 0.3s; }
+        nav a { color: white; text-decoration: none; margin: 0 10px; transition: color 0.3s; }
         nav a:hover { color: #3498db; }
-        .call-btn { background: #27ae60; padding: 10px 20px; color: white; border: none; border-radius: 5px; cursor: pointer; transition: transform 0.2s; }
+        .call-btn { background: #27ae60; padding: 8px 15px; color: white; border: none; border-radius: 5px; cursor: pointer; transition: transform 0.2s; }
         .call-btn:hover { transform: scale(1.05); }
         .modal-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background: white; padding: 30px; border-radius: 10px; text-align: center; transform: perspective(500px) rotateY(10deg); transition: transform 0.5s; }
         .modal-content input { display: block; margin: 10px auto; padding: 10px; width: 80%; border: 1px solid #ddd; border-radius: 5px; }
         .modal-content button { background: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #e74c3c; color: white; padding: 10px 20px; border-radius: 5px; display: none; z-index: 999; }
-        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .dashboard, .section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
         .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
         .card:hover { transform: translateY(-5px); }
         .card h3 { margin-bottom: 10px; color: #2c3e50; }
+        .list-item { margin: 5px 0; padding: 5px; border-bottom: 1px solid #eee; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 30px; }
+        .tab { margin: 20px 0; }
+        .tab button { padding: 10px; background: #ddd; border: none; cursor: pointer; margin-right: 5px; }
+        .tab button.active { background: #3498db; color: white; }
     </style>
 </head>
 <body>
     <div id="gate" class="modal-gate" style="display: none;">
         <div class="modal-content">
             <h2>Welcome to Milli Karwaan Public School</h2>
-            <p>Please enter your details to continue</p>
+            <p>Enter details to continue</p>
             <input type="text" id="studentName" placeholder="Student Name" required>
             <input type="number" id="studentClass" placeholder="Class (1-12)" min="1" max="12" required>
             <input type="text" id="parentName" placeholder="Parent's Name" required>
             <button onclick="submitGate()">Submit</button>
         </div>
     </div>
-    <div id="toast" class="toast">Data is locked. Clear storage or contact admin to edit.</div>
+    <div id="toast" class="toast">Data locked. Clear storage or contact admin.</div>
     <header>
-        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo">
+        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Logo">
         <nav>
             <a href="#home">Home</a>
             <a href="#homework">Homework</a>
@@ -50,45 +53,39 @@
             <a href="#notices">Notices</a>
             <a href="#gallery">Gallery</a>
             <a href="#messages">Messages</a>
+            <a href="#admission">Admission</a>
+            <a href="#contact">Contact</a>
         </nav>
-        <a href="tel:9758919151"><button class="call-btn">Call Us: 9758919151</button></a>
+        <a href="tel:9758919151"><button class="call-btn">Call: 9758919151</button></a>
     </header>
     <div class="container">
         <h1 style="text-align: center; margin: 20px 0; color: #2c3e50;">Milli Karwaan Public School Balrampur</h1>
         <p style="text-align: center; color: #7f8c8d;">Boluha Police Chowki Balrampur, Uttar Pradesh | Email: madamsir066@gmail.com</p>
-        <div id="dashboard" class="dashboard" style="display: none;">
-            <div class="card"><h3>Homework</h3><div id="homework">Loading...</div></div>
-            <div class="card"><h3>Timetable</h3><div id="timetable">Loading...</div></div>
-            <div class="card"><h3>Teachers</h3><div id="teachers">Loading...</div></div>
-            <div class="card"><h3>Events</h3><div id="events">Loading...</div></div>
-            <div class="card"><h3>Notices</h3><div id="notices">Loading...</div></div>
-            <div class="card"><h3>Gallery</h3><div id="gallery">Loading...</div></div>
-            <div class="card"><h3>Messages</h3><div id="messages">Loading...</div></div>
+        <div id="dashboard" style="display: none;">
+            <div class="section">
+                <div class="card"><h3>Homework</h3><div id="homework">Loading...</div></div>
+                <div class="card"><h3>Timetable</h3><div id="timetable">Loading...</div></div>
+                <div class="card"><h3>Teachers</h3><div id="teachers">Loading...</div></div>
+                <div class="card"><h3>Events</h3><div id="events">Loading...</div></div>
+                <div class="card"><h3>Notices</h3><div id="notices">Loading...</div></div>
+                <div class="card"><h3>Gallery</h3><div id="gallery">Loading...</div></div>
+                <div class="card"><h3>Messages</h3><div id="messages">Loading...</div></div>
+                <div class="card"><h3>Admission</h3><div id="admission">Apply online or contact us.</div></div>
+                <div class="card"><h3>Exams</h3><div id="exams">Exam schedules will be updated.</div></div>
+                <div class="card"><h3>Fees</h3><div id="fees">Fee structure available.</div></div>
+                <div class="card"><h3>Library</h3><div id="library">Access library catalog.</div></div>
+                <div class="card"><h3>Sports</h3><div id="sports">Sports events and updates.</div></div>
+                <div class="card"><h3>Transport</h3><div id="transport">Bus routes and timings.</div></div>
+                <div class="card"><h3>About Us</h3><div id="about">Milli Karwaan Public School, est. for quality education.</div></div>
+            </div>
         </div>
     </div>
     <footer>
         <p>&copy; 2025 Milli Karwaan Public School Balrampur. All Rights Reserved.</p>
     </footer>
     <script>
-        const storageKeys = {
-            student: 'mkps_student',
-            homework: 'mkps_homework',
-            teachers: 'mkps_teachers',
-            events: 'mkps_events',
-            notices: 'mkps_notices',
-            timetable: 'mkps_timetable',
-            gallery: 'mkps_gallery',
-            messages: 'mkps_messages',
-            update: 'mkps_update'
-        };
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.style.display = 'block';
-            setTimeout(() => toast.style.display = 'none', 3000);
-        }
-
+        const storageKeys = { student: 'mkps_student', homework: 'mkps_homework', teachers: 'mkps_teachers', events: 'mkps_events', notices: 'mkps_notices', timetable: 'mkps_timetable', gallery: 'mkps_gallery', messages: 'mkps_messages', update: 'mkps_update' };
+        function showToast(msg) { const toast = document.getElementById('toast'); toast.textContent = msg; toast.style.display = 'block'; setTimeout(() => toast.style.display = 'none', 3000); }
         function submitGate() {
             const name = document.getElementById('studentName').value;
             const cls = document.getElementById('studentClass').value;
@@ -97,57 +94,43 @@
                 const data = { name, class: cls, parent, at: new Date().toISOString() };
                 localStorage.setItem(storageKeys.student, JSON.stringify(data));
                 document.getElementById('gate').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'grid';
+                document.getElementById('dashboard').style.display = 'block';
                 history.pushState({ page: 'dashboard' }, '', '#dashboard');
                 renderDashboard();
-            } else {
-                showToast('Please fill all fields correctly.');
-            }
+            } else showToast('Fill all fields correctly.');
         }
-
         window.onpopstate = function(event) {
             if (localStorage.getItem(storageKeys.student)) {
                 history.pushState({ page: 'dashboard' }, '', '#dashboard');
-                showToast('Data is locked. Clear storage or contact admin to edit.');
+                showToast('Data locked. Clear storage or contact admin.');
             }
         };
-
         function renderDashboard() {
             const student = JSON.parse(localStorage.getItem(storageKeys.student) || '{}');
             if (student.name) {
                 document.getElementById('gate').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'grid';
+                document.getElementById('dashboard').style.display = 'block';
                 history.pushState({ page: 'dashboard' }, '', '#dashboard');
             } else {
                 document.getElementById('gate').style.display = 'flex';
                 document.getElementById('dashboard').style.display = 'none';
             }
-            window.renderHomeworkFor = (cls) => document.getElementById('homework').innerHTML = localStorage.getItem(storageKeys.homework) || 'No homework';
-            window.refreshTeachers = () => document.getElementById('teachers').innerHTML = localStorage.getItem(storageKeys.teachers) || 'No data';
-            window.refreshEvents = () => document.getElementById('events').innerHTML = localStorage.getItem(storageKeys.events) || 'No events';
-            window.refreshNotices = () => document.getElementById('notices').innerHTML = localStorage.getItem(storageKeys.notices) || 'No notices';
-            window.refreshTimetable = () => document.getElementById('timetable').innerHTML = localStorage.getItem(storageKeys.timetable) || 'No timetable';
-            window.refreshGallery = () => document.getElementById('gallery').innerHTML = localStorage.getItem(storageKeys.gallery) || 'No gallery';
-            window.refreshMessages = () => document.getElementById('messages').innerHTML = localStorage.getItem(storageKeys.messages) || 'No messages';
+            window.renderHomeworkFor = (cls) => document.getElementById('homework').innerHTML = localStorage.getItem(storageKeys.homework) || 'No homework for class ' + cls;
+            window.refreshTeachers = () => document.getElementById('teachers').innerHTML = localStorage.getItem(storageKeys.teachers) || 'Teacher list unavailable.';
+            window.refreshEvents = () => document.getElementById('events').innerHTML = localStorage.getItem(storageKeys.events) || 'No upcoming events.';
+            window.refreshNotices = () => document.getElementById('notices').innerHTML = localStorage.getItem(storageKeys.notices) || 'No notices.';
+            window.refreshTimetable = () => document.getElementById('timetable').innerHTML = localStorage.getItem(storageKeys.timetable) || 'Timetable unavailable.';
+            window.refreshGallery = () => document.getElementById('gallery').innerHTML = localStorage.getItem(storageKeys.gallery) || 'Gallery empty.';
+            window.refreshMessages = () => document.getElementById('messages').innerHTML = localStorage.getItem(storageKeys.messages) || 'No messages.';
             window.exportMkpsData = () => {
                 const data = {};
                 Object.values(storageKeys).forEach(key => data[key] = localStorage.getItem(key));
                 return JSON.stringify(data);
             };
-            window.addEventListener('storage', (e) => {
-                if (e.key === storageKeys.update) {
-                    renderDashboard();
-                }
-            });
-            window.renderHomeworkFor(student.class || 1);
-            window.refreshTeachers();
-            window.refreshEvents();
-            window.refreshNotices();
-            window.refreshTimetable();
-            window.refreshGallery();
-            window.refreshMessages();
+            window.addEventListener('storage', (e) => { if (e.key === storageKeys.update) renderDashboard(); });
+            if (student.class) window.renderHomeworkFor(student.class);
+            window.refreshTeachers(); window.refreshEvents(); window.refreshNotices(); window.refreshTimetable(); window.refreshGallery(); window.refreshMessages();
         }
-
         window.onload = renderDashboard;
     </script>
 </body>
