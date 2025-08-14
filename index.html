@@ -1,328 +1,540 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Milli Karwaan Public School – Student Portal</title>
-<link rel="icon" href="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png"/>
-<meta name="description" content="Official student portal of Milli Karwaan Public School, Balrampur – homework, timetable, events, notices, gallery & more."/>
-<meta name="theme-color" content="#0066ff"/>
-<link rel="manifest" href="data:application/manifest+json,{"name":"MKPS Student Portal","short_name":"MKPS","start_url":"/","display":"standalone","background_color":"#0e0e0e","theme_color":"#0066ff","icons":[{"src":"https://i.postimg.cc/ryGx49TB/erasebg-transformed.png","sizes":"512x512","type":"image/png"}]}"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maráké Portal</title>
 <style>
-:root{--primary:#0066ff;--accent:#00cc4b;--glass:rgba(255,255,255,.1);--glass-border:rgba(255,255,255,.18);--radius:24px;--blur:24px;--font:'Inter',system-ui,sans-serif}
-*{margin:0;padding:0;box-sizing:border-box;font-family:var(--font)}
-body{background:#0e0e0e;color:#fff;overflow-x:hidden;line-height:1.6}
-/* 3-D HERO */
-#hero{height:60vh;display:flex;align-items:center;justify-content:center;perspective:1200px;background:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1350&q=80') center/cover fixed;position:relative}
-#hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.6),rgba(0,0,0,.85))}
-.hero-content{position:relative;z-index:2;text-align:center;animation:float 8s ease-in-out infinite}
-.hero-content img{width:90px;margin-bottom:1rem}
-.hero-content h1{font-size:clamp(2rem,6vw,4.2rem);font-weight:800;letter-spacing:.5px;text-shadow:0 12px 40px rgba(0,0,0,.9)}
-.hero-content p{opacity:.8;font-size:1.1rem;margin-top:.5rem}
-@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
-/* HEADER */
-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;background:rgba(0,0,0,.4);backdrop-filter:blur(var(--blur))}
-header img{height:48px}
-.call-btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:50px;font-weight:600;cursor:pointer;transition:.3s}
-.call-btn:hover{transform:scale(1.05);box-shadow:0 0 20px var(--accent)}
-/* DASHBOARD GRID */
-#dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.8rem;padding:2.5rem}
-.card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:2rem;backdrop-filter:blur(var(--blur));transition:transform .35s;cursor:pointer;transform-style:preserve-3d}
-.card:hover{transform:translateY(-10px) rotateX(6deg) rotateY(6deg)}
-.card i{color:var(--primary);font-size:2.4rem;margin-bottom:.7rem}
-.card h3{font-size:1.3rem;font-weight:700;margin-bottom:.4rem}
-.card p{opacity:.75;font-size:.95rem}
-/* STUDENT GATE MODAL */
-#gateModal{position:fixed;inset:0;background:#000c;z-index:9999;display:flex;align-items:center;justify-content:center}
-.gate-card{width:92%;max-width:420px;background:#fff;color:#111;border-radius:var(--radius);padding:2.4rem;display:flex;flex-direction:column;gap:1rem;animation:slide .5s}
-@keyframes slide{from{opacity:0;transform:translateY(-40px)}}
-.gate-card h2{text-align:center;font-weight:800}
-.gate-card input,.gate-card select{padding:1rem;border-radius:12px;border:1px solid #bbb;font-size:1rem}
-.gate-card button{background:var(--primary);color:#fff;border:none;padding:1rem;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer}
-#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:.8rem 1.4rem;border-radius:10px;display:none;z-index:99999}
-/* TABLES & SECTIONS */
-.section-title{margin:2.5rem 2rem 1rem;font-size:1.8rem;font-weight:700}
-table{width:calc(100% - 4rem);margin:0 2rem;border-collapse:collapse;background:var(--glass);border-radius:var(--radius);overflow:hidden}
-th,td{padding:1rem;text-align:left}
-th{background:rgba(255,255,255,.08);font-weight:600}
-tbody tr:hover{background:rgba(255,255,255,.05)}
-footer{text-align:center;padding:1.5rem;color:#aaa;font-size:.9rem}
-/* LIGHT MODE TOGGLE */
-body.light{background:#f5f5f5;color:#111}
-body.light .card{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.15)}
-body.light table{background:rgba(0,0,0,.04)}
-body.light th{background:rgba(0,0,0,.08)}
-body.light #toast{background:#eee;color:#111}
-#themeToggle{position:fixed;top:1.2rem;right:1.2rem;z-index:200;background:var(--glass);border:1px solid var(--glass-border);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(var(--blur))}
-/* RESPONSIVE */
-@media(max-width:600px){header{padding:.8rem 1rem}#dashboard{padding:1.2rem}.card{padding:1.5rem}}
+:root{
+  --bg:#0a0a0a;
+  --bg2:#111;
+  --glass: rgba(255,255,255,.08);
+  --glass2: rgba(255,255,255,.15);
+  --accent:#00ffe5;
+  --accent2:#ff00e5;
+  --text:#ffffff;
+  --text2:#cccccc;
+  --font:"Inter",sans-serif;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(0,255,229,.25);
+  --shadow2:0 15px 40px rgba(255,0,229,.25);
+}
+body{
+  margin:0;
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  transition:background .4s;
+}
+body.light{
+  --bg:#fafafa;
+  --bg2:#fff;
+  --glass: rgba(0,0,0,.05);
+  --glass2: rgba(0,0,0,.1);
+  --text:#111;
+  --text2:#333;
+}
+*{
+  box-sizing:border-box;
+}
+h1,h2,h3{
+  margin:0;
+  font-weight:700;
+}
+button{
+  cursor:pointer;
+  border:none;
+  font-family:var(--font);
+  font-weight:600;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;height:70px;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;
+  background:var(--glass);backdrop-filter:blur(20px);
+  box-shadow:0 5px 20px rgba(0,0,0,.3);
+  transition:top .3s;
+}
+nav .logo{
+  font-size:1.5rem;color:var(--accent);letter-spacing:.1em;
+}
+nav ul{
+  display:flex;gap:1.5rem;list-style:none;
+}
+nav a{
+  text-decoration:none;color:var(--text);position:relative;
+  transition:color .3s;
+}
+nav a:hover{color:var(--accent);}
+nav a::after{
+  content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;
+  background:var(--accent);transition:width .3s;
+}
+nav a:hover::after{width:100%;}
+main{padding-top:80px;}
+section{padding:4rem 2rem;max-width:1200px;margin:auto;}
+.gate{
+  position:fixed;inset:0;background:var(--bg);z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:1rem;
+  transition:opacity .6s;
+}
+.gate.hidden{opacity:0;pointer-events:none}
+.gate h1{font-size:2rem;margin-bottom:1rem}
+.gate input{
+  width:300px;padding:1rem;border-radius:var(--radius);
+  border:1px solid var(--accent);background:var(--glass);
+  color:var(--text);outline:none;
+}
+.gate button{
+  padding:1rem 2rem;border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;font-weight:700;font-size:1rem;
+  box-shadow:var(--shadow);
+  transition:transform .3s;
+}
+.gate button:hover{transform:translateY(-2px)}
+.card{
+  background:var(--glass);border-radius:var(--radius);
+  padding:2rem;backdrop-filter:blur(20px);
+  box-shadow:var(--shadow);
+  transition:transform .3s, box-shadow .3s;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow2);
+}
+.grid{display:grid;gap:2rem;}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;padding:.8rem 1.4rem;border-radius:var(--radius);
+  font-weight:700;box-shadow:var(--shadow);transition:.3s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow2);}
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.8);
+  display:flex;align-items:center;justify-content:center;
+  z-index:999;opacity:0;pointer-events:none;transition:.3s;
+}
+.modal.active{opacity:1;pointer-events:auto}
+.modal .content{
+  background:var(--glass);border-radius:var(--radius);
+  padding:2rem;max-width:600px;width:90%;
+  backdrop-filter:blur(20px);box-shadow:var(--shadow2);
+}
+.close{position:absolute;top:1rem;right:1.5rem;font-size:2rem;cursor:pointer;}
+table{width:100%;border-collapse:collapse;margin-top:1rem;}
+th,td{padding:1rem;border:1px solid var(--glass2);text-align:left;}
+.lightbox{
+  position:fixed;inset:0;background:rgba(0,0,0,.9);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;opacity:0;pointer-events:none;transition:.3s;
+}
+.lightbox.active{opacity:1;pointer-events:auto}
+.lightbox img{max-width:90%;max-height:80%;border-radius:var(--radius)}
+.lightbox button{
+  position:absolute;top:50%;transform:translateY(-50%);
+  font-size:2rem;background:var(--glass);border-radius:50%;
+  width:50px;height:50px;color:var(--text);
+  display:flex;align-items:center;justify-content:center;
+}
+.lightbox .prev{left:2rem}
+.lightbox .next{right:2rem}
+#particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.fab{
+  position:fixed;bottom:2rem;right:2rem;
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;font-size:1.5rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);z-index:998;transition:.3s;
+}
+.fab:hover{transform:scale(1.1)}
+.theme-toggle{
+  position:fixed;top:90px;right:2rem;z-index:997;
+  background:var(--glass);border-radius:50%;width:50px;height:50px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:var(--shadow);
+}
 </style>
 </head>
 <body>
-<button id="themeToggle" title="Toggle theme"><i class="fas fa-adjust"></i></button>
+<canvas id="particles"></canvas>
 
-<!-- STUDENT GATE -->
-<div id="gateModal">
-  <form class="gate-card" id="gateForm">
-    <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="Logo" style="height:60px;margin:0 auto"/>
-    <h2>Welcome to MKPS</h2>
-    <input id="stName" placeholder="Full Name" required/>
-    <select id="stClass" required>
-      <option value="">Select Class (1-12)</option>
-      <script>for(let i=1;i<=12;i++)document.write(`<option value="${i}">Class ${i}</option>`)</script>
-    </select>
-    <input id="parentName" placeholder="Parent's Name" required/>
-    <button type="submit">Enter Portal</button>
-  </form>
+<!-- Access Gate -->
+<div class="gate" id="gate">
+  <h1>Welcome to Maráké Portal</h1>
+  <input type="text" id="stuName" placeholder="Student Name">
+  <input type="text" id="stuClass" placeholder="Class">
+  <input type="text" id="parentName" placeholder="Parent Name">
+  <button onclick="submitGate()">Enter</button>
 </div>
 
-<!-- MAIN UI -->
-<header>
-  <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo"/>
-  <div>
-    <a href="mailto:madamsir066@gmail.com" style="margin-right:1.2rem;color:#fff"><i class="fas fa-envelope fa-lg"></i></a>
-    <button class="call-btn" onclick="window.open('tel:9758919151')"><i class="fas fa-phone"></i> 9758919151</button>
-  </div>
-</header>
+<nav>
+  <div class="logo">Maráké</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#homework">Homework</a></li>
+    <li><a href="#teachers">Teachers</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#notices">Notices</a></li>
+    <li><a href="#timetable">Timetable</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<section id="hero">
-  <div class="hero-content">
-    <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png"/>
-    <h1>Milli Karwaan Public School</h1>
-    <p>Boluha Police Chowki, Balrampur, Uttar Pradesh</p>
-  </div>
-</section>
+<main>
+  <section id="home">
+    <h1>Welcome, <span id="welcomeName">Student</span></h1>
+    <p>Your premium school portal experience begins here.</p>
+  </section>
 
-<!-- DASHBOARD -->
-<main id="dashboard">
-  <div class="card" onclick="renderHomeworkFor(currentClass)"><i class="fas fa-book"></i><h3>Homework</h3><p>Today’s assignments & deadlines.</p></div>
-  <div class="card" onclick="refreshTimetable()"><i class="fas fa-calendar-day"></i><h3>Timetable</h3><p>Weekly schedule at a glance.</p></div>
-  <div class="card" onclick="refreshEvents()"><i class="fas fa-calendar-check"></i><h3>Events</h3><p>Upcoming school functions.</p></div>
-  <div class="card" onclick="refreshNotices()"><i class="fas fa-bullhorn"></i><h3>Notices</h3><p>Important announcements.</p></div>
-  <div class="card" onclick="refreshTeachers()"><i class="fas fa-chalkboard-teacher"></i><h3>Teachers</h3><p>Staff contact directory.</p></div>
-  <div class="card" onclick="refreshGallery()"><i class="fas fa-images"></i><h3>Gallery</h3><p>Photos & videos.</p></div>
-  <div class="card" onclick="refreshMessages()"><i class="fas fa-envelope-open-text"></i><h3>Messages</h3><p>Direct messages.</p></div>
-  <div class="card" onclick="downloadData()"><i class="fas fa-download"></i><h3>Export Data</h3><p>Backup your records.</p></div>
+  <section id="homework">
+    <h2>Homework</h2>
+    <input type="search" id="hwSearch" placeholder="Search..." oninput="filterHW()">
+    <select id="hwFilter" onchange="filterHW()">
+      <option value="">All Classes</option>
+      <option>10</option><option>11</option><option>12</option>
+    </select>
+    <button class="btn" onclick="printHW()">Print</button>
+    <button class="btn" onclick="downloadHW()">Download Snapshot</button>
+    <div id="hwList" class="grid grid-2"></div>
+  </section>
+
+  <section id="teachers">
+    <h2>Teachers</h2>
+    <div class="grid grid-3" id="teachersList"></div>
+  </section>
+
+  <section id="events">
+    <h2>Events Timeline</h2>
+    <div id="eventsList"></div>
+  </section>
+
+  <section id="notices">
+    <h2>Notices</h2>
+    <div id="noticesList" class="grid grid-2"></div>
+  </section>
+
+  <section id="timetable">
+    <h2>Timetable</h2>
+    <div class="card">
+      <table id="ttTable"></table>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="grid grid-3" id="galleryList"></div>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <div class="grid grid-2" id="achList"></div>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div id="faqList"></div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form id="contactForm" onsubmit="saveContact(event)">
+      <input required name="name" placeholder="Your Name">
+      <input required name="email" type="email" placeholder="Email">
+      <textarea required name="msg" placeholder="Message"></textarea>
+      <button class="btn">Send</button>
+    </form>
+  </section>
+
+  <section id="labs">
+    <h2>Creative Labs</h2>
+    <div class="grid grid-3">
+      <div class="card"><h3>Nebula Studio</h3><p>Visual Storytelling & Digital Canvas</p></div>
+      <div class="card"><h3>Quantum Forge</h3><p>XR & Immersive Realities</p></div>
+      <div class="card"><h3>Alchemy Suite</h3><p>Audio & Sensory Design</p></div>
+    </div>
+  </section>
 </main>
 
-<!-- SECTIONS WITH DATA (dummy to exceed 5 000 lines) -->
-<div class="section-title">Homework</div>
-<table id="tblHomework"><thead><tr><th>Subject</th><th>Task</th><th>Due</th></tr></thead><tbody></tbody></table>
+<div class="fab" onclick="scrollToTop()">↑</div>
+<div class="theme-toggle" onclick="toggleTheme()">🌓</div>
 
-<div class="section-title">Weekly Timetable</div>
-<table id="tblTimetable"><thead><tr><th>Day</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th></tr></thead><tbody></tbody></table>
-
-<div class="section-title">Events</div>
-<table id="tblEvents"><thead><tr><th>Date</th><th>Event</th><th>Venue</th></tr></thead><tbody></tbody></table>
-
-<div class="section-title">Notices</div>
-<table id="tblNotices"><thead><tr><th>Date</th><th>Notice</th></tr></thead><tbody></tbody></table>
-
-<div class="section-title">Teachers</div>
-<table id="tblTeachers"><thead><tr><th>Name</th><th>Subject</th><th>Contact</th></tr></thead><tbody></tbody></table>
-
-<div class="section-title">Gallery</div>
-<div id="galleryGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;padding:2rem"></div>
-
-<footer>
-  © 2025 Milli Karwaan Public School, Boluha Police Chowki, Balrampur, Uttar Pradesh | Phone: <a href="tel:9758919151" style="color:var(--primary)">9758919151</a> | Email: <a href="mailto:madamsir066@gmail.com" style="color:var(--primary)">madamsir066@gmail.com</a>
-</footer>
-
-<div id="toast"></div>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="">
+  <button class="prev" onclick="prevImg()">‹</button>
+  <button class="next" onclick="nextImg()">›</button>
+</div>
 
 <script>
-/* ---------- STUDENT GATE ---------- */
-const gateModal = document.getElementById('gateModal');
-const gateForm  = document.getElementById('gateForm');
-let student = JSON.parse(localStorage.getItem('mkps_student'));
+// === UTILS ===
+function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+function $(sel){return document.querySelector(sel)}
+function $$(sel){return document.querySelectorAll(sel)}
 
-if(student && student.name && student.class){
-  gateModal.style.display='none';
-}else{
-  history.pushState(null,null,location.href);
-  window.addEventListener('popstate',()=>{
-    showToast("Student data is locked. Clear browser data to re-enter.");
-    history.pushState(null,null,location.href);
-  });
+// === PARTICLES ===
+const canvas=$('#particles'),ctx=canvas.getContext('2d');
+let particles=[];
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
+window.addEventListener('resize',resize);resize();
+class Particle{
+  constructor(){
+    this.x=rand(0,canvas.width);
+    this.y=rand(0,canvas.height);
+    this.r=rand(.5,2);
+    this.vx=(Math.random()-.5)*.5;
+    this.vy=(Math.random()-.5)*.5;
+  }
+  update(){
+    this.x+=this.vx;this.y+=this.vy;
+    if(this.x<0||this.x>canvas.width)this.vx*=-1;
+    if(this.y<0||this.y>canvas.height)this.vy*=-1;
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--accent');
+    ctx.globalAlpha=.2;
+    ctx.fill();
+    ctx.globalAlpha=1;
+  }
+}
+for(let i=0;i<150;i++)particles.push(new Particle);
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// === ACCESS GATE ===
+function submitGate(){
+  const name=$('#stuName').value.trim();
+  const cls=$('#stuClass').value.trim();
+  const parent=$('#parentName').value.trim();
+  if(!name||!cls||!parent)return alert('Fill all fields');
+  localStorage.setItem('mkps_student',JSON.stringify({name,cls,parent}));
+  $('#gate').classList.add('hidden');
+  $('#welcomeName').textContent=name;
+}
+const saved=localStorage.getItem('mkps_student');
+if(saved){
+  const {name}=JSON.parse(saved);
+  $('#gate').classList.add('hidden');
+  $('#welcomeName').textContent=name;
 }
 
-gateForm.addEventListener('submit',e=>{
-  e.preventDefault();
-  const name = document.getElementById('stName').value.trim();
-  const cls  = +document.getElementById('stClass').value;
-  const parent = document.getElementById('parentName').value.trim();
-  if(!name || !cls || !parent){showToast("All fields required.");return;}
-  student = {name,class:cls,parent,at:new Date().toISOString()};
-  localStorage.setItem('mkps_student',JSON.stringify(student));
-  gateModal.style.display='none';
-  location.reload();
-});
-
-/* ---------- ADMIN HOOKS ---------- */
-window.addEventListener('storage',e=>{
-  if(e.key==='mkps_update'){
-    renderHomeworkFor(currentClass);
-    refreshTeachers();
-    refreshEvents();
-    refreshNotices();
-    refreshTimetable();
-    refreshGallery();
-    refreshMessages();
-  }
-});
-
-/* ---------- GLOBAL METHODS ---------- */
-let currentClass = student?.class || 1;
-window.renderHomeworkFor = cls => {
-  const data = JSON.parse(localStorage.getItem('mkps_homework') || '[]').filter(h=>h.class==cls);
-  const tbody=document.querySelector('#tblHomework tbody');
-  tbody.innerHTML='';
-  data.forEach(h=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${h.subject}</td><td>${h.task}</td><td>${h.due}</td>`;
-    tbody.appendChild(tr);
-  });
-};
-window.refreshTimetable  = () => {
-  const data=JSON.parse(localStorage.getItem('mkps_timetable') || '{}')[currentClass] || [];
-  const tbody=document.querySelector('#tblTimetable tbody');
-  tbody.innerHTML='';
-  data.forEach(row=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${row.day}</td>${row.periods.map(p=>`<td>${p}</td>`).join('')}`;
-    tbody.appendChild(tr);
-  });
-};
-window.refreshEvents     = () => {
-  const data=JSON.parse(localStorage.getItem('mkps_events') || '[]');
-  const tbody=document.querySelector('#tblEvents tbody');
-  tbody.innerHTML='';
-  data.forEach(ev=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${ev.date}</td><td>${ev.title}</td><td>${ev.venue}</td>`;
-    tbody.appendChild(tr);
-  });
-};
-window.refreshNotices    = () => {
-  const data=JSON.parse(localStorage.getItem('mkps_notices') || '[]');
-  const tbody=document.querySelector('#tblNotices tbody');
-  tbody.innerHTML='';
-  data.forEach(n=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${n.date}</td><td>${n.text}</td>`;
-    tbody.appendChild(tr);
-  });
-};
-window.refreshTeachers   = () => {
-  const data=JSON.parse(localStorage.getItem('mkps_teachers') || '[]');
-  const tbody=document.querySelector('#tblTeachers tbody');
-  tbody.innerHTML='';
-  data.forEach(t=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${t.name}</td><td>${t.subject}</td><td><a href="tel:${t.phone}">${t.phone}</a></td>`;
-    tbody.appendChild(tr);
-  });
-};
-window.refreshGallery    = () => {
-  const data=JSON.parse(localStorage.getItem('mkps_gallery') || '[]');
-  const grid=document.getElementById('galleryGrid');
-  grid.innerHTML='';
-  data.forEach(item=>{
-    const img=document.createElement('img');
-    img.src=item.url;img.alt=item.caption;img.loading='lazy';
-    img.style='width:100%;border-radius:var(--radius)';
-    grid.appendChild(img);
-  });
-};
-window.refreshMessages   = () => console.log('Messages refreshed');
-window.exportMkpsData    = () => JSON.stringify(localStorage);
-
-/* ---------- DUMMY DATA GENERATION (to exceed 5 000 lines) ---------- */
-(function initDummy(){
-  if(!localStorage.getItem('mkps_homework')){
-    const arr=[];
-    for(let i=1;i<=12;i++){
-      arr.push({class:i,subject:'Math',task:`Solve Ex ${i+1}`,due:`2025-08-${20+i}`});
-      arr.push({class:i,subject:'Science',task:`Lab report #${i}`,due:`2025-08-${22+i}`});
-      arr.push({class:i,subject:'English',task:`Essay 500 words`,due:`2025-08-${24+i}`});
-    }
-    localStorage.setItem('mkps_homework',JSON.stringify(arr));
-  }
-  if(!localStorage.getItem('mkps_timetable')){
-    const obj={};
-    const days=['Mon','Tue','Wed','Thu','Fri','Sat'];
-    const subs=['Math','Science','English','Hindi','Art','PE','Computer'];
-    for(let c=1;c<=12;c++){
-      obj[c]=days.map(d=>({day:d,periods:subs}));
-    }
-    localStorage.setItem('mkps_timetable',JSON.stringify(obj));
-  }
-  if(!localStorage.getItem('mkps_events')){
-    const ev=[];
-    for(let i=1;i<=30;i++){
-      ev.push({date:`2025-09-${i<10?'0'+i:i}`,title:`Event #${i}`,venue:`Hall ${i%3+1}`});
-    }
-    localStorage.setItem('mkps_events',JSON.stringify(ev));
-  }
-  if(!localStorage.getItem('mkps_notices')){
-    const n=[];
-    for(let i=1;i<=50;i++){
-      n.push({date:`2025-08-${i<10?'0'+i:i}`,text:`This is notice number ${i}. Please read carefully.`});
-    }
-    localStorage.setItem('mkps_notices',JSON.stringify(n));
-  }
-  if(!localStorage.getItem('mkps_teachers')){
-    const t=[];
-    const names=['Aarav','Ananya','Kabir','Diya','Veer','Ira','Arjun','Sara','Reyansh','Myra','Ayaan','Pari','Advait','Anvi','Dhruv','Kavya','Shaurya','Saanvi','Vihaan','Aarna'];
-    const subs=['Math','Science','English','Hindi','SST','Art','PE','Computer'];
-    for(let i=0;i<40;i++){
-      t.push({name:names[i%names.length]+' Sir/Mam',subject:subs[i%subs.length],phone:`9758919${150+i}`});
-    }
-    localStorage.setItem('mkps_teachers',JSON.stringify(t));
-  }
-  if(!localStorage.getItem('mkps_gallery')){
-    const g=[];
-    for(let i=1;i<=60;i++){
-      g.push({url:`https://picsum.photos/400/300?random=${i}`,caption:`Activity ${i}`});
-    }
-    localStorage.setItem('mkps_gallery',JSON.stringify(g));
-  }
-})();
-
-/* ---------- INITIAL RENDER ---------- */
-renderHomeworkFor(currentClass);
-refreshTimetable();
-refreshEvents();
-refreshNotices();
-refreshTeachers();
-refreshGallery();
-
-/* ---------- THEME TOGGLE ---------- */
-const themeToggle=document.getElementById('themeToggle');
-themeToggle.onclick=()=>{
+// === THEME ===
+function toggleTheme(){
   document.body.classList.toggle('light');
   localStorage.setItem('mkps_theme',document.body.classList.contains('light')?'light':'dark');
-};
-if(localStorage.getItem('mkps_theme')==='light')document.body.classList.add('light');
+}
+if(localStorage.getItem('mkps_theme')==='light')toggleTheme();
 
-/* ---------- DOWNLOAD ---------- */
-function downloadData(){
-  const blob=new Blob([exportMkpsData()],{type:'application/json'});
+// === LOCALSTORAGE HELPERS ===
+function save(key,data){localStorage.setItem(key,JSON.stringify(data));window.dispatchEvent(new Event('mkps_update'))}
+function load(key,fallback=[]){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
+
+// === SEED DEMO DATA ===
+if(!localStorage.getItem('mkps_demo')){
+  save('mkps_homework',[
+    {id:1,class:'10',subject:'Maths',title:'Algebra Worksheet',due:'2025-08-20'},
+    {id:2,class:'11',subject:'Physics',title:'Lab Report',due:'2025-08-18'}
+  ]);
+  save('mkps_teachers',[
+    {name:'Dr. Elara Voss',subject:'Nebula Arts',avatar:'https://i.pravatar.cc/150?img=1'},
+    {name:'Prof. Orion Kai',subject:'Quantum Forge',avatar:'https://i.pravatar.cc/150?img=2'}
+  ]);
+  save('mkps_events',[
+    {date:'2025-08-25',title:'Nebula Showcase',desc:'Annual XR exhibition'},
+    {date:'2025-09-05',title:'Science Fair',desc:'Innovation challenge'}
+  ]);
+  save('mkps_notices',[
+    {title:'Holiday Notice',priority:1,content:'School closed on 15 Aug'},
+    {title:'New Lab Equipment',priority:2,content:'Alchemy Suite upgraded'}
+  ]);
+  save('mkps_timetable',[
+    {day:'Mon',periods:['Maths','Physics','Break','Nebula','English']},
+    {day:'Tue',periods:['Chemistry','Maths','Break','Forge','Sports']}
+  ]);
+  save('mkps_gallery',[
+    'https://picsum.photos/400/300?random=1',
+    'https://picsum.photos/400/300?random=2',
+    'https://picsum.photos/400/300?random=3'
+  ]);
+  save('mkps_achievements',[
+    {title:'National Coding Champion',desc:'Won 1st prize',icon:'🏆'},
+    {title:'100% Attendance',desc:'Entire year',icon:'🥇'}
+  ]);
+  save('mkps_faq',[
+    {q:'How to join labs?',a:'Submit interest via contact form.'},
+    {q:'Contact hours?',a:'8 AM to 4 PM'}
+  ]);
+  localStorage.setItem('mkps_demo','1');
+}
+
+// === RENDER FUNCTIONS ===
+function renderHomework(list){
+  $('#hwList').innerHTML='';
+  list.forEach(hw=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h3>${hw.subject}</h3><p>${hw.title}</p><small>Due: ${hw.due}</small>`;
+    $('#hwList').appendChild(div);
+  });
+}
+function renderTeachers(list){
+  $('#teachersList').innerHTML='';
+  list.forEach(t=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<img src="${t.avatar}" style="border-radius:50%;width:80px"><h3>${t.name}</h3><p>${t.subject}</p>`;
+    $('#teachersList').appendChild(div);
+  });
+}
+function renderEvents(list){
+  $('#eventsList').innerHTML='';
+  list.forEach(e=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h3>${e.title}</h3><small>${e.date}</small><p>${e.desc}</p>`;
+    $('#eventsList').appendChild(div);
+  });
+}
+function renderNotices(list){
+  $('#noticesList').innerHTML='';
+  list.forEach(n=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h3>${n.title}${n.priority===1?'<span style="color:red"> 🔴</span>':''}</h3><p>${n.content}</p>`;
+    $('#noticesList').appendChild(div);
+  });
+}
+function renderTimetable(list){
+  $('#ttTable').innerHTML='<tr><th>Day</th><th>Period 1</th><th>Period 2</th><th>Break</th><th>Period 3</th><th>Period 4</th></tr>';
+  list.forEach(row=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${row.day}</td>`+row.periods.map(p=>`<td>${p}</td>`).join('');
+    $('#ttTable').appendChild(tr);
+  });
+}
+function renderGallery(list){
+  $('#galleryList').innerHTML='';
+  list.forEach(src=>{
+    const img=document.createElement('img');
+    img.src=src;img.style.width='100%';img.style.borderRadius='var(--radius)';img.style.cursor='pointer';
+    img.onclick=()=>openLightbox(src,list.indexOf(src));
+    $('#galleryList').appendChild(img);
+  });
+}
+function renderAchievements(list){
+  $('#achList').innerHTML='';
+  list.forEach(a=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h1>${a.icon}</h1><h3>${a.title}</h3><p>${a.desc}</p>`;
+    $('#achList').appendChild(div);
+  });
+}
+function renderFAQ(list){
+  $('#faqList').innerHTML='';
+  list.forEach(f=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h3>${f.q}</h3><p>${f.a}</p>`;
+    $('#faqList').appendChild(div);
+  });
+}
+
+// === INIT RENDER ===
+renderHomework(load('mkps_homework'));
+renderTeachers(load('mkps_teachers'));
+renderEvents(load('mkps_events'));
+renderNotices(load('mkps_notices'));
+renderTimetable(load('mkps_timetable'));
+renderGallery(load('mkps_gallery'));
+renderAchievements(load('mkps_achievements'));
+renderFAQ(load('mkps_faq'));
+
+// === FILTER & EXPORT ===
+function filterHW(){
+  const q=$('#hwSearch').value.toLowerCase();
+  const c=$('#hwFilter').value;
+  let list=load('mkps_homework');
+  if(c)list=list.filter(h=>h.class===c);
+  if(q)list=list.filter(h=>h.title.toLowerCase().includes(q)||h.subject.toLowerCase().includes(q));
+  renderHomework(list);
+}
+function printHW(){window.print()}
+function downloadHW(){
+  const list=load('mkps_homework');
+  const blob=new Blob([JSON.stringify(list,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='mkps_backup.json';
-  a.click();
-}
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.style.display='block';
-  setTimeout(()=>t.style.display='none',3000);
+  a.href=url;a.download='homework.json';a.click();
 }
 
-/* ---------- SERVICE WORKER (PWA) ---------- */
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('data:application/javascript,console.log("MKPS-PWA active");self.addEventListener("fetch",e=>{/*cache strategy*/})');
+// === CONTACT ===
+function saveContact(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  const data={name:fd.get('name'),email:fd.get('email'),msg:fd.get('msg')};
+  const contacts=load('mkps_contacts');
+  contacts.push(data);
+  save('mkps_contacts',contacts);
+  alert('Message saved locally');
+  e.target.reset();
 }
+
+// === LIGHTBOX ===
+let lightboxImgs=[];let lightboxIndex=0;
+function openLightbox(src,index){
+  lightboxImgs=load('mkps_gallery');
+  lightboxIndex=index;
+  $('#lightboxImg').src=src;
+  $('#lightbox').classList.add('active');
+}
+function closeLightbox(){$('#lightbox').classList.remove('active')}
+function prevImg(){
+  lightboxIndex=(lightboxIndex-1+lightboxImgs.length)%lightboxImgs.length;
+  $('#lightboxImg').src=lightboxImgs[lightboxIndex];
+}
+function nextImg(){
+  lightboxIndex=(lightboxIndex+1)%lightboxImgs.length;
+  $('#lightboxImg').src=lightboxImgs[lightboxIndex];
+}
+document.addEventListener('keydown',e=>{
+  if(!$('#lightbox').classList.contains('active'))return;
+  if(e.key==='ArrowLeft')prevImg();
+  if(e.key==='ArrowRight')nextImg();
+  if(e.key==='Escape')closeLightbox();
+});
+
+// === SCROLL TO TOP ===
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
+
+// === AUTO REFRESH ===
+window.addEventListener('mkps_update',()=>{
+  renderHomework(load('mkps_homework'));
+  renderTeachers(load('mkps_teachers'));
+  renderEvents(load('mkps_events'));
+  renderNotices(load('mkps_notices'));
+  renderTimetable(load('mkps_timetable'));
+  renderGallery(load('mkps_gallery'));
+  renderAchievements(load('mkps_achievements'));
+  renderFAQ(load('mkps_faq'));
+});
 </script>
 </body>
 </html>
+```
