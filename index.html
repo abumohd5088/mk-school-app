@@ -1,1187 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Milli Karwaan Public School Balrampur</title>
-  <meta name="description" content="Official Portal of Milli Karwaan Public School, Balrampur - Academic Excellence with Care">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-
-  <!-- Lottie Player -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
-
-  <style>
-    /* === Reset & Globals === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      outline: none;
-    }
-
-    :root {
-      --primary: #00c8d7;
-      --primary-dark: #00a3b2;
-      --secondary: #ff6b6b;
-      --dark: #121826;
-      --light: #f8f9fa;
-      --gray: #8894a6;
-      --glass-bg: rgba(18, 24, 38, 0.6);
-      --glass-border: rgba(255, 255, 255, 0.15);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
-      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      --radius: 16px;
-      --font-heading: 'Playfair Display', serif;
-      --font-body: 'Inter', sans-serif;
-    }
-
-    [data-theme="light"] {
-      --dark: #f8f9fa;
-      --light: #121826;
-      --glass-bg: rgba(248, 249, 250, 0.7);
-      --glass-border: rgba(0, 0, 0, 0.1);
-    }
-
-    body {
-      background: var(--dark);
-      color: var(--light);
-      font: 400 1rem var(--font-body);
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    /* === Animated Background === */
-    .bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    /* === Glassmorphism Card === */
-    .card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.8rem;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.05));
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s;
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    /* === Glow Button === */
-    .btn {
-      padding: 0.8rem 1.8rem;
-      font: 600 1rem var(--font-body);
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 200, 215, 0.3);
-    }
-
-    .btn-primary {
-      background: linear-gradient(45deg, var(--primary), #00e0f0);
-      color: var(--dark);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 200, 215, 0.5);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--primary);
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      background: rgba(0, 200, 215, 0.1);
-    }
-
-    /* === Gate Screen === */
-    #gateScreen {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #0f1a2a, #1a2b47);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      padding: 2rem;
-    }
-
-    .gate-form {
-      max-width: 500px;
-      width: 100%;
-      padding: 2.5rem;
-      border-radius: var(--radius);
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      border: 1px solid var(--glass-border);
-      background: rgba(255,255,255,0.05);
-      border-radius: 8px;
-      color: white;
-      font: 500 1rem var(--font-body);
-    }
-
-    .form-control:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(0, 200, 215, 0.3);
-    }
-
-    /* === Header === */
-    header {
-      padding: 1rem 2rem;
-      background: var(--glass-bg);
-      border-bottom: 1px solid var(--glass-border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      z-index: 1000;
-    }
-
-    .school-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font: 700 1.2rem var(--font-heading);
-      color: var(--primary);
-    }
-
-    .school-logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--primary);
-    }
-
-    .contact-info {
-      font: 500 0.95rem var(--font-body);
-      color: var(--gray);
-      text-align: right;
-    }
-
-    .contact-info a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    /* === Navbar === */
-    .navbar {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--glass-border);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: 0 1rem;
-      scrollbar-width: none;
-    }
-
-    .navbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-list {
-      display: flex;
-      list-style: none;
-      padding: 0.8rem 0;
-      gap: 0.5rem;
-    }
-
-    .nav-item a {
-      color: var(--light);
-      text-decoration: none;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      font: 500 0.95rem var(--font-body);
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .nav-item a:hover, .nav-item a.active {
-      background: rgba(0, 200, 215, 0.15);
-      color: var(--primary);
-    }
-
-    .nav-item a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 10%;
-      width: 80%;
-      height: 2px;
-      background: var(--primary);
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-
-    .nav-item a:hover::after, .nav-item a.active::after {
-      transform: scaleX(1);
-    }
-
-    /* === Main Layout === */
-    main {
-      padding: 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    section {
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s, transform 0.8s;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2.section-title {
-      font: 700 2.2rem var(--font-heading);
-      margin-bottom: 2rem;
-      color: var(--primary);
-      position: relative;
-    }
-
-    h2.section-title::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -10px;
-      width: 60px;
-      height: 4px;
-      background: var(--primary);
-      border-radius: 2px;
-    }
-
-    /* === Homework Cards === */
-    .hw-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .hw-card {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hw-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.8rem;
-    }
-
-    .hw-subject {
-      font: 700 1.2rem var(--font-body);
-      color: var(--primary);
-    }
-
-    .hw-date {
-      font: 500 0.9rem var(--font-body);
-      color: var(--gray);
-    }
-
-    .hw-teacher {
-      font: 600 1rem var(--font-body);
-      margin-bottom: 0.5rem;
-      color: var(--light);
-    }
-
-    .hw-instructions {
-      font: 400 0.95rem var(--font-body);
-      line-height: 1.6;
-      color: var(--gray);
-    }
-
-    /* === Sidebar === */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 300px;
-      height: 100vh;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border-left: 1px solid var(--glass-border);
-      z-index: 998;
-      transition: right 0.5s ease;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-
-    .sidebar.active {
-      right: 0;
-    }
-
-    .sidebar-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      color: var(--primary);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .sidebar h3 {
-      font: 600 1.3rem var(--font-body);
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-    }
-
-    .theme-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin: 1rem 0;
-    }
-
-    .toggle {
-      position: relative;
-      width: 50px;
-      height: 24px;
-      background: var(--gray);
-      border-radius: 12px;
-      cursor: pointer;
-    }
-
-    .toggle::after {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 20px;
-      height: 20px;
-      background: white;
-      border-radius: 50%;
-      transition: var(--transition);
-    }
-
-    [data-theme="light"] .toggle::after {
-      transform: translateX(26px);
-    }
-
-    /* === Utilities === */
-    .util-bar {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    /* === Teacher Cards === */
-    .teacher-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .teacher-card {
-      text-align: center;
-    }
-
-    .teacher-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 1rem;
-      border: 2px solid var(--primary);
-    }
-
-    .teacher-name {
-      font: 700 1.1rem var(--font-body);
-      margin-bottom: 0.3rem;
-    }
-
-    .teacher-subject {
-      font: 500 0.95rem var(--font-body);
-      color: var(--primary);
-    }
-
-    /* === Events Timeline === */
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--primary);
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 2rem;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -38px;
-      top: 0;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--primary);
-      border: 4px solid var(--dark);
-    }
-
-    .event-date {
-      font: 600 0.95rem var(--font-body);
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    /* === Notices === */
-    .notice-item {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem;
-      border-left: 3px solid var(--primary);
-      background: rgba(0, 200, 215, 0.05);
-      margin-bottom: 1rem;
-    }
-
-    .priority-badge {
-      display: inline-block;
-      padding: 0.3rem 0.6rem;
-      font: 600 0.8rem var(--font-body);
-      border-radius: 50px;
-      background: var(--secondary);
-      color: white;
-    }
-
-    /* === Timetable === */
-    .timetable {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-    }
-
-    .timetable th, .timetable td {
-      padding: 0.8rem;
-      text-align: center;
-      border: 1px solid var(--glass-border);
-    }
-
-    .timetable th {
-      background: rgba(0, 200, 215, 0.1);
-      color: var(--primary);
-    }
-
-    /* === Gallery === */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .gallery-item {
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      aspect-ratio: 1;
-    }
-
-    .gallery-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-
-    .gallery-item:hover .gallery-img {
-      transform: scale(1.1);
-    }
-
-    /* === Lightbox === */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 1000;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox-img {
-      max-width: 90%;
-      max-height: 90%;
-      border: 3px solid var(--primary);
-      border-radius: 12px;
-    }
-
-    /* === FAQ === */
-    .faq-item {
-      margin-bottom: 1rem;
-    }
-
-    .faq-question {
-      padding: 1rem;
-      background: rgba(0, 200, 215, 0.1);
-      border-radius: 8px;
-      cursor: pointer;
-      font: 600 1rem var(--font-body);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-answer {
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      margin-top: 0.5rem;
-      display: none;
-    }
-
-    /* === Achievements === */
-    .counters {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .counter {
-      text-align: center;
-    }
-
-    .counter-number {
-      font: 800 2.5rem var(--font-heading);
-      color: var(--primary);
-    }
-
-    .counter-label {
-      font: 500 1rem var(--font-body);
-      color: var(--gray);
-    }
-
-    /* === Contact Form === */
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    textarea.form-control {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    /* === Responsive === */
-    @media (max-width: 768px) {
-      .school-header, .contact-info {
-        flex-direction: column;
-        text-align: center;
-        gap: 0.5rem;
-      }
-
-      .contact-info {
-        margin-top: 0.5rem;
-      }
-
-      h2.section-title {
-        font-size: 1.8rem;
-      }
-
-      .counter-number {
-        font-size: 2rem;
-      }
-    }
-
-    /* === Animations === */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .animate-in {
-      animation: fadeIn 1s ease forwards;
-    }
-
-    /* === Accessibility === */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
-      border: 0;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+  <title>SDN 2 Ampeldento</title>
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/lightbox.css">
+  <!--
+    
+TemplateMo 557 Grad School
+
+https://templatemo.com/tm-557-grad-school
+
+-->
 </head>
+
 <body>
 
-  <!-- === Background Canvas === -->
-  <canvas class="bg-canvas" id="bgCanvas"></canvas>
 
-  <!-- === Gate Screen === -->
-  <div id="gateScreen">
-    <div class="gate-form">
-      <h2 style="text-align:center; color:var(--primary); margin-bottom:1.5rem;">Student Access Portal</h2>
-      <form id="gateForm">
-        <div class="form-group">
-          <label for="studentName">Student Name</label>
-          <input type="text" id="studentName" class="form-control" required />
-        </div>
-        <div class="form-group">
-          <label for="studentClass">Class (1–12)</label>
-          <select id="studentClass" class="form-control" required>
-            <option value="">Select Class</option>
-            <script>
-              for (let i = 1; i <= 12; i++) {
-                document.write(`<option value="${i}">Class ${i}</option>`);
-              }
-            </script>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="parentName">Parent Name</label>
-          <input type="text" id="parentName" class="form-control" required />
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;">Enter Portal</button>
-      </form>
+  <!--header-->
+  <header class="main-header clearfix" role="header">
+    <div class="logo">
+      <a href="#"><em>SDN 2</em> Ampeldento</a>
     </div>
-  </div>
-
-  <!-- === Main Content === -->
-  <div id="mainContent" style="display:none;">
-
-    <!-- Header -->
-    <header>
-      <div class="school-header">
-        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo" class="school-logo" />
-        <div>
-          <div>Milli Karwaan Public School</div>
-          <div style="font-size:0.9rem; color:var(--gray);">Balrampur (U.P.)</div>
-        </div>
-      </div>
-      <div class="contact-info">
-        📞 <a href="tel:9758919151">9758919151</a><br>
-        ✉️ <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a>
-      </div>
-    </header>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-      <ul class="nav-list">
-        <li class="nav-item"><a href="#home" class="active">Home</a></li>
-        <li class="nav-item"><a href="#homework">Homework</a></li>
-        <li class="nav-item"><a href="#teachers">Teachers</a></li>
-        <li class="nav-item"><a href="#events">Events</a></li>
-        <li class="nav-item"><a href="#notices">Notices</a></li>
-        <li class="nav-item"><a href="#timetable">Timetable</a></li>
-        <li class="nav-item"><a href="#gallery">Gallery</a></li>
-        <li class="nav-item"><a href="#faq">FAQ</a></li>
-        <li class="nav-item"><a href="#achievements">Achievements</a></li>
-        <li class="nav-item"><a href="#contact">Contact</a></li>
-        <li class="nav-item"><a href="#" id="menuToggle">⋮</a></li>
+    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+    <nav id="menu" class="main-nav" role="navigation">
+      <ul class="main-menu">
+        <li><a href="#section1">Home</a></li>
+        <li><a href="#section2">Tentang Kami</a></li>
+        <li><a href="#section4">Mata Pelajaran</a></li>
+        <!-- <li><a href="#section5">Video</a></li> -->
+        <li><a href="#section6">Kontak</a></li>
+        <!-- <li><a href="list_buku.html" class="external">list</a></li> -->
       </ul>
     </nav>
+  </header>
 
-    <!-- Main -->
-    <main id="main">
+  <!-- ***** Main Banner Area Start ***** -->
+  <section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+      <source src="assets/images/course-video.mp4" type="video/mp4" />
+    </video>
 
-      <!-- Home -->
-      <section id="home" class="visible">
-        <h1 style="font:700 3rem var(--font-heading); color:var(--primary); text-align:center; margin-bottom:1rem;">
-          Welcome to Milli Karwaan
-        </h1>
-        <p style="text-align:center; max-width:700px; margin:0 auto 2rem; color:var(--gray);">
-          Empowering young minds with excellence, discipline, and care. Where every child shines.
-        </p>
-      </section>
-
-      <!-- Homework -->
-      <section id="homework">
-        <h2 class="section-title">📚 Homework</h2>
-        <div class="util-bar">
-          <input type="text" id="hwSearch" placeholder="Search homework..." class="form-control" style="max-width:300px;" />
-          <select id="classFilter" class="form-control" style="max-width:150px;">
-            <option value="">All Classes</option>
-            <script>for(let i=1;i<=12;i++)document.write(`<option value="${i}">Class ${i}</option>`);</script>
-          </select>
-          <button class="btn btn-outline" id="printHw">Print</button>
-          <button class="btn btn-primary" id="downloadHw">Download Snapshot</button>
+    <div class="video-overlay header-text">
+      <div class="caption">
+        <h6>Ayo daftarkan putra putri anda di</h6>
+        <h2><em>SDN 2</em> Ampeldento</h2>
+        <h6 style="margin-top: 0px;">Karangploso, Kab. Malang</h6>
+        <div class="main-button">
+          <div class="scroll-to-section"><a href="#section2">Baca selengkapnya</a></div>
         </div>
-        <div class="hw-grid" id="hwGrid"></div>
-      </section>
-
-      <!-- Teachers -->
-      <section id="teachers">
-        <h2 class="section-title">👨‍🏫 Teachers</h2>
-        <div class="teacher-grid" id="teacherGrid"></div>
-      </section>
-
-      <!-- Events -->
-      <section id="events">
-        <h2 class="section-title">📅 Events</h2>
-        <div class="timeline" id="eventTimeline"></div>
-      </section>
-
-      <!-- Notices -->
-      <section id="notices">
-        <h2 class="section-title">📢 Notices</h2>
-        <div id="noticeList"></div>
-      </section>
-
-      <!-- Timetable -->
-      <section id="timetable">
-        <h2 class="section-title">⏰ Timetable</h2>
-        <table class="timetable" id="timetableBody">
-          <thead>
-            <tr><th>Time</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </section>
-
-      <!-- Gallery -->
-      <section id="gallery">
-        <h2 class="section-title">🖼️ Gallery</h2>
-        <div class="gallery-grid" id="galleryGrid"></div>
-      </section>
-
-      <!-- FAQ -->
-      <section id="faq">
-        <h2 class="section-title">❓ FAQ</h2>
-        <div id="faqList">
-          <div class="faq-item">
-            <div class="faq-question">What are school timings? <span>+</span></div>
-            <div class="faq-answer">Classes run from 8:00 AM to 2:00 PM, Monday to Saturday.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">How to pay fees? <span>+</span></div>
-            <div class="faq-answer">Fees can be paid online via UPI or at the school office.</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Achievements -->
-      <section id="achievements">
-        <h2 class="section-title">🏆 Achievements</h2>
-        <div class="counters">
-          <div class="counter"><div class="counter-number" id="stdCount">0</div><div class="counter-label">Students</div></div>
-          <div class="counter"><div class="counter-number" id="teachCount">0</div><div class="counter-label">Teachers</div></div>
-          <div class="counter"><div class="counter-number" id="eventCount">0</div><div class="counter-label">Events</div></div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact">
-        <h2 class="section-title">📞 Contact Us</h2>
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" required />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" required />
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea class="form-control"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-      </section>
-
-    </main>
-
-    <!-- === Sidebar === -->
-    <div class="sidebar" id="sidebar">
-      <button class="sidebar-close" id="sidebarClose">×</button>
-      <h3>Quick Access</h3>
-      <div class="form-group">
-        <label>Search Homework</label>
-        <input type="text" id="sidebarSearch" class="form-control" />
-      </div>
-      <div class="theme-toggle">
-        <span>Dark Mode</span>
-        <div class="toggle" id="themeToggle"></div>
-      </div>
-      <div style="margin-top:2rem;">
-        <button class="btn btn-outline" id="exportData">Export Data</button>
-        <button class="btn btn-outline" id="importData">Import Data</button>
-        <button class="btn btn-outline" id="resetData">Reset Data</button>
       </div>
     </div>
+  </section>
+  <!-- ***** Main Banner Area End ***** -->
 
-    <!-- === Lightbox === -->
-    <div class="lightbox" id="lightbox">
-      <img src="" alt="Enlarged image" class="lightbox-img" id="lightboxImg" />
+
+  <section class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <div class="features-post">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-pencil"></i>Kelas Berkualitas</h4>
+              </div>
+              <div class="content-hide">
+                <p>Menyediakan lingkungan pendidikan dan pengalaman belajar yang baik dan dimana 
+                  setiap siswa dapat mengembangkan potensi mereka secara maksimal, baik dalam bidang akademis maupun non-akademis. </p>
+                <p class="hidden-sm">Menyediakan lingkungan pendidikan dan pengalaman belajar yang baik</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="features-post second-features">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-graduation-cap"></i>Guru Berkualitas</h4>
+              </div>
+              <div class="content-hide">
+                <p>Para guru mengabdikan sepenuh hati untuk menciptakan dan menerapkan lingkungan belajar yang menyenangkan, interaktif, 
+                  dan bermanfaat bagi seluruh siswa/i. Selain itu juga membimbing seluruh siswa menuju kesuksesan dan pengembangan karakter si anak. </p>
+                <p class="hidden-sm">Guru mengabdikan sepenuh hati untuk menciptakan dan menerapkan lingkungan belajar yang menyenangkan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="features-post third-features">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-book"></i>Fasilitas Lengkap</h4>
+              </div>
+              <div class="content-hide">
+                <p>Lingkungan sekolah ini terus berusaha menciptakan lingkungan belajar dengan beberapa fasilitas guna mendukung perkembangan para 
+                  siswa, seperti adanya perpustakaan, masjid, ruang kelas, dan fasilitas lain yang akan menyesuaikan kebutuhan siswa. </p>
+                <p class="hidden-sm">Lingkungan sekolah ini terus berusaha menciptakan lingkungan belajar dengan beberapa fasilitas guna 
+                  mendukung perkembangan para siswa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-  </div>
+  <section class="section why-us" data-section="section2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Kenapa Memilih SDN 2?</h2>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div id='tabs'>
+            <ul>
+              <li><a href='#tabs-1'>Edukasi Berkualitas</a></li>
+              <li><a href='#tabs-2'>Top Manajemen</a></li>
+              <li><a href='#tabs-3'>Guru Berkualitas</a></li>
+            </ul>
+            <section class='tabs-content'>
+              <article id='tabs-1'>
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="assets/images/choose-us-image-01.png" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Edukasi Berkualitas</h4>
+                    <p>Berkomitmen untuk dapat memberikan ilmu dan pengetahuan yang terbaik bagi para siswa serta membentuk karakter anak didik menjadi 
+                      manusia yang berguna dan bermanfaat bagi bangsa dan berusaha mengembangkan potensi dan bakat anak didik secara optimal.</p>
+                  </div>
+                </div>
+              </article>
+              <article id='tabs-2'>
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="assets/images/choose-us-image-02.png" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Top Manajemen</h4>
+                    <p>Bertekad menjalankan setiap kebijakan dan program organisasi secara profesional dan transparan demi mencapai visi dan misi yang 
+                      telah ditetapkan. Membimbing karyawan dengan penuh dedikasi sehingga setiap sumber daya dikelola dan dikembangkan secara optimal 
+                      guna menambah value bagi organisasi.</p>
+                    <!-- <p>continue....</p> -->
+                  </div>
+                </div>
+              </article>
+              <article id='tabs-3'>
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="assets/images/choose-us-image-03.png" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Guru Berkualitas</h4>
+                    <p>Para guru mengabdikan sepenuh hati untuk menciptakan dan menerapkan lingkungan belajar yang menyenangkan, interaktif, dan 
+                      bermanfaat bagi seluruh siswa/i. Selain itu juga membimbing seluruh siswa menuju kesuksesan dan pengembangan karakter si anak. </p>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="section courses" data-section="section4">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Mata Pelajaran</h2>
+          </div>
+        </div>
+        <div class="owl-carousel owl-theme">
+          <div class="item">
+            <img src="assets/images/courses-mm.jpg" alt="Course #1">
+            <div class="down-content">
+              <h4>Matematika</h4>
+              <!-- <p>I'm startin' to feel some sort of way You give me goosebumps every day And when you look at me and
+                smile I wanna say.</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-mipa.jpg" alt="Course #2">
+            <div class="down-content">
+              <h4>MIPA</h4>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-pancasila.jpg" alt="Course #3">
+            <div class="down-content">
+              <h4>Pancasila</h4>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-kwn.jpg" alt="Course #4">
+            <div class="down-content">
+              <h4>Kewarganegaraan</h4>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-olahraga.jpg" alt="Course #5">
+            <div class="down-content">
+              <h4>Olahraga</h4>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-seniBudaya.jpg" alt="Course #6">
+            <div class="down-content">
+              <h4>Seni Budaya</h4>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-bindo.jpg" alt="Course #7">
+            <div class="down-content">
+              <h4>Bahasa Indonesia</h4>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-bing.jpg" alt="Course #8">
+            <div class="down-content">
+              <h4>Bahasa Inggris</h4>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-agama.jpg" alt="Course #9">
+            <div class="down-content">
+              <h4>Agama</h4>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-ips.jpg" alt="">
+            <div class="down-content">
+              <h4>IPS</h4>
+            </div>
+          </div>
+          <!-- <div class="item">
+            <img src="assets/images/courses-01.jpg" alt="">
+            <div class="down-content">
+              <h4>Muatan Lokal</h4>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section video" data-section="section5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 align-self-center">
+          <div class="left-content">
+            <span>presentasi kami adalah untuk Anda</span>
+            <h4>Tonton Video ini Untuk Mengetahui Lebih Tentang<em> SDN 2 Ampeldento</em></h4>
+            <p>Video ini berisi bagaimana pembelajaran di SDN 2 Ampeldento. Proses dan metode pembelajaran di sekolah dasar negeri ini ternyata begitu 
+              efektif dan kondusif membuat para peserta didik mampu mengikuti pelajaran dengan fokus dan antusias tinggi sehingga tujuan pembelajaran 
+              dapat tercapai dengan baik. 
+              <br><br>Praktik pembelajaran yang diimplementasikan oleh para guru dan staf di SDN 2 Ampeldento ini terus mengalami peningkatan mutu agar 
+              para siswa dapat terus belajar dan berkembang sesuai potensi maksimal mereka ke depannya.
+            </p>
+            <div class="main-button"><a rel="nofollow" href="https://www.youtube.com/embed/FWsYg1eezUc "
+                target="_blank">Tonton di Youtube</a></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <article class="video-item">
+            <div class="video-caption">
+              <h4>Profil SDN 2 Ampeldento - YouTube</h4>
+            </div>
+            <figure>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/FWsYg1eezUc"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </figure>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" data-section="section6">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Hubungi kami</h2>
+          </div>
+        </div>
+        <div class="col-md-6">
+
+          <!-- Do you need a working HTML contact-form script?
+                	
+                    Please visit https://templatemo.com/contact page -->
+
+          <form id="contact" action="" method="post">
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset>
+                  <input name="name" type="text" class="form-control" id="name" placeholder="Nama Anda" required="">
+                </fieldset>
+              </div>
+              <div class="col-md-12">
+                <fieldset>
+                  <textarea name="message" rows="6" class="form-control" id="message" placeholder="Pesan Anda..."
+                    required=""></textarea>
+                </fieldset>
+              </div>
+              <div class="col-md-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="button">
+                    <img src="assets/images/icon-whatsapp.png" alt="Icon">
+                    Kirim Sekarang
+                  </button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+          <script>
+            const form = document.getElementById('contact');
+
+            form.addEventListener('submit', e => {
+              e.preventDefault();
+
+              const name = document.getElementById('name').value;
+              const message = document.getElementById('message').value;
+              const nameText = `Perkenalkan saya ${name}`;
+              const url = `https://wa.me/6289639050608?text=${encodeURIComponent(nameText)} : %0A${encodeURIComponent(message)}`;
+
+              window.open(url, '_blank');
+            }); 
+          </script>
+        </div>
+        <div class="col-md-6">
+          <div id="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63229.38128570529!2d112.53215674612078!3d-7.912159999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881edf4da3b03%3A0x29e70f6b6631dac5!2sSDN%202!5e0!3m2!1sid!2sid!4v1689327574077!5m2!1sid!2sid"
+              width="100%" height="422px" frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p><i class="fa fa-copyright"></i> Copyright 2023 by MMD 238 UB
+
+            | <a href="https://github.com/Shizu-ka" rel="sponsored" target="_parent">Open Source</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/lightbox.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/video.js"></script>
+  <script src="assets/js/slick-slider.js"></script>
+  <script src="assets/js/custom.js"></script>
   <script>
-    // === DOM Elements ===
-    const gateScreen = document.getElementById('gateScreen');
-    const mainContent = document.getElementById('mainContent');
-    const gateForm = document.getElementById('gateForm');
-    const sidebar = document.getElementById('sidebar');
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebarClose = document.getElementById('sidebarClose');
-    const themeToggle = document.getElementById('themeToggle');
-    const bgCanvas = document.getElementById('bgCanvas');
-    const ctx = bgCanvas.getContext('2d');
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
 
-    // === Check Login State ===
-    function checkLogin() {
-      const student = localStorage.getItem('mkps_student');
-      if (student) {
-        gateScreen.style.display = 'none';
-        mainContent.style.display = 'block';
-        initApp();
-      }
-    }
+    var showSection = function showSection(section, isAnimate) {
+      var
+        direction = section.replace(/#/, ''),
+        reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+        reqSectionPos = reqSection.offset().top - 0;
 
-    // === Save Student ===
-    gateForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const student = {
-        name: document.getElementById('studentName').value,
-        class: document.getElementById('studentClass').value,
-        parent: document.getElementById('parentName').value,
-        timestamp: new Date().toISOString()
-      };
-      localStorage.setItem('mkps_student', JSON.stringify(student));
-      localStorage.setItem('mkps_update', new Date().toISOString());
-      gateScreen.style.display = 'none';
-      mainContent.style.display = 'block';
-      initApp();
-    });
-
-    // === Prevent Back ===
-    window.addEventListener('popstate', () => {
-      if (localStorage.getItem('mkps_student')) {
-        history.pushState(null, null, location.href);
-      }
-    });
-
-    // === Init App ===
-    function initApp() {
-      history.pushState(null, null, location.href);
-      loadTheme();
-      setupEventListeners();
-      seedData();
-      renderHomework();
-      renderTeachers();
-      renderEvents();
-      renderNotices();
-      renderTimetable();
-      renderGallery();
-      renderAchievements();
-      setupFAQ();
-      setupContactForm();
-      animateSections();
-    }
-
-    // === Setup Listeners ===
-    function setupEventListeners() {
-      menuToggle.addEventListener('click', () => sidebar.classList.add('active'));
-      sidebarClose.addEventListener('click', () => sidebar.classList.remove('active'));
-      themeToggle.addEventListener('click', toggleTheme);
-      document.getElementById('printHw').addEventListener('click', () => window.print());
-      document.getElementById('downloadHw').addEventListener('click', downloadSnapshot);
-      document.getElementById('exportData').addEventListener('click', exportMkpsData);
-      document.getElementById('importData').addEventListener('click', importMkpsData);
-      document.getElementById('resetData').addEventListener('click', resetMkpsData);
-
-      // Search
-      document.getElementById('hwSearch').addEventListener('input', filterHomework);
-      document.getElementById('classFilter').addEventListener('change', filterHomework);
-      document.getElementById('sidebarSearch').addEventListener('input', filterHomework);
-    }
-
-    // === Background Animation ===
-    function setupCanvas() {
-      bgCanvas.width = window.innerWidth;
-      bgCanvas.height = window.innerHeight;
-
-      const particles = [];
-      for (let i = 0; i < 50; i++) {
-        particles.push({
-          x: Math.random() * bgCanvas.width,
-          y: Math.random() * bgCanvas.height,
-          r: Math.random() * 2 + 1,
-          d: Math.random() * 100
-        });
+      if (isAnimate) {
+        $('body, html').animate({
+          scrollTop: reqSectionPos
+        },
+          800);
+      } else {
+        $('body, html').scrollTop(reqSectionPos);
       }
 
-      function draw() {
-        ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-        ctx.fillStyle = 'rgba(0, 200, 215, 0.1)';
-        particles.forEach(p => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fill();
-          p.y += 0.1;
-          if (p.y > bgCanvas.height) p.y = -10;
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-
-      window.addEventListener('resize', () => {
-        bgCanvas.width = window.innerWidth;
-        bgCanvas.height = window.innerHeight;
-      });
-    }
-
-    // === Theme ===
-    function loadTheme() {
-      const theme = localStorage.getItem('mkps_theme') || 'dark';
-      document.body.setAttribute('data-theme', theme);
-      themeToggle.classList.toggle('active', theme === 'light');
-    }
-
-    function toggleTheme() {
-      const current = document.body.getAttribute('data-theme');
-      const newTheme = current === 'light' ? 'dark' : 'light';
-      document.body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('mkps_theme', newTheme);
-    }
-
-    // === Seed Data ===
-    function seedData() {
-      if (!localStorage.getItem('mkps_homework')) {
-        const hw = {
-          "6": [{ subject: "Maths", teacher: "Arif Khan", date: "2025-04-01", instructions: "Complete Exercise 4.2" }],
-          "7": [{ subject: "Science", teacher: "Shruti Verma", date: "2025-04-02", instructions: "Prepare notes on cells" }]
-        };
-        localStorage.setItem('mkps_homework', JSON.stringify(hw));
-      }
-      if (!localStorage.getItem('mkps_teachers')) {
-        localStorage.setItem('mkps_teachers', JSON.stringify([
-          { name: "Arif Khan", subject: "Mathematics", img: "https://i.pravatar.cc/150?u=arif" },
-          { name: "Shruti Verma", subject: "Science", img: "https://i.pravatar.cc/150?u=shruti" }
-        ]));
-      }
-      // Seed other data similarly...
-    }
-
-    // === Render Functions ===
-    function renderHomework() {
-      const student = JSON.parse(localStorage.getItem('mkps_student'));
-      const hw = JSON.parse(localStorage.getItem('mkps_homework'))[student.class] || [];
-      const container = document.getElementById('hwGrid');
-      container.innerHTML = hw.map(h => `
-        <div class="card hw-card">
-          <div class="hw-header">
-            <div class="hw-subject">${h.subject}</div>
-            <div class="hw-date">${h.date}</div>
-          </div>
-          <div class="hw-teacher">By: ${h.teacher}</div>
-          <div class="hw-instructions">${h.instructions}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderTeachers() {
-      const teachers = JSON.parse(localStorage.getItem('mkps_teachers'));
-      const container = document.getElementById('teacherGrid');
-      container.innerHTML = teachers.map(t => `
-        <div class="card teacher-card">
-          <img src="${t.img}" alt="${t.name}" class="teacher-img" />
-          <div class="teacher-name">${t.name}</div>
-          <div class="teacher-subject">${t.subject}</div>
-        </div>
-      `).join('');
-    }
-
-    // Add other render functions: renderEvents, renderNotices, etc.
-
-    // === Utilities ===
-    function filterHomework() {
-      const term = document.getElementById('hwSearch').value.toLowerCase();
-      const classFilter = document.getElementById('classFilter').value;
-      // Implement filtering logic
-    }
-
-    function downloadSnapshot() {
-      const el = document.getElementById('homework');
-      const html = `<html><body><h1>Homework</h1>${el.innerHTML}</body></html>`;
-      const blob = new Blob([html], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `homework-class${JSON.parse(localStorage.getItem('mkps_student')).class}.html`;
-      a.click();
-    }
-
-    function exportMkpsData() {
-      const data = {};
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key.startsWith('mkps_')) {
-          data[key] = JSON.parse(localStorage.getItem(key));
-        }
-      }
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'mkps_backup.json';
-      a.click();
-    }
-
-    function importMkpsData() {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = '.json';
-      input.onchange = e => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = evt => {
-          try {
-            const data = JSON.parse(evt.target.result);
-            Object.keys(data).forEach(k => localStorage.setItem(k, JSON.stringify(data[k])));
-            location.reload();
-          } catch (err) {
-            alert('Invalid JSON');
-          }
-        };
-        reader.readAsText(file);
-      };
-      input.click();
-    }
-
-    function resetMkpsData() {
-      if (confirm('Reset all data?')) {
-        localStorage.clear();
-        location.reload();
-      }
-    }
-
-    function setupFAQ() {
-      document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const answer = btn.nextElementSibling;
-          const isVisible = answer.style.display === 'block';
-          answer.style.display = isVisible ? 'none' : 'block';
-          btn.querySelector('span').textContent = isVisible ? '+' : '−';
-        });
-      });
-    }
-
-    function setupContactForm() {
-      document.getElementById('contactForm').addEventListener('submit', e => {
-        e.preventDefault();
-        const data = new FormData(e.target);
-        const msg = { name: data.get('name'), email: data.get('email'), message: data.get('message'), time: new Date().toISOString() };
-        const msgs = JSON.parse(localStorage.getItem('mkps_messages') || '[]');
-        msgs.push(msg);
-        localStorage.setItem('mkps_messages', JSON.stringify(msgs));
-        alert('Message sent!');
-        e.target.reset();
-      });
-    }
-
-    function animateSections() {
-      const sections = document.querySelectorAll('section');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) e.target.classList.add('visible');
-        });
-      }, { threshold: 0.1 });
-      sections.forEach(s => observer.observe(s));
-    }
-
-    // === Admin Hooks ===
-    window.renderHomeworkFor = (cls) => {
-      const hw = JSON.parse(localStorage.getItem('mkps_homework'))[cls] || [];
-      document.getElementById('hwGrid').innerHTML = hw.map(h => `
-        <div class="card hw-card">
-          <div class="hw-header"><div class="hw-subject">${h.subject}</div><div class="hw-date">${h.date}</div></div>
-          <div class="hw-teacher">By: ${h.teacher}</div>
-          <div class="hw-instructions">${h.instructions}</div>
-        </div>
-      `).join('');
     };
 
-    window.refreshTeachers = renderTeachers;
-    window.refreshEvents = () => {}; // Implement
-    window.refreshNotices = () => {}; // Implement
-    window.refreshTimetable = () => {}; // Implement
-    window.refreshGallery = () => {}; // Implement
-    window.refreshMessages = () => {}; // Implement
-    window.exportMkpsData = exportMkpsData;
+    var checkSection = function checkSection() {
+      $('.section').each(function () {
+        var
+          $this = $(this),
+          topEdge = $this.offset().top - 80,
+          bottomEdge = topEdge + $this.height(),
+          wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
+          var
+            currentId = $this.data('section'),
+            reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+          reqLink.closest('li').addClass('active').
+            siblings().removeClass('active');
+        }
+      });
+    };
 
-    // === Init ===
-    setupCanvas();
-    checkLogin();
+    $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
+      if ($(e.target).hasClass('external')) {
+        return;
+      }
+      e.preventDefault();
+      $('#menu').removeClass('active');
+      showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+      checkSection();
+    });
   </script>
-
 </body>
+
 </html>
