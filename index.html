@@ -1,441 +1,1781 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Official Portal of Milli Karwaan Public School, Balrampur - Academic Excellence with Care">
+  <title>Milli Karwaan Public School Balrampur</title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <title>SDN 2 Ampeldento</title>
-  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <!-- Lottie Player -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* === Reset & Globals === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
-  <link rel="stylesheet" href="assets/css/owl.css">
-  <link rel="stylesheet" href="assets/css/lightbox.css">
-  <!--
-    
-TemplateMo 557 Grad School
+    :root {
+      --primary: #00c8d7;
+      --primary-dark: #00a3b2;
+      --secondary: #ff6b6b;
+      --dark: #121826;
+      --light: #f8f9fa;
+      --gray: #8894a6;
+      --light-gray: #c5cfd9;
+      --glass-bg: rgba(18, 24, 38, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.2);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
+      --shadow-inset: inset 0 1px 2px rgba(255,255,255,0.1);
+      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --transition-fast: all 0.2s ease;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-code: 'Roboto Mono', monospace;
+      --z-navbar: 1000;
+      --z-sidebar: 999;
+      --z-lightbox: 2000;
+      --z-cursor: 3000;
+      --z-gate: 4000;
+    }
 
-https://templatemo.com/tm-557-grad-school
+    [data-theme="light"] {
+      --dark: #f8f9fa;
+      --light: #121826;
+      --glass-bg: rgba(248, 249, 250, 0.8);
+      --glass-border: rgba(0, 0, 0, 0.1);
+      --gray: #5a6473;
+      --light-gray: #6b7785;
+    }
 
--->
+    body {
+      background: var(--dark);
+      color: var(--light);
+      font: 400 1rem var(--font-body);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* === Animated Background Canvas === */
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* === Glow Cursor === */
+    .cursor-glow {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, rgba(0, 200, 215, 0.4) 0%, rgba(0, 200, 215, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      transform: translate(-50%, -50%);
+      z-index: var(--z-cursor);
+      opacity: 0.6;
+      transition: width 0.2s, height 0.2s, opacity 0.2s;
+    }
+
+    /* === Glassmorphism Card === */
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.8rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.05));
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+      z-index: -1;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg) translateX(-100%);
+      pointer-events: none;
+      opacity: 0;
+      transition: transform 0.6s, opacity 0.6s;
+      z-index: -1;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+      transform: rotate(45deg) translateX(100%);
+    }
+
+    /* === 3D Tilt Effect === */
+    .card-tilt {
+      perspective: 1000px;
+    }
+
+    .card-tilt > * {
+      transform-style: preserve-3d;
+    }
+
+    /* === Button Styles === */
+    .btn {
+      padding: 0.8rem 1.8rem;
+      font: 600 1rem var(--font-body);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 200, 215, 0.3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--primary), #00e0f0);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 200, 215, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 200, 215, 0.1);
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .btn-icon {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* === Ripple Effect === */
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s, opacity 1s;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .btn:active::after {
+      width: 200px;
+      height: 200px;
+      opacity: 0;
+    }
+
+    /* === Gate Screen === */
+    #gateScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #0f1a2a, #1a2b47);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: var(--z-gate);
+      padding: 2rem;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .gate-container {
+      max-width: 500px;
+      width: 100%;
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .gate-title {
+      font: 700 2.2rem var(--font-heading);
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font: 600 0.95rem var(--font-body);
+      color: var(--primary);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--glass-border);
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius-sm);
+      color: white;
+      font: 500 1rem var(--font-body);
+      transition: var(--transition-fast);
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(0, 200, 215, 0.3);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .form-control::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* === Header === */
+    header {
+      padding: 1rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: var(--z-navbar);
+    }
+
+    .school-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .school-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 20px rgba(0, 200, 215, 0.3);
+    }
+
+    .school-name {
+      font: 700 1.4rem var(--font-heading);
+      color: var(--primary);
+    }
+
+    .school-subtitle {
+      font: 500 0.9rem var(--font-body);
+      color: var(--light-gray);
+    }
+
+    .contact-info {
+      text-align: right;
+      font: 500 0.95rem var(--font-body);
+      color: var(--light-gray);
+    }
+
+    .contact-info a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-info a:hover {
+      color: #00e0f0;
+    }
+
+    .call-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 107, 107, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      transition: var(--transition-fast);
+    }
+
+    .call-btn:hover {
+      background: rgba(255, 107, 107, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* === Navbar === */
+    .navbar {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-navbar);
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 0 1rem;
+      scrollbar-width: none;
+    }
+
+    .navbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      padding: 0.8rem 0;
+      gap: 0.5rem;
+    }
+
+    .nav-item a {
+      color: var(--light-gray);
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-sm);
+      font: 500 0.95rem var(--font-body);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-item a:hover, .nav-item a.active {
+      color: var(--primary);
+    }
+
+    .nav-item a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-item a:hover::after, .nav-item a.active::after {
+      transform: scaleX(1);
+    }
+
+    /* === Main Layout === */
+    main {
+      padding: 2rem 2rem 5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-container {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    h2.section-title {
+      font: 700 2.2rem var(--font-heading);
+      margin-bottom: 2rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2.section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* === Homework Cards === */
+    .hw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .hw-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hw-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+
+    .hw-subject {
+      font: 700 1.2rem var(--font-body);
+      color: var(--primary);
+    }
+
+    .hw-date {
+      font: 500 0.9rem var(--font-body);
+      color: var(--gray);
+    }
+
+    .hw-teacher {
+      font: 600 1rem var(--font-body);
+      margin-bottom: 0.5rem;
+      color: var(--light);
+    }
+
+    .hw-instructions {
+      font: 400 0.95rem var(--font-body);
+      line-height: 1.6;
+      color: var(--gray);
+    }
+
+    /* === Sidebar === */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 320px;
+      height: 100vh;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-left: 1px solid var(--glass-border);
+      z-index: var(--z-sidebar);
+      transition: right 0.5s ease;
+      padding: 2rem;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .sidebar-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font: 700 1.6rem var(--font-body);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .sidebar-close:hover {
+      transform: rotate(90deg);
+      color: #00e0f0;
+    }
+
+    .sidebar h3 {
+      font: 600 1.3rem var(--font-body);
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    /* === Theme Toggle === */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+      padding: 0.8rem;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius-sm);
+    }
+
+    .toggle {
+      position: relative;
+      width: 50px;
+      height: 24px;
+      background: var(--gray);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    [data-theme="light"] .toggle {
+      background: var(--primary);
+    }
+
+    [data-theme="light"] .toggle::after {
+      transform: translateX(26px);
+    }
+
+    /* === Utilities Bar === */
+    .util-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .util-bar .form-control {
+      max-width: 300px;
+    }
+
+    /* === Teacher Cards === */
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .teacher-card {
+      text-align: center;
+      position: relative;
+    }
+
+    .teacher-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 15px rgba(0, 200, 215, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .teacher-card:hover .teacher-img {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .teacher-name {
+      font: 700 1.1rem var(--font-body);
+      margin-bottom: 0.3rem;
+      color: var(--light);
+    }
+
+    .teacher-subject {
+      font: 500 0.95rem var(--font-body);
+      color: var(--primary);
+    }
+
+    .teacher-contact {
+      margin-top: 0.5rem;
+    }
+
+    .teacher-contact a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    /* === Events Timeline === */
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -38px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 4px solid var(--dark);
+      box-shadow: 0 0 10px rgba(0, 200, 215, 0.4);
+    }
+
+    .event-date {
+      font: 600 0.95rem var(--font-body);
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .event-title {
+      font: 700 1.1rem var(--font-body);
+      margin-bottom: 0.5rem;
+      color: var(--light);
+    }
+
+    .event-desc {
+      font: 400 0.95rem var(--font-body);
+      color: var(--gray);
+    }
+
+    /* === Notices === */
+    .notice-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      border-left: 3px solid var(--primary);
+      background: rgba(0, 200, 215, 0.05);
+      margin-bottom: 1rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .priority-badge {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      font: 600 0.8rem var(--font-body);
+      border-radius: 50px;
+      background: var(--secondary);
+      color: white;
+    }
+
+    .high { background: #d63031; }
+    .medium { background: #e17055; }
+    .low { background: #00b894; }
+
+    .notice-content {
+      flex: 1;
+    }
+
+    .notice-title {
+      font: 600 1rem var(--font-body);
+      margin-bottom: 0.3rem;
+      color: var(--light);
+    }
+
+    .notice-date {
+      font: 500 0.85rem var(--font-body);
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    /* === Timetable === */
+    .timetable {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      table-layout: fixed;
+    }
+
+    .timetable th, .timetable td {
+      padding: 0.8rem;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+    }
+
+    .timetable th {
+      background: rgba(0, 200, 215, 0.1);
+      color: var(--primary);
+      font: 600 0.95rem var(--font-body);
+    }
+
+    .timetable td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .subject {
+      font: 600 0.9rem var(--font-body);
+      color: var(--primary);
+    }
+
+    /* === Gallery === */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1;
+      position: relative;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s, filter 0.5s;
+    }
+
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 0.5rem;
+      font: 500 0.8rem var(--font-body);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+    }
+
+    /* === Lightbox === */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: var(--z-lightbox);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid var(--primary);
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 200, 215, 0.5);
+      animation: zoomIn 0.4s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* === FAQ === */
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1rem;
+      background: rgba(0, 200, 215, 0.1);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font: 600 1rem var(--font-body);
+      color: var(--light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    .faq-question:hover {
+      background: rgba(0, 200, 215, 0.15);
+    }
+
+    .faq-answer {
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-top: 1px solid var(--glass-border);
+      display: none;
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* === Achievements === */
+    .counters {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .counter {
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .counter-number {
+      font: 800 2.8rem var(--font-heading);
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .counter-label {
+      font: 500 1rem var(--font-body);
+      color: var(--gray);
+      margin-top: 0.5rem;
+    }
+
+    /* === Contact Form === */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 768px) {
+      .school-header, .contact-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+      .contact-info {
+        margin-top: 0.5rem;
+      }
+      h2.section-title {
+        font-size: 1.8rem;
+      }
+      .counter-number {
+        font-size: 2.2rem;
+      }
+      .gate-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      .util-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .util-bar .form-control, .util-bar button {
+        width: 100%;
+      }
+    }
+
+    /* === Animations === */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* === Accessibility === */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [aria-current="page"] {
+      color: var(--primary) !important;
+    }
+  </style>
 </head>
-
 <body>
 
+  <!-- === Background Canvas === -->
+  <canvas class="bg-canvas" id="bgCanvas"></canvas>
 
-  <!--header-->
-  <header class="main-header clearfix" role="header">
-    <div class="logo">
-      <a href="#"><em>SDN 2</em> Ampeldento</a>
+  <!-- === Glow Cursor === -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- === Gate Screen === -->
+  <div id="gateScreen">
+    <div class="gate-container">
+      <h1 class="gate-title">Student Access Portal</h1>
+      <form id="gateForm">
+        <div class="form-group">
+          <label for="studentName">Student Name</label>
+          <input type="text" id="studentName" class="form-control" placeholder="Enter student name" required autofocus />
+        </div>
+        <div class="form-group">
+          <label for="studentClass">Class (1–12)</label>
+          <select id="studentClass" class="form-control" required>
+            <option value="">Select Class</option>
+            <script>
+              for (let i = 1; i <= 12; i++) {
+                document.write(`<option value="${i}">Class ${i}</option>`);
+              }
+            </script>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="parentName">Parent Name</label>
+          <input type="text" id="parentName" class="form-control" placeholder="Enter parent name" required />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Enter Portal</button>
+      </form>
+      <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--light-gray);">
+        Welcome to Milli Karwaan Public School
+      </p>
     </div>
-    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
-    <nav id="menu" class="main-nav" role="navigation">
-      <ul class="main-menu">
-        <li><a href="#section1">Home</a></li>
-        <li><a href="#section2">Tentang Kami</a></li>
-        <li><a href="#section4">Mata Pelajaran</a></li>
-        <!-- <li><a href="#section5">Video</a></li> -->
-        <li><a href="#section6">Kontak</a></li>
-        <!-- <li><a href="list_buku.html" class="external">list</a></li> -->
+  </div>
+
+  <!-- === Main Content === -->
+  <div id="mainContent" style="display:none;">
+
+    <!-- Header -->
+    <header>
+      <div class="school-header">
+        <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School Logo" class="school-logo" />
+        <div>
+          <div class="school-name">Milli Karwaan Public School</div>
+          <div class="school-subtitle">Boluha Police Chowki, Balrampur (U.P.)</div>
+        </div>
+      </div>
+      <div class="contact-info">
+        📞 <a href="tel:9758919151">9758919151</a><br>
+        ✉️ <a href="mailto:madamsir066@gmail.com">madamsir066@gmail.com</a><br>
+        <a href="tel:9758919151" class="call-btn">📞 Call Now</a>
+      </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#home" class="active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="#homework">Homework</a></li>
+        <li class="nav-item"><a href="#teachers">Teachers</a></li>
+        <li class="nav-item"><a href="#events">Events</a></li>
+        <li class="nav-item"><a href="#notices">Notices</a></li>
+        <li class="nav-item"><a href="#timetable">Timetable</a></li>
+        <li class="nav-item"><a href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a href="#faq">FAQ</a></li>
+        <li class="nav-item"><a href="#achievements">Achievements</a></li>
+        <li class="nav-item"><a href="#contact">Contact</a></li>
+        <li class="nav-item"><a href="#" id="menuToggle" aria-label="Open menu">⋮</a></li>
       </ul>
     </nav>
-  </header>
 
-  <!-- ***** Main Banner Area Start ***** -->
-  <section class="section main-banner" id="top" data-section="section1">
-    <video autoplay muted loop id="bg-video">
-      <source src="assets/images/course-video.mp4" type="video/mp4" />
-    </video>
+    <!-- Main -->
+    <main id="main">
 
-    <div class="video-overlay header-text">
-      <div class="caption">
-        <h6>Ayo daftarkan putra putri anda di</h6>
-        <h2><em>SDN 2</em> Ampeldento</h2>
-        <h6 style="margin-top: 0px;">Karangploso, Kab. Malang</h6>
-        <div class="main-button">
-          <div class="scroll-to-section"><a href="#section2">Baca selengkapnya</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ***** Main Banner Area End ***** -->
-
-
-  <section class="features">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-12">
-          <div class="features-post">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-pencil"></i>Kelas Berkualitas</h4>
-              </div>
-              <div class="content-hide">
-                <p>Menyediakan lingkungan pendidikan dan pengalaman belajar yang baik dan dimana 
-                  setiap siswa dapat mengembangkan potensi mereka secara maksimal, baik dalam bidang akademis maupun non-akademis. </p>
-                <p class="hidden-sm">Menyediakan lingkungan pendidikan dan pengalaman belajar yang baik</p>
-              </div>
-            </div>
+      <!-- Home -->
+      <section id="home" class="visible">
+        <div class="section-container">
+          <h1 style="font:700 3rem var(--font-heading); color:var(--primary); text-align:center; margin-bottom:1rem;">
+            Welcome to Milli Karwaan
+          </h1>
+          <p style="text-align:center; max-width:700px; margin:0 auto 2rem; color:var(--gray);">
+            Empowering young minds with excellence, discipline, and care. Where every child shines.
+          </p>
+          <div style="text-align:center;">
+            <img src="https://i.postimg.cc/ryGx49TB/erasebg-transformed.png" alt="School" style="width:150px; opacity:0.8; border-radius:12px;" />
           </div>
         </div>
-        <div class="col-lg-4 col-12">
-          <div class="features-post second-features">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-graduation-cap"></i>Guru Berkualitas</h4>
-              </div>
-              <div class="content-hide">
-                <p>Para guru mengabdikan sepenuh hati untuk menciptakan dan menerapkan lingkungan belajar yang menyenangkan, interaktif, 
-                  dan bermanfaat bagi seluruh siswa/i. Selain itu juga membimbing seluruh siswa menuju kesuksesan dan pengembangan karakter si anak. </p>
-                <p class="hidden-sm">Guru mengabdikan sepenuh hati untuk menciptakan dan menerapkan lingkungan belajar yang menyenangkan</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12">
-          <div class="features-post third-features">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-book"></i>Fasilitas Lengkap</h4>
-              </div>
-              <div class="content-hide">
-                <p>Lingkungan sekolah ini terus berusaha menciptakan lingkungan belajar dengan beberapa fasilitas guna mendukung perkembangan para 
-                  siswa, seperti adanya perpustakaan, masjid, ruang kelas, dan fasilitas lain yang akan menyesuaikan kebutuhan siswa. </p>
-                <p class="hidden-sm">Lingkungan sekolah ini terus berusaha menciptakan lingkungan belajar dengan beberapa fasilitas guna 
-                  mendukung perkembangan para siswa</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <section class="section why-us" data-section="section2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h2>Kenapa Memilih SDN 2?</h2>
+      <!-- Homework -->
+      <section id="homework">
+        <div class="section-container">
+          <h2 class="section-title">📚 Homework</h2>
+          <div class="util-bar">
+            <input type="text" id="hwSearch" placeholder="Search homework..." class="form-control" />
+            <select id="classFilter" class="form-control">
+              <option value="">All Classes</option>
+              <script>for(let i=1;i<=12;i++)document.write(`<option value="${i}">Class ${i}</option>`);</script>
+            </select>
+            <button class="btn btn-outline" id="printHw">🖨️ Print</button>
+            <button class="btn btn-primary" id="downloadHw">💾 Download Snapshot</button>
           </div>
+          <div class="hw-grid" id="hwGrid"></div>
         </div>
-        <div class="col-md-12">
-          <div id='tabs'>
-            <ul>
-              <li><a href='#tabs-1'>Edukasi Berkualitas</a></li>
-              <li><a href='#tabs-2'>Top Manajemen</a></li>
-              <li><a href='#tabs-3'>Guru Berkualitas</a></li>
-            </ul>
-            <section class='tabs-content'>
-              <article id='tabs-1'>
-                <div class="row">
-                  <div class="col-md-6">
-                    <img src="assets/images/choose-us-image-01.png" alt="">
-                  </div>
-                  <div class="col-md-6">
-                    <h4>Edukasi Berkualitas</h4>
-                    <p>Berkomitmen untuk dapat memberikan ilmu dan pengetahuan yang terbaik bagi para siswa serta membentuk karakter anak didik menjadi 
-                      manusia yang berguna dan bermanfaat bagi bangsa dan berusaha mengembangkan potensi dan bakat anak didik secara optimal.</p>
-                  </div>
-                </div>
-              </article>
-              <article id='tabs-2'>
-                <div class="row">
-                  <div class="col-md-6">
-                    <img src="assets/images/choose-us-image-02.png" alt="">
-                  </div>
-                  <div class="col-md-6">
-                    <h4>Top Manajemen</h4>
-                    <p>Bertekad menjalankan setiap kebijakan dan program organisasi secara profesional dan transparan demi mencapai visi dan misi yang 
-                      telah ditetapkan. Membimbing karyawan dengan penuh dedikasi sehingga setiap sumber daya dikelola dan dikembangkan secara optimal 
-                      guna menambah value bagi organisasi.</p>
-                    <!-- <p>continue....</p> -->
-                  </div>
-                </div>
-              </article>
-              <article id='tabs-3'>
-                <div class="row">
-                  <div class="col-md-6">
-                    <img src="assets/images/choose-us-image-03.png" alt="">
-                  </div>
-                  <div class="col-md-6">
-                    <h4>Guru Berkualitas</h4>
-                    <p>Para guru mengabdikan sepenuh hati untuk menciptakan dan menerapkan lingkungan belajar yang menyenangkan, interaktif, dan 
-                      bermanfaat bagi seluruh siswa/i. Selain itu juga membimbing seluruh siswa menuju kesuksesan dan pengembangan karakter si anak. </p>
-                  </div>
-                </div>
-              </article>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <section class="section courses" data-section="section4">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h2>Mata Pelajaran</h2>
+      <!-- Teachers -->
+      <section id="teachers">
+        <div class="section-container">
+          <h2 class="section-title">👨‍🏫 Teachers</h2>
+          <div class="teacher-grid" id="teacherGrid"></div>
+        </div>
+      </section>
+
+      <!-- Events -->
+      <section id="events">
+        <div class="section-container">
+          <h2 class="section-title">📅 Events</h2>
+          <div class="timeline" id="eventTimeline"></div>
+        </div>
+      </section>
+
+      <!-- Notices -->
+      <section id="notices">
+        <div class="section-container">
+          <h2 class="section-title">📢 Notices</h2>
+          <div id="noticeList"></div>
+        </div>
+      </section>
+
+      <!-- Timetable -->
+      <section id="timetable">
+        <div class="section-container">
+          <h2 class="section-title">⏰ Timetable</h2>
+          <table class="timetable" id="timetableBody">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery">
+        <div class="section-container">
+          <h2 class="section-title">🖼️ Gallery</h2>
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="section-container">
+          <h2 class="section-title">❓ FAQ</h2>
+          <div id="faqList">
+            <div class="faq-item">
+              <div class="faq-question">What are school timings? <span>+</span></div>
+              <div class="faq-answer">Classes run from 8:00 AM to 2:00 PM, Monday to Saturday.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">How to pay fees? <span>+</span></div>
+              <div class="faq-answer">Fees can be paid online via UPI or at the school office.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">Is transport available? <span>+</span></div>
+              <div class="faq-answer">Yes, school buses are available for nearby areas.</div>
+            </div>
           </div>
         </div>
-        <div class="owl-carousel owl-theme">
-          <div class="item">
-            <img src="assets/images/courses-mm.jpg" alt="Course #1">
-            <div class="down-content">
-              <h4>Matematika</h4>
-              <!-- <p>I'm startin' to feel some sort of way You give me goosebumps every day And when you look at me and
-                smile I wanna say.</p> -->
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-mipa.jpg" alt="Course #2">
-            <div class="down-content">
-              <h4>MIPA</h4>
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-pancasila.jpg" alt="Course #3">
-            <div class="down-content">
-              <h4>Pancasila</h4>
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-kwn.jpg" alt="Course #4">
-            <div class="down-content">
-              <h4>Kewarganegaraan</h4>
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-olahraga.jpg" alt="Course #5">
-            <div class="down-content">
-              <h4>Olahraga</h4>
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-seniBudaya.jpg" alt="Course #6">
-            <div class="down-content">
-              <h4>Seni Budaya</h4>
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-bindo.jpg" alt="Course #7">
-            <div class="down-content">
-              <h4>Bahasa Indonesia</h4>
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-bing.jpg" alt="Course #8">
-            <div class="down-content">
-              <h4>Bahasa Inggris</h4>
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-agama.jpg" alt="Course #9">
-            <div class="down-content">
-              <h4>Agama</h4>
-            </div>
-          </div>
-          <div class="item">
-            <img src="assets/images/courses-ips.jpg" alt="">
-            <div class="down-content">
-              <h4>IPS</h4>
-            </div>
-          </div>
-          <!-- <div class="item">
-            <img src="assets/images/courses-01.jpg" alt="">
-            <div class="down-content">
-              <h4>Muatan Lokal</h4>
-            </div>
-          </div> -->
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-
-  <section class="section video" data-section="section5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 align-self-center">
-          <div class="left-content">
-            <span>presentasi kami adalah untuk Anda</span>
-            <h4>Tonton Video ini Untuk Mengetahui Lebih Tentang<em> SDN 2 Ampeldento</em></h4>
-            <p>Video ini berisi bagaimana pembelajaran di SDN 2 Ampeldento. Proses dan metode pembelajaran di sekolah dasar negeri ini ternyata begitu 
-              efektif dan kondusif membuat para peserta didik mampu mengikuti pelajaran dengan fokus dan antusias tinggi sehingga tujuan pembelajaran 
-              dapat tercapai dengan baik. 
-              <br><br>Praktik pembelajaran yang diimplementasikan oleh para guru dan staf di SDN 2 Ampeldento ini terus mengalami peningkatan mutu agar 
-              para siswa dapat terus belajar dan berkembang sesuai potensi maksimal mereka ke depannya.
-            </p>
-            <div class="main-button"><a rel="nofollow" href="https://www.youtube.com/embed/FWsYg1eezUc "
-                target="_blank">Tonton di Youtube</a></div>
+      <!-- Achievements -->
+      <section id="achievements">
+        <div class="section-container">
+          <h2 class="section-title">🏆 Achievements</h2>
+          <div class="counters">
+            <div class="counter"><div class="counter-number" id="stdCount">0</div><div class="counter-label">Students</div></div>
+            <div class="counter"><div class="counter-number" id="teachCount">0</div><div class="counter-label">Teachers</div></div>
+            <div class="counter"><div class="counter-number" id="eventCount">0</div><div class="counter-label">Events</div></div>
+            <div class="counter"><div class="counter-number" id="galleryCount">0</div><div class="counter-label">Photos</div></div>
           </div>
         </div>
-        <div class="col-md-6">
-          <article class="video-item">
-            <div class="video-caption">
-              <h4>Profil SDN 2 Ampeldento - YouTube</h4>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="section-container">
+          <h2 class="section-title">📞 Contact Us</h2>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Name</label>
+              <input type="text" id="contactName" class="form-control" required />
             </div>
-            <figure>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/FWsYg1eezUc"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-            </figure>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section contact" data-section="section6">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h2>Hubungi kami</h2>
-          </div>
-        </div>
-        <div class="col-md-6">
-
-          <!-- Do you need a working HTML contact-form script?
-                	
-                    Please visit https://templatemo.com/contact page -->
-
-          <form id="contact" action="" method="post">
-            <div class="row">
-              <div class="col-md-6">
-                <fieldset>
-                  <input name="name" type="text" class="form-control" id="name" placeholder="Nama Anda" required="">
-                </fieldset>
-              </div>
-              <div class="col-md-12">
-                <fieldset>
-                  <textarea name="message" rows="6" class="form-control" id="message" placeholder="Pesan Anda..."
-                    required=""></textarea>
-                </fieldset>
-              </div>
-              <div class="col-md-12">
-                <fieldset>
-                  <button type="submit" id="form-submit" class="button">
-                    <img src="assets/images/icon-whatsapp.png" alt="Icon">
-                    Kirim Sekarang
-                  </button>
-                </fieldset>
-              </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input type="email" id="contactEmail" class="form-control" required />
             </div>
+            <div class="form-group">
+              <label for="contactMsg">Message</label>
+              <textarea id="contactMsg" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
-          <script>
-            const form = document.getElementById('contact');
-
-            form.addEventListener('submit', e => {
-              e.preventDefault();
-
-              const name = document.getElementById('name').value;
-              const message = document.getElementById('message').value;
-              const nameText = `Perkenalkan saya ${name}`;
-              const url = `https://wa.me/6289639050608?text=${encodeURIComponent(nameText)} : %0A${encodeURIComponent(message)}`;
-
-              window.open(url, '_blank');
-            }); 
-          </script>
         </div>
-        <div class="col-md-6">
-          <div id="map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63229.38128570529!2d112.53215674612078!3d-7.912159999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881edf4da3b03%3A0x29e70f6b6631dac5!2sSDN%202!5e0!3m2!1sid!2sid!4v1689327574077!5m2!1sid!2sid"
-              width="100%" height="422px" frameborder="0" style="border:0" allowfullscreen></iframe>
-          </div>
-        </div>
+      </section>
+
+    </main>
+
+    <!-- === Sidebar === -->
+    <div class="sidebar" id="sidebar">
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">×</button>
+      <h3>Admin Panel</h3>
+      <div class="form-group">
+        <label for="sidebarSearch">Quick Homework Search</label>
+        <input type="text" id="sidebarSearch" class="form-control" />
+      </div>
+      <div class="theme-toggle">
+        <span>🌙 Dark Mode</span>
+        <div class="toggle" id="themeToggle"></div>
+      </div>
+      <div style="margin-top:2rem; display:flex; flex-direction:column; gap:1rem;">
+        <button class="btn btn-outline" id="exportData">📤 Export All Data</button>
+        <button class="btn btn-outline" id="importData">📥 Import Data</button>
+        <button class="btn btn-outline" id="resetData">🗑️ Reset Data</button>
+        <button class="btn btn-outline" id="downloadSnapshot">📄 Download HTML Snapshot</button>
       </div>
     </div>
-  </section>
 
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <p><i class="fa fa-copyright"></i> Copyright 2023 by MMD 238 UB
-
-            | <a href="https://github.com/Shizu-ka" rel="sponsored" target="_parent">Open Source</a></p>
-        </div>
-      </div>
+    <!-- === Lightbox === -->
+    <div class="lightbox" id="lightbox">
+      <img src="" alt="Enlarged image" class="lightbox-img" id="lightboxImg" tabindex="0" />
     </div>
-  </footer>
 
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </div>
 
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/lightbox.js"></script>
-  <script src="assets/js/tabs.js"></script>
-  <script src="assets/js/video.js"></script>
-  <script src="assets/js/slick-slider.js"></script>
-  <script src="assets/js/custom.js"></script>
   <script>
-    //according to loftblog tut
-    $('.nav li:first').addClass('active');
+    // === DOM Elements ===
+    const gateScreen = document.getElementById('gateScreen');
+    const mainContent = document.getElementById('mainContent');
+    const gateForm = document.getElementById('gateForm');
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const themeToggle = document.getElementById('themeToggle');
+    const bgCanvas = document.getElementById('bgCanvas');
+    const ctx = bgCanvas.getContext('2d');
+    const cursorGlow = document.getElementById('cursorGlow');
 
-    var showSection = function showSection(section, isAnimate) {
-      var
-        direction = section.replace(/#/, ''),
-        reqSection = $('.section').filter('[data-section="' + direction + '"]'),
-        reqSectionPos = reqSection.offset().top - 0;
-
-      if (isAnimate) {
-        $('body, html').animate({
-          scrollTop: reqSectionPos
-        },
-          800);
-      } else {
-        $('body, html').scrollTop(reqSectionPos);
+    // === Check Login State ===
+    function checkLogin() {
+      const student = localStorage.getItem('mkps_student');
+      if (student) {
+        try {
+          const parsed = JSON.parse(student);
+          if (parsed.class >= 1 && parsed.class <= 12) {
+            gateScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+            initApp();
+            return;
+          }
+        } catch (e) {}
       }
+      gateScreen.style.display = 'flex';
+    }
 
-    };
+    // === Save Student ===
+    gateForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('studentName').value.trim();
+      const cls = document.getElementById('studentClass').value;
+      const parent = document.getElementById('parentName').value.trim();
 
-    var checkSection = function checkSection() {
-      $('.section').each(function () {
-        var
-          $this = $(this),
-          topEdge = $this.offset().top - 80,
-          bottomEdge = topEdge + $this.height(),
-          wScroll = $(window).scrollTop();
-        if (topEdge < wScroll && bottomEdge > wScroll) {
-          var
-            currentId = $this.data('section'),
-            reqLink = $('a').filter('[href*=\\#' + currentId + ']');
-          reqLink.closest('li').addClass('active').
-            siblings().removeClass('active');
-        }
-      });
-    };
-
-    $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
-      if ($(e.target).hasClass('external')) {
+      if (!name || !cls || !parent) {
+        alert('All fields are required!');
         return;
       }
-      e.preventDefault();
-      $('#menu').removeClass('active');
-      showSection($(this).attr('href'), true);
+
+      const student = { name, class: cls, parent, timestamp: new Date().toISOString() };
+      localStorage.setItem('mkps_student', JSON.stringify(student));
+      localStorage.setItem('mkps_update', new Date().toISOString());
+      gateScreen.style.display = 'none';
+      mainContent.style.display = 'block';
+      initApp();
     });
 
-    $(window).scroll(function () {
-      checkSection();
+    // === Prevent Back ===
+    window.addEventListener('popstate', () => {
+      if (localStorage.getItem('mkps_student')) {
+        history.pushState(null, null, location.href);
+      }
     });
+
+    // === Init App ===
+    function initApp() {
+      history.pushState(null, null, location.href);
+      loadTheme();
+      setupEventListeners();
+      setupCanvas();
+      setupCursor();
+      seedDataIfEmpty();
+      renderHomework();
+      renderTeachers();
+      renderEvents();
+      renderNotices();
+      renderTimetable();
+      renderGallery();
+      renderAchievements();
+      setupFAQ();
+      setupContactForm();
+      animateSectionsOnScroll();
+    }
+
+    // === Setup Listeners ===
+    function setupEventListeners() {
+      menuToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        sidebar.classList.add('active');
+      });
+      sidebarClose.addEventListener('click', () => sidebar.classList.remove('active'));
+      themeToggle.addEventListener('click', toggleTheme);
+
+      // Homework Utilities
+      document.getElementById('printHw').addEventListener('click', () => window.print());
+      document.getElementById('downloadHw').addEventListener('click', downloadHomeworkSnapshot);
+      document.getElementById('exportData').addEventListener('click', exportMkpsData);
+      document.getElementById('importData').addEventListener('click', importMkpsData);
+      document.getElementById('resetData').addEventListener('click', resetMkpsData);
+      document.getElementById('downloadSnapshot').addEventListener('click', downloadFullSnapshot);
+
+      // Search
+      const hwSearch = document.getElementById('hwSearch');
+      const classFilter = document.getElementById('classFilter');
+      const sidebarSearch = document.getElementById('sidebarSearch');
+
+      [hwSearch, classFilter, sidebarSearch].forEach(el => {
+        el?.addEventListener('input', filterHomework);
+      });
+    }
+
+    // === Background Canvas ===
+    function setupCanvas() {
+      bgCanvas.width = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
+
+      const particles = [];
+      for (let i = 0; i < 70; i++) {
+        particles.push({
+          x: Math.random() * bgCanvas.width,
+          y: Math.random() * bgCanvas.height,
+          r: Math.random() * 1.5 + 0.5,
+          d: Math.random() * 100,
+          speed: Math.random() * 0.3 + 0.1
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+        ctx.fillStyle = 'rgba(0, 200, 215, 0.08)';
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+          p.y += p.speed;
+          if (p.y > bgCanvas.height) p.y = -10;
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      window.addEventListener('resize', () => {
+        bgCanvas.width = window.innerWidth;
+        bgCanvas.height = window.innerHeight;
+      });
+    }
+
+    // === Cursor Glow ===
+    function setupCursor() {
+      document.addEventListener('mousemove', (e) => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+      });
+
+      document.addEventListener('mousedown', () => {
+        cursorGlow.style.width = '25px';
+        cursorGlow.style.height = '25px';
+        cursorGlow.style.opacity = '0.4';
+      });
+
+      document.addEventListener('mouseup', () => {
+        cursorGlow.style.width = '40px';
+        cursorGlow.style.height = '40px';
+        cursorGlow.style.opacity = '0.6';
+      });
+    }
+
+    // === Theme System ===
+    function loadTheme() {
+      const theme = localStorage.getItem('mkps_theme') || 'dark';
+      document.body.setAttribute('data-theme', theme);
+    }
+
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme');
+      const newTheme = current === 'light' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('mkps_theme', newTheme);
+    }
+
+    // === Seed Data if Empty ===
+    function seedDataIfEmpty() {
+      const keys = ['mkps_homework', 'mkps_teachers', 'mkps_events', 'mkps_notices', 'mkps_timetable', 'mkps_gallery', 'mkps_messages'];
+      let updated = false;
+
+      if (!localStorage.getItem('mkps_homework')) {
+        const hw = {
+          "6": [
+            { subject: "Mathematics", teacher: "Arif Khan", date: "2025-04-01", instructions: "Complete Exercise 4.2 on Algebraic Expressions, Page 78." },
+            { subject: "Science", teacher: "Shruti Verma", date: "2025-04-02", instructions: "Prepare detailed notes on 'Living Organisms and their Characteristics'." }
+          ],
+          "7": [
+            { subject: "English", teacher: "Prakash Singh", date: "2025-04-01", instructions: "Write a 200-word paragraph on 'My Hero in Life' with proper grammar." },
+            { subject: "Social Studies", teacher: "Neeraj Gupta", date: "2025-04-03", instructions: "Draw a map of India and mark all states and capitals." }
+          ],
+          "8": [
+            { subject: "Computer Science", teacher: "Riya Thomas", date: "2025-04-04", instructions: "Create a Python program to calculate simple interest using user input." },
+            { subject: "Hindi", teacher: "Alka Sharma", date: "2025-04-05", instructions: "लेख लिखें: 'मेरा प्रिय त्योहार'" }
+          ]
+        };
+        localStorage.setItem('mkps_homework', JSON.stringify(hw));
+        updated = true;
+      }
+
+      if (!localStorage.getItem('mkps_teachers')) {
+        localStorage.setItem('mkps_teachers', JSON.stringify([
+          { name: "Arif Khan", subject: "Mathematics", img: "https://i.pravatar.cc/150?u=arif" },
+          { name: "Shruti Verma", subject: "Science", img: "https://i.pravatar.cc/150?u=shruti" },
+          { name: "Prakash Singh", subject: "English", img: "https://i.pravatar.cc/150?u=prakash" },
+          { name: "Riya Thomas", subject: "Computer Science", img: "https://i.pravatar.cc/150?u=riya" },
+          { name: "Neeraj Gupta", subject: "Social Studies", img: "https://i.pravatar.cc/150?u=neeraj" },
+          { name: "Alka Sharma", subject: "Hindi", img: "https://i.pravatar.cc/150?u=alka" }
+        ]));
+        updated = true;
+      }
+
+      if (updated) {
+        localStorage.setItem('mkps_update', new Date().toISOString());
+      }
+    }
+
+    // === Render Functions ===
+    function renderHomework() {
+      const student = JSON.parse(localStorage.getItem('mkps_student'));
+      const allHw = JSON.parse(localStorage.getItem('mkps_homework')) || {};
+      const hw = allHw[student.class] || [];
+      const container = document.getElementById('hwGrid');
+      container.innerHTML = hw.map(h => `
+        <div class="card card-tilt hw-card" data-tilt>
+          <div class="hw-header">
+            <div class="hw-subject">${h.subject}</div>
+            <div class="hw-date">${h.date}</div>
+          </div>
+          <div class="hw-teacher">By: ${h.teacher}</div>
+          <div class="hw-instructions">${h.instructions}</div>
+        </div>
+      `).join('');
+      initTiltEffect();
+    }
+
+    function renderTeachers() {
+      const teachers = JSON.parse(localStorage.getItem('mkps_teachers')) || [];
+      const container = document.getElementById('teacherGrid');
+      container.innerHTML = teachers.map(t => `
+        <div class="card card-tilt teacher-card" data-tilt>
+          <img src="${t.img}" alt="${t.name}" class="teacher-img" />
+          <div class="teacher-name">${t.name}</div>
+          <div class="teacher-subject">${t.subject}</div>
+          <div class="teacher-contact"><a href="mailto:${t.name.replace(' ', '').toLowerCase()}@mkps.edu.in">📧 Email</a></div>
+        </div>
+      `).join('');
+      initTiltEffect();
+    }
+
+    function renderEvents() {
+      const events = [
+        { date: "2025-04-10", title: "Annual Sports Day", desc: "Inter-house sports competition. All students must participate." },
+        { date: "2025-04-15", title: "Science Exhibition", desc: "Students to present science projects in the school hall." },
+        { date: "2025-04-20", title: "Parent-Teacher Meeting", desc: "Discuss student progress and future goals." }
+      ];
+      const container = document.getElementById('eventTimeline');
+      container.innerHTML = events.map(e => `
+        <div class="timeline-item">
+          <div class="event-date">${e.date}</div>
+          <div class="event-title">${e.title}</div>
+          <div class="event-desc">${e.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderNotices() {
+      const notices = [
+        { priority: "high", title: "School Closed on Monday", date: "2025-04-07", desc: "Due to public holiday, school will remain closed on 7th April." },
+        { priority: "medium", title: "Uniform Change", date: "2025-04-10", desc: "New summer uniform will be mandatory from 10th April." },
+        { priority: "low", title: "Library Timing Extended", date: "2025-04-05", desc: "Library will now remain open till 4 PM on weekdays." }
+      ];
+      const container = document.getElementById('noticeList');
+      container.innerHTML = notices.map(n => `
+        <div class="notice-item">
+          <div>
+            <span class="priority-badge ${n.priority}">${n.priority.toUpperCase()}</span>
+          </div>
+          <div class="notice-content">
+            <div class="notice-title">${n.title}</div>
+            <div class="notice-date">${n.date}</div>
+            <div class="notice-desc">${n.desc}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderTimetable() {
+      const periods = [
+        ["9:00-10:00", "Maths", "Science", "English", "Hindi", "SST", "CS"],
+        ["10:00-11:00", "English", "Maths", "Hindi", "Science", "CS", "Arts"],
+        ["11:15-12:15", "SST", "Hindi", "Maths", "English", "Science", "PE"],
+        ["12:15-1:15", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch", "Lunch"],
+        ["1:15-2:15", "CS", "English", "SST", "Maths", "Hindi", "Science"]
+      ];
+      const tbody = document.getElementById('timetableBody').querySelector('tbody');
+      tbody.innerHTML = periods.map(row => `
+        <tr>${row.map(cell => `<td>${cell.includes('Lunch') ? '<span style="color:#e17055;">' + cell + '</span>' : '<span class="subject">' + cell + '</span>'}</td>`).join('')}</tr>
+      `).join('');
+    }
+
+    function renderGallery() {
+      const images = [
+        "https://source.unsplash.com/random/800x600/?school,classroom",
+        "https://source.unsplash.com/random/800x600/?students,learning",
+        "https://source.unsplash.com/random/800x600/?science,lab",
+        "https://source.unsplash.com/random/800x600/?sports,playground",
+        "https://source.unsplash.com/random/800x600/?art,craft",
+        "https://source.unsplash.com/random/800x600/?teachers,meeting"
+      ];
+      const container = document.getElementById('galleryGrid');
+      container.innerHTML = images.map((src, i) => `
+        <div class="gallery-item" data-src="${src}" data-index="${i}">
+          <img src="${src}" alt="Gallery ${i+1}" class="gallery-img" />
+          <div class="gallery-caption">Event ${i+1}</div>
+        </div>
+      `).join('');
+      setupGalleryLightbox();
+    }
+
+    function renderAchievements() {
+      document.getElementById('stdCount').textContent = "1250";
+      document.getElementById('teachCount').textContent = "48";
+      document.getElementById('eventCount').textContent = "89";
+      document.getElementById('galleryCount').textContent = "240";
+    }
+
+    // === Utilities ===
+    function filterHomework() {
+      const term = (document.getElementById('hwSearch').value || '').toLowerCase();
+      const cls = document.getElementById('classFilter').value;
+      const allCards = document.querySelectorAll('.hw-card');
+      allCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const matchTerm = !term || text.includes(term);
+        const matchCls = !cls || card.closest('.hw-grid').dataset.class === cls;
+        card.style.display = matchTerm && matchCls ? 'block' : 'none';
+      });
+    }
+
+    function downloadHomeworkSnapshot() {
+      const student = JSON.parse(localStorage.getItem('mkps_student'));
+      const hw = JSON.parse(localStorage.getItem('mkps_homework'))[student.class] || [];
+      const html = `
+        <html>
+        <head><title>Homework - Class ${student.class}</title></head>
+        <body style="font-family:Arial; color:#333; max-width:800px; margin:2rem auto; line-height:1.6;">
+          <h1>Milli Karwaan Public School</h1>
+          <h2>Homework - Class ${student.class}</h2>
+          <p><strong>Student:</strong> ${student.name}</p>
+          <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+          <hr>
+          ${hw.map(h => `<div><strong>${h.subject}</strong> (${h.date})<br>By: ${h.teacher}<br>${h.instructions}<hr></div>`).join('')}
+        </body>
+        </html>
+      `;
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `homework-class${student.class}-${Date.now()}.html`;
+      a.click();
+    }
+
+    function downloadFullSnapshot() {
+      const html = document.documentElement.outerHTML;
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `mkps-portal-snapshot-${Date.now()}.html`;
+      a.click();
+    }
+
+    function exportMkpsData() {
+      const data = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('mkps_')) {
+          try {
+            data[key] = JSON.parse(localStorage.getItem(key));
+          } catch (e) {
+            data[key] = localStorage.getItem(key);
+          }
+        }
+      }
+      data.exportedAt = new Date().toISOString();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `mkps-backup-${Date.now()}.json`;
+      a.click();
+    }
+
+    function importMkpsData() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      input.onchange = e => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = evt => {
+          try {
+            const data = JSON.parse(evt.target.result);
+            Object.keys(data).forEach(k => {
+              if (k.startsWith('mkps_')) {
+                localStorage.setItem(k, JSON.stringify(data[k]));
+              }
+            });
+            alert('Data imported successfully!');
+            location.reload();
+          } catch (err) {
+            alert('Invalid JSON file!');
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    function resetMkpsData() {
+      if (confirm('Are you sure you want to reset all data? This cannot be undone.')) {
+        localStorage.clear();
+        alert('All data has been reset.');
+        location.reload();
+      }
+    }
+
+    // === Gallery Lightbox ===
+    function setupGalleryLightbox() {
+      const items = document.querySelectorAll('.gallery-item');
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+
+      items.forEach(item => {
+        item.addEventListener('click', () => {
+          img.src = item.dataset.src;
+          img.alt = `Gallery image ${item.dataset.index}`;
+          lightbox.classList.add('active');
+        });
+      });
+
+      lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          lightbox.classList.remove('active');
+        }
+      });
+    }
+
+    // === FAQ Accordion ===
+    function setupFAQ() {
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const answer = btn.nextElementSibling;
+          const isOpen = answer.style.display === 'block';
+          document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+          document.querySelectorAll('.faq-question span').forEach(s => s.textContent = '+');
+          if (!isOpen) {
+            answer.style.display = 'block';
+            btn.querySelector('span').textContent = '−';
+          }
+        });
+      });
+    }
+
+    // === Contact Form ===
+    function setupContactForm() {
+      document.getElementById('contactForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value;
+        const email = document.getElementById('contactEmail').value;
+        const msg = document.getElementById('contactMsg').value;
+        const data = { name, email, message: msg, time: new Date().toISOString() };
+        const msgs = JSON.parse(localStorage.getItem('mkps_messages') || '[]');
+        msgs.push(data);
+        localStorage.setItem('mkps_messages', JSON.stringify(msgs));
+        alert('Message sent successfully!');
+        e.target.reset();
+      });
+    }
+
+    // === Animate Sections on Scroll ===
+    function animateSectionsOnScroll() {
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            e.target.style.animation = 'fadeInUp 0.8s ease forwards';
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(s => observer.observe(s));
+    }
+
+    // === 3D Tilt Effect ===
+    function initTiltEffect() {
+      const cards = document.querySelectorAll('[data-tilt]');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateY = (x - centerX) / 10;
+          const rotateX = (centerY - y) / 10;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        });
+      });
+    }
+
+    // === Admin Hooks ===
+    window.renderHomeworkFor = (cls) => {
+      const allHw = JSON.parse(localStorage.getItem('mkps_homework')) || {};
+      const hw = allHw[cls] || [];
+      const container = document.getElementById('hwGrid');
+      container.innerHTML = hw.map(h => `
+        <div class="card hw-card">
+          <div class="hw-header"><div class="hw-subject">${h.subject}</div><div class="hw-date">${h.date}</div></div>
+          <div class="hw-teacher">By: ${h.teacher}</div>
+          <div class="hw-instructions">${h.instructions}</div>
+        </div>
+      `).join('');
+    };
+
+    window.refreshTeachers = renderTeachers;
+    window.refreshEvents = renderEvents;
+    window.refreshNotices = renderNotices;
+    window.refreshTimetable = renderTimetable;
+    window.refreshGallery = renderGallery;
+    window.refreshMessages = () => {};
+    window.exportMkpsData = exportMkpsData;
+
+    // === Init on Load ===
+    checkLogin();
   </script>
-</body>
 
+</body>
 </html>
