@@ -4,277 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Springfield Academy | Excellence in Education</title>
-    <meta name="description" content="Springfield Academy provides exceptional education from Pre-K through 12th grade. Discover our programs, faculty, and community.">
-    
-    <!-- Favicon -->
+    <meta name="description" content="Top-tier education from Pre-K to 12th grade. Small classes, big futures.">
     <link rel="icon" type="image/png" href="images/favicon.png">
-    
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
+    <!-- Skip Link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <!-- Logo -->
-                <div class="logo">
-                    <img src="images/school-logo.png" alt="Springfield Academy Logo" width="150" height="50">
-                </div>
+                <a href="index.html" class="logo">
+                    <img src="images/school-logo.png" alt="Springfield Academy" width="150" height="50">
+                </a>
 
-                <!-- Mobile Menu Toggle -->
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
                 </button>
 
-                <!-- Navigation -->
-                <nav class="main-nav" aria-label="Main navigation">
+                <nav class="main-nav" aria-label="Main">
                     <ul class="nav-list">
-                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="index.html" class="nav-link active">Home</a></li>
                         <li class="has-dropdown">
-                            <a href="#about" class="nav-link">About <i class="fas fa-chevron-down"></i></a>
+                            <a href="pages/about.html" class="nav-link">About <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="pages/about.html#mission">Our Mission</a></li>
+                                <li><a href="pages/about.html#mission">Mission</a></li>
                                 <li><a href="pages/about.html#leadership">Leadership</a></li>
                                 <li><a href="pages/about.html#history">History</a></li>
-                                <li><a href="pages/about.html#facilities">Facilities</a></li>
                             </ul>
                         </li>
-                        <li class="has-dropdown">
-                            <a href="#academics" class="nav-link">Academics <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="pages/academics.html#curriculum">Curriculum</a></li>
-                                <li><a href="pages/academics.html#departments">Departments</a></li>
-                                <li><a href="pages/academics.html#library">Library</a></li>
-                                <li><a href="pages/academics.html#technology">Technology</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="#admissions" class="nav-link">Admissions <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="pages/admissions.html#process">Admission Process</a></li>
-                                <li><a href="pages/admissions.html#tuition">Tuition & Fees</a></li>
-                                <li><a href="pages/admissions.html#visit">Visit Campus</a></li>
-                                <li><a href="pages/admissions.html#apply">Apply Now</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#student-life" class="nav-link">Student Life</a></li>
-                        <li><a href="#news" class="nav-link">News & Events</a></li>
-                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                        <li><a href="pages/academics.html" class="nav-link">Academics</a></li>
+                        <li><a href="pages/admissions.html" class="nav-link">Admissions</a></li>
+                        <li><a href="pages/news.html" class="nav-link">News</a></li>
+                        <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
                     </ul>
                 </nav>
 
-                <!-- Quick Actions -->
                 <div class="quick-actions">
-                    <a href="pages/admissions.html#apply" class="btn btn-primary">Apply Now</a>
-                    <a href="#portal" class="btn btn-secondary">Parent Portal</a>
+                    <a href="pages/admissions.html" class="btn btn-primary">Apply</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main -->
     <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-background">
-                <img src="images/hero-bg.jpg" alt="Students learning in classroom" loading="lazy">
-                <div class="hero-overlay"></div>
-            </div>
+        <section class="hero">
+            <img src="images/hero-bg.jpg" alt="Students collaborating" class="hero-bg">
+            <div class="hero-overlay"></div>
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Excellence in Education Since 1985</h1>
-                    <p class="hero-subtitle">Nurturing minds, inspiring futures. Join Springfield Academy where every student's potential is unlocked.</p>
-                    <div class="hero-buttons">
-                        <a href="pages/admissions.html#visit" class="btn btn-primary btn-large">Schedule a Visit</a>
-                        <a href="pages/about.html" class="btn btn-secondary btn-large">Learn More</a>
-                    </div>
+                    <h1>Excellence in Education Since 1985</h1>
+                    <p>Nurturing minds, inspiring futures.</p>
+                    <a href="pages/admissions.html" class="btn btn-primary btn-large">Schedule a Tour</a>
                 </div>
             </div>
-            <button class="scroll-indicator" aria-label="Scroll to content">
-                <i class="fas fa-chevron-down"></i>
-            </button>
         </section>
 
-        <!-- Quick Stats -->
         <section class="stats">
             <div class="container">
                 <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="1500">0</span>
-                        <span class="stat-label">Students</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="95">0</span>
-                        <span class="stat-label">% College Acceptance</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="80">0</span>
-                        <span class="stat-label">Faculty Members</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="15">0</span>
-                        <span class="stat-label">AP Courses</span>
-                    </div>
+                    <div><span class="stat-number" data-count="1500">0</span><span>Students</span></div>
+                    <div><span class="stat-number" data-count="95">0</span><span>% College Bound</span></div>
+                    <div><span class="stat-number" data-count="80">0</span><span>Faculty</span></div>
+                    <div><span class="stat-number" data-count="15">0</span><span>AP Courses</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Programs -->
         <section class="featured-programs">
             <div class="container">
                 <h2 class="section-title">Our Programs</h2>
                 <div class="programs-grid">
                     <div class="program-card">
-                        <div class="program-image">
-                            <img src="images/programs/early-childhood.jpg" alt="Early Childhood Education" loading="lazy">
-                        </div>
-                        <div class="program-content">
-                            <h3>Early Childhood</h3>
-                            <p>Ages 3-5. Play-based learning fostering curiosity and social development.</p>
-                            <a href="pages/academics.html#early-childhood" class="btn btn-outline">Learn More</a>
-                        </div>
+                        <img src="https://via.placeholder.com/400x250?text=Early+Childhood" alt="Early Childhood">
+                        <h3>Early Childhood</h3>
+                        <p>Ages 3-5. Play-based learning.</p>
+                        <a href="pages/academics.html" class="btn btn-outline">Learn More</a>
                     </div>
-                    
                     <div class="program-card">
-                        <div class="program-image">
-                            <img src="images/programs/elementary.jpg" alt="Elementary Education" loading="lazy">
-                        </div>
-                        <div class="program-content">
-                            <h3>Elementary</h3>
-                            <p>Grades K-5. Building strong foundations in literacy, numeracy, and critical thinking.</p>
-                            <a href="pages/academics.html#elementary" class="btn btn-outline">Learn More</a>
-                        </div>
+                        <img src="https://via.placeholder.com/400x250?text=Elementary" alt="Elementary">
+                        <h3>Elementary</h3>
+                        <p>K-5. Strong foundations.</p>
+                        <a href="pages/academics.html" class="btn btn-outline">Learn More</a>
                     </div>
-                    
                     <div class="program-card">
-                        <div class="program-image">
-                            <img src="images/programs/middle-school.jpg" alt="Middle School" loading="lazy">
-                        </div>
-                        <div class="program-content">
-                            <h3>Middle School</h3>
-                            <p>Grades 6-8. Developing independence and preparing for high school challenges.</p>
-                            <a href="pages/academics.html#middle-school" class="btn btn-outline">Learn More</a>
-                        </div>
+                        <img src="https://via.placeholder.com/400x250?text=Middle+School" alt="Middle School">
+                        <h3>Middle School</h3>
+                        <p>Grades 6-8. Independence.</p>
+                        <a href="pages/academics.html" class="btn btn-outline">Learn More</a>
                     </div>
-                    
                     <div class="program-card">
-                        <div class="program-image">
-                            <img src="images/programs/high-school.jpg" alt="High School" loading="lazy">
-                        </div>
-                        <div class="program-content">
-                            <h3>High School</h3>
-                            <p>Grades 9-12. College preparatory curriculum with 15 AP courses and individualized support.</p>
-                            <a href="pages/academics.html#high-school" class="btn btn-outline">Learn More</a>
-                        </div>
+                        <img src="https://via.placeholder.com/400x250?text=High+School" alt="High School">
+                        <h3>High School</h3>
+                        <p>Grades 9-12. College prep.</p>
+                        <a href="pages/academics.html" class="btn btn-outline">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials -->
         <section class="testimonials">
             <div class="container">
-                <h2 class="section-title">What Our Community Says</h2>
-                <div class="testimonials-slider">
-                    <div class="testimonial-slide active">
-                        <blockquote>
-                            <p>"Springfield Academy transformed my daughter's love for learning. The teachers truly care about each student's success."</p>
-                            <cite>- Sarah Johnson, Parent</cite>
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-slide">
-                        <blockquote>
-                            <p>"The individualized attention and challenging curriculum prepared me perfectly for college success."</p>
-                            <cite>- Michael Chen, Class of 2023</cite>
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-slide">
-                        <blockquote>
-                            <p>"As a teacher, I'm empowered to innovate and create meaningful learning experiences every day."</p>
-                            <cite>- Maria Rodriguez, Faculty</cite>
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="testimonial-controls">
-                    <button class="testimonial-btn prev" aria-label="Previous testimonial">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="testimonial-btn next" aria-label="Next testimonial">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                <h2 class="section-title">What Parents Say</h2>
+                <div class="testimonial-slide active">
+                    <blockquote>“Springfield Academy changed our daughter’s life.” <cite>— Sarah J.</cite></blockquote>
                 </div>
             </div>
         </section>
 
-        <!-- Upcoming Events -->
-        <section class="events">
-            <div class="container">
-                <h2 class="section-title">Upcoming Events</h2>
-                <div class="events-grid">
-                    <div class="event-card">
-                        <div class="event-date">
-                            <span class="month">SEP</span>
-                            <span class="day">15</span>
-                        </div>
-                        <div class="event-details">
-                            <h3>Back to School Night</h3>
-                            <p><i class="fas fa-clock"></i> 6:00 PM - 8:00 PM</p>
-                            <p><i class="fas fa-map-marker-alt"></i> Main Campus</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-card">
-                        <div class="event-date">
-                            <span class="month">SEP</span>
-                            <span class="day">22</span>
-                        </div>
-                        <div class="event-details">
-                            <h3>Fall Sports Tryouts</h3>
-                            <p><i class="fas fa-clock"></i> 3:30 PM - 5:30 PM</p>
-                            <p><i class="fas fa-map-marker-alt"></i> Athletic Fields</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-card">
-                        <div class="event-date">
-                            <span class="month">OCT</span>
-                            <span class="day">5</span>
-                        </div>
-                        <div class="event-details">
-                            <h3>College Fair</h3>
-                            <p><i class="fas fa-clock"></i> 10:00 AM - 2:00 PM</p>
-                            <p><i class="fas fa-map-marker-alt"></i> Gymnasium</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="events-cta">
-                    <a href="pages/news.html" class="btn btn-primary">View All Events</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter Signup -->
         <section class="newsletter">
             <div class="container">
-                <div class="newsletter-content">
-                    <h2>Stay Updated</h2>
-                    <p>Subscribe to our newsletter for the latest news and events</p>
-                    <form class="newsletter-form" id="newsletter-form">
-                        <input type="email" placeholder="Enter your email" required aria-label="Email address">
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </form>
-                    <div class="newsletter-message" role="alert" aria-live="polite"></div>
-                </div>
+                <h2>Stay Updated</h2>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button class="btn btn-primary">Subscribe</button>
+                </form>
+                <div class="newsletter-message"></div>
             </div>
         </section>
     </main>
@@ -283,65 +133,25 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section">
+                <div>
                     <h3>Springfield Academy</h3>
-                    <p>123 Education Drive<br>
-                    Springfield, ST 12345<br>
-                    Phone: (555) 123-4567<br>
-                    Email: info@springfieldacademy.edu</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <p>123 Education Drive<br>Springfield, ST 12345<br>(555) 123-4567</p>
                 </div>
-                
-                <div class="footer-section">
+                <div>
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="pages/admissions.html">Admissions</a></li>
                         <li><a href="pages/academics.html">Academics</a></li>
-                        <li><a href="#student-life">Student Life</a></li>
-                        <li><a href="#athletics">Athletics</a></li>
-                        <li><a href="#calendar">Calendar</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#parent-portal">Parent Portal</a></li>
-                        <li><a href="#student-portal">Student Portal</a></li>
-                        <li><a href="#faculty-staff">Faculty & Staff</a></li>
-                        <li><a href="#employment">Employment</a></li>
-                        <li><a href="#support">Support Us</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contact & Visit</h4>
-                    <ul>
-                        <li><a href="#request-info">Request Information</a></li>
-                        <li><a href="#schedule-tour">Schedule a Tour</a></li>
-                        <li><a href="#directions">Directions</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>&copy; 2024 Springfield Academy. All rights reserved.</p>
-                <ul class="footer-links">
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms of Use</a></li>
-                    <li><a href="#accessibility">Accessibility</a></li>
-                </ul>
+                <p>&copy; 2024 Springfield Academy</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/script.js"></script>
 </body>
 </html>
